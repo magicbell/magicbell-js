@@ -9,6 +9,7 @@
     "cypress": "cypress run --headless"
   },
   "devDependencies": {
-    "cypress": "^5.4.0"
+    "cypress": "^5.4.0",
+    "prettier": "^2.1.2"
   }
 }
