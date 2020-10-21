@@ -19,6 +19,9 @@
     ],
     "*.{md,html,css,scss}": "prettier --write"
   },
+  "dependencies": {
+    "preact": "^10.5.5"
+  },
   "devDependencies": {
     "cypress": "^5.4.0",
     "husky": "^4.3.0",
