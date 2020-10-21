@@ -20,6 +20,10 @@
     ],
     "*.{md,html,css,scss}": "prettier --write"
   },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
+  },
   "dependencies": {
     "preact": "^10.5.5"
   },
@@ -29,10 +33,10 @@
     "cypress": "^5.4.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-preact": "^1.1.2",
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.5",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.2",
     "prettier": "^2.1.2",
