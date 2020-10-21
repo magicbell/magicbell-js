@@ -1,0 +1,14 @@
+{
+  "name": "embeddable-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:magicbell-io/embeddable-web.git",
+  "author": "Josue Montano <josuemontanoa@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "cypress": "cypress run --headless"
+  },
+  "devDependencies": {
+    "cypress": "^5.4.0"
+  }
+}
