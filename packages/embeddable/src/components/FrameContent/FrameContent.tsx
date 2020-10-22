@@ -1,11 +1,16 @@
 import { Global } from '@emotion/core';
 import { MagicBellContext, NotificationInbox } from '@magicbell/magicbell-react';
-import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
+import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/NotificationInbox';
 import { h } from 'preact';
 import { useContext } from 'preact/hooks';
 import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
 import FrameProvider from '../FrameProvider';
+
+interface FrameContentProps extends NotificationInboxProps {
+  width?: number;
+  height?: number;
+}
 
 /**
  * Responsive iframe wrapper for a notification inbox.
@@ -13,11 +18,7 @@ import FrameProvider from '../FrameProvider';
  * @example
  * <FrameContent />
  */
-export default function FrameContent({
-  width: defaultWidth,
-  height: defaultHeight,
-  ...props
-}: FloatingNotificationInboxProps) {
+export default function FrameContent({ width: defaultWidth, height: defaultHeight, ...props }: FrameContentProps) {
   const { theme } = useContext(MagicBellContext);
   const { header: headerTheme, footer: footerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
