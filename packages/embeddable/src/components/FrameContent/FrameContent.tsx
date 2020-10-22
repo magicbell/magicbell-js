@@ -7,7 +7,7 @@ import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
 import FrameProvider from '../FrameProvider';
 
-interface FrameContentProps extends NotificationInboxProps {
+export interface FrameContentProps extends NotificationInboxProps {
   width?: number;
   height?: number;
 }
