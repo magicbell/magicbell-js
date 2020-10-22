@@ -12,7 +12,6 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          record: true
           yarn: true
       - release:
           requires:
