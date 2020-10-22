@@ -1,13 +1,17 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+
 jobs:
   deploy:
-    macos:
-      xcode: 11.4.1
+    description: A job that deploys to netlify using the build hook feature.
+    parameters:
+      build_hook_url:
+        type: string
+    machine: true
     steps:
       - run:
-         command: curl -X POST -d {} ${NETLIFY_BUILD_HOOK_URL}
+         command: curl -X POST -d {} << parameters.build_hook_url >>
 
 workflows:
   build:
@@ -15,5 +19,16 @@ workflows:
       - cypress/run:
           yarn: true
       - deploy:
+          name: deploy_to_staging
+          build_hook_url: ${NETLIFY_BUILD_HOOK_URL}
           requires:
             - cypress/run
+      - hold:
+          type: approval
+          requires:
+            - deploy_to_staging
+      - deploy:
+          name: deploy_to_production
+          build_hook_url: ${NETLIFY_BUILD_HOOK_URL}
+          requires:
+            - hold
