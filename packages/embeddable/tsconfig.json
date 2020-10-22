@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": false,
+    "lib": ["dom", "es2015"],
+    "jsx": "react",
+    "jsxFactory": "h",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"]
+}
