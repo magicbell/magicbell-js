@@ -20,7 +20,7 @@ workflows:
           yarn: true
       - deploy:
           name: deploy_to_staging
-          build_hook_url: ${NETLIFY_BUILD_HOOK_URL}
+          build_hook_url: ${STAGING_NETLIFY_BUILD_HOOK_URL}
           requires:
             - cypress/run
       - hold:
@@ -29,6 +29,6 @@ workflows:
             - deploy_to_staging
       - deploy:
           name: deploy_to_production
-          build_hook_url: ${NETLIFY_BUILD_HOOK_URL}
+          build_hook_url: ${PRODUCTION_NETLIFY_BUILD_HOOK_URL}
           requires:
             - hold
