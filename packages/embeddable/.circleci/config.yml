@@ -2,17 +2,18 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
 jobs:
-  release:
-    executor: cypress/base-10
+  deploy:
+    macos:
+      xcode: 11.4.1
     steps:
-      - attach_workspace:
-          at: ~/
-      - run: npm run semantic-release
+      - run:
+         command: curl -X POST -d {} ${NETLIFY_BUILD_HOOK_URL}
+
 workflows:
   build:
     jobs:
       - cypress/run:
           yarn: true
-      - release:
+      - deploy:
           requires:
             - cypress/run
