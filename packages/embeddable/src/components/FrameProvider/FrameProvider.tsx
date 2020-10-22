@@ -12,7 +12,7 @@ const createContainerCache = weakMemoize((container: HTMLElement) => {
  * Provider for rendering components in an iframe preserving their (emotion)
  * styles.
  */
-export function FrameProvider(props) {
+export default function FrameProvider(props) {
   return (
     <FrameContextConsumer>
       {({ document }) => {
