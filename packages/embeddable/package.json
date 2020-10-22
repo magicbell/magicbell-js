@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
-    "cypress": "cypress run --headless"
+    "cypress": "cypress run --headless",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -29,13 +31,19 @@
     "preact": "^10.5.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
     "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.3.3",
     "@rollup/plugin-strip": "^2.0.0",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/preact": "^6.0.26",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "babel-loader": "^8.1.0",
     "cypress": "^5.4.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
@@ -47,6 +55,7 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.4.2",
     "prettier": "^2.1.2",
+    "react-is": "^17.0.1",
     "rollup": "^2.32.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-eslint": "^7.0.0",
@@ -54,6 +63,7 @@
     "rollup-plugin-serve": "^1.0.4",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.28.0",
+    "ts-loader": "^8.0.6",
     "typescript": "^4.0.3"
   }
 }
