@@ -28,6 +28,7 @@
     "react-dom": "preact/compat"
   },
   "dependencies": {
+    "@magicbell/magicbell-react": "^5.1.0",
     "preact": "^10.5.5"
   },
   "devDependencies": {
