@@ -24,7 +24,14 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
 
   return (
-    <Frame id="magicbell-frame" frameBorder="0" scrolling="no" height={height} width={width}>
+    <Frame
+      id="magicbell-frame"
+      frameBorder="0"
+      scrolling="no"
+      height={height}
+      width={width}
+      style={{ display: 'block' }}
+    >
       <FrameProvider>
         <Global
           styles={{
@@ -40,7 +47,7 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
             },
           }}
         />
-        <NotificationInbox {...props} />
+        <NotificationInbox height={height - 88} {...props} />
       </FrameProvider>
     </Frame>
   );
