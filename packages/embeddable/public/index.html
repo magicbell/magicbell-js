@@ -4,6 +4,7 @@
     <title>Welcome to MagicBell</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/tomorrow-night.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
   </head>
   <body>
     <div class="ui inverted vertical masthead center aligned segment" style="background: #363a42">
@@ -42,19 +43,15 @@
 m=s.getElementsByTagName(o)[0]);a.async=1;a.src=g;m.parentNode.insertBefore(a,m);
 })(window,document,'script',window.location.href+'/magicbell-js.min.js','magicbell')
 
-magibell('init', {
-  target: document.getElementById('notifications'),
-  projectId: 1,
+magibell('render', document.getElementById('notifications'), {
   apiKey: '94397d8c03af920f6bfee9ef8185ad8acb1bf3c8',
   userEmail: 'josue@supportbee.com',
   userKey: 'e847eIgzK7OROyXA1fu0/v+hHxQdsQUkJSPibctHQ1M=',
   onNotificationClick: function(notification) {
     console.log(notification);
-  },
-  onSeen: function() {
-    console.log('Notifications seen');
   }
-});</code>
+});
+</code>
           </pre>
             <h3 class="ui header" style="font-size: 2em">We Also Make Bananas That Can Dance</h3>
             <p style="font-size: 1.33em">
@@ -66,10 +63,11 @@ magibell('init', {
       </div>
     </div>
 
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js" />
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
-        hljs.initHighlightingOnLoad();
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
       });
     </script>
     <script>
@@ -85,19 +83,10 @@ magibell('init', {
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        'script',
-        window.location.hostname.localeCompare('localhost') == 0
-          ? 'http://localhost:10001/magicbell-js.min.js'
-          : window.location.href + 'magicbell-js.min.js',
-        'magicbell',
-      );
+      })(window, document, 'script', window.location.href + 'magicbell-js.min.js', 'magicbell');
       magicbell('render', document.querySelector('#notifications'), {
-        apiKey: '709ee96f8446d03e3d833cb49d65c3d0d8e52fcc',
-        userEmail: 'customer@mailinator.com',
-        userKey: 'kK07PbUKbY4hiPnHjg/vzjktlWhY+/GgdShydsADK2k=',
+        apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
+        userEmail: 'josue@supportbee.com',
         onNotificationClick: function (notification) {
           console.log(notification);
         },
