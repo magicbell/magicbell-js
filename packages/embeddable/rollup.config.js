@@ -34,7 +34,7 @@ export default [
         }),
       isProduction &&
         license({
-          banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, SupportBee`,
+          banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, MagicBell Inc.`,
         }),
       copy({
         targets: [{ src: 'public/index.html', dest: 'dist' }],
