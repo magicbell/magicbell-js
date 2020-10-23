@@ -14,7 +14,7 @@ import Widget, { WidgetProps } from './components/Widget';
  * @example
  * renderWidget({ userEmail, apiKey, target: document.getElementById('test') })
  */
-export function renderWidget(options: WidgetProps, target: HTMLElement) {
+export function renderWidget(target: HTMLElement, options: WidgetProps) {
   const { onNotificationClick } = options;
   if (onNotificationClick && !isFunction(onNotificationClick)) throw '"onNotificationClick" must be a function';
   if (!isElement(target)) throw '"target" must be an HTML element';
@@ -37,7 +37,7 @@ function dequeue(window) {
     queue.forEach((element) => {
       const [method, ...options] = Array.from(element);
 
-      if (method.toLowerCase().strip() === 'render') {
+      if (method.toLowerCase().trim() === 'render') {
         globalObject = renderWidget(options[0], options[1]);
       }
     });
