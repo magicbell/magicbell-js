@@ -1,7 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import strip from '@rollup/plugin-strip';
 import copy from 'rollup-plugin-copy';
 import license from 'rollup-plugin-license';
 import serve from 'rollup-plugin-serve';
@@ -29,7 +28,6 @@ export default [
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
       !isProduction && serve({ contentBase: ['public', 'dist'] }),
-      isProduction && strip(),
       isProduction &&
         terser({
           ecma: 2015,
