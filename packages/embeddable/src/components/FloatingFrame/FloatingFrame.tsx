@@ -1,7 +1,8 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import { MagicBellContext } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
 import Tippy from '@tippyjs/react/headless';
-import { h } from 'preact';
 import { useContext } from 'preact/hooks';
 import FrameContent from '../FrameContent';
 
@@ -21,7 +22,7 @@ export default function FloatingFrame({
   ...props
 }: FloatingNotificationInboxProps) {
   const { theme } = useContext(MagicBellContext);
-  const { header: headerTheme, footer: footerTheme } = theme;
+  const { header: headerTheme, footer: footerTheme, notification: notificationTheme } = theme;
 
   const handleNotificationClick = (notification) => {
     toggle();
@@ -32,9 +33,13 @@ export default function FloatingFrame({
     <Tippy
       render={(attrs) => (
         <div
-          style={{
-            borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
-          }}
+          css={css`
+            background-color: ${notificationTheme.default.backgroundColor} !important;
+            color: ${notificationTheme.default.textColor} !important;
+            border-radius: ${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius}
+              ${footerTheme.borderRadius} !important;
+            box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1), 0px 10px 10px rgba(84, 95, 111, 0.04) !important;
+          `}
           {...attrs}
         >
           <FrameContent onNotificationClick={handleNotificationClick} {...props} />
