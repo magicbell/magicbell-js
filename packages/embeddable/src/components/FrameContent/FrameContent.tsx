@@ -52,3 +52,8 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
     </Frame>
   );
 }
+
+FrameContent.defaultProps = {
+  width: 500,
+  height: 600,
+};
