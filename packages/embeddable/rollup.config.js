@@ -22,14 +22,18 @@ export default [
         clean: true,
       }),
       commonjs({
-        include: ['node_modules/**'],
+        // use a regex to make sure to include eventual hoisted packages
+        include: /\/node_modules\//,
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
       !isProduction && serve({ contentBase: ['public', 'dist'] }),
       isProduction && strip(),
-      isProduction && terser(),
+      isProduction &&
+        terser({
+          ecma: 2015,
+        }),
       isProduction &&
         license({
           banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, SupportBee`,
