@@ -1,11 +1,5 @@
-// Uncomment below imports to use Preact Dev Tools debugging
-// import 'preact/debug';
-// import 'preact/devtools';
-
-import 'core-js/stable';
-import isElement from 'lodash/isElement';
-import isFunction from 'lodash/isFunction';
-import { h, render } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Widget, { WidgetProps } from './components/Widget';
 
 /**
@@ -16,10 +10,11 @@ import Widget, { WidgetProps } from './components/Widget';
  */
 export function renderWidget(target: HTMLElement, options: WidgetProps) {
   const { onNotificationClick } = options;
-  if (onNotificationClick && !isFunction(onNotificationClick)) throw '"onNotificationClick" must be a function';
-  if (!isElement(target)) throw '"target" must be an HTML element';
+  if (onNotificationClick && typeof onNotificationClick !== 'function')
+    throw '"onNotificationClick" must be a function';
+  if (!target?.nodeType) throw '"target" must be an HTML element';
 
-  render(<Widget {...options} />, target);
+  ReactDOM.render(<Widget {...options} />, target);
 }
 
 /**
