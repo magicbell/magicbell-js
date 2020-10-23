@@ -41,7 +41,7 @@ export default [
     output: [
       {
         name: 'MagicBell',
-        file: 'dist/magicbell-js.min.js',
+        file: 'dist/magicbell.min.js',
         format: 'iife',
       },
     ],
