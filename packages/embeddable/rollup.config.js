@@ -2,6 +2,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import strip from '@rollup/plugin-strip';
+import copy from 'rollup-plugin-copy';
 import license from 'rollup-plugin-license';
 import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
@@ -33,6 +34,9 @@ export default [
         license({
           banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, SupportBee`,
         }),
+      copy({
+        targets: [{ src: 'public/index.html', dest: 'dist' }],
+      }),
     ],
     output: [
       {
