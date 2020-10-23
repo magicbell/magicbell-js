@@ -24,10 +24,6 @@
     ],
     "*.{md,html,css,scss}": "prettier --write"
   },
-  "alias": {
-    "react": "preact/compat",
-    "react-dom": "preact/compat"
-  },
   "dependencies": {
     "@emotion/cache": "^10.0.29",
     "@emotion/core": "^10.0.35",
