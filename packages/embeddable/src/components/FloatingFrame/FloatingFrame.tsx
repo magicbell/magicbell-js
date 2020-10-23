@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/core';
 import { MagicBellContext } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
 import Tippy from '@tippyjs/react/headless';
-import { useContext } from 'preact/hooks';
+import { useContext } from 'react';
 import FrameContent from '../FrameContent';
 
 /**

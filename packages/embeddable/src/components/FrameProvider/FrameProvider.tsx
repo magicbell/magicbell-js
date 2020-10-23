@@ -1,7 +1,7 @@
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/core';
 import weakMemoize from '@emotion/weak-memoize';
-import { h } from 'preact';
+import React from 'react';
 import { FrameContextConsumer } from 'react-frame-component';
 
 const createContainerCache = weakMemoize((container: HTMLElement) => {

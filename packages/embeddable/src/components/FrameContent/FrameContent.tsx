@@ -1,8 +1,7 @@
 import { Global } from '@emotion/core';
 import { MagicBellContext, NotificationInbox } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/NotificationInbox';
-import { h } from 'preact';
-import { useContext } from 'preact/hooks';
+import React, { useContext } from 'react';
 import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
 import FrameProvider from '../FrameProvider';

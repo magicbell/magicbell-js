@@ -1,6 +1,6 @@
 import MagicBell from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/types/context/Theme';
-import { h } from 'preact';
+import React from 'react';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
 
