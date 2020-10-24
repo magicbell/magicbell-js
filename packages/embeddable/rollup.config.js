@@ -37,7 +37,11 @@ export default [
           banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, MagicBell Inc.`,
         }),
       copy({
-        targets: [{ src: 'public/index.html', dest: 'dist' }],
+        targets: [
+          { src: 'public/index.html', dest: 'dist' },
+          { src: 'public/images/**/*', dest: 'dist/images' },
+          { src: 'public/fonts/**/*', dest: 'dist/fonts' },
+        ],
       }),
     ],
     output: [
