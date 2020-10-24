@@ -2,6 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { MagicBellContext } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
+import Arrow from '@magicbell/magicbell-react/src/components/FloatingNotificationInbox/Arrow';
 import Tippy from '@tippyjs/react/headless';
 import { useContext } from 'react';
 import FrameContent from '../FrameContent';
@@ -43,6 +44,7 @@ export default function FloatingFrame({
           {...attrs}
         >
           <FrameContent onNotificationClick={handleNotificationClick} {...props} />
+          <Arrow placement={attrs['data-placement']} />
         </div>
       )}
       visible={isOpen}
