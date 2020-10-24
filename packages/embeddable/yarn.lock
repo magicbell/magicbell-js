@@ -1263,10 +1263,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.0.1.tgz#00ffe110ac856adfc8a02c7c00dae7797b883fac"
-  integrity sha512-BOWR1RO79R9721tOx1SGJyBCKjKlDLl1jo+/pg+Qwr48ADPC28nyZLGZIy8a4JWwukviOk7W/wA/2av8qeAapg==
+"@magicbell/magicbell-react@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.0.2.tgz#f0e0f93478aabfcdbfd42443636d7c876d3c617e"
+  integrity sha512-frk2o0ZUMK4AiODHtevnPdW9VGVqxC2ERv6PZn7yNBJyus5IxviS9kBOO52vk9KfhksOpxJF+wvosJyzX1XoxA==
   dependencies:
     "@emotion/core" "^10.0.35"
     "@tippyjs/react" "^4.2.0"
