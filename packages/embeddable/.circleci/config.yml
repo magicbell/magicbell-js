@@ -5,13 +5,16 @@ orbs:
 jobs:
   deploy:
     description: A job that deploys to netlify using the build hook feature.
+    filters:
+      branches:
+        only: main
     parameters:
       build_hook_url:
         type: string
     machine: true
     steps:
       - run:
-         command: curl -X POST -d {} << parameters.build_hook_url >>
+          command: curl -X POST -d {} << parameters.build_hook_url >>
 
 workflows:
   build:
