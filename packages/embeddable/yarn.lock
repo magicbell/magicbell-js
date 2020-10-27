@@ -1263,10 +1263,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.0.3.tgz#3c19d76eba97ac77add3982ff8de1edabafb9f37"
-  integrity sha512-yRwGlzW19jCM2wxvkjD+qPse4wWq2vJ+Lz6HrsBZgp9ThCVEHpNb0o8SerT/VHy8X2BI5wlEdtHKuja1gZAS+Q==
+"@magicbell/magicbell-react@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.1.0.tgz#999cafeb6dc21df22992c73944f3d058b9aff76f"
+  integrity sha512-iJ/1A7F2/1JcleH4bvZ8tqXzOiwxF/fVrsF7C0pZoDrq4NyS99dR8TV0MTFqlvqtbDygkMnnm86YVLpOoGpuvQ==
   dependencies:
     "@emotion/core" "^10.0.35"
     "@tippyjs/react" "^4.2.0"
@@ -1282,6 +1282,7 @@
     react-infinite-scroll-component "^5.0.5"
     react-use "^15.3.4"
     redaxios "^0.3.0"
+    text-clipper "^2.1.0"
     tinycolor2 "^1.4.2"
 
 "@mdx-js/loader@^1.5.1":
@@ -10831,6 +10832,11 @@ test-exclude@^6.0.0:
     "@istanbuljs/schema" "^0.1.2"
     glob "^7.1.4"
     minimatch "^3.0.4"
+
+text-clipper@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/text-clipper/-/text-clipper-2.1.0.tgz#18c615738d21a7bba9facd1069674b9088c66c4c"
+  integrity sha512-A6thWpysC0pgX+jFnW8sj0K7qgwi84SuJwMvWrAFqusnTJ1NAivm8XDU2I+BG6V2IJXT7fcQQAzebrxx+lkF2w==
 
 text-table@0.2.0, text-table@^0.2.0:
   version "0.2.0"
