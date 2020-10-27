@@ -5,9 +5,6 @@ orbs:
 jobs:
   deploy:
     description: A job that deploys to netlify using the build hook feature.
-    filters:
-      branches:
-        only: main
     parameters:
       build_hook_url:
         type: string
@@ -26,6 +23,9 @@ workflows:
           build_hook_url: ${STAGING_NETLIFY_BUILD_HOOK_URL}
           requires:
             - cypress/run
+          filters:
+            branches:
+              only: main
       - hold:
           type: approval
           requires:
@@ -35,3 +35,6 @@ workflows:
           build_hook_url: ${PRODUCTION_NETLIFY_BUILD_HOOK_URL}
           requires:
             - hold
+          filters:
+            branches:
+              only: main
