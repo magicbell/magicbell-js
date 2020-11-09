@@ -1263,10 +1263,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@magicbell/core@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-1.4.0.tgz#498f5607a8cd4b45726efe6a172eba09f6f9be80"
-  integrity sha512-MxsA+fveNM0RWODcx8YtA6bEMcyhjMgXhpags+rhYvF4apK85RUY5eiouh1a7GgyO3+p6C5OY9FN16h2iOsi+g==
+"@magicbell/core@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-1.4.1.tgz#c45acecbc2c8cfd0970ccffe7708fe8159ec7d55"
+  integrity sha512-WkEhBE+nJzhT08XhWif7fQpRGUWLvHBUjFXf35L6Oek0Uvg44kuwrHvDNI35GVaTVSO7Ut/Mo1nSfJifIyvthA==
   dependencies:
     ably "^1.2.4"
     dayjs "^1.9.5"
@@ -1277,13 +1277,13 @@
     mobx-utils "^6.0.1"
     redaxios "^0.3.0"
 
-"@magicbell/magicbell-react@^6.7.1":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.7.1.tgz#937269ec0cf344fbccfa28b7bd5fe6b2d01bf7f3"
-  integrity sha512-6wo2cg8y1w2o7tDO4PqROwrXlGVFfJyL2voAJM9VqaahqreilSYyF6mC+ajgGhh5KLsFOmHUk4f02384AZyRDw==
+"@magicbell/magicbell-react@^6.7.2":
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.7.2.tgz#ebaf0ee3edc39fd444ad4eec2a346cf9e9462e0f"
+  integrity sha512-8Vu2ec6eotKZetPURr5Tu2VWPl2nMWvW96RrEV8UzdiySwlI6/fEP4wH9zGZH0P4bTwYYVOAexw3xEWnCcZHAA==
   dependencies:
     "@emotion/core" "^10.0.35"
-    "@magicbell/core" "^1.4.0"
+    "@magicbell/core" "^1.4.1"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
     dayjs "^1.9.3"
