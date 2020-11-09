@@ -1,6 +1,6 @@
 {
   "name": "embeddable-web",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
   "author": "Josue Montano <josuemontanoa@gmail.com>",
