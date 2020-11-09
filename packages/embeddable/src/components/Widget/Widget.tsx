@@ -8,6 +8,7 @@ export interface WidgetProps extends FrameContentProps {
   apiKey: string;
   userEmail: string;
   userKey?: string;
+  _baseURL?: string;
   theme: Partial<IMagicBellTheme>;
 }
 
@@ -21,9 +22,9 @@ export interface WidgetProps extends FrameContentProps {
  *   onAllRead={notify}
  *   onNotificationClick={navigate} />
  */
-export default function Widget({ apiKey, userEmail, userKey, theme, ...inboxProps }: WidgetProps) {
+export default function Widget({ apiKey, userEmail, userKey, theme, _baseURL, ...inboxProps }: WidgetProps) {
   return (
-    <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme}>
+    <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme} _baseURL={_baseURL}>
       {(props) => <FloatingFrame {...inboxProps} {...props} />}
     </MagicBell>
   );
