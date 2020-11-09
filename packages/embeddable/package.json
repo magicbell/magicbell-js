@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@emotion/cache": "^10.0.29",
-    "@emotion/core": "^10.1.1",
+    "@emotion/core": "^10.0.35",
     "@emotion/weak-memoize": "^0.2.5",
     "@magicbell/magicbell-react": "^6.7.1",
     "@tippyjs/react": "^4.2.0",
