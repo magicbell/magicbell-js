@@ -1277,10 +1277,10 @@
     mobx-utils "^6.0.1"
     redaxios "^0.3.0"
 
-"@magicbell/magicbell-react@^6.7.3":
-  version "6.7.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.7.3.tgz#3e235b9ae2e6a3b7e9437e9b69e7f43392d888b4"
-  integrity sha512-KA36r+YOBN8/ElIHfHd2tfysXGaUa+fI/4haDMHSE+VA8cpxm+eLGoXIAR6GoL7meVil7fno/egn+26Y1ZqXKA==
+"@magicbell/magicbell-react@^6.7.4":
+  version "6.7.4"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.7.4.tgz#465b236bad41bde86f79e517f93229f5ad5f460f"
+  integrity sha512-+tIajN5xUO7MtD+zPE2FZjkeyaJDEFOE+bp39SieC/nSmykSPq4RU/OTvhvRkqvY1UuApPuY+9s2aLi8avLJIQ==
   dependencies:
     "@emotion/core" "^10.0.35"
     "@magicbell/core" "^1.4.1"
