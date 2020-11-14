@@ -22,7 +22,7 @@ export default function FloatingFrame({
   ...props
 }: FloatingNotificationInboxProps) {
   const { theme } = useContext(MagicBellContext);
-  const { header: headerTheme, footer: footerTheme, notification: notificationTheme } = theme;
+  const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
 
   const handleNotificationClick = (notification) => {
     toggle();
@@ -34,10 +34,9 @@ export default function FloatingFrame({
       render={(attrs) => (
         <div
           css={css`
-            background-color: ${notificationTheme.default.backgroundColor} !important;
-            color: ${notificationTheme.default.textColor} !important;
-            border-radius: ${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius}
-              ${footerTheme.borderRadius} !important;
+            background-color: ${containerTheme.backgroundColor} !important;
+            color: ${containerTheme.textColor} !important;
+            border-radius: ${headerTheme.borderRadius} ${footerTheme.borderRadius} !important;
             box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1), 0px 10px 10px rgba(84, 95, 111, 0.04) !important;
           `}
           {...attrs}
