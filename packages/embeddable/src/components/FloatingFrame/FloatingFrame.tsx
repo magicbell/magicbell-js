@@ -34,6 +34,7 @@ export default function FloatingFrame({
       render={(attrs) => (
         <div
           css={css`
+            overflow: hidden;
             background-color: ${containerTheme.backgroundColor} !important;
             color: ${containerTheme.textColor} !important;
             border-radius: ${headerTheme.borderRadius} ${footerTheme.borderRadius} !important;
