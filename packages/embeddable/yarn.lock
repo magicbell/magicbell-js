@@ -1263,10 +1263,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@magicbell/core@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-1.4.1.tgz#c45acecbc2c8cfd0970ccffe7708fe8159ec7d55"
-  integrity sha512-WkEhBE+nJzhT08XhWif7fQpRGUWLvHBUjFXf35L6Oek0Uvg44kuwrHvDNI35GVaTVSO7Ut/Mo1nSfJifIyvthA==
+"@magicbell/core@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-1.5.1.tgz#8a084a8c6d81c07ec5219f90a9c0cd5058cb7359"
+  integrity sha512-Tm9IJvxzCJG+k0yznr3lvZXiVYxIDdCqZU/fJnbmNdvr3odVrpb/0Xt0iRGoEDvyu1gWrB5cC5vvw0qmphAINA==
   dependencies:
     ably "^1.2.4"
     dayjs "^1.9.5"
@@ -1277,13 +1277,13 @@
     mobx-utils "^6.0.1"
     redaxios "^0.3.0"
 
-"@magicbell/magicbell-react@^6.7.4":
-  version "6.7.4"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.7.4.tgz#465b236bad41bde86f79e517f93229f5ad5f460f"
-  integrity sha512-+tIajN5xUO7MtD+zPE2FZjkeyaJDEFOE+bp39SieC/nSmykSPq4RU/OTvhvRkqvY1UuApPuY+9s2aLi8avLJIQ==
+"@magicbell/magicbell-react@^6.8.0":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.8.0.tgz#1a74c05fb5069545586ce7ffa434e3efec43e2bd"
+  integrity sha512-lwhYsjtmbIKS9A3KJ2WZAVMr3BouafI5gBq8/W4g1NQFpHGBwIpKzij643vfUvRYnmbes7GmZLvUoi02zsgyzA==
   dependencies:
     "@emotion/core" "^10.0.35"
-    "@magicbell/core" "^1.4.1"
+    "@magicbell/core" "^1.5.1"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
     dayjs "^1.9.3"
@@ -9905,10 +9905,10 @@ rollup-pluginutils@^2.7.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^2.33.1:
-  version "2.33.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.1.tgz#802795164164ee63cd47769d8879c33ec8ae0c40"
-  integrity sha512-uY4O/IoL9oNW8MMcbA5hcOaz6tZTMIh7qJHx/tzIJm+n1wLoY38BLn6fuy7DhR57oNFLMbDQtDeJoFURt5933w==
+rollup@^2.33.2:
+  version "2.33.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.33.2.tgz#c4c76cd405a7605e6ebe90976398c46d4c2ea166"
+  integrity sha512-QPQ6/fWCrzHtSXkI269rhKaC7qXGghYBwXU04b1JsDZ6ibZa3DJ9D1SFAYRMgx1inDg0DaTbb3N4Z1NK/r3fhw==
   optionalDependencies:
     fsevents "~2.1.2"
 
