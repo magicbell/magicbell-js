@@ -1278,10 +1278,10 @@
     mobx-utils "^6.0.1"
     pluralize "^8.0.0"
 
-"@magicbell/magicbell-react@^6.8.4":
-  version "6.8.4"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.8.4.tgz#01ce53fdcc29b3c2fd1ce1bab3ee1b607c77496b"
-  integrity sha512-fXOeVEo89vw8/rXsv1NA39myBqI0fo6wlCr0XwXg9XncIu9RjGVri1ybk8z5phxvCOM9d+1Nudfs8bYs5G9+lw==
+"@magicbell/magicbell-react@^6.8.9":
+  version "6.8.9"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.8.9.tgz#4515bede0a750ef5968acde30e9d53e8915bbfa7"
+  integrity sha512-6XByUsn3sKuGg3sQAqniJ0pa3y2bzUFA0/lLkAOi2AE8dr5MFx0KuRM48KrOB623A11RGADvpkcXjEB22W4iFg==
   dependencies:
     "@emotion/core" "^10.0.35"
     "@magicbell/core" "^2.2.1"

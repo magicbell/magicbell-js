@@ -46,7 +46,7 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
             },
           }}
         />
-        <NotificationInbox height={height - 88} {...props} />
+        <NotificationInbox height={height} {...props} />
       </FrameProvider>
     </Frame>
   );
