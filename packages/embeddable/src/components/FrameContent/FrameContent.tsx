@@ -36,12 +36,12 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
           styles={{
             html: {
               borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
-              height: 0,
+              height: '100%',
               margin: 0,
             },
             body: {
               borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
-              height: 0,
+              height: '100%',
               margin: 0,
             },
           }}
