@@ -4,7 +4,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'cypress'],
   extends: [
     'eslint:recommended',
-    'preact',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'prettier/@typescript-eslint',
