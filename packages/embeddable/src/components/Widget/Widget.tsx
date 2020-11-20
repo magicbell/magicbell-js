@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import MagicBell from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/types/context/Theme';
+import { DeepPartial } from '@magicbell/magicbell-react/dist/types/lib/types';
 import React from 'react';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
@@ -9,7 +11,7 @@ export interface WidgetProps extends FrameContentProps {
   userEmail: string;
   userKey?: string;
   _baseURL?: string;
-  theme: Partial<IMagicBellTheme>;
+  theme: DeepPartial<IMagicBellTheme>;
 }
 
 /**
