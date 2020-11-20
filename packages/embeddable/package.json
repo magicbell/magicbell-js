@@ -8,7 +8,8 @@
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "start": "NODE_ENV=development rollup -c -w",
-    "cypress": "cypress run --headless"
+    "cypress": "cypress open",
+    "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'"
   },
   "husky": {
     "hooks": {
