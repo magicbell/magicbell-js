@@ -32,7 +32,7 @@
       },
       "title": "Board View",
       "content": "Here is a notification for you, madam, certainly",
-      "action_url": "https://developer.magicbell.io",
+      "action_url": "/#developers",
       "category": "new_message",
       "custom_attributes": null,
       "meta_data": null,
