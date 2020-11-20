@@ -18,6 +18,8 @@ workflows:
     jobs:
       - cypress/run:
           yarn: true
+          start: yarn start
+          wait-on: 'http://localhost:10001'
       - deploy:
           name: deploy_to_staging
           build_hook_url: ${STAGING_NETLIFY_BUILD_HOOK_URL}
