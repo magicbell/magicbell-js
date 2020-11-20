@@ -14,4 +14,9 @@ module.exports = {
   env: {
     'cypress/globals': true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 };
