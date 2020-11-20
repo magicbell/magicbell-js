@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FloatingNotificationInboxArrow, MagicBellContext } from '@magicbell/magicbell-react';
+import { FloatingNotificationInboxArrow, MagicBellContext, Notification } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
 import Tippy from '@tippyjs/react/headless';
 import { useContext } from 'react';
@@ -24,9 +24,11 @@ export default function FloatingFrame({
   const { theme } = useContext(MagicBellContext);
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
 
-  const handleNotificationClick = (notification) => {
+  const handleNotificationClick = (notification: Notification) => {
     toggle();
-    onNotificationClick?.(notification);
+
+    if (onNotificationClick) onNotificationClick(notification);
+    else if (notification.actionUrl) window.open(notification.actionUrl, '_self');
   };
 
   return (
