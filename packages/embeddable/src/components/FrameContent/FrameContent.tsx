@@ -19,7 +19,7 @@ export interface FrameContentProps extends NotificationInboxProps {
  */
 export default function FrameContent({ width: defaultWidth, height: defaultHeight, ...props }: FrameContentProps) {
   const { theme } = useContext(MagicBellContext);
-  const { header: headerTheme, footer: footerTheme } = theme;
+  const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
 
   return (
@@ -35,11 +35,13 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
         <Global
           styles={{
             html: {
+              fontFamily: containerTheme.fontFamily,
               borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
               height: '100%',
               margin: 0,
             },
             body: {
+              fontFamily: containerTheme.fontFamily,
               borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
               height: '100%',
               margin: 0,
