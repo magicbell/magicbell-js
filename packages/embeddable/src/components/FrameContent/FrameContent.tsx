@@ -29,20 +29,24 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
       scrolling="no"
       height={height}
       width={width}
-      style={{ display: 'block' }}
+      style={{
+        display: 'block',
+        borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
+        overflow: 'hidden',
+      }}
     >
       <FrameProvider>
         <Global
           styles={{
             html: {
               fontFamily: containerTheme.fontFamily,
-              borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
+              borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
               height: '100%',
               margin: 0,
             },
             body: {
               fontFamily: containerTheme.fontFamily,
-              borderRadius: `${headerTheme.borderRadius} ${headerTheme.borderRadius} ${footerTheme.borderRadius} ${footerTheme.borderRadius}`,
+              borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
               height: '100%',
               margin: 0,
             },
