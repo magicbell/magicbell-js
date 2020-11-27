@@ -1,6 +1,6 @@
 {
   "name": "embeddable-web",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "main": "index.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
   "author": "Josue Montano <josuemontanoa@gmail.com>",
@@ -29,7 +29,7 @@
     "@emotion/cache": "^11.0.0",
     "@emotion/react": "^11.1.1",
     "@emotion/weak-memoize": "^0.2.5",
-    "@magicbell/magicbell-react": "^6.10.1",
+    "@magicbell/magicbell-react": "^6.10.2",
     "@tippyjs/react": "^4.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
