@@ -11,6 +11,7 @@ export interface WidgetProps extends FrameContentProps {
   userEmail: string;
   userKey?: string;
   _baseURL?: string;
+  stylesheets?: string[];
   theme: DeepPartial<IMagicBellTheme>;
 }
 

@@ -9,6 +9,7 @@ import FrameProvider from '../FrameProvider';
 export interface FrameContentProps extends NotificationInboxProps {
   width?: number;
   height?: number;
+  stylesheets?: string[];
 }
 
 /**
@@ -17,7 +18,12 @@ export interface FrameContentProps extends NotificationInboxProps {
  * @example
  * <FrameContent />
  */
-export default function FrameContent({ width: defaultWidth, height: defaultHeight, ...props }: FrameContentProps) {
+export default function FrameContent({
+  width: defaultWidth,
+  height: defaultHeight,
+  stylesheets = [],
+  ...props
+}: FrameContentProps) {
   const { theme } = useContext(MagicBellContext);
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
@@ -34,6 +40,13 @@ export default function FrameContent({ width: defaultWidth, height: defaultHeigh
         borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
         overflow: 'hidden',
       }}
+      head={
+        <>
+          {stylesheets.map((stylesheet: string) => (
+            <link key={stylesheet} href={stylesheet} rel="stylesheet" />
+          ))}
+        </>
+      }
     >
       <FrameProvider>
         <Global
