@@ -26,8 +26,8 @@
     "*.{md,html,css,scss}": "prettier --write"
   },
   "dependencies": {
-    "@emotion/cache": "^10.0.29",
-    "@emotion/core": "^10.0.35",
+    "@emotion/cache": "^11.0.0",
+    "@emotion/react": "^11.1.1",
     "@emotion/weak-memoize": "^0.2.5",
     "@magicbell/magicbell-react": "^6.10.0",
     "@tippyjs/react": "^4.2.0",

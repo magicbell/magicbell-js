@@ -1,11 +1,11 @@
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/core';
+import { CacheProvider } from '@emotion/react';
 import weakMemoize from '@emotion/weak-memoize';
 import React from 'react';
 import { FrameContextConsumer } from 'react-frame-component';
 
 const createContainerCache = weakMemoize((container: HTMLElement) => {
-  return createCache({ container });
+  return createCache({ key: 'magicbell', container });
 });
 
 /**
