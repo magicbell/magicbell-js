@@ -20,8 +20,7 @@ context('Widget', () => {
       .its('0.contentDocument.body')
       .should('not.be.empty')
       .should('contain', 'Notifications')
-      .should('contain', 'Mark All Read')
-      .should('contain', 'Powered by');
+      .should('contain', 'Mark All Read');
   });
 
   context('unseen badge', () => {
