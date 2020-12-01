@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { css, jsx } from '@emotion/core';
 import { FloatingNotificationInboxArrow, MagicBellContext, Notification } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/FloatingNotificationInbox';
 import Tippy from '@tippyjs/react/headless';

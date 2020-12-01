@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider } from '@emotion/core';
 import MagicBell from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/types/context/Theme';
 import { CustomLocale } from '@magicbell/magicbell-react/dist/types/lib/i18n';

@@ -1,6 +1,6 @@
-import createInstance from '@emotion/css/create-instance';
+import createCache from '@emotion/cache';
 
-export const { css, cx, cache } = createInstance({
+export const cache = createCache({
   key: 'magicbell-embeddable',
   container: document.body,
 });

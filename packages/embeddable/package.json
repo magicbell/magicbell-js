@@ -26,11 +26,11 @@
     "*.{md,html,css,scss}": "prettier --write"
   },
   "dependencies": {
-    "@emotion/cache": "^11.0.0",
-    "@emotion/css": "^11.0.0",
-    "@emotion/react": "^11.1.1",
+    "@emotion/cache": "^10.0.29",
+    "@emotion/core": "^10.1.1",
+    "@emotion/css": "^10.0.27",
     "@emotion/weak-memoize": "^0.2.5",
-    "@magicbell/magicbell-react": "6.10.3",
+    "@magicbell/magicbell-react": "6.12.1-beta.1",
     "@tippyjs/react": "^4.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

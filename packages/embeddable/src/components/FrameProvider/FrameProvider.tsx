@@ -1,5 +1,5 @@
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider } from '@emotion/core';
 import weakMemoize from '@emotion/weak-memoize';
 import React from 'react';
 import { FrameContextConsumer } from 'react-frame-component';
