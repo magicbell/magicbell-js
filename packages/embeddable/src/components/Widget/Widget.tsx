@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import { CacheProvider } from '@emotion/react';
 import MagicBell from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/types/context/Theme';
 import { CustomLocale } from '@magicbell/magicbell-react/dist/types/lib/i18n';
 import { DeepPartial } from '@magicbell/magicbell-react/dist/types/lib/types';
 import React from 'react';
+import { cache } from '../../lib/emotion';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
 
@@ -29,15 +31,17 @@ export interface WidgetProps extends FrameContentProps {
  */
 export default function Widget({ apiKey, userEmail, userKey, theme, locale, _baseURL, ...inboxProps }: WidgetProps) {
   return (
-    <MagicBell
-      apiKey={apiKey}
-      userEmail={userEmail}
-      userKey={userKey}
-      theme={theme}
-      locale={locale}
-      _baseURL={_baseURL}
-    >
-      {(props) => <FloatingFrame {...inboxProps} {...props} />}
-    </MagicBell>
+    <CacheProvider value={cache}>
+      <MagicBell
+        apiKey={apiKey}
+        userEmail={userEmail}
+        userKey={userKey}
+        theme={theme}
+        locale={locale}
+        _baseURL={_baseURL}
+      >
+        {(props) => <FloatingFrame {...inboxProps} {...props} />}
+      </MagicBell>
+    </CacheProvider>
   );
 }
