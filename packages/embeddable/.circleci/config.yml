@@ -14,7 +14,7 @@ jobs:
     steps:
       - run:
           command: |
-            curl -X POST -H 'Authorization: Bearer << parameters.access_token >>' https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds
+            curl -X POST -H "Authorization: Bearer << parameters.access_token >>" https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds
 
 workflows:
   build:
