@@ -30,7 +30,7 @@
     "@emotion/css": "^11.0.0",
     "@emotion/react": "^11.1.1",
     "@emotion/weak-memoize": "^0.2.5",
-    "@magicbell/magicbell-react": "^6.11.0",
+    "@magicbell/magicbell-react": "6.10.3",
     "@tippyjs/react": "^4.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
