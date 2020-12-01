@@ -392,11 +392,12 @@
     mobx-utils "^6.0.1"
     pluralize "^8.0.0"
 
-"@magicbell/magicbell-react@^6.10.3":
-  version "6.10.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.10.3.tgz#ac68ad701bf8cb7cbc6d47a8d6a97230d0a88b9d"
-  integrity sha512-sHz12lnwwMILKupiHCyM8vp0NAXbA74C6J5aCOIhWTzZmFBThv32K7/yQ8z75C9RkriJliHssQrNTL6hasw9JQ==
+"@magicbell/magicbell-react@^6.11.0":
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.11.0.tgz#a5aed848584e87f71ab5b830f2523f7b174ef2c4"
+  integrity sha512-DlnCSJKg3c1phqKvKFWq+AYIH6q32PwBu9FK9QYclO7r3AisowC2oB78r3dlKGkC1DhcU8KGVEXk7BRqNZFfDQ==
   dependencies:
+    "@emotion/css" "^11.0.0"
     "@emotion/react" "^11.1.1"
     "@magicbell/core" "^2.3.1"
     "@tippyjs/react" "^4.2.0"
