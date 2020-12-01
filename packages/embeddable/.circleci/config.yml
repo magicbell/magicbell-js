@@ -4,14 +4,17 @@ orbs:
 
 jobs:
   deploy:
-    description: A job that deploys to netlify using the build hook feature.
+    description: A job that deploys to netlify using the API.
     parameters:
-      build_hook_url:
+      access_token:
+        type: string
+      site_id:
         type: string
     machine: true
     steps:
       - run:
-          command: curl -X POST -d {} << parameters.build_hook_url >>
+          command: |
+            curl -X POST -H 'Authorization: Bearer <<parameters.access_token>>' https://api.netlify.com/api/v1/sites/<<parameters.site_id>>/builds
 
 workflows:
   build:
@@ -22,7 +25,8 @@ workflows:
           wait-on: 'http://localhost:10001'
       - deploy:
           name: deploy_to_staging
-          build_hook_url: ${STAGING_NETLIFY_BUILD_HOOK_URL}
+          access_token: ${NETLIFY_BOT_ACCESS_TOKEN}
+          site_id: ${STAGING_NETLIFY_SITE_ID}
           requires:
             - cypress/run
           filters:
@@ -34,7 +38,8 @@ workflows:
             - deploy_to_staging
       - deploy:
           name: deploy_to_production
-          build_hook_url: ${PRODUCTION_NETLIFY_BUILD_HOOK_URL}
+          access_token: ${NETLIFY_BOT_ACCESS_TOKEN}
+          site_id: ${PRODUCTION_NETLIFY_SITE_ID}
           requires:
             - hold
           filters:
