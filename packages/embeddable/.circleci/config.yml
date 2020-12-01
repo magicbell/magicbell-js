@@ -14,7 +14,7 @@ jobs:
     steps:
       - run:
           command: |
-            deploy_id = $(curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds | jq -r ".deploy_id")
+            deploy_id=$(curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds | jq -r ".deploy_id")
             curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/deploys/$deploy_id/restore
 
 workflows:
