@@ -2,6 +2,27 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
 
+commands:
+  git-merge-main:
+    description: Merge main into stable
+    steps:
+      - run:
+          command: |
+            git pull origin main
+            git checkout stable
+            git merge main
+            git push origin stable
+
+  push-git-tag:
+    description: Push git tag to your repository
+    steps:
+      - run:
+          command: |
+            TAG=$(cat package.json | jq -r '.version')
+            git tag -a "v$TAG"
+            git push origin "v$TAG"
+          name: Push git tag
+
 jobs:
   deploy:
     description: A job that deploys to netlify using the API.
@@ -14,8 +35,14 @@ jobs:
     steps:
       - run:
           command: |
-            deploy_id=$(curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds | jq -r ".deploy_id")
-            curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/deploys/$deploy_id/restore
+            curl -X POST -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds
+
+  update_stable_branch:
+    description: Update the stable branch
+    machine: true
+    steps:
+      - git-merge-main
+      - push-git-tag
 
 workflows:
   build:
@@ -37,12 +64,18 @@ workflows:
           type: approval
           requires:
             - deploy_to_staging
+      - update_stable_branch:
+          requires:
+            - hold
+          filters:
+            branches:
+              only: main
       - deploy:
           name: deploy_to_production
           access_token: $NETLIFY_BOT_ACCESS_TOKEN
           site_id: $PRODUCTION_NETLIFY_SITE_ID
           requires:
-            - hold
+            - update_stable
           filters:
             branches:
               only: main
