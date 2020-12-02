@@ -32,6 +32,7 @@
     "@emotion/weak-memoize": "^0.2.5",
     "@magicbell/magicbell-react": "6.12.1-beta.1",
     "@tippyjs/react": "^4.2.0",
+    "error-stack-parser": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-frame-component": "^4.1.3",
