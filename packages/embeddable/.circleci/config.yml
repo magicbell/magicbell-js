@@ -40,6 +40,9 @@ jobs:
     description: Update the stable branch
     machine: true
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - '94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba'
       - checkout
       - git-merge-main
       - push-git-tag
@@ -71,4 +74,3 @@ workflows:
           filters:
             branches:
               only: main
-          ssh-fingerprints: 94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba
