@@ -3,6 +3,16 @@ orbs:
   cypress: cypress-io/cypress@1
 
 commands:
+  configure-git:
+    description: |
+      Sets mandatory git config fields to allow creating and pushing of tags.
+    steps:
+      - run:
+          command: |
+            git config --global user.name "$CIRCLE_USERNAME"
+            git config --global user.email "$CIRCLE_USERNAME@users.noreply.github.com"
+          name: git config
+
   git-merge-main:
     description: Merge main into stable
     steps:
@@ -43,6 +53,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - '94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba'
+      - configure-git
       - checkout
       - git-merge-main
       - push-git-tag
