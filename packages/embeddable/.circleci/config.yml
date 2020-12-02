@@ -33,19 +33,6 @@ commands:
           name: Push git tag
 
 jobs:
-  deploy:
-    description: A job that deploys to netlify using the API.
-    parameters:
-      access_token:
-        type: string
-      site_id:
-        type: string
-    machine: true
-    steps:
-      - run:
-          command: |
-            curl -X POST -H "User-Agent: CircleCI" -H "Authorization: Bearer << parameters.access_token >>" -H "Content-Type: application/json" -d {} https://api.netlify.com/api/v1/sites/<< parameters.site_id >>/builds
-
   update_stable_branch:
     description: Update the stable branch
     machine: true
@@ -65,15 +52,6 @@ workflows:
           yarn: true
           start: yarn start
           wait-on: 'http://localhost:10001'
-      - deploy:
-          name: deploy_to_staging
-          access_token: $NETLIFY_BOT_ACCESS_TOKEN
-          site_id: $STAGING_NETLIFY_SITE_ID
-          requires:
-            - cypress/run
-          filters:
-            branches:
-              only: main
       - hold:
           type: approval
           requires:
