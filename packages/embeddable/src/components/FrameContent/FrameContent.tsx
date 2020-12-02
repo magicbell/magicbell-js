@@ -1,6 +1,6 @@
 import { Global } from '@emotion/core';
 import { MagicBellContext, NotificationInbox } from '@magicbell/magicbell-react';
-import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/types/components/NotificationInbox';
+import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
 import React, { useContext } from 'react';
 import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
