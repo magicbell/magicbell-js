@@ -55,7 +55,7 @@ workflows:
       - hold:
           type: approval
           requires:
-            - deploy_to_staging
+            - cypress/run
       - update_stable_branch:
           name: deploy_to_production
           requires:
