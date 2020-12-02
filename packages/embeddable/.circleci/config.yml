@@ -75,7 +75,7 @@ workflows:
           access_token: $NETLIFY_BOT_ACCESS_TOKEN
           site_id: $PRODUCTION_NETLIFY_SITE_ID
           requires:
-            - update_stable
+            - update_stable_branch
           filters:
             branches:
               only: main
