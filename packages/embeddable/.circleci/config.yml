@@ -8,7 +8,6 @@ commands:
     steps:
       - run:
           command: |
-            git pull origin main
             git checkout stable
             git merge main
             git push origin stable
@@ -41,6 +40,7 @@ jobs:
     description: Update the stable branch
     machine: true
     steps:
+      - checkout
       - git-merge-main
       - push-git-tag
 
@@ -65,17 +65,9 @@ workflows:
           requires:
             - deploy_to_staging
       - update_stable_branch:
+          name: deploy_to_production
           requires:
             - hold
-          filters:
-            branches:
-              only: main
-      - deploy:
-          name: deploy_to_production
-          access_token: $NETLIFY_BOT_ACCESS_TOKEN
-          site_id: $PRODUCTION_NETLIFY_SITE_ID
-          requires:
-            - update_stable_branch
           filters:
             branches:
               only: main
