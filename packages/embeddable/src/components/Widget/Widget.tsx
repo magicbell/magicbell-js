@@ -6,6 +6,7 @@ import { CustomLocale } from '@magicbell/magicbell-react/dist/types/lib/i18n';
 import { DeepPartial } from '@magicbell/magicbell-react/dist/types/lib/types';
 import React, { Component } from 'react';
 import { cache } from '../../lib/emotion';
+import { reportError } from '../../lib/error';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
 
@@ -30,6 +31,10 @@ export interface WidgetProps extends FrameContentProps {
  *   onNotificationClick={navigate} />
  */
 export default class Widget extends Component<WidgetProps> {
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    reportError(error, info, this.props);
+  }
+
   render() {
     const { apiKey, userEmail, userKey, theme, locale, _baseURL, ...inboxProps } = this.props;
 
