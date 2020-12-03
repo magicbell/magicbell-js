@@ -6,6 +6,9 @@
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
   "author": "Josue Montano <josuemontanoa@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=12.x"
+  },
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
     "start": "NODE_ENV=development rollup -c -w",
