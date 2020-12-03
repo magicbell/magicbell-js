@@ -1,14 +1,15 @@
+/* global require */
+/* global process */
 import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
+import alias from 'rollup-plugin-alias';
 import copy from 'rollup-plugin-copy';
 import license from 'rollup-plugin-license';
 import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
-// eslint-disable-next-line no-undef
 const isProduction = process.env.NODE_ENV === 'production';
 
 export default [
@@ -16,8 +17,14 @@ export default [
     input: 'src/index.tsx',
     context: 'this',
     plugins: [
+      alias({
+        entries: [
+          { find: 'react', replacement: require.resolve('preact/compat') },
+          { find: 'react-dom', replacement: require.resolve('preact/compat') },
+          { find: '@eo-locale/react', replacement: require.resolve('@eo-locale/preact') },
+        ],
+      }),
       nodeResolve({ browser: true }),
-      json(),
       typescript({
         rollupCommonJSResolveHack: true,
         useTsconfigDeclarationDir: true,
