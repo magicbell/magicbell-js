@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useWindowSize } from 'react-use';
+import useWindowSize from 'react-use/esm/useWindowSize';
 
 /**
  * Hook to resize an iframe when the viewport changes
