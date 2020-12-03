@@ -22,6 +22,7 @@ export default [
           { find: 'react', replacement: require.resolve('preact/compat') },
           { find: 'react-dom', replacement: require.resolve('preact/compat') },
           { find: '@eo-locale/react', replacement: require.resolve('@eo-locale/preact') },
+          { find: 'axios', replacement: require.resolve('redaxios') },
         ],
       }),
       nodeResolve({ browser: true }),
