@@ -8,6 +8,7 @@ import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
+// eslint-disable-next-line no-undef
 const isProduction = process.env.NODE_ENV === 'production';
 
 export default [
@@ -27,6 +28,7 @@ export default [
         include: /\/node_modules\//,
       }),
       replace({
+        // eslint-disable-next-line no-undef
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
       !isProduction && serve({ contentBase: ['public', 'dist'] }),
@@ -50,7 +52,12 @@ export default [
       {
         name: 'MagicBell',
         file: 'dist/magicbell.min.js',
-        format: 'iife',
+        format: 'umd',
+      },
+      {
+        name: 'MagicBell',
+        file: 'dist/magicbell.esm.js',
+        format: 'esm',
       },
     ],
   },
