@@ -50,6 +50,7 @@ workflows:
   build:
     jobs:
       - cypress/run:
+          executor: cypress/base-14
           yarn: true
           start: yarn start
           wait-on: 'http://localhost:10001'
