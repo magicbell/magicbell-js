@@ -39,7 +39,13 @@ export default [
         // eslint-disable-next-line no-undef
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       }),
-      !isProduction && serve({ contentBase: ['public', 'dist'] }),
+      !isProduction &&
+        serve({
+          contentBase: ['public', 'dist'],
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          },
+        }),
       isProduction &&
         terser({
           ecma: 2015,
