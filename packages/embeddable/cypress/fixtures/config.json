@@ -1,0 +1,8 @@
+{
+  "ws": {
+    "region": "eu",
+    "channel": "project:11:channel:h+KBkOZJxlWre3hqoC6Nyzr2vZKkua1Ocop3Gw+s=",
+    "authURL": "/ws/auth",
+    "auth_url": "/ws/auth"
+  }
+}

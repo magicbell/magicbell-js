@@ -4,6 +4,7 @@ context('Widget', () => {
   beforeEach(() => {
     cy.server();
     cy.route('GET', 'https://api.magicbell.io/notifications**', 'fx:notifications.json').as('getNotifications');
+    cy.route('GET', 'https://api.magicbell.io/config**', 'fx:config.json').as('getConfig');
 
     cy.visit('/');
   });
