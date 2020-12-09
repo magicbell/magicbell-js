@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('Widget', () => {
+context.skip('Widget', () => {
   beforeEach(() => {
     cy.intercept('GET', 'https://api.magicbell.io/notifications**', { fixture: 'notifications.json', delayMs: 300 });
     cy.intercept('GET', 'https://api.magicbell.io/config**', { fixture: 'config.json', delayMs: 300 });
