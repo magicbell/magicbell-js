@@ -1,4 +1,4 @@
-import { Global } from '@emotion/react';
+import { Global } from '@emotion/core';
 import { MagicBellContext, NotificationInbox } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
 import React, { useContext } from 'react';
