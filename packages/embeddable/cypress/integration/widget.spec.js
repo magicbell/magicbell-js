@@ -2,9 +2,8 @@
 
 context('Widget', () => {
   beforeEach(() => {
-    cy.server();
-    cy.route('GET', 'https://api.magicbell.io/notifications**', 'fx:notifications.json').as('getNotifications');
-    cy.route('GET', 'https://api.magicbell.io/config**', 'fx:config.json').as('getConfig');
+    cy.intercept('GET', 'https://api.magicbell.io/notifications**', { fixture: 'notifications.json', delayMs: 300 });
+    cy.intercept('GET', 'https://api.magicbell.io/config**', { fixture: 'config.json', delayMs: 300 });
 
     cy.visit('/');
   });
