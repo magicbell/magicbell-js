@@ -17,6 +17,9 @@ export interface WidgetProps extends FrameContentProps {
   locale?: string | CustomLocale;
   _baseURL?: string;
   stylesheets?: string[];
+  images?: Partial<{
+    emptyInboxUrl: string;
+  }>;
   theme: DeepPartial<IMagicBellTheme>;
 }
 
@@ -36,7 +39,7 @@ export default class Widget extends Component<WidgetProps> {
   }
 
   render() {
-    const { apiKey, userEmail, userKey, theme, locale, _baseURL, ...inboxProps } = this.props;
+    const { apiKey, userEmail, userKey, theme, locale, _baseURL, images, ...inboxProps } = this.props;
 
     return (
       <CacheProvider value={cache}>
@@ -46,6 +49,7 @@ export default class Widget extends Component<WidgetProps> {
           userKey={userKey}
           theme={theme}
           locale={locale}
+          images={images}
           _baseURL={_baseURL}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
