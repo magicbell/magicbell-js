@@ -12,7 +12,8 @@ import { FrameContentProps } from '../FrameContent';
 
 export interface WidgetProps extends FrameContentProps {
   apiKey: string;
-  userEmail: string;
+  userEmail?: string;
+  userExternalId?: string;
   userKey?: string;
   locale?: string | CustomLocale;
   _baseURL?: string;
@@ -39,13 +40,14 @@ export default class Widget extends Component<WidgetProps> {
   }
 
   render() {
-    const { apiKey, userEmail, userKey, theme, locale, _baseURL, images, ...inboxProps } = this.props;
+    const { apiKey, userEmail, userExternalId, userKey, theme, locale, _baseURL, images, ...inboxProps } = this.props;
 
     return (
       <CacheProvider value={cache}>
         <MagicBell
           apiKey={apiKey}
           userEmail={userEmail}
+          userExternalId={userExternalId}
           userKey={userKey}
           theme={theme}
           locale={locale}
