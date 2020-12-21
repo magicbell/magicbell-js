@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context.skip('Widget', () => {
+context('Widget', () => {
   beforeEach(() => {
     cy.intercept('GET', 'https://api.magicbell.io/notifications**', { fixture: 'notifications.json', delayMs: 300 });
     cy.intercept('GET', 'https://api.magicbell.io/config**', { fixture: 'config.json', delayMs: 300 });
@@ -12,7 +12,7 @@ context.skip('Widget', () => {
     cy.window().its('magicbell').should('be.a', 'function');
   });
 
-  it('opens the notification inbox when the container is clicked', () => {
+  it.skip('opens the notification inbox when the container is clicked', () => {
     cy.get('#notifications').click();
 
     cy.get('iframe[id="magicbell-frame"]').should('be.visible');
@@ -40,7 +40,7 @@ context.skip('Widget', () => {
 
       cy.get('iframe[id="magicbell-frame"]').should('be.visible');
       cy.contains('Quick Start').click();
-      cy.get('iframe[id="magicbell-frame"]').should('not.be.visible');
+      cy.get('iframe[id="magicbell-frame"]').should('not.exist');
     });
   });
 
