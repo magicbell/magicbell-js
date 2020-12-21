@@ -8,13 +8,13 @@ import { ErrorInfo } from 'react';
  *
  * @param error
  * @param errorInfo
- * @param userEmail
+ * @param userId
  * @param apiKey
  */
 export function reportError(
   error: Error,
   errorInfo: ErrorInfo,
-  { userEmail, ...context }: { userEmail: string; apiKey: string },
+  { userId, ...context }: { userId: string; apiKey: string },
 ) {
   const stack = [
     ...ErrorStackParser.parse(new Error(errorInfo.componentStack)),
@@ -29,7 +29,7 @@ export function reportError(
         browser: navigator.userAgent,
       },
     },
-    person: { id: userEmail },
+    person: { id: userId },
     custom: context,
     framework: 'react',
     language: 'javascript',
