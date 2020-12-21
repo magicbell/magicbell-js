@@ -28,7 +28,7 @@ context('Widget', () => {
       cy.get('[data-testid="bell"]').should('contain.text', '1');
     });
 
-    it('hides the badge on click', () => {
+    it.skip('hides the badge on click', () => {
       cy.get('[data-testid="bell"]').click();
       cy.get('[data-testid="bell"]').should('not.contain.text', '1');
     });
