@@ -327,6 +327,13 @@
   dependencies:
     dlv "^1.1.3"
 
+"@eo-locale/core@^1.4.11":
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/@eo-locale/core/-/core-1.4.11.tgz#9c88de25b376e5f9bcb55d20a34e3feec138db27"
+  integrity sha512-UWeCBJLKoNbiMXy7cpPhOYJPzRYt95BpzOKR/QXPwK3ozrjoRDFGG3WA0fZZj2esQWmxkX6dcyfIxC/sHsAveA==
+  dependencies:
+    dlv "^1.1.3"
+
 "@eo-locale/preact@^1.4.10":
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/@eo-locale/preact/-/preact-1.4.10.tgz#4c48320ae3ffac6524d298d9118ab9ef68d43f1d"
@@ -334,12 +341,12 @@
   dependencies:
     "@eo-locale/core" "^1.4.10"
 
-"@eo-locale/react@^1.4.10":
-  version "1.4.10"
-  resolved "https://registry.yarnpkg.com/@eo-locale/react/-/react-1.4.10.tgz#871d5a35aa8da9c80da8b4e11b74bf806a935301"
-  integrity sha512-blBjHGFbrcjOx6ExMU8NVcAcav7dl9jucLT56rWJwG514ukBpfw+rGE9WXlJnpSPZF5A/x9tVFeMJmBnCgIksA==
+"@eo-locale/react@^1.4.11":
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/@eo-locale/react/-/react-1.4.11.tgz#dc6d499982e459a6fbf3cd19600983eed2c8064f"
+  integrity sha512-vW/0NQfo8pmlw+KdPDZrn51eAGUq45tREok25px1QjLdirGfYxkrdXDFLMjqBsN3wAAw9GH1JOhAWoTU37hA5g==
   dependencies:
-    "@eo-locale/core" "^1.4.10"
+    "@eo-locale/core" "^1.4.11"
 
 "@eslint/eslintrc@^0.2.2":
   version "0.2.2"
@@ -369,10 +376,10 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@magicbell/core@^2.4.3":
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.4.3.tgz#576bc942b103af07c4542452784fac5cde252a49"
-  integrity sha512-zQpuq9/xbjSOfx3Ce0UJajtXfBH7QkJJciGBFGYr7vJpiA3fQISMJ0Hwno5TVOi/0866tc+iniQGGfPXkk+j4g==
+"@magicbell/core@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.5.0.tgz#802e1816a1bedfd0353e660d562c64383d6eb1c3"
+  integrity sha512-0x+Wm8vnKfoYdZuZjTzFlIoxxw/t9yKrd8ULJs2RoNqd8we9mXfSyIKdL+uqh9DMxcaNhbzPENM0fBq3pcKaow==
   dependencies:
     ably "^1.2.4"
     axios "^0.21.0"
@@ -386,21 +393,21 @@
     pluralize "^8.0.0"
     tslib "^2.0.3"
 
-"@magicbell/magicbell-react@^6.16.0":
-  version "6.16.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.16.0.tgz#c7ec8ae3f6e54108db43309da1cbb66441d74b14"
-  integrity sha512-wfJOKt65HsvNQuXNoJpmm2i1VwCOeY1F2nPtXLJZvXWTDwmeZZhjCUUMiPiEuxf+vO75yBPjkoTXKYs7K+noXg==
+"@magicbell/magicbell-react@^6.17.0":
+  version "6.17.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.17.0.tgz#e250552b45c46a9e75c54b5fc73b149f326c33ac"
+  integrity sha512-nAs2s8Vp2m7nlt87pjv3YhHQYmC3SsJZORkgVqf7XtIp2+oFFlItW2z7v+zTZOy2KJTcS7rXIgZgq0E0Z1l1Qg==
   dependencies:
     "@emotion/core" "^10.1.1"
-    "@eo-locale/react" "^1.4.10"
-    "@magicbell/core" "^2.4.3"
+    "@eo-locale/react" "^1.4.11"
+    "@magicbell/core" "^2.5.0"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
     dayjs "^1.9.7"
-    dompurify "^2.2.2"
-    liquidjs "^9.16.1"
+    dompurify "^2.2.6"
+    liquidjs "^9.19.0"
     lodash "^4.17.20"
-    lodash-es "^4.17.15"
+    lodash-es "^4.17.20"
     miragejs "^0.1.41"
     mobx "^6.0.4"
     mobx-react-lite "^3.1.6"
@@ -1575,10 +1582,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dompurify@^2.2.2:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.2.3.tgz#ec653ba521b39f397c2ca045769438d593ea8a9f"
-  integrity sha512-8Hv7Q0FuwD9rWoB6qI2eZsfKbGXfoUVuGHHrE15vgk4ReOKwOkSgbqb2OMFtc0d5besOEkoLkcyuV10zQ2X5gw==
+dompurify@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.2.6.tgz#54945dc5c0b45ce5ae228705777e8e59d7b2edc4"
+  integrity sha512-7b7ZArhhH0SP6W2R9cqK6RjaU82FZ2UPM7RO8qN1b1wyvC/NY1FNWcX1Pu00fFOAnzEORtwXe4bPaClg6pUybQ==
 
 duplexer@~0.1.1:
   version "0.1.2"
@@ -2989,10 +2996,10 @@ lint-staged@^10.5.3:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
-liquidjs@^9.16.1:
-  version "9.17.0"
-  resolved "https://registry.yarnpkg.com/liquidjs/-/liquidjs-9.17.0.tgz#efe70a648a9db94da73e935f7a421add2ff847c4"
-  integrity sha512-i94WWxGJeWm2LFOZ4auwcvAagBlrZGyhy7cDBs+LGd7KaPjPxUC6eiDlX9vDc4pKT3fV5FtHaYQd7OYBG54+4g==
+liquidjs@^9.19.0:
+  version "9.19.0"
+  resolved "https://registry.yarnpkg.com/liquidjs/-/liquidjs-9.19.0.tgz#79d571651e3bd8c1e976f807cd49b2bab9dd43e3"
+  integrity sha512-uqyrWIw9oqVi18gBvBZUK9llCdAHh6YMUrwo6IuzDOVimRSE/LqydJYhZv1VeTvMuUZNNK8hqj/lXaKon4e+GA==
 
 listr-silent-renderer@^1.1.1:
   version "1.1.1"
@@ -3090,6 +3097,11 @@ lodash-es@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+
+lodash-es@^4.17.20:
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.20.tgz#29f6332eefc60e849f869c264bc71126ad61e8f7"
+  integrity sha512-JD1COMZsq8maT6mnuz1UMV0jvYD0E0aUsSOdrr1/nAG3dhqQXwRRgeW0cSqH1U43INKcqxaiVIQNOUDld7gRDA==
 
 lodash.assign@^4.2.0:
   version "4.2.0"
