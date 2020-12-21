@@ -36,7 +36,10 @@ export interface WidgetProps extends FrameContentProps {
  */
 export default class Widget extends Component<WidgetProps> {
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    reportError(error, info, this.props);
+    const { userEmail, userExternalId } = this.props;
+    const userId = (userEmail || userExternalId) as string;
+
+    reportError(error, info, { userId, ...this.props });
   }
 
   render() {
