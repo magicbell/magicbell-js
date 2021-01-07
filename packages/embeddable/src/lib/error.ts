@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import axios from 'axios';
 import * as ErrorStackParser from 'error-stack-parser';
 import { ErrorInfo } from 'react';
 
 type Person = Partial<{ id: string }>;
-type Context = Partial<{ apiKey: string }>;
+type Context = Partial<{ apiKey: string; userKey: string; userExternalId: string }>;
 
 /**
  * Report an error to rollbar.
