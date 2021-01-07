@@ -6,6 +6,7 @@ import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
 import FrameContent from '../FrameContent';
 import FrameProvider from '../FrameProvider';
+import IFrameHead from './IFrameHead';
 
 export interface IFrameProps extends NotificationInboxProps {
   width?: number;
@@ -19,12 +20,7 @@ export interface IFrameProps extends NotificationInboxProps {
  * @example
  * <IFrame />
  */
-export default function IFrame({
-  width: defaultWidth,
-  height: defaultHeight,
-  stylesheets = [],
-  ...props
-}: IFrameProps) {
+export default function IFrame({ width: defaultWidth, height: defaultHeight, stylesheets, ...props }: IFrameProps) {
   const { theme } = useContext(MagicBellContext);
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
@@ -41,13 +37,7 @@ export default function IFrame({
         borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
         overflow: 'hidden',
       }}
-      head={
-        <>
-          {stylesheets.map((stylesheet: string) => (
-            <link key={stylesheet} href={stylesheet} rel="stylesheet" />
-          ))}
-        </>
-      }
+      head={<IFrameHead stylesheets={stylesheets} />}
     >
       <FrameProvider>
         <Global
