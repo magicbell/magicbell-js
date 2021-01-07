@@ -5,91 +5,109 @@ import { ErrorInfo } from 'react';
 type Person = Partial<{ id: string }>;
 type Context = Partial<{ apiKey: string; userKey: string; userExternalId: string }>;
 
-/**
- * Report an error to rollbar.
- *
- * @param error
- * @param errorInfo
- * @param context Context to be included in the report, such as person, project, etc
- */
-export function reportReactError(
-  error: Error,
-  errorInfo: ErrorInfo,
-  context: Partial<{ userId: string; apiKey: string }> = {},
-) {
-  const { userId, ...env } = context;
-  const person = { id: userId };
-  const stack = getReactErrorStack(error, errorInfo);
-  const occurrence = buildErrorOcurrece(error, stack, person, env);
+abstract class MonitoredError {
+  token = 'a15f88d968da40f6bcbdfc8187cd0b2a';
 
-  notifyError(occurrence);
-}
+  /**
+   * Report an error to the error monitoring service.
+   */
+  abstract report();
 
-/**
- * Report a window error to rollbar
- *
- * @param error Error object
- * @param message Error message
- */
-export function reportUnhandledError(error) {
-  const stack = getUnhandledErrorStack(error);
-  const occurrence = buildErrorOcurrece(error, stack);
-  notifyError(occurrence);
-}
+  protected buildErrorOcurrece(error, stack, person?: Person, context?: Context) {
+    const environment = process.env.NODE_ENV;
+    const title = error.toString();
+    const browserInfo = navigator.userAgent;
+    const framework = 'react';
+    const language = 'javascript';
+    const platform = 'browser';
 
-function getReactErrorStack(error: Error, errorInfo: ErrorInfo) {
-  const errorContext = new Error(errorInfo.componentStack);
-  return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
-}
-
-function getUnhandledErrorStack(error) {
-  return [...ErrorStackParser.parse(error)].reverse();
-}
-
-function buildErrorOcurrece(error, stack, person?: Person, context?: Context) {
-  const environment = process.env.NODE_ENV;
-  const title = error.toString();
-  const browserInfo = navigator.userAgent;
-  const framework = 'react';
-  const language = 'javascript';
-  const platform = 'browser';
-
-  return {
-    environment,
-    title,
-    client: {
-      javascript: {
-        browser: browserInfo,
-      },
-    },
-    person,
-    custom: context,
-    framework,
-    language,
-    platform,
-    body: {
-      trace: {
-        frames: stack.map((frame) => ({
-          filename: frame.fileName,
-          lineno: frame.lineNumber,
-          colno: frame.columnNumber,
-          method: frame.functionName,
-          code: frame.source,
-        })),
-        exception: {
-          class: error.name,
-          message: error.message,
+    return {
+      environment,
+      title,
+      client: {
+        javascript: {
+          browser: browserInfo,
         },
       },
-    },
-  };
+      person,
+      custom: context,
+      framework,
+      language,
+      platform,
+      body: {
+        trace: {
+          frames: stack.map((frame) => ({
+            filename: frame.fileName,
+            lineno: frame.lineNumber,
+            colno: frame.columnNumber,
+            method: frame.functionName,
+            code: frame.source,
+          })),
+          exception: {
+            class: error.name,
+            message: error.message,
+          },
+        },
+      },
+    };
+  }
+
+  protected storeOccurrence(data) {
+    axios
+      .post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': this.token } })
+      .catch(() => {
+        // Silence error
+      });
+  }
 }
 
-function notifyError(data) {
-  const token = 'a15f88d968da40f6bcbdfc8187cd0b2a';
-  axios
-    .post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': token } })
-    .catch(() => {
-      // Silence error
-    });
+export class ReactError extends MonitoredError {
+  error: Error;
+  errorInfo: ErrorInfo;
+  person?: Person;
+  context?: Context;
+
+  constructor(error: Error, errorInfo: ErrorInfo, person?: Person, context?: Context) {
+    super();
+
+    this.error = error;
+    this.errorInfo = errorInfo;
+    this.person = person;
+    this.context = context;
+  }
+
+  report() {
+    const stack = this.getErrorStack(this.error, this.errorInfo);
+    const occurrence = this.buildErrorOcurrece(this.error, stack, this.person, this.context);
+
+    this.storeOccurrence(occurrence);
+  }
+
+  private getErrorStack(error: Error, errorInfo: ErrorInfo) {
+    const errorContext = new Error(errorInfo.componentStack);
+    return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
+  }
+}
+
+export class UnhandledError extends MonitoredError {
+  error;
+
+  /**
+   *
+   * @param error Error object
+   */
+  constructor(error) {
+    super();
+    this.error = error;
+  }
+
+  report() {
+    const stack = this.getErrorStack(this.error);
+    const occurrence = this.buildErrorOcurrece(this.error, stack);
+    this.storeOccurrence(occurrence);
+  }
+
+  private getErrorStack(error) {
+    return [...ErrorStackParser.parse(error)].reverse();
+  }
 }

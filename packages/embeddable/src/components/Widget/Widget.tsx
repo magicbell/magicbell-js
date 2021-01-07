@@ -6,7 +6,7 @@ import { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
 import { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
 import React, { Component } from 'react';
 import { cache } from '../../lib/emotion';
-import { reportReactError } from '../../lib/error';
+import { ReactError } from '../../lib/error';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
 
@@ -38,8 +38,9 @@ export default class Widget extends Component<WidgetProps> {
   componentDidCatch(error: Error, info: React.ErrorInfo) {
     const { userEmail, userExternalId } = this.props;
     const userId = (userEmail || userExternalId) as string;
+    const person = { id: userId };
 
-    reportReactError(error, info, { userId, ...this.props });
+    new ReactError(error, info, person, this.props).report();
   }
 
   render() {
