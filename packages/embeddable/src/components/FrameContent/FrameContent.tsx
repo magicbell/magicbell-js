@@ -1,77 +1,15 @@
-import { Global } from '@emotion/core';
-import { MagicBellContext, NotificationInbox } from '@magicbell/magicbell-react';
+import { NotificationInbox } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
-import React, { useContext } from 'react';
-import Frame from 'react-frame-component';
-import { useFrameSize } from '../../lib/window';
-import FrameProvider from '../FrameProvider';
+import React from 'react';
 
-export interface FrameContentProps extends NotificationInboxProps {
-  width?: number;
-  height?: number;
-  stylesheets?: string[];
-}
+export type FrameContentProps = NotificationInboxProps;
 
 /**
- * Responsive iframe wrapper for a notification inbox.
+ * Content to be rendered by the iframe.
  *
  * @example
  * <FrameContent />
  */
-export default function FrameContent({
-  width: defaultWidth,
-  height: defaultHeight,
-  stylesheets = [],
-  ...props
-}: FrameContentProps) {
-  const { theme } = useContext(MagicBellContext);
-  const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
-  const { width, height } = useFrameSize(defaultWidth, defaultHeight);
-
-  return (
-    <Frame
-      id="magicbell-frame"
-      frameBorder="0"
-      scrolling="no"
-      height={height}
-      width={width}
-      style={{
-        display: 'block',
-        borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
-        overflow: 'hidden',
-      }}
-      head={
-        <>
-          {stylesheets.map((stylesheet: string) => (
-            <link key={stylesheet} href={stylesheet} rel="stylesheet" />
-          ))}
-        </>
-      }
-    >
-      <FrameProvider>
-        <Global
-          styles={{
-            html: {
-              fontFamily: containerTheme.fontFamily,
-              borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
-              height: '100%',
-              margin: 0,
-            },
-            body: {
-              fontFamily: containerTheme.fontFamily,
-              borderRadius: `${headerTheme.borderRadius} ${footerTheme.borderRadius}`,
-              height: '100%',
-              margin: 0,
-            },
-          }}
-        />
-        <NotificationInbox height={height} {...props} />
-      </FrameProvider>
-    </Frame>
-  );
+export default function FrameContent(props: FrameContentProps) {
+  return <NotificationInbox {...props} />;
 }
-
-FrameContent.defaultProps = {
-  width: 500,
-  height: 600,
-};
