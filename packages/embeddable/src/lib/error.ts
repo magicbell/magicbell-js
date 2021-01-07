@@ -3,6 +3,9 @@ import axios from 'axios';
 import * as ErrorStackParser from 'error-stack-parser';
 import { ErrorInfo } from 'react';
 
+type Person = Partial<{ id: string }>;
+type Context = Partial<{ apiKey: string }>;
+
 /**
  * Report an error to rollbar.
  *
@@ -22,7 +25,13 @@ export function reportReactError(
   ].reverse();
   const { userId, ...env } = context;
 
-  const data = {
+  const person = { id: userId };
+  const data = processStack(error, stack, person, env);
+  postToRollbar(data);
+}
+
+function processStack(error, stack, person: Person, context: Context) {
+  return {
     environment: process.env.NODE_ENV,
     title: error.toString(),
     client: {
@@ -30,8 +39,8 @@ export function reportReactError(
         browser: navigator.userAgent,
       },
     },
-    person: { id: userId },
-    custom: env,
+    person,
+    custom: context,
     framework: 'react',
     language: 'javascript',
     platform: 'browser',
@@ -51,10 +60,9 @@ export function reportReactError(
       },
     },
   };
+}
 
-  axios.post(
-    'https://api.rollbar.com/api/1/item/',
-    { data },
-    { headers: { 'X-Rollbar-Access-Token': 'a15f88d968da40f6bcbdfc8187cd0b2a' } },
-  );
+function postToRollbar(data) {
+  const token = 'a15f88d968da40f6bcbdfc8187cd0b2a';
+  axios.post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': token } });
 }
