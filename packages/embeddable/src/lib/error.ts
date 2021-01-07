@@ -11,7 +11,7 @@ import { ErrorInfo } from 'react';
  * @param userId
  * @param apiKey
  */
-export function reportError(
+export function reportReactError(
   error: Error,
   errorInfo: ErrorInfo,
   context: Partial<{ userId: string; apiKey: string }> = {},

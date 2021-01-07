@@ -1,7 +1,7 @@
 import { NotificationInbox } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
 import React, { Component } from 'react';
-import { reportError } from '../../lib/error';
+import { reportReactError } from '../../lib/error';
 
 export type FrameContentProps = NotificationInboxProps;
 
@@ -13,7 +13,7 @@ export type FrameContentProps = NotificationInboxProps;
  */
 export default class FrameContent extends Component<FrameContentProps> {
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    reportError(error, info);
+    reportReactError(error, info);
   }
 
   render() {
