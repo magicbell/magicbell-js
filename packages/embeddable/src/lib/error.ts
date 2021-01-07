@@ -26,24 +26,31 @@ export function reportReactError(
   const { userId, ...env } = context;
 
   const person = { id: userId };
-  const data = processStack(error, stack, person, env);
-  postToRollbar(data);
+  const occurrence = buildErrorOcurrece(error, stack, person, env);
+  notifyError(occurrence);
 }
 
-function processStack(error, stack, person: Person, context: Context) {
+function buildErrorOcurrece(error, stack, person: Person, context: Context) {
+  const environment = process.env.NODE_ENV;
+  const title = error.toString();
+  const browserInfo = navigator.userAgent;
+  const framework = 'react';
+  const language = 'javascript';
+  const platform = 'browser';
+
   return {
-    environment: process.env.NODE_ENV,
-    title: error.toString(),
+    environment,
+    title,
     client: {
       javascript: {
-        browser: navigator.userAgent,
+        browser: browserInfo,
       },
     },
     person,
     custom: context,
-    framework: 'react',
-    language: 'javascript',
-    platform: 'browser',
+    framework,
+    language,
+    platform,
     body: {
       trace: {
         frames: stack.map((frame) => ({
@@ -62,7 +69,7 @@ function processStack(error, stack, person: Person, context: Context) {
   };
 }
 
-function postToRollbar(data) {
+function notifyError(data) {
   const token = 'a15f88d968da40f6bcbdfc8187cd0b2a';
   axios.post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': token } });
 }
