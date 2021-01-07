@@ -20,7 +20,12 @@ export interface IFrameProps extends NotificationInboxProps {
  * @example
  * <IFrame />
  */
-export default function IFrame({ width: defaultWidth, height: defaultHeight, stylesheets, ...props }: IFrameProps) {
+export default function IFrame({
+  width: defaultWidth = 500,
+  height: defaultHeight = 600,
+  stylesheets,
+  ...props
+}: IFrameProps) {
   const { theme } = useContext(MagicBellContext);
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
@@ -61,8 +66,3 @@ export default function IFrame({ width: defaultWidth, height: defaultHeight, sty
     </Frame>
   );
 }
-
-IFrame.defaultProps = {
-  width: 500,
-  height: 600,
-};
