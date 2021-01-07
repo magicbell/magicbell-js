@@ -2,13 +2,13 @@
 import { css, jsx } from '@emotion/core';
 import { FloatingNotificationInboxArrow, MagicBellContext, Notification } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
-import Tippy from '@tippyjs/react/headless';
 import { useContext } from 'react';
 import IFrame from '../IFrame';
+import Popover from './Popover';
 
 /**
- * Renders an iframe within a tooltip provided by tippy. The position of the
- * tooltip can be customized through the optional `placement` property.
+ * Renders an iframe within a popover. Its position can be customized through the
+ * optional `placement` property. The popover has a poiting arrow.
  *
  * @example
  * (props) => <FloatingFrame position="auto" {...props} />
@@ -32,8 +32,8 @@ export default function FloatingFrame({
   };
 
   return (
-    <Tippy
-      render={(attrs) => (
+    <Popover isOpen={isOpen} onClickOutside={toggle} reference={launcherRef} placement={placement}>
+      {(attrs) => (
         <div
           css={css`
             overflow: hidden !important;
@@ -49,11 +49,6 @@ export default function FloatingFrame({
           <FloatingNotificationInboxArrow placement={attrs['data-placement']} />
         </div>
       )}
-      visible={isOpen}
-      onClickOutside={toggle}
-      reference={launcherRef}
-      placement={placement}
-      interactive
-    />
+    </Popover>
   );
 }
