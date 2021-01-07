@@ -18,7 +18,7 @@ export default class FrameContent extends Component<FrameContentProps> {
 
   componentDidMount() {
     window.onerror = function (message, source, lineno, colno, error) {
-      new UnhandledError(error).report();
+      if (error) new UnhandledError(error).report();
       // Prevents the firing of the default event handler
       return true;
     };
