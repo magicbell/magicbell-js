@@ -25,12 +25,28 @@ export function reportReactError(
   notifyError(occurrence);
 }
 
+/**
+ * Report a window error to rollbar
+ *
+ * @param error Error object
+ * @param message Error message
+ */
+export function reportUnhandledError(error) {
+  const stack = getUnhandledErrorStack(error);
+  const occurrence = buildErrorOcurrece(error, stack);
+  notifyError(occurrence);
+}
+
 function getReactErrorStack(error: Error, errorInfo: ErrorInfo) {
   const errorContext = new Error(errorInfo.componentStack);
   return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
 }
 
-function buildErrorOcurrece(error, stack, person: Person, context: Context) {
+function getUnhandledErrorStack(error) {
+  return [...ErrorStackParser.parse(error)].reverse();
+}
+
+function buildErrorOcurrece(error, stack, person?: Person, context?: Context) {
   const environment = process.env.NODE_ENV;
   const title = error.toString();
   const browserInfo = navigator.userAgent;
