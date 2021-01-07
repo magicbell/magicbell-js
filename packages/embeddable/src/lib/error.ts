@@ -10,8 +10,7 @@ type Context = Partial<{ apiKey: string; userKey: string; userExternalId: string
  *
  * @param error
  * @param errorInfo
- * @param userId
- * @param apiKey
+ * @param context Context to be included in the report, such as person, project, etc
  */
 export function reportReactError(
   error: Error,
