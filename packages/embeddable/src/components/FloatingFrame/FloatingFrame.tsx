@@ -15,7 +15,7 @@ import IFrame from '../IFrame';
  */
 export default function FloatingFrame({
   isOpen,
-  placement,
+  placement = 'auto',
   launcherRef,
   toggle,
   onNotificationClick,
@@ -57,7 +57,3 @@ export default function FloatingFrame({
     />
   );
 }
-
-FloatingFrame.defaultProps = {
-  placement: 'auto',
-};
