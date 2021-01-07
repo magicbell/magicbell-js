@@ -1,6 +1,6 @@
 import { NotificationInbox } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
-import React from 'react';
+import React, { Component } from 'react';
 
 export type FrameContentProps = NotificationInboxProps;
 
@@ -10,6 +10,9 @@ export type FrameContentProps = NotificationInboxProps;
  * @example
  * <FrameContent />
  */
-export default function FrameContent(props: FrameContentProps) {
-  return <NotificationInbox {...props} />;
+export default class FrameContent extends Component<FrameContentProps> {
+  render() {
+    const { props } = this;
+    return <NotificationInbox {...props} />;
+  }
 }
