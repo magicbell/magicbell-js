@@ -73,5 +73,9 @@ function buildErrorOcurrece(error, stack, person: Person, context: Context) {
 
 function notifyError(data) {
   const token = 'a15f88d968da40f6bcbdfc8187cd0b2a';
-  axios.post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': token } });
+  axios
+    .post('https://api.rollbar.com/api/1/item/', { data }, { headers: { 'X-Rollbar-Access-Token': token } })
+    .catch(() => {
+      // Silence error
+    });
 }
