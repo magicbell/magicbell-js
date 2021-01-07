@@ -54,6 +54,6 @@ export function reportError(
   axios.post(
     'https://api.rollbar.com/api/1/item/',
     { data },
-    { headers: { 'X-Rollbar-Access-Token': 'b009260297fe434b993ffd309bd6bca2' } },
+    { headers: { 'X-Rollbar-Access-Token': 'a15f88d968da40f6bcbdfc8187cd0b2a' } },
   );
 }
