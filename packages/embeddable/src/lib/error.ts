@@ -19,15 +19,17 @@ export function reportReactError(
   errorInfo: ErrorInfo,
   context: Partial<{ userId: string; apiKey: string }> = {},
 ) {
-  const stack = [
-    ...ErrorStackParser.parse(new Error(errorInfo.componentStack)),
-    ...ErrorStackParser.parse(error),
-  ].reverse();
   const { userId, ...env } = context;
-
   const person = { id: userId };
+  const stack = getReactErrorStack(error, errorInfo);
   const occurrence = buildErrorOcurrece(error, stack, person, env);
+
   notifyError(occurrence);
+}
+
+function getReactErrorStack(error: Error, errorInfo: ErrorInfo) {
+  const errorContext = new Error(errorInfo.componentStack);
+  return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
 }
 
 function buildErrorOcurrece(error, stack, person: Person, context: Context) {
