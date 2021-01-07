@@ -14,12 +14,13 @@ import { ErrorInfo } from 'react';
 export function reportError(
   error: Error,
   errorInfo: ErrorInfo,
-  { userId, ...context }: { userId: string; apiKey: string },
+  context: Partial<{ userId: string; apiKey: string }> = {},
 ) {
   const stack = [
     ...ErrorStackParser.parse(new Error(errorInfo.componentStack)),
     ...ErrorStackParser.parse(error),
   ].reverse();
+  const { userId, ...env } = context;
 
   const data = {
     environment: process.env.NODE_ENV,
@@ -30,7 +31,7 @@ export function reportError(
       },
     },
     person: { id: userId },
-    custom: context,
+    custom: env,
     framework: 'react',
     language: 'javascript',
     platform: 'browser',
