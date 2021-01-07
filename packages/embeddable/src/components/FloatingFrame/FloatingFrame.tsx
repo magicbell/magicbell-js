@@ -4,7 +4,7 @@ import { FloatingNotificationInboxArrow, MagicBellContext, Notification } from '
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
 import Tippy from '@tippyjs/react/headless';
 import { useContext } from 'react';
-import FrameContent from '../FrameContent';
+import IFrame from '../IFrame';
 
 /**
  * Renders an iframe within a tooltip provided by tippy. The position of the
@@ -45,7 +45,7 @@ export default function FloatingFrame({
           `}
           {...attrs}
         >
-          <FrameContent onNotificationClick={handleNotificationClick} {...props} />
+          <IFrame onNotificationClick={handleNotificationClick} {...props} />
           <FloatingNotificationInboxArrow placement={attrs['data-placement']} />
         </div>
       )}
