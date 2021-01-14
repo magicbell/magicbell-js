@@ -1,7 +1,7 @@
 import { Global } from '@emotion/core';
-import { MagicBellContext } from '@magicbell/magicbell-react';
+import { useTheme } from '@magicbell/magicbell-react';
 import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
-import React, { useContext } from 'react';
+import React from 'react';
 import Frame from 'react-frame-component';
 import { useFrameSize } from '../../lib/window';
 import FrameContent from '../FrameContent';
@@ -26,7 +26,7 @@ export default function IFrame({
   stylesheets,
   ...props
 }: IFrameProps) {
-  const { theme } = useContext(MagicBellContext);
+  const theme = useTheme();
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
 
