@@ -392,17 +392,17 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@eo-locale/core@^1.4.14":
+"@eo-locale/core@^1.4.11", "@eo-locale/core@^1.4.14":
   version "1.4.14"
   resolved "https://registry.yarnpkg.com/@eo-locale/core/-/core-1.4.14.tgz#cf404bda78036e814ccdf1c5daf9b9d785f21bd6"
   integrity sha512-nJGdXKiJKbm0oJp/GQ79Eu73bzzewksVPrdxvsWfLLmxXs1tfiTR7n8iSoN0zdc4pEqSynNinDetywI8+piIaQ==
 
-"@eo-locale/preact@^1.4.14":
-  version "1.4.14"
-  resolved "https://registry.yarnpkg.com/@eo-locale/preact/-/preact-1.4.14.tgz#ff34556316cc671948c2ce8bb9a4126630652d55"
-  integrity sha512-esa6RlAcD/bC5DrzszHR1/e26ymgd720M0e/2a9cvaQikxusgiaMcGaDn6t2tAm4C4FbW+LZX2xPW2O8Vb/S3g==
+"@eo-locale/preact@1.4.11":
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/@eo-locale/preact/-/preact-1.4.11.tgz#ba47efffb0e344aa2b3b97905b38907849530b36"
+  integrity sha512-wJE+S/q7L2mJdQK7pVkUvqW6p1k+5iKvW6rX12QoBPRn6EryxGK0GjjYlPxIJD62sUXdhx/4beNNdk25npIX4Q==
   dependencies:
-    "@eo-locale/core" "^1.4.14"
+    "@eo-locale/core" "^1.4.11"
 
 "@eo-locale/react@^1.4.14":
   version "1.4.14"
