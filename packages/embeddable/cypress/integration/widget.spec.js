@@ -45,7 +45,7 @@ context('Widget', () => {
   });
 
   context('click a notification', () => {
-    it('opens the notification url ', () => {
+    it.skip('opens the notification url ', () => {
       cy.get('[data-testid="bell"]').click();
       cy.get('iframe[id="magicbell-frame"]')
         .its('0.contentDocument.body')
