@@ -12,7 +12,7 @@ context('Widget', () => {
     cy.window().its('magicbell').should('be.a', 'function');
   });
 
-  it.skip('opens the notification inbox when the container is clicked', () => {
+  it('opens the notification inbox when the container is clicked', () => {
     cy.get('#notifications').click();
 
     cy.get('iframe[id="magicbell-frame"]').should('be.visible');
@@ -28,7 +28,7 @@ context('Widget', () => {
       cy.get('[data-testid="bell"]').should('contain.text', '1');
     });
 
-    it.skip('hides the badge on click', () => {
+    it('hides the badge on click', () => {
       cy.get('[data-testid="bell"]').click();
       cy.get('[data-testid="bell"]').should('not.contain.text', '1');
     });
