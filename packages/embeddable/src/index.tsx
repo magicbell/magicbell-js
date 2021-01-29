@@ -11,7 +11,7 @@ function validateParams(options) {
   validateIsFn(onNotificationClick, '"onNotificationClick" must be a function');
   validateIsFn(onNewNotification, '"onNewNotification" must be a function');
 
-  if (!target?.nodeType) throw '"target" must be an HTML element';
+  if (!target?.nodeType) throw '"target" must be a valid HTML element';
 }
 
 /**
