@@ -22,7 +22,7 @@ export interface WidgetProps extends FrameContentProps {
     emptyInboxUrl: string;
   }>;
   theme: DeepPartial<IMagicBellTheme>;
-  onNotificationCreated?: (notification: Notification) => void;
+  onNewNotification?: (notification: Notification) => void;
 }
 
 /**
@@ -54,7 +54,7 @@ export default class Widget extends Component<WidgetProps> {
       locale,
       _baseURL,
       images,
-      onNotificationCreated,
+      onNewNotification,
       ...inboxProps
     } = this.props;
 
@@ -68,7 +68,7 @@ export default class Widget extends Component<WidgetProps> {
           theme={theme}
           locale={locale}
           images={images}
-          onNotificationCreated={onNotificationCreated}
+          onNewNotification={onNewNotification}
           _baseURL={_baseURL}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}

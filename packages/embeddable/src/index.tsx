@@ -7,9 +7,9 @@ function validateIsFn(fn, message) {
 }
 
 function validateParams(options) {
-  const { target, onNotificationClick, onNotificationCreated } = options;
+  const { target, onNotificationClick, onNewNotification } = options;
   validateIsFn(onNotificationClick, '"onNotificationClick" must be a function');
-  validateIsFn(onNotificationCreated, '"onNotificationCreated" must be a function');
+  validateIsFn(onNewNotification, '"onNewNotification" must be a function');
 
   if (!target?.nodeType) throw '"target" must be an HTML element';
 }
