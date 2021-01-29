@@ -5,6 +5,10 @@ import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/
 import IFrame from '../IFrame';
 import Popover from './Popover';
 
+export interface FloatingFrameProps extends FloatingNotificationInboxProps {
+  onNotificationCreated?: (notification: Notification) => void;
+}
+
 /**
  * Renders an iframe within a popover. Its position can be customized through the
  * optional `placement` property. The popover has a poiting arrow.
@@ -19,7 +23,7 @@ export default function FloatingFrame({
   toggle,
   onNotificationClick,
   ...props
-}: FloatingNotificationInboxProps) {
+}: FloatingFrameProps) {
   const theme = useTheme();
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
 
