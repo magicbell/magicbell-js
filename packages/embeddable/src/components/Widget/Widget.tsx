@@ -45,7 +45,18 @@ export default class Widget extends Component<WidgetProps> {
   }
 
   render() {
-    const { apiKey, userEmail, userExternalId, userKey, theme, locale, _baseURL, images, ...inboxProps } = this.props;
+    const {
+      apiKey,
+      userEmail,
+      userExternalId,
+      userKey,
+      theme,
+      locale,
+      _baseURL,
+      images,
+      onNotificationCreated,
+      ...inboxProps
+    } = this.props;
 
     return (
       <CacheProvider value={cache}>
@@ -57,6 +68,7 @@ export default class Widget extends Component<WidgetProps> {
           theme={theme}
           locale={locale}
           images={images}
+          onNotificationCreated={onNotificationCreated}
           _baseURL={_baseURL}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
