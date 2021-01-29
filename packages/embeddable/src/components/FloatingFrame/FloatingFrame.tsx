@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { FloatingNotificationInboxArrow, Notification, useMagicBellEvent, useTheme } from '@magicbell/magicbell-react';
+import { FloatingNotificationInboxArrow, Notification, useTheme } from '@magicbell/magicbell-react';
 import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
 import IFrame from '../IFrame';
 import Popover from './Popover';
@@ -22,7 +22,6 @@ export default function FloatingFrame({
   launcherRef,
   toggle,
   onNotificationClick,
-  onNotificationCreated,
   ...props
 }: FloatingFrameProps) {
   const theme = useTheme();
@@ -34,12 +33,6 @@ export default function FloatingFrame({
     if (onNotificationClick) onNotificationClick(notification);
     else if (notification.actionUrl) window.open(notification.actionUrl, '_self');
   };
-
-  const handleNotificationCreated = (notification: Notification) => {
-    if (onNotificationCreated) onNotificationCreated(notification);
-  };
-
-  useMagicBellEvent('notifications.new', handleNotificationCreated);
 
   return (
     <Popover isOpen={isOpen} onClickOutside={toggle} reference={launcherRef} placement={placement}>
