@@ -6,6 +6,14 @@ function validateIsFn(fn, message) {
   if (fn && typeof fn !== 'function') throw message;
 }
 
+function validateParams(options) {
+  const { target, onNotificationClick, onNotificationCreated } = options;
+  validateIsFn(onNotificationClick, '"onNotificationClick" must be a function');
+  validateIsFn(onNotificationCreated, '"onNotificationCreated" must be a function');
+
+  if (!target?.nodeType) throw '"target" must be an HTML element';
+}
+
 /**
  * Function that renders the widget if all options are valid.
  *
@@ -13,11 +21,7 @@ function validateIsFn(fn, message) {
  * renderWidget({ userEmail, apiKey, target: document.getElementById('test') })
  */
 export function renderWidget(target: HTMLElement, options: WidgetProps) {
-  const { onNotificationClick, onNotificationCreated } = options;
-  validateIsFn(onNotificationClick, '"onNotificationClick" must be a function');
-  validateIsFn(onNotificationCreated, '"onNotificationCreated" must be a function');
-  if (!target?.nodeType) throw '"target" must be an HTML element';
-
+  validateParams({ target, ...options });
   ReactDOM.render(<Widget {...options} />, target);
 }
 
