@@ -456,10 +456,10 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^6.20.1":
-  version "6.20.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.20.1.tgz#1cfe8e4e875d13b4240fd70ed67949985a8ca4e3"
-  integrity sha512-2CaB39De2olQY/lRs1bq6vC8uZu+JajtGpvw87Ut7ng6J5C4ppUJ862zXTxzDLVhi2437qShijAfpIWTYVi7vA==
+"@magicbell/magicbell-react@^6.21.0":
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.21.0.tgz#3dc1699294e6c24a572f35b091d12be0b6e760f4"
+  integrity sha512-PlcgIGs9S78gb9OF9nLulkWgUzwvAO1fUT+HmiQwkUDR5as9eRyaMZ7GVjqP3+wV6hlRHgs6SXk3t9Jx374UTw==
   dependencies:
     "@emotion/core" "^10.1.1"
     "@eo-locale/react" "^1.4.14"
