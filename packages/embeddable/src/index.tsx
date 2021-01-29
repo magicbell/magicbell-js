@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Widget, { WidgetProps } from './components/Widget';
 
+function validateIsFn(fn, message) {
+  if (fn && typeof fn !== 'function') throw message;
+}
+
 /**
  * Function that renders the widget if all options are valid.
  *
@@ -9,9 +13,9 @@ import Widget, { WidgetProps } from './components/Widget';
  * renderWidget({ userEmail, apiKey, target: document.getElementById('test') })
  */
 export function renderWidget(target: HTMLElement, options: WidgetProps) {
-  const { onNotificationClick } = options;
-  if (onNotificationClick && typeof onNotificationClick !== 'function')
-    throw '"onNotificationClick" must be a function';
+  const { onNotificationClick, onNotificationCreated } = options;
+  validateIsFn(onNotificationClick, '"onNotificationClick" must be a function');
+  validateIsFn(onNotificationCreated, '"onNotificationCreated" must be a function');
   if (!target?.nodeType) throw '"target" must be an HTML element';
 
   ReactDOM.render(<Widget {...options} />, target);
