@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { CacheProvider } from '@emotion/core';
-import MagicBell from '@magicbell/magicbell-react';
+import MagicBell, { Notification } from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/context/Theme';
 import { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
 import { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
@@ -22,6 +22,7 @@ export interface WidgetProps extends FrameContentProps {
     emptyInboxUrl: string;
   }>;
   theme: DeepPartial<IMagicBellTheme>;
+  onNotificationCreated?: (notification: Notification) => void;
 }
 
 /**
