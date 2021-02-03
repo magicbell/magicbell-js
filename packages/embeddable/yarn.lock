@@ -456,16 +456,17 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^6.21.0":
-  version "6.21.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.21.0.tgz#3dc1699294e6c24a572f35b091d12be0b6e760f4"
-  integrity sha512-PlcgIGs9S78gb9OF9nLulkWgUzwvAO1fUT+HmiQwkUDR5as9eRyaMZ7GVjqP3+wV6hlRHgs6SXk3t9Jx374UTw==
+"@magicbell/magicbell-react@^6.22.0":
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.22.0.tgz#20771cf3ca82fc11c3b9eeff2c61a6e1990cebee"
+  integrity sha512-pIx4muYJVLvME7boho4DldTQJqGkXUn0Bb0j1ybiNIy8OQ9e5dptgWC9snNp96VuDcEtWNjJimWujcYXvjF2Cg==
   dependencies:
     "@emotion/core" "^10.1.1"
     "@eo-locale/react" "^1.4.14"
     "@magicbell/core" "^2.6.2"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
+    axios "^0.21.1"
     dayjs "^1.10.3"
     dompurify "^2.2.6"
     liquidjs "^9.19.0"
