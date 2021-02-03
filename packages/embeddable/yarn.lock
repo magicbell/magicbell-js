@@ -456,7 +456,7 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^6.22.2":
+"@magicbell/magicbell-react@^6.21.0":
   version "6.22.2"
   resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.22.2.tgz#e51e094407f487c88b51aed1b68eef653332ceca"
   integrity sha512-Nzx9DkxguCoXC9I9iMr018Fr3x0FowZ2Na9oRRFEaVp2BLuVCaK9nTcDsF/s7HplNL1LHCDKHj7fiRsXsDfqlA==
