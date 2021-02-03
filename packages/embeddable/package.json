@@ -1,6 +1,6 @@
 {
   "name": "embeddable-web",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
@@ -35,7 +35,7 @@
     "@emotion/css": "^10.0.27",
     "@emotion/weak-memoize": "^0.2.5",
     "@eo-locale/preact": "1.4.11",
-    "@magicbell/magicbell-react": "^6.22.1",
+    "@magicbell/magicbell-react": "6.21.0",
     "@tippyjs/react": "^4.2.0",
     "error-stack-parser": "^2.0.6",
     "preact": "^10.5.9",
