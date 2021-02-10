@@ -67,6 +67,7 @@
     "husky": "^4.3.7",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
+    "react-color": "^2.19.3",
     "react-is": "^17.0.1",
     "rollup": "^2.38.5",
     "rollup-plugin-alias": "^2.2.0",
