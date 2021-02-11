@@ -425,10 +425,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@magicbell/core@^2.6.5":
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.6.5.tgz#a1b31187e0f4242cae22f205c226ba48bc70a751"
-  integrity sha512-IEy7hhAH0Ikf5d2N0TUkgZP0N6GqC7U6V+o4DFVw1cfSL3Z56pV/9rbCsql+rTj3URAS7AZvi9TYsUZMu94EsA==
+"@magicbell/core@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.6.6.tgz#d3e3aab595401d4bddbaa1605c0d2d6149025f99"
+  integrity sha512-wYGfz3WkB5MCYIlvlL9wKE6t7gMrMjRLfEpMaTiNpLFmW6EFo5KzqzEIps15I4t5r+so4N8+KJ5S2JcYOvp60g==
   dependencies:
     ably "^1.2.4"
     axios "^0.21.1"
@@ -437,18 +437,18 @@
     lodash "^4.17.20"
     lodash-es "^4.17.20"
     mitt "^2.1.0"
-    mobx "^6.1.5"
+    mobx "6.0.2"
     mobx-utils "^6.0.3"
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^6.22.8":
-  version "6.22.8"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.22.8.tgz#648015ba916217433ec6db426b688182d8573db6"
-  integrity sha512-OeJS4sD6M59hQQXq7C4OI97GXnun2aptIys1aYd1f3O24o2yv/yiSYfdSRXZlHvMmszdN/DRZEL39SlsXfFY3A==
+"@magicbell/magicbell-react@^6.23.2":
+  version "6.23.2"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.23.2.tgz#07baa89a5147a70a1de59f239579456d34b39871"
+  integrity sha512-Vs7oajmZFz73c1RzuHgjGzuwbh3Kkr7XZEjHq6fvd1agUq0I1hQ2sWn3vDrBfU0W0Aw1riuLZFKx/5qMVK3mZQ==
   dependencies:
     "@emotion/core" "^10.1.1"
-    "@magicbell/core" "^2.6.5"
+    "@magicbell/core" "^2.6.6"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
     axios "^0.21.1"
@@ -458,8 +458,8 @@
     lodash "^4.17.20"
     lodash-es "^4.17.20"
     miragejs "^0.1.41"
-    mobx "^6.1.5"
-    mobx-react-lite "^3.2.0"
+    mobx "6.0.2"
+    mobx-react "^7.1.0"
     react-infinite-scroll-component "^5.0.5"
     react-use "^17.1.0"
     text-clipper "^2.1.0"
@@ -3468,15 +3468,22 @@ mobx-react-lite@^3.2.0:
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.0.tgz#331d7365a6b053378dfe9c087315b4e41c5df69f"
   integrity sha512-q5+UHIqYCOpBoFm/PElDuOhbcatvTllgRp3M1s+Hp5j0Z6XNgDbgqxawJ0ZAUEyKM8X1zs70PCuhAIzX1f4Q/g==
 
+mobx-react@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-7.1.0.tgz#d947cada3cfad294b4b6f692e969c242b9c16eaf"
+  integrity sha512-DxvA6VXmnZ+N9f/UTtolWtdRnAAQY2iHWTSPLktfpj8NKlXUe4dabBAjuXrBcZUM8GjLWnxD1ZEjssXq1M0RAw==
+  dependencies:
+    mobx-react-lite "^3.2.0"
+
 mobx-utils@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/mobx-utils/-/mobx-utils-6.0.3.tgz#4dcc3ae65d089dfa6a4a04d7683816d01b1060a1"
   integrity sha512-dNtwCe6g+Gv5BEzh6lMtGhrUM6bnEPHV3m5cNLCTaH/7t0c4KyRaV0HHcsuLQE7lBC8x3SZXo7hmliLJoOAL9A==
 
-mobx@^6.1.5:
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.1.5.tgz#bef273670c520eb67d09938812de525ad7be4c9f"
-  integrity sha512-BsVAHEk/Ty+6BmCis0CUvA7E9u5aJpUkdRM91YwBt4lVha4heDLjRT43z2pqENeFuVZPfA1RRaf7sRcqRB2i4Q==
+mobx@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.0.2.tgz#81a00ca9471b83385d342b21370253351782774b"
+  integrity sha512-MG+8YbcwJw0tjJ78ujooqE8rxvCIfDaVZbCLfCxQ9S81oNNJb6W4KZVMSR+Y1e5n4z1vh70/vkibv0xEGwuEPQ==
 
 moment@2.27.0:
   version "2.27.0"
@@ -4042,6 +4049,25 @@ react-use@^17.1.0:
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.1.0.tgz#a2db05f7cca2f09a6b90b2151cd4c620e9582fe8"
   integrity sha512-BVVG5FWXYhfkQcGhtSYNx3wPh5bvOZieH2iq1h6/WYTDCScade1JqoM5XRHPkYXfFzAzhb8QlAtt9Suj8yAumA==
+  dependencies:
+    "@xobotyi/scrollbar-width" "^1.9.5"
+    copy-to-clipboard "^3.3.1"
+    fast-deep-equal "^3.1.3"
+    fast-shallow-equal "^1.0.0"
+    js-cookie "^2.2.1"
+    nano-css "^5.3.1"
+    react-universal-interface "^0.6.2"
+    resize-observer-polyfill "^1.5.1"
+    screenfull "^5.1.0"
+    set-harmonic-interval "^1.0.1"
+    throttle-debounce "^3.0.1"
+    ts-easing "^0.2.0"
+    tslib "^2.1.0"
+
+react-use@^17.1.1:
+  version "17.1.1"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.1.1.tgz#f4c3667f1833e1848417dffe3538a3ec9d7fdcfe"
+  integrity sha512-DfDRlODcjO8shjz37cjyS99c+JDXvMNvasGiHNCGUpSp1ZEU+dxthf5Cvz0GuUFNGZayu81t86IjolsX/Fj+8g==
   dependencies:
     "@xobotyi/scrollbar-width" "^1.9.5"
     copy-to-clipboard "^3.3.1"
@@ -4925,10 +4951,10 @@ ts-easing@^0.2.0:
   resolved "https://registry.yarnpkg.com/ts-easing/-/ts-easing-0.2.0.tgz#c8a8a35025105566588d87dbda05dd7fbfa5a4ec"
   integrity sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==
 
-ts-loader@^8.0.16:
-  version "8.0.16"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.16.tgz#a60311f01f015518e1cfbb5698e6ca8830cd2391"
-  integrity sha512-Cr9ywsgg1n8cjGjIogHLPlqe3WJUHzuJaqwNo5I596KpIqekKzxvSENbrXeOypHcXSPPsr8hV6mglngyXvcKrg==
+ts-loader@^8.0.17:
+  version "8.0.17"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.17.tgz#98f2ccff9130074f4079fd89b946b4c637b1f2fc"
+  integrity sha512-OeVfSshx6ot/TCxRwpBHQ/4lRzfgyTkvi7ghDVrLXOHzTbSK413ROgu/xNqM72i3AFeAIJgQy78FwSMKmOW68w==
   dependencies:
     chalk "^4.1.0"
     enhanced-resolve "^4.0.0"

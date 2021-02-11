@@ -1,6 +1,6 @@
 {
   "name": "embeddable-web",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
@@ -34,12 +34,12 @@
     "@emotion/core": "^10.0.39",
     "@emotion/css": "^10.0.27",
     "@emotion/weak-memoize": "^0.2.5",
-    "@magicbell/magicbell-react": "^6.22.8",
+    "@magicbell/magicbell-react": "^6.23.2",
     "@tippyjs/react": "^4.2.0",
     "error-stack-parser": "^2.0.6",
     "preact": "^10.5.12",
     "react-frame-component": "^4.1.3",
-    "react-use": "^17.1.0",
+    "react-use": "^17.1.1",
     "redaxios": "^0.4.1",
     "tslib": "^2.1.0"
   },
@@ -78,7 +78,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "start-server-and-test": "^1.12.0",
-    "ts-loader": "^8.0.16",
+    "ts-loader": "^8.0.17",
     "typescript": "^4.1.4"
   }
 }
