@@ -425,10 +425,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@magicbell/core@^2.6.6":
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.6.6.tgz#d3e3aab595401d4bddbaa1605c0d2d6149025f99"
-  integrity sha512-wYGfz3WkB5MCYIlvlL9wKE6t7gMrMjRLfEpMaTiNpLFmW6EFo5KzqzEIps15I4t5r+so4N8+KJ5S2JcYOvp60g==
+"@magicbell/core@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.8.0.tgz#91f0d3d1afb2ae4fcf103b6ff09f373672a76b91"
+  integrity sha512-pnNNITkXHGg9DQYx47bJDQ7DFPhVgT/zXi/ZKIIetco4uDm+pzzdmOQbQyqF6Jv4/2iXnQ7vHGs5r1qZlyb0DA==
   dependencies:
     ably "^1.2.4"
     axios "^0.21.1"
@@ -442,13 +442,13 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^6.23.2":
-  version "6.23.2"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.23.2.tgz#07baa89a5147a70a1de59f239579456d34b39871"
-  integrity sha512-Vs7oajmZFz73c1RzuHgjGzuwbh3Kkr7XZEjHq6fvd1agUq0I1hQ2sWn3vDrBfU0W0Aw1riuLZFKx/5qMVK3mZQ==
+"@magicbell/magicbell-react@^6.24.1":
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-6.24.1.tgz#98e14f0eaf4f66d074c89080026ead8718a4494f"
+  integrity sha512-dpKhsObavlboVSivxJSrtdCweRStmGw/fGzef0NDkBomr5wVvhiQcDsgdqldkixGCdqfgVcLXwvJRktd2LhmZQ==
   dependencies:
     "@emotion/core" "^10.1.1"
-    "@magicbell/core" "^2.6.6"
+    "@magicbell/core" "^2.8.0"
     "@tippyjs/react" "^4.2.0"
     ably "^1.2.4"
     axios "^0.21.1"
@@ -461,7 +461,7 @@
     mobx "6.0.2"
     mobx-react "^7.1.0"
     react-infinite-scroll-component "^5.0.5"
-    react-use "^17.1.0"
+    react-use "^17.1.1"
     text-clipper "^2.1.0"
     tinycolor2 "^1.4.2"
     tslib "^2.1.0"
@@ -4044,25 +4044,6 @@ react-universal-interface@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz#5e8d438a01729a4dbbcbeeceb0b86be146fe2b3b"
   integrity sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==
-
-react-use@^17.1.0:
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-17.1.0.tgz#a2db05f7cca2f09a6b90b2151cd4c620e9582fe8"
-  integrity sha512-BVVG5FWXYhfkQcGhtSYNx3wPh5bvOZieH2iq1h6/WYTDCScade1JqoM5XRHPkYXfFzAzhb8QlAtt9Suj8yAumA==
-  dependencies:
-    "@xobotyi/scrollbar-width" "^1.9.5"
-    copy-to-clipboard "^3.3.1"
-    fast-deep-equal "^3.1.3"
-    fast-shallow-equal "^1.0.0"
-    js-cookie "^2.2.1"
-    nano-css "^5.3.1"
-    react-universal-interface "^0.6.2"
-    resize-observer-polyfill "^1.5.1"
-    screenfull "^5.1.0"
-    set-harmonic-interval "^1.0.1"
-    throttle-debounce "^3.0.1"
-    ts-easing "^0.2.0"
-    tslib "^2.1.0"
 
 react-use@^17.1.1:
   version "17.1.1"

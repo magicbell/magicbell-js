@@ -34,7 +34,7 @@
     "@emotion/core": "^10.0.39",
     "@emotion/css": "^10.0.27",
     "@emotion/weak-memoize": "^0.2.5",
-    "@magicbell/magicbell-react": "^6.23.2",
+    "@magicbell/magicbell-react": "^6.24.1",
     "@tippyjs/react": "^4.2.0",
     "error-stack-parser": "^2.0.6",
     "preact": "^10.5.12",
