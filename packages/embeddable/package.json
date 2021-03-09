@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/embeddable",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
