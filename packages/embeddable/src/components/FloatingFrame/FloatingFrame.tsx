@@ -18,8 +18,8 @@ export default function FloatingFrame({
   launcherRef,
   toggle,
   onNotificationClick,
-  closeOnNotificationClick,
-  closeOnClickOutside,
+  closeOnNotificationClick = true,
+  closeOnClickOutside = true,
   ...props
 }: FloatingNotificationInboxProps) {
   const theme = useTheme();
