@@ -18,20 +18,26 @@ export default function FloatingFrame({
   launcherRef,
   toggle,
   onNotificationClick,
+  closeOnNotificationClick,
+  closeOnClickOutside,
   ...props
 }: FloatingNotificationInboxProps) {
   const theme = useTheme();
   const { header: headerTheme, footer: footerTheme, container: containerTheme } = theme;
 
   const handleNotificationClick = (notification: Notification) => {
-    toggle();
+    if (closeOnNotificationClick) toggle?.();
 
     if (onNotificationClick) onNotificationClick(notification);
     else if (notification.actionUrl) window.open(notification.actionUrl, '_self');
   };
 
+  const handleClickOutside = () => {
+    if (closeOnClickOutside) toggle?.();
+  };
+
   return (
-    <Popover isOpen={isOpen} onClickOutside={toggle} reference={launcherRef} placement={placement}>
+    <Popover isOpen={isOpen} onClickOutside={handleClickOutside} reference={launcherRef} placement={placement}>
       {(attrs) => (
         <div
           css={css`
