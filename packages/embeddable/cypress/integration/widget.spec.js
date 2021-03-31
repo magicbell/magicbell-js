@@ -4,6 +4,7 @@ context('Widget', () => {
   beforeEach(() => {
     cy.intercept('GET', 'https://api.magicbell.io/notifications**', { fixture: 'notifications.json', delayMs: 300 });
     cy.intercept('GET', 'https://api.magicbell.io/config**', { fixture: 'config.json', delayMs: 300 });
+    cy.intercept('POST', 'https://api.magicbell.io/notifications/**/read', { fixture: 'read.json', delayMs: 300 });
 
     cy.visit('/');
   });
@@ -19,7 +20,7 @@ context('Widget', () => {
     cy.get('iframe[id="magicbell-frame"]')
       .its('0.contentDocument.body')
       .should('not.be.empty')
-      .should('contain', 'Notifications')
+      .should('contain', 'NOTIFICATIONS')
       .should('contain', 'Mark All Read');
   });
 
@@ -28,7 +29,7 @@ context('Widget', () => {
       cy.get('[data-testid="bell"]').should('contain.text', '1');
     });
 
-    it.skip('hides the badge on click', () => {
+    it('hides the badge on click', () => {
       cy.get('[data-testid="bell"]').click();
       cy.get('[data-testid="bell"]').should('not.contain.text', '1');
     });
@@ -50,7 +51,7 @@ context('Widget', () => {
       cy.get('iframe[id="magicbell-frame"]')
         .its('0.contentDocument.body')
         .should('not.be.empty')
-        .contains('Board View')
+        .should('contain', 'Board View')
         .click();
 
       cy.url().should('eq', 'http://localhost:10001/#developers');
