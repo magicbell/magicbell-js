@@ -15,12 +15,8 @@
     "cypress": "cypress run",
     "cypress:headed": "cypress open",
     "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'",
-    "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -64,7 +60,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.23.1",
-    "husky": "^4.3.7",
+    "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "react-color": "^2.19.3",
