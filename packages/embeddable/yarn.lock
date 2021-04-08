@@ -442,10 +442,10 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^7.4.2":
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.4.2.tgz#12b9a096766a9a0758ec5e51f4639516af7e5686"
-  integrity sha512-bNoEUgJpF0stj+GgYiCQrkA0mx0IIgZ+9upjBFa5t1ZtRh2RtFaUd306LIe7Hw8HaJNWfaN3kAXorqZOWBUazg==
+"@magicbell/magicbell-react@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.5.0.tgz#a42332f3287e325cbf8b41cb0725037e8c836901"
+  integrity sha512-TMM2ueueD7l8kEJIRc5TeKCkFPLzLItd+AfSHKa7BDec0JZwk6Q3JohfZ5PscCIF/j5xscrJehuflYTkqRhCsw==
   dependencies:
     "@emotion/core" "^10.1.1"
     "@magicbell/core" "^2.9.1"
@@ -458,7 +458,7 @@
     lodash-es "^4.17.20"
     miragejs "^0.1.41"
     mobx "6.0.2"
-    mobx-react "7.0.4"
+    mobx-react "~7.0.4"
     react-infinite-scroll-component "^6.0.0"
     react-use "^17.2.1"
     timeago.js "^4.0.2"
@@ -3553,17 +3553,17 @@ mkdirp@^0.5.1, mkdirp@^0.5.4:
   dependencies:
     minimist "^1.2.5"
 
-mobx-react-lite@^3.1.4:
+mobx-react-lite@^3.1.7:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/mobx-react-lite/-/mobx-react-lite-3.2.0.tgz#331d7365a6b053378dfe9c087315b4e41c5df69f"
   integrity sha512-q5+UHIqYCOpBoFm/PElDuOhbcatvTllgRp3M1s+Hp5j0Z6XNgDbgqxawJ0ZAUEyKM8X1zs70PCuhAIzX1f4Q/g==
 
-mobx-react@7.0.4:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-7.0.4.tgz#de73fc4d2b401c92a3d30e30158ea781a80ca9fa"
-  integrity sha512-T40zOPBs8cC85TV6VX9BD9Fp2pV1ldwFb5Aj7GvwwpDvnF7W2d/pekZ1HaE7DGS9EqbyJPFwPkGVltn9TQnodA==
+mobx-react@~7.0.4:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-7.0.6.tgz#38e0074d518ef2344152c35b11fdac399c1d8d54"
+  integrity sha512-EBNfDXnXNd0KmxtykioybOrJVX0Rc446aPZ69gDxguJnHPl/pPE032PhZ83EGWSZO3KiYsC251Ax3JlPqUwWBw==
   dependencies:
-    mobx-react-lite "^3.1.4"
+    mobx-react-lite "^3.1.7"
 
 mobx-utils@^6.0.3:
   version "6.0.3"
