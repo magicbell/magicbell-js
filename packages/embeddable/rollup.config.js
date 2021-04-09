@@ -91,7 +91,7 @@ export default [
     ],
     output: [
       {
-        file: 'dist/web_push_notifications/sw.js',
+        file: 'dist/web-push-notifications/sw.js',
         format: 'cjs',
       },
     ],
