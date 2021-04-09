@@ -58,7 +58,6 @@ export default [
           { src: 'public/index.html', dest: 'dist' },
           { src: 'public/images/**/*', dest: 'dist/images' },
           { src: 'public/fonts/**/*', dest: 'dist/fonts' },
-          { src: 'public/web_push_notifications/**/*', dest: 'dist/web_push_notifications' },
         ],
       }),
     ],
@@ -72,6 +71,28 @@ export default [
         name: 'MagicBell',
         file: 'dist/magicbell.esm.js',
         format: 'esm',
+      },
+    ],
+  },
+  {
+    input: 'src/web_push_notifications/service-worker.ts',
+    plugins: [
+      typescript({
+        rollupCommonJSResolveHack: true,
+        useTsconfigDeclarationDir: true,
+        clean: true,
+      }),
+      terser({
+        ecma: 2015,
+      }),
+      license({
+        banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, MagicBell Inc.`,
+      }),
+    ],
+    output: [
+      {
+        file: 'dist/web_push_notifications/sw.js',
+        format: 'cjs',
       },
     ],
   },

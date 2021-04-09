@@ -1,3 +1,9 @@
+/// <reference lib="webworker" />
+
+// export empty type because of tsc --isolatedModules flag
+export type {};
+declare const self: ServiceWorkerGlobalScope;
+
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -10,9 +16,9 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('push', function (event) {
-  var data = event.data.json();
+  const data = event.data?.json();
 
-  var options = {
+  const options = {
     body: data.content || '',
     vibrate: [100, 50, 100],
     data: {
@@ -33,7 +39,7 @@ self.addEventListener(
 
     // Normal notification click handler
     if (event.action === '') {
-      var url = clickedNotification.data.notification.action_url;
+      const url = clickedNotification.data.notification.action_url;
       if (url) self.clients.openWindow(url);
 
       return;

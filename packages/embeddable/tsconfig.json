@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "esnext", "webworker"],
     "importHelpers": true,
     // output .d.ts declaration files for consumers
     "declaration": true,
