@@ -58,6 +58,7 @@ export default [
           { src: 'public/index.html', dest: 'dist' },
           { src: 'public/images/**/*', dest: 'dist/images' },
           { src: 'public/fonts/**/*', dest: 'dist/fonts' },
+          { src: 'public/web_push_notifications/**/*', dest: 'dist/web_push_notifications' },
         ],
       }),
     ],
