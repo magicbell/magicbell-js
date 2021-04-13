@@ -1,35 +1,40 @@
 import { openDB } from 'idb';
 
 /**
- * Open the MagicBell's indexDB database.
+ * Open the MagicBell's IndexedDB database.
  *
  * @returns the database
  */
 export async function getDB() {
   const version = 1;
+
   return await openDB('magicbell', version, {
     upgrade(db) {
       db.createObjectStore('projects', { keyPath: 'id' });
+      db.createObjectStore('users', { keyPath: 'id' });
     },
   });
 }
 
 /**
- * Store a project in the MagicBell's IndexDB database.
+ * Save an object in the MagicBell's IndexedDB database.
  *
- * @param project - Project to store
+ * @param obj - Object to store
+ * @param storeName - Name of the IndexedDB object store
  */
-export async function storeProject(project) {
+export async function save(obj, storeName: string) {
   const db = await getDB();
-  await db.put('projects', project);
+  await db.put(storeName, obj);
 }
 
 /**
- * Get a project from the MagicBell's IndexDB database.
+ * Fetch an object from the MagicBell's IndexedDB database.
  *
- * @param projectId - ID of the project to retrieve
+ * @param id - ID of the object to retrieve
+ * @param storeName - Name of the IndexedDB object store
  */
-export async function getProject(projectId: number) {
+export async function find(id: number | string, storeName: string) {
   const db = await getDB();
-  return await db.get('projects', projectId);
+  const obj = await db.get(storeName, id);
+  return obj || null;
 }
