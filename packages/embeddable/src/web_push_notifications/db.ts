@@ -44,3 +44,17 @@ export async function findByIndex(value: number | string, storeName: string, ind
   const obj = await db.getFromIndex(storeName, indexName, value);
   return obj || null;
 }
+
+/**
+ * Fetch an object from the MagicBell's IndexedDB database by index.
+ *
+ * @param value Value
+ * @param storeName Name of the IndexedDB object store
+ * @param indexName Name of the IndexedDB index
+ */
+export async function at(index: number, storeName: string) {
+  const db = await getDB();
+  const cursor = await db.transaction(storeName).store.openCursor();
+  const position = await cursor?.advance(index);
+  return position?.value || null;
+}
