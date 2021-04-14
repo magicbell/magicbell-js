@@ -55,6 +55,6 @@ export async function findByIndex(value: number | string, storeName: string, ind
 export async function at(index: number, storeName: string) {
   const db = await getDB();
   const cursor = await db.transaction(storeName).store.openCursor();
-  const position = await cursor?.advance(index);
-  return position?.value || null;
+  const record = await cursor?.advance(index);
+  return record?.value || null;
 }
