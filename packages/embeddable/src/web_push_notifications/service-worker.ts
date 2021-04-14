@@ -1,8 +1,8 @@
 /// <reference lib="webworker" />
-
-// export empty type because of tsc --isolatedModules flag
-export type {};
 declare const self: ServiceWorkerGlobalScope;
+
+import { at } from './db';
+import { storeSubscription, subscribeToPushNotifications } from './subscription';
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', (event) => {
@@ -50,3 +50,22 @@ self.addEventListener(
   },
   false,
 );
+
+self.addEventListener('pushsubscriptionchange', async (event) => {
+  console.log('Subscription expired');
+
+  const project = await at(0, 'projects');
+  if (!project) throw Error('Project not found');
+
+  const { vapidPublicKey: publicKey } = project;
+
+  event.waitUntil(
+    subscribeToPushNotifications(self.registration.pushManager, publicKey).then(async (subscription) => {
+      console.log('Subscribed after expiration', subscription);
+
+      const user = await at(0, 'users');
+      if (user) storeSubscription(subscription, user, project);
+      else throw Error('User not found');
+    }),
+  );
+});
