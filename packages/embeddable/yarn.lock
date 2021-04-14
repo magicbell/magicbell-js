@@ -442,10 +442,10 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^7.5.0":
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.5.0.tgz#a42332f3287e325cbf8b41cb0725037e8c836901"
-  integrity sha512-TMM2ueueD7l8kEJIRc5TeKCkFPLzLItd+AfSHKa7BDec0JZwk6Q3JohfZ5PscCIF/j5xscrJehuflYTkqRhCsw==
+"@magicbell/magicbell-react@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.5.1.tgz#1deb6ff5a2a6cd317de60df3d7da78b5d35470ec"
+  integrity sha512-GdVSg6IDG64XFKFHE/+/EmAu+QekXSj+uwqVdJVdVBJ/vewCE7n+KVCcG98YijhA70HKhzwhli5Mg8kCf8vNbA==
   dependencies:
     "@emotion/core" "^10.1.1"
     "@magicbell/core" "^2.9.1"
