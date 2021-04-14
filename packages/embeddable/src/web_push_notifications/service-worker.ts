@@ -17,20 +17,20 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('push', function (event) {
-  const data = event.data?.json();
+  const notification = event.data?.json();
 
   const options = {
-    body: data.content || '',
+    body: notification.content || '',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: '2',
-      notification: data,
+      primaryKey: notification.id,
+      notification,
     },
     actions: [{ action: 'close', title: 'Close' }],
   };
 
-  event.waitUntil(self.registration.showNotification(data.title, options));
+  event.waitUntil(self.registration.showNotification(notification.title, options));
 });
 
 self.addEventListener(
