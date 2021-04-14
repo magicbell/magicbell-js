@@ -6,14 +6,7 @@ import { openDB } from 'idb';
  * @returns the database
  */
 export async function getDB() {
-  const version = 1;
-
-  return await openDB('magicbell', version, {
-    upgrade(db) {
-      db.createObjectStore('projects', { keyPath: 'id' });
-      db.createObjectStore('users', { keyPath: 'id' });
-    },
-  });
+  return await openDB('magicbell');
 }
 
 /**
