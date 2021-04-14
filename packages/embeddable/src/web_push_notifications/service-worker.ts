@@ -37,6 +37,7 @@ self.addEventListener(
   'notificationclick',
   function (event) {
     const clickedNotification = event.notification;
+    console.log('notificationclick', event);
 
     // Normal notification click handler
     if (event.action === '') {
