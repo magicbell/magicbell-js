@@ -54,15 +54,15 @@ self.addEventListener(
 self.addEventListener('pushsubscriptionchange', async (event) => {
   console.log('Subscription expired');
 
+  // TODO: Get project by subdomain
   const project = await at(0, 'projects');
   if (!project) throw Error('Project not found');
 
-  const { vapidPublicKey: publicKey } = project;
-
   event.waitUntil(
-    subscribeToPushNotifications(self.registration.pushManager, publicKey).then(async (subscription) => {
+    subscribeToPushNotifications(self.registration.pushManager, project.vapidPublicKey).then(async (subscription) => {
       console.log('Subscribed after expiration', subscription);
 
+      // TODO: Get user by ID
       const user = await at(0, 'users');
       if (user) storeSubscription(subscription, user, project);
       else throw Error('User not found');
