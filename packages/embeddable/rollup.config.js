@@ -77,10 +77,15 @@ export default [
   {
     input: 'src/web_push_notifications/service-worker.ts',
     plugins: [
+      nodeResolve({ browser: true }),
       typescript({
         rollupCommonJSResolveHack: true,
         useTsconfigDeclarationDir: true,
         clean: true,
+      }),
+      commonjs({
+        // use a regex to make sure to include eventual hoisted packages
+        include: /\/node_modules\//,
       }),
       terser({
         ecma: 2015,
