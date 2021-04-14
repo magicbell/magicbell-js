@@ -13,6 +13,7 @@ self.addEventListener('install', (event) => {
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', (event) => {
   console.log('activate');
+  event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('push', function (event) {
