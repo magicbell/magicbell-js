@@ -77,6 +77,9 @@ export default [
   {
     input: 'src/web_push_notifications/service-worker.ts',
     plugins: [
+      alias({
+        entries: [{ find: 'axios', replacement: require.resolve('redaxios') }],
+      }),
       nodeResolve({ browser: true }),
       typescript({
         rollupCommonJSResolveHack: true,
