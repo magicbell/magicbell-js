@@ -25,7 +25,11 @@ export class ReactError extends MonitoredError {
   }
 
   private getErrorStack(error: Error, errorInfo: ErrorInfo) {
-    const errorContext = new Error(errorInfo.componentStack);
-    return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
+    if (errorInfo) {
+      const errorContext = new Error(errorInfo.componentStack);
+      return [...ErrorStackParser.parse(errorContext), ...ErrorStackParser.parse(error)].reverse();
+    } else {
+      return [...ErrorStackParser.parse(error)];
+    }
   }
 }
