@@ -424,10 +424,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@magicbell/core@^2.9.1":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-2.9.1.tgz#fc28970ce763b7710ccf49fb63bc6524535222b3"
-  integrity sha512-Dkev30EmHI6EOFlR6WzkHzp1PdxB8sOvP6vo+R5epUByFFsktOmyKQA7Lpx1EfJreLWHWd1kaiX3n73QQCq3tA==
+"@magicbell/core@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@magicbell/core/-/core-3.0.2.tgz#a715104b6b4f8a7c0f7ba54b70fe7a173110725a"
+  integrity sha512-7wUrV844aNb6E2vB7KDglNcO5LtLOhICdEj0HTtciJBzUTwiU5Aq269BHonyc/WdEBtUlUQ8yZnUKD/X74mn8Q==
   dependencies:
     ably "^1.2.4"
     axios "^0.21.1"
@@ -442,13 +442,13 @@
     pluralize "^8.0.0"
     tslib "^2.1.0"
 
-"@magicbell/magicbell-react@^7.5.1":
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.5.1.tgz#1deb6ff5a2a6cd317de60df3d7da78b5d35470ec"
-  integrity sha512-GdVSg6IDG64XFKFHE/+/EmAu+QekXSj+uwqVdJVdVBJ/vewCE7n+KVCcG98YijhA70HKhzwhli5Mg8kCf8vNbA==
+"@magicbell/magicbell-react@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-7.8.0.tgz#2c77248b3ce1c29f7098f6de805d28df468a5785"
+  integrity sha512-6fLYDslMMQBoHDADmvQDbTXN/dpgbRf04OvGYkEOOgRdlS8+7kZn1RVvoXpOjKIl8y1xRDojyf/KvABqsfkwYg==
   dependencies:
     "@emotion/core" "^10.1.1"
-    "@magicbell/core" "^2.9.1"
+    "@magicbell/core" "^3.0.2"
     "@tippyjs/react" "^4.2.4"
     ably "^1.2.6"
     axios "^0.21.1"
