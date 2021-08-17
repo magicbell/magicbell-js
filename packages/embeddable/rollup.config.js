@@ -37,6 +37,7 @@ export default [
       replace({
         // eslint-disable-next-line no-undef
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        preventAssignment: true,
       }),
       !isProduction &&
         serve({
