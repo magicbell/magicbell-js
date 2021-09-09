@@ -1,8 +1,7 @@
 import produce from 'immer';
 import { findIndex, merge as setProp, propEq } from 'ramda';
 import create from 'zustand';
-import INotificationsStore from '../../types/INotificationsStore';
-import INotificationsStoresCollection from '../../types/INotificationsStoresCollection';
+import INotificationStore from '../../types/INotificationStore';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
 import NotificationRepository from './NotificationRepository';
@@ -17,7 +16,7 @@ const useNotificationsStoresCollection = create<INotificationsStoresCollection>(
   stores: {},
   _repository: new NotificationRepository(),
 
-  setStore: (storeId, defaultQueryParams = {}, otherProps: Partial<INotificationsStore> = {}) => {
+  setStore: (storeId, defaultQueryParams = {}, otherProps: Partial<INotificationStore> = {}) => {
     set(
       produce<INotificationsStoresCollection>((draft) => {
         draft.stores[storeId] = buildStore({ ...otherProps, context: defaultQueryParams });

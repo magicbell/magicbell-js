@@ -1,7 +1,7 @@
 import { uniqBy } from 'ramda';
-import INotificationsStore from '../../../types/INotificationsStore';
+import INotificationStore from '../../../types/INotificationStore';
 
-type Props = Omit<INotificationsStore, 'context'>;
+type Props = Omit<INotificationStore, 'context'>;
 type Options = {
   reset: boolean;
 };
@@ -16,10 +16,10 @@ type Options = {
  * @returns Store
  */
 export default function setStoreProps(
-  store: INotificationsStore,
+  store: INotificationStore,
   props: Props,
   options: Partial<Options> = { reset: false },
-): INotificationsStore {
+): INotificationStore {
   const { notifications, ...meta } = props;
   const allNotifications = options.reset
     ? notifications

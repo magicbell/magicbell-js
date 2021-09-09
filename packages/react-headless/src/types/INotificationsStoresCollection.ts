@@ -1,8 +1,8 @@
 import INotificationRepository from './INotificationRepository';
-import INotificationsStore from './INotificationsStore';
+import INotificationStore from './INotificationStore';
 
 export default interface INotificationsStoresCollection {
-  stores: Record<string, INotificationsStore>;
+  stores: Record<string, INotificationStore>;
 
   /**
    * Add a store to the collection.
@@ -11,7 +11,7 @@ export default interface INotificationsStoresCollection {
    * @param defaultQueryParams Optional default query parameters used to fetch the store.
    * @param otherProps Properties used to initialize the store with
    */
-  setStore: (storeId: string, defaultQueryParams?: Object, otherProps?: Partial<INotificationsStore>) => void;
+  setStore: (storeId: string, defaultQueryParams?: Object, otherProps?: Partial<INotificationStore>) => void;
 
   /**
    * Fetch a store from the MagicBell server.

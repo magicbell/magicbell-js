@@ -1,12 +1,12 @@
 import RemoteRepository from '../stores/repository/RemoteRepository';
-import INotificationsStore from './INotificationsStore';
+import INotificationStore from './INotificationStore';
 import IRemoteNotification from './IRemoteNotification';
 
 interface IWrappedNotification {
   notification: IRemoteNotification;
 }
 
-export default interface INotificationRepository extends RemoteRepository<IWrappedNotification, INotificationsStore> {
+export default interface INotificationRepository extends RemoteRepository<IWrappedNotification, INotificationStore> {
   /**
    * Mark a notification as read in the API server.
    *

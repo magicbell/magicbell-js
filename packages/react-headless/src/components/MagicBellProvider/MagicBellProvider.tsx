@@ -3,13 +3,13 @@ import clientSettings, { ClientSettings } from '../../stores/clientSettings';
 import useConfig from '../../stores/config';
 import { useNotificationsStoresCollection } from '../../stores/notifications';
 import buildStore from '../../stores/notifications/helpers/buildStore';
-import INotificationsStore from '../../types/INotificationsStore';
+import INotificationStore from '../../types/INotificationStore';
 import RealtimeListener from '../RealtimeListener';
 
 type StoreConfig = {
   id: string;
   defaultQueryParams: Object;
-  defaults?: Partial<Omit<INotificationsStore, 'context'>>;
+  defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 
 export interface MagicBellProviderProps {

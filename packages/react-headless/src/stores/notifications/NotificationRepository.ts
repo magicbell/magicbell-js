@@ -1,6 +1,6 @@
 import { postAPI } from '../../lib/ajax';
 import INotificationRepository from '../../types/INotificationRepository';
-import INotificationsStore from '../../types/INotificationsStore';
+import INotificationStore from '../../types/INotificationStore';
 import IRemoteNotification from '../../types/IRemoteNotification';
 import RemoteRepository from '../repository/RemoteRepository';
 
@@ -16,7 +16,7 @@ interface IWrappedNotification {
  * const notifications = repo.findBy({ unseen: true });
  */
 export default class NotificationRepository
-  extends RemoteRepository<IWrappedNotification, INotificationsStore>
+  extends RemoteRepository<IWrappedNotification, INotificationStore>
   implements INotificationRepository
 {
   constructor(remotePathOrUrl = '/notifications') {

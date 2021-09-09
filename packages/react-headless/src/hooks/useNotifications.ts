@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import useConfig from '../stores/config';
 import { useNotificationsStoresCollection } from '../stores/notifications';
-import INotificationsStore from '../types/INotificationsStore';
+import INotificationStore from '../types/INotificationStore';
 
-export interface NotificationStore extends INotificationsStore {
+export interface NotificationStore extends INotificationStore {
   /**
    * Fetch notifications from the API server. The pagination data is also
    * updated. By default the array of notifications is not reset.

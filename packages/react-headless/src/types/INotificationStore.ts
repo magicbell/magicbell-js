@@ -1,6 +1,6 @@
 import IRemoteNotification from './IRemoteNotification';
 
-export default interface INotificationsStore {
+export default interface INotificationStore {
   context: Object;
   total: number;
   totalPages: number;

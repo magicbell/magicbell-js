@@ -1,5 +1,5 @@
 import { merge } from 'ramda';
-import INotificationsStore from '../../../types/INotificationsStore';
+import INotificationStore from '../../../types/INotificationStore';
 
 /**
  * Factory of notifications stores.
@@ -7,7 +7,7 @@ import INotificationsStore from '../../../types/INotificationsStore';
  * @param props Properties to initialize the store with
  * @returns An empty store of notifications.
  */
-export default function buildStore(props: Object): INotificationsStore {
+export default function buildStore(props: Object): INotificationStore {
   const defaults = {
     context: {},
     total: 0,
