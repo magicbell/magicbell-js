@@ -12,6 +12,7 @@ notification inbox for your site powered by [MagicBell](https://magicbell.com).
 - Immutable
 - Full [TypeScript](https://www.typescriptlang.org/) support
 - Requires React 16.8+
+- Compatible with [Preact](https://preactjs.com/)
 
 ## Table of Contents
 
