@@ -27,6 +27,9 @@
     "typescript",
     "react"
   ],
+  "bugs": {
+    "url": "https://github.com/magicbell-io/react-headless/issues"
+  },
   "scripts": {
     "build": "tsdx build",
     "prepare": "yarn build",
