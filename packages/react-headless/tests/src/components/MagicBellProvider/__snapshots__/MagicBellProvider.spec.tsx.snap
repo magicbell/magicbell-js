@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components MagicBellProvider renders the children 1`] = `
+<div>
+  <p>
+    We are gradually adding new functionality and we welcome your suggestions and feedback.
+  </p>
+  <p
+    style="opacity: 0.5;"
+  >
+    Please feel free to send us any additional feedback.
+  </p>
+</div>
+`;
