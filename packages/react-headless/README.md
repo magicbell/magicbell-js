@@ -24,6 +24,7 @@ notification inbox for your site powered by [MagicBell](https://magicbell.com).
   - [useNotifications](#usenotifications)
   - [useBell](#usebell)
   - [useMagicBellEvent](#usemagicbellevent)
+  - [useNotification](#usenotification)
 
 - [The notification store](#the-notification-store)
 
@@ -92,6 +93,8 @@ filtering notifications when you fetch them from the MagicBell API server.
 
 Hook to get a store of notifications for the current authenticated user. Returns
 a [`notification store`](#the-notification-store).
+
+Use this hook in the component that will render a list of notifications.
 
 ```javascript
 import { useNotifications } from '@magicbell/react-headless';
@@ -175,7 +178,9 @@ function NotificationsList() {
 
 ## useMagicBellEvent
 
-This a hook to listen to realtime events.
+This is a hook to listen to realtime events. Use it to be notified when a
+realtime event happens, for example to play a sound when a new notification
+arrives.
 
 ```javascript
 import { useMagicBellEvent } from '@magicbell/react-headless';
@@ -196,6 +201,32 @@ This is a list of events you can listen to:
 | `notifications.unread`   | A notification was marked as unread                       |
 | `notifications.seen.all` | All notifications were marked as seen                     |
 | `notifications.delete`   | A notification was deleted                                |
+
+## useNotification
+
+Use this hook in the component that renders a notification. It will return a
+[Notification](#the-notification) object with all the methods needed to mutate
+it.
+
+```javascript
+import { useNotification } from '@magicbell/react-headless';
+
+function Notification(rawNotification) {
+  const notification = useNotification();
+
+  const handleClick = () => {
+    if (notification.isRead) notification.markAsUnread();
+    else notification.markAsRead();
+  };
+
+  return (
+    <button onClick={handleClick}>
+      <p>{notification.title}</p>
+      <p>{notification.sentAt.format('DDD MM, YYYY')}</p>
+    </button>
+  );
+}
+```
 
 ## The notification store
 
