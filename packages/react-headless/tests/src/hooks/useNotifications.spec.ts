@@ -26,6 +26,8 @@ describe('hooks', () => {
         expect(result.current.currentPage).toBeDefined();
         expect(result.current.perPage).toBeDefined();
         expect(result.current.notifications).toBeDefined();
+        expect(result.current.isEmpty).toBeDefined();
+        expect(result.current.hasNextPage).toBeDefined();
         expect(result.current.fetch).toBeDefined();
         expect(result.current.markAllAsRead).toBeDefined();
         expect(result.current.markAllAsSeen).toBeDefined();

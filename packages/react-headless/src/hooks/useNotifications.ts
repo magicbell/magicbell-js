@@ -8,6 +8,9 @@ type FetchOptions = Partial<{
 }>;
 
 export interface NotificationStore extends INotificationStore {
+  isEmpty: boolean;
+  hasNextPage: boolean;
+
   /**
    * Fetch notifications from the API server. The pagination data is also
    * updated. By default the array of notifications is not reset.
@@ -69,6 +72,8 @@ export default function useNotifications(storeId: string = 'default'): Notificat
 
   return {
     ...store,
+    isEmpty: store.notifications.length === 0,
+    hasNextPage: store.currentPage < store.totalPages,
     fetch,
     fetchNextPage,
     markAllAsSeen,
