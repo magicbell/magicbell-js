@@ -136,7 +136,7 @@ Keep in mind, that the unread store should have been defined previously (see
 ## useBell
 
 This hook is very similar to the `useNotifications` hook. It will return a
-[`notification store`](#the-notification-store).
+[notification store](#the-notification-store).
 
 ```javascript
 import { useBell } from '@magicbell/react-headless';
@@ -180,7 +180,7 @@ function NotificationsList() {
 
 This is a hook to listen to realtime events. Use it to be notified when a
 realtime event happens, for example to play a sound when a new notification
-arrives.
+arrives (read more [in our guides](https://magicbell.com/docs/react/play-sound-new-notification)).
 
 ```javascript
 import { useMagicBellEvent } from '@magicbell/react-headless';
@@ -235,7 +235,6 @@ this interface:
 
 ```typescript
 interface INotificationStore {
-  // Attributes
   unseenCount: number;
   unreadCount: number;
   total: number;
@@ -244,7 +243,6 @@ interface INotificationStore {
   currentPage: number;
   notifications: Notification[];
 
-  // Read only properties
   isEmpty: boolean;
   hasNextPage: boolean;
 
