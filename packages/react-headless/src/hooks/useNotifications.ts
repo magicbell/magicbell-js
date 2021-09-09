@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useConfig from '../stores/config';
-import { useNotificationsStoresCollection } from '../stores/notifications';
+import { useNotificationStoresCollection } from '../stores/notifications';
 import INotificationStore from '../types/INotificationStore';
 
 export interface NotificationStore extends INotificationStore {
@@ -47,7 +47,7 @@ export interface NotificationStore extends INotificationStore {
  * const store = useNotifications('mentions');
  */
 export default function useNotifications(storeId: string = 'default'): NotificationStore {
-  const { stores, fetchStore, markAllAsSeen, markAllAsRead } = useNotificationsStoresCollection();
+  const { stores, fetchStore, markAllAsSeen, markAllAsRead } = useNotificationStoresCollection();
   const config = useConfig();
   const store = stores[storeId];
   if (!store) throw new Error(`Store not found. Define a store with the ${storeId} ID`);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import clientSettings, { ClientSettings } from '../../stores/clientSettings';
 import useConfig from '../../stores/config';
-import { useNotificationsStoresCollection } from '../../stores/notifications';
+import { useNotificationStoresCollection } from '../../stores/notifications';
 import buildStore from '../../stores/notifications/helpers/buildStore';
 import INotificationStore from '../../types/INotificationStore';
 import RealtimeListener from '../RealtimeListener';
@@ -38,7 +38,7 @@ function setupStores(storesConfig: StoreConfig[]) {
     stores[store.id] = buildStore({ context, ...defaults });
   });
 
-  useNotificationsStoresCollection.setState({ stores });
+  useNotificationStoresCollection.setState({ stores });
 
   return stores;
 }

@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import useNotification from '../../../src/hooks/useNotification';
-import { useNotificationsStoresCollection } from '../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
 describe('hooks', () => {
@@ -8,7 +8,7 @@ describe('hooks', () => {
     const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
     beforeEach(() => {
-      const { result } = renderHook(() => useNotificationsStoresCollection());
+      const { result } = renderHook(() => useNotificationStoresCollection());
 
       act(() => {
         result.current.setStore('default', {}, { notifications });

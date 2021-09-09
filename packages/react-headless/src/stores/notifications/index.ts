@@ -1,2 +1,2 @@
-import useNotificationsStoresCollection from './useNotificationsStoresCollection';
-export { useNotificationsStoresCollection };
+import useNotificationStoresCollection from './useNotificationStoresCollection';
+export { useNotificationStoresCollection };

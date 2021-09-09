@@ -4,7 +4,7 @@ import faker from 'faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
 import * as ajax from '../../../../src/lib/ajax';
-import { useNotificationsStoresCollection } from '../../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
 import NotificationFactory from '../../../factories/NotificationFactory';
 
 describe('stores', () => {
@@ -19,10 +19,10 @@ describe('stores', () => {
       server.shutdown();
     });
 
-    describe('useNotificationsStoresCollection', () => {
+    describe('useNotificationStoresCollection', () => {
       describe('.setStore', () => {
         it('builds a store and sets it', () => {
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
           const storeId = faker.datatype.uuid();
           const defaultQueryParams = faker.helpers.createCard();
 
@@ -62,7 +62,7 @@ describe('stores', () => {
 
           it('fetches a store from the MagicBell server', async () => {
             const spy = jest.spyOn(ajax, 'fetchAPI');
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
             const defaultQueryParams = { unread: true };
 
@@ -77,7 +77,7 @@ describe('stores', () => {
           });
 
           it('updates the store with the response', async () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
             const defaultQueryParams = faker.helpers.createCard();
 
@@ -99,7 +99,7 @@ describe('stores', () => {
 
           it('merges notifications', async () => {
             const notifications = NotificationFactory.buildList(4);
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
             const defaultQueryParams = faker.helpers.createCard();
 
@@ -119,7 +119,7 @@ describe('stores', () => {
           it('sets the fetch timestamp for the store', async () => {
             const now = new Date() as any;
             const spy = jest.spyOn(global, 'Date').mockImplementation(() => now);
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
 
             await act(async () => {
@@ -139,7 +139,7 @@ describe('stores', () => {
 
           it('throws an error', async () => {
             expect.hasAssertions();
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {});
@@ -157,7 +157,7 @@ describe('stores', () => {
 
         it('decreases the unseenCount prop of the store', async () => {
           const notifications = [...NotificationFactory.buildList(2), notification];
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
 
           await act(async () => {
             result.current.setStore('default', {}, { notifications, unreadCount: 1 });
@@ -170,7 +170,7 @@ describe('stores', () => {
         it('marks the notification as seen', async () => {
           const now = Date.now();
           const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
 
           await act(async () => {
             result.current.setStore('default', {}, { notifications: [notification] });
@@ -192,7 +192,7 @@ describe('stores', () => {
 
           it('decreases the unreadCount prop of the store', async () => {
             const notifications = [...NotificationFactory.buildList(2), notification];
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications, unreadCount: 1 });
@@ -205,7 +205,7 @@ describe('stores', () => {
           it('marks the notification as read', async () => {
             const now = Date.now();
             const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
@@ -227,7 +227,7 @@ describe('stores', () => {
           });
 
           it('decreases the unreadCount prop of the store', async () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification], unreadCount: 1 });
@@ -238,7 +238,7 @@ describe('stores', () => {
           });
 
           it('marks the notification as read', async () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
@@ -260,7 +260,7 @@ describe('stores', () => {
 
           describe('the notification is unread', () => {
             it('decreases the unreadCount prop of the store', async () => {
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
               const notifications = [{ ...notification, readAt: null }];
 
               await act(async () => {
@@ -274,7 +274,7 @@ describe('stores', () => {
 
           describe('the notification is read', () => {
             it('does not change the unreadCount prop of the store', async () => {
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
               const notifications = [{ ...notification, readAt: dayjs() }];
 
               await act(async () => {
@@ -287,7 +287,7 @@ describe('stores', () => {
           });
 
           it('decreases the total prop of the store', async () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification], total: 1 });
@@ -298,7 +298,7 @@ describe('stores', () => {
           });
 
           it('removes the notification from the store', async () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
@@ -318,7 +318,7 @@ describe('stores', () => {
 
           it('makes a request to the server', async () => {
             const spy = jest.spyOn(ajax, 'postAPI');
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('read', {});
@@ -334,7 +334,7 @@ describe('stores', () => {
             const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
             const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('read', {}, { notifications });
@@ -352,7 +352,7 @@ describe('stores', () => {
           describe('the updateModels options is false', () => {
             it('does not mark any notifications as seen', async () => {
               const notifications = NotificationFactory.buildList(3, { seenAt: null });
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
                 result.current.setStore('read', {}, { notifications });
@@ -370,7 +370,7 @@ describe('stores', () => {
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
               const spy = jest.spyOn(ajax, 'postAPI');
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
                 result.current.setStore('read', {});
@@ -392,7 +392,7 @@ describe('stores', () => {
 
           it('makes a request to the server', async () => {
             const spy = jest.spyOn(ajax, 'postAPI');
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('read', {});
@@ -408,7 +408,7 @@ describe('stores', () => {
             const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
             const notifications = NotificationFactory.buildList(3, { readAt: null });
 
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
               result.current.setStore('unread', {}, { notifications });
@@ -426,7 +426,7 @@ describe('stores', () => {
           describe('the updateModels options is false', () => {
             it('does not mark any notifications as read', async () => {
               const notifications = NotificationFactory.buildList(3, { readAt: null });
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
                 result.current.setStore('read', {}, { notifications });
@@ -444,7 +444,7 @@ describe('stores', () => {
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
               const spy = jest.spyOn(ajax, 'postAPI');
-              const { result } = renderHook(() => useNotificationsStoresCollection());
+              const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
                 result.current.setStore('read', {});

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
 import { pushEventAggregator } from '../../../src/lib/realtime';
-import { useNotificationsStoresCollection } from '../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
 describe('components', () => {
@@ -13,7 +13,7 @@ describe('components', () => {
 
     beforeEach(() => {
       const RealtimeComponent = () => {
-        const collection = useNotificationsStoresCollection();
+        const collection = useNotificationStoresCollection();
         useEffect(() => {
           collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
         }, []);
@@ -57,7 +57,7 @@ describe('components', () => {
 
       describe('notifications.seen.all', () => {
         it('resets the unseen count', () => {
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
 
           act(() => {
             pushEventAggregator.emit('notifications.seen.all');
@@ -80,7 +80,7 @@ describe('components', () => {
 
       describe('notifications.read.all', () => {
         it('marks all notifications as read', () => {
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
 
           act(() => {
             pushEventAggregator.emit('notifications.read.all');
@@ -132,7 +132,7 @@ describe('components', () => {
       describe('notifications.delete', () => {
         describe('the notification exists', () => {
           it('removes the notification from the store', () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const notification = NotificationFactory.build();
 
             act(() => {
@@ -145,7 +145,7 @@ describe('components', () => {
 
         describe('the notification does not exist', () => {
           it('does not remove anything from the store', () => {
-            const { result } = renderHook(() => useNotificationsStoresCollection());
+            const { result } = renderHook(() => useNotificationStoresCollection());
             const notification = NotificationFactory.build();
 
             act(() => {

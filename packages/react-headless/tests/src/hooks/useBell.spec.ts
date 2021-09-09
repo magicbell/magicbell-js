@@ -2,13 +2,13 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { Response, Server } from 'miragejs';
 import useBell from '../../../src/hooks/useBell';
 import * as ajax from '../../../src/lib/ajax';
-import { useNotificationsStoresCollection } from '../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
 describe('hooks', () => {
   describe('useBell', () => {
     beforeEach(() => {
-      const { result } = renderHook(() => useNotificationsStoresCollection());
+      const { result } = renderHook(() => useNotificationStoresCollection());
       const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
       act(() => {
@@ -58,7 +58,7 @@ describe('hooks', () => {
 
       describe('the store has unseen notifications', () => {
         beforeEach(() => {
-          const { result } = renderHook(() => useNotificationsStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
           const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
           act(() => {

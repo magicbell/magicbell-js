@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 import { isNil } from 'ramda';
 import { secondsToDate } from '../lib/date';
 import { parseJSON } from '../lib/json';
-import { useNotificationsStoresCollection } from '../stores/notifications';
+import { useNotificationStoresCollection } from '../stores/notifications';
 import INotification from '../types/INotification';
 import IRemoteNotification from '../types/IRemoteNotification';
 
@@ -13,7 +13,7 @@ import IRemoteNotification from '../types/IRemoteNotification';
  */
 export default function useNotificationFactory(data: IRemoteNotification): INotification {
   const { markNotificationAsRead, markNotificationAsSeen, markNotificationAsUnread, deleteNotification } =
-    useNotificationsStoresCollection();
+    useNotificationStoresCollection();
 
   const customAttributes = parseJSON(data.customAttributes);
   const sanitizedContent = data.content ? DOMPurify.sanitize(data.content) : data.content;

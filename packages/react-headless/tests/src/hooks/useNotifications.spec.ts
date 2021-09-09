@@ -2,13 +2,13 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import useNotifications from '../../../src/hooks/useNotifications';
 import * as ajax from '../../../src/lib/ajax';
 import useConfig from '../../../src/stores/config';
-import { useNotificationsStoresCollection } from '../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 
 describe('hooks', () => {
   describe('useNotifications', () => {
     describe('a store with the given ID exists', () => {
       beforeEach(() => {
-        const { result } = renderHook(() => useNotificationsStoresCollection());
+        const { result } = renderHook(() => useNotificationStoresCollection());
 
         act(() => {
           // @TODO: Rest all stores after specs

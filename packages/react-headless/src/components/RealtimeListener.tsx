@@ -1,6 +1,6 @@
 import { useAbly } from '../hooks/useAbly';
 import useMagicBellEvent from '../hooks/useMagicBellEvent';
-import { useNotificationsStoresCollection } from '../stores/notifications';
+import { useNotificationStoresCollection } from '../stores/notifications';
 import IRemoteNotification from '../types/IRemoteNotification';
 
 /**
@@ -10,7 +10,7 @@ import IRemoteNotification from '../types/IRemoteNotification';
  * @example <RealtimeListener />
  */
 export default function RealtimeListener() {
-  const collection = useNotificationsStoresCollection();
+  const collection = useNotificationStoresCollection();
 
   const fetchAndResetAll = () => collection.fetchAllStores({ page: 1 }, { reset: true });
   const fetchAll = () => collection.fetchAllStores({ page: 1 });

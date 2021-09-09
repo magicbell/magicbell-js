@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { Response, Server } from 'miragejs';
 import useNotificationFactory from '../../../src/hooks/useNotificationFactory';
 import * as ajax from '../../../src/lib/ajax';
-import { useNotificationsStoresCollection } from '../../../src/stores/notifications';
+import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
 describe('hooks', () => {
@@ -11,7 +11,7 @@ describe('hooks', () => {
     const json = NotificationFactory.build();
 
     beforeEach(() => {
-      const { result } = renderHook(() => useNotificationsStoresCollection());
+      const { result } = renderHook(() => useNotificationStoresCollection());
 
       act(() => {
         result.current.setStore('default', {}, { notifications: [json] });

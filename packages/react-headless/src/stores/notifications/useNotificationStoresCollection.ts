@@ -12,7 +12,7 @@ import NotificationRepository from './NotificationRepository';
  *
  * @private Use the `useNotifications` hook instead.
  */
-const useNotificationsStoresCollection = create<INotificationsStoresCollection>((set, get) => ({
+const useNotificationStoresCollection = create<INotificationsStoresCollection>((set, get) => ({
   stores: {},
   _repository: new NotificationRepository(),
 
@@ -189,4 +189,4 @@ const useNotificationsStoresCollection = create<INotificationsStoresCollection>(
   },
 }));
 
-export default useNotificationsStoresCollection;
+export default useNotificationStoresCollection;
