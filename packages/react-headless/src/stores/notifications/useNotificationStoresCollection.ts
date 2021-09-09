@@ -1,6 +1,7 @@
 import produce from 'immer';
 import { findIndex, merge as setProp, propEq } from 'ramda';
 import create from 'zustand';
+import INotificationsStoresCollection from '../../types/INotificationsStoresCollection';
 import INotificationStore from '../../types/INotificationStore';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
