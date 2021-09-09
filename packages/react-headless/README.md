@@ -52,14 +52,14 @@ ReactDOM.render(
 
 These are all the properties accepted by this component.
 
-| Property         | Type         | Description                                                                             |
-| ---------------- | ------------ | --------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| `apiKey`         | `string`     | The API key of your magicbell.io project                                                |
-| `userEmail`      | `string`     | The email of the user you want to show notifications for                                |
-| `userExternalId` | `string`     | The external ID of the user you want to show notifications for                          |
-| `userKey`        | `string`     | The HMAC for the user. It is recommended to enable HMAC authentication but not required |
-| `children`       | `JSX.Element | JSX.Element[]`                                                                          | The children to be wrapped in a `MagicBellContext.Provider` |
-| `stores`         | `object[]`   | An optional object containing the definitions of the notification stores to create.     |
+| Property         | Type                  | Description                                                                             |
+| ---------------- | --------------------- | --------------------------------------------------------------------------------------- |
+| `apiKey`         | `string`              | The API key of your magicbell.io project                                                |
+| `userEmail`      | `string`              | The email of the user you want to show notifications for                                |
+| `userExternalId` | `string`              | The external ID of the user you want to show notifications for                          |
+| `userKey`        | `string`              | The HMAC for the user. It is recommended to enable HMAC authentication but not required |
+| `children`       | `React.ReactChildren` | The children to be wrapped in a`MagicBellContext.Provider`                              |
+| `stores`         | `object[]`            | An optional object containing the definitions of the notification stores to create.     |
 
 ### Splitting the inbox
 
