@@ -1,0 +1,41 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  npm-publisher: uraway/npm-publisher@0.2.0
+
+jobs:
+  test:
+    description: Run all tests
+    executor:
+      name: node/default
+      tag: '14.17'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: 'Run jest tests'
+          command: yarn run test -w=2
+
+workflows:
+  deploy:
+    jobs:
+      - test
+      - hold:
+          filters:
+            branches:
+              only: main
+          type: approval
+          requires:
+            - test
+      - npm-publisher/publish-from-package-version:
+          name: publish_to_npm
+          requires:
+            - hold
+          filters:
+            branches:
+              only: main
+          ssh-fingerprints: 2c:41:b5:9f:da:75:4a:60:56:fd:bc:c4:cc:ca:b0:d2
+          pre-publish-steps:
+            - run: yarn install
+          publish-token-variable: NPM_TOKEN
