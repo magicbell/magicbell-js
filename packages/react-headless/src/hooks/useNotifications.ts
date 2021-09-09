@@ -3,6 +3,10 @@ import useConfig from '../stores/config';
 import { useNotificationStoresCollection } from '../stores/notifications';
 import INotificationStore from '../types/INotificationStore';
 
+type FetchOptions = Partial<{
+  reset: boolean;
+}>;
+
 export interface NotificationStore extends INotificationStore {
   /**
    * Fetch notifications from the API server. The pagination data is also
@@ -10,7 +14,7 @@ export interface NotificationStore extends INotificationStore {
    *
    * @param queryParams Parameters to send to the API.
    */
-  fetch: (queryParams?: Object) => Promise<void>;
+  fetch: (queryParams?: Object, options?: FetchOptions) => Promise<void>;
 
   /**
    * Fetch the next page of notifications from the API server. The notifications
@@ -52,11 +56,11 @@ export default function useNotifications(storeId: string = 'default'): Notificat
   const store = stores[storeId];
   if (!store) throw new Error(`Store not found. Define a store with the ${storeId} ID`);
 
-  const fetch = (queryParams?: Object) => fetchStore(storeId, queryParams);
+  const fetch = (queryParams?: Object, options?: FetchOptions) => fetchStore(storeId, queryParams, options);
 
-  const fetchNextPage = (queryParams: Object = {}) => {
+  const fetchNextPage = (queryParams: Object = {}, options?: FetchOptions) => {
     const page = store.currentPage + 1;
-    return fetchStore(storeId, { ...queryParams, page });
+    return fetchStore(storeId, { ...queryParams, page }, options);
   };
 
   useEffect(() => {
