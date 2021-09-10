@@ -29,6 +29,10 @@
     "typescript",
     "react"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magicbell-io/react-headless"
+  },
   "bugs": {
     "url": "https://github.com/magicbell-io/react-headless/issues"
   },
