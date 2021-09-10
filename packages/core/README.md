@@ -1,4 +1,5 @@
-[![codecov](https://codecov.io/gh/magicbell-io/magicbell-node/branch/main/graph/badge.svg?token=Z2EV4QVGHY)](https://codecov.io/gh/magicbell-io/magicbell-node)[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
+[![codecov](https://codecov.io/gh/magicbell-io/magicbell-node/branch/main/graph/badge.svg?token=Z2EV4QVGHY)](https://codecov.io/gh/magicbell-io/magicbell-node)
+[![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![minified](https://badgen.net/bundlephobia/min/@magicbell/core@latest)](https://bundlephobia.com/result?p=@magicbell/core)
 [![minified + gzip](https://badgen.net/bundlephobia/minzip/@magicbell/core@latest)](https://bundlephobia.com/result?p=@magicbell/core)
@@ -273,8 +274,7 @@ Get a notification from the `items` array, specified by index.
 #### `map`
 
 Creates an array of values by running each notification in `items` array thru
-iteratee. The iteratee is invoked with three arguments: `(notification, index,
-itemsArray)`.
+iteratee. The iteratee is invoked with three arguments: `(notification, index, itemsArray)`.
 
 #### `find`
 
