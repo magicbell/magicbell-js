@@ -19,7 +19,6 @@
     "build": "microbundle",
     "prepare": "yarn build",
     "start": "microbundle watch",
-    "lint": "tsdx lint --write",
     "report-coverage": "codecov",
     "test": "TZ=America/La_Paz tsdx test --collectCoverage --no-cache",
     "test:watch": "TZ=America/La_Paz tsdx test --watch",
