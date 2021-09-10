@@ -41,11 +41,6 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{jsx?,tsx?}": [
       "eslint --fix",
@@ -75,7 +70,7 @@
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "faker": "^5.5.3",
-    "husky": "4",
+    "husky": "^7.0.2",
     "jest": "^27.1.1",
     "jest-watch-typeahead": "^0.6.4",
     "lint-staged": "^10.5.4",
