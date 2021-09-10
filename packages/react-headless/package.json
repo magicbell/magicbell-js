@@ -78,6 +78,7 @@
     "jest": "^27.1.0",
     "jest-watch-typeahead": "^0.6.4",
     "lint-staged": "^10.5.4",
+    "microbundle": "^0.13.3",
     "miragejs": "^0.1.41",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
