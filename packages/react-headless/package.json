@@ -31,9 +31,9 @@
     "url": "https://github.com/magicbell-io/react-headless/issues"
   },
   "scripts": {
-    "build": "tsdx build",
+    "build": "microbundle",
     "prepare": "yarn build",
-    "start": "tsdx watch",
+    "start": "microbundle watch",
     "lint": "tsc --noEmit && tsdx lint --write",
     "test": "TZ=America/New_York tsdx test --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York tsdx test --watch",
