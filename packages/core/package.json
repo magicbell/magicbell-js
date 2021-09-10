@@ -16,9 +16,9 @@
     "/dist"
   ],
   "scripts": {
-    "build": "tsdx build",
+    "build": "microbundle",
     "prepare": "yarn build",
-    "start": "tsdx watch",
+    "start": "microbundle watch",
     "lint": "tsdx lint --write",
     "report-coverage": "codecov",
     "test": "TZ=America/La_Paz tsdx test --collectCoverage --no-cache",
