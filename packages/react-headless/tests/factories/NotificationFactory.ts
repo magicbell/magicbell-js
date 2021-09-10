@@ -9,6 +9,7 @@ export default new Factory()
   .attr('actionUrl', () => faker.internet.url())
   .attr('seenAt', () => faker.date.recent().getTime() / 1000)
   .attr('sentAt', () => faker.date.recent().getTime() / 1000)
+  .attr('archivedAt', () => faker.date.recent().getTime() / 1000)
   .attrs({
     customAttributes: '{"accountId": 4}',
     metaData: '{"accountId": 4}',
@@ -24,4 +25,5 @@ export const sampleNotification = {
   seenAt: 1581947800,
   sentAt: 1581940485,
   readAt: null,
+  archivedAt: null,
 };

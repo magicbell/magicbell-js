@@ -1,12 +1,15 @@
 import { Dayjs } from 'dayjs';
 import IRemoteNotification from './IRemoteNotification';
 
-export default interface INotification extends Omit<IRemoteNotification, 'readAt' | 'seenAt' | 'sentAt'> {
+export default interface INotification
+  extends Omit<IRemoteNotification, 'readAt' | 'seenAt' | 'sentAt' | 'archivedAt'> {
   readAt: Dayjs | null;
   seenAt: Dayjs | null;
   sentAt: Dayjs | null;
+  archivedAt: Dayjs | null;
   isSeen: boolean;
   isRead: boolean;
+  isArchived: boolean;
   sanitizedContent: string | null;
 
   /**

@@ -36,6 +36,7 @@ describe('hooks', () => {
       expect(notification.readAt).toBeNull();
       expect(notification.seenAt).toBeInstanceOf(dayjs);
       expect(notification.sentAt).toBeInstanceOf(dayjs);
+      expect(notification.archivedAt).toBeInstanceOf(dayjs);
 
       expect(notification.delete).toBeInstanceOf(Function);
       expect(notification.markAsRead).toBeInstanceOf(Function);
