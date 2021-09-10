@@ -8,8 +8,10 @@
     "Bilal Budhani <bilal@bilalbudhani.com>",
     "Josue Montano <josue@magicbell.io>"
   ],
-  "main": "dist/index.js",
-  "module": "dist/core.esm.js",
+  "source": "./src/index.ts",
+  "main": "dist/magicbell-core.cjs.js",
+  "module": "dist/magicbell-core.esm.js",
+  "unpkg": "dist/magicbell-core.umd.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
