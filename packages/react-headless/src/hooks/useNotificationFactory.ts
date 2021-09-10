@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify';
-import { isNil } from 'ramda';
+import isNil from 'ramda/src/isNil';
 import { secondsToDate } from '../lib/date';
 import { parseJSON } from '../lib/json';
 import { useNotificationStoresCollection } from '../stores/notifications';

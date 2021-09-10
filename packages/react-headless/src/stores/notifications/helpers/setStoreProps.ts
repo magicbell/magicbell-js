@@ -1,4 +1,4 @@
-import { uniqBy } from 'ramda';
+import uniqBy from 'ramda/src/uniqBy';
 import INotificationStore from '../../../types/INotificationStore';
 
 type Props = Omit<INotificationStore, 'context'>;

@@ -1,5 +1,7 @@
 import produce from 'immer';
-import { findIndex, merge as setProp, propEq } from 'ramda';
+import findIndex from 'ramda/src/findIndex';
+import mergeRight from 'ramda/src/mergeRight';
+import propEq from 'ramda/src/propEq';
 import create from 'zustand';
 import INotificationsStoresCollection from '../../types/INotificationsStoresCollection';
 import INotificationStore from '../../types/INotificationStore';
@@ -63,7 +65,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
             if (!notification.seenAt) {
               draft.stores[storeId].unseenCount = Math.max(0, unseenCount - 1);
-              draft.stores[storeId].notifications[index] = setProp(notifications[index], {
+              draft.stores[storeId].notifications[index] = mergeRight(notifications[index], {
                 seenAt: Date.now() / 1000,
               });
             }
@@ -85,7 +87,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
           if (index > -1) {
             draft.stores[storeId].unreadCount = Math.max(0, unreadCount - 1);
-            draft.stores[storeId].notifications[index] = setProp(notifications[index], {
+            draft.stores[storeId].notifications[index] = mergeRight(notifications[index], {
               readAt: Date.now() / 1000,
             });
           }
@@ -108,7 +110,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
           if (index > -1) {
             draft.stores[storeId].unreadCount = unreadCount + 1;
-            draft.stores[storeId].notifications[index] = setProp(notifications[index], { readAt: null });
+            draft.stores[storeId].notifications[index] = mergeRight(notifications[index], { readAt: null });
           }
         }
       }),
@@ -156,7 +158,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
           if (options.updateModels !== false) {
             notifications.forEach((notification, index) => {
-              draft.stores[storeId].notifications[index] = setProp(notification, { seenAt: Date.now() / 1000 });
+              draft.stores[storeId].notifications[index] = mergeRight(notification, { seenAt: Date.now() / 1000 });
             });
           }
         }
@@ -179,7 +181,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
           if (options.updateModels !== false) {
             notifications.forEach((notification, index) => {
-              draft.stores[storeId].notifications[index] = setProp(notification, { readAt: Date.now() / 1000 });
+              draft.stores[storeId].notifications[index] = mergeRight(notification, { readAt: Date.now() / 1000 });
             });
           }
         }

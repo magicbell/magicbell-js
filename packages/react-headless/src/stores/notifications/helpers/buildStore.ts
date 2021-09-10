@@ -1,4 +1,4 @@
-import { merge } from 'ramda';
+import mergeRight from 'ramda/src/mergeRight';
 import INotificationStore from '../../../types/INotificationStore';
 
 /**
@@ -19,5 +19,5 @@ export default function buildStore(props: Object): INotificationStore {
     notifications: [],
   };
 
-  return merge(defaults, props);
+  return mergeRight(defaults, props);
 }
