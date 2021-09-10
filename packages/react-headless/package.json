@@ -36,7 +36,6 @@
     "build": "microbundle --jsx React.createElement",
     "prepare": "yarn build",
     "start": "microbundle watch --jsx React.createElement",
-    "lint": "tsc --noEmit && tsdx lint --write",
     "test": "TZ=America/New_York jest --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York jest --watch",
     "storybook": "start-storybook -p 6006",
