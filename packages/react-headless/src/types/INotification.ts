@@ -7,7 +7,7 @@ export default interface INotification extends Omit<IRemoteNotification, 'readAt
   sentAt: Dayjs | null;
   isSeen: boolean;
   isRead: boolean;
-  sanitizedContent: string;
+  sanitizedContent: string | null;
 
   /**
    * Mark the notification as seen. Sets its `seenAt` attribute.
