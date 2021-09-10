@@ -22,8 +22,8 @@
     "prepare": "yarn build",
     "start": "microbundle watch",
     "report-coverage": "codecov",
-    "test": "TZ=America/La_Paz tsdx test --collectCoverage --no-cache",
-    "test:watch": "TZ=America/La_Paz tsdx test --watch",
+    "test": "TZ=America/New_York jest --collectCoverage --no-cache",
+    "test:watch": "TZ=America/New_York jest --watch",
     "console": "ts-node"
   },
   "husky": {
@@ -39,6 +39,8 @@
     "*.{md,html,css,scss}": "prettier --write"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.15.4",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/faker": "^5.5.8",
     "@types/humps": "^2.0.1",
     "@types/jest": "^27.0.1",
