@@ -6,3 +6,4 @@ export { default as useNotification } from './hooks/useNotification';
 export { default as useNotificationFactory } from './hooks/useNotificationFactory';
 export { default as useNotifications } from './hooks/useNotifications';
 export { default as useNotificationUnmount } from './hooks/useNotificationUnmount';
+export { secondsToDate, toDate, toUnix } from './lib/date';
