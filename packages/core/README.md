@@ -6,17 +6,18 @@
 
 # Magicbell API wrapper
 
-This is the official [MagicBell](https://magicbell.com) API wrapper for Node and the browser. You can easily fetch, delete and create notifications.
+This is the official [MagicBell](https://magicbell.com) API wrapper for Node and
+the browser. You can easily fetch, delete and create notifications.
 
 - Full [TypeScript](https://www.typescriptlang.org/) support
-- Reactive
-- Compatible with any environment that supports [`Proxy`](https://caniuse.com/proxy)
 
-If you are looking to build a notification inbox in React, check [our React package](https://www.npmjs.com/package/@magicbell/magicbell-react).
+If you are looking to build a notification inbox in React, check our [React hooks package](https://www.npmjs.com/package/@magicbell/magicbell-react)
+and the [React package](https://www.npmjs.com/package/@magicbell/magicbell-react).
 
 ## Quick Start
 
-First, grab your API key from your [MagicBell dashboard](https://app.magicbell.com). Then install the package and fetch your notifications.
+First, grab your API key from your [MagicBell dashboard](https://app.magicbell.com).
+Then install the package and fetch your notifications.
 
 ```sh
 npm i @magicbell/core --save
@@ -63,7 +64,11 @@ These are the arguments accepted by this function:
 
 ### Real time events
 
-The `MagicBellClient` also handles real time events. You need to start the real time listener calling the `startRealTimeListener`. This method returns a function you need call in the cleanup phase of your application to prevent memory leaks. The listener will emit events to the `pushEventAggregator` object, which is simple event bus for pub/sub.
+The `MagicBellClient` also handles real time events. You need to start the real
+time listener calling the `startRealTimeListener`. This method returns a
+function you need call in the cleanup phase of your application to prevent
+memory leaks. The listener will emit events to the `pushEventAggregator` object,
+which is simple event bus for pub/sub.
 
 ```javascript
 import MagicBellClient, { pushEventAggregator } from '@magicbell/core';
@@ -96,7 +101,8 @@ This is a list of events you can listen to:
 
 ## Create notifications
 
-The simplest way to create a notification is using the `Notification.create` method:
+The simplest way to create a notification is using the `Notification.create`
+method:
 
 ```javascript
 import MagicBellClient, { Notification } from '@magicbell/core';
@@ -110,7 +116,8 @@ const notification = Notification.create({
 });
 ```
 
-Another approach, useful for building UIs, is to create the notification through a notifications store:
+Another approach, useful for building UIs, is to create the notification through
+a notifications store:
 
 ```javascript
 import MagicBellClient, { NotificationStore } from '@magicbell/core';
@@ -132,7 +139,8 @@ The new notification will be added to the store of notifications, too.
 
 ## Notification
 
-The `Notification` class represents a MagicBell notification. It implements this interface:
+The `Notification` class represents a MagicBell notification. It implements this
+interface:
 
 ```typescript
 interface INotification {
@@ -168,7 +176,9 @@ All attributes are MobX observables.
 
 #### `seenAtDate`
 
-A date representation of the `seenAt` attribute. It returns an immutable instance of Dayjs. [Dayjs](https://day.js.org) exposes an API similar to moment.js.
+A date representation of the `seenAt` attribute. It returns an immutable
+instance of Dayjs. [Dayjs](https://day.js.org) exposes an API similar to
+moment.js.
 
 ```javascript
 notification.seenAtDate.format('DD/MM/YYYY'); // '01/04/2021'
@@ -187,23 +197,28 @@ A date representation of the `sentAt` attribute. It returns an immutable instanc
 
 #### `fetch`
 
-Fetches the notification from the [Magicbell API server](https://magicbell.com/docs/api-reference). All fetched attributes are assigned to the current object.
+Fetches the notification from the [Magicbell API server](https://magicbell.com/docs/api-reference).
+All fetched attributes are assigned to the current object.
 
 #### `markAsRead`
 
-This method makes a POST request to the [read notification API endpoint](https://magicbell.com/docs/api-reference). It sets the `readAt` attribute as well.
+This method makes a POST request to the [read notification API endpoint](https://magicbell.com/docs/api-reference).
+It sets the `readAt` attribute as well.
 
 #### `markAsUnread`
 
-This method makes a POST request to the [unread notification API endpoint](https://magicbell.com/docs/api-reference). It sets the `readAt` attribute to `null` as well.
+This method makes a POST request to the [unread notification API endpoint](https://magicbell.com/docs/api-reference).
+It sets the `readAt` attribute to `null` as well.
 
 #### `delete`
 
-This method makes a DELETE request to the [delete notification API endpoint](https://magicbell.com/docs/api-reference). If the notification belongs to a store, it will remove itself from the store.
+This method makes a DELETE request to the [delete notification API endpoint](https://magicbell.com/docs/api-reference).
+If the notification belongs to a store, it will remove itself from the store.
 
 ## NotificationStore
 
-The `NotificationStore` class represents a collection of [MagicBell](https://magicbell.com) notifications. It implements this interface:
+The `NotificationStore` class represents a collection of [MagicBell](https://magicbell.com)
+notifications. It implements this interface:
 
 ```typescript
 interface INotificationStore {
@@ -238,7 +253,8 @@ interface INotificationStore {
 }
 ```
 
-In the following example, we are fetching notifications and marking all of them as read.
+In the following example, we are fetching notifications and marking all of them
+as read.
 
 ```typescript
 let store = new NotificationStore();
@@ -256,7 +272,9 @@ Get a notification from the `items` array, specified by index.
 
 #### `map`
 
-Creates an array of values by running each notification in `items` array thru iteratee. The iteratee is invoked with three arguments: `(notification, index, itemsArray)`.
+Creates an array of values by running each notification in `items` array thru
+iteratee. The iteratee is invoked with three arguments: `(notification, index,
+itemsArray)`.
 
 #### `find`
 
@@ -268,9 +286,13 @@ Returns an array of all notifications the given predicate returns truthy for.
 
 #### `fetch`
 
-Fetch notifications from the magicbell server. The pagination data is also updated. The provided query parameters are included in the request to the server.
+Fetch notifications from the magicbell server. The pagination data is also
+updated. The provided query parameters are included in the request to the
+server.
 
-The response is appended to the current array of notifications, so it can be used as the view model for an infinite scroll list. If you want to reset the collection instead, pass the `reset: true` option to this method:
+The response is appended to the current array of notifications, so it can be
+used as the view model for an infinite scroll list. If you want to reset the
+collection instead, pass the `reset: true` option to this method:
 
 ```js
 notifications.fetch({ page: 2 }, { reset: true });
@@ -278,22 +300,29 @@ notifications.fetch({ page: 2 }, { reset: true });
 
 #### `fetchNextPage`
 
-This method is simply wrapping the `fetch` method, sending as a parameter the next page of notifications. You can include query parameters to this method.
+This method is simply wrapping the `fetch` method, sending as a parameter the
+next page of notifications. You can include query parameters to this method.
 
 #### `create`
 
 Create a new notification.
 
-It is equivalent to creating a `Notification` instance with some attributes, saving the notification to the [MagicBell](https://magicbell.com) server, and adding it to the array of `items` after being successfully created.
+It is equivalent to creating a `Notification` instance with some attributes,
+saving the notification to the [MagicBell](https://magicbell.com) server, and
+adding it to the array of `items` after being successfully created.
 
 #### `markAllAsRead`
 
-Makes a POST request to the [read notifications API endpoint](<(https://magicbell.com/docs/api-reference)>). It also marks all notifications in the collection as read.
+Makes a POST request to the [read notifications API endpoint](<(https://magicbell.com/docs/api-reference)>).
+It also marks all notifications in the collection as read.
 
 #### `markAllAsSeen`
 
-Makes a POST request to the [seen notifications API endpoint](https://magicbell.com/docs/api-reference). It also sets the `unseenCount` to 0 and marks all notifications in the collection as seen.
+Makes a POST request to the [seen notifications API endpoint](https://magicbell.com/docs/api-reference).
+It also sets the `unseenCount` to 0 and marks all notifications in the collection as seen.
 
 #### `remove`
 
-Removes the given notification from the `items` array. It does not make any request to the server. If you want to delete a notification, use the `delete` method of the notification object instead.
+Removes the given notification from the `items` array. It does not make any
+request to the server. If you want to delete a notification, use the `delete`
+method of the notification object instead.
