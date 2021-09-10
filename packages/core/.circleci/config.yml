@@ -40,7 +40,7 @@ workflows:
           filters:
             branches:
               only: main
-          ssh-fingerprints: f5:07:ce:93:35:d6:6a:70:0a:59:4f:4f:27:2c:94:92
+          ssh-fingerprints: e4:9c:7d:41:20:3c:e8:16:c4:72:1e:7d:47:48:fc:ad
           pre-publish-steps:
             - run: yarn install
           publish-token-variable: NPM_TOKEN
