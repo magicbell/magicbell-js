@@ -1,0 +1,1 @@
+global.open = jest.fn();
