@@ -1,0 +1,44 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  npm-publisher: uraway/npm-publisher@0.2.0
+
+jobs:
+  test:
+    description: Run all tests
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: 'Run jest tests'
+          command: yarn run test -w=2
+      - run:
+          name: 'Upload code coverage'
+          command: yarn run report-coverage
+          environment:
+            CODECOV_TOKEN: ${CODECOV_TOKEN}
+
+workflows:
+  deploy:
+    jobs:
+      - test
+      - hold:
+          filters:
+            branches:
+              only: main
+          type: approval
+          requires:
+            - test
+      - npm-publisher/publish-from-package-version:
+          name: publish_to_npm
+          requires:
+            - hold
+          filters:
+            branches:
+              only: main
+          ssh-fingerprints: d3:b9:69:f2:31:86:55:e6:6f:b7:ea:03:7d:24:8e:62
+          pre-publish-steps:
+            - run: yarn install
+          publish-token-variable: NPM_TOKEN
