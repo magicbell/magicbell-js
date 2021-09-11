@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components Timestamp .onHover renders a tooltip 1`] = `
+.emotion-0 {
+  background: #FFFFFF!important;
+  border-radius: 8px!important;
+  box-shadow: 2px 2px 3px rgba(230, 230, 230, 0.55);
+  color: #3A424D!important;
+  font-size: 0.8em!important;
+  padding: 0.5em!important;
+  text-transform: none;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+  >
+    1m
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-3"
+    style="z-index: 9999; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px;"
+  >
+    <span
+      class="emotion-0"
+    >
+      September 20, 2020 6:50 AM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`components Timestamp render renders the relative date 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+  >
+    1m
+  </div>
+</div>
+`;
