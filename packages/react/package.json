@@ -1,0 +1,122 @@
+{
+  "name": "@magicbell/magicbell-react",
+  "version": "8.0.0",
+  "description": "React components for building a notification inbox for your app",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
+  "contributors": [
+    "Josue Montano <josue@magicbell.io>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.ts",
+  "main": "dist/magicbell-react.cjs.js",
+  "module": "dist/magicbell-react.esm.js",
+  "unpkg": "dist/magicbell-react.umd.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "/dist"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "bell",
+    "magicbell",
+    "notifications",
+    "notification center",
+    "notification inbox",
+    "immer",
+    "zustand",
+    "immutable",
+    "typescript",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/magicbell-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magicbell-io/magicbell-react/issues"
+  },
+  "scripts": {
+    "build": "microbundle --jsx React.createElement",
+    "prepare": "yarn build",
+    "start": "microbundle watch --jsx React.createElement",
+    "report-coverage": "codecov",
+    "test": "TZ=America/New_York jest --collectCoverage --no-cache",
+    "test:watch": "TZ=America/New_York jest --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "lint-staged": {
+    "*.{jsx?,tsx?}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{md,html,css,scss}": "prettier --write"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@emotion/jest": "^11.3.0",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/react": "^6.3.8",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.0.2",
+    "@types/faker": "^5.1.7",
+    "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.168",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@types/rosie": "^0.0.40",
+    "@types/sinon": "^10.0.2",
+    "@types/tinycolor2": "^1.4.2",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "babel-loader": "^8.2.2",
+    "codecov": "^3.8.1",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "faker": "^5.4.0",
+    "husky": "^7.0.2",
+    "jest": "^27.1.1",
+    "jest-watch-typeahead": "^0.6.4",
+    "lint-staged": "^10.5.4",
+    "microbundle": "^0.13.3",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rosie": "^2.0.1",
+    "sinon": "^11.1.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@magicbell/react-headless": "^2.0.1",
+    "@tippyjs/react": "^4.2.4",
+    "ably": "^1.2.13",
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.4",
+    "humps": "^2.0.1",
+    "immer": "^9.0.6",
+    "miragejs": "^0.1.41",
+    "ramda": "^0.27.1",
+    "react-infinite-scroll-component": "^6.0.0",
+    "react-use": "^17.2.1",
+    "timeago.js": "^4.0.2",
+    "tinycolor2": "^1.4.2",
+    "tslib": "^2.3.1",
+    "zustand": "^3.5.10"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0"
+  }
+}
