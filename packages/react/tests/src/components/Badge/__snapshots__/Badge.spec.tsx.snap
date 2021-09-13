@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components Badge render renders the count 1`] = `
+.emotion-0 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(223,71,89) !important;
+  border-radius: 2px !important;
+  color: white !important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 10px !important;
+  height: 18px !important;
+  min-width: 10px !important;
+  padding: 0 2px !important;
+  text-align: center !important;
+  text-transform: none !important;
+}
+
+.emotion-0 div,
+.emotion-0 span,
+.emotion-0 p,
+.emotion-0 a,
+.emotion-0 strong,
+.emotion-0 b,
+.emotion-0 u,
+.emotion-0 i,
+.emotion-0 ol,
+.emotion-0 ul,
+.emotion-0 li,
+.emotion-0 form,
+.emotion-0 label,
+.emotion-0 table,
+.emotion-0 tr,
+.emotion-0 th,
+.emotion-0 td,
+.emotion-0 article,
+.emotion-0 aside,
+.emotion-0 footer,
+.emotion-0 header,
+.emotion-0 nav,
+.emotion-0 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-0 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-0 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-0 div {
+  width: 100%;
+}
+
+<div>
+  <span
+    class="emotion-0"
+  >
+    <div>
+      3
+    </div>
+  </span>
+</div>
+`;
