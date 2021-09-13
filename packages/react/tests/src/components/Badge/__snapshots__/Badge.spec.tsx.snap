@@ -1,27 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components Badge render renders the count 1`] = `
+exports[`components UnseenBadge render renders the count 1`] = `
 .emotion-0 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -29,9 +31,6 @@ exports[`components Badge render renders the count 1`] = `
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -42,14 +41,12 @@ exports[`components Badge render renders the count 1`] = `
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -65,20 +62,20 @@ exports[`components Badge render renders the count 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgb(223,71,89) !important;
-  border-radius: 2px !important;
-  color: white !important;
+  background: rgb(223, 71, 89)!important;
+  border-radius: 2px!important;
+  color: white!important;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  font-size: 10px !important;
-  height: 18px !important;
-  min-width: 10px !important;
-  padding: 0 2px !important;
-  text-align: center !important;
-  text-transform: none !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 10px!important;
+  height: 18px!important;
+  min-width: 10px!important;
+  padding: 0 2px!important;
+  text-align: center!important;
+  text-transform: none!important;
 }
 
 .emotion-0 div,
@@ -113,17 +110,17 @@ exports[`components Badge render renders the count 1`] = `
 }
 
 .emotion-0 a {
-  cursor: pointer !important;
-  color: inherit !important;
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
 .emotion-0 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
+  cursor: pointer!important;
 }
 
 .emotion-0 div {
