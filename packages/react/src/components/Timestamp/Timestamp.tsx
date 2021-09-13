@@ -1,7 +1,7 @@
+import { toDate } from '@magicbell/react-headless';
 import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import useInterval from 'react-use/lib/useInterval';
-import { toDate } from '../../lib/date';
 import Popover, { PopoverPlacement } from '../Popover';
 import TimestampTooltip from './TimestampTooltip';
 
