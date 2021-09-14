@@ -1,0 +1,433 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components NotificationState .handleClick renders the context menu 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-1 {
+  background: #FFFFFF !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 3px rgba(230,230,230,0.55);
+  color: #3A424D !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  min-width: 10em;
+}
+
+.emotion-1 a {
+  display: block;
+  padding: 0.75em 1.25em !important;
+}
+
+.emotion-1 a:hover {
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="64"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="448"
+        r="64"
+      />
+    </svg>
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-3"
+    style="z-index: 0; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; pointer-events: none;"
+  >
+    <div
+      class="emotion-1"
+    >
+      <a
+        data-testid="toggle-read"
+      >
+        Mark as read
+      </a>
+      <a
+        data-testid="delete"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components NotificationState .handleClick the menuPlacement is set to "top-end" renders a menu in the specified position 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-1 {
+  background: #FFFFFF !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 3px rgba(230,230,230,0.55);
+  color: #3A424D !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  min-width: 10em;
+}
+
+.emotion-1 a {
+  display: block;
+  padding: 0.75em 1.25em !important;
+}
+
+.emotion-1 a:hover {
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="64"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="448"
+        r="64"
+      />
+    </svg>
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-5"
+    style="z-index: 0; transition: none; pointer-events: none; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -2px);"
+  >
+    <div
+      class="emotion-1"
+    >
+      <a
+        data-testid="toggle-read"
+      >
+        Mark as read
+      </a>
+      <a
+        data-testid="delete"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components NotificationState .onHover .onBlur renders the dot icon 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-1 {
+  background: #FFFFFF !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 3px rgba(230,230,230,0.55);
+  color: #3A424D !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  min-width: 10em;
+}
+
+.emotion-1 a {
+  display: block;
+  padding: 0.75em 1.25em !important;
+}
+
+.emotion-1 a:hover {
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+<div>
+  <div
+    aria-expanded="true"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+    </svg>
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-7"
+    style="z-index: 0; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 2px);"
+  >
+    <div
+      class="emotion-1"
+    >
+      <a
+        data-testid="toggle-read"
+      >
+        Mark as read
+      </a>
+      <a
+        data-testid="delete"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components NotificationState .onHover the notification is unread renders the menu icon 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-1 {
+  background: #FFFFFF !important;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 3px rgba(230,230,230,0.55);
+  color: #3A424D !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  text-transform: none !important;
+  min-width: 10em;
+}
+
+.emotion-1 a {
+  display: block;
+  padding: 0.75em 1.25em !important;
+}
+
+.emotion-1 a:hover {
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="64"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="448"
+        r="64"
+      />
+    </svg>
+  </div>
+  <div
+    data-tippy-root=""
+    id="tippy-6"
+    style="z-index: 0; transition: none; position: absolute; left: 0px; top: 0px; margin: 0px;"
+  >
+    <div
+      class="emotion-1"
+    >
+      <a
+        data-testid="toggle-read"
+      >
+        Mark as read
+      </a>
+      <a
+        data-testid="delete"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components NotificationState render the notification is read renders an icon for the context menu 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: rgba(58,66,77,0.5) !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="64"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+      <circle
+        cx="256"
+        cy="448"
+        r="64"
+      />
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`components NotificationState render the notification is unread renders a dot 1`] = `
+.emotion-0 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-0 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+<div>
+  <div
+    aria-expanded="false"
+    class="emotion-0"
+    data-testid="icon"
+  >
+    <svg
+      viewBox="0 0 512 512"
+    >
+      <circle
+        cx="256"
+        cy="256"
+        r="64"
+      />
+    </svg>
+  </div>
+</div>
+`;
