@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components Header render default language renders a title in english 1`] = `
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52,152,244) !important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-align: left !important;
+  text-transform: none !important;
+  padding: 16px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-0 {
+  margin-right: 16px !important;
+}
+
+<div>
+  <div
+    class="emotion-1"
+  >
+    <p
+      class="emotion-0"
+    >
+      NOTIFICATIONS
+    </p>
+    <button
+      data-testid="mark-all-as-read"
+    >
+      Mark All Read
+    </button>
+  </div>
+</div>
+`;
+
+exports[`components Header render renders a title and a button to mark all notification as read 1`] = `
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52,152,244) !important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-align: left !important;
+  text-transform: none !important;
+  padding: 16px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-0 {
+  margin-right: 16px !important;
+}
+
+<div>
+  <div
+    class="emotion-1"
+  >
+    <p
+      class="emotion-0"
+    >
+      NOTIFICACIONES
+    </p>
+    <button
+      data-testid="mark-all-as-read"
+    >
+      Marcar todo como leído
+    </button>
+  </div>
+</div>
+`;
