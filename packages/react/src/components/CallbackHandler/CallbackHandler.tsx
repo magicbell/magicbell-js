@@ -1,5 +1,5 @@
+import { useMagicBellEvent } from '@magicbell/react-headless';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
-import { useMagicBellEvent } from '../../lib/realtime';
 
 export interface Props {
   onNewNotification?: (notification: IRemoteNotification) => void;
