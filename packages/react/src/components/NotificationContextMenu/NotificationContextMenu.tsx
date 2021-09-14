@@ -17,11 +17,12 @@ export interface Props {
  * <NotificationContextMenu notification={notification} />
  */
 export default function NotificationContextMenu({ notification }: Props) {
+  const { isRead, markAsUnread, markAsRead } = notification;
   const theme = useTheme();
   const { container: containerTheme, notification: notificationTheme } = theme;
 
   const handleDelete = () => notification.delete();
-  const toggleRead = () => (notification.isRead ? notification.markAsUnread() : notification.markAsRead());
+  const toggleRead = () => (isRead ? markAsUnread() : markAsRead());
 
   return (
     <div
