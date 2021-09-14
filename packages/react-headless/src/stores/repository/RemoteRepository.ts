@@ -1,5 +1,5 @@
 import humps from 'humps';
-import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../lib/ajax';
+import { deleteAPI, fetchAPI } from '../../lib/ajax';
 
 /**
  * Class to represent a client that interacts with the MagicBell API.
@@ -36,16 +36,6 @@ export default abstract class RemoteRepository<Item extends Object, Collection> 
   async findBy(queryParams: any): Promise<Collection> {
     const json = await fetchAPI(this.remotePathOrUrl, queryParams);
     return humps.camelizeKeys(json);
-  }
-
-  async create(item: Partial<Item>): Promise<Item> {
-    const json = await postAPI(this.remotePathOrUrl, item);
-    return humps.camelizeKeys(json);
-  }
-
-  update(id: string | number, item: Item): Promise<Item> {
-    const url = `${this.remotePathOrUrl}/${id}`;
-    return putAPI(url, item);
   }
 
   /**
