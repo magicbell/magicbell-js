@@ -11,3 +11,4 @@ export { secondsToDate, toDate, toUnix } from './lib/date';
 export { default as clientSettings } from './stores/clientSettings';
 export { default as useConfig } from './stores/config';
 export { useNotificationStoresCollection } from './stores/notifications';
+export { default as useNotificationPreferences } from './stores/notification_preferences';

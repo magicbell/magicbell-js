@@ -11,6 +11,7 @@ import {
   toUnix,
   useBell,
   useNotification,
+  useNotificationPreferences,
   useNotifications,
   useNotificationStoresCollection,
   useNotificationUnmount,
@@ -39,6 +40,10 @@ describe('index.ts', () => {
 
   it('exports the useNotificationUnmount hook', () => {
     expect(useNotificationUnmount).toBeDefined();
+  });
+
+  it('exports the useNotificationPreferences hook', () => {
+    expect(useNotificationPreferences).toBeDefined();
   });
 
   it('exports the MagicBellProvider component', () => {
