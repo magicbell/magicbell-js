@@ -6,6 +6,7 @@ export { default as useNotification } from './hooks/useNotification';
 export { default as useNotificationFactory } from './hooks/useNotificationFactory';
 export { default as useNotifications } from './hooks/useNotifications';
 export { default as useNotificationUnmount } from './hooks/useNotificationUnmount';
+export { deleteAPI, fetchAPI, postAPI, putAPI } from './lib/ajax';
 export { secondsToDate, toDate, toUnix } from './lib/date';
 export { default as clientSettings } from './stores/clientSettings';
 export { default as useConfig } from './stores/config';
