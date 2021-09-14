@@ -1,5 +1,6 @@
 import humps from 'humps';
 import { fetchAPI, putAPI } from '../../lib/ajax';
+import { DeepPartial } from '../../types/DeepPartial';
 import { IRemoteNotificationPreferences } from '../../types/IRemoteNotificationPreferences';
 
 interface IWrappedNotificationPreferences {
@@ -33,7 +34,7 @@ export default class NotificationPreferencesRepository {
    *
    * @param data Data to send to the server.
    */
-  update(data: Partial<IWrappedNotificationPreferences>): Promise<boolean> {
+  update(data: DeepPartial<IWrappedNotificationPreferences>): Promise<boolean> {
     return putAPI(this.remotePathOrUrl, humps.decamelizeKeys(data))
       .then(() => true)
       .catch(() => false);
