@@ -1,0 +1,2058 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components FloatingNotificationInbox render a custom placement property is defined renders the tooltip in the correct place 1`] = `
+.emotion-7 {
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  width: 500px;
+  max-width: calc(100vw - 10px);
+  overflow: hidden;
+}
+
+.emotion-5 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: #FFFFFF;
+  border-radius: 8px 8px 8px 8px;
+  color: #3A424D;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  height: 350px;
+  overflow: hidden;
+}
+
+.emotion-5 div,
+.emotion-5 span,
+.emotion-5 p,
+.emotion-5 a,
+.emotion-5 strong,
+.emotion-5 b,
+.emotion-5 u,
+.emotion-5 i,
+.emotion-5 ol,
+.emotion-5 ul,
+.emotion-5 li,
+.emotion-5 form,
+.emotion-5 label,
+.emotion-5 table,
+.emotion-5 tr,
+.emotion-5 th,
+.emotion-5 td,
+.emotion-5 article,
+.emotion-5 aside,
+.emotion-5 footer,
+.emotion-5 header,
+.emotion-5 nav,
+.emotion-5 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-5 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-5 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52,152,244) !important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-align: left !important;
+  text-transform: none !important;
+  padding: 16px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-0 {
+  margin-right: 16px !important;
+}
+
+.emotion-2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-4 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52,152,244);
+  color: rgba(255,255,255,0.75) !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  padding: 12px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-4 div,
+.emotion-4 span,
+.emotion-4 p,
+.emotion-4 a,
+.emotion-4 strong,
+.emotion-4 b,
+.emotion-4 u,
+.emotion-4 i,
+.emotion-4 ol,
+.emotion-4 ul,
+.emotion-4 li,
+.emotion-4 form,
+.emotion-4 label,
+.emotion-4 table,
+.emotion-4 tr,
+.emotion-4 th,
+.emotion-4 td,
+.emotion-4 article,
+.emotion-4 aside,
+.emotion-4 footer,
+.emotion-4 header,
+.emotion-4 nav,
+.emotion-4 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-4 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-4 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-4:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-4:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-4 span {
+  color: white !important;
+}
+
+.emotion-4 span a {
+  color: white;
+  margin-right: 16px !important;
+  opacity: 0.75;
+  display: block;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: white !important;
+}
+
+.emotion-3 a,
+.emotion-3 button {
+  color: white;
+  display: block;
+}
+
+.emotion-3 a {
+  opacity: 0.85;
+}
+
+.emotion-6,
+.emotion-6:before {
+  position: absolute;
+  width: 18px !important;
+  height: 18px !important;
+  z-index: -1;
+  border-radius: 2px !important;
+}
+
+.emotion-6:before {
+  content: '';
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 0;
+}
+
+.emotion-6[data-popper-placement^='top'] {
+  bottom: -4px;
+}
+
+.emotion-6[data-popper-placement^='top']:before {
+  background: #3498F4;
+}
+
+.emotion-6[data-popper-placement^='bottom'] {
+  top: -4px;
+}
+
+.emotion-6[data-popper-placement^='bottom']:before {
+  background: #3498F4;
+}
+
+.emotion-6[data-popper-placement^='left'] {
+  right: -4px;
+}
+
+.emotion-6[data-popper-placement^='right'] {
+  left: -4px;
+}
+
+<div>
+  <div>
+    <div
+      aria-expanded="true"
+    />
+    <div
+      data-tippy-root=""
+      id="tippy-11"
+      style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 10px);"
+    >
+      <div
+        class="emotion-7"
+        data-escaped=""
+        data-placement="bottom-end"
+        data-reference-hidden=""
+      >
+        <div
+          class="emotion-5"
+        >
+          <div
+            class="emotion-1"
+          >
+            <p
+              class="emotion-0"
+            >
+              NOTIFICATIONS
+            </p>
+            <button
+              data-testid="mark-all-as-read"
+            >
+              Mark All Read
+            </button>
+          </div>
+          <div
+            class="emotion-2"
+          />
+          <div
+            class="emotion-4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <a
+                href="https://magicbell.io/?utm_source=widget"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  fill="currentColor"
+                  height="16"
+                  viewBox="0 0 128 32"
+                  width="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.2378 4.66791C11.6702 4.67293 10.1682 5.29789 9.05974 6.40637C7.95126 7.51485 7.3263 9.01682 7.32128 10.5844V14.904C7.32128 16.2701 7.22608 17.1721 7.00713 17.9432C6.77392 18.7047 6.41866 19.4233 5.95519 20.0709C5.79336 20.3089 5.63866 20.5469 5.49587 20.7492C5.08176 21.3346 5.98613 21.475 6.44784 21.5488C8.69788 21.8729 10.9694 22.024 13.2426 22.001C15.5165 22.0241 17.7889 21.8729 20.0397 21.5488C21.2297 21.3537 21.1392 21.0276 20.6561 20.297C20.1816 19.6349 19.8034 18.909 19.5328 18.1408C19.2418 17.1631 19.1116 16.1447 19.1472 15.1254V10.5844C19.1453 9.01709 18.5223 7.51438 17.4147 6.40542C16.3071 5.29647 14.8052 4.67169 13.2378 4.66791ZM13.2378 2C15.5097 2.01067 17.6853 2.91905 19.2902 4.52711C20.8952 6.13517 21.7993 8.31251 21.8056 10.5844V15.1254C21.7707 15.8647 21.851 16.605 22.0436 17.3197C22.2453 17.8601 22.5191 18.3709 22.8575 18.8381C23.1288 19.2498 23.3978 19.6092 23.6167 19.9019C24.1356 20.5921 24.483 21.0562 24.4688 21.6892V21.713C24.4688 22.903 22.9289 23.7622 20.4443 24.1691C18.0527 24.5177 15.6379 24.6824 13.2212 24.6618C10.8141 24.6833 8.40892 24.521 6.02659 24.1763C3.54193 23.7693 2.00211 22.9197 2.00211 21.7202C1.96879 21.0633 2.33292 20.573 2.88507 19.8281C3.12306 19.5068 3.41818 19.1141 3.72757 18.6382C4.03691 18.2073 4.27775 17.7313 4.44155 17.2269C4.58673 16.7128 4.65099 16.0369 4.65099 14.9183V10.5844C4.65664 8.30944 5.56289 6.12924 7.17156 4.52057C8.78023 2.9119 10.9604 2.00566 13.2354 2H13.2378Z"
+                  />
+                  <path
+                    d="M10.8769 9.68955C10.8668 10.1473 10.9882 10.5983 11.2268 10.989C11.4417 11.326 11.7457 11.5969 12.105 11.772C12.4608 11.9412 12.8498 12.029 13.2438 12.029C13.6378 12.029 14.0268 11.9412 14.3826 11.772C14.7419 11.5969 15.0458 11.326 15.2608 10.989C15.49 10.5934 15.6107 10.1444 15.6107 9.68717C15.6107 9.22999 15.49 8.78091 15.2608 8.38534C15.0442 8.05094 14.7406 7.78189 14.3826 7.6071C14.0275 7.43555 13.6382 7.34644 13.2438 7.34644C12.8494 7.34644 12.4601 7.43555 12.105 7.6071C11.747 7.78189 11.4433 8.05094 11.2268 8.38534C10.9886 8.77798 10.8672 9.2304 10.8769 9.68955Z"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M25.6468 9.68483L23.0836 8.3711L20.5204 7.05737V9.68483V12.3147L23.0836 11.0009L25.6468 9.68483Z"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    d="M17.5907 25.8422C17.5423 26.9273 17.0888 27.9548 16.3198 28.722C15.9164 29.1264 15.4371 29.4472 14.9095 29.6661C14.3818 29.8851 13.8162 29.9977 13.2449 29.9977C12.6737 29.9977 12.1081 29.8851 11.5804 29.6661C11.0528 29.4472 10.5735 29.1264 10.1701 28.722C9.40107 27.9548 8.94761 26.9273 8.89917 25.8422C9.73453 25.916 10.6437 25.9684 11.5956 25.9969C11.6721 26.3773 11.879 26.7191 12.1805 26.9633C12.482 27.2075 12.8593 27.3387 13.2473 27.3344C13.4683 27.3346 13.6872 27.2912 13.8914 27.2067C14.0956 27.1221 14.2811 26.9981 14.4373 26.8418C14.669 26.61 14.8278 26.3155 14.8942 25.9945C15.8462 25.966 16.7554 25.9136 17.5907 25.8398"
+                  />
+                  <path
+                    d="M44.688 7.22H41.806L36.834 18.418H36.68L31.686 7.22H28.782V22.62H31.048V11.356H31.224L35.536 20.86H37.978L42.268 11.356H42.422V22.62H44.688V7.22Z"
+                  />
+                  <path
+                    d="M57.2448 20.926C56.6948 20.926 56.4088 20.64 56.4088 20.024V15.514C56.4088 12.764 54.5168 11.4 52.0088 11.4C49.3688 11.4 47.7408 12.984 47.5428 15.162H49.7648C49.9628 14.018 50.6228 13.226 52.0088 13.226C53.3728 13.226 54.1648 14.018 54.1648 15.426V15.976L50.7988 16.306C48.6868 16.504 47.1028 17.582 47.1028 19.672C47.1028 21.828 48.7088 22.84 50.8428 22.84C52.4928 22.84 53.7028 22.202 54.4508 21.256C54.7588 22.29 55.4848 22.62 56.5188 22.62H57.5308V20.926H57.2448ZM54.1648 18.396C54.1648 20.376 52.5368 21.08 51.1728 21.08C50.1828 21.08 49.3468 20.684 49.3468 19.584C49.3468 18.528 50.2488 17.956 51.5468 17.846L54.1648 17.582V18.396Z"
+                  />
+                  <path
+                    d="M69.3697 11.774L68.1817 10.498C67.7417 11.07 67.0377 11.686 66.3557 12.038C65.6517 11.62 64.7937 11.4 63.8257 11.4C61.2077 11.4 59.5357 13.028 59.5357 15.184C59.5357 16.306 59.9757 17.23 60.7237 17.868C59.9537 18.286 59.2937 18.968 59.2937 19.958C59.2937 20.904 59.8217 21.63 60.6577 21.982L58.8977 23.5C59.0957 25.524 60.6577 27.24 64.0017 27.24C66.9277 27.24 68.9297 25.92 68.9297 23.588C68.9297 21.652 67.5437 20.442 65.0357 20.442H62.8577C61.9557 20.442 61.3177 20.134 61.3177 19.496C61.3177 19.1 61.5377 18.814 61.9557 18.594C62.5277 18.814 63.1877 18.924 63.9137 18.924C66.3557 18.924 68.2477 17.516 68.2477 15.184C68.2477 14.392 68.0057 13.666 67.5437 13.072C68.3137 12.698 69.0177 12.192 69.3697 11.774ZM63.9137 17.23C62.5497 17.23 61.6697 16.35 61.6697 15.184C61.6697 13.93 62.5497 13.072 63.9137 13.072C65.2557 13.072 66.0917 13.93 66.0917 15.184C66.0917 16.35 65.2557 17.23 63.9137 17.23ZM66.7737 23.698C66.7737 24.952 65.4757 25.524 64.0017 25.524C62.1537 25.524 61.3397 24.6 61.0757 23.654L62.7697 22.224H64.7717C65.6737 22.224 66.7737 22.554 66.7737 23.698Z"
+                  />
+                  <path
+                    d="M72.1185 9.992C72.8885 9.992 73.5265 9.332 73.5265 8.562C73.5265 7.77 72.8885 7.154 72.1185 7.154C71.3265 7.154 70.6665 7.77 70.6665 8.562C70.6665 9.332 71.3265 9.992 72.1185 9.992ZM70.9965 22.62H73.2405V11.62H70.9965V22.62Z"
+                  />
+                  <path
+                    d="M81.0823 22.84C83.8103 22.84 85.8123 21.322 86.2083 18.946H83.9643C83.5463 20.134 82.6003 20.882 81.0823 20.882C79.0143 20.882 77.7383 19.298 77.7383 17.186C77.7383 14.986 79.1243 13.358 81.0603 13.358C82.6003 13.358 83.6563 14.304 83.9203 15.448H86.1643C85.7903 12.786 83.5463 11.4 81.0603 11.4C77.8703 11.4 75.5163 13.798 75.5163 17.186C75.5163 20.42 77.6943 22.84 81.0823 22.84Z"
+                  />
+                  <path
+                    d="M96.7512 14.546V14.436C97.8732 13.908 98.9072 12.984 98.9072 11.048C98.9072 8.782 97.4772 7.22 94.5072 7.22H88.6332V22.62H94.5292C97.5212 22.62 99.3252 21.08 99.3252 18.396C99.3252 16.064 97.9392 14.986 96.7512 14.546ZM90.8992 9.112H94.2652C95.6732 9.112 96.5972 9.948 96.5972 11.378C96.5972 12.808 95.7612 13.754 94.1992 13.754H90.8992V9.112ZM94.3312 20.728H90.8992V15.646H94.3312C95.9592 15.646 96.9712 16.746 96.9712 18.242C96.9712 19.716 96.0032 20.728 94.3312 20.728Z"
+                  />
+                  <path
+                    d="M111.65 16.966C111.65 13.182 109.296 11.4 106.612 11.4C103.62 11.4 101.266 13.644 101.266 17.23C101.266 20.618 103.532 22.84 106.7 22.84C109.296 22.84 111.144 21.52 111.606 19.32H109.45C109.098 20.442 108.086 21.014 106.7 21.014C104.764 21.014 103.576 19.65 103.466 17.692H111.606C111.628 17.406 111.65 17.186 111.65 16.966ZM106.612 13.226C108.306 13.226 109.45 14.414 109.472 16.108H103.488C103.708 14.502 104.874 13.226 106.612 13.226Z"
+                  />
+                  <path
+                    d="M113.966 22.62H116.21V7H113.966V22.62Z"
+                  />
+                  <path
+                    d="M118.838 22.62H121.082V7H118.838V22.62Z"
+                  />
+                </svg>
+              </a>
+              <button>
+                <svg
+                  fill="none"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 14.8636C13.5815 14.8636 14.8636 13.5815 14.8636 12C14.8636 10.4184 13.5815 9.13635 12 9.13635C10.4184 9.13635 9.13635 10.4184 9.13635 12C9.13635 13.5815 10.4184 14.8636 12 14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19.0636 14.8636C18.9366 15.1515 18.8987 15.4709 18.9548 15.7806C19.011 16.0902 19.1586 16.3759 19.3786 16.6009L19.4359 16.6582C19.6134 16.8355 19.7542 17.046 19.8503 17.2778C19.9464 17.5096 19.9958 17.758 19.9958 18.0089C19.9958 18.2597 19.9464 18.5082 19.8503 18.7399C19.7542 18.9717 19.6134 19.1822 19.4359 19.3595C19.2586 19.537 19.0481 19.6779 18.8163 19.7739C18.5845 19.87 18.3361 19.9195 18.0852 19.9195C17.8343 19.9195 17.5859 19.87 17.3542 19.7739C17.1224 19.6779 16.9118 19.537 16.7345 19.3595L16.6773 19.3023C16.4523 19.0822 16.1666 18.9346 15.8569 18.8785C15.5473 18.8223 15.2279 18.8602 14.94 18.9873C14.6577 19.1083 14.4169 19.3092 14.2473 19.5653C14.0777 19.8214 13.9867 20.1215 13.9855 20.4286V20.5909C13.9855 21.0972 13.7843 21.5828 13.4263 21.9408C13.0683 22.2989 12.5827 22.5 12.0764 22.5C11.57 22.5 11.0845 22.2989 10.7264 21.9408C10.3684 21.5828 10.1673 21.0972 10.1673 20.5909V20.505C10.1599 20.1891 10.0576 19.8826 9.87376 19.6256C9.68991 19.3685 9.43297 19.1727 9.13636 19.0636C8.84846 18.9366 8.52909 18.8987 8.21944 18.9548C7.90979 19.011 7.62406 19.1586 7.39909 19.3786L7.34182 19.4359C7.16451 19.6134 6.95396 19.7542 6.7222 19.8503C6.49044 19.9464 6.24202 19.9958 5.99114 19.9958C5.74025 19.9958 5.49183 19.9464 5.26007 19.8503C5.02831 19.7542 4.81776 19.6134 4.64045 19.4359C4.46295 19.2586 4.32214 19.0481 4.22607 18.8163C4.12999 18.5845 4.08054 18.3361 4.08054 18.0852C4.08054 17.8343 4.12999 17.5859 4.22607 17.3542C4.32214 17.1224 4.46295 16.9118 4.64045 16.7345L4.69773 16.6773C4.91779 16.4523 5.0654 16.1666 5.12155 15.8569C5.17769 15.5473 5.13979 15.2279 5.01273 14.94C4.89173 14.6577 4.69081 14.4169 4.43472 14.2473C4.17862 14.0777 3.87852 13.9867 3.57136 13.9855H3.40909C2.90277 13.9855 2.41718 13.7843 2.05916 13.4263C1.70114 13.0683 1.5 12.5827 1.5 12.0764C1.5 11.57 1.70114 11.0845 2.05916 10.7264C2.41718 10.3684 2.90277 10.1673 3.40909 10.1673H3.495C3.81095 10.1599 4.11737 10.0576 4.37442 9.87376C4.63148 9.68991 4.82727 9.43297 4.93636 9.13636C5.06343 8.84846 5.10133 8.52909 5.04519 8.21944C4.98904 7.90979 4.84142 7.62406 4.62136 7.39909L4.56409 7.34182C4.38659 7.16451 4.24578 6.95396 4.1497 6.7222C4.05363 6.49044 4.00418 6.24202 4.00418 5.99114C4.00418 5.74025 4.05363 5.49183 4.1497 5.26007C4.24578 5.02831 4.38659 4.81776 4.56409 4.64045C4.74139 4.46295 4.95194 4.32214 5.1837 4.22607C5.41546 4.12999 5.66389 4.08054 5.91477 4.08054C6.16566 4.08054 6.41408 4.12999 6.64584 4.22607C6.8776 4.32214 7.08815 4.46295 7.26545 4.64045L7.32273 4.69773C7.54769 4.91779 7.83342 5.0654 8.14307 5.12155C8.45272 5.17769 8.77209 5.13979 9.06 5.01273H9.13636C9.41869 4.89173 9.65947 4.69081 9.82907 4.43472C9.99867 4.17862 10.0897 3.87852 10.0909 3.57136V3.40909C10.0909 2.90277 10.292 2.41718 10.6501 2.05916C11.0081 1.70114 11.4937 1.5 12 1.5C12.5063 1.5 12.9919 1.70114 13.3499 2.05916C13.708 2.41718 13.9091 2.90277 13.9091 3.40909V3.495C13.9103 3.80216 14.0013 4.10226 14.1709 4.35835C14.3405 4.61445 14.5813 4.81536 14.8636 4.93636C15.1515 5.06343 15.4709 5.10133 15.7806 5.04519C16.0902 4.98904 16.3759 4.84142 16.6009 4.62136L16.6582 4.56409C16.8355 4.38659 17.046 4.24578 17.2778 4.1497C17.5096 4.05363 17.758 4.00418 18.0089 4.00418C18.2597 4.00418 18.5082 4.05363 18.7399 4.1497C18.9717 4.24578 19.1822 4.38659 19.3595 4.56409C19.537 4.74139 19.6779 4.95194 19.7739 5.1837C19.87 5.41546 19.9195 5.66389 19.9195 5.91477C19.9195 6.16566 19.87 6.41408 19.7739 6.64584C19.6779 6.8776 19.537 7.08815 19.3595 7.26545L19.3023 7.32273C19.0822 7.54769 18.9346 7.83342 18.8785 8.14307C18.8223 8.45272 18.8602 8.77209 18.9873 9.06V9.13636C19.1083 9.41869 19.3092 9.65947 19.5653 9.82907C19.8214 9.99867 20.1215 10.0897 20.4286 10.0909H20.5909C21.0972 10.0909 21.5828 10.292 21.9408 10.6501C22.2989 11.0081 22.5 11.4937 22.5 12C22.5 12.5063 22.2989 12.9919 21.9408 13.3499C21.5828 13.708 21.0972 13.9091 20.5909 13.9091H20.505C20.1978 13.9103 19.8977 14.0013 19.6416 14.1709C19.3856 14.3405 19.1846 14.5813 19.0636 14.8636V14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="emotion-6"
+          data-popper-arrow="true"
+          data-popper-placement="bottom-end"
+          style="position: absolute; left: 0px; transform: translate(0px, 0px);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components FloatingNotificationInbox render it is not visible does not render anything 1`] = `
+<div>
+  <div>
+    <div
+      aria-expanded="false"
+    />
+  </div>
+</div>
+`;
+
+exports[`components FloatingNotificationInbox render renders a notification inbox wrapped in tippy 1`] = `
+.emotion-12 {
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  width: 500px;
+  max-width: calc(100vw - 10px);
+  overflow: hidden;
+}
+
+.emotion-10 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: #FFFFFF;
+  border-radius: 8px 8px 8px 8px;
+  color: #3A424D;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  height: 350px;
+  overflow: hidden;
+}
+
+.emotion-10 div,
+.emotion-10 span,
+.emotion-10 p,
+.emotion-10 a,
+.emotion-10 strong,
+.emotion-10 b,
+.emotion-10 u,
+.emotion-10 i,
+.emotion-10 ol,
+.emotion-10 ul,
+.emotion-10 li,
+.emotion-10 form,
+.emotion-10 label,
+.emotion-10 table,
+.emotion-10 tr,
+.emotion-10 th,
+.emotion-10 td,
+.emotion-10 article,
+.emotion-10 aside,
+.emotion-10 footer,
+.emotion-10 header,
+.emotion-10 nav,
+.emotion-10 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-10 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-10 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52,152,244) !important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-align: left !important;
+  text-transform: none !important;
+  padding: 16px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-0 {
+  margin-right: 16px !important;
+}
+
+.emotion-7 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-6 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: rgba(52,152,244,0) !important;
+  border-radius: 8px;
+  color: #3A424D !important;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px;
+  margin: 4px !important;
+  overflow: hidden;
+  text-align: left !important;
+  text-transform: none;
+  -webkit-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  padding: 16px 20px !important;
+  min-height: 32px;
+}
+
+.emotion-6 div,
+.emotion-6 span,
+.emotion-6 p,
+.emotion-6 a,
+.emotion-6 strong,
+.emotion-6 b,
+.emotion-6 u,
+.emotion-6 i,
+.emotion-6 ol,
+.emotion-6 ul,
+.emotion-6 li,
+.emotion-6 form,
+.emotion-6 label,
+.emotion-6 table,
+.emotion-6 tr,
+.emotion-6 th,
+.emotion-6 td,
+.emotion-6 article,
+.emotion-6 aside,
+.emotion-6 footer,
+.emotion-6 header,
+.emotion-6 nav,
+.emotion-6 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-6 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-6 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-6:hover {
+  background-color: rgba(49,144,232,0.05) !important;
+}
+
+.emotion-6 > button {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 0 -16px;
+  text-align: inherit !important;
+}
+
+.emotion-6 > button > div {
+  margin: 0 0 0 16px;
+}
+
+.emotion-6 > button > div:first-of-type {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-2 {
+  cursor: inherit;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  word-break: break-word !important;
+}
+
+.emotion-4 {
+  padding: 0.5em 0 0.5em 0.25em !important;
+}
+
+.emotion-5 {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding: 0.5em 0 0.5em 0.25em !important;
+  color: #3498F4 !important;
+}
+
+.emotion-5 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-9 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52,152,244);
+  color: rgba(255,255,255,0.75) !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  padding: 12px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-9 div,
+.emotion-9 span,
+.emotion-9 p,
+.emotion-9 a,
+.emotion-9 strong,
+.emotion-9 b,
+.emotion-9 u,
+.emotion-9 i,
+.emotion-9 ol,
+.emotion-9 ul,
+.emotion-9 li,
+.emotion-9 form,
+.emotion-9 label,
+.emotion-9 table,
+.emotion-9 tr,
+.emotion-9 th,
+.emotion-9 td,
+.emotion-9 article,
+.emotion-9 aside,
+.emotion-9 footer,
+.emotion-9 header,
+.emotion-9 nav,
+.emotion-9 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-9 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-9 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-9:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-9:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-9 span {
+  color: white !important;
+}
+
+.emotion-9 span a {
+  color: white;
+  margin-right: 16px !important;
+  opacity: 0.75;
+  display: block;
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: white !important;
+}
+
+.emotion-8 a,
+.emotion-8 button {
+  color: white;
+  display: block;
+}
+
+.emotion-8 a {
+  opacity: 0.85;
+}
+
+.emotion-11,
+.emotion-11:before {
+  position: absolute;
+  width: 18px !important;
+  height: 18px !important;
+  z-index: -1;
+  border-radius: 2px !important;
+}
+
+.emotion-11:before {
+  content: '';
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 0;
+}
+
+.emotion-11[data-popper-placement^='top'] {
+  bottom: -4px;
+}
+
+.emotion-11[data-popper-placement^='top']:before {
+  background: #3498F4;
+}
+
+.emotion-11[data-popper-placement^='bottom'] {
+  top: -4px;
+}
+
+.emotion-11[data-popper-placement^='bottom']:before {
+  background: #3498F4;
+}
+
+.emotion-11[data-popper-placement^='left'] {
+  right: -4px;
+}
+
+.emotion-11[data-popper-placement^='right'] {
+  left: -4px;
+}
+
+.emotion-3 {
+  color: inherit !important;
+  cursor: inherit;
+  margin: 0;
+  line-height: 1.2;
+  font-size: 0.865em !important;
+  margin-top: 1em !important;
+  word-break: break-word !important;
+}
+
+<div>
+  <div>
+    <div
+      aria-expanded="true"
+    />
+    <div
+      data-tippy-root=""
+      id="tippy-1"
+      style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -10px);"
+    >
+      <div
+        class="emotion-12"
+        data-escaped=""
+        data-placement="top"
+        data-reference-hidden=""
+      >
+        <div
+          class="emotion-10"
+        >
+          <div
+            class="emotion-1"
+          >
+            <p
+              class="emotion-0"
+            >
+              NOTIFICATIONS
+            </p>
+            <button
+              data-testid="mark-all-as-read"
+            >
+              Mark All Read
+            </button>
+          </div>
+          <div
+            class="emotion-7"
+          >
+            <div
+              class="infinite-scroll-component__outerdiv"
+            >
+              <div
+                class="infinite-scroll-component "
+                style="height: 350px; overflow: auto;"
+              >
+                <div
+                  class="emotion-6"
+                >
+                  <button
+                    data-testid="clickable-notification"
+                  >
+                    <div>
+                      <p
+                        class="emotion-2"
+                        title="New Comment: Tables in knowledgebase"
+                      >
+                        New Comment: Tables in knowledgebase
+                      </p>
+                      <article
+                        class="emotion-3"
+                      >
+                        <p>
+                          This is a good content
+                        </p>
+                      </article>
+                    </div>
+                    <div
+                      class="emotion-4"
+                    >
+                      <div
+                        aria-expanded="false"
+                      >
+                        1y
+                      </div>
+                    </div>
+                  </button>
+                  <div
+                    aria-expanded="false"
+                    class="emotion-5"
+                    data-testid="icon"
+                  >
+                    <svg
+                      viewBox="0 0 512 512"
+                    >
+                      <circle
+                        cx="256"
+                        cy="256"
+                        r="64"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="emotion-9"
+          >
+            <div
+              class="emotion-8"
+            >
+              <a
+                href="https://magicbell.io/?utm_source=widget"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  fill="currentColor"
+                  height="16"
+                  viewBox="0 0 128 32"
+                  width="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.2378 4.66791C11.6702 4.67293 10.1682 5.29789 9.05974 6.40637C7.95126 7.51485 7.3263 9.01682 7.32128 10.5844V14.904C7.32128 16.2701 7.22608 17.1721 7.00713 17.9432C6.77392 18.7047 6.41866 19.4233 5.95519 20.0709C5.79336 20.3089 5.63866 20.5469 5.49587 20.7492C5.08176 21.3346 5.98613 21.475 6.44784 21.5488C8.69788 21.8729 10.9694 22.024 13.2426 22.001C15.5165 22.0241 17.7889 21.8729 20.0397 21.5488C21.2297 21.3537 21.1392 21.0276 20.6561 20.297C20.1816 19.6349 19.8034 18.909 19.5328 18.1408C19.2418 17.1631 19.1116 16.1447 19.1472 15.1254V10.5844C19.1453 9.01709 18.5223 7.51438 17.4147 6.40542C16.3071 5.29647 14.8052 4.67169 13.2378 4.66791ZM13.2378 2C15.5097 2.01067 17.6853 2.91905 19.2902 4.52711C20.8952 6.13517 21.7993 8.31251 21.8056 10.5844V15.1254C21.7707 15.8647 21.851 16.605 22.0436 17.3197C22.2453 17.8601 22.5191 18.3709 22.8575 18.8381C23.1288 19.2498 23.3978 19.6092 23.6167 19.9019C24.1356 20.5921 24.483 21.0562 24.4688 21.6892V21.713C24.4688 22.903 22.9289 23.7622 20.4443 24.1691C18.0527 24.5177 15.6379 24.6824 13.2212 24.6618C10.8141 24.6833 8.40892 24.521 6.02659 24.1763C3.54193 23.7693 2.00211 22.9197 2.00211 21.7202C1.96879 21.0633 2.33292 20.573 2.88507 19.8281C3.12306 19.5068 3.41818 19.1141 3.72757 18.6382C4.03691 18.2073 4.27775 17.7313 4.44155 17.2269C4.58673 16.7128 4.65099 16.0369 4.65099 14.9183V10.5844C4.65664 8.30944 5.56289 6.12924 7.17156 4.52057C8.78023 2.9119 10.9604 2.00566 13.2354 2H13.2378Z"
+                  />
+                  <path
+                    d="M10.8769 9.68955C10.8668 10.1473 10.9882 10.5983 11.2268 10.989C11.4417 11.326 11.7457 11.5969 12.105 11.772C12.4608 11.9412 12.8498 12.029 13.2438 12.029C13.6378 12.029 14.0268 11.9412 14.3826 11.772C14.7419 11.5969 15.0458 11.326 15.2608 10.989C15.49 10.5934 15.6107 10.1444 15.6107 9.68717C15.6107 9.22999 15.49 8.78091 15.2608 8.38534C15.0442 8.05094 14.7406 7.78189 14.3826 7.6071C14.0275 7.43555 13.6382 7.34644 13.2438 7.34644C12.8494 7.34644 12.4601 7.43555 12.105 7.6071C11.747 7.78189 11.4433 8.05094 11.2268 8.38534C10.9886 8.77798 10.8672 9.2304 10.8769 9.68955Z"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M25.6468 9.68483L23.0836 8.3711L20.5204 7.05737V9.68483V12.3147L23.0836 11.0009L25.6468 9.68483Z"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    d="M17.5907 25.8422C17.5423 26.9273 17.0888 27.9548 16.3198 28.722C15.9164 29.1264 15.4371 29.4472 14.9095 29.6661C14.3818 29.8851 13.8162 29.9977 13.2449 29.9977C12.6737 29.9977 12.1081 29.8851 11.5804 29.6661C11.0528 29.4472 10.5735 29.1264 10.1701 28.722C9.40107 27.9548 8.94761 26.9273 8.89917 25.8422C9.73453 25.916 10.6437 25.9684 11.5956 25.9969C11.6721 26.3773 11.879 26.7191 12.1805 26.9633C12.482 27.2075 12.8593 27.3387 13.2473 27.3344C13.4683 27.3346 13.6872 27.2912 13.8914 27.2067C14.0956 27.1221 14.2811 26.9981 14.4373 26.8418C14.669 26.61 14.8278 26.3155 14.8942 25.9945C15.8462 25.966 16.7554 25.9136 17.5907 25.8398"
+                  />
+                  <path
+                    d="M44.688 7.22H41.806L36.834 18.418H36.68L31.686 7.22H28.782V22.62H31.048V11.356H31.224L35.536 20.86H37.978L42.268 11.356H42.422V22.62H44.688V7.22Z"
+                  />
+                  <path
+                    d="M57.2448 20.926C56.6948 20.926 56.4088 20.64 56.4088 20.024V15.514C56.4088 12.764 54.5168 11.4 52.0088 11.4C49.3688 11.4 47.7408 12.984 47.5428 15.162H49.7648C49.9628 14.018 50.6228 13.226 52.0088 13.226C53.3728 13.226 54.1648 14.018 54.1648 15.426V15.976L50.7988 16.306C48.6868 16.504 47.1028 17.582 47.1028 19.672C47.1028 21.828 48.7088 22.84 50.8428 22.84C52.4928 22.84 53.7028 22.202 54.4508 21.256C54.7588 22.29 55.4848 22.62 56.5188 22.62H57.5308V20.926H57.2448ZM54.1648 18.396C54.1648 20.376 52.5368 21.08 51.1728 21.08C50.1828 21.08 49.3468 20.684 49.3468 19.584C49.3468 18.528 50.2488 17.956 51.5468 17.846L54.1648 17.582V18.396Z"
+                  />
+                  <path
+                    d="M69.3697 11.774L68.1817 10.498C67.7417 11.07 67.0377 11.686 66.3557 12.038C65.6517 11.62 64.7937 11.4 63.8257 11.4C61.2077 11.4 59.5357 13.028 59.5357 15.184C59.5357 16.306 59.9757 17.23 60.7237 17.868C59.9537 18.286 59.2937 18.968 59.2937 19.958C59.2937 20.904 59.8217 21.63 60.6577 21.982L58.8977 23.5C59.0957 25.524 60.6577 27.24 64.0017 27.24C66.9277 27.24 68.9297 25.92 68.9297 23.588C68.9297 21.652 67.5437 20.442 65.0357 20.442H62.8577C61.9557 20.442 61.3177 20.134 61.3177 19.496C61.3177 19.1 61.5377 18.814 61.9557 18.594C62.5277 18.814 63.1877 18.924 63.9137 18.924C66.3557 18.924 68.2477 17.516 68.2477 15.184C68.2477 14.392 68.0057 13.666 67.5437 13.072C68.3137 12.698 69.0177 12.192 69.3697 11.774ZM63.9137 17.23C62.5497 17.23 61.6697 16.35 61.6697 15.184C61.6697 13.93 62.5497 13.072 63.9137 13.072C65.2557 13.072 66.0917 13.93 66.0917 15.184C66.0917 16.35 65.2557 17.23 63.9137 17.23ZM66.7737 23.698C66.7737 24.952 65.4757 25.524 64.0017 25.524C62.1537 25.524 61.3397 24.6 61.0757 23.654L62.7697 22.224H64.7717C65.6737 22.224 66.7737 22.554 66.7737 23.698Z"
+                  />
+                  <path
+                    d="M72.1185 9.992C72.8885 9.992 73.5265 9.332 73.5265 8.562C73.5265 7.77 72.8885 7.154 72.1185 7.154C71.3265 7.154 70.6665 7.77 70.6665 8.562C70.6665 9.332 71.3265 9.992 72.1185 9.992ZM70.9965 22.62H73.2405V11.62H70.9965V22.62Z"
+                  />
+                  <path
+                    d="M81.0823 22.84C83.8103 22.84 85.8123 21.322 86.2083 18.946H83.9643C83.5463 20.134 82.6003 20.882 81.0823 20.882C79.0143 20.882 77.7383 19.298 77.7383 17.186C77.7383 14.986 79.1243 13.358 81.0603 13.358C82.6003 13.358 83.6563 14.304 83.9203 15.448H86.1643C85.7903 12.786 83.5463 11.4 81.0603 11.4C77.8703 11.4 75.5163 13.798 75.5163 17.186C75.5163 20.42 77.6943 22.84 81.0823 22.84Z"
+                  />
+                  <path
+                    d="M96.7512 14.546V14.436C97.8732 13.908 98.9072 12.984 98.9072 11.048C98.9072 8.782 97.4772 7.22 94.5072 7.22H88.6332V22.62H94.5292C97.5212 22.62 99.3252 21.08 99.3252 18.396C99.3252 16.064 97.9392 14.986 96.7512 14.546ZM90.8992 9.112H94.2652C95.6732 9.112 96.5972 9.948 96.5972 11.378C96.5972 12.808 95.7612 13.754 94.1992 13.754H90.8992V9.112ZM94.3312 20.728H90.8992V15.646H94.3312C95.9592 15.646 96.9712 16.746 96.9712 18.242C96.9712 19.716 96.0032 20.728 94.3312 20.728Z"
+                  />
+                  <path
+                    d="M111.65 16.966C111.65 13.182 109.296 11.4 106.612 11.4C103.62 11.4 101.266 13.644 101.266 17.23C101.266 20.618 103.532 22.84 106.7 22.84C109.296 22.84 111.144 21.52 111.606 19.32H109.45C109.098 20.442 108.086 21.014 106.7 21.014C104.764 21.014 103.576 19.65 103.466 17.692H111.606C111.628 17.406 111.65 17.186 111.65 16.966ZM106.612 13.226C108.306 13.226 109.45 14.414 109.472 16.108H103.488C103.708 14.502 104.874 13.226 106.612 13.226Z"
+                  />
+                  <path
+                    d="M113.966 22.62H116.21V7H113.966V22.62Z"
+                  />
+                  <path
+                    d="M118.838 22.62H121.082V7H118.838V22.62Z"
+                  />
+                </svg>
+              </a>
+              <button>
+                <svg
+                  fill="none"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 14.8636C13.5815 14.8636 14.8636 13.5815 14.8636 12C14.8636 10.4184 13.5815 9.13635 12 9.13635C10.4184 9.13635 9.13635 10.4184 9.13635 12C9.13635 13.5815 10.4184 14.8636 12 14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19.0636 14.8636C18.9366 15.1515 18.8987 15.4709 18.9548 15.7806C19.011 16.0902 19.1586 16.3759 19.3786 16.6009L19.4359 16.6582C19.6134 16.8355 19.7542 17.046 19.8503 17.2778C19.9464 17.5096 19.9958 17.758 19.9958 18.0089C19.9958 18.2597 19.9464 18.5082 19.8503 18.7399C19.7542 18.9717 19.6134 19.1822 19.4359 19.3595C19.2586 19.537 19.0481 19.6779 18.8163 19.7739C18.5845 19.87 18.3361 19.9195 18.0852 19.9195C17.8343 19.9195 17.5859 19.87 17.3542 19.7739C17.1224 19.6779 16.9118 19.537 16.7345 19.3595L16.6773 19.3023C16.4523 19.0822 16.1666 18.9346 15.8569 18.8785C15.5473 18.8223 15.2279 18.8602 14.94 18.9873C14.6577 19.1083 14.4169 19.3092 14.2473 19.5653C14.0777 19.8214 13.9867 20.1215 13.9855 20.4286V20.5909C13.9855 21.0972 13.7843 21.5828 13.4263 21.9408C13.0683 22.2989 12.5827 22.5 12.0764 22.5C11.57 22.5 11.0845 22.2989 10.7264 21.9408C10.3684 21.5828 10.1673 21.0972 10.1673 20.5909V20.505C10.1599 20.1891 10.0576 19.8826 9.87376 19.6256C9.68991 19.3685 9.43297 19.1727 9.13636 19.0636C8.84846 18.9366 8.52909 18.8987 8.21944 18.9548C7.90979 19.011 7.62406 19.1586 7.39909 19.3786L7.34182 19.4359C7.16451 19.6134 6.95396 19.7542 6.7222 19.8503C6.49044 19.9464 6.24202 19.9958 5.99114 19.9958C5.74025 19.9958 5.49183 19.9464 5.26007 19.8503C5.02831 19.7542 4.81776 19.6134 4.64045 19.4359C4.46295 19.2586 4.32214 19.0481 4.22607 18.8163C4.12999 18.5845 4.08054 18.3361 4.08054 18.0852C4.08054 17.8343 4.12999 17.5859 4.22607 17.3542C4.32214 17.1224 4.46295 16.9118 4.64045 16.7345L4.69773 16.6773C4.91779 16.4523 5.0654 16.1666 5.12155 15.8569C5.17769 15.5473 5.13979 15.2279 5.01273 14.94C4.89173 14.6577 4.69081 14.4169 4.43472 14.2473C4.17862 14.0777 3.87852 13.9867 3.57136 13.9855H3.40909C2.90277 13.9855 2.41718 13.7843 2.05916 13.4263C1.70114 13.0683 1.5 12.5827 1.5 12.0764C1.5 11.57 1.70114 11.0845 2.05916 10.7264C2.41718 10.3684 2.90277 10.1673 3.40909 10.1673H3.495C3.81095 10.1599 4.11737 10.0576 4.37442 9.87376C4.63148 9.68991 4.82727 9.43297 4.93636 9.13636C5.06343 8.84846 5.10133 8.52909 5.04519 8.21944C4.98904 7.90979 4.84142 7.62406 4.62136 7.39909L4.56409 7.34182C4.38659 7.16451 4.24578 6.95396 4.1497 6.7222C4.05363 6.49044 4.00418 6.24202 4.00418 5.99114C4.00418 5.74025 4.05363 5.49183 4.1497 5.26007C4.24578 5.02831 4.38659 4.81776 4.56409 4.64045C4.74139 4.46295 4.95194 4.32214 5.1837 4.22607C5.41546 4.12999 5.66389 4.08054 5.91477 4.08054C6.16566 4.08054 6.41408 4.12999 6.64584 4.22607C6.8776 4.32214 7.08815 4.46295 7.26545 4.64045L7.32273 4.69773C7.54769 4.91779 7.83342 5.0654 8.14307 5.12155C8.45272 5.17769 8.77209 5.13979 9.06 5.01273H9.13636C9.41869 4.89173 9.65947 4.69081 9.82907 4.43472C9.99867 4.17862 10.0897 3.87852 10.0909 3.57136V3.40909C10.0909 2.90277 10.292 2.41718 10.6501 2.05916C11.0081 1.70114 11.4937 1.5 12 1.5C12.5063 1.5 12.9919 1.70114 13.3499 2.05916C13.708 2.41718 13.9091 2.90277 13.9091 3.40909V3.495C13.9103 3.80216 14.0013 4.10226 14.1709 4.35835C14.3405 4.61445 14.5813 4.81536 14.8636 4.93636C15.1515 5.06343 15.4709 5.10133 15.7806 5.04519C16.0902 4.98904 16.3759 4.84142 16.6009 4.62136L16.6582 4.56409C16.8355 4.38659 17.046 4.24578 17.2778 4.1497C17.5096 4.05363 17.758 4.00418 18.0089 4.00418C18.2597 4.00418 18.5082 4.05363 18.7399 4.1497C18.9717 4.24578 19.1822 4.38659 19.3595 4.56409C19.537 4.74139 19.6779 4.95194 19.7739 5.1837C19.87 5.41546 19.9195 5.66389 19.9195 5.91477C19.9195 6.16566 19.87 6.41408 19.7739 6.64584C19.6779 6.8776 19.537 7.08815 19.3595 7.26545L19.3023 7.32273C19.0822 7.54769 18.9346 7.83342 18.8785 8.14307C18.8223 8.45272 18.8602 8.77209 18.9873 9.06V9.13636C19.1083 9.41869 19.3092 9.65947 19.5653 9.82907C19.8214 9.99867 20.1215 10.0897 20.4286 10.0909H20.5909C21.0972 10.0909 21.5828 10.292 21.9408 10.6501C22.2989 11.0081 22.5 11.4937 22.5 12C22.5 12.5063 22.2989 12.9919 21.9408 13.3499C21.5828 13.708 21.0972 13.9091 20.5909 13.9091H20.505C20.1978 13.9103 19.8977 14.0013 19.6416 14.1709C19.3856 14.3405 19.1846 14.5813 19.0636 14.8636V14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="emotion-11"
+          data-popper-arrow="true"
+          data-popper-placement="top"
+          style="position: absolute; left: 0px; transform: translate(0px, 0px);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components FloatingNotificationInbox render the "hideArrow" property is set to true does not render the pointing arrow 1`] = `
+.emotion-6 {
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  width: 500px;
+  max-width: calc(100vw - 10px);
+  overflow: hidden;
+}
+
+.emotion-5 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: #FFFFFF;
+  border-radius: 8px 8px 8px 8px;
+  color: #3A424D;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  height: 350px;
+  overflow: hidden;
+}
+
+.emotion-5 div,
+.emotion-5 span,
+.emotion-5 p,
+.emotion-5 a,
+.emotion-5 strong,
+.emotion-5 b,
+.emotion-5 u,
+.emotion-5 i,
+.emotion-5 ol,
+.emotion-5 ul,
+.emotion-5 li,
+.emotion-5 form,
+.emotion-5 label,
+.emotion-5 table,
+.emotion-5 tr,
+.emotion-5 th,
+.emotion-5 td,
+.emotion-5 article,
+.emotion-5 aside,
+.emotion-5 footer,
+.emotion-5 header,
+.emotion-5 nav,
+.emotion-5 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-5 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-5 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52,152,244) !important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-size: 14px !important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-align: left !important;
+  text-transform: none !important;
+  padding: 16px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-0 {
+  margin-right: 16px !important;
+}
+
+.emotion-2 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-4 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  -webkit-clip: auto;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  -webkit-perspective: none;
+  -moz-perspective: none;
+  -ms-perspective: none;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52,152,244);
+  color: rgba(255,255,255,0.75) !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  padding: 12px 24px !important;
+  -webkit-flex-shrink: 0 !important;
+  -ms-flex-negative: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.emotion-4 div,
+.emotion-4 span,
+.emotion-4 p,
+.emotion-4 a,
+.emotion-4 strong,
+.emotion-4 b,
+.emotion-4 u,
+.emotion-4 i,
+.emotion-4 ol,
+.emotion-4 ul,
+.emotion-4 li,
+.emotion-4 form,
+.emotion-4 label,
+.emotion-4 table,
+.emotion-4 tr,
+.emotion-4 th,
+.emotion-4 td,
+.emotion-4 article,
+.emotion-4 aside,
+.emotion-4 footer,
+.emotion-4 header,
+.emotion-4 nav,
+.emotion-4 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-4 a {
+  cursor: pointer !important;
+  color: inherit !important;
+}
+
+.emotion-4 button {
+  background: transparent;
+  border: none;
+  font-size: inherit !important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer !important;
+}
+
+.emotion-4:first-of-type {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.emotion-4:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-4 span {
+  color: white !important;
+}
+
+.emotion-4 span a {
+  color: white;
+  margin-right: 16px !important;
+  opacity: 0.75;
+  display: block;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: white !important;
+}
+
+.emotion-3 a,
+.emotion-3 button {
+  color: white;
+  display: block;
+}
+
+.emotion-3 a {
+  opacity: 0.85;
+}
+
+<div>
+  <div>
+    <div
+      aria-expanded="true"
+    />
+    <div
+      data-tippy-root=""
+      id="tippy-15"
+      style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -10px);"
+    >
+      <div
+        class="emotion-6"
+        data-escaped=""
+        data-placement="top"
+        data-reference-hidden=""
+      >
+        <div
+          class="emotion-5"
+        >
+          <div
+            class="emotion-1"
+          >
+            <p
+              class="emotion-0"
+            >
+              NOTIFICATIONS
+            </p>
+            <button
+              data-testid="mark-all-as-read"
+            >
+              Mark All Read
+            </button>
+          </div>
+          <div
+            class="emotion-2"
+          />
+          <div
+            class="emotion-4"
+          >
+            <div
+              class="emotion-3"
+            >
+              <a
+                href="https://magicbell.io/?utm_source=widget"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <svg
+                  fill="currentColor"
+                  height="16"
+                  viewBox="0 0 128 32"
+                  width="64"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.2378 4.66791C11.6702 4.67293 10.1682 5.29789 9.05974 6.40637C7.95126 7.51485 7.3263 9.01682 7.32128 10.5844V14.904C7.32128 16.2701 7.22608 17.1721 7.00713 17.9432C6.77392 18.7047 6.41866 19.4233 5.95519 20.0709C5.79336 20.3089 5.63866 20.5469 5.49587 20.7492C5.08176 21.3346 5.98613 21.475 6.44784 21.5488C8.69788 21.8729 10.9694 22.024 13.2426 22.001C15.5165 22.0241 17.7889 21.8729 20.0397 21.5488C21.2297 21.3537 21.1392 21.0276 20.6561 20.297C20.1816 19.6349 19.8034 18.909 19.5328 18.1408C19.2418 17.1631 19.1116 16.1447 19.1472 15.1254V10.5844C19.1453 9.01709 18.5223 7.51438 17.4147 6.40542C16.3071 5.29647 14.8052 4.67169 13.2378 4.66791ZM13.2378 2C15.5097 2.01067 17.6853 2.91905 19.2902 4.52711C20.8952 6.13517 21.7993 8.31251 21.8056 10.5844V15.1254C21.7707 15.8647 21.851 16.605 22.0436 17.3197C22.2453 17.8601 22.5191 18.3709 22.8575 18.8381C23.1288 19.2498 23.3978 19.6092 23.6167 19.9019C24.1356 20.5921 24.483 21.0562 24.4688 21.6892V21.713C24.4688 22.903 22.9289 23.7622 20.4443 24.1691C18.0527 24.5177 15.6379 24.6824 13.2212 24.6618C10.8141 24.6833 8.40892 24.521 6.02659 24.1763C3.54193 23.7693 2.00211 22.9197 2.00211 21.7202C1.96879 21.0633 2.33292 20.573 2.88507 19.8281C3.12306 19.5068 3.41818 19.1141 3.72757 18.6382C4.03691 18.2073 4.27775 17.7313 4.44155 17.2269C4.58673 16.7128 4.65099 16.0369 4.65099 14.9183V10.5844C4.65664 8.30944 5.56289 6.12924 7.17156 4.52057C8.78023 2.9119 10.9604 2.00566 13.2354 2H13.2378Z"
+                  />
+                  <path
+                    d="M10.8769 9.68955C10.8668 10.1473 10.9882 10.5983 11.2268 10.989C11.4417 11.326 11.7457 11.5969 12.105 11.772C12.4608 11.9412 12.8498 12.029 13.2438 12.029C13.6378 12.029 14.0268 11.9412 14.3826 11.772C14.7419 11.5969 15.0458 11.326 15.2608 10.989C15.49 10.5934 15.6107 10.1444 15.6107 9.68717C15.6107 9.22999 15.49 8.78091 15.2608 8.38534C15.0442 8.05094 14.7406 7.78189 14.3826 7.6071C14.0275 7.43555 13.6382 7.34644 13.2438 7.34644C12.8494 7.34644 12.4601 7.43555 12.105 7.6071C11.747 7.78189 11.4433 8.05094 11.2268 8.38534C10.9886 8.77798 10.8672 9.2304 10.8769 9.68955Z"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M25.6468 9.68483L23.0836 8.3711L20.5204 7.05737V9.68483V12.3147L23.0836 11.0009L25.6468 9.68483Z"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    d="M17.5907 25.8422C17.5423 26.9273 17.0888 27.9548 16.3198 28.722C15.9164 29.1264 15.4371 29.4472 14.9095 29.6661C14.3818 29.8851 13.8162 29.9977 13.2449 29.9977C12.6737 29.9977 12.1081 29.8851 11.5804 29.6661C11.0528 29.4472 10.5735 29.1264 10.1701 28.722C9.40107 27.9548 8.94761 26.9273 8.89917 25.8422C9.73453 25.916 10.6437 25.9684 11.5956 25.9969C11.6721 26.3773 11.879 26.7191 12.1805 26.9633C12.482 27.2075 12.8593 27.3387 13.2473 27.3344C13.4683 27.3346 13.6872 27.2912 13.8914 27.2067C14.0956 27.1221 14.2811 26.9981 14.4373 26.8418C14.669 26.61 14.8278 26.3155 14.8942 25.9945C15.8462 25.966 16.7554 25.9136 17.5907 25.8398"
+                  />
+                  <path
+                    d="M44.688 7.22H41.806L36.834 18.418H36.68L31.686 7.22H28.782V22.62H31.048V11.356H31.224L35.536 20.86H37.978L42.268 11.356H42.422V22.62H44.688V7.22Z"
+                  />
+                  <path
+                    d="M57.2448 20.926C56.6948 20.926 56.4088 20.64 56.4088 20.024V15.514C56.4088 12.764 54.5168 11.4 52.0088 11.4C49.3688 11.4 47.7408 12.984 47.5428 15.162H49.7648C49.9628 14.018 50.6228 13.226 52.0088 13.226C53.3728 13.226 54.1648 14.018 54.1648 15.426V15.976L50.7988 16.306C48.6868 16.504 47.1028 17.582 47.1028 19.672C47.1028 21.828 48.7088 22.84 50.8428 22.84C52.4928 22.84 53.7028 22.202 54.4508 21.256C54.7588 22.29 55.4848 22.62 56.5188 22.62H57.5308V20.926H57.2448ZM54.1648 18.396C54.1648 20.376 52.5368 21.08 51.1728 21.08C50.1828 21.08 49.3468 20.684 49.3468 19.584C49.3468 18.528 50.2488 17.956 51.5468 17.846L54.1648 17.582V18.396Z"
+                  />
+                  <path
+                    d="M69.3697 11.774L68.1817 10.498C67.7417 11.07 67.0377 11.686 66.3557 12.038C65.6517 11.62 64.7937 11.4 63.8257 11.4C61.2077 11.4 59.5357 13.028 59.5357 15.184C59.5357 16.306 59.9757 17.23 60.7237 17.868C59.9537 18.286 59.2937 18.968 59.2937 19.958C59.2937 20.904 59.8217 21.63 60.6577 21.982L58.8977 23.5C59.0957 25.524 60.6577 27.24 64.0017 27.24C66.9277 27.24 68.9297 25.92 68.9297 23.588C68.9297 21.652 67.5437 20.442 65.0357 20.442H62.8577C61.9557 20.442 61.3177 20.134 61.3177 19.496C61.3177 19.1 61.5377 18.814 61.9557 18.594C62.5277 18.814 63.1877 18.924 63.9137 18.924C66.3557 18.924 68.2477 17.516 68.2477 15.184C68.2477 14.392 68.0057 13.666 67.5437 13.072C68.3137 12.698 69.0177 12.192 69.3697 11.774ZM63.9137 17.23C62.5497 17.23 61.6697 16.35 61.6697 15.184C61.6697 13.93 62.5497 13.072 63.9137 13.072C65.2557 13.072 66.0917 13.93 66.0917 15.184C66.0917 16.35 65.2557 17.23 63.9137 17.23ZM66.7737 23.698C66.7737 24.952 65.4757 25.524 64.0017 25.524C62.1537 25.524 61.3397 24.6 61.0757 23.654L62.7697 22.224H64.7717C65.6737 22.224 66.7737 22.554 66.7737 23.698Z"
+                  />
+                  <path
+                    d="M72.1185 9.992C72.8885 9.992 73.5265 9.332 73.5265 8.562C73.5265 7.77 72.8885 7.154 72.1185 7.154C71.3265 7.154 70.6665 7.77 70.6665 8.562C70.6665 9.332 71.3265 9.992 72.1185 9.992ZM70.9965 22.62H73.2405V11.62H70.9965V22.62Z"
+                  />
+                  <path
+                    d="M81.0823 22.84C83.8103 22.84 85.8123 21.322 86.2083 18.946H83.9643C83.5463 20.134 82.6003 20.882 81.0823 20.882C79.0143 20.882 77.7383 19.298 77.7383 17.186C77.7383 14.986 79.1243 13.358 81.0603 13.358C82.6003 13.358 83.6563 14.304 83.9203 15.448H86.1643C85.7903 12.786 83.5463 11.4 81.0603 11.4C77.8703 11.4 75.5163 13.798 75.5163 17.186C75.5163 20.42 77.6943 22.84 81.0823 22.84Z"
+                  />
+                  <path
+                    d="M96.7512 14.546V14.436C97.8732 13.908 98.9072 12.984 98.9072 11.048C98.9072 8.782 97.4772 7.22 94.5072 7.22H88.6332V22.62H94.5292C97.5212 22.62 99.3252 21.08 99.3252 18.396C99.3252 16.064 97.9392 14.986 96.7512 14.546ZM90.8992 9.112H94.2652C95.6732 9.112 96.5972 9.948 96.5972 11.378C96.5972 12.808 95.7612 13.754 94.1992 13.754H90.8992V9.112ZM94.3312 20.728H90.8992V15.646H94.3312C95.9592 15.646 96.9712 16.746 96.9712 18.242C96.9712 19.716 96.0032 20.728 94.3312 20.728Z"
+                  />
+                  <path
+                    d="M111.65 16.966C111.65 13.182 109.296 11.4 106.612 11.4C103.62 11.4 101.266 13.644 101.266 17.23C101.266 20.618 103.532 22.84 106.7 22.84C109.296 22.84 111.144 21.52 111.606 19.32H109.45C109.098 20.442 108.086 21.014 106.7 21.014C104.764 21.014 103.576 19.65 103.466 17.692H111.606C111.628 17.406 111.65 17.186 111.65 16.966ZM106.612 13.226C108.306 13.226 109.45 14.414 109.472 16.108H103.488C103.708 14.502 104.874 13.226 106.612 13.226Z"
+                  />
+                  <path
+                    d="M113.966 22.62H116.21V7H113.966V22.62Z"
+                  />
+                  <path
+                    d="M118.838 22.62H121.082V7H118.838V22.62Z"
+                  />
+                </svg>
+              </a>
+              <button>
+                <svg
+                  fill="none"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 14.8636C13.5815 14.8636 14.8636 13.5815 14.8636 12C14.8636 10.4184 13.5815 9.13635 12 9.13635C10.4184 9.13635 9.13635 10.4184 9.13635 12C9.13635 13.5815 10.4184 14.8636 12 14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19.0636 14.8636C18.9366 15.1515 18.8987 15.4709 18.9548 15.7806C19.011 16.0902 19.1586 16.3759 19.3786 16.6009L19.4359 16.6582C19.6134 16.8355 19.7542 17.046 19.8503 17.2778C19.9464 17.5096 19.9958 17.758 19.9958 18.0089C19.9958 18.2597 19.9464 18.5082 19.8503 18.7399C19.7542 18.9717 19.6134 19.1822 19.4359 19.3595C19.2586 19.537 19.0481 19.6779 18.8163 19.7739C18.5845 19.87 18.3361 19.9195 18.0852 19.9195C17.8343 19.9195 17.5859 19.87 17.3542 19.7739C17.1224 19.6779 16.9118 19.537 16.7345 19.3595L16.6773 19.3023C16.4523 19.0822 16.1666 18.9346 15.8569 18.8785C15.5473 18.8223 15.2279 18.8602 14.94 18.9873C14.6577 19.1083 14.4169 19.3092 14.2473 19.5653C14.0777 19.8214 13.9867 20.1215 13.9855 20.4286V20.5909C13.9855 21.0972 13.7843 21.5828 13.4263 21.9408C13.0683 22.2989 12.5827 22.5 12.0764 22.5C11.57 22.5 11.0845 22.2989 10.7264 21.9408C10.3684 21.5828 10.1673 21.0972 10.1673 20.5909V20.505C10.1599 20.1891 10.0576 19.8826 9.87376 19.6256C9.68991 19.3685 9.43297 19.1727 9.13636 19.0636C8.84846 18.9366 8.52909 18.8987 8.21944 18.9548C7.90979 19.011 7.62406 19.1586 7.39909 19.3786L7.34182 19.4359C7.16451 19.6134 6.95396 19.7542 6.7222 19.8503C6.49044 19.9464 6.24202 19.9958 5.99114 19.9958C5.74025 19.9958 5.49183 19.9464 5.26007 19.8503C5.02831 19.7542 4.81776 19.6134 4.64045 19.4359C4.46295 19.2586 4.32214 19.0481 4.22607 18.8163C4.12999 18.5845 4.08054 18.3361 4.08054 18.0852C4.08054 17.8343 4.12999 17.5859 4.22607 17.3542C4.32214 17.1224 4.46295 16.9118 4.64045 16.7345L4.69773 16.6773C4.91779 16.4523 5.0654 16.1666 5.12155 15.8569C5.17769 15.5473 5.13979 15.2279 5.01273 14.94C4.89173 14.6577 4.69081 14.4169 4.43472 14.2473C4.17862 14.0777 3.87852 13.9867 3.57136 13.9855H3.40909C2.90277 13.9855 2.41718 13.7843 2.05916 13.4263C1.70114 13.0683 1.5 12.5827 1.5 12.0764C1.5 11.57 1.70114 11.0845 2.05916 10.7264C2.41718 10.3684 2.90277 10.1673 3.40909 10.1673H3.495C3.81095 10.1599 4.11737 10.0576 4.37442 9.87376C4.63148 9.68991 4.82727 9.43297 4.93636 9.13636C5.06343 8.84846 5.10133 8.52909 5.04519 8.21944C4.98904 7.90979 4.84142 7.62406 4.62136 7.39909L4.56409 7.34182C4.38659 7.16451 4.24578 6.95396 4.1497 6.7222C4.05363 6.49044 4.00418 6.24202 4.00418 5.99114C4.00418 5.74025 4.05363 5.49183 4.1497 5.26007C4.24578 5.02831 4.38659 4.81776 4.56409 4.64045C4.74139 4.46295 4.95194 4.32214 5.1837 4.22607C5.41546 4.12999 5.66389 4.08054 5.91477 4.08054C6.16566 4.08054 6.41408 4.12999 6.64584 4.22607C6.8776 4.32214 7.08815 4.46295 7.26545 4.64045L7.32273 4.69773C7.54769 4.91779 7.83342 5.0654 8.14307 5.12155C8.45272 5.17769 8.77209 5.13979 9.06 5.01273H9.13636C9.41869 4.89173 9.65947 4.69081 9.82907 4.43472C9.99867 4.17862 10.0897 3.87852 10.0909 3.57136V3.40909C10.0909 2.90277 10.292 2.41718 10.6501 2.05916C11.0081 1.70114 11.4937 1.5 12 1.5C12.5063 1.5 12.9919 1.70114 13.3499 2.05916C13.708 2.41718 13.9091 2.90277 13.9091 3.40909V3.495C13.9103 3.80216 14.0013 4.10226 14.1709 4.35835C14.3405 4.61445 14.5813 4.81536 14.8636 4.93636C15.1515 5.06343 15.4709 5.10133 15.7806 5.04519C16.0902 4.98904 16.3759 4.84142 16.6009 4.62136L16.6582 4.56409C16.8355 4.38659 17.046 4.24578 17.2778 4.1497C17.5096 4.05363 17.758 4.00418 18.0089 4.00418C18.2597 4.00418 18.5082 4.05363 18.7399 4.1497C18.9717 4.24578 19.1822 4.38659 19.3595 4.56409C19.537 4.74139 19.6779 4.95194 19.7739 5.1837C19.87 5.41546 19.9195 5.66389 19.9195 5.91477C19.9195 6.16566 19.87 6.41408 19.7739 6.64584C19.6779 6.8776 19.537 7.08815 19.3595 7.26545L19.3023 7.32273C19.0822 7.54769 18.9346 7.83342 18.8785 8.14307C18.8223 8.45272 18.8602 8.77209 18.9873 9.06V9.13636C19.1083 9.41869 19.3092 9.65947 19.5653 9.82907C19.8214 9.99867 20.1215 10.0897 20.4286 10.0909H20.5909C21.0972 10.0909 21.5828 10.292 21.9408 10.6501C22.2989 11.0081 22.5 11.4937 22.5 12C22.5 12.5063 22.2989 12.9919 21.9408 13.3499C21.5828 13.708 21.0972 13.9091 20.5909 13.9091H20.505C20.1978 13.9103 19.8977 14.0013 19.6416 14.1709C19.3856 14.3405 19.1846 14.5813 19.0636 14.8636V14.8636Z"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
