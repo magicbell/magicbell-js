@@ -14,7 +14,7 @@ interface TextProps {
  */
 export default function Text({ id, defaultMessage, html = false }: TextProps) {
   const translations = useTranslations();
-  const localizedText = translations[id] || defaultMessage;
+  const localizedText = translations ? translations[id] : defaultMessage;
 
   if (html) return <span dangerouslySetInnerHTML={{ __html: localizedText }} />;
   return <>{localizedText}</>;
