@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import Sinon from 'sinon';
 import '../../../src/lib/date';
+import { secondsToDate, toUnix } from '../../../src/lib/date';
 
 describe('lib', () => {
   describe('date', () => {
@@ -73,6 +74,40 @@ describe('lib', () => {
           clock.tick(100_000_000 * 60);
 
           expect(date.fromNow(true)).toBe('2mo');
+        });
+      });
+    });
+
+    describe('.secondsToDate', () => {
+      describe('the number of seconds is null', () => {
+        it('returns null', () => {
+          const date = secondsToDate(null);
+          expect(date).toBeNull();
+        });
+      });
+
+      describe('the number of seconds is not null', () => {
+        it('returns a date', () => {
+          const date = secondsToDate(1599294223);
+          expect(date).toBeInstanceOf(dayjs);
+        });
+      });
+    });
+
+    describe('.toUnix', () => {
+      describe('the date is null', () => {
+        it('returns null', () => {
+          const date = toUnix(null);
+          expect(date).toBeNull();
+        });
+      });
+
+      describe('the date is not null', () => {
+        it('returns the number of milliseconds since Unix epoch', () => {
+          const now = dayjs();
+          const seconds = toUnix(now);
+
+          expect(seconds).toEqual(now.toDate().getTime());
         });
       });
     });
