@@ -1,4 +1,5 @@
 import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
+import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -6,7 +7,7 @@ import ClickableNotification from '../ClickableNotification';
 import Loader from './Loader';
 
 export type NotificationListItem = (props: ListItemProps) => React.ReactElement;
-export type ClickCallbackFn = (notification: Notification) => void;
+export type ClickCallbackFn = (notification: INotification) => void;
 
 export interface ListItemProps {
   notification: IRemoteNotification;
