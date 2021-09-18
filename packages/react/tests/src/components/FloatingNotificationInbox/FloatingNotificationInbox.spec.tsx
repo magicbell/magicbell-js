@@ -1,22 +1,40 @@
 import { act, render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Server } from 'miragejs';
+import { Response, Server } from 'miragejs';
 import React from 'react';
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
-import MagicBellContext from '../../../../src/context/MagicBellContext';
-import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../../../src/context/Theme';
-import { getDefaultNotificationStoreMap } from '../../../factories/NotificationStoresMapFactory';
+import MagicBellProvider from '../../../../src/components/MagicBellProvider';
+import { sampleConfig } from '../../../factories/ConfigFactory';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 describe('components', () => {
   describe('FloatingNotificationInbox', () => {
+    const stores = [
+      {
+        id: 'default',
+        defaultQueryParams: {},
+        defaults: { notifications: [sampleNotification], lastFetchedAt: Date.now() },
+      },
+    ];
+
     let view: RenderResult;
     let launcherRef;
     let onAllRead: jest.Mock;
     let onNotificationClick: jest.Mock;
     let toggleNotificationInbox: jest.Mock;
+    let server;
 
     beforeEach(async () => {
+      server = new Server({
+        environment: 'test',
+        urlPrefix: 'https://api.magicbell.com',
+        timing: 0,
+      });
+
+      server.get(`/config/`, sampleConfig);
+      server.post(`/notifications/${sampleNotification.id}/read`, new Response(204, {}, ''));
+      server.post(`/notifications/${sampleNotification.id}/unread`, new Response(204, {}, ''));
+
       launcherRef = React.createRef();
       onAllRead = jest.fn();
       onNotificationClick = jest.fn();
@@ -24,7 +42,7 @@ describe('components', () => {
 
       await act(async () => {
         view = render(
-          <MagicBellThemeProvider value={defaultTheme}>
+          <MagicBellProvider apiKey="" stores={stores}>
             <div>
               <div ref={launcherRef} />
               <FloatingNotificationInbox
@@ -36,13 +54,14 @@ describe('components', () => {
                 isOpen
               />
             </div>
-          </MagicBellThemeProvider>,
+          </MagicBellProvider>,
         );
       });
     });
 
     afterEach(() => {
       view.unmount();
+      server.shutdown();
     });
 
     describe('render', () => {
@@ -53,8 +72,8 @@ describe('components', () => {
       describe('it is not visible', () => {
         beforeEach(async () => {
           await act(async () => {
-            view = render(
-              <MagicBellThemeProvider value={defaultTheme}>
+            view.rerender(
+              <MagicBellProvider apiKey="" stores={stores}>
                 <div>
                   <div ref={launcherRef} />
                   <FloatingNotificationInbox
@@ -67,7 +86,7 @@ describe('components', () => {
                     isOpen={false}
                   />
                 </div>
-              </MagicBellThemeProvider>,
+              </MagicBellProvider>,
             );
           });
         });
@@ -80,8 +99,8 @@ describe('components', () => {
       describe('a custom placement property is defined', () => {
         beforeEach(async () => {
           await act(async () => {
-            view = render(
-              <MagicBellThemeProvider value={defaultTheme}>
+            view.rerender(
+              <MagicBellProvider apiKey="" stores={stores}>
                 <div>
                   <div ref={launcherRef} />
                   <FloatingNotificationInbox
@@ -94,7 +113,7 @@ describe('components', () => {
                     isOpen
                   />
                 </div>
-              </MagicBellThemeProvider>,
+              </MagicBellProvider>,
             );
           });
         });
@@ -107,21 +126,19 @@ describe('components', () => {
       describe('the "hideArrow" property is set to true', () => {
         beforeEach(async () => {
           await act(async () => {
-            view = render(
-              <MagicBellThemeProvider value={defaultTheme}>
-                <MagicBellContext.Provider value={{ rootStore: getDefaultNotificationStoreMap() }}>
-                  <div>
-                    <div ref={launcherRef} />
-                    <FloatingNotificationInbox
-                      launcherRef={launcherRef}
-                      toggle={toggleNotificationInbox}
-                      height={350}
-                      hideArrow
-                      isOpen
-                    />
-                  </div>
-                </MagicBellContext.Provider>
-              </MagicBellThemeProvider>,
+            view.rerender(
+              <MagicBellProvider apiKey="" stores={stores}>
+                <div>
+                  <div ref={launcherRef} />
+                  <FloatingNotificationInbox
+                    launcherRef={launcherRef}
+                    toggle={toggleNotificationInbox}
+                    height={350}
+                    hideArrow
+                    isOpen
+                  />
+                </div>
+              </MagicBellProvider>,
             );
           });
         });
@@ -132,63 +149,46 @@ describe('components', () => {
       });
     });
 
-    describe.skip('.handleNotificationClick', () => {
-      let notification;
-      let server;
-
-      beforeEach(() => {
-        notification = store.items[0];
-
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.io' });
-        server.post(`/notifications/${notification.id}/read`);
-        server.post(`/notifications/${notification.id}/unread`);
-      });
-
-      afterEach(() => {
-        server.shutdown();
-      });
-
+    describe('.handleNotificationClick', () => {
       it('toggles the notification inbox', () => {
-        const title = view.getByText(notification.title);
+        const title = view.getByText(sampleNotification.title);
         userEvent.click(title);
+
         expect(toggleNotificationInbox).toHaveBeenCalledTimes(1);
       });
 
       it('calls the onNotificationClick callback', () => {
-        const title = view.getByText(notification.title);
+        const title = view.getByText(sampleNotification.title);
         userEvent.click(title);
 
         expect(onNotificationClick).toHaveBeenCalledTimes(1);
-        expect(onNotificationClick).toHaveBeenCalledWith(notification);
       });
 
       describe('default click handler', () => {
         beforeEach(async () => {
           await act(async () => {
-            view = render(
-              <MagicBellThemeProvider value={defaultTheme}>
-                <MagicBellContext.Provider value={{ rootStore }}>
-                  <div>
-                    <div ref={launcherRef} />
-                    <FloatingNotificationInbox
-                      launcherRef={launcherRef}
-                      toggle={toggleNotificationInbox}
-                      height={350}
-                      onAllRead={onAllRead}
-                      isOpen
-                    />
-                  </div>
-                </MagicBellContext.Provider>
-              </MagicBellThemeProvider>,
+            view.rerender(
+              <MagicBellProvider apiKey="">
+                <div>
+                  <div ref={launcherRef} />
+                  <FloatingNotificationInbox
+                    launcherRef={launcherRef}
+                    toggle={toggleNotificationInbox}
+                    height={350}
+                    onAllRead={onAllRead}
+                    isOpen
+                  />
+                </div>
+              </MagicBellProvider>,
             );
           });
         });
 
         it('opens the action url in the same window', () => {
-          userEvent.click(view.getByText(notification.title));
+          userEvent.click(view.getByText(sampleNotification.title));
 
           expect(global.open).toHaveBeenCalledTimes(1);
-          expect(global.open).toHaveBeenCalledWith(notification.actionUrl, '_self');
+          expect(global.open).toHaveBeenCalledWith(sampleNotification.actionUrl, '_self');
         });
       });
     });

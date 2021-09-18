@@ -43,7 +43,7 @@ export interface Props {
  */
 export default function MagicBellProvider({
   children,
-  theme,
+  theme = {},
   images,
   locale = 'en',
   ...settings

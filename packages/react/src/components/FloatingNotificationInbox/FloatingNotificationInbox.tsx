@@ -61,7 +61,11 @@ export default function FloatingNotificationInbox({
     >
       {(attrs) => (
         <StyledPopoverContainer width={width} attrs={attrs} layout={layout}>
-          <NotificationInbox onNotificationClick={handleNotificationClick} layout={layout} {...inboxProps} />
+          <NotificationInbox
+            onNotificationClick={handleNotificationClick}
+            layout={layout}
+            {...inboxProps}
+          />
           {hideArrow ? null : <Arrow placement={attrs['data-placement']} />}
         </StyledPopoverContainer>
       )}

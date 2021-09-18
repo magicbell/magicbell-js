@@ -1,35 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components FloatingNotificationInbox render a custom placement property is defined renders the tooltip in the correct place 1`] = `
-.emotion-7 {
+.emotion-0 {
   border-radius: 8px 8px 8px 8px;
-  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1),0px 10px 10px rgba(84, 95, 111, 0.04);
   width: 500px;
   max-width: calc(100vw - 10px);
   overflow: hidden;
 }
 
-.emotion-5 {
+.emotion-1 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -37,9 +39,6 @@ exports[`components FloatingNotificationInbox render a custom placement property
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -50,14 +49,12 @@ exports[`components FloatingNotificationInbox render a custom placement property
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -79,138 +76,9 @@ exports[`components FloatingNotificationInbox render a custom placement property
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
   height: 350px;
   overflow: hidden;
-}
-
-.emotion-5 div,
-.emotion-5 span,
-.emotion-5 p,
-.emotion-5 a,
-.emotion-5 strong,
-.emotion-5 b,
-.emotion-5 u,
-.emotion-5 i,
-.emotion-5 ol,
-.emotion-5 ul,
-.emotion-5 li,
-.emotion-5 form,
-.emotion-5 label,
-.emotion-5 table,
-.emotion-5 tr,
-.emotion-5 th,
-.emotion-5 td,
-.emotion-5 article,
-.emotion-5 aside,
-.emotion-5 footer,
-.emotion-5 header,
-.emotion-5 nav,
-.emotion-5 section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.emotion-5 a {
-  cursor: pointer !important;
-  color: inherit !important;
-}
-
-.emotion-5 button {
-  background: transparent;
-  border: none;
-  font-size: inherit !important;
-  color: inherit;
-  padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-1 {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-size: auto;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  box-sizing: content-box;
-  clear: none;
-  -webkit-clip: auto;
-  clip: auto;
-  color: inherit;
-  cursor: auto;
-  direction: inherit;
-  display: block;
-  left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  height: auto;
-  -webkit-hyphens: manual;
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  outline: invert none medium;
-  padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
-  perspective: none;
-  position: static;
-  right: auto;
-  top: auto;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  text-align: left;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  vertical-align: baseline;
-  visibility: inherit;
-  white-space: normal;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: rgb(52,152,244) !important;
-  color: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  font-size: 14px !important;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  text-align: left !important;
-  text-transform: none !important;
-  padding: 16px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
 }
 
 .emotion-1 div,
@@ -245,59 +113,42 @@ exports[`components FloatingNotificationInbox render a custom placement property
 }
 
 .emotion-1 a {
-  cursor: pointer !important;
-  color: inherit !important;
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
 .emotion-1 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-1:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-.emotion-1:last-of-type {
-  border-radius: 0 0 8px 8px!important;
-}
-
-.emotion-0 {
-  margin-right: 16px !important;
+  cursor: pointer!important;
 }
 
 .emotion-2 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.emotion-4 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -305,9 +156,6 @@ exports[`components FloatingNotificationInbox render a custom placement property
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -318,14 +166,12 @@ exports[`components FloatingNotificationInbox render a custom placement property
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -337,40 +183,52 @@ exports[`components FloatingNotificationInbox render a custom placement property
   width: auto;
   word-spacing: normal;
   z-index: auto;
-  background: rgb(52,152,244);
-  color: rgba(255,255,255,0.75) !important;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  text-align: left !important;
-  font-size: 14px !important;
-  padding: 12px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52, 152, 244)!important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px!important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  text-align: left!important;
+  text-transform: none!important;
+  padding: 16px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
 }
 
-.emotion-4 div,
-.emotion-4 span,
-.emotion-4 p,
-.emotion-4 a,
-.emotion-4 strong,
-.emotion-4 b,
-.emotion-4 u,
-.emotion-4 i,
-.emotion-4 ol,
-.emotion-4 ul,
-.emotion-4 li,
-.emotion-4 form,
-.emotion-4 label,
-.emotion-4 table,
-.emotion-4 tr,
-.emotion-4 th,
-.emotion-4 td,
-.emotion-4 article,
-.emotion-4 aside,
-.emotion-4 footer,
-.emotion-4 header,
-.emotion-4 nav,
-.emotion-4 section {
+.emotion-2 div,
+.emotion-2 span,
+.emotion-2 p,
+.emotion-2 a,
+.emotion-2 strong,
+.emotion-2 b,
+.emotion-2 u,
+.emotion-2 i,
+.emotion-2 ol,
+.emotion-2 ul,
+.emotion-2 li,
+.emotion-2 form,
+.emotion-2 label,
+.emotion-2 table,
+.emotion-2 tr,
+.emotion-2 th,
+.emotion-2 td,
+.emotion-2 article,
+.emotion-2 aside,
+.emotion-2 footer,
+.emotion-2 header,
+.emotion-2 nav,
+.emotion-2 section {
   margin: 0;
   padding: 0;
   border: 0;
@@ -379,40 +237,411 @@ exports[`components FloatingNotificationInbox render a custom placement property
   vertical-align: baseline;
 }
 
-.emotion-4 a {
-  cursor: pointer !important;
-  color: inherit !important;
+.emotion-2 a {
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
-.emotion-4 button {
+.emotion-2 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
+  cursor: pointer!important;
 }
 
-.emotion-4:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
+.emotion-2:first-of-type {
+  border-radius: 8px 8px 0 0!important;
 }
 
-.emotion-4:last-of-type {
+.emotion-2:last-of-type {
   border-radius: 0 0 8px 8px!important;
 }
 
-.emotion-4 span {
-  color: white !important;
+.emotion-3 {
+  margin-right: 16px!important;
 }
 
-.emotion-4 span a {
+.emotion-4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-5 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: rgba(52, 152, 244, 0)!important;
+  border-radius: 8px;
+  color: #3A424D!important;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px;
+  margin: 4px!important;
+  overflow: hidden;
+  text-align: left!important;
+  text-transform: none;
+  -webkit-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  padding: 16px 20px!important;
+  min-height: 32px;
+}
+
+.emotion-5 div,
+.emotion-5 span,
+.emotion-5 p,
+.emotion-5 a,
+.emotion-5 strong,
+.emotion-5 b,
+.emotion-5 u,
+.emotion-5 i,
+.emotion-5 ol,
+.emotion-5 ul,
+.emotion-5 li,
+.emotion-5 form,
+.emotion-5 label,
+.emotion-5 table,
+.emotion-5 tr,
+.emotion-5 th,
+.emotion-5 td,
+.emotion-5 article,
+.emotion-5 aside,
+.emotion-5 footer,
+.emotion-5 header,
+.emotion-5 nav,
+.emotion-5 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-5 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-5 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-5:hover {
+  background-color: rgba(49, 144, 232, 0.05)!important;
+}
+
+.emotion-5>button {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 0 -16px;
+  text-align: inherit!important;
+}
+
+.emotion-5>button>div {
+  margin: 0 0 0 16px;
+}
+
+.emotion-5>button>div:first-of-type {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-6 {
+  cursor: inherit;
+  font-weight: 500!important;
+  line-height: 1.2!important;
+  word-break: break-word!important;
+}
+
+.emotion-7 {
+  color: inherit!important;
+  cursor: inherit;
+  margin: 0;
+  line-height: 1.2;
+  font-size: 0.865em!important;
+  margin-top: 1em!important;
+  word-break: break-word!important;
+}
+
+.emotion-8 {
+  padding: 0.5em 0 0.5em 0.25em!important;
+}
+
+.emotion-9 {
+  display: -webkit-box!important;
+  display: -webkit-flex!important;
+  display: -ms-flexbox!important;
+  display: flex!important;
+  -webkit-align-items: center!important;
+  -webkit-box-align: center!important;
+  -ms-flex-align: center!important;
+  align-items: center!important;
+  padding: 0.5em 0 0.5em 0.25em!important;
+  color: #3498F4!important;
+}
+
+.emotion-9 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-10 {
+  padding: 14px 24px!important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(52, 152, 244, 0.1);
+  color: #3A424D!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+}
+
+.emotion-10>* {
+  margin-left: 1rem;
+}
+
+.emotion-11 {
+  padding: 10px!important;
+  border-radius: 4px!important;
+  background: #3498F4!important;
+  color: white!important;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 svg {
+  height: 24px;
+}
+
+.emotion-13 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52, 152, 244);
+  color: rgba(255, 255, 255, 0.75)!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+  padding: 12px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-13 div,
+.emotion-13 span,
+.emotion-13 p,
+.emotion-13 a,
+.emotion-13 strong,
+.emotion-13 b,
+.emotion-13 u,
+.emotion-13 i,
+.emotion-13 ol,
+.emotion-13 ul,
+.emotion-13 li,
+.emotion-13 form,
+.emotion-13 label,
+.emotion-13 table,
+.emotion-13 tr,
+.emotion-13 th,
+.emotion-13 td,
+.emotion-13 article,
+.emotion-13 aside,
+.emotion-13 footer,
+.emotion-13 header,
+.emotion-13 nav,
+.emotion-13 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-13 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-13 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-13:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-13:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-13 span {
+  color: white!important;
+}
+
+.emotion-13 span a {
   color: white;
-  margin-right: 16px !important;
+  margin-right: 16px!important;
   opacity: 0.75;
   display: block;
 }
 
-.emotion-3 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -423,59 +652,59 @@ exports[`components FloatingNotificationInbox render a custom placement property
   align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  color: white !important;
+  color: white!important;
 }
 
-.emotion-3 a,
-.emotion-3 button {
+.emotion-14 a,
+.emotion-14 button {
   color: white;
   display: block;
 }
 
-.emotion-3 a {
+.emotion-14 a {
   opacity: 0.85;
 }
 
-.emotion-6,
-.emotion-6:before {
+.emotion-15,
+.emotion-15:before {
   position: absolute;
-  width: 18px !important;
-  height: 18px !important;
+  width: 18px!important;
+  height: 18px!important;
   z-index: -1;
-  border-radius: 2px !important;
+  border-radius: 2px!important;
 }
 
-.emotion-6:before {
+.emotion-15:before {
   content: '';
   -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   left: 0;
 }
 
-.emotion-6[data-popper-placement^='top'] {
+.emotion-15[data-popper-placement^='top'] {
   bottom: -4px;
 }
 
-.emotion-6[data-popper-placement^='top']:before {
+.emotion-15[data-popper-placement^='top']:before {
   background: #3498F4;
 }
 
-.emotion-6[data-popper-placement^='bottom'] {
+.emotion-15[data-popper-placement^='bottom'] {
   top: -4px;
 }
 
-.emotion-6[data-popper-placement^='bottom']:before {
+.emotion-15[data-popper-placement^='bottom']:before {
   background: #3498F4;
 }
 
-.emotion-6[data-popper-placement^='left'] {
+.emotion-15[data-popper-placement^='left'] {
   right: -4px;
 }
 
-.emotion-6[data-popper-placement^='right'] {
+.emotion-15[data-popper-placement^='right'] {
   left: -4px;
 }
 
@@ -486,23 +715,23 @@ exports[`components FloatingNotificationInbox render a custom placement property
     />
     <div
       data-tippy-root=""
-      id="tippy-11"
-      style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; transform: translate(0px, 10px);"
+      id="tippy-7"
+      style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; right: 0px; transform: translate(0px, 10px);"
     >
       <div
-        class="emotion-7"
+        class="emotion-0"
         data-escaped=""
         data-placement="bottom-end"
         data-reference-hidden=""
       >
         <div
-          class="emotion-5"
+          class="emotion-1"
         >
           <div
-            class="emotion-1"
+            class="emotion-2"
           >
             <p
-              class="emotion-0"
+              class="emotion-3"
             >
               NOTIFICATIONS
             </p>
@@ -513,13 +742,101 @@ exports[`components FloatingNotificationInbox render a custom placement property
             </button>
           </div>
           <div
-            class="emotion-2"
-          />
-          <div
             class="emotion-4"
           >
             <div
-              class="emotion-3"
+              class="infinite-scroll-component__outerdiv"
+            >
+              <div
+                class="infinite-scroll-component "
+                style="height: 350px; overflow: auto;"
+              >
+                <div
+                  class="emotion-5"
+                >
+                  <button
+                    data-testid="clickable-notification"
+                  >
+                    <div>
+                      <p
+                        class="emotion-6"
+                        title="New Comment: Tables in knowledgebase"
+                      >
+                        New Comment: Tables in knowledgebase
+                      </p>
+                      <article
+                        class="emotion-7"
+                      >
+                        <p>
+                          This is a good content
+                        </p>
+                      </article>
+                    </div>
+                    <div
+                      class="emotion-8"
+                    >
+                      <div
+                        aria-expanded="false"
+                      >
+                        2y
+                      </div>
+                    </div>
+                  </button>
+                  <div
+                    aria-expanded="false"
+                    class="emotion-9"
+                    data-testid="icon"
+                  >
+                    <svg
+                      viewBox="0 0 512 512"
+                    >
+                      <circle
+                        cx="256"
+                        cy="256"
+                        r="64"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="emotion-10"
+          >
+            <p
+              style="flex: 1;"
+            >
+              By enabling browser notifications, you’ll stay up to date even better.
+            </p>
+            <button
+              class="emotion-11"
+            >
+              Enable Now
+            </button>
+            <button
+              class="emotion-12"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="emotion-13"
+          >
+            <div
+              class="emotion-14"
             >
               <a
                 href="https://magicbell.io/?utm_source=widget"
@@ -602,7 +919,7 @@ exports[`components FloatingNotificationInbox render a custom placement property
           </div>
         </div>
         <div
-          class="emotion-6"
+          class="emotion-15"
           data-popper-arrow="true"
           data-popper-placement="bottom-end"
           style="position: absolute; left: 0px; transform: translate(0px, 0px);"
@@ -624,35 +941,37 @@ exports[`components FloatingNotificationInbox render it is not visible does not 
 `;
 
 exports[`components FloatingNotificationInbox render renders a notification inbox wrapped in tippy 1`] = `
-.emotion-12 {
+.emotion-0 {
   border-radius: 8px 8px 8px 8px;
-  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1),0px 10px 10px rgba(84, 95, 111, 0.04);
   width: 500px;
   max-width: calc(100vw - 10px);
   overflow: hidden;
 }
 
-.emotion-10 {
+.emotion-1 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -660,9 +979,6 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -673,14 +989,12 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -702,9 +1016,461 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
   height: 350px;
   overflow: hidden;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-2 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52, 152, 244)!important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px!important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  text-align: left!important;
+  text-transform: none!important;
+  padding: 16px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-2 div,
+.emotion-2 span,
+.emotion-2 p,
+.emotion-2 a,
+.emotion-2 strong,
+.emotion-2 b,
+.emotion-2 u,
+.emotion-2 i,
+.emotion-2 ol,
+.emotion-2 ul,
+.emotion-2 li,
+.emotion-2 form,
+.emotion-2 label,
+.emotion-2 table,
+.emotion-2 tr,
+.emotion-2 th,
+.emotion-2 td,
+.emotion-2 article,
+.emotion-2 aside,
+.emotion-2 footer,
+.emotion-2 header,
+.emotion-2 nav,
+.emotion-2 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-2 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-2 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-2:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-2:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-3 {
+  margin-right: 16px!important;
+}
+
+.emotion-4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-5 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: rgba(52, 152, 244, 0)!important;
+  border-radius: 8px;
+  color: #3A424D!important;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px;
+  margin: 4px!important;
+  overflow: hidden;
+  text-align: left!important;
+  text-transform: none;
+  -webkit-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  padding: 16px 20px!important;
+  min-height: 32px;
+}
+
+.emotion-5 div,
+.emotion-5 span,
+.emotion-5 p,
+.emotion-5 a,
+.emotion-5 strong,
+.emotion-5 b,
+.emotion-5 u,
+.emotion-5 i,
+.emotion-5 ol,
+.emotion-5 ul,
+.emotion-5 li,
+.emotion-5 form,
+.emotion-5 label,
+.emotion-5 table,
+.emotion-5 tr,
+.emotion-5 th,
+.emotion-5 td,
+.emotion-5 article,
+.emotion-5 aside,
+.emotion-5 footer,
+.emotion-5 header,
+.emotion-5 nav,
+.emotion-5 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-5 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-5 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-5:hover {
+  background-color: rgba(49, 144, 232, 0.05)!important;
+}
+
+.emotion-5>button {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 0 -16px;
+  text-align: inherit!important;
+}
+
+.emotion-5>button>div {
+  margin: 0 0 0 16px;
+}
+
+.emotion-5>button>div:first-of-type {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-6 {
+  cursor: inherit;
+  font-weight: 500!important;
+  line-height: 1.2!important;
+  word-break: break-word!important;
+}
+
+.emotion-7 {
+  color: inherit!important;
+  cursor: inherit;
+  margin: 0;
+  line-height: 1.2;
+  font-size: 0.865em!important;
+  margin-top: 1em!important;
+  word-break: break-word!important;
+}
+
+.emotion-8 {
+  padding: 0.5em 0 0.5em 0.25em!important;
+}
+
+.emotion-9 {
+  display: -webkit-box!important;
+  display: -webkit-flex!important;
+  display: -ms-flexbox!important;
+  display: flex!important;
+  -webkit-align-items: center!important;
+  -webkit-box-align: center!important;
+  -ms-flex-align: center!important;
+  align-items: center!important;
+  padding: 0.5em 0 0.5em 0.25em!important;
+  color: #3498F4!important;
+}
+
+.emotion-9 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-10 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52, 152, 244);
+  color: rgba(255, 255, 255, 0.75)!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+  padding: 12px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
 }
 
 .emotion-10 div,
@@ -739,491 +1505,39 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
 }
 
 .emotion-10 a {
-  cursor: pointer !important;
-  color: inherit !important;
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
 .emotion-10 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
+  cursor: pointer!important;
 }
 
-.emotion-1 {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-size: auto;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  box-sizing: content-box;
-  clear: none;
-  -webkit-clip: auto;
-  clip: auto;
-  color: inherit;
-  cursor: auto;
-  direction: inherit;
-  display: block;
-  left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  height: auto;
-  -webkit-hyphens: manual;
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  outline: invert none medium;
-  padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
-  perspective: none;
-  position: static;
-  right: auto;
-  top: auto;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  text-align: left;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  vertical-align: baseline;
-  visibility: inherit;
-  white-space: normal;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: rgb(52,152,244) !important;
-  color: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  font-size: 14px !important;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  text-align: left !important;
-  text-transform: none !important;
-  padding: 16px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
+.emotion-10:first-of-type {
+  border-radius: 8px 8px 0 0!important;
 }
 
-.emotion-1 div,
-.emotion-1 span,
-.emotion-1 p,
-.emotion-1 a,
-.emotion-1 strong,
-.emotion-1 b,
-.emotion-1 u,
-.emotion-1 i,
-.emotion-1 ol,
-.emotion-1 ul,
-.emotion-1 li,
-.emotion-1 form,
-.emotion-1 label,
-.emotion-1 table,
-.emotion-1 tr,
-.emotion-1 th,
-.emotion-1 td,
-.emotion-1 article,
-.emotion-1 aside,
-.emotion-1 footer,
-.emotion-1 header,
-.emotion-1 nav,
-.emotion-1 section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.emotion-1 a {
-  cursor: pointer !important;
-  color: inherit !important;
-}
-
-.emotion-1 button {
-  background: transparent;
-  border: none;
-  font-size: inherit !important;
-  color: inherit;
-  padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-1:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-.emotion-1:last-of-type {
+.emotion-10:last-of-type {
   border-radius: 0 0 8px 8px!important;
 }
 
-.emotion-0 {
-  margin-right: 16px !important;
+.emotion-10 span {
+  color: white!important;
 }
 
-.emotion-7 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.emotion-6 {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-size: auto;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  box-sizing: content-box;
-  clear: none;
-  -webkit-clip: auto;
-  clip: auto;
-  color: inherit;
-  cursor: auto;
-  direction: inherit;
-  display: block;
-  left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  height: auto;
-  -webkit-hyphens: manual;
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  outline: invert none medium;
-  padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
-  perspective: none;
-  position: static;
-  right: auto;
-  top: auto;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  text-align: left;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  vertical-align: baseline;
-  visibility: inherit;
-  white-space: normal;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  background-color: rgba(52,152,244,0) !important;
-  border-radius: 8px;
-  color: #3A424D !important;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  font-size: 14px;
-  margin: 4px !important;
-  overflow: hidden;
-  text-align: left !important;
-  text-transform: none;
-  -webkit-transition: background-color 300ms ease-out;
-  transition: background-color 300ms ease-out;
-  padding: 16px 20px !important;
-  min-height: 32px;
-}
-
-.emotion-6 div,
-.emotion-6 span,
-.emotion-6 p,
-.emotion-6 a,
-.emotion-6 strong,
-.emotion-6 b,
-.emotion-6 u,
-.emotion-6 i,
-.emotion-6 ol,
-.emotion-6 ul,
-.emotion-6 li,
-.emotion-6 form,
-.emotion-6 label,
-.emotion-6 table,
-.emotion-6 tr,
-.emotion-6 th,
-.emotion-6 td,
-.emotion-6 article,
-.emotion-6 aside,
-.emotion-6 footer,
-.emotion-6 header,
-.emotion-6 nav,
-.emotion-6 section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.emotion-6 a {
-  cursor: pointer !important;
-  color: inherit !important;
-}
-
-.emotion-6 button {
-  background: transparent;
-  border: none;
-  font-size: inherit !important;
-  color: inherit;
-  padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-6:hover {
-  background-color: rgba(49,144,232,0.05) !important;
-}
-
-.emotion-6 > button {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 0 0 0 -16px;
-  text-align: inherit !important;
-}
-
-.emotion-6 > button > div {
-  margin: 0 0 0 16px;
-}
-
-.emotion-6 > button > div:first-of-type {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-
-.emotion-2 {
-  cursor: inherit;
-  font-weight: 500 !important;
-  line-height: 1.2 !important;
-  word-break: break-word !important;
-}
-
-.emotion-4 {
-  padding: 0.5em 0 0.5em 0.25em !important;
-}
-
-.emotion-5 {
-  display: -webkit-box !important;
-  display: -webkit-flex !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-align-items: center !important;
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important;
-  padding: 0.5em 0 0.5em 0.25em !important;
-  color: #3498F4 !important;
-}
-
-.emotion-5 svg {
-  height: 1.5em;
-  fill: currentColor;
-}
-
-.emotion-9 {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-size: auto;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  box-sizing: content-box;
-  clear: none;
-  -webkit-clip: auto;
-  clip: auto;
-  color: inherit;
-  cursor: auto;
-  direction: inherit;
-  display: block;
-  left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  height: auto;
-  -webkit-hyphens: manual;
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  outline: invert none medium;
-  padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
-  perspective: none;
-  position: static;
-  right: auto;
-  top: auto;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  text-align: left;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  vertical-align: baseline;
-  visibility: inherit;
-  white-space: normal;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  background: rgb(52,152,244);
-  color: rgba(255,255,255,0.75) !important;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  text-align: left !important;
-  font-size: 14px !important;
-  padding: 12px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
-}
-
-.emotion-9 div,
-.emotion-9 span,
-.emotion-9 p,
-.emotion-9 a,
-.emotion-9 strong,
-.emotion-9 b,
-.emotion-9 u,
-.emotion-9 i,
-.emotion-9 ol,
-.emotion-9 ul,
-.emotion-9 li,
-.emotion-9 form,
-.emotion-9 label,
-.emotion-9 table,
-.emotion-9 tr,
-.emotion-9 th,
-.emotion-9 td,
-.emotion-9 article,
-.emotion-9 aside,
-.emotion-9 footer,
-.emotion-9 header,
-.emotion-9 nav,
-.emotion-9 section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.emotion-9 a {
-  cursor: pointer !important;
-  color: inherit !important;
-}
-
-.emotion-9 button {
-  background: transparent;
-  border: none;
-  font-size: inherit !important;
-  color: inherit;
-  padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-9:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-.emotion-9:last-of-type {
-  border-radius: 0 0 8px 8px!important;
-}
-
-.emotion-9 span {
-  color: white !important;
-}
-
-.emotion-9 span a {
+.emotion-10 span a {
   color: white;
-  margin-right: 16px !important;
+  margin-right: 16px!important;
   opacity: 0.75;
   display: block;
 }
 
-.emotion-8 {
+.emotion-11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1234,70 +1548,60 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  color: white !important;
+  color: white!important;
 }
 
-.emotion-8 a,
-.emotion-8 button {
+.emotion-11 a,
+.emotion-11 button {
   color: white;
   display: block;
 }
 
-.emotion-8 a {
+.emotion-11 a {
   opacity: 0.85;
 }
 
-.emotion-11,
-.emotion-11:before {
+.emotion-12,
+.emotion-12:before {
   position: absolute;
-  width: 18px !important;
-  height: 18px !important;
+  width: 18px!important;
+  height: 18px!important;
   z-index: -1;
-  border-radius: 2px !important;
+  border-radius: 2px!important;
 }
 
-.emotion-11:before {
+.emotion-12:before {
   content: '';
   -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   left: 0;
 }
 
-.emotion-11[data-popper-placement^='top'] {
+.emotion-12[data-popper-placement^='top'] {
   bottom: -4px;
 }
 
-.emotion-11[data-popper-placement^='top']:before {
+.emotion-12[data-popper-placement^='top']:before {
   background: #3498F4;
 }
 
-.emotion-11[data-popper-placement^='bottom'] {
+.emotion-12[data-popper-placement^='bottom'] {
   top: -4px;
 }
 
-.emotion-11[data-popper-placement^='bottom']:before {
+.emotion-12[data-popper-placement^='bottom']:before {
   background: #3498F4;
 }
 
-.emotion-11[data-popper-placement^='left'] {
+.emotion-12[data-popper-placement^='left'] {
   right: -4px;
 }
 
-.emotion-11[data-popper-placement^='right'] {
+.emotion-12[data-popper-placement^='right'] {
   left: -4px;
-}
-
-.emotion-3 {
-  color: inherit !important;
-  cursor: inherit;
-  margin: 0;
-  line-height: 1.2;
-  font-size: 0.865em !important;
-  margin-top: 1em !important;
-  word-break: break-word !important;
 }
 
 <div>
@@ -1311,19 +1615,19 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
       style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -10px);"
     >
       <div
-        class="emotion-12"
+        class="emotion-0"
         data-escaped=""
         data-placement="top"
         data-reference-hidden=""
       >
         <div
-          class="emotion-10"
+          class="emotion-1"
         >
           <div
-            class="emotion-1"
+            class="emotion-2"
           >
             <p
-              class="emotion-0"
+              class="emotion-3"
             >
               NOTIFICATIONS
             </p>
@@ -1334,7 +1638,7 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
             </button>
           </div>
           <div
-            class="emotion-7"
+            class="emotion-4"
           >
             <div
               class="infinite-scroll-component__outerdiv"
@@ -1344,20 +1648,20 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
                 style="height: 350px; overflow: auto;"
               >
                 <div
-                  class="emotion-6"
+                  class="emotion-5"
                 >
                   <button
                     data-testid="clickable-notification"
                   >
                     <div>
                       <p
-                        class="emotion-2"
+                        class="emotion-6"
                         title="New Comment: Tables in knowledgebase"
                       >
                         New Comment: Tables in knowledgebase
                       </p>
                       <article
-                        class="emotion-3"
+                        class="emotion-7"
                       >
                         <p>
                           This is a good content
@@ -1365,18 +1669,18 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
                       </article>
                     </div>
                     <div
-                      class="emotion-4"
+                      class="emotion-8"
                     >
                       <div
                         aria-expanded="false"
                       >
-                        1y
+                        2y
                       </div>
                     </div>
                   </button>
                   <div
                     aria-expanded="false"
-                    class="emotion-5"
+                    class="emotion-9"
                     data-testid="icon"
                   >
                     <svg
@@ -1394,10 +1698,10 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
             </div>
           </div>
           <div
-            class="emotion-9"
+            class="emotion-10"
           >
             <div
-              class="emotion-8"
+              class="emotion-11"
             >
               <a
                 href="https://magicbell.io/?utm_source=widget"
@@ -1480,7 +1784,7 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
           </div>
         </div>
         <div
-          class="emotion-11"
+          class="emotion-12"
           data-popper-arrow="true"
           data-popper-placement="top"
           style="position: absolute; left: 0px; transform: translate(0px, 0px);"
@@ -1492,35 +1796,37 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
 `;
 
 exports[`components FloatingNotificationInbox render the "hideArrow" property is set to true does not render the pointing arrow 1`] = `
-.emotion-6 {
+.emotion-0 {
   border-radius: 8px 8px 8px 8px;
-  box-shadow: 0px 20px 25px rgba(84,95,111,0.1),0px 10px 10px rgba(84,95,111,0.04);
+  box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1),0px 10px 10px rgba(84, 95, 111, 0.04);
   width: 500px;
   max-width: calc(100vw - 10px);
   overflow: hidden;
 }
 
-.emotion-5 {
+.emotion-1 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -1528,9 +1834,6 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -1541,14 +1844,12 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -1570,138 +1871,9 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
   height: 350px;
   overflow: hidden;
-}
-
-.emotion-5 div,
-.emotion-5 span,
-.emotion-5 p,
-.emotion-5 a,
-.emotion-5 strong,
-.emotion-5 b,
-.emotion-5 u,
-.emotion-5 i,
-.emotion-5 ol,
-.emotion-5 ul,
-.emotion-5 li,
-.emotion-5 form,
-.emotion-5 label,
-.emotion-5 table,
-.emotion-5 tr,
-.emotion-5 th,
-.emotion-5 td,
-.emotion-5 article,
-.emotion-5 aside,
-.emotion-5 footer,
-.emotion-5 header,
-.emotion-5 nav,
-.emotion-5 section {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-.emotion-5 a {
-  cursor: pointer !important;
-  color: inherit !important;
-}
-
-.emotion-5 button {
-  background: transparent;
-  border: none;
-  font-size: inherit !important;
-  color: inherit;
-  padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-1 {
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-position: 0 0;
-  background-size: auto;
-  border-radius: 0;
-  border: 0;
-  box-shadow: none;
-  box-sizing: content-box;
-  clear: none;
-  -webkit-clip: auto;
-  clip: auto;
-  color: inherit;
-  cursor: auto;
-  direction: inherit;
-  display: block;
-  left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  height: auto;
-  -webkit-hyphens: manual;
-  -moz-hyphens: manual;
-  -ms-hyphens: manual;
-  hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  min-height: 0;
-  min-width: 0;
-  opacity: 1;
-  outline: invert none medium;
-  padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
-  perspective: none;
-  position: static;
-  right: auto;
-  top: auto;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  text-align: left;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  vertical-align: baseline;
-  visibility: inherit;
-  white-space: normal;
-  width: auto;
-  word-spacing: normal;
-  z-index: auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: rgb(52,152,244) !important;
-  color: white;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  font-size: 14px !important;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  text-align: left !important;
-  text-transform: none !important;
-  padding: 16px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
 }
 
 .emotion-1 div,
@@ -1736,59 +1908,42 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
 }
 
 .emotion-1 a {
-  cursor: pointer !important;
-  color: inherit !important;
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
 .emotion-1 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
-}
-
-.emotion-1:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
-}
-
-.emotion-1:last-of-type {
-  border-radius: 0 0 8px 8px!important;
-}
-
-.emotion-0 {
-  margin-right: 16px !important;
+  cursor: pointer!important;
 }
 
 .emotion-2 {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.emotion-4 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
+  -webkit-background-clip: border-box;
   background-clip: border-box;
   background-color: transparent;
   background-origin: padding-box;
+  -webkit-background-position: 0 0;
   background-position: 0 0;
+  -webkit-background-size: auto;
   background-size: auto;
   border-radius: 0;
   border: 0;
   box-shadow: none;
   box-sizing: content-box;
   clear: none;
-  -webkit-clip: auto;
   clip: auto;
   color: inherit;
   cursor: auto;
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;
@@ -1796,9 +1951,6 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   -moz-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1;
   margin: 0;
@@ -1809,14 +1961,12 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   opacity: 1;
   outline: invert none medium;
   padding: 0;
-  -webkit-perspective: none;
-  -moz-perspective: none;
-  -ms-perspective: none;
   perspective: none;
   position: static;
   right: auto;
   top: auto;
   -webkit-transform: none;
+  -moz-transform: none;
   -ms-transform: none;
   transform: none;
   text-align: left;
@@ -1828,40 +1978,52 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   width: auto;
   word-spacing: normal;
   z-index: auto;
-  background: rgb(52,152,244);
-  color: rgba(255,255,255,0.75) !important;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif !important;
-  text-align: left !important;
-  font-size: 14px !important;
-  padding: 12px 24px !important;
-  -webkit-flex-shrink: 0 !important;
-  -ms-flex-negative: 0 !important;
-  flex-shrink: 0 !important;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52, 152, 244)!important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px!important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  text-align: left!important;
+  text-transform: none!important;
+  padding: 16px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
 }
 
-.emotion-4 div,
-.emotion-4 span,
-.emotion-4 p,
-.emotion-4 a,
-.emotion-4 strong,
-.emotion-4 b,
-.emotion-4 u,
-.emotion-4 i,
-.emotion-4 ol,
-.emotion-4 ul,
-.emotion-4 li,
-.emotion-4 form,
-.emotion-4 label,
-.emotion-4 table,
-.emotion-4 tr,
-.emotion-4 th,
-.emotion-4 td,
-.emotion-4 article,
-.emotion-4 aside,
-.emotion-4 footer,
-.emotion-4 header,
-.emotion-4 nav,
-.emotion-4 section {
+.emotion-2 div,
+.emotion-2 span,
+.emotion-2 p,
+.emotion-2 a,
+.emotion-2 strong,
+.emotion-2 b,
+.emotion-2 u,
+.emotion-2 i,
+.emotion-2 ol,
+.emotion-2 ul,
+.emotion-2 li,
+.emotion-2 form,
+.emotion-2 label,
+.emotion-2 table,
+.emotion-2 tr,
+.emotion-2 th,
+.emotion-2 td,
+.emotion-2 article,
+.emotion-2 aside,
+.emotion-2 footer,
+.emotion-2 header,
+.emotion-2 nav,
+.emotion-2 section {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1870,40 +2032,411 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   vertical-align: baseline;
 }
 
-.emotion-4 a {
-  cursor: pointer !important;
-  color: inherit !important;
+.emotion-2 a {
+  cursor: pointer!important;
+  color: inherit!important;
 }
 
-.emotion-4 button {
+.emotion-2 button {
   background: transparent;
   border: none;
-  font-size: inherit !important;
+  font-size: inherit!important;
   color: inherit;
   padding: 0;
-  cursor: pointer !important;
+  cursor: pointer!important;
 }
 
-.emotion-4:first-of-type {
-  border-radius: 8px 8px 0 0 !important;
+.emotion-2:first-of-type {
+  border-radius: 8px 8px 0 0!important;
 }
 
-.emotion-4:last-of-type {
+.emotion-2:last-of-type {
   border-radius: 0 0 8px 8px!important;
 }
 
-.emotion-4 span {
-  color: white !important;
+.emotion-3 {
+  margin-right: 16px!important;
 }
 
-.emotion-4 span a {
+.emotion-4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.emotion-5 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background-color: rgba(52, 152, 244, 0)!important;
+  border-radius: 8px;
+  color: #3A424D!important;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px;
+  margin: 4px!important;
+  overflow: hidden;
+  text-align: left!important;
+  text-transform: none;
+  -webkit-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  padding: 16px 20px!important;
+  min-height: 32px;
+}
+
+.emotion-5 div,
+.emotion-5 span,
+.emotion-5 p,
+.emotion-5 a,
+.emotion-5 strong,
+.emotion-5 b,
+.emotion-5 u,
+.emotion-5 i,
+.emotion-5 ol,
+.emotion-5 ul,
+.emotion-5 li,
+.emotion-5 form,
+.emotion-5 label,
+.emotion-5 table,
+.emotion-5 tr,
+.emotion-5 th,
+.emotion-5 td,
+.emotion-5 article,
+.emotion-5 aside,
+.emotion-5 footer,
+.emotion-5 header,
+.emotion-5 nav,
+.emotion-5 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-5 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-5 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-5:hover {
+  background-color: rgba(49, 144, 232, 0.05)!important;
+}
+
+.emotion-5>button {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 0 -16px;
+  text-align: inherit!important;
+}
+
+.emotion-5>button>div {
+  margin: 0 0 0 16px;
+}
+
+.emotion-5>button>div:first-of-type {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-6 {
+  cursor: inherit;
+  font-weight: 500!important;
+  line-height: 1.2!important;
+  word-break: break-word!important;
+}
+
+.emotion-7 {
+  color: inherit!important;
+  cursor: inherit;
+  margin: 0;
+  line-height: 1.2;
+  font-size: 0.865em!important;
+  margin-top: 1em!important;
+  word-break: break-word!important;
+}
+
+.emotion-8 {
+  padding: 0.5em 0 0.5em 0.25em!important;
+}
+
+.emotion-9 {
+  display: -webkit-box!important;
+  display: -webkit-flex!important;
+  display: -ms-flexbox!important;
+  display: flex!important;
+  -webkit-align-items: center!important;
+  -webkit-box-align: center!important;
+  -ms-flex-align: center!important;
+  align-items: center!important;
+  padding: 0.5em 0 0.5em 0.25em!important;
+  color: #3498F4!important;
+}
+
+.emotion-9 svg {
+  height: 1.5em;
+  fill: currentColor;
+}
+
+.emotion-10 {
+  padding: 14px 24px!important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(52, 152, 244, 0.1);
+  color: #3A424D!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+}
+
+.emotion-10>* {
+  margin-left: 1rem;
+}
+
+.emotion-11 {
+  padding: 10px!important;
+  border-radius: 4px!important;
+  background: #3498F4!important;
+  color: white!important;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 svg {
+  height: 24px;
+}
+
+.emotion-13 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52, 152, 244);
+  color: rgba(255, 255, 255, 0.75)!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+  padding: 12px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-13 div,
+.emotion-13 span,
+.emotion-13 p,
+.emotion-13 a,
+.emotion-13 strong,
+.emotion-13 b,
+.emotion-13 u,
+.emotion-13 i,
+.emotion-13 ol,
+.emotion-13 ul,
+.emotion-13 li,
+.emotion-13 form,
+.emotion-13 label,
+.emotion-13 table,
+.emotion-13 tr,
+.emotion-13 th,
+.emotion-13 td,
+.emotion-13 article,
+.emotion-13 aside,
+.emotion-13 footer,
+.emotion-13 header,
+.emotion-13 nav,
+.emotion-13 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-13 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-13 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-13:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-13:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-13 span {
+  color: white!important;
+}
+
+.emotion-13 span a {
   color: white;
-  margin-right: 16px !important;
+  margin-right: 16px!important;
   opacity: 0.75;
   display: block;
 }
 
-.emotion-3 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1914,18 +2447,17 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
   align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  color: white !important;
+  color: white!important;
 }
 
-.emotion-3 a,
-.emotion-3 button {
+.emotion-14 a,
+.emotion-14 button {
   color: white;
   display: block;
 }
 
-.emotion-3 a {
+.emotion-14 a {
   opacity: 0.85;
 }
 
@@ -1936,23 +2468,23 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
     />
     <div
       data-tippy-root=""
-      id="tippy-15"
+      id="tippy-10"
       style="z-index: 9999; position: absolute; left: 0px; top: 0px; margin: 0px; bottom: 0px; transform: translate(0px, -10px);"
     >
       <div
-        class="emotion-6"
+        class="emotion-0"
         data-escaped=""
         data-placement="top"
         data-reference-hidden=""
       >
         <div
-          class="emotion-5"
+          class="emotion-1"
         >
           <div
-            class="emotion-1"
+            class="emotion-2"
           >
             <p
-              class="emotion-0"
+              class="emotion-3"
             >
               NOTIFICATIONS
             </p>
@@ -1963,13 +2495,101 @@ exports[`components FloatingNotificationInbox render the "hideArrow" property is
             </button>
           </div>
           <div
-            class="emotion-2"
-          />
-          <div
             class="emotion-4"
           >
             <div
-              class="emotion-3"
+              class="infinite-scroll-component__outerdiv"
+            >
+              <div
+                class="infinite-scroll-component "
+                style="height: 350px; overflow: auto;"
+              >
+                <div
+                  class="emotion-5"
+                >
+                  <button
+                    data-testid="clickable-notification"
+                  >
+                    <div>
+                      <p
+                        class="emotion-6"
+                        title="New Comment: Tables in knowledgebase"
+                      >
+                        New Comment: Tables in knowledgebase
+                      </p>
+                      <article
+                        class="emotion-7"
+                      >
+                        <p>
+                          This is a good content
+                        </p>
+                      </article>
+                    </div>
+                    <div
+                      class="emotion-8"
+                    >
+                      <div
+                        aria-expanded="false"
+                      >
+                        2y
+                      </div>
+                    </div>
+                  </button>
+                  <div
+                    aria-expanded="false"
+                    class="emotion-9"
+                    data-testid="icon"
+                  >
+                    <svg
+                      viewBox="0 0 512 512"
+                    >
+                      <circle
+                        cx="256"
+                        cy="256"
+                        r="64"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="emotion-10"
+          >
+            <p
+              style="flex: 1;"
+            >
+              By enabling browser notifications, you’ll stay up to date even better.
+            </p>
+            <button
+              class="emotion-11"
+            >
+              Enable Now
+            </button>
+            <button
+              class="emotion-12"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="emotion-13"
+          >
+            <div
+              class="emotion-14"
             >
               <a
                 href="https://magicbell.io/?utm_source=widget"
