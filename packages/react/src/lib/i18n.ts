@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import 'dayjs/locale/pt-br';
-import defaultsDeep from 'lodash/defaultsDeep';
+import mergeDeepRight from 'ramda/src/mergeDeepRight';
 import es from './translations/es';
 import pt_br from './translations/pt-br';
 
@@ -29,8 +29,7 @@ export function useLocale(locale: string | CustomLocale) {
 
   if (typeof locale === 'string') return defaultLocales[locale];
   else {
-    let customLocales = {};
-    defaultsDeep(customLocales, { [localeName]: locale.translations }, defaultLocales);
+    const customLocales = mergeDeepRight({ [localeName]: locale.translations }, defaultLocales);
     return customLocales[localeName];
   }
 }

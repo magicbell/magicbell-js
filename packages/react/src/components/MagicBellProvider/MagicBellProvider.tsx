@@ -1,5 +1,5 @@
 import { MagicBellProvider as Provider } from '@magicbell/react-headless';
-import merge from 'lodash/merge';
+import mergeDeepRight from 'ramda/src/mergeDeepRight';
 import React from 'react';
 import MagicBellContext from '../../context/MagicBellContext';
 import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
@@ -52,7 +52,7 @@ export default function MagicBellProvider({
 
   return (
     <TranslationsProvider value={textTranslations}>
-      <MagicBellThemeProvider value={merge({}, defaultTheme, theme)}>
+      <MagicBellThemeProvider value={mergeDeepRight(defaultTheme, theme)}>
         <MagicBellContext.Provider value={{ images }}>
           <Provider {...settings}>{children}</Provider>
         </MagicBellContext.Provider>

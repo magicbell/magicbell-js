@@ -1,6 +1,6 @@
 import { clientSettings, useConfig } from '@magicbell/react-headless';
 import axios from 'axios';
-import get from 'lodash/get';
+import prop from 'ramda/src/prop';
 import React from 'react';
 import { useTheme } from '../../context/MagicBellThemeContext';
 import ToggleInput from './ToggleInput';
@@ -12,15 +12,16 @@ import ToggleInput from './ToggleInput';
 export default function UserPreferences() {
   const { getState } = clientSettings;
   const { userEmail, userExternalId } = getState();
-  const config = useConfig();
+  const channelsConfig = useConfig((state) => state.channels);
   const theme = useTheme();
 
   const enablePushNotifications = () => {
-    const top = (screen.height - 400) / 4;
-    const left = (screen.width - 600) / 2;
-    const baseUrl = get(config.channels, 'webPushNotifications.subscribeUrl');
+    const top = (window.screen.height - 400) / 4;
+    const left = (window.screen.width - 600) / 2;
+    const subscribeUrl = prop(['webPushNotifications', 'subscribeUrl'], channelsConfig);
+
     const url = axios.getUri({
-      url: baseUrl,
+      url: subscribeUrl,
       params: {
         user_email: userEmail,
         user_external_id: userExternalId,

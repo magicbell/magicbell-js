@@ -1,5 +1,4 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { capitalize, kebabCase } from 'lodash';
 import React from 'react';
 import ToggleInput from './ToggleInput';
 
@@ -7,10 +6,18 @@ interface Props {
   category: string;
 }
 
+const humanize = (str) =>
+  str
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/(\W+)/g, ' ')
+    .replace(/^-|-$/g, '')
+    .toLowerCase()
+    .replace(/(^|\s)\S/g, (letter) => letter.toUpperCase())
+    .replace(/(\.|_)/g, ' ');
+
 export default function CategoryPreferences({ category }: Props) {
   const preferences = useNotificationPreferences();
-  const categoryId = kebabCase(category);
-  const categoryTitle = capitalize(categoryId.replace(/-/g, ' '));
+  const categoryTitle = humanize(category);
 
   const updatePreferences = (data) => {
     preferences.save({ categories: { [category]: data } });
@@ -21,21 +28,21 @@ export default function CategoryPreferences({ category }: Props) {
       <div>{categoryTitle}</div>
       <div>
         <ToggleInput
-          id={`${categoryId}-inapp`}
+          id={`${category}-inapp`}
           value={preferences.categories[category].inApp}
           onClick={(value) => updatePreferences({ inApp: value })}
         />
       </div>
       <div>
         <ToggleInput
-          id={`${categoryId}-email`}
+          id={`${category}-email`}
           value={preferences.categories[category].email}
           onClick={(value) => updatePreferences({ email: value })}
         />
       </div>
       <div>
         <ToggleInput
-          id={`${categoryId}-web-push`}
+          id={`${category}-web-push`}
           value={preferences.categories[category].webPush}
           onClick={(value) => updatePreferences({ webPush: value })}
         />

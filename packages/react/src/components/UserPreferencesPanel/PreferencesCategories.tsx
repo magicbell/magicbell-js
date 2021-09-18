@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import keys from 'lodash/keys';
 import CategoryPreferences from './CategoryPreferences';
 
 export default function PreferencesCategories() {
@@ -25,7 +24,7 @@ export default function PreferencesCategories() {
       <div css={headerStyle}>In-app</div>
       <div css={headerStyle}>Email</div>
       <div css={headerStyle}>Web push</div>
-      {keys(preferences.categories).map((categoryKey) => (
+      {Object.keys(preferences.categories).map((categoryKey) => (
         <CategoryPreferences key={categoryKey} category={categoryKey} />
       ))}
     </div>

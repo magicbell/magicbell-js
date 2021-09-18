@@ -1,5 +1,5 @@
 import { useConfig } from '@magicbell/react-headless';
-import get from 'lodash/get';
+import pathOr from 'ramda/src/pathOr';
 import React from 'react';
 import MagicBellLogo from './MagicBellLogo';
 
@@ -11,8 +11,8 @@ import MagicBellLogo from './MagicBellLogo';
  * <FooterLogo />
  */
 export default function FooterLogo() {
-  const config = useConfig();
-  const hideBranding = get(config?.inbox, 'features.noMagicbellBranding.enabled', false);
+  const inboxConfig = useConfig((state) => state.inbox);
+  const hideBranding = pathOr(false, ['features', 'noMagicbellBranding', 'enabled'], inboxConfig);
 
   if (hideBranding) return <p style={{ height: '20px' }} />;
   return (
