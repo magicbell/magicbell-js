@@ -2,7 +2,7 @@
 
 exports[`components ClearInboxMessage render default language renders the text in English 1`] = `
 .emotion-0 {
-  padding: 3em !important;
+  padding: 3em!important;
   text-align: center;
   color: #3A424D;
 }
@@ -33,7 +33,7 @@ exports[`components ClearInboxMessage render default language renders the text i
 
 exports[`components ClearInboxMessage render renders an image 1`] = `
 .emotion-0 {
-  padding: 3em !important;
+  padding: 3em!important;
   text-align: center;
   color: #3A424D;
 }

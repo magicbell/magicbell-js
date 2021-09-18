@@ -2,7 +2,7 @@
 
 exports[`components FetchErrorMessage render the navigator does not have an internet connection renders a connection error message 1`] = `
 .emotion-0 {
-  padding: 3em !important;
+  padding: 3em!important;
   text-align: center;
   color: #3A424D;
 }
@@ -56,7 +56,7 @@ exports[`components FetchErrorMessage render the navigator does not have an inte
 
 exports[`components FetchErrorMessage render the navigator has an internet connection renders an API error message 1`] = `
 .emotion-0 {
-  padding: 3em !important;
+  padding: 3em!important;
   text-align: center;
   color: #3A424D;
 }

@@ -4,19 +4,21 @@ import Loader from '../../../../src/components/NotificationList/Loader';
 
 describe('components', () => {
   describe('NotificationList', () => {
-    let view: RenderResult;
+    describe('Loader', () => {
+      let view: RenderResult;
 
-    beforeEach(() => {
-      view = render(<Loader />);
-    });
+      beforeEach(() => {
+        view = render(<Loader />);
+      });
 
-    afterEach(() => {
-      view.unmount();
-    });
+      afterEach(() => {
+        view.unmount();
+      });
 
-    describe('render', () => {
-      it('renders an animated loader', () => {
-        expect(view.container).toMatchSnapshot();
+      describe('render', () => {
+        it('renders an animated loader', () => {
+          expect(view.container).toMatchSnapshot();
+        });
       });
     });
   });

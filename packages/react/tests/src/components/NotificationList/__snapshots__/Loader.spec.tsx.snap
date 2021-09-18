@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components NotificationList render renders an animated loader 1`] = `
+exports[`components NotificationList Loader render renders an animated loader 1`] = `
 .emotion-0 {
-  color: inherit !important;
-  font-size: 0.85em !important;
-  padding: 0.5em !important;
-  text-align: center !important;
+  color: inherit!important;
+  font-size: 0.85em!important;
+  padding: 0.5em!important;
+  text-align: center!important;
 }
 
 <div>
