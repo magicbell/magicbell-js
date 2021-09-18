@@ -30,7 +30,7 @@ export function buildAPIHeaders() {
 
   if (apiSecret) headers['X-MAGICBELL-API-SECRET'] = apiSecret;
   if (userEmail) headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
-  if (userKey) headers['X-MAGICBELL-USER-KEY'] = userKey;
+  if (userKey) headers['X-MAGICBELL-USER-HMAC'] = userKey;
   if (userExternalId) headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;
 
   return headers;

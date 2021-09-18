@@ -117,7 +117,7 @@ describe('lib', () => {
         });
 
         describe('the user key is set', () => {
-          it('sends the X-MAGICBELL-USER-KEY header', async () => {
+          it('sends the X-MAGICBELL-USER-HMAC header', async () => {
             const userKey = faker.random.alphaNumeric();
             const { setState } = clientSettings;
             setState({ userKey });
@@ -126,7 +126,7 @@ describe('lib', () => {
 
             const requests = server.pretender.handledRequests;
             expect(requests[0].requestHeaders).toMatchObject({
-              'X-MAGICBELL-USER-KEY': userKey,
+              'X-MAGICBELL-USER-HMAC': userKey,
             });
           });
         });
