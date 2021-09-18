@@ -8,6 +8,6 @@ export type CategoryPreference = {
   [key: string]: CategoryChannelPreferences;
 };
 
-export interface IRemoteNotificationPreferences {
+export default interface IRemoteNotificationPreferences {
   categories: CategoryPreference;
 }
