@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components ClearInboxMessage render default language renders the text in English 1`] = `
+.emotion-0 {
+  padding: 3em !important;
+  text-align: center;
+  color: #3A424D;
+}
+
+.emotion-0 img {
+  margin: 2em auto;
+  height: 200px;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <p>
+      <span>
+        All clear!
+        <br />
+        We'll let you know when there's more.
+      </span>
+    </p>
+    <img
+      alt="No notifications"
+      src="https://assets.magicbell.io/images/empty_inbox.png"
+    />
+  </div>
+</div>
+`;
+
+exports[`components ClearInboxMessage render renders an image 1`] = `
+.emotion-0 {
+  padding: 3em !important;
+  text-align: center;
+  color: #3A424D;
+}
+
+.emotion-0 img {
+  margin: 2em auto;
+  height: 200px;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <p>
+      <span>
+        ¡No tiene notificaciones!
+        <br />
+        Le haremos saber cuando llegue una.
+      </span>
+    </p>
+    <img
+      alt="No notifications"
+      src="https://assets.magicbell.io/images/empty_inbox.png"
+    />
+  </div>
+</div>
+`;
