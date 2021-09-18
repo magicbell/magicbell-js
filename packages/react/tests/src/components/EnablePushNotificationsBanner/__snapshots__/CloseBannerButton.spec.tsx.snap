@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components CloseBannerButton render renders a button with a close icon 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 svg {
+  height: 24px;
+}
+
+<div>
+  <button
+    class="emotion-0"
+  >
+    <svg
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 18L18 6M6 6l12 12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+    </svg>
+  </button>
+</div>
+`;

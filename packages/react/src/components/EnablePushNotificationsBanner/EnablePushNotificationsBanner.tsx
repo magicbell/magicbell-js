@@ -2,7 +2,8 @@
 import { css, jsx } from '@emotion/react';
 import { clientSettings, useConfig } from '@magicbell/react-headless';
 import axios from 'axios';
-import get from 'lodash/get';
+import path from 'ramda/src/path';
+import pathOr from 'ramda/src/pathOr';
 import { useLocalStorage } from 'react-use';
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';
@@ -18,22 +19,26 @@ import EnablePushNotificationsButton from './EnablePushNotificationsButton';
  * <EnablePushNotificationsBanner />
  */
 export default function EnablePushNotificationsBanner() {
+  const config = useConfig();
+  const { channels } = config;
+  const isWebPushEnabled = pathOr(false, ['webPush', 'enabled'], channels);
+
   const { getState } = clientSettings;
   const { apiKey, userEmail, userExternalId } = getState();
-  const config = useConfig();
+
   const theme = useTheme();
   const { footer: footerTheme } = theme;
   const { notification: notificationTheme } = theme;
+
   const [wasRequested, setRequestedAt] = useLocalStorage<number | null>(
     `magicbell:${apiKey}:web-push-requested-at`,
     null,
   );
-  const isWebPushEnabled = get(config.channels, 'webPush.enabled');
 
   const enablePushNotifications = () => {
-    const baseUrl = get(config.channels, 'webPushNotifications.subscribeUrl');
+    const subscribeUrl = path(['webPush', 'config', 'subscribeUrl'], channels);
     const url = axios.getUri({
-      url: baseUrl,
+      url: subscribeUrl,
       params: {
         user_email: userEmail,
         user_external_id: userExternalId,

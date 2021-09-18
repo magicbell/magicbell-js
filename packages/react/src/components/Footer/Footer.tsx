@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useConfig } from '@magicbell/react-headless';
-import { get } from 'lodash';
+import pathOr from 'ramda/src/pathOr';
 import useToggle from 'react-use/lib/useToggle';
 import { useTheme } from '../../context/MagicBellThemeContext';
 import UserPreferencesPanel from '../UserPreferencesPanel';
@@ -10,17 +10,24 @@ import SettingsIcon from './SettingsIcon';
 import StyledFooter from './StyledFooter';
 
 /**
- * Footer for the notification inbox. Renders a link to the MagicBell site.
+ * Footer for the notification inbox. Renders a button to toggle the user
+ * preferences panel.
  *
  * @example
  * <Footer />
  */
 export default function Footer() {
-  const theme = useTheme();
+  const [showPreferences, togglePreferences] = useToggle(false);
   const config = useConfig();
-  const { footer: footerTheme } = theme;
+  const { inbox } = config;
+  const preferencesEnabled = pathOr(
+    true,
+    ['features', 'notificationPreferences', 'enabled'],
+    inbox,
+  );
 
-  const [showUserPreferences, toggleUserPreferences] = useToggle(false);
+  const theme = useTheme();
+  const { footer: footerTheme } = theme;
 
   const contentStyle = css`
     display: flex;
@@ -39,17 +46,17 @@ export default function Footer() {
     }
   `;
 
-  if (showUserPreferences) return <UserPreferencesPanel onClose={toggleUserPreferences} />;
+  if (showPreferences) return <UserPreferencesPanel onClose={togglePreferences} />;
 
   return (
     <StyledFooter>
       <div css={contentStyle}>
         <FooterLogo />
-        {get(config?.inbox, 'features.notificationPreferences.enabled') == false ? null : (
-          <button onClick={toggleUserPreferences}>
+        {preferencesEnabled ? (
+          <button onClick={togglePreferences}>
             <SettingsIcon />
           </button>
-        )}
+        ) : null}
       </div>
     </StyledFooter>
   );

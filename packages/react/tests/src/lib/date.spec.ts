@@ -95,19 +95,21 @@ describe('lib', () => {
     });
 
     describe('.toUnix', () => {
-      describe('the date is null', () => {
-        it('returns null', () => {
-          const date = toUnix(null);
-          expect(date).toBeNull();
+      describe('the date is an instance of Date', () => {
+        it('returns the number of seconds since Unix epoch', () => {
+          const now = new Date();
+          const seconds = toUnix(now);
+
+          expect(seconds).toEqual(Math.floor(now.getTime() / 1000));
         });
       });
 
-      describe('the date is not null', () => {
-        it('returns the number of milliseconds since Unix epoch', () => {
+      describe('the date is an instance of Dayjs', () => {
+        it('returns the number of seconds since Unix epoch', () => {
           const now = dayjs();
           const seconds = toUnix(now);
 
-          expect(seconds).toEqual(now.toDate().getTime());
+          expect(seconds).toEqual(Math.floor(now.toDate().getTime() / 1000));
         });
       });
     });

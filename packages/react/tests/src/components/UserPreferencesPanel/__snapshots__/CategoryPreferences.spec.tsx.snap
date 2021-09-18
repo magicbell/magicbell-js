@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components CategoryPreferences render renders a checkbox for each channel 1`] = `
+<div>
+  <div>
+    Comments
+  </div>
+  <div>
+    <div>
+      <input
+        checked=""
+        id="comments-inapp"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div>
+    <div>
+      <input
+        id="comments-email"
+        type="checkbox"
+      />
+    </div>
+  </div>
+  <div>
+    <div>
+      <input
+        checked=""
+        id="comments-web-push"
+        type="checkbox"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,904 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components UserPreferencesPanel render after preferences are fetched renders preferences for all categories 1`] = `
+.emotion-0 {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  background: #FFFFFF;
+  color: #3A424D;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 8px 8px!important;
+}
+
+.emotion-0 .uppercase {
+  text-transform: uppercase;
+}
+
+.emotion-0 button.close svg {
+  height: 18px;
+}
+
+.emotion-0 .content {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 4px;
+  padding: 16px 20px!important;
+  overflow-y: scroll;
+}
+
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52, 152, 244)!important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px!important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  text-align: left!important;
+  text-transform: none!important;
+  padding: 16px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-2 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.emotion-3 {
+  opacity: 0.8;
+  text-transform: uppercase;
+  font-size: 0.7rem!important;
+}
+
+.emotion-6 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52, 152, 244);
+  color: rgba(255, 255, 255, 0.75)!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+  padding: 12px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-6 div,
+.emotion-6 span,
+.emotion-6 p,
+.emotion-6 a,
+.emotion-6 strong,
+.emotion-6 b,
+.emotion-6 u,
+.emotion-6 i,
+.emotion-6 ol,
+.emotion-6 ul,
+.emotion-6 li,
+.emotion-6 form,
+.emotion-6 label,
+.emotion-6 table,
+.emotion-6 tr,
+.emotion-6 th,
+.emotion-6 td,
+.emotion-6 article,
+.emotion-6 aside,
+.emotion-6 footer,
+.emotion-6 header,
+.emotion-6 nav,
+.emotion-6 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-6 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-6 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-6:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-6:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-6 span {
+  color: white!important;
+}
+
+.emotion-6 span a {
+  color: white;
+  margin-right: 16px!important;
+  opacity: 0.75;
+  display: block;
+}
+
+.emotion-7 {
+  padding: 2px 0!important;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <p
+        class="uppercase"
+      >
+        Preferences
+      </p>
+      <button
+        class="close"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="content"
+    >
+      <div
+        class="emotion-2"
+      >
+        <div />
+        <div
+          class="emotion-3"
+        >
+          In-app
+        </div>
+        <div
+          class="emotion-3"
+        >
+          Email
+        </div>
+        <div
+          class="emotion-3"
+        >
+          Web push
+        </div>
+        <div>
+          Comments
+        </div>
+        <div>
+          <div>
+            <input
+              id="comments-inapp"
+              type="checkbox"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <input
+              id="comments-email"
+              type="checkbox"
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <input
+              id="comments-web-push"
+              type="checkbox"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-6"
+    >
+      <div
+        class="emotion-7"
+      >
+        <a
+          href="https://magicbell.io/?utm_source=widget"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 128 32"
+            width="64"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.2378 4.66791C11.6702 4.67293 10.1682 5.29789 9.05974 6.40637C7.95126 7.51485 7.3263 9.01682 7.32128 10.5844V14.904C7.32128 16.2701 7.22608 17.1721 7.00713 17.9432C6.77392 18.7047 6.41866 19.4233 5.95519 20.0709C5.79336 20.3089 5.63866 20.5469 5.49587 20.7492C5.08176 21.3346 5.98613 21.475 6.44784 21.5488C8.69788 21.8729 10.9694 22.024 13.2426 22.001C15.5165 22.0241 17.7889 21.8729 20.0397 21.5488C21.2297 21.3537 21.1392 21.0276 20.6561 20.297C20.1816 19.6349 19.8034 18.909 19.5328 18.1408C19.2418 17.1631 19.1116 16.1447 19.1472 15.1254V10.5844C19.1453 9.01709 18.5223 7.51438 17.4147 6.40542C16.3071 5.29647 14.8052 4.67169 13.2378 4.66791ZM13.2378 2C15.5097 2.01067 17.6853 2.91905 19.2902 4.52711C20.8952 6.13517 21.7993 8.31251 21.8056 10.5844V15.1254C21.7707 15.8647 21.851 16.605 22.0436 17.3197C22.2453 17.8601 22.5191 18.3709 22.8575 18.8381C23.1288 19.2498 23.3978 19.6092 23.6167 19.9019C24.1356 20.5921 24.483 21.0562 24.4688 21.6892V21.713C24.4688 22.903 22.9289 23.7622 20.4443 24.1691C18.0527 24.5177 15.6379 24.6824 13.2212 24.6618C10.8141 24.6833 8.40892 24.521 6.02659 24.1763C3.54193 23.7693 2.00211 22.9197 2.00211 21.7202C1.96879 21.0633 2.33292 20.573 2.88507 19.8281C3.12306 19.5068 3.41818 19.1141 3.72757 18.6382C4.03691 18.2073 4.27775 17.7313 4.44155 17.2269C4.58673 16.7128 4.65099 16.0369 4.65099 14.9183V10.5844C4.65664 8.30944 5.56289 6.12924 7.17156 4.52057C8.78023 2.9119 10.9604 2.00566 13.2354 2H13.2378Z"
+            />
+            <path
+              d="M10.8769 9.68955C10.8668 10.1473 10.9882 10.5983 11.2268 10.989C11.4417 11.326 11.7457 11.5969 12.105 11.772C12.4608 11.9412 12.8498 12.029 13.2438 12.029C13.6378 12.029 14.0268 11.9412 14.3826 11.772C14.7419 11.5969 15.0458 11.326 15.2608 10.989C15.49 10.5934 15.6107 10.1444 15.6107 9.68717C15.6107 9.22999 15.49 8.78091 15.2608 8.38534C15.0442 8.05094 14.7406 7.78189 14.3826 7.6071C14.0275 7.43555 13.6382 7.34644 13.2438 7.34644C12.8494 7.34644 12.4601 7.43555 12.105 7.6071C11.747 7.78189 11.4433 8.05094 11.2268 8.38534C10.9886 8.77798 10.8672 9.2304 10.8769 9.68955Z"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M25.6468 9.68483L23.0836 8.3711L20.5204 7.05737V9.68483V12.3147L23.0836 11.0009L25.6468 9.68483Z"
+              fill-rule="evenodd"
+            />
+            <path
+              d="M17.5907 25.8422C17.5423 26.9273 17.0888 27.9548 16.3198 28.722C15.9164 29.1264 15.4371 29.4472 14.9095 29.6661C14.3818 29.8851 13.8162 29.9977 13.2449 29.9977C12.6737 29.9977 12.1081 29.8851 11.5804 29.6661C11.0528 29.4472 10.5735 29.1264 10.1701 28.722C9.40107 27.9548 8.94761 26.9273 8.89917 25.8422C9.73453 25.916 10.6437 25.9684 11.5956 25.9969C11.6721 26.3773 11.879 26.7191 12.1805 26.9633C12.482 27.2075 12.8593 27.3387 13.2473 27.3344C13.4683 27.3346 13.6872 27.2912 13.8914 27.2067C14.0956 27.1221 14.2811 26.9981 14.4373 26.8418C14.669 26.61 14.8278 26.3155 14.8942 25.9945C15.8462 25.966 16.7554 25.9136 17.5907 25.8398"
+            />
+            <path
+              d="M44.688 7.22H41.806L36.834 18.418H36.68L31.686 7.22H28.782V22.62H31.048V11.356H31.224L35.536 20.86H37.978L42.268 11.356H42.422V22.62H44.688V7.22Z"
+            />
+            <path
+              d="M57.2448 20.926C56.6948 20.926 56.4088 20.64 56.4088 20.024V15.514C56.4088 12.764 54.5168 11.4 52.0088 11.4C49.3688 11.4 47.7408 12.984 47.5428 15.162H49.7648C49.9628 14.018 50.6228 13.226 52.0088 13.226C53.3728 13.226 54.1648 14.018 54.1648 15.426V15.976L50.7988 16.306C48.6868 16.504 47.1028 17.582 47.1028 19.672C47.1028 21.828 48.7088 22.84 50.8428 22.84C52.4928 22.84 53.7028 22.202 54.4508 21.256C54.7588 22.29 55.4848 22.62 56.5188 22.62H57.5308V20.926H57.2448ZM54.1648 18.396C54.1648 20.376 52.5368 21.08 51.1728 21.08C50.1828 21.08 49.3468 20.684 49.3468 19.584C49.3468 18.528 50.2488 17.956 51.5468 17.846L54.1648 17.582V18.396Z"
+            />
+            <path
+              d="M69.3697 11.774L68.1817 10.498C67.7417 11.07 67.0377 11.686 66.3557 12.038C65.6517 11.62 64.7937 11.4 63.8257 11.4C61.2077 11.4 59.5357 13.028 59.5357 15.184C59.5357 16.306 59.9757 17.23 60.7237 17.868C59.9537 18.286 59.2937 18.968 59.2937 19.958C59.2937 20.904 59.8217 21.63 60.6577 21.982L58.8977 23.5C59.0957 25.524 60.6577 27.24 64.0017 27.24C66.9277 27.24 68.9297 25.92 68.9297 23.588C68.9297 21.652 67.5437 20.442 65.0357 20.442H62.8577C61.9557 20.442 61.3177 20.134 61.3177 19.496C61.3177 19.1 61.5377 18.814 61.9557 18.594C62.5277 18.814 63.1877 18.924 63.9137 18.924C66.3557 18.924 68.2477 17.516 68.2477 15.184C68.2477 14.392 68.0057 13.666 67.5437 13.072C68.3137 12.698 69.0177 12.192 69.3697 11.774ZM63.9137 17.23C62.5497 17.23 61.6697 16.35 61.6697 15.184C61.6697 13.93 62.5497 13.072 63.9137 13.072C65.2557 13.072 66.0917 13.93 66.0917 15.184C66.0917 16.35 65.2557 17.23 63.9137 17.23ZM66.7737 23.698C66.7737 24.952 65.4757 25.524 64.0017 25.524C62.1537 25.524 61.3397 24.6 61.0757 23.654L62.7697 22.224H64.7717C65.6737 22.224 66.7737 22.554 66.7737 23.698Z"
+            />
+            <path
+              d="M72.1185 9.992C72.8885 9.992 73.5265 9.332 73.5265 8.562C73.5265 7.77 72.8885 7.154 72.1185 7.154C71.3265 7.154 70.6665 7.77 70.6665 8.562C70.6665 9.332 71.3265 9.992 72.1185 9.992ZM70.9965 22.62H73.2405V11.62H70.9965V22.62Z"
+            />
+            <path
+              d="M81.0823 22.84C83.8103 22.84 85.8123 21.322 86.2083 18.946H83.9643C83.5463 20.134 82.6003 20.882 81.0823 20.882C79.0143 20.882 77.7383 19.298 77.7383 17.186C77.7383 14.986 79.1243 13.358 81.0603 13.358C82.6003 13.358 83.6563 14.304 83.9203 15.448H86.1643C85.7903 12.786 83.5463 11.4 81.0603 11.4C77.8703 11.4 75.5163 13.798 75.5163 17.186C75.5163 20.42 77.6943 22.84 81.0823 22.84Z"
+            />
+            <path
+              d="M96.7512 14.546V14.436C97.8732 13.908 98.9072 12.984 98.9072 11.048C98.9072 8.782 97.4772 7.22 94.5072 7.22H88.6332V22.62H94.5292C97.5212 22.62 99.3252 21.08 99.3252 18.396C99.3252 16.064 97.9392 14.986 96.7512 14.546ZM90.8992 9.112H94.2652C95.6732 9.112 96.5972 9.948 96.5972 11.378C96.5972 12.808 95.7612 13.754 94.1992 13.754H90.8992V9.112ZM94.3312 20.728H90.8992V15.646H94.3312C95.9592 15.646 96.9712 16.746 96.9712 18.242C96.9712 19.716 96.0032 20.728 94.3312 20.728Z"
+            />
+            <path
+              d="M111.65 16.966C111.65 13.182 109.296 11.4 106.612 11.4C103.62 11.4 101.266 13.644 101.266 17.23C101.266 20.618 103.532 22.84 106.7 22.84C109.296 22.84 111.144 21.52 111.606 19.32H109.45C109.098 20.442 108.086 21.014 106.7 21.014C104.764 21.014 103.576 19.65 103.466 17.692H111.606C111.628 17.406 111.65 17.186 111.65 16.966ZM106.612 13.226C108.306 13.226 109.45 14.414 109.472 16.108H103.488C103.708 14.502 104.874 13.226 106.612 13.226Z"
+            />
+            <path
+              d="M113.966 22.62H116.21V7H113.966V22.62Z"
+            />
+            <path
+              d="M118.838 22.62H121.082V7H118.838V22.62Z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components UserPreferencesPanel render before preferences are fetched renders a container for notification preferences 1`] = `
+.emotion-0 {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  background: #FFFFFF;
+  color: #3A424D;
+  right: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 8px 8px!important;
+}
+
+.emotion-0 .uppercase {
+  text-transform: uppercase;
+}
+
+.emotion-0 button.close svg {
+  height: 18px;
+}
+
+.emotion-0 .content {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 4px;
+  padding: 16px 20px!important;
+  overflow-y: scroll;
+}
+
+.emotion-1 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(52, 152, 244)!important;
+  color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  font-size: 14px!important;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  text-align: left!important;
+  text-transform: none!important;
+  padding: 16px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-1 div,
+.emotion-1 span,
+.emotion-1 p,
+.emotion-1 a,
+.emotion-1 strong,
+.emotion-1 b,
+.emotion-1 u,
+.emotion-1 i,
+.emotion-1 ol,
+.emotion-1 ul,
+.emotion-1 li,
+.emotion-1 form,
+.emotion-1 label,
+.emotion-1 table,
+.emotion-1 tr,
+.emotion-1 th,
+.emotion-1 td,
+.emotion-1 article,
+.emotion-1 aside,
+.emotion-1 footer,
+.emotion-1 header,
+.emotion-1 nav,
+.emotion-1 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-1 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-1 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-1:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-1:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-2 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.emotion-3 {
+  opacity: 0.8;
+  text-transform: uppercase;
+  font-size: 0.7rem!important;
+}
+
+.emotion-6 {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-color: transparent;
+  background-origin: padding-box;
+  -webkit-background-position: 0 0;
+  background-position: 0 0;
+  -webkit-background-size: auto;
+  background-size: auto;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  cursor: auto;
+  direction: inherit;
+  display: block;
+  left: auto;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  height: auto;
+  -webkit-hyphens: manual;
+  -moz-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+  letter-spacing: normal;
+  line-height: 1;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  outline: invert none medium;
+  padding: 0;
+  perspective: none;
+  position: static;
+  right: auto;
+  top: auto;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+  text-align: left;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: baseline;
+  visibility: inherit;
+  white-space: normal;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
+  background: rgb(52, 152, 244);
+  color: rgba(255, 255, 255, 0.75)!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+  padding: 12px 24px!important;
+  -webkit-flex-shrink: 0!important;
+  -ms-flex-negative: 0!important;
+  flex-shrink: 0!important;
+}
+
+.emotion-6 div,
+.emotion-6 span,
+.emotion-6 p,
+.emotion-6 a,
+.emotion-6 strong,
+.emotion-6 b,
+.emotion-6 u,
+.emotion-6 i,
+.emotion-6 ol,
+.emotion-6 ul,
+.emotion-6 li,
+.emotion-6 form,
+.emotion-6 label,
+.emotion-6 table,
+.emotion-6 tr,
+.emotion-6 th,
+.emotion-6 td,
+.emotion-6 article,
+.emotion-6 aside,
+.emotion-6 footer,
+.emotion-6 header,
+.emotion-6 nav,
+.emotion-6 section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.emotion-6 a {
+  cursor: pointer!important;
+  color: inherit!important;
+}
+
+.emotion-6 button {
+  background: transparent;
+  border: none;
+  font-size: inherit!important;
+  color: inherit;
+  padding: 0;
+  cursor: pointer!important;
+}
+
+.emotion-6:first-of-type {
+  border-radius: 8px 8px 0 0!important;
+}
+
+.emotion-6:last-of-type {
+  border-radius: 0 0 8px 8px!important;
+}
+
+.emotion-6 span {
+  color: white!important;
+}
+
+.emotion-6 span a {
+  color: white;
+  margin-right: 16px!important;
+  opacity: 0.75;
+  display: block;
+}
+
+.emotion-7 {
+  padding: 2px 0!important;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <p
+        class="uppercase"
+      >
+        Preferences
+      </p>
+      <button
+        class="close"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="content"
+    >
+      <div
+        class="emotion-2"
+      >
+        <div />
+        <div
+          class="emotion-3"
+        >
+          In-app
+        </div>
+        <div
+          class="emotion-3"
+        >
+          Email
+        </div>
+        <div
+          class="emotion-3"
+        >
+          Web push
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-6"
+    >
+      <div
+        class="emotion-7"
+      >
+        <a
+          href="https://magicbell.io/?utm_source=widget"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 128 32"
+            width="64"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.2378 4.66791C11.6702 4.67293 10.1682 5.29789 9.05974 6.40637C7.95126 7.51485 7.3263 9.01682 7.32128 10.5844V14.904C7.32128 16.2701 7.22608 17.1721 7.00713 17.9432C6.77392 18.7047 6.41866 19.4233 5.95519 20.0709C5.79336 20.3089 5.63866 20.5469 5.49587 20.7492C5.08176 21.3346 5.98613 21.475 6.44784 21.5488C8.69788 21.8729 10.9694 22.024 13.2426 22.001C15.5165 22.0241 17.7889 21.8729 20.0397 21.5488C21.2297 21.3537 21.1392 21.0276 20.6561 20.297C20.1816 19.6349 19.8034 18.909 19.5328 18.1408C19.2418 17.1631 19.1116 16.1447 19.1472 15.1254V10.5844C19.1453 9.01709 18.5223 7.51438 17.4147 6.40542C16.3071 5.29647 14.8052 4.67169 13.2378 4.66791ZM13.2378 2C15.5097 2.01067 17.6853 2.91905 19.2902 4.52711C20.8952 6.13517 21.7993 8.31251 21.8056 10.5844V15.1254C21.7707 15.8647 21.851 16.605 22.0436 17.3197C22.2453 17.8601 22.5191 18.3709 22.8575 18.8381C23.1288 19.2498 23.3978 19.6092 23.6167 19.9019C24.1356 20.5921 24.483 21.0562 24.4688 21.6892V21.713C24.4688 22.903 22.9289 23.7622 20.4443 24.1691C18.0527 24.5177 15.6379 24.6824 13.2212 24.6618C10.8141 24.6833 8.40892 24.521 6.02659 24.1763C3.54193 23.7693 2.00211 22.9197 2.00211 21.7202C1.96879 21.0633 2.33292 20.573 2.88507 19.8281C3.12306 19.5068 3.41818 19.1141 3.72757 18.6382C4.03691 18.2073 4.27775 17.7313 4.44155 17.2269C4.58673 16.7128 4.65099 16.0369 4.65099 14.9183V10.5844C4.65664 8.30944 5.56289 6.12924 7.17156 4.52057C8.78023 2.9119 10.9604 2.00566 13.2354 2H13.2378Z"
+            />
+            <path
+              d="M10.8769 9.68955C10.8668 10.1473 10.9882 10.5983 11.2268 10.989C11.4417 11.326 11.7457 11.5969 12.105 11.772C12.4608 11.9412 12.8498 12.029 13.2438 12.029C13.6378 12.029 14.0268 11.9412 14.3826 11.772C14.7419 11.5969 15.0458 11.326 15.2608 10.989C15.49 10.5934 15.6107 10.1444 15.6107 9.68717C15.6107 9.22999 15.49 8.78091 15.2608 8.38534C15.0442 8.05094 14.7406 7.78189 14.3826 7.6071C14.0275 7.43555 13.6382 7.34644 13.2438 7.34644C12.8494 7.34644 12.4601 7.43555 12.105 7.6071C11.747 7.78189 11.4433 8.05094 11.2268 8.38534C10.9886 8.77798 10.8672 9.2304 10.8769 9.68955Z"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M25.6468 9.68483L23.0836 8.3711L20.5204 7.05737V9.68483V12.3147L23.0836 11.0009L25.6468 9.68483Z"
+              fill-rule="evenodd"
+            />
+            <path
+              d="M17.5907 25.8422C17.5423 26.9273 17.0888 27.9548 16.3198 28.722C15.9164 29.1264 15.4371 29.4472 14.9095 29.6661C14.3818 29.8851 13.8162 29.9977 13.2449 29.9977C12.6737 29.9977 12.1081 29.8851 11.5804 29.6661C11.0528 29.4472 10.5735 29.1264 10.1701 28.722C9.40107 27.9548 8.94761 26.9273 8.89917 25.8422C9.73453 25.916 10.6437 25.9684 11.5956 25.9969C11.6721 26.3773 11.879 26.7191 12.1805 26.9633C12.482 27.2075 12.8593 27.3387 13.2473 27.3344C13.4683 27.3346 13.6872 27.2912 13.8914 27.2067C14.0956 27.1221 14.2811 26.9981 14.4373 26.8418C14.669 26.61 14.8278 26.3155 14.8942 25.9945C15.8462 25.966 16.7554 25.9136 17.5907 25.8398"
+            />
+            <path
+              d="M44.688 7.22H41.806L36.834 18.418H36.68L31.686 7.22H28.782V22.62H31.048V11.356H31.224L35.536 20.86H37.978L42.268 11.356H42.422V22.62H44.688V7.22Z"
+            />
+            <path
+              d="M57.2448 20.926C56.6948 20.926 56.4088 20.64 56.4088 20.024V15.514C56.4088 12.764 54.5168 11.4 52.0088 11.4C49.3688 11.4 47.7408 12.984 47.5428 15.162H49.7648C49.9628 14.018 50.6228 13.226 52.0088 13.226C53.3728 13.226 54.1648 14.018 54.1648 15.426V15.976L50.7988 16.306C48.6868 16.504 47.1028 17.582 47.1028 19.672C47.1028 21.828 48.7088 22.84 50.8428 22.84C52.4928 22.84 53.7028 22.202 54.4508 21.256C54.7588 22.29 55.4848 22.62 56.5188 22.62H57.5308V20.926H57.2448ZM54.1648 18.396C54.1648 20.376 52.5368 21.08 51.1728 21.08C50.1828 21.08 49.3468 20.684 49.3468 19.584C49.3468 18.528 50.2488 17.956 51.5468 17.846L54.1648 17.582V18.396Z"
+            />
+            <path
+              d="M69.3697 11.774L68.1817 10.498C67.7417 11.07 67.0377 11.686 66.3557 12.038C65.6517 11.62 64.7937 11.4 63.8257 11.4C61.2077 11.4 59.5357 13.028 59.5357 15.184C59.5357 16.306 59.9757 17.23 60.7237 17.868C59.9537 18.286 59.2937 18.968 59.2937 19.958C59.2937 20.904 59.8217 21.63 60.6577 21.982L58.8977 23.5C59.0957 25.524 60.6577 27.24 64.0017 27.24C66.9277 27.24 68.9297 25.92 68.9297 23.588C68.9297 21.652 67.5437 20.442 65.0357 20.442H62.8577C61.9557 20.442 61.3177 20.134 61.3177 19.496C61.3177 19.1 61.5377 18.814 61.9557 18.594C62.5277 18.814 63.1877 18.924 63.9137 18.924C66.3557 18.924 68.2477 17.516 68.2477 15.184C68.2477 14.392 68.0057 13.666 67.5437 13.072C68.3137 12.698 69.0177 12.192 69.3697 11.774ZM63.9137 17.23C62.5497 17.23 61.6697 16.35 61.6697 15.184C61.6697 13.93 62.5497 13.072 63.9137 13.072C65.2557 13.072 66.0917 13.93 66.0917 15.184C66.0917 16.35 65.2557 17.23 63.9137 17.23ZM66.7737 23.698C66.7737 24.952 65.4757 25.524 64.0017 25.524C62.1537 25.524 61.3397 24.6 61.0757 23.654L62.7697 22.224H64.7717C65.6737 22.224 66.7737 22.554 66.7737 23.698Z"
+            />
+            <path
+              d="M72.1185 9.992C72.8885 9.992 73.5265 9.332 73.5265 8.562C73.5265 7.77 72.8885 7.154 72.1185 7.154C71.3265 7.154 70.6665 7.77 70.6665 8.562C70.6665 9.332 71.3265 9.992 72.1185 9.992ZM70.9965 22.62H73.2405V11.62H70.9965V22.62Z"
+            />
+            <path
+              d="M81.0823 22.84C83.8103 22.84 85.8123 21.322 86.2083 18.946H83.9643C83.5463 20.134 82.6003 20.882 81.0823 20.882C79.0143 20.882 77.7383 19.298 77.7383 17.186C77.7383 14.986 79.1243 13.358 81.0603 13.358C82.6003 13.358 83.6563 14.304 83.9203 15.448H86.1643C85.7903 12.786 83.5463 11.4 81.0603 11.4C77.8703 11.4 75.5163 13.798 75.5163 17.186C75.5163 20.42 77.6943 22.84 81.0823 22.84Z"
+            />
+            <path
+              d="M96.7512 14.546V14.436C97.8732 13.908 98.9072 12.984 98.9072 11.048C98.9072 8.782 97.4772 7.22 94.5072 7.22H88.6332V22.62H94.5292C97.5212 22.62 99.3252 21.08 99.3252 18.396C99.3252 16.064 97.9392 14.986 96.7512 14.546ZM90.8992 9.112H94.2652C95.6732 9.112 96.5972 9.948 96.5972 11.378C96.5972 12.808 95.7612 13.754 94.1992 13.754H90.8992V9.112ZM94.3312 20.728H90.8992V15.646H94.3312C95.9592 15.646 96.9712 16.746 96.9712 18.242C96.9712 19.716 96.0032 20.728 94.3312 20.728Z"
+            />
+            <path
+              d="M111.65 16.966C111.65 13.182 109.296 11.4 106.612 11.4C103.62 11.4 101.266 13.644 101.266 17.23C101.266 20.618 103.532 22.84 106.7 22.84C109.296 22.84 111.144 21.52 111.606 19.32H109.45C109.098 20.442 108.086 21.014 106.7 21.014C104.764 21.014 103.576 19.65 103.466 17.692H111.606C111.628 17.406 111.65 17.186 111.65 16.966ZM106.612 13.226C108.306 13.226 109.45 14.414 109.472 16.108H103.488C103.708 14.502 104.874 13.226 106.612 13.226Z"
+            />
+            <path
+              d="M113.966 22.62H116.21V7H113.966V22.62Z"
+            />
+            <path
+              d="M118.838 22.62H121.082V7H118.838V22.62Z"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
