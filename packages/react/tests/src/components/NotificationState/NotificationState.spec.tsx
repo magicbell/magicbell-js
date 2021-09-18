@@ -1,5 +1,6 @@
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { useNotificationFactory } from '@magicbell/react-headless';
 import { render, RenderResult, waitFor } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import NotificationState from '../../../../src/components/NotificationState';
@@ -9,34 +10,51 @@ import { sampleNotification } from '../../../factories/NotificationFactory';
 
 describe('components', () => {
   describe('NotificationState', () => {
-    let notification: INotification;
     let view: RenderResult;
 
     beforeEach(() => {
-      notification = sampleNotification;
+      const { result } = renderHook(() => useNotificationFactory(sampleNotification));
 
       view = render(
         <MagicBellThemeProvider value={defaultTheme}>
-          <NotificationState notification={notification} />
+          <NotificationState notification={result.current} />
         </MagicBellThemeProvider>,
       );
     });
 
-    afterEach(() => {
-      view.unmount();
-    });
-
     describe('render', () => {
       describe('the notification is read', () => {
+        beforeEach(() => {
+          const { result } = renderHook(() =>
+            useNotificationFactory({ ...sampleNotification, readAt: Date.now() }),
+          );
+
+          view.rerender(
+            <MagicBellThemeProvider value={defaultTheme}>
+              <NotificationState notification={result.current} />
+            </MagicBellThemeProvider>,
+          );
+        });
+
         it('renders an icon for the context menu', () => {
-          notification.isRead = true;
           expect(view.container).toMatchSnapshot();
         });
       });
 
       describe('the notification is unread', () => {
+        beforeEach(() => {
+          const { result } = renderHook(() =>
+            useNotificationFactory({ ...sampleNotification, readAt: null }),
+          );
+
+          view.rerender(
+            <MagicBellThemeProvider value={defaultTheme}>
+              <NotificationState notification={result.current} />
+            </MagicBellThemeProvider>,
+          );
+        });
+
         it('renders a dot', () => {
-          notification.isRead = false;
           expect(view.container).toMatchSnapshot();
         });
       });
@@ -52,10 +70,11 @@ describe('components', () => {
 
       describe('the menuPlacement is set to "top-end"', () => {
         beforeEach(() => {
-          view.unmount();
-          view = render(
+          const { result } = renderHook(() => useNotificationFactory(sampleNotification));
+
+          view.rerender(
             <MagicBellThemeProvider value={defaultTheme}>
-              <NotificationState notification={notification} menuPlacement="top-end" />
+              <NotificationState notification={result.current} menuPlacement="top-end" />
             </MagicBellThemeProvider>,
           );
         });
