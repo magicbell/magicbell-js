@@ -70,8 +70,8 @@ export default function MagicBellProvider({
   const config = useConfig();
 
   useEffect(() => {
-    config.fetch();
-  }, []);
+    if (!config.lastFetchedAt) config.fetch();
+  }, [config]);
 
   return (
     <>
