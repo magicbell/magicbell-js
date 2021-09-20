@@ -1,42 +1,55 @@
-import { useConfig, useNotificationStoresCollection } from '@magicbell/react-headless';
-import { render, RenderResult } from '@testing-library/react';
+import {
+  buildStore,
+  useConfig,
+  useNotification,
+  useNotificationStoresCollection,
+} from '@magicbell/react-headless';
+import { act, render, RenderResult } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
-import { Server } from 'miragejs';
+import { Response, Server } from 'miragejs';
 import React from 'react';
 import Bell from '../../../../src/components/Bell';
+import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../../../../src/context/Theme';
+import { sampleConfig } from '../../../factories/ConfigFactory';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 describe('components', () => {
   describe('Bell', () => {
-    let server: any;
     let onClick: () => void;
+    let server: any;
     let view: RenderResult;
 
     beforeEach(() => {
-      useConfig.setState({ lastFetchedAt: Date.now() });
+      onClick = jest.fn();
 
-      server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com' });
-      server.post('/notifications/seen', {});
+      server = new Server({
+        environment: 'test',
+        urlPrefix: 'https://api.magicbell.com',
+        timing: 0,
+      });
+      server.get('/config', sampleConfig);
+      server.post('/notifications/seen', new Response(204, {}, ''));
       server.get('/notifications', {
-        total: 0,
+        total: 1,
         per_page: 15,
         current_page: 1,
         unseen_count: 0,
         unread_count: 1,
-        notifications: [],
+        notifications: [sampleNotification],
       });
 
-      onClick = jest.fn();
-
       view = render(
-        <MagicBellThemeProvider value={defaultTheme}>
+        <MagicBellProvider apiKey="">
           <Bell onClick={onClick} />
-        </MagicBellThemeProvider>,
+        </MagicBellProvider>,
       );
     });
 
     afterEach(() => {
+      view.unmount();
       server.shutdown();
     });
 
@@ -49,7 +62,9 @@ describe('components', () => {
 
       describe('the configuration is not fetched yet', () => {
         beforeEach(() => {
-          useConfig.setState({ lastFetchedAt: undefined });
+          act(() => {
+            useConfig.setState({}, true);
+          });
         });
 
         it('does not render a badge for the bell', () => {
@@ -73,19 +88,10 @@ describe('components', () => {
 
       describe('there are unseen notifications', () => {
         beforeEach(() => {
-          useNotificationStoresCollection.setState({
-            stores: {
-              default: {
-                context: {},
-                unseenCount: 1,
-                unreadCount: 0,
-                total: 2,
-                totalPages: 2,
-                perPage: 1,
-                currentPage: 1,
-                notifications: [],
-              },
-            },
+          act(() => {
+            useNotificationStoresCollection.setState({
+              stores: { default: buildStore({ unseenCount: 1 }) },
+            });
           });
         });
 
@@ -96,25 +102,17 @@ describe('components', () => {
 
       describe("the counter property is set to 'unread'", () => {
         it('shows the number of unread notifications', () => {
+          act(() => {
+            useNotificationStoresCollection.setState({
+              stores: { default: buildStore({ unreadCount: 2 }) },
+            });
+          });
+
           view.rerender(
             <MagicBellThemeProvider value={defaultTheme}>
               <Bell onClick={onClick} counter="unread" />
             </MagicBellThemeProvider>,
           );
-
-          const defaultStore = {
-            context: {},
-            unseenCount: 1,
-            unreadCount: 2,
-            total: 2,
-            totalPages: 2,
-            perPage: 1,
-            currentPage: 1,
-            notifications: [],
-          };
-          useNotificationStoresCollection.setState({
-            stores: { default: defaultStore },
-          });
 
           expect(view.container).toMatchSnapshot();
         });
@@ -129,29 +127,13 @@ describe('components', () => {
         expect(onClick).toHaveBeenCalledWith();
       });
 
-      describe('there are unseen notifications', () => {
-        beforeEach(() => {
-          notifications.unseenCount = 1;
-        });
+      it('marks all notifications as seen', () => {
+        const { result } = renderHook(() =>
+          useNotification({ ...sampleNotification, seenAt: null }),
+        );
+        userEvent.click(view.getByTestId('bell'));
 
-        it('marks all notifications as seen', () => {
-          const spy = jest.spyOn(notifications, 'markAllAsSeen');
-          userEvent.click(view.getByTestId('bell'));
-
-          expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith({ updateItems: false });
-          spy.mockRestore();
-        });
-      });
-
-      describe('there are no unseen notifications', () => {
-        it('does not attempt to mark notifications as seen', () => {
-          const spy = jest.spyOn(notifications, 'markAllAsSeen');
-          userEvent.click(view.getByTestId('bell'));
-
-          expect(spy).not.toHaveBeenCalled();
-          spy.mockRestore();
-        });
+        expect(result.current.seenAt).toBeDefined();
       });
     });
   });

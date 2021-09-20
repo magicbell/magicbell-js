@@ -33,7 +33,7 @@ export interface Props {
   images?: Partial<{
     emptyInboxUrl: string;
   }>;
-  _baseURL?: string;
+  serverURL?: string;
   onNewNotification?: (notification: IRemoteNotification) => void;
   onToggle?: (isOpen: boolean) => void;
   bellCounter?: 'unread' | 'unseen';

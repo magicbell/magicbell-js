@@ -185,7 +185,8 @@ describe('components', () => {
         });
 
         it('opens the action url in the same window', () => {
-          userEvent.click(view.getByText(sampleNotification.title));
+          const title = view.getByText(sampleNotification.title);
+          userEvent.click(title);
 
           expect(global.open).toHaveBeenCalledTimes(1);
           expect(global.open).toHaveBeenCalledWith(sampleNotification.actionUrl, '_self');

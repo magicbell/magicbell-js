@@ -51,6 +51,7 @@ describe('components', () => {
     });
 
     afterEach(() => {
+      view.unmount();
       server.shutdown();
     });
 
@@ -184,7 +185,7 @@ describe('components', () => {
         it('sets the external id header for etching from the API', async () => {
           const userExternalId = faker.random.alphaNumeric(15);
 
-          view.rerender(
+          render(
             <MagicBell apiKey={apiKey} userExternalId={userExternalId} userKey={userKey}>
               {() => <div data-testid="children" />}
             </MagicBell>,

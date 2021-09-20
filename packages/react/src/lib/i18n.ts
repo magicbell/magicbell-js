@@ -29,7 +29,7 @@ export function useLocale(locale: string | CustomLocale) {
 
   if (typeof locale === 'string') return defaultLocales[locale];
   else {
-    const customLocales = mergeDeepRight({ [localeName]: locale.translations }, defaultLocales);
+    const customLocales = mergeDeepRight(defaultLocales, { [localeName]: locale.translations });
     return customLocales[localeName];
   }
 }

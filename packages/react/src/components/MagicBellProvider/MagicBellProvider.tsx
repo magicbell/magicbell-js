@@ -20,7 +20,7 @@ export interface Props {
   images?: Partial<{
     emptyInboxUrl: string;
   }>;
-  _baseURL?: string;
+  serverURL?: string;
 }
 
 /**
