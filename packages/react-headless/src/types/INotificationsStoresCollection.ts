@@ -20,7 +20,11 @@ export default interface INotificationsStoresCollection {
    * @param queryParams Optional query parameters to fetch.
    * @param options.reset Whether to prepend notifications to the store or not
    */
-  fetchStore: (storeId: string, queryParams?: Object, options?: Partial<{ reset: boolean }>) => Promise<void>;
+  fetchStore: (
+    storeId: string,
+    queryParams?: Object,
+    options?: Partial<{ reset: boolean; prepend: boolean }>,
+  ) => Promise<void>;
 
   /**
    * Fetch all stores from the MagicBell server.
@@ -28,7 +32,7 @@ export default interface INotificationsStoresCollection {
    * @param queryParams Optional query parameters to fetch.
    * @param options.reset Whether to prepend notifications to the store or not
    */
-  fetchAllStores: (queryParams?: Object, options?: Partial<{ reset: boolean }>) => Promise<void>;
+  fetchAllStores: (queryParams?: Object, options?: Partial<{ reset: boolean; prepend: boolean }>) => Promise<void>;
 
   /**
    * Mark a notification as seen.

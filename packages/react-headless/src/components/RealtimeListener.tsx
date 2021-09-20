@@ -13,7 +13,7 @@ export default function RealtimeListener() {
   const collection = useNotificationStoresCollection();
 
   const fetchAndResetAll = () => collection.fetchAllStores({ page: 1 }, { reset: true });
-  const fetchAll = () => collection.fetchAllStores({ page: 1 });
+  const fetchAndPrependAll = () => collection.fetchAllStores({ page: 1 }, { prepend: true });
   const markAllAsSeen = () => collection.markAllAsSeen({ persist: false });
   const markAllAsRead = () => collection.markAllAsRead({ persist: false });
   const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data.id, { persist: false });
@@ -21,7 +21,7 @@ export default function RealtimeListener() {
   useAbly();
 
   useMagicBellEvent('wakeup', fetchAndResetAll);
-  useMagicBellEvent('notifications.new', fetchAll);
+  useMagicBellEvent('notifications.new', fetchAndPrependAll);
   useMagicBellEvent('notifications.seen.all', markAllAsSeen);
   useMagicBellEvent('notifications.read.all', markAllAsRead);
   useMagicBellEvent('notifications.read', fetchAndResetAll);

@@ -53,6 +53,20 @@ describe('components', () => {
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
           spy.mockRestore();
         });
+
+        it('prepends the new notifications', async () => {
+          const notification = NotificationFactory.build();
+          const { result, waitForNextUpdate } = renderHook(() => useNotificationStoresCollection());
+          const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
+
+          act(() => {
+            pushEventAggregator.emit('notifications.new', notification);
+          });
+
+          await waitForNextUpdate();
+          expect(result.current.stores['default'].notifications[0]).toEqual(notification);
+          spy.mockRestore();
+        });
       });
 
       describe('notifications.seen.all', () => {

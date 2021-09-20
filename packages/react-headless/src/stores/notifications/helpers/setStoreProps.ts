@@ -4,6 +4,7 @@ import INotificationStore from '../../../types/INotificationStore';
 type Props = Omit<INotificationStore, 'context'>;
 type Options = {
   reset: boolean;
+  prepend: boolean;
 };
 
 /**
@@ -23,7 +24,10 @@ export default function setStoreProps(
   const { notifications, ...meta } = props;
   const allNotifications = options.reset
     ? notifications
-    : uniqBy((notification) => notification.id, [...store.notifications, ...notifications]);
+    : uniqBy(
+        (notification) => notification.id,
+        options.prepend ? [...notifications, ...store.notifications] : [...store.notifications, ...notifications],
+      );
 
   return { context: store.context, notifications: allNotifications, ...meta };
 }
