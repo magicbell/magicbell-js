@@ -2,6 +2,12 @@ import MagicBell from './components/MagicBell';
 
 export {
   clientSettings,
+  INotification,
+  INotificationsStoresCollection,
+  INotificationStore,
+  IRemoteConfig,
+  IRemoteNotification,
+  IRemoteNotificationPreferences,
   useMagicBellEvent,
   useNotification,
   useNotificationPreferences,
