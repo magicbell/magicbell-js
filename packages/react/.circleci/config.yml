@@ -6,7 +6,9 @@ orbs:
 jobs:
   test:
     description: Run all tests
-    executor: node/default
+    executor:
+      name: node/default
+      tag: '14.17'
     steps:
       - checkout
       - node/install-packages:
@@ -14,11 +16,6 @@ jobs:
       - run:
           name: 'Run jest tests'
           command: yarn run test -w=2
-      - run:
-          name: 'Upload code coverage'
-          command: yarn run report-coverage
-          environment:
-            CODECOV_TOKEN: ${CODECOV_TOKEN}
 
 workflows:
   deploy:
