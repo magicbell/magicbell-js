@@ -32,6 +32,14 @@ describe('components', () => {
       });
 
       server.get(`/config/`, sampleConfig);
+      server.get('/notifications', {
+        total: 1,
+        per_page: 15,
+        current_page: 1,
+        unseen_count: 0,
+        unread_count: 1,
+        notifications: [sampleNotification],
+      });
       server.post(`/notifications/${sampleNotification.id}/read`, new Response(204, {}, ''));
       server.post(`/notifications/${sampleNotification.id}/unread`, new Response(204, {}, ''));
 
