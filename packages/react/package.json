@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/magicbell-react",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "React components for building a notification inbox for your app",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
@@ -8,7 +8,7 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/magicbell-react.cjs.js",
+  "main": "dist/magicbell-react.js",
   "module": "dist/magicbell-react.esm.js",
   "unpkg": "dist/magicbell-react.umd.js",
   "typings": "dist/index.d.ts",
