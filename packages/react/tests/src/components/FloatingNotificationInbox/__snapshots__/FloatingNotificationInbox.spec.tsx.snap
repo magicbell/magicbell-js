@@ -1406,6 +1406,50 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
 }
 
 .emotion-10 {
+  padding: 14px 24px!important;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(52, 152, 244, 0.1);
+  color: #3A424D!important;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif!important;
+  text-align: left!important;
+  font-size: 14px!important;
+}
+
+.emotion-10>* {
+  margin-left: 1rem;
+}
+
+.emotion-11 {
+  padding: 10px!important;
+  border-radius: 4px!important;
+  background: #3498F4!important;
+  color: white!important;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 svg {
+  height: 24px;
+}
+
+.emotion-13 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
   -webkit-background-clip: border-box;
@@ -1473,29 +1517,29 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   flex-shrink: 0!important;
 }
 
-.emotion-10 div,
-.emotion-10 span,
-.emotion-10 p,
-.emotion-10 a,
-.emotion-10 strong,
-.emotion-10 b,
-.emotion-10 u,
-.emotion-10 i,
-.emotion-10 ol,
-.emotion-10 ul,
-.emotion-10 li,
-.emotion-10 form,
-.emotion-10 label,
-.emotion-10 table,
-.emotion-10 tr,
-.emotion-10 th,
-.emotion-10 td,
-.emotion-10 article,
-.emotion-10 aside,
-.emotion-10 footer,
-.emotion-10 header,
-.emotion-10 nav,
-.emotion-10 section {
+.emotion-13 div,
+.emotion-13 span,
+.emotion-13 p,
+.emotion-13 a,
+.emotion-13 strong,
+.emotion-13 b,
+.emotion-13 u,
+.emotion-13 i,
+.emotion-13 ol,
+.emotion-13 ul,
+.emotion-13 li,
+.emotion-13 form,
+.emotion-13 label,
+.emotion-13 table,
+.emotion-13 tr,
+.emotion-13 th,
+.emotion-13 td,
+.emotion-13 article,
+.emotion-13 aside,
+.emotion-13 footer,
+.emotion-13 header,
+.emotion-13 nav,
+.emotion-13 section {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1504,12 +1548,12 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   vertical-align: baseline;
 }
 
-.emotion-10 a {
+.emotion-13 a {
   cursor: pointer!important;
   color: inherit!important;
 }
 
-.emotion-10 button {
+.emotion-13 button {
   background: transparent;
   border: none;
   font-size: inherit!important;
@@ -1518,26 +1562,26 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   cursor: pointer!important;
 }
 
-.emotion-10:first-of-type {
+.emotion-13:first-of-type {
   border-radius: 8px 8px 0 0!important;
 }
 
-.emotion-10:last-of-type {
+.emotion-13:last-of-type {
   border-radius: 0 0 8px 8px!important;
 }
 
-.emotion-10 span {
+.emotion-13 span {
   color: white!important;
 }
 
-.emotion-10 span a {
+.emotion-13 span a {
   color: white;
   margin-right: 16px!important;
   opacity: 0.75;
   display: block;
 }
 
-.emotion-11 {
+.emotion-14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1552,18 +1596,18 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   color: white!important;
 }
 
-.emotion-11 a,
-.emotion-11 button {
+.emotion-14 a,
+.emotion-14 button {
   color: white;
   display: block;
 }
 
-.emotion-11 a {
+.emotion-14 a {
   opacity: 0.85;
 }
 
-.emotion-12,
-.emotion-12:before {
+.emotion-15,
+.emotion-15:before {
   position: absolute;
   width: 18px!important;
   height: 18px!important;
@@ -1571,7 +1615,7 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   border-radius: 2px!important;
 }
 
-.emotion-12:before {
+.emotion-15:before {
   content: '';
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
@@ -1580,27 +1624,27 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
   left: 0;
 }
 
-.emotion-12[data-popper-placement^='top'] {
+.emotion-15[data-popper-placement^='top'] {
   bottom: -4px;
 }
 
-.emotion-12[data-popper-placement^='top']:before {
+.emotion-15[data-popper-placement^='top']:before {
   background: #3498F4;
 }
 
-.emotion-12[data-popper-placement^='bottom'] {
+.emotion-15[data-popper-placement^='bottom'] {
   top: -4px;
 }
 
-.emotion-12[data-popper-placement^='bottom']:before {
+.emotion-15[data-popper-placement^='bottom']:before {
   background: #3498F4;
 }
 
-.emotion-12[data-popper-placement^='left'] {
+.emotion-15[data-popper-placement^='left'] {
   right: -4px;
 }
 
-.emotion-12[data-popper-placement^='right'] {
+.emotion-15[data-popper-placement^='right'] {
   left: -4px;
 }
 
@@ -1700,8 +1744,39 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
           <div
             class="emotion-10"
           >
-            <div
+            <p
+              style="flex: 1;"
+            >
+              By enabling browser notifications, you’ll stay up to date even better.
+            </p>
+            <button
               class="emotion-11"
+            >
+              Enable Now
+            </button>
+            <button
+              class="emotion-12"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="emotion-13"
+          >
+            <div
+              class="emotion-14"
             >
               <a
                 href="https://magicbell.io/?utm_source=widget"
@@ -1784,7 +1859,7 @@ exports[`components FloatingNotificationInbox render renders a notification inbo
           </div>
         </div>
         <div
-          class="emotion-12"
+          class="emotion-15"
           data-popper-arrow="true"
           data-popper-placement="top"
           style="position: absolute; left: 0px; transform: translate(0px, 0px);"

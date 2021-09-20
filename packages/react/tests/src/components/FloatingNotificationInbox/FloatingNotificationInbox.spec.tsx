@@ -1,3 +1,4 @@
+import { useConfig } from '@magicbell/react-headless';
 import { act, render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Response, Server } from 'miragejs';
@@ -25,13 +26,13 @@ describe('components', () => {
     let server;
 
     beforeEach(async () => {
+      useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
       server = new Server({
         environment: 'test',
         urlPrefix: 'https://api.magicbell.com',
         timing: 0,
       });
 
-      server.get(`/config/`, sampleConfig);
       server.get('/notifications', {
         total: 1,
         per_page: 15,
