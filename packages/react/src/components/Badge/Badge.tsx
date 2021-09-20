@@ -13,9 +13,9 @@ export interface Props {
  * can be customized through the theme context.
  *
  * @example
- * <UnseenBadge  />
+ * <Badge  />
  */
-export default function UnseenBadge({ count }: Props) {
+export default function Badge({ count }: Props) {
   const theme = useTheme();
   const { unseenBadge: badgeTheme } = theme;
 
