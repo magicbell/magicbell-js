@@ -54,7 +54,7 @@ describe('components', () => {
     });
 
     describe('render', () => {
-      describe('the configuration is not fetched yet', () => {
+      describe('the configuration is fetched', () => {
         it('renders a bell icon', () => {
           expect(view.container).toMatchSnapshot();
         });
@@ -63,7 +63,7 @@ describe('components', () => {
       describe('the configuration is not fetched yet', () => {
         beforeEach(() => {
           act(() => {
-            useConfig.setState({}, true);
+            useConfig.setState({ lastFetchedAt: undefined });
           });
         });
 

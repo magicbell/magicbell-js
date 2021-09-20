@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components Bell render the configuration is not fetched yet does not render a badge for the bell 1`] = `
+exports[`components Bell render the configuration is fetched renders a bell icon 1`] = `
 .emotion-0 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
@@ -144,7 +144,7 @@ exports[`components Bell render the configuration is not fetched yet does not re
 </div>
 `;
 
-exports[`components Bell render the configuration is not fetched yet renders a bell icon 1`] = `
+exports[`components Bell render the configuration is not fetched yet does not render a badge for the bell 1`] = `
 .emotion-0 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;

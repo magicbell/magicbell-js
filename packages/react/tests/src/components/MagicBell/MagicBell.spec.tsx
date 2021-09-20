@@ -87,13 +87,13 @@ describe('components', () => {
 
       describe('it is open by default', () => {
         it('renders the children when it is mounted', () => {
-          view = render(
+          render(
             <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} defaultIsOpen>
               {() => <div data-testid="children" />}
             </MagicBell>,
           );
 
-          expect(view.queryByTestId('children')).toBeInTheDocument();
+          expect(screen.queryByTestId('children')).toBeInTheDocument();
         });
       });
 
