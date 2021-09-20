@@ -8,6 +8,7 @@ export {
   IRemoteConfig,
   IRemoteNotification,
   IRemoteNotificationPreferences,
+  Notification,
   useMagicBellEvent,
   useNotification,
   useNotificationPreferences,
