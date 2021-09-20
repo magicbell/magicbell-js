@@ -15,3 +15,4 @@ export { useNotificationStoresCollection } from './stores/notifications';
 export { default as buildStore } from './stores/notifications/helpers/buildStore';
 export { default as useNotificationPreferences } from './stores/notification_preferences';
 export * from './types';
+export { INotification as Notification } from './types';
