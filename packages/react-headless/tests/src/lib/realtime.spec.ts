@@ -1,6 +1,7 @@
 import * as Ably from 'ably';
 import faker from 'faker';
 import { Server } from 'miragejs';
+import * as ajax from '../../../src/lib/ajax';
 import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { sampleNotification } from '../../factories/NotificationFactory';
@@ -95,6 +96,27 @@ describe('lib', () => {
           expect(spy).toHaveBeenCalledTimes(1);
           expect(spy).toHaveBeenCalledWith('notification.new', sampleNotification);
           spy.mockRestore();
+        });
+
+        describe('the event is "notifications.delete"', () => {
+          it('does not fetch from the server', async () => {
+            const spy = jest.spyOn(ajax, 'fetchAPI');
+            const event = { name: 'notifications/delete', data: { id: 'uuid' } } as Ably.Types.Message;
+            await handleAblyEvent(event);
+
+            expect(spy).not.toHaveBeenCalled();
+            spy.mockRestore();
+          });
+
+          it('emits the event with the notification', async () => {
+            const spy = jest.spyOn(pushEventAggregator, 'emit');
+            const event = { name: 'notifications/delete', data: { id: 'uuid' } } as Ably.Types.Message;
+            await handleAblyEvent(event);
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.delete', { id: 'uuid' });
+            spy.mockRestore();
+          });
         });
       });
 

@@ -43,10 +43,15 @@ export function handleAblyEvent(event: Ably.Types.Message) {
   if (eventData.client_id && eventData.client_id === clientId) return Promise.resolve();
 
   if (typeof eventData.id === 'string') {
-    const repository = new NotificationRepository();
-    return repository.get(eventData.id).then((data) => {
-      pushEventAggregator.emit(eventName, data.notification);
-    });
+    if (eventName === 'notifications.delete') {
+      pushEventAggregator.emit(eventName, eventData);
+      return Promise.resolve(true);
+    } else {
+      const repository = new NotificationRepository();
+      return repository.get(eventData.id).then((data) => {
+        pushEventAggregator.emit(eventName, data.notification);
+      });
+    }
   }
 
   pushEventAggregator.emit(eventName, eventData);
