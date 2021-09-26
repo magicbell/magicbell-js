@@ -9,7 +9,7 @@
     "Josue Montano <josue@magicbell.io>"
   ],
   "source": "./src/index.ts",
-  "main": "dist/magicbell-core.cjs.js",
+  "main": "dist/magicbell-core.js",
   "module": "dist/magicbell-core.esm.js",
   "unpkg": "dist/magicbell-core.umd.js",
   "typings": "dist/index.d.ts",
