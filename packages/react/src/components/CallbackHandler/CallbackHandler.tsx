@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMagicBellEvent } from '@magicbell/react-headless';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 
