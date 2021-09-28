@@ -1,3 +1,4 @@
+import { useMagicBellEvent } from '@magicbell/react-headless';
 import INotificationStore from '@magicbell/react-headless/dist/types/INotificationStore';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 import React, { useRef } from 'react';
@@ -6,7 +7,6 @@ import { IMagicBellTheme } from '../../context/Theme';
 import { CustomLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 import Bell from '../Bell';
-import CallbackHandler from '../CallbackHandler';
 import MagicBellProvider from '../MagicBellProvider';
 
 type StoreConfig = {
@@ -81,13 +81,18 @@ export default function MagicBell({
     onToggle?.(isOpen);
   };
 
+  const handleNewNotification = (notification: IRemoteNotification) => {
+    onNewNotification?.(notification);
+  };
+
+  useMagicBellEvent('notifications.new', handleNewNotification);
+
   return (
     <MagicBellProvider {...settings}>
       <div>
         <div ref={launcherRef} aria-expanded={isOpen}>
           <Bell onClick={handleToggle} Icon={BellIcon} counter={bellCounter} />
         </div>
-        <CallbackHandler onNewNotification={onNewNotification} />
         {isOpen && children({ isOpen, toggle: handleToggle, launcherRef })}
       </div>
     </MagicBellProvider>

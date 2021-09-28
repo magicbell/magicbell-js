@@ -1,9 +1,9 @@
+import { pushEventAggregator } from '@magicbell/react-headless';
 import { fireEvent, render, RenderResult, screen, waitFor } from '@testing-library/react';
 import faker from 'faker';
 import { Response, Server } from 'miragejs';
 import React from 'react';
-import { Header } from '../../../../src';
-import MagicBell from '../../../../src/components/MagicBell';
+import MagicBell, { Header } from '../../../../src';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 
@@ -87,19 +87,20 @@ describe('components', () => {
 
       describe('it is open by default', () => {
         it('renders the children when it is mounted', () => {
-          render(
+          const { unmount } = render(
             <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} defaultIsOpen>
               {() => <div data-testid="children" />}
             </MagicBell>,
           );
 
           expect(screen.queryByTestId('children')).toBeInTheDocument();
+          unmount();
         });
       });
 
       describe('custom locale', () => {
         it('sets the custom translations', async () => {
-          render(
+          const { unmount } = render(
             <MagicBell
               apiKey={apiKey}
               userEmail={userEmail}
@@ -117,6 +118,7 @@ describe('components', () => {
           );
 
           expect(await screen.findByTestId('mark-all-as-read')).toMatchSnapshot();
+          unmount();
         });
       });
 
@@ -136,7 +138,7 @@ describe('components', () => {
 
     describe('.toggleNotificationInbox', () => {
       it('toggles the children', async () => {
-        render(
+        const { unmount } = render(
           <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} defaultIsOpen>
             {({ toggle }) => <div data-testid="children" onClick={toggle} />}
           </MagicBell>,
@@ -144,11 +146,12 @@ describe('components', () => {
         fireEvent.click(await screen.getByTestId('children'));
 
         expect(view.queryByTestId('children')).not.toBeInTheDocument();
+        unmount();
       });
 
       it('calls the onToggle callback', async () => {
         const onToggle = jest.fn();
-        render(
+        const { unmount } = render(
           <MagicBell
             apiKey={apiKey}
             userEmail={userEmail}
@@ -162,12 +165,13 @@ describe('components', () => {
         fireEvent.click(await screen.getByTestId('children'));
 
         expect(onToggle).toHaveBeenCalledTimes(1);
+        unmount();
       });
     });
 
     describe('component did mount', () => {
       it('sets the headers for fetching from the API', () => {
-        render(
+        const { unmount } = render(
           <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
             {() => <div data-testid="children" />}
           </MagicBell>,
@@ -179,13 +183,15 @@ describe('components', () => {
           'X-MAGICBELL-USER-EMAIL': userEmail,
           'X-MAGICBELL-USER-HMAC': userKey,
         });
+
+        unmount();
       });
 
       describe('with external id', () => {
         it('sets the external id header for etching from the API', async () => {
           const userExternalId = faker.random.alphaNumeric(15);
 
-          render(
+          const { unmount } = render(
             <MagicBell apiKey={apiKey} userExternalId={userExternalId} userKey={userKey}>
               {() => <div data-testid="children" />}
             </MagicBell>,
@@ -198,6 +204,8 @@ describe('components', () => {
             'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
             'X-MAGICBELL-USER-HMAC': userKey,
           });
+
+          unmount();
         });
       });
     });
@@ -227,6 +235,30 @@ describe('components', () => {
           expect(onToggle).toHaveBeenCalledTimes(1);
           expect(onToggle).toHaveBeenCalledWith(false);
         });
+      });
+    });
+
+    describe('.handleNewNotification', () => {
+      it('calls the onNewNotification callback when a new notification is received', () => {
+        const onNewNotification = jest.fn();
+        const { unmount } = render(
+          <MagicBell
+            apiKey={apiKey}
+            userEmail={userEmail}
+            userKey={userKey}
+            onNewNotification={onNewNotification}
+          >
+            {() => <div data-testid="children" />}
+          </MagicBell>,
+        );
+
+        const notification = NotificationFactory.build();
+        pushEventAggregator.emit('notifications.new', notification);
+
+        expect(onNewNotification).toHaveBeenCalledTimes(1);
+        expect(onNewNotification).toHaveBeenCalledWith(notification);
+
+        unmount();
       });
     });
   });

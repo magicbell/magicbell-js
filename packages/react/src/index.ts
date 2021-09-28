@@ -1,4 +1,5 @@
 import MagicBell from './components/MagicBell';
+export default MagicBell;
 
 export {
   clientSettings,
@@ -41,5 +42,3 @@ export { default as MagicBellThemeContext, useTheme } from './context/MagicBellT
 export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export type { IMagicBellTheme } from './context/Theme';
 export { darken, toRGBA } from './lib/color';
-
-export default MagicBell;
