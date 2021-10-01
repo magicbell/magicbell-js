@@ -20,6 +20,7 @@ export interface MagicBellProviderProps {
   children: React.ReactElement | React.ReactElement[];
   stores?: StoreConfig[];
   serverURL?: string;
+  disableRealtime?: boolean;
 }
 
 function setupXHR({ serverURL, ...userSettings }: Omit<MagicBellProviderProps, 'children' | 'stores'>) {
@@ -51,6 +52,7 @@ function setupStores(storesConfig: StoreConfig[]) {
  * @param userExternalId External ID of the user whose notifications will be displayed
  * @param userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
  * @param stores List of stores to be created
+ * @param disableRealtime Disable realtime updates
  *
  * @example
  * ```javascript
@@ -62,6 +64,7 @@ function setupStores(storesConfig: StoreConfig[]) {
 export default function MagicBellProvider({
   children,
   stores = [{ id: 'default', defaultQueryParams: {} }],
+  disableRealtime,
   ...clientSettings
 }: MagicBellProviderProps) {
   useState(() => setupXHR(clientSettings));
@@ -75,7 +78,7 @@ export default function MagicBellProvider({
 
   return (
     <>
-      <RealtimeListener />
+      {disableRealtime ? null : <RealtimeListener />}
       {children}
     </>
   );
