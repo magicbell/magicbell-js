@@ -93,7 +93,7 @@
   },
   "dependencies": {
     "ably": "^1.2.14",
-    "axios": "^0.21.4",
+    "axios": "^0.22.0",
     "dayjs": "^1.10.7",
     "dompurify": "^2.3.3",
     "humps": "^2.0.1",
