@@ -6,10 +6,11 @@
   "contributors": [
     "Josue Montano <josue@magicbell.io>"
   ],
+  "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/magicbell-react-headless.js",
-  "module": "dist/magicbell-react-headless.esm.js",
+  "main": "dist/magicbell-react-headless.cjs",
+  "module": "dist/magicbell-react-headless.js",
   "unpkg": "dist/magicbell-react-headless.umd.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
