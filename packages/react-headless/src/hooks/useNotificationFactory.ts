@@ -1,4 +1,3 @@
-import DOMPurify from 'dompurify';
 import isNil from 'ramda/src/isNil';
 import { secondsToDate } from '../lib/date';
 import { parseJSON } from '../lib/json';
@@ -16,7 +15,6 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
     useNotificationStoresCollection();
 
   const customAttributes = parseJSON(data.customAttributes);
-  const sanitizedContent = data.content ? DOMPurify.sanitize(data.content) : data.content;
 
   const markAsSeen = () => markNotificationAsSeen(data.id);
   const markAsRead = () => markNotificationAsRead(data.id);
@@ -33,7 +31,7 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
     isSeen: !isNil(data.seenAt),
     isRead: !isNil(data.readAt),
     isArchived: !isNil(data.archivedAt),
-    sanitizedContent,
+    sanitizedContent: data.content,
     markAsSeen,
     markAsRead,
     markAsUnread,
