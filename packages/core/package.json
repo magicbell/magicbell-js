@@ -9,18 +9,17 @@
     "Josue Montano <josue@magicbell.io>"
   ],
   "source": "./src/index.ts",
-  "main": "dist/magicbell-core.js",
-  "module": "dist/magicbell-core.esm.js",
-  "unpkg": "dist/magicbell-core.umd.js",
+  "main": "dist/index.js",
+  "module": "dist/core.esm.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist"
   ],
   "scripts": {
-    "build": "microbundle",
+    "build": "tsdx build",
     "prepare": "yarn build",
-    "start": "microbundle watch",
+    "start": "tsdx watch",
     "report-coverage": "codecov",
     "test": "TZ=America/New_York tsdx test --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York tsdx test --watch",
