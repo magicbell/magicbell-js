@@ -22,8 +22,8 @@
     "prepare": "yarn build",
     "start": "microbundle watch",
     "report-coverage": "codecov",
-    "test": "TZ=America/New_York jest --collectCoverage --no-cache",
-    "test:watch": "TZ=America/New_York jest --watch",
+    "test": "TZ=America/New_York tsdx test --collectCoverage --no-cache",
+    "test:watch": "TZ=America/New_York tsdx test --watch",
     "console": "ts-node"
   },
   "lint-staged": {
