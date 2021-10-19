@@ -113,10 +113,9 @@ export function setupAjax(options: {
   const { apiKey, userEmail, userExternalId, userKey, apiSecret, baseURL } = options;
 
   if (baseURL) api.defaults.baseURL = baseURL;
-  api.defaults.headers = {
-    'X-MAGICBELL-API-KEY': apiKey,
-    'X-MAGICBELL-CLIENT-ID': Math.random().toString(36).substring(2) + Date.now(),
-  };
+
+  api.defaults.headers['X-MAGICBELL-API-KEY'] = apiKey;
+  api.defaults.headers['X-MAGICBELL-CLIENT-ID'] = Math.random().toString(36).substring(2) + Date.now();
 
   if (userEmail) api.defaults.headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
   if (userExternalId) api.defaults.headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;

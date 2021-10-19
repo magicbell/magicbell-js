@@ -131,7 +131,7 @@ describe('lib', () => {
 
           beforeEach(() => {
             clientId = faker.random.alphaNumeric(10);
-            api.defaults.headers = { 'X-MAGICBELL-CLIENT-ID': clientId };
+            api.defaults.headers['X-MAGICBELL-CLIENT-ID'] = clientId;
           });
 
           it('does not emit the event', async () => {
