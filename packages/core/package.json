@@ -64,6 +64,7 @@
     "sinon": "^11.1.2",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
+    "tsdx": "^0.14.1",
     "typescript": "^4.4.2"
   },
   "dependencies": {
