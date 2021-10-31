@@ -1,9 +1,11 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import 'dayjs/locale/pt-br';
+import 'dayjs/locale/de';
 import mergeDeepRight from 'ramda/src/mergeDeepRight';
 import es from './translations/es';
 import pt_br from './translations/pt-br';
+import de from './translations/de';
 
 export type CustomLocale = {
   name: string;
@@ -25,7 +27,7 @@ export function useLocale(locale: string | CustomLocale) {
   const localeName = typeof locale === 'string' ? locale : locale.name;
   setDayjsLocale(localeName);
 
-  const defaultLocales = { es, pt_BR: pt_br };
+  const defaultLocales = { es, pt_BR: pt_br, de };
 
   if (typeof locale === 'string') return defaultLocales[locale];
   else {
