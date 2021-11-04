@@ -85,7 +85,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "faker": "^5.4.0",
-    "husky": "^7.0.2",
+    "husky": "^7.0.4",
     "jest": "^27.1.1",
     "jest-watch-typeahead": "^0.6.4",
     "lint-staged": "^10.5.4",
