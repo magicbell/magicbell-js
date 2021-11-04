@@ -7,7 +7,7 @@ import { IMagicBellTheme } from '../../context/Theme';
 import { CustomLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 import Bell from '../Bell';
-import MagicBellProvider from '../MagicBellProvider';
+import MagicBellChildrenWrapper from '../MagicBellProvider/MagicBellChildrenWrapper';
 
 type StoreConfig = {
   id: string;
@@ -88,13 +88,13 @@ export default function MagicBell({
   useMagicBellEvent('notifications.new', handleNewNotification);
 
   return (
-    <MagicBellProvider {...settings}>
+    <MagicBellChildrenWrapper {...settings}>
       <div>
         <div ref={launcherRef} aria-expanded={isOpen}>
           <Bell onClick={handleToggle} Icon={BellIcon} counter={bellCounter} />
         </div>
         {isOpen && children({ isOpen, toggle: handleToggle, launcherRef })}
       </div>
-    </MagicBellProvider>
+    </MagicBellChildrenWrapper>
   );
 }
