@@ -102,7 +102,7 @@
     "@emotion/react": "^11.4.1",
     "@magicbell/react-headless": "^2.3.4",
     "@tippyjs/react": "^4.2.4",
-    "ably": "^1.2.13",
+    "ably": "^1.2.14",
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "humps": "^2.0.1",
