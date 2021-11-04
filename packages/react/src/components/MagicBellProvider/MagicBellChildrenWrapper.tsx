@@ -1,6 +1,6 @@
 import React from 'react';
-import MagicBellProvider, { MagicBellProviderProps } from '.';
-import { useMagicBellContext } from '../..';
+import { useMagicBellContext } from '../../context/MagicBellContext';
+import MagicBellProvider, { Props as MagicBellProviderProps } from './MagicBellProvider';
 
 interface Props extends MagicBellProviderProps {}
 
