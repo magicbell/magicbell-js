@@ -1564,19 +1564,20 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/react-headless@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.3.4.tgz#d47e5ed2e5491ca4ff9ac0f99108da0f6f108e58"
-  integrity sha512-idh++FkT7GP1Z0OaPzybu3WRW3YUUDaE+HHyka2DgylENemjMPjKJ87NNlO6Nr04n6px3kyq3Lgu4OUfrraNzA==
+"@magicbell/react-headless@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.3.5.tgz#bb36e5ee0305c8438e6b02f1df95345fa69ab020"
+  integrity sha512-ent95AUuKG4lyTh98nDC2v65v/XMcDSNmk5UajggwH5EVJiMbpUU4I4eAjMzsIxrn0+foElBiLkVm5LU5RKoxA==
   dependencies:
     ably "^1.2.13"
     axios "^0.21.4"
     dayjs "^1.10.7"
-    dompurify "^2.3.1"
+    dompurify "^2.3.3"
     humps "^2.0.1"
     immer "^9.0.6"
     mitt "^3.0.0"
     ramda "^0.27.1"
+    tslib "^2.3.1"
     zustand "^3.5.10"
 
 "@mdx-js/loader@^1.6.22":
@@ -5416,10 +5417,10 @@ domhandler@^4.0.0, domhandler@^4.2.0:
   dependencies:
     domelementtype "^2.2.0"
 
-dompurify@^2.3.1:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.2.tgz#c773efa410abb5c087c7caf44934fefa448f6e60"
-  integrity sha512-jXJnvWloI+scD+N5uBikpUMsYXZb0LCAXxLFAOLS5duCzKfXLqBCpuINvFOiI4eJgTLggrngljT18HNoakHUsA==
+dompurify@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.3.tgz#c1af3eb88be47324432964d8abc75cf4b98d634c"
+  integrity sha512-dqnqRkPMAjOZE0FogZ+ceJNM2dZ3V/yNOuFB7+39qpO93hHhfRpHw3heYQC7DPK9FqbQTfBKUJhiSfz4MvXYwg==
 
 domutils@^2.5.2, domutils@^2.6.0:
   version "2.8.0"
