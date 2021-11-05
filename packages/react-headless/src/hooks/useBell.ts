@@ -11,17 +11,19 @@ interface useBellArgs {
  * notifications.
  *
  * @param storeId Optional ID of the notifications store
+ * @returns A store of notifications (if the store exists)
  *
  * @example
  * const { unreadCount, markAllAsSeen } = useBell();
  */
-export default function useBell({ storeId }: useBellArgs = {}): NotificationStore {
+export default function useBell({ storeId }: useBellArgs = {}): NotificationStore | null {
   const store = useNotifications(storeId);
 
   const markAllAsSeen = () => {
-    if (store.unseenCount > 0) return store.markAllAsSeen({ updateModels: false });
+    if (store && store.unseenCount > 0) return store?.markAllAsSeen({ updateModels: false });
     return Promise.resolve(true);
   };
 
-  return { ...store, markAllAsSeen };
+  if (store) return { ...store, markAllAsSeen };
+  return null;
 }

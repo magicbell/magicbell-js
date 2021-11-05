@@ -53,11 +53,11 @@ export interface NotificationStore extends INotificationStore {
  * @example
  * const store = useNotifications('mentions');
  */
-export default function useNotifications(storeId: string = 'default'): NotificationStore {
+export default function useNotifications(storeId: string = 'default'): NotificationStore | null {
   const { stores, fetchStore, markAllAsSeen, markAllAsRead } = useNotificationStoresCollection();
   const config = useConfig();
   const store = stores[storeId];
-  if (!store) throw new Error(`Store not found. Define a store with the ${storeId} ID`);
+  if (!store) return null;
 
   const fetch = (queryParams?: Object, options?: FetchOptions) => fetchStore(storeId, queryParams, options);
 

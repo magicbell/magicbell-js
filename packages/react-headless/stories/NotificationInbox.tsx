@@ -51,11 +51,11 @@ export default function NotificationInbox() {
           <button onClick={() => store.markAllAsRead()}>Mark all as read</button>
         </div>
         <p>
-          {store.total} notifications / {store.unreadCount} unread
+          {store?.total} notifications / {store?.unreadCount} unread
         </p>
       </header>
       <section>
-        {store.notifications.map((notification) => (
+        {store?.notifications.map((notification) => (
           <Notification key={notification.id} notification={notification} />
         ))}
       </section>

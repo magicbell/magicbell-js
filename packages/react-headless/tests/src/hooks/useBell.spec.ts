@@ -12,7 +12,7 @@ describe('hooks', () => {
       const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
       act(() => {
-        result.current.setStore('default', {}, { notifications });
+        result.current?.setStore('default', {}, { notifications });
       });
     });
 
@@ -20,26 +20,23 @@ describe('hooks', () => {
       it('returns the store', () => {
         const { result } = renderHook(() => useBell());
 
-        expect(result.current.context).toBeDefined();
-        expect(result.current.total).toBeDefined();
-        expect(result.current.totalPages).toBeDefined();
-        expect(result.current.currentPage).toBeDefined();
-        expect(result.current.perPage).toBeDefined();
-        expect(result.current.notifications).toBeDefined();
-        expect(result.current.fetch).toBeDefined();
-        expect(result.current.markAllAsRead).toBeDefined();
-        expect(result.current.markAllAsSeen).toBeDefined();
+        expect(result.current).toBeDefined();
+        expect(result.current?.context).toBeDefined();
+        expect(result.current?.total).toBeDefined();
+        expect(result.current?.totalPages).toBeDefined();
+        expect(result.current?.currentPage).toBeDefined();
+        expect(result.current?.perPage).toBeDefined();
+        expect(result.current?.notifications).toBeDefined();
+        expect(result.current?.fetch).toBeDefined();
+        expect(result.current?.markAllAsRead).toBeDefined();
+        expect(result.current?.markAllAsSeen).toBeDefined();
       });
     });
 
     describe('there is not store with the given ID', () => {
-      it('throws an error', () => {
-        expect.hasAssertions();
-
-        expect(() => {
-          const { result } = renderHook(() => useBell({ storeId: 'non-existing' }));
-          return result.current;
-        }).toThrow(`Store not found. Define a store with the non-existing ID`);
+      it('returns null', () => {
+        const { result } = renderHook(() => useBell({ storeId: 'non-existing' }));
+        expect(result.current).toBeNull();
       });
     });
 
@@ -62,7 +59,7 @@ describe('hooks', () => {
           const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
           act(() => {
-            result.current.setStore('default', {}, { unseenCount: 3, notifications });
+            result.current?.setStore('default', {}, { unseenCount: 3, notifications });
           });
         });
 
@@ -71,7 +68,7 @@ describe('hooks', () => {
           const { result } = renderHook(() => useBell());
 
           await act(async () => {
-            await result.current.markAllAsSeen();
+            await result.current?.markAllAsSeen();
           });
 
           expect(spy).toHaveBeenCalledTimes(1);
@@ -82,14 +79,14 @@ describe('hooks', () => {
           const { result } = renderHook(() => useBell());
 
           await act(async () => {
-            await result.current.markAllAsSeen();
+            await result.current?.markAllAsSeen();
           });
 
           const store = result.current;
 
-          expect(store.notifications[0].seenAt).toBeNull();
-          expect(store.notifications[1].seenAt).toBeNull();
-          expect(store.notifications[2].seenAt).toBeNull();
+          expect(store?.notifications[0].seenAt).toBeNull();
+          expect(store?.notifications[1].seenAt).toBeNull();
+          expect(store?.notifications[2].seenAt).toBeNull();
         });
       });
 
@@ -99,7 +96,7 @@ describe('hooks', () => {
           const { result } = renderHook(() => useBell());
 
           await act(async () => {
-            await result.current.markAllAsSeen();
+            await result.current?.markAllAsSeen();
           });
 
           expect(spy).not.toHaveBeenCalled();

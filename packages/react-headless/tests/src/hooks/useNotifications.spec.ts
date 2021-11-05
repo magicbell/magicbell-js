@@ -20,17 +20,18 @@ describe('hooks', () => {
       it('returns the store', () => {
         const { result } = renderHook(() => useNotifications());
 
-        expect(result.current.context).toBeDefined();
-        expect(result.current.total).toBeDefined();
-        expect(result.current.totalPages).toBeDefined();
-        expect(result.current.currentPage).toBeDefined();
-        expect(result.current.perPage).toBeDefined();
-        expect(result.current.notifications).toBeDefined();
-        expect(result.current.isEmpty).toBeDefined();
-        expect(result.current.hasNextPage).toBeDefined();
-        expect(result.current.fetch).toBeDefined();
-        expect(result.current.markAllAsRead).toBeDefined();
-        expect(result.current.markAllAsSeen).toBeDefined();
+        expect(result.current).toBeDefined();
+        expect(result.current?.context).toBeDefined();
+        expect(result.current?.total).toBeDefined();
+        expect(result.current?.totalPages).toBeDefined();
+        expect(result.current?.currentPage).toBeDefined();
+        expect(result.current?.perPage).toBeDefined();
+        expect(result.current?.notifications).toBeDefined();
+        expect(result.current?.isEmpty).toBeDefined();
+        expect(result.current?.hasNextPage).toBeDefined();
+        expect(result.current?.fetch).toBeDefined();
+        expect(result.current?.markAllAsRead).toBeDefined();
+        expect(result.current?.markAllAsSeen).toBeDefined();
       });
 
       describe('config is fetched', () => {
@@ -60,13 +61,9 @@ describe('hooks', () => {
     });
 
     describe('there is not store with the given ID', () => {
-      it('throws an error', () => {
-        expect.hasAssertions();
-
-        expect(() => {
-          const { result } = renderHook(() => useNotifications('non-existing'));
-          return result.current;
-        }).toThrow(`Store not found. Define a store with the non-existing ID`);
+      it('returns null', () => {
+        const { result } = renderHook(() => useNotifications('non-existing'));
+        expect(result.current).toBeNull();
       });
     });
   });
