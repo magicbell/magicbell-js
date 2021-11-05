@@ -40,7 +40,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         }),
       );
     } else {
-      throw new Error(`Store not found. Define a store with the ${storeId} ID`);
+      console.error(`Store not found. Define a store with the ${storeId} ID`);
     }
   },
 
