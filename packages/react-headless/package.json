@@ -62,7 +62,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@types/faker": "^5.5.8",
     "@types/jest": "^27.0.2",
-    "@types/ramda": "^0.27.45",
+    "@types/ramda": "^0.27.46",
     "@types/react": "^17.0.34",
     "@types/rosie": "^0.0.40",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
