@@ -58,7 +58,7 @@
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/react": "^6.3.8",
-    "@testing-library/react": "^12.1.1",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.2",
@@ -98,7 +98,7 @@
     "mitt": "^3.0.0",
     "ramda": "^0.27.1",
     "tslib": "^2.3.1",
-    "zustand": "^3.5.12"
+    "zustand": "^3.6.4"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"
