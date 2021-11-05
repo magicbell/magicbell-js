@@ -14,8 +14,6 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
   const { markNotificationAsRead, markNotificationAsSeen, markNotificationAsUnread, deleteNotification } =
     useNotificationStoresCollection();
 
-  const customAttributes = parseJSON(data.customAttributes);
-
   const markAsSeen = () => markNotificationAsSeen(data.id);
   const markAsRead = () => markNotificationAsRead(data.id);
   const markAsUnread = () => markNotificationAsUnread(data.id);
@@ -23,7 +21,7 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
 
   return {
     ...data,
-    customAttributes,
+    customAttributes: parseJSON(data.customAttributes),
     readAt: secondsToDate(data.readAt),
     seenAt: secondsToDate(data.seenAt),
     sentAt: secondsToDate(data.sentAt),
