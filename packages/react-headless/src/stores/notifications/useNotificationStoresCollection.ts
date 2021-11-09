@@ -3,8 +3,7 @@ import findIndex from 'ramda/src/findIndex';
 import mergeRight from 'ramda/src/mergeRight';
 import propEq from 'ramda/src/propEq';
 import create from 'zustand';
-import INotificationsStoresCollection from '../../types/INotificationsStoresCollection';
-import INotificationStore from '../../types/INotificationStore';
+import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
 import NotificationRepository from './NotificationRepository';
@@ -51,8 +50,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     }
   },
 
-  markNotificationAsSeen: (notificationId: string) => {
+  markNotificationAsSeen: (notification: IRemoteNotification) => {
     const { stores } = get();
+    const notificationId = notification.id;
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -75,8 +75,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     );
   },
 
-  markNotificationAsRead: (notificationId: string) => {
+  markNotificationAsRead: (notification: IRemoteNotification) => {
     const { stores, _repository } = get();
+    const notificationId = notification.id;
     const promise = _repository.markAsRead(notificationId);
 
     set(
@@ -98,8 +99,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     return promise;
   },
 
-  markNotificationAsUnread: (notificationId: string) => {
+  markNotificationAsUnread: (notification: IRemoteNotification) => {
     const { stores, _repository } = get();
+    const notificationId = notification.id;
     const promise = _repository.markAsUnread(notificationId);
 
     set(
@@ -119,8 +121,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     return promise;
   },
 
-  deleteNotification: (notificationId: string, options = {}) => {
+  deleteNotification: (notification: IRemoteNotification, options = {}) => {
     const { stores, _repository } = get();
+    const notificationId = notification.id;
     const promise = options.persist === false ? Promise.resolve(true) : _repository.delete(notificationId);
 
     set(

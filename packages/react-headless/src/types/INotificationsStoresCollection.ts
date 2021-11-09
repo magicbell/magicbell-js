@@ -1,3 +1,4 @@
+import { IRemoteNotification } from '../types';
 import INotificationRepository from './INotificationRepository';
 import INotificationStore from './INotificationStore';
 
@@ -37,33 +38,33 @@ export default interface INotificationsStoresCollection {
   /**
    * Mark a notification as seen.
    *
-   * @param notificationId ID of the notification to mark as seen.
+   * @param notification Notification to mark as seen.
    */
-  markNotificationAsSeen: (notificationId: string) => void;
+  markNotificationAsSeen: (notification: IRemoteNotification) => void;
 
   /**
    * Mark a notification as read. Makes a request to the MagicBell server and
    * marks the notification as read immediately.
    *
-   * @param notificationId ID of the notification to mark as read.
+   * @param notification Notification to mark as read.
    */
-  markNotificationAsRead: (notificationId: string) => Promise<boolean>;
+  markNotificationAsRead: (notification: IRemoteNotification) => Promise<boolean>;
 
   /**
    * Mark a notification as unread. Makes a request to the MagicBell server and
    * marks the notification as unread immediately.
    *
-   * @param notificationId ID of the notification to mark as read.
+   * @param notification Notification to mark as read.
    */
-  markNotificationAsUnread: (notificationId: string) => Promise<boolean>;
+  markNotificationAsUnread: (notification: IRemoteNotification) => Promise<boolean>;
 
   /**
    * Delets a notification. Makes a request to the MagicBell server and
    * removes the notification immediately.
    *
-   * @param notificationId ID of the notification to mark as read.
+   * @param notification Notification to mark as read.
    */
-  deleteNotification: (notificationId: string, options?: Partial<{ persist: boolean }>) => Promise<boolean>;
+  deleteNotification: (notification: IRemoteNotification, options?: Partial<{ persist: boolean }>) => Promise<boolean>;
 
   /**
    * Marks all notifications as seen. Makes a request to the MagicBell server

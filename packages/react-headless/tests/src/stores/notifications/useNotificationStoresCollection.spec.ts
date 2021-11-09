@@ -161,7 +161,7 @@ describe('stores', () => {
 
           await act(async () => {
             result.current.setStore('default', {}, { notifications, unreadCount: 1 });
-            await result.current.markNotificationAsSeen(notification.id);
+            await result.current.markNotificationAsSeen(notification);
           });
 
           expect(result.current.stores['default'].unseenCount).toEqual(0);
@@ -174,7 +174,7 @@ describe('stores', () => {
 
           await act(async () => {
             result.current.setStore('default', {}, { notifications: [notification] });
-            await result.current.markNotificationAsSeen(notification.id);
+            await result.current.markNotificationAsSeen(notification);
           });
 
           expect(result.current.stores['default'].notifications[0].seenAt).toEqual(now / 1000);
@@ -196,7 +196,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications, unreadCount: 1 });
-              await result.current.markNotificationAsRead(notification.id);
+              await result.current.markNotificationAsRead(notification);
             });
 
             expect(result.current.stores['default'].unreadCount).toEqual(0);
@@ -209,7 +209,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
-              await result.current.markNotificationAsRead(notification.id);
+              await result.current.markNotificationAsRead(notification);
             });
 
             expect(result.current.stores['default'].notifications[0].readAt).toEqual(now / 1000);
@@ -231,7 +231,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification], unreadCount: 1 });
-              await result.current.markNotificationAsUnread(notification.id);
+              await result.current.markNotificationAsUnread(notification);
             });
 
             expect(result.current.stores['default'].unreadCount).toEqual(2);
@@ -242,7 +242,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
-              await result.current.markNotificationAsUnread(notification.id);
+              await result.current.markNotificationAsUnread(notification);
             });
 
             expect(result.current.stores['default'].notifications[0].readAt).toBeNull();
@@ -265,7 +265,7 @@ describe('stores', () => {
 
               await act(async () => {
                 result.current.setStore('default', {}, { notifications, unreadCount: 1 });
-                await result.current.deleteNotification(notification.id);
+                await result.current.deleteNotification(notification);
               });
 
               expect(result.current.stores['default'].unreadCount).toEqual(0);
@@ -279,7 +279,7 @@ describe('stores', () => {
 
               await act(async () => {
                 result.current.setStore('default', {}, { notifications, unreadCount: 1 });
-                await result.current.deleteNotification(notification.id);
+                await result.current.deleteNotification(notification);
               });
 
               expect(result.current.stores['default'].unreadCount).toEqual(1);
@@ -291,7 +291,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification], total: 1 });
-              await result.current.deleteNotification(notification.id);
+              await result.current.deleteNotification(notification);
             });
 
             expect(result.current.stores['default'].total).toEqual(0);
@@ -302,7 +302,7 @@ describe('stores', () => {
 
             await act(async () => {
               result.current.setStore('default', {}, { notifications: [notification] });
-              await result.current.deleteNotification(notification.id);
+              await result.current.deleteNotification(notification);
             });
 
             expect(result.current.stores['default'].notifications).toHaveLength(0);

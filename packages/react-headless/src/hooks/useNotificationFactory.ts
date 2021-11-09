@@ -14,10 +14,10 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
   const { markNotificationAsRead, markNotificationAsSeen, markNotificationAsUnread, deleteNotification } =
     useNotificationStoresCollection();
 
-  const markAsSeen = () => markNotificationAsSeen(data.id);
-  const markAsRead = () => markNotificationAsRead(data.id);
-  const markAsUnread = () => markNotificationAsUnread(data.id);
-  const deleteSelf = () => deleteNotification(data.id);
+  const markAsSeen = () => markNotificationAsSeen(data);
+  const markAsRead = () => markNotificationAsRead(data);
+  const markAsUnread = () => markNotificationAsUnread(data);
+  const deleteSelf = () => deleteNotification(data);
 
   return {
     ...data,
