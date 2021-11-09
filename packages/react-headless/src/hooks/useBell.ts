@@ -10,7 +10,8 @@ interface useBellArgs {
  * The `markAllAsSeen` function exposed by this hook does not update the fetched
  * notifications.
  *
- * @param storeId Optional ID of the notifications store
+ * @param props
+ * @param props.storeId Optional ID of the notifications store
  * @returns A store of notifications (if the store exists)
  *
  * @example

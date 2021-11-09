@@ -47,12 +47,13 @@ function setupStores(storesConfig: StoreConfig[]) {
 /**
  * Provider component for Magicbell.
  *
- * @param apiKey API key of the MagicBell project
- * @param userEmail Email of the user whose notifications will be displayed
- * @param userExternalId External ID of the user whose notifications will be displayed
- * @param userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
- * @param stores List of stores to be created
- * @param disableRealtime Disable realtime updates
+ * @param props
+ * @param props.apiKey API key of the MagicBell project
+ * @param props.userEmail Email of the user whose notifications will be displayed
+ * @param props.userExternalId External ID of the user whose notifications will be displayed
+ * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
+ * @param props.stores List of stores to be created
+ * @param props.disableRealtime Disable realtime updates
  *
  * @example
  * ```javascript

@@ -26,8 +26,6 @@ function createRealtimeSubscription(config: WebSocketConfig) {
 
 /**
  * React hook to start listening to ably events on a channel.
- *
- * @param config The configuration for the app
  */
 export function useAbly() {
   const config = useConfig();
