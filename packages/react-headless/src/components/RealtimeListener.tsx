@@ -16,7 +16,7 @@ export default function RealtimeListener() {
   const fetchAndPrependAll = () => collection.fetchAllStores({ page: 1 }, { prepend: true });
   const markAllAsSeen = () => collection.markAllAsSeen({ persist: false });
   const markAllAsRead = () => collection.markAllAsRead({ persist: false });
-  const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data.id, { persist: false });
+  const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data, { persist: false });
 
   useAbly();
 
