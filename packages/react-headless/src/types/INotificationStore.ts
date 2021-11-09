@@ -21,5 +21,5 @@ export default interface INotificationStore {
    * @param comparator Function to test the notification against the context
    * @returns Whether the notification belongs to this store or not
    */
-  notificationMatchesContext(notification: IRemoteNotification, comparator?: IStrategyComparator): boolean;
+  objMatchesContext(notification: IRemoteNotification, comparator?: IStrategyComparator): boolean;
 }
