@@ -13,6 +13,10 @@
   "unpkg": "dist/magicbell-react-headless.umd.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src"
+  ],
   "homepage": "https://magicbell.com",
   "keywords": [
     "bell",
