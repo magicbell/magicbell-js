@@ -16,7 +16,7 @@ function eq(value, other) {
  */
 export function compareAttributeStrategy(
   notification: IRemoteNotification,
-  context,
+  context: Record<string, any>,
   comparator: IStrategyComparator = eq,
 ) {
   const diff: string[] = [];
