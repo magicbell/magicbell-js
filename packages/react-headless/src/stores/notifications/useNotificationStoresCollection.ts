@@ -77,20 +77,36 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
   markNotificationAsRead: (notification: IRemoteNotification) => {
     const { stores, _repository } = get();
-    const notificationId = notification.id;
+    const { id: notificationId } = notification;
     const promise = _repository.markAsRead(notificationId);
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
+        const attrs = { readAt: Date.now() / 1000 };
+
         for (const storeId in stores) {
-          const { notifications, unreadCount } = stores[storeId];
+          const { total, notifications, unreadCount, objMatchesContext } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
             draft.stores[storeId].unreadCount = Math.max(0, unreadCount - 1);
-            draft.stores[storeId].notifications[index] = mergeRight(notifications[index], {
-              readAt: Date.now() / 1000,
-            });
+
+            const readNotification = mergeRight(notifications[index], attrs);
+            if (objMatchesContext(readNotification)) {
+              // Update the store
+              draft.stores[storeId].notifications[index] = readNotification;
+            } else {
+              // Remove notification from the store
+              draft.stores[storeId].total -= Math.max(0, total - 1);
+              draft.stores[storeId].notifications.splice(index, 1);
+            }
+          } else {
+            const readNotification = mergeRight(notification, attrs);
+            if (objMatchesContext(readNotification)) {
+              // Add the notification to the store
+              draft.stores[storeId].total += 1;
+              draft.stores[storeId].notifications.push(readNotification);
+            }
           }
         }
       }),
@@ -101,18 +117,36 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
   markNotificationAsUnread: (notification: IRemoteNotification) => {
     const { stores, _repository } = get();
-    const notificationId = notification.id;
+    const { id: notificationId } = notification;
     const promise = _repository.markAsUnread(notificationId);
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
+        const attrs = { readAt: null };
+
         for (const storeId in stores) {
-          const { notifications, unreadCount } = stores[storeId];
+          const { total, notifications, objMatchesContext } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
-            draft.stores[storeId].unreadCount = unreadCount + 1;
-            draft.stores[storeId].notifications[index] = mergeRight(notifications[index], { readAt: null });
+            const unreadNotification = mergeRight(notifications[index], attrs);
+            if (objMatchesContext(unreadNotification)) {
+              // Update the store
+              draft.stores[storeId].unreadCount += 1;
+              draft.stores[storeId].notifications[index] = unreadNotification;
+            } else {
+              // Remove notification from the store
+              draft.stores[storeId].total -= Math.max(0, total - 1);
+              draft.stores[storeId].notifications.splice(index, 1);
+            }
+          } else {
+            const unreadNotification = mergeRight(notification, attrs);
+            if (objMatchesContext(unreadNotification)) {
+              // Add the notification to the store
+              draft.stores[storeId].total += 1;
+              draft.stores[storeId].unreadCount += 1;
+              draft.stores[storeId].notifications.push(unreadNotification);
+            }
           }
         }
       }),
