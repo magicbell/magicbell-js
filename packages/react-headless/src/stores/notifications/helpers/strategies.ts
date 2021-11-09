@@ -6,6 +6,12 @@ function eq(value, other) {
   return value === other || (value !== value && other !== other);
 }
 
+export type NotificationCompareStrategy = (
+  notification: IRemoteNotification,
+  context: Record<string, any>,
+  comparator?: IStrategyComparator,
+) => { result: boolean; delta: string[] };
+
 /**
  * Check if a notification satisfies all conditions of the given `context`. It
  * Uses equal to compare.
