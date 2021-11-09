@@ -98,7 +98,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               draft.stores[storeId].notifications[index] = readNotification;
             } else {
               // Remove notification from the store
-              draft.stores[storeId].total -= Math.max(0, total - 1);
+              draft.stores[storeId].total = Math.max(0, total - 1);
               draft.stores[storeId].notifications.splice(index, 1);
             }
           } else {
