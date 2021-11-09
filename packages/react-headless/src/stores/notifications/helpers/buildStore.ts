@@ -1,7 +1,5 @@
 import mergeRight from 'ramda/src/mergeRight';
-import { IRemoteNotification } from '../../..';
-import INotificationStore, { IStrategyComparator } from '../../../types/INotificationStore';
-import { compareAttributeStrategy, NotificationCompareStrategy } from './strategies';
+import INotificationStore from '../../../types/INotificationStore';
 
 /**
  * Factory of notifications stores.
@@ -10,10 +8,7 @@ import { compareAttributeStrategy, NotificationCompareStrategy } from './strateg
  * @param strategy Function to compare notifications with the context
  * @returns An empty store of notifications
  */
-export default function buildStore(
-  props: Object,
-  strategy: NotificationCompareStrategy = compareAttributeStrategy,
-): INotificationStore {
+export default function buildStore(props: Object): INotificationStore {
   const defaults = {
     context: {},
     total: 0,
@@ -23,10 +18,6 @@ export default function buildStore(
     unreadCount: 0,
     unseenCount: 0,
     notifications: [],
-
-    objMatchesContext: (notification: IRemoteNotification, comparator: IStrategyComparator): boolean => {
-      return strategy(notification, this.context, comparator).result;
-    },
   };
 
   return mergeRight(defaults, props);

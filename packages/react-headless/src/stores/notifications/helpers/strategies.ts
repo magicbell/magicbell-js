@@ -20,7 +20,7 @@ export type NotificationCompareStrategy = (
  * @param context Set of rules to test the notification against
  * @param comparator Function used to compare notification attributes and context values
  */
-export function compareAttributeStrategy(
+export function objMatchesContext(
   notification: IRemoteNotification,
   context: Record<string, any>,
   comparator: IStrategyComparator = eq,

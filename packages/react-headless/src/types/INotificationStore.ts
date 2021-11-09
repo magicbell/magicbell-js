@@ -12,14 +12,4 @@ export default interface INotificationStore {
   unseenCount: number;
   notifications: IRemoteNotification[];
   lastFetchedAt?: Date;
-
-  /**
-   * Test whether a notification belongs to this store or not, based on the
-   * context.
-   *
-   * @param notification Notification to text
-   * @param comparator Function to test the notification against the context
-   * @returns Whether the notification belongs to this store or not
-   */
-  objMatchesContext(notification: IRemoteNotification, comparator?: IStrategyComparator): boolean;
 }

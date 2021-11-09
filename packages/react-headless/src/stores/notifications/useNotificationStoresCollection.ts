@@ -6,6 +6,7 @@ import create from 'zustand';
 import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
+import { objMatchesContext } from './helpers/strategies';
 import NotificationRepository from './NotificationRepository';
 
 /**
@@ -85,14 +86,14 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         const attrs = { readAt: Date.now() / 1000 };
 
         for (const storeId in stores) {
-          const { total, notifications, unreadCount, objMatchesContext } = stores[storeId];
+          const { total, notifications, unreadCount, context } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
             draft.stores[storeId].unreadCount = Math.max(0, unreadCount - 1);
 
             const readNotification = mergeRight(notifications[index], attrs);
-            if (objMatchesContext(readNotification)) {
+            if (objMatchesContext(readNotification, context).result) {
               // Update the store
               draft.stores[storeId].notifications[index] = readNotification;
             } else {
@@ -102,7 +103,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
             }
           } else {
             const readNotification = mergeRight(notification, attrs);
-            if (objMatchesContext(readNotification)) {
+            if (objMatchesContext(readNotification, context).result) {
               // Add the notification to the store
               draft.stores[storeId].total += 1;
               draft.stores[storeId].notifications.push(readNotification);
@@ -125,12 +126,12 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         const attrs = { readAt: null };
 
         for (const storeId in stores) {
-          const { total, notifications, objMatchesContext } = stores[storeId];
+          const { total, notifications, context } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
             const unreadNotification = mergeRight(notifications[index], attrs);
-            if (objMatchesContext(unreadNotification)) {
+            if (objMatchesContext(unreadNotification, context).result) {
               // Update the store
               draft.stores[storeId].unreadCount += 1;
               draft.stores[storeId].notifications[index] = unreadNotification;
@@ -141,7 +142,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
             }
           } else {
             const unreadNotification = mergeRight(notification, attrs);
-            if (objMatchesContext(unreadNotification)) {
+            if (objMatchesContext(unreadNotification, context).result) {
               // Add the notification to the store
               draft.stores[storeId].total += 1;
               draft.stores[storeId].unreadCount += 1;
