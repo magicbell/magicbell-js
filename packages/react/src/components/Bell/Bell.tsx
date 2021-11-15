@@ -24,12 +24,12 @@ export interface Props {
  * <Bell onClick={toggleNotifications} />
  */
 export default function Bell({ Icon, onClick, storeId, counter }: Props) {
-  const { unreadCount, unseenCount, markAllAsSeen } = useBell({ storeId });
+  const notifications = useBell({ storeId });
   const theme = useTheme();
   const { icon: iconTheme } = theme;
 
   const handleClick = () => {
-    markAllAsSeen();
+    notifications?.markAllAsSeen();
     onClick();
   };
 
@@ -49,10 +49,13 @@ export default function Bell({ Icon, onClick, storeId, counter }: Props) {
     }
   `;
 
+  if (!notifications) return null;
   return (
     <a onClick={handleClick} css={[cleanslate, containerStyle]} data-testid="bell">
       <div css={iconStyle}>{!isNil(Icon) ? Icon : <BellIcon />}</div>
-      <BellBadge counter={counter === 'unread' ? unreadCount : unseenCount} />
+      <BellBadge
+        counter={counter === 'unread' ? notifications?.unreadCount : notifications?.unseenCount}
+      />
     </a>
   );
 }

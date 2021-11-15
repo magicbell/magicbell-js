@@ -87,19 +87,23 @@ describe('components', () => {
       });
 
       describe('the notification store does not exist', () => {
-        it('throws an error', () => {
-          expect(() =>
-            view.rerender(
-              <MagicBellProvider apiKey="">
-                <NotificationInbox
-                  onNotificationClick={onNotificationClick}
-                  onAllRead={onAllRead}
-                  height={300}
-                  storeId="non-existing"
-                />
-              </MagicBellProvider>,
-            ),
-          ).toThrowError('Store not found. Define a store with the non-existing ID');
+        beforeEach(() => {
+          view.unmount();
+        });
+
+        it('renders nothing', () => {
+          const { container } = render(
+            <MagicBellProvider apiKey="">
+              <NotificationInbox
+                onNotificationClick={onNotificationClick}
+                onAllRead={onAllRead}
+                height={300}
+                storeId="non-existing"
+              />
+            </MagicBellProvider>,
+          );
+
+          expect(container).toBeEmptyDOMElement();
         });
       });
     });
