@@ -1,8 +1,9 @@
 import { INotification } from '@magicbell/react-headless';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import MagicBell, { MagicBellProvider } from '../src';
 import FloatingNotificationInbox from '../src/components/FloatingNotificationInbox';
-import MagicBell, { MagicBellProps } from '../src/components/MagicBell';
+import { MagicBellProps } from '../src/components/MagicBell';
 import { IMagicBellTheme } from '../src/context/Theme';
 import { DeepPartial } from '../src/lib/types';
 
@@ -22,16 +23,18 @@ export default {
 } as Meta;
 
 const Template: Story<IStory> = ({ onAllRead, onNotificationClick, ...args }: IStory) => (
-  <MagicBell {...args}>
-    {(props) => (
-      <FloatingNotificationInbox
-        onAllRead={onAllRead}
-        onNotificationClick={onNotificationClick}
-        height={500}
-        {...props}
-      />
-    )}
-  </MagicBell>
+  <MagicBellProvider {...args}>
+    <MagicBell {...args}>
+      {(props) => (
+        <FloatingNotificationInbox
+          onAllRead={onAllRead}
+          onNotificationClick={onNotificationClick}
+          height={500}
+          {...props}
+        />
+      )}
+    </MagicBell>
+  </MagicBellProvider>
 );
 
 export const Default = Template.bind({});
