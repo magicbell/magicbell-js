@@ -156,6 +156,28 @@ describe('components', () => {
           expect(view.container).toMatchSnapshot();
         });
       });
+
+      describe('a custom layout is provided', () => {
+        it('renders the inbox with the correct layout', async () => {
+          await act(async () => {
+            view.rerender(
+              <MagicBellProvider apiKey="" stores={stores}>
+                <div>
+                  <div ref={launcherRef} />
+                  <FloatingNotificationInbox
+                    launcherRef={launcherRef}
+                    height={350}
+                    layout={['footer', 'content', 'header']}
+                    isOpen
+                  />
+                </div>
+              </MagicBellProvider>,
+            );
+          });
+
+          expect(view.container).toMatchSnapshot();
+        });
+      });
     });
 
     describe('.handleNotificationClick', () => {
