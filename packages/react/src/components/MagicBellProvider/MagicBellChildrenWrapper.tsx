@@ -1,5 +1,5 @@
-import React from 'react';
-import { useMagicBellContext } from '../../context/MagicBellContext';
+import React, { useContext } from 'react';
+import CurrentProviderContext, { NO_PROVIDER } from '../../context/CurrentProviderContext';
 import MagicBellProvider, { Props as MagicBellProviderProps } from './MagicBellProvider';
 
 interface Props extends MagicBellProviderProps {}
@@ -9,9 +9,9 @@ interface Props extends MagicBellProviderProps {}
  * unless one is defined already.
  */
 export default function MagicBellChildrenWrapper({ children, ...settings }: Props) {
-  const context = useMagicBellContext();
-  const hasContext = context !== null;
+  const currentContext = useContext(CurrentProviderContext);
 
-  if (hasContext) return <>{children}</>;
-  return <MagicBellProvider {...settings}>{children}</MagicBellProvider>;
+  if (currentContext === NO_PROVIDER)
+    return <MagicBellProvider {...settings}>{children}</MagicBellProvider>;
+  return <>{children}</>;
 }

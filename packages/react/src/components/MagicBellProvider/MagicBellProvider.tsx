@@ -1,6 +1,7 @@
 import { MagicBellProvider as Provider } from '@magicbell/react-headless';
 import mergeDeepRight from 'ramda/src/mergeDeepRight';
 import React from 'react';
+import CurrentProviderContext from '../../context/CurrentProviderContext';
 import MagicBellContext from '../../context/MagicBellContext';
 import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
 import { defaultTheme, IMagicBellTheme } from '../../context/Theme';
@@ -51,12 +52,14 @@ export default function MagicBellProvider({
   const textTranslations = useLocale(locale);
 
   return (
-    <TranslationsProvider value={textTranslations}>
-      <MagicBellThemeProvider value={mergeDeepRight(defaultTheme, theme)}>
-        <MagicBellContext.Provider value={{ images }}>
-          <Provider {...settings}>{children}</Provider>
-        </MagicBellContext.Provider>
-      </MagicBellThemeProvider>
-    </TranslationsProvider>
+    <CurrentProviderContext.Provider value="DEFAULT_MAGICBELL">
+      <TranslationsProvider value={textTranslations}>
+        <MagicBellThemeProvider value={mergeDeepRight(defaultTheme, theme)}>
+          <MagicBellContext.Provider value={{ images }}>
+            <Provider {...settings}>{children}</Provider>
+          </MagicBellContext.Provider>
+        </MagicBellThemeProvider>
+      </TranslationsProvider>
+    </CurrentProviderContext.Provider>
   );
 }
