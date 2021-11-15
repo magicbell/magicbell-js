@@ -114,7 +114,7 @@
     "timeago.js": "^4.0.2",
     "tinycolor2": "^1.4.2",
     "tslib": "^2.3.1",
-    "zustand": "^3.5.10"
+    "zustand": "^3.6.4"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"
