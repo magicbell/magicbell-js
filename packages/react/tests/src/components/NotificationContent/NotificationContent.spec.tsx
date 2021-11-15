@@ -12,7 +12,7 @@ describe('components', () => {
 
     describe('render', () => {
       describe('sanitization', () => {
-        it('renders the content compiled and sanitized', async () => {
+        it('renders the content as returned from the API', async () => {
           const { result } = renderHook(() =>
             useNotificationFactory({
               ...sampleNotification,

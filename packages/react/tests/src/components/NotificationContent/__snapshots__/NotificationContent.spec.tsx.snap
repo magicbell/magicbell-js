@@ -29,7 +29,7 @@ exports[`components NotificationContent render relative datetime replaces the co
 </div>
 `;
 
-exports[`components NotificationContent render sanitization renders the content compiled and sanitized 1`] = `
+exports[`components NotificationContent render sanitization renders the content as returned from the API 1`] = `
 .emotion-0 {
   color: inherit!important;
   cursor: inherit;
@@ -48,13 +48,16 @@ exports[`components NotificationContent render sanitization renders the content 
             
     <p>
       Hello, 
-      <a>
+      <a
+        href="javascript:alert('Hacked')"
+      >
         click here.
       </a>
     </p>
     
             
     <img
+      onerror="alert('Hacked')"
       src="null"
     />
     
