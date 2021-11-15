@@ -49,13 +49,14 @@ export default function Bell({ Icon, onClick, storeId, counter }: Props) {
     }
   `;
 
-  if (!notifications) return null;
   return (
     <a onClick={handleClick} css={[cleanslate, containerStyle]} data-testid="bell">
       <div css={iconStyle}>{!isNil(Icon) ? Icon : <BellIcon />}</div>
-      <BellBadge
-        counter={counter === 'unread' ? notifications?.unreadCount : notifications?.unseenCount}
-      />
+      {notifications && (
+        <BellBadge
+          counter={counter === 'unread' ? notifications?.unreadCount : notifications?.unseenCount}
+        />
+      )}
     </a>
   );
 }
