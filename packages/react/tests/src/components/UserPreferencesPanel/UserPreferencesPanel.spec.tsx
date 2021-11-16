@@ -85,7 +85,7 @@ describe('components', () => {
             </TranslationsProvider>,
           );
 
-          expect(await screen.findByText('Preferencias')).toBeInTheDocument();
+          expect(await screen.findByText('PREFERENCIAS')).toBeInTheDocument();
         });
       });
     });

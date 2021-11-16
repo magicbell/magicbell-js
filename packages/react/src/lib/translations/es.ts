@@ -16,7 +16,7 @@ const es = {
     'empty-inbox': '¡No tiene notificaciones!<br>Le haremos saber cuando llegue una.',
   },
   preferences: {
-    title: 'Preferencias',
+    title: 'PREFERENCIAS',
   },
 };
 

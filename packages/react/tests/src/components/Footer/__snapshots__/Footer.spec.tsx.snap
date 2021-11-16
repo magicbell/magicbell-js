@@ -324,10 +324,8 @@ exports[`components Footer .toggleUserPreferences shows the user preferences pan
     <div
       class="emotion-1"
     >
-      <p
-        class="uppercase"
-      >
-        Preferences
+      <p>
+        PREFERENCES
       </p>
       <button
         class="close"

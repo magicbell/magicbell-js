@@ -324,10 +324,8 @@ exports[`components UserPreferencesPanel render after preferences are fetched re
     <div
       class="emotion-1"
     >
-      <p
-        class="uppercase"
-      >
-        Preferences
+      <p>
+        PREFERENCES
       </p>
       <button
         class="close"
@@ -758,10 +756,8 @@ exports[`components UserPreferencesPanel render before preferences are fetched r
     <div
       class="emotion-1"
     >
-      <p
-        class="uppercase"
-      >
-        Preferences
+      <p>
+        PREFERENCES
       </p>
       <button
         class="close"
