@@ -16,7 +16,7 @@ type StoreConfig = {
 };
 
 export interface Props {
-  apiKey: string;
+  apiKey?: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;

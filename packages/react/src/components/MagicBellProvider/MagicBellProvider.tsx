@@ -9,8 +9,7 @@ import { TranslationsProvider } from '../../context/TranslationsContext';
 import { CustomLocale, useLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 
-export interface Props {
-  apiKey: string;
+export interface OptionalProps {
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -22,6 +21,10 @@ export interface Props {
     emptyInboxUrl: string;
   }>;
   serverURL?: string;
+}
+
+export interface Props extends OptionalProps {
+  apiKey: string;
 }
 
 /**
