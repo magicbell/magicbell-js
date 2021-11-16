@@ -1,4 +1,4 @@
-export default {
+const es = {
   header: {
     title: 'NOTIFICACIONES',
     'mark-all-read': 'Marcar todo como leído',
@@ -16,3 +16,5 @@ export default {
     'empty-inbox': '¡No tiene notificaciones!<br>Le haremos saber cuando llegue una.',
   },
 };
+
+export default es;

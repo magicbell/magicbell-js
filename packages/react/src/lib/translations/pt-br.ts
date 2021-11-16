@@ -1,4 +1,4 @@
-export default {
+const pt_br = {
   header: {
     title: 'NOTIFICAÇÕES',
     'mark-all-read': 'Marcar tudo como lido',
@@ -15,6 +15,9 @@ export default {
   messages: {
     'empty-inbox': 'Nenhuma notificação disponível!',
     'server-error': 'Não conseguimos recuperar suas notificações.<br>Por favor, volte em breve.',
-    'no-internet-connection': 'Não conseguimos nos conectar à Internet.<br>Por favor, verifique sua conexão.',
+    'no-internet-connection':
+      'Não conseguimos nos conectar à Internet.<br>Por favor, verifique sua conexão.',
   },
 };
+
+export default pt_br;

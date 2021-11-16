@@ -1,4 +1,4 @@
-export default {
+const de = {
   header: {
     title: 'BENACHRICHTIGUNGEN',
     'mark-all-read': 'Alle als gelesen markieren',
@@ -9,10 +9,13 @@ export default {
     delete: 'Löschen',
   },
   'web-push-notifications': {
-    notice: 'Wenn Sie Browser-Benachrichtigungen aktivieren, bleiben Sie noch besser auf dem Laufenden.',
+    notice:
+      'Wenn Sie Browser-Benachrichtigungen aktivieren, bleiben Sie noch besser auf dem Laufenden.',
     'enable-now': 'Aktivieren',
   },
   messages: {
     'empty-inbox': "Alles Sauber!<br>Wir melden uns, wenn's was neues gibt!",
   },
 };
+
+export default de;
