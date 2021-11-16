@@ -21,6 +21,7 @@ export interface OptionalProps {
     emptyInboxUrl: string;
   }>;
   serverURL?: string;
+  disableRealtime?: boolean;
 }
 
 export interface Props extends OptionalProps {
@@ -30,13 +31,14 @@ export interface Props extends OptionalProps {
 /**
  * Provider component for Magicbell.
  *
- * @param apiKey API key of the MagicBell project
- * @param userEmail Email of the user whose notifications will be displayed
- * @param userExternalId External ID of the user whose notifications will be displayed
- * @param userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
- * @param theme Object to customize the theme
- * @param stores List of stores to be created
- * @param locale Locale to use in the components
+ * @param props.apiKey API key of the MagicBell project
+ * @param props.userEmail Email of the user whose notifications will be displayed
+ * @param props.userExternalId External ID of the user whose notifications will be displayed
+ * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
+ * @param props.theme Object to customize the theme
+ * @param props.stores List of stores to be created
+ * @param props.locale Locale to use in the components
+ * @param props.disableRealtime Disable realtime updates
  *
  * @example
  * ```javascript

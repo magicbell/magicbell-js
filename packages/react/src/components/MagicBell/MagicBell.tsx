@@ -34,6 +34,7 @@ export interface Props {
     emptyInboxUrl: string;
   }>;
   serverURL?: string;
+  disableRealtime?: boolean;
   onNewNotification?: (notification: IRemoteNotification) => void;
   onToggle?: (isOpen: boolean) => void;
   bellCounter?: 'unread' | 'unseen';
@@ -42,18 +43,18 @@ export interface Props {
 /**
  * Magicbell root component. Use this one in your application.
  *
- * @param apiKey API key of the MagicBell project
- * @param userEmail Email of the user whose notifications will be displayed
- * @param userExternalId External ID of the user whose notifications will be displayed
- * @param userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
- * @param theme Object to customize the theme
- * @param BellIcon Icon for the bell
- * @param defaultIsOpen Show the children when the component is rendered. It is false by default.
- * @param stores Configuration of stores to be created
- * @param locale Locale to use in the components
- * @param onNewNotification Function called when a notification is created.
- * @param onToggle Function called when the bell is clicked.
- * @param bellCounter Counter to show in the bell. If set to 'unread' it will show the number of unread notifications.
+ * @param props.apiKey API key of the MagicBell project
+ * @param props.userEmail Email of the user whose notifications will be displayed
+ * @param props.userExternalId External ID of the user whose notifications will be displayed
+ * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
+ * @param props.theme Object to customize the theme
+ * @param props.BellIcon Icon for the bell
+ * @param props.defaultIsOpen Show the children when the component is rendered. It is false by default.
+ * @param props.stores Configuration of stores to be created
+ * @param props.locale Locale to use in the components
+ * @param props.onNewNotification Function called when a notification is created.
+ * @param props.onToggle Function called when the bell is clicked.
+ * @param props.bellCounter Counter to show in the bell. If set to 'unread' it will show the number of unread notifications.
  *
  * @example
  * <MagicBell
