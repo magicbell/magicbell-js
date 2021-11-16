@@ -1,11 +1,13 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { fireEvent, render, RenderResult, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { Server } from 'miragejs';
 import React from 'react';
 import UserPreferencesPanel from '../../../../src/components/UserPreferencesPanel';
 import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../../../../src/context/Theme';
+import { TranslationsProvider } from '../../../../src/context/TranslationsContext';
+import { useLocale } from '../../../../src/lib/i18n';
 
 describe('components', () => {
   describe('UserPreferencesPanel', () => {
@@ -69,6 +71,21 @@ describe('components', () => {
           await waitForValueToChange(() => result.current.categories);
 
           expect(view.container).toMatchSnapshot();
+        });
+      });
+
+      describe('localization', () => {
+        it('renders localized strings', async () => {
+          const definitions = useLocale('es');
+          render(
+            <TranslationsProvider value={definitions}>
+              <MagicBellThemeProvider value={defaultTheme}>
+                <UserPreferencesPanel onClose={onClose} />
+              </MagicBellThemeProvider>
+            </TranslationsProvider>,
+          );
+
+          expect(await screen.findByText('Preferencias')).toBeInTheDocument();
         });
       });
     });

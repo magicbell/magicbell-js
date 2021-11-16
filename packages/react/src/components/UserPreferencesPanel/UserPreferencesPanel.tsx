@@ -6,6 +6,7 @@ import { useTheme } from '../../context/MagicBellThemeContext';
 import FooterLogo from '../Footer/FooterLogo';
 import StyledFooter from '../Footer/StyledFooter';
 import StyledHeader from '../Header/StyledHeader';
+import Text from '../Text';
 import CloseIcon from './CloseIcon';
 import PreferencesCategories from './PreferencesCategories';
 
@@ -63,7 +64,9 @@ export default function UserPreferencesPanel({ onClose }: Props) {
       `}
     >
       <StyledHeader>
-        <p className="uppercase">Preferences</p>
+        <p className="uppercase">
+          <Text id="preferences.title" defaultMessage="Preferences" />
+        </p>
         <button onClick={handleClose} className="close">
           <CloseIcon />
         </button>

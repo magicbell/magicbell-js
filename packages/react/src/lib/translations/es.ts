@@ -15,6 +15,9 @@ const es = {
   messages: {
     'empty-inbox': '¡No tiene notificaciones!<br>Le haremos saber cuando llegue una.',
   },
+  preferences: {
+    title: 'Preferencias',
+  },
 };
 
 export default es;
