@@ -16,7 +16,7 @@ export interface WidgetProps extends FrameContentProps {
   userExternalId?: string;
   userKey?: string;
   locale?: string | CustomLocale;
-  _baseURL?: string;
+  serverURL?: string;
   stylesheets?: string[];
   images?: Partial<{
     emptyInboxUrl: string;
@@ -52,11 +52,14 @@ export default class Widget extends Component<WidgetProps> {
       userKey,
       theme,
       locale,
-      _baseURL,
+      serverURL,
       images,
       onNewNotification,
       ...inboxProps
     } = this.props;
+
+    const optionalProps = {} as Partial<Record<string, WidgetProps['onNewNotification']>>;
+    if (onNewNotification) optionalProps.onNewNotification = onNewNotification;
 
     return (
       <CacheProvider value={cache}>
@@ -68,8 +71,8 @@ export default class Widget extends Component<WidgetProps> {
           theme={theme}
           locale={locale}
           images={images}
-          onNewNotification={onNewNotification}
-          _baseURL={_baseURL}
+          serverURL={serverURL}
+          {...optionalProps}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
         </MagicBell>
