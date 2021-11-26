@@ -44,12 +44,12 @@
     "test": "TZ=America/New_York jest --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York jest --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "tsc --noEmit && eslint '{src,stories,tests}/**/*.{js,ts,tx}'"
   },
   "lint-staged": {
     "*.{jsx?,tsx?}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --quiet --fix"
     ],
     "*.{md,html,css,scss}": "prettier --write"
   },
@@ -73,7 +73,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "faker": "^5.5.3",
     "husky": "^7.0.2",
     "jest": "^27.3.1",
