@@ -57,7 +57,6 @@ export default function useNotifications(storeId: string = 'default'): Notificat
   const { stores, fetchStore, markAllAsSeen, markAllAsRead } = useNotificationStoresCollection();
   const config = useConfig();
   const store = stores[storeId];
-  if (!store) return null;
 
   const fetch = (queryParams?: Object, options?: FetchOptions) => fetchStore(storeId, queryParams, options);
 
@@ -67,8 +66,11 @@ export default function useNotifications(storeId: string = 'default'): Notificat
   };
 
   useEffect(() => {
+    if (!store) return;
     if (config.lastFetchedAt && !store.lastFetchedAt) fetch({ page: 1 });
   }, [config.lastFetchedAt]);
+
+  if (!store) return null;
 
   return {
     ...store,
