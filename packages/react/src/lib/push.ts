@@ -4,7 +4,7 @@ import prop from 'ramda/src/prop';
 
 function stringToUint8Array(plainString: string) {
   const padding = '='.repeat((4 - (plainString.length % 4)) % 4);
-  const base64 = (plainString + padding).replace(/\-/g, '+').replace(/_/g, '/');
+  const base64 = (plainString + padding).replace(/-/g, '+').replace(/_/g, '/');
 
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
