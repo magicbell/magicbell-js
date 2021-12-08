@@ -16,6 +16,9 @@ jobs:
       - run:
           name: 'Run jest tests'
           command: yarn run test -w=2
+      - run:
+          name: 'Upload coverage report'
+          command: yarn report-coverage
 
 workflows:
   deploy:
