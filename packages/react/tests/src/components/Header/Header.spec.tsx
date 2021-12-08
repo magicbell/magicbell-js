@@ -1,57 +1,27 @@
-import { render, RenderResult, waitFor } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import Header from '../../../../src/components/Header';
-import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../../../src/context/Theme';
-import { TranslationsProvider } from '../../../../src/context/TranslationsContext';
-import { useLocale } from '../../../../src/lib/i18n';
 
-describe('components', () => {
-  describe('Header', () => {
-    let onAllRead: () => void;
-    let view: RenderResult;
+import { renderWithProviders as render } from '../../../__utils__/render';
 
-    beforeEach(() => {
-      onAllRead = jest.fn();
-      const definitions = useLocale('es');
+test('renders a title and a button to mark all notification as read', () => {
+  render(<Header onAllRead={jest.fn()} />);
+  screen.getByRole('heading', { name: /notifications/i });
+  screen.getByRole('button', { name: /mark all read/i });
+});
 
-      view = render(
-        <TranslationsProvider value={definitions}>
-          <MagicBellThemeProvider value={defaultTheme}>
-            <Header onAllRead={onAllRead} />
-          </MagicBellThemeProvider>
-        </TranslationsProvider>,
-      );
-    });
+test('can render the heading in spanish', () => {
+  render(<Header onAllRead={jest.fn()} />, { locale: 'es' });
+  screen.getByRole('heading', { name: /notificaciones/i });
+  screen.getByRole('button', { name: /marcar todo como leído/i });
+});
 
-    afterEach(() => {
-      view.unmount();
-    });
+test('invokes the onAllRead callback when clicking the `mark all read` button', async () => {
+  const onAllRead = jest.fn();
+  render(<Header onAllRead={onAllRead} />, { locale: 'en' });
 
-    describe('render', () => {
-      it('renders a title and a button to mark all notification as read', () => {
-        expect(view.container).toMatchSnapshot();
-      });
-
-      describe('default language', () => {
-        it('renders a title in english', () => {
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <Header onAllRead={onAllRead} />
-            </MagicBellThemeProvider>,
-          );
-
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('.handleClick', () => {
-      it('invokes the onAllRead callback', async () => {
-        userEvent.click(view.getByTestId('mark-all-as-read'));
-        await waitFor(() => expect(onAllRead).toBeCalledTimes(1));
-      });
-    });
-  });
+  const markAllReadButton = screen.getByRole('button', { name: /mark all read/i });
+  userEvent.click(markAllReadButton);
+  await waitFor(() => expect(onAllRead).toBeCalledTimes(1));
 });

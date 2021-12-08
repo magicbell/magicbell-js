@@ -11,6 +11,7 @@ import Text from '../Text';
 export default function HeaderTitle() {
   return (
     <p
+      role="heading"
       css={css`
         margin-right: 16px !important;
       `}

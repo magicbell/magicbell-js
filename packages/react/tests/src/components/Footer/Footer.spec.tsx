@@ -1,80 +1,50 @@
 import { useConfig } from '@magicbell/react-headless';
-import { act, fireEvent, render, RenderResult } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import Footer from '../../../../src/components/Footer';
-import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../../../src/context/Theme';
 import ConfigFactory from '../../../factories/ConfigFactory';
 
-describe('components', () => {
-  describe('Footer', () => {
-    let view: RenderResult;
+import { renderWithProviders as render } from '../../../__utils__/render';
+import userEvent from '@testing-library/user-event';
 
-    beforeEach(() => {
-      view = render(
-        <MagicBellThemeProvider value={defaultTheme}>
-          <Footer />
-        </MagicBellThemeProvider>,
-      );
-    });
+test('renders a link to the magicbell site', () => {
+  render(<Footer />);
+  screen.getByRole('img', { name: /magicbell logo/i });
+});
 
-    afterEach(() => {
-      view.unmount();
-    });
+test('branding can be disabled', async () => {
+  useConfig.setState(
+    ConfigFactory.build({
+      inbox: {
+        features: {
+          noMagicbellBranding: { enabled: true },
+        },
+      },
+    }),
+  );
 
-    describe('render', () => {
-      it('renders a link to the magicbell site', () => {
-        expect(view.container).toMatchSnapshot();
-      });
+  render(<Footer />);
 
-      describe('the customer has branding disabled', () => {
-        beforeEach(() => {
-          act(() => {
-            useConfig.setState(
-              ConfigFactory.build({
-                inbox: {
-                  features: {
-                    noMagicbellBranding: { enabled: true },
-                  },
-                },
-              }),
-            );
-          });
-        });
+  expect(screen.queryByRole('img', { name: /magicbell logo/i })).not.toBeInTheDocument();
+});
 
-        it('does not renders the magicbell logo', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
+test('notification preferences can be disabled', () => {
+  useConfig.setState(
+    ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }),
+  );
 
-      describe('the customer has notification preferences disabled', () => {
-        beforeEach(() => {
-          act(() => {
-            useConfig.setState(
-              ConfigFactory.build({
-                inbox: {
-                  features: {
-                    notificationPreferences: { enabled: false },
-                  },
-                },
-              }),
-            );
-          });
-        });
+  render(<Footer />);
+  expect(screen.queryByRole('button', { name: /notification preferences/i }));
+});
 
-        it('does not renders the toggle button', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
+test('shows the user preferences panel when the preferences button is clicked', async () => {
+  useConfig.setState(
+    ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: true } } } }),
+  );
 
-    describe('.toggleUserPreferences', () => {
-      it('shows the user preferences panel', () => {
-        const button = view.getByRole('button');
-        fireEvent.click(button);
+  render(<Footer />);
+  const preferencesButton = screen.getByRole('button', { name: /notification preferences/i });
+  userEvent.click(preferencesButton);
 
-        expect(view.container).toMatchSnapshot();
-      });
-    });
-  });
+  await waitFor(() => screen.getByRole('heading', { name: /preferences/i }));
 });

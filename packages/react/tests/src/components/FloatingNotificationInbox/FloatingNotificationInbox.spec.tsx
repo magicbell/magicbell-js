@@ -1,228 +1,176 @@
 import { useConfig } from '@magicbell/react-headless';
-import { act, render, RenderResult } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Response, Server } from 'miragejs';
+
+import { Response, createServer } from 'miragejs';
 import React from 'react';
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
-import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+import { renderWithProviders as render } from '../../../__utils__/render';
 
-describe('components', () => {
-  describe('FloatingNotificationInbox', () => {
-    const stores = [
-      {
-        id: 'default',
-        defaultQueryParams: {},
-        defaults: { notifications: [sampleNotification], lastFetchedAt: Date.now() },
-      },
-    ];
+const stores = [
+  {
+    id: 'default',
+    defaultQueryParams: {},
+    defaults: { notifications: [sampleNotification], lastFetchedAt: Date.now() },
+  },
+];
 
-    let view: RenderResult;
-    let launcherRef;
-    let onAllRead: jest.Mock;
-    let onNotificationClick: jest.Mock;
-    let toggleNotificationInbox: jest.Mock;
-    let server;
+let server;
 
-    beforeEach(async () => {
-      useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
-      server = new Server({
-        environment: 'test',
-        urlPrefix: 'https://api.magicbell.com',
-        timing: 0,
-      });
+beforeEach(async () => {
+  useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
 
-      server.get('/notifications', {
-        total: 1,
-        per_page: 15,
-        current_page: 1,
-        unseen_count: 0,
-        unread_count: 1,
-        notifications: [sampleNotification],
-      });
-      server.post(`/notifications/${sampleNotification.id}/read`, new Response(204, {}, ''));
-      server.post(`/notifications/${sampleNotification.id}/unread`, new Response(204, {}, ''));
-
-      launcherRef = React.createRef();
-      onAllRead = jest.fn();
-      onNotificationClick = jest.fn();
-      toggleNotificationInbox = jest.fn();
-
-      await act(async () => {
-        view = render(
-          <MagicBellProvider apiKey="" stores={stores}>
-            <div>
-              <div ref={launcherRef} />
-              <FloatingNotificationInbox
-                launcherRef={launcherRef}
-                toggle={toggleNotificationInbox}
-                height={350}
-                onAllRead={onAllRead}
-                onNotificationClick={onNotificationClick}
-                isOpen
-              />
-            </div>
-          </MagicBellProvider>,
-        );
-      });
-    });
-
-    afterEach(() => {
-      view.unmount();
-      server.shutdown();
-    });
-
-    describe('render', () => {
-      it('renders a notification inbox wrapped in tippy', () => {
-        expect(view.container).toMatchSnapshot();
-      });
-
-      describe('it is not visible', () => {
-        beforeEach(async () => {
-          await act(async () => {
-            view.rerender(
-              <MagicBellProvider apiKey="" stores={stores}>
-                <div>
-                  <div ref={launcherRef} />
-                  <FloatingNotificationInbox
-                    launcherRef={launcherRef}
-                    toggle={toggleNotificationInbox}
-                    height={350}
-                    width={200}
-                    onAllRead={onAllRead}
-                    onNotificationClick={onNotificationClick}
-                    isOpen={false}
-                  />
-                </div>
-              </MagicBellProvider>,
-            );
-          });
-        });
-
-        it('does not render anything', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-
-      describe('a custom placement property is defined', () => {
-        beforeEach(async () => {
-          await act(async () => {
-            view.rerender(
-              <MagicBellProvider apiKey="" stores={stores}>
-                <div>
-                  <div ref={launcherRef} />
-                  <FloatingNotificationInbox
-                    launcherRef={launcherRef}
-                    toggle={toggleNotificationInbox}
-                    height={350}
-                    onAllRead={onAllRead}
-                    onNotificationClick={onNotificationClick}
-                    placement="bottom-end"
-                    isOpen
-                  />
-                </div>
-              </MagicBellProvider>,
-            );
-          });
-        });
-
-        it('renders the tooltip in the correct place', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-
-      describe('the "hideArrow" property is set to true', () => {
-        beforeEach(async () => {
-          await act(async () => {
-            view.rerender(
-              <MagicBellProvider apiKey="" stores={stores}>
-                <div>
-                  <div ref={launcherRef} />
-                  <FloatingNotificationInbox
-                    launcherRef={launcherRef}
-                    toggle={toggleNotificationInbox}
-                    height={350}
-                    hideArrow
-                    isOpen
-                  />
-                </div>
-              </MagicBellProvider>,
-            );
-          });
-        });
-
-        it('does not render the pointing arrow', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-
-      describe('a custom layout is provided', () => {
-        it('renders the inbox with the correct layout', async () => {
-          await act(async () => {
-            view.rerender(
-              <MagicBellProvider apiKey="" stores={stores}>
-                <div>
-                  <div ref={launcherRef} />
-                  <FloatingNotificationInbox
-                    launcherRef={launcherRef}
-                    height={350}
-                    layout={['footer', 'content', 'header']}
-                    isOpen
-                  />
-                </div>
-              </MagicBellProvider>,
-            );
-          });
-
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('.handleNotificationClick', () => {
-      it('toggles the notification inbox', () => {
-        const title = view.getByText(sampleNotification.title);
-        userEvent.click(title);
-
-        expect(toggleNotificationInbox).toHaveBeenCalledTimes(1);
-      });
-
-      it('calls the onNotificationClick callback', () => {
-        const title = view.getByText(sampleNotification.title);
-        userEvent.click(title);
-
-        expect(onNotificationClick).toHaveBeenCalledTimes(1);
-      });
-
-      describe('default click handler', () => {
-        beforeEach(async () => {
-          await act(async () => {
-            view.rerender(
-              <MagicBellProvider apiKey="">
-                <div>
-                  <div ref={launcherRef} />
-                  <FloatingNotificationInbox
-                    launcherRef={launcherRef}
-                    toggle={toggleNotificationInbox}
-                    height={350}
-                    onAllRead={onAllRead}
-                    isOpen
-                  />
-                </div>
-              </MagicBellProvider>,
-            );
-          });
-        });
-
-        it('opens the action url in the same window', () => {
-          const title = view.getByText(sampleNotification.title);
-          userEvent.click(title);
-
-          expect(global.open).toHaveBeenCalledTimes(1);
-          expect(global.open).toHaveBeenCalledWith(sampleNotification.actionUrl, '_self');
-        });
-      });
-    });
+  server = createServer({
+    environment: 'test',
+    urlPrefix: 'https://api.magicbell.com',
+    timing: 0,
   });
+
+  server.get('/notifications', {
+    total: 1,
+    per_page: 15,
+    current_page: 1,
+    unseen_count: 0,
+    unread_count: 1,
+    notifications: [sampleNotification],
+  });
+  server.post(`/notifications/${sampleNotification.id}/read`, new Response(204, {}, ''));
+  server.post(`/notifications/${sampleNotification.id}/unread`, new Response(204, {}, ''));
+});
+
+afterEach(() => {
+  server.shutdown();
+});
+
+test('does not render the inbox on load', () => {
+  render(<FloatingNotificationInbox isOpen={false} launcherRef={{ current: null }} />);
+  expect(screen.queryByRole('heading', { name: /notifications/i })).not.toBeInTheDocument();
+});
+
+test('renders the tooltip in the correct place', () => {
+  const ref = React.createRef<any>();
+
+  const bottomEnd = render(
+    <>
+      <div data-testid="ref" ref={ref} />
+      <FloatingNotificationInbox launcherRef={ref} height={350} placement="bottom-end" isOpen />
+    </>,
+  );
+
+  const tippyBottom = bottomEnd.container.querySelector<HTMLDivElement>('[data-tippy-root]');
+  expect(tippyBottom!.style.transform).toEqual('translate(0px, 10px)');
+
+  const topCenter = render(
+    <>
+      <div data-testid="ref" ref={ref} />
+      <FloatingNotificationInbox launcherRef={ref} height={350} placement="top-end" isOpen />
+    </>,
+  );
+
+  const tippyTop = topCenter.container.querySelector<HTMLDivElement>('[data-tippy-root]');
+  expect(tippyTop!.style.transform).toEqual('translate(0px, -10px)');
+});
+
+test('does not render the pointing arrow if hideArrow is provided', () => {
+  const ref = React.createRef<any>();
+
+  const view = render(
+    <>
+      <div data-testid="ref" ref={ref} />
+      <FloatingNotificationInbox launcherRef={ref} height={350} hideArrow isOpen />
+    </>,
+  );
+
+  expect(view.container.querySelector('[data-popper-arrow]')).not.toBeInTheDocument();
+});
+
+test('can render the inbox with a custom layout', async () => {
+  const ref = React.createRef<any>();
+
+  render(
+    <>
+      <div ref={ref} />
+      <FloatingNotificationInbox
+        launcherRef={ref}
+        height={350}
+        layout={['footer', 'content', 'header']}
+        isOpen
+      />
+    </>,
+    { stores },
+  );
+
+  screen.getByRole('heading', {
+    name: /notifications/i,
+  });
+
+  screen.getByText(/new comment: tables in knowledgebase/i);
+
+  screen.getByRole('img', {
+    name: /magicbell logo/i,
+  });
+});
+
+test('toggles the notification inbox', () => {
+  const ref = React.createRef<any>();
+  const onClick = jest.fn();
+
+  render(
+    <>
+      <div ref={ref} />
+      <FloatingNotificationInbox launcherRef={ref} height={350} isOpen toggle={onClick} />
+    </>,
+  );
+
+  const title = screen.getByText(sampleNotification.title);
+  userEvent.click(title);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+test('calls the onNotificationClick callback', () => {
+  const ref = React.createRef<any>();
+  const onClick = jest.fn();
+
+  render(
+    <>
+      <div ref={ref} />
+      <FloatingNotificationInbox
+        launcherRef={ref}
+        height={350}
+        isOpen
+        onNotificationClick={onClick}
+      />
+    </>,
+  );
+
+  const title = screen.getByText(sampleNotification.title);
+  userEvent.click(title);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+test('opens the action url in the same window', () => {
+  const ref = React.createRef<any>();
+  const onClick = jest.fn();
+
+  render(
+    <>
+      <div ref={ref} />
+      <FloatingNotificationInbox
+        launcherRef={ref}
+        height={350}
+        isOpen
+        onNotificationClick={onClick}
+      />
+    </>,
+  );
+
+  const title = screen.getByText(sampleNotification.title);
+  userEvent.click(title);
+
+  expect(global.open).toHaveBeenCalledTimes(1);
+  expect(global.open).toHaveBeenCalledWith(sampleNotification.actionUrl, '_self');
 });

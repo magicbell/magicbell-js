@@ -40,7 +40,9 @@ export default function Badge({ count }: Props) {
 
   return (
     <span css={[cleanslate, style]}>
-      <div>{count}</div>
+      <div aria-label={`${count} unread items`} aria-live="polite" role="status">
+        {count}
+      </div>
     </span>
   );
 }

@@ -1,95 +1,49 @@
-import { buildStore, INotification } from '@magicbell/react-headless';
-import { render, RenderResult } from '@testing-library/react';
+import { buildStore } from '@magicbell/react-headless';
+import { screen } from '@testing-library/react';
 import React from 'react';
-import Sinon from 'sinon';
 import NotificationList, { ListItemProps } from '../../../../src/components/NotificationList';
 import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../../../../src/context/Theme';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+import { renderWithProviders as render } from '../../../__utils__/render';
+import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 
-describe('components', () => {
-  describe('NotificationList', () => {
-    let clock;
-    let notifications;
-    let onItemClick: (notification: INotification) => void;
-    let view: RenderResult;
+test('renders an empty list when there are no notifications', () => {
+  const store = buildStore({ notifications: [] }) as NotificationStore;
+  const { container } = render(<NotificationList notifications={store} />);
 
-    beforeEach(() => {
-      // The relative time has to be deterministic for snapshots.
-      clock = Sinon.useFakeTimers();
-      notifications = buildStore({ notifications: [sampleNotification] });
-      onItemClick = jest.fn();
+  const list = container.querySelector('.infinite-scroll-component');
+  expect(list!.childNodes).toHaveLength(0);
+});
 
-      view = render(
-        <MagicBellThemeProvider value={defaultTheme}>
-          <NotificationList notifications={notifications} onItemClick={onItemClick} />
-        </MagicBellThemeProvider>,
-      );
-    });
+test('renders a virtual list with all notifications', () => {
+  const store = buildStore({ notifications: [sampleNotification] }) as NotificationStore;
+  const { container } = render(<NotificationList notifications={store} />);
 
-    afterEach(() => {
-      clock.restore();
-    });
+  const list = container.querySelector('.infinite-scroll-component');
+  expect(list!.childNodes).toHaveLength(1);
+});
 
-    describe('render', () => {
-      beforeEach(async () => {
-        notifications = buildStore({ notifications: [] });
+test('renders a list matching the provided height', () => {
+  const store = buildStore({ notifications: [sampleNotification] }) as NotificationStore;
+  const { container } = render(<NotificationList notifications={store} height={300} />);
 
-        view.rerender(
-          <MagicBellThemeProvider value={defaultTheme}>
-            <NotificationList notifications={notifications} onItemClick={onItemClick} />
-          </MagicBellThemeProvider>,
-        );
-      });
+  const list = container.querySelector('.infinite-scroll-component') as HTMLDivElement;
+  expect(list.style.height).toEqual('300px');
+});
 
-      describe('the store is empty', () => {
-        it('renders an empty list', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
+test('can render a list using a custom component for each item', () => {
+  const store = buildStore({ notifications: [sampleNotification] }) as NotificationStore;
 
-    describe('the store is not empty', () => {
-      it('renders a virtual list with all items', () => {
-        expect(view.container).toMatchSnapshot();
-      });
-    });
+  function CustomListItem({ notification }: ListItemProps) {
+    return <p data-testid="custom-listitem">{notification.title}</p>;
+  }
 
-    describe('a height is provided', () => {
-      it('renders a list with the given height', () => {
-        view.rerender(
-          <MagicBellThemeProvider value={defaultTheme}>
-            <NotificationList
-              notifications={notifications}
-              onItemClick={onItemClick}
-              height={300}
-            />
-          </MagicBellThemeProvider>,
-        );
+  render(
+    <MagicBellThemeProvider value={defaultTheme}>
+      <NotificationList notifications={store} height={300} ListItem={CustomListItem} />
+    </MagicBellThemeProvider>,
+  );
 
-        expect(view.container).toMatchSnapshot();
-      });
-    });
-
-    describe('a custom ListItem is provided', () => {
-      it('renders a list rendering the custom component for each item', () => {
-        function CustomListItem({ notification }: ListItemProps) {
-          return <p>{notification.title}</p>;
-        }
-
-        view.rerender(
-          <MagicBellThemeProvider value={defaultTheme}>
-            <NotificationList
-              notifications={notifications}
-              onItemClick={onItemClick}
-              height={300}
-              ListItem={CustomListItem}
-            />
-          </MagicBellThemeProvider>,
-        );
-
-        expect(view.container).toMatchSnapshot();
-      });
-    });
-  });
+  screen.getByTestId('custom-listitem');
 });

@@ -22,7 +22,7 @@ export default function Header({ onAllRead }: Props) {
   return (
     <StyledHeader>
       <HeaderTitle />
-      <button onClick={handleClick} data-testid="mark-all-as-read">
+      <button onClick={handleClick}>
         <Text id="header.mark-all-read" defaultMessage="Mark All Read" />
       </button>
     </StyledHeader>

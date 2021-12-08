@@ -1,163 +1,119 @@
-import { INotification, useNotificationStoresCollection } from '@magicbell/react-headless';
-import { act, render, RenderResult } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import dayjs from 'dayjs';
-import { Response, Server } from 'miragejs';
 import React from 'react';
-import Sinon from 'sinon';
 import ClickableNotification from '../../../../src/components/ClickableNotification';
-import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../../../src/context/Theme';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+import { renderWithProviders as render } from '../../../__utils__/render';
 
-describe('components', () => {
-  describe('ClickableNotification', () => {
-    let clock: Sinon.SinonFakeTimers;
-    let notification = sampleNotification as any;
-    let onClick: (notification: INotification) => void;
-    let view: RenderResult;
+test('renders the title and content of the notification', () => {
+  render(
+    <ClickableNotification
+      notification={{
+        ...sampleNotification,
+        title: 'sample notification title',
+        content: 'sample notification content',
+      }}
+      onClick={jest.fn()}
+    />,
+  );
 
-    beforeEach(async () => {
-      clock = Sinon.useFakeTimers(1605412800000);
-      onClick = jest.fn();
+  screen.getByText(/sample notification title/i);
+  screen.getByText(/sample notification content/i);
+});
 
-      await act(async () => {
-        view = render(
-          <MagicBellThemeProvider value={defaultTheme}>
-            <ClickableNotification notification={notification} onClick={onClick} />
-          </MagicBellThemeProvider>,
-        );
-      });
-    });
+test('renders the title when no content is provided', () => {
+  render(
+    <ClickableNotification
+      notification={{ ...sampleNotification, title: 'sample notification title' }}
+      onClick={jest.fn()}
+    />,
+  );
 
-    afterEach(() => {
-      clock.restore();
-    });
+  screen.getByText(/sample notification title/i);
+});
 
-    describe('render', () => {
-      it('renders the title and content of the notification', () => {
-        expect(view.container).toMatchSnapshot();
-      });
+test('renders the notification with seen/unseen background variation', () => {
+  render(
+    <>
+      <ClickableNotification
+        notification={{ ...sampleNotification, title: 'new notification', seenAt: null }}
+        onClick={jest.fn()}
+      />
+      <ClickableNotification
+        notification={{ ...sampleNotification, title: 'old notification', seenAt: Date.now() }}
+        onClick={jest.fn()}
+      />
+    </>,
+  );
 
-      describe('the notification has no content', () => {
-        it('renders the title of the notification', () => {
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <ClickableNotification
-                notification={{ ...notification, content: null }}
-                onClick={onClick}
-              />
-            </MagicBellThemeProvider>,
-          );
+  const unreadItem = screen.getByRole('button', { name: /new notification/i });
+  const unreadStyle = window.getComputedStyle(unreadItem.parentElement!);
 
-          expect(view.container).toMatchSnapshot();
-        });
-      });
+  const readItem = screen.getByRole('button', { name: /old notification/i });
+  const readStyle = window.getComputedStyle(readItem.parentElement!);
 
-      describe('theming', () => {
-        describe('the notification is unseen', () => {
-          it('renders the notification with the unseen theme variation', () => {
-            view.rerender(
-              <MagicBellThemeProvider value={defaultTheme}>
-                <ClickableNotification
-                  notification={{ ...notification, seenAt: null, readAt: null }}
-                  onClick={onClick}
-                />
-              </MagicBellThemeProvider>,
-            );
+  expect(unreadStyle.backgroundColor).not.toEqual(readStyle.backgroundColor);
+});
 
-            expect(view.container).toMatchSnapshot();
-          });
-        });
+test('renders the notification with the read/unread svg variation', async () => {
+  render(
+    <>
+      <ClickableNotification
+        notification={{ ...sampleNotification, title: 'new notification', seenAt: null }}
+        onClick={jest.fn()}
+      />
+      <ClickableNotification
+        notification={{ ...sampleNotification, title: 'old notification', readAt: Date.now() }}
+        onClick={jest.fn()}
+      />
+    </>,
+  );
 
-        describe('the notification is seen and read', () => {
-          it('renders the notification with the default theme variation', async () => {
-            view.rerender(
-              <MagicBellThemeProvider value={defaultTheme}>
-                <ClickableNotification
-                  notification={{
-                    ...notification,
-                    seenAt: dayjs().unix(),
-                    readAt: dayjs().unix(),
-                  }}
-                  onClick={onClick}
-                />
-              </MagicBellThemeProvider>,
-            );
+  const unreadItem = screen.getByRole('button', { name: /new notification/i });
+  const unreadSvg = unreadItem.parentElement!.querySelector('svg');
+  expect(unreadSvg?.tagName).toEqual('svg');
 
-            expect(await view.findByText('This is a good content')).toBeInTheDocument();
-            expect(view.container).toMatchSnapshot();
-          });
-        });
-      });
-    });
+  const readItem = screen.getByRole('button', { name: /old notification/i });
+  const readSvg = readItem.parentElement!.querySelector('svg');
+  expect(readSvg?.tagName).toEqual('svg');
 
-    describe('.handleClick', () => {
-      let server: any;
+  expect(unreadSvg!.outerHTML).not.toEqual(readSvg!.outerHTML);
+});
 
-      beforeEach(() => {
-        server = new Server({
-          environment: 'test',
-          urlPrefix: 'https://api.magicbell.com',
-          timing: 50,
-        });
+test('passes the notification object to the onClick callback', () => {
+  const onClick = jest.fn();
+  const notification = { ...sampleNotification, title: 'notification' };
 
-        server.post(`/notifications/${notification.id}/read`, new Response(201, {}, ''));
-      });
+  render(<ClickableNotification notification={notification} onClick={onClick} />);
 
-      afterEach(() => {
-        server.shutdown();
-      });
+  const notificationButton = screen.getByRole('button', { name: /notification/i });
 
-      it('passes the notification object to the onClick callback', () => {
-        const component = view.getByTestId('clickable-notification');
-        userEvent.click(component);
+  userEvent.click(notificationButton);
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledWith(
+    expect.objectContaining({
+      id: notification.id,
+      actionUrl: notification.actionUrl,
+      title: notification.title,
+    }),
+  );
+});
 
-        expect(onClick).toHaveBeenCalledTimes(1);
-      });
+test('opens the action url in the same tab', () => {
+  render(
+    <ClickableNotification
+      notification={{
+        ...sampleNotification,
+        title: 'notification',
+        actionUrl: 'https://example.com',
+      }}
+    />,
+  );
 
-      it.skip('marks the notification as read', () => {
-        const { result } = renderHook(() => useNotificationStoresCollection());
-        const spy = jest.spyOn(result.current, 'markNotificationAsRead');
-        userEvent.click(view.getByTestId('clickable-notification'));
+  const notification = screen.getByRole('button', { name: /notification/i });
 
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenCalledWith(notification.id);
-      });
-    });
+  userEvent.click(notification);
 
-    describe('default handler', () => {
-      beforeEach(async () => {
-        await act(async () => {
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <ClickableNotification notification={notification} />
-            </MagicBellThemeProvider>,
-          );
-        });
-      });
-
-      describe('the notification has an actionUrl', () => {
-        it('opens the action url in the same window', () => {
-          userEvent.click(view.getByText(notification.title));
-
-          expect(global.open).toHaveBeenCalledTimes(1);
-          expect(global.open).toHaveBeenCalledWith(notification.actionUrl, '_self');
-        });
-      });
-    });
-
-    describe('on unmount', () => {
-      it.skip('marks the notification as seen', () => {
-        const { result } = renderHook(() => useNotificationStoresCollection());
-        const spy = jest.spyOn(result.current, 'markNotificationAsSeen');
-
-        view.unmount();
-
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).toHaveBeenCalledWith(notification.id);
-      });
-    });
-  });
+  expect(global.open).toHaveBeenCalledTimes(1);
+  expect(global.open).toHaveBeenCalledWith('https://example.com', '_self');
 });

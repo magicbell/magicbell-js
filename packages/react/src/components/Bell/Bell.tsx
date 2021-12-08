@@ -50,7 +50,13 @@ export default function Bell({ Icon, onClick, storeId, counter }: Props) {
   `;
 
   return (
-    <a onClick={handleClick} css={[cleanslate, containerStyle]} data-testid="bell">
+    <a
+      // Ugly, but we need it for now due to style issues
+      role="button"
+      onClick={handleClick}
+      css={[cleanslate, containerStyle]}
+      aria-label="notifications"
+    >
       <div css={iconStyle}>{!isNil(Icon) ? Icon : <BellIcon />}</div>
       {notifications && (
         <BellBadge

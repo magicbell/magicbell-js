@@ -45,7 +45,7 @@
     "test:watch": "TZ=America/New_York jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "tsc --noEmit && eslint '{src,stories,tests}/**/*.{js,ts,tx}'"
+    "lint": "tsc --noEmit && eslint '{src,stories,tests}/**/*.{js,ts,tsx}'"
   },
   "lint-staged": {
     "*.{jsx?,tsx?}": [

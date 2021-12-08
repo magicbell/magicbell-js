@@ -53,7 +53,7 @@ export default function Footer() {
       <div css={contentStyle}>
         <FooterLogo />
         {preferencesEnabled ? (
-          <button onClick={togglePreferences}>
+          <button onClick={togglePreferences} aria-label="notification preferences">
             <SettingsIcon />
           </button>
         ) : null}

@@ -59,7 +59,6 @@ export default function NotificationState({ notification, menuPlacement = 'botto
       `}
       onMouseOver={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      data-testid="icon"
     >
       {notification.isRead || isHovered ? <MenuIcon /> : <DotIcon />}
     </div>

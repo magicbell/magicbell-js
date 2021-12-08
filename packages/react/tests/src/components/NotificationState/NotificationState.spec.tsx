@@ -1,5 +1,5 @@
 import { useNotificationFactory } from '@magicbell/react-headless';
-import { render, RenderResult, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -8,103 +8,76 @@ import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeCo
 import { defaultTheme } from '../../../../src/context/Theme';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
-describe('components', () => {
-  describe('NotificationState', () => {
-    let view: RenderResult;
+test('renders an icon for the context menu when the notification is read', () => {
+  const { result } = renderHook(() =>
+    useNotificationFactory({ ...sampleNotification, readAt: Date.now() }),
+  );
 
-    beforeEach(() => {
-      const { result } = renderHook(() => useNotificationFactory(sampleNotification));
+  const { container } = render(<NotificationState notification={result.current} />);
 
-      view = render(
-        <MagicBellThemeProvider value={defaultTheme}>
-          <NotificationState notification={result.current} />
-        </MagicBellThemeProvider>,
-      );
-    });
+  const svg = container.querySelector('svg') as SVGElement;
+  expect(svg.childNodes).toHaveLength(3);
+});
 
-    describe('render', () => {
-      describe('the notification is read', () => {
-        beforeEach(() => {
-          const { result } = renderHook(() =>
-            useNotificationFactory({ ...sampleNotification, readAt: Date.now() }),
-          );
+test('renders a dot when the notification is unread', () => {
+  const { result } = renderHook(() =>
+    useNotificationFactory({ ...sampleNotification, readAt: null }),
+  );
 
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <NotificationState notification={result.current} />
-            </MagicBellThemeProvider>,
-          );
-        });
+  const { container } = render(<NotificationState notification={result.current} />);
 
-        it('renders an icon for the context menu', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
+  const svg = container.querySelector('svg') as SVGElement;
+  expect(svg.childNodes).toHaveLength(1);
+});
 
-      describe('the notification is unread', () => {
-        beforeEach(() => {
-          const { result } = renderHook(() =>
-            useNotificationFactory({ ...sampleNotification, readAt: null }),
-          );
+test('renders the context menu on click', async () => {
+  const { result } = renderHook(() =>
+    useNotificationFactory({ ...sampleNotification, readAt: null }),
+  );
 
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <NotificationState notification={result.current} />
-            </MagicBellThemeProvider>,
-          );
-        });
+  const { container } = render(<NotificationState notification={result.current} />);
 
-        it('renders a dot', () => {
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
+  const bell = container.querySelector('svg') as SVGElement;
+  userEvent.click(bell);
 
-    describe('.handleClick', () => {
-      it('renders the context menu', async () => {
-        const bell = view.getByTestId('icon');
-        userEvent.click(bell);
+  await waitFor(() => screen.getByText(/mark as read/i));
+});
 
-        await waitFor(() => expect(view.container).toMatchSnapshot());
-      });
+test('renders a menu in the specified position', async () => {
+  const { result } = renderHook(() => useNotificationFactory(sampleNotification));
 
-      describe('the menuPlacement is set to "top-end"', () => {
-        beforeEach(() => {
-          const { result } = renderHook(() => useNotificationFactory(sampleNotification));
+  const { container } = render(
+    <MagicBellThemeProvider value={defaultTheme}>
+      <NotificationState notification={result.current} menuPlacement="top-end" />
+    </MagicBellThemeProvider>,
+  );
 
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <NotificationState notification={result.current} menuPlacement="top-end" />
-            </MagicBellThemeProvider>,
-          );
-        });
+  const icon = container.querySelector('svg') as SVGElement;
+  userEvent.click(icon);
 
-        it('renders a menu in the specified position', async () => {
-          userEvent.click(view.getByTestId('icon'));
+  await waitFor(() => screen.getByText(/delete/i));
+  const tippy = container.querySelector('[data-tippy-root]') as HTMLDivElement;
 
-          expect(await view.findByText('Delete')).toBeInTheDocument();
-          await waitFor(() => expect(view.container).toMatchSnapshot());
-        });
-      });
-    });
+  expect(tippy!.style.transform).toEqual('translate(0px, -2px)');
+});
 
-    describe('.onHover', () => {
-      describe('the notification is unread', () => {
-        it('renders the menu icon', async () => {
-          userEvent.hover(view.getByTestId('icon'));
+test('renders the menu icon when hovering an unread notification', async () => {
+  const { result } = renderHook(() =>
+    useNotificationFactory({ ...sampleNotification, readAt: null }),
+  );
 
-          await waitFor(() => expect(view.container).toMatchSnapshot());
-        });
-      });
+  const { container } = render(
+    <MagicBellThemeProvider value={defaultTheme}>
+      <NotificationState notification={result.current} menuPlacement="top-end" />
+    </MagicBellThemeProvider>,
+  );
 
-      describe('.onBlur', () => {
-        it('renders the dot icon', async () => {
-          userEvent.hover(view.getByTestId('icon'));
-          userEvent.unhover(view.getByTestId('icon'));
+  const icon = container.querySelector('svg') as SVGElement;
+  expect(container.querySelector('svg > circle:nth-child(2)')).not.toBeInTheDocument();
 
-          await waitFor(() => expect(view.container).toMatchSnapshot());
-        });
-      });
-    });
-  });
+  userEvent.hover(icon);
+
+  await waitFor(() =>
+    expect(container.querySelector('svg > circle:nth-child(2)')).toBeInTheDocument(),
+  );
 });

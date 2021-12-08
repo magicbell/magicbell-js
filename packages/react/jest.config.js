@@ -1,3 +1,5 @@
+process.env.TZ = 'America/New_York';
+
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
@@ -8,4 +10,12 @@ module.exports = {
   snapshotSerializers: ['@emotion/jest/serializer'],
   coveragePathIgnorePatterns: ['/node_modules/', 'tests/'],
   restoreMocks: true,
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        rootDir: '.',
+      },
+    },
+  },
+  testPathIgnorePatterns: ['/__utils__/'],
 };

@@ -64,7 +64,7 @@ export default function UserPreferencesPanel({ onClose }: Props) {
       `}
     >
       <StyledHeader>
-        <p>
+        <p role="heading">
           <Text id="preferences.title" defaultMessage="PREFERENCES" />
         </p>
         <button onClick={handleClose} className="close">

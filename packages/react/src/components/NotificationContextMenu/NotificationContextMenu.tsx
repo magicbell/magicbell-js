@@ -46,14 +46,14 @@ export default function NotificationContextMenu({ notification }: Props) {
         }
       `}
     >
-      <a onClick={toggleRead} data-testid="toggle-read">
+      <a onClick={toggleRead}>
         {notification.isRead ? (
           <Text id="notification.mark-as-unread" defaultMessage="Mark as unread" />
         ) : (
           <Text id="notification.mark-as-read" defaultMessage="Mark as read" />
         )}
       </a>
-      <a onClick={handleDelete} data-testid="delete">
+      <a onClick={handleDelete}>
         <Text id="notification.delete" defaultMessage="Delete" />
       </a>
     </div>

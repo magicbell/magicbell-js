@@ -1,47 +1,26 @@
-import { render, RenderResult } from '@testing-library/react';
+import { screen} from '@testing-library/react';
 import React from 'react';
 import ClearInboxMessage from '../../../../src/components/NotificationInbox/ClearInboxMessage';
-import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../../../src/context/Theme';
-import { TranslationsProvider } from '../../../../src/context/TranslationsContext';
-import { useLocale } from '../../../../src/lib/i18n';
+import { renderWithProviders as render } from '../../../__utils__/render';
 
-describe('components', () => {
-  describe('ClearInboxMessage', () => {
-    let view: RenderResult;
+test('the empty inbox shows an image', () => {
+  render(<ClearInboxMessage />);
 
-    beforeEach(() => {
-      const translations = useLocale('es');
-
-      view = render(
-        <TranslationsProvider value={translations}>
-          <MagicBellThemeProvider value={defaultTheme}>
-            <ClearInboxMessage />
-          </MagicBellThemeProvider>
-        </TranslationsProvider>,
-      );
-    });
-
-    afterEach(() => {
-      view.unmount();
-    });
-
-    describe('render', () => {
-      it('renders an image', () => {
-        expect(view.container).toMatchSnapshot();
-      });
-
-      describe('default language', () => {
-        it('renders the text in English', () => {
-          view.rerender(
-            <MagicBellThemeProvider value={defaultTheme}>
-              <ClearInboxMessage />
-            </MagicBellThemeProvider>,
-          );
-
-          expect(view.container).toMatchSnapshot();
-        });
-      });
-    });
+  screen.getByRole('img', {
+    name: /no notifications/i,
   });
+});
+
+test('renders the text in English', () => {
+  render(<ClearInboxMessage />);
+
+  screen.getByText(/all clear!/i);
+  screen.getByText(/We'll let you know when there's more/i);
+});
+
+test('can render the text in Spanish', () => {
+  render(<ClearInboxMessage />, { locale: 'es' });
+
+  screen.getByText(/¡No tiene notificaciones!/i);
+  screen.getByText(/Le haremos saber cuando llegue una./i);
 });

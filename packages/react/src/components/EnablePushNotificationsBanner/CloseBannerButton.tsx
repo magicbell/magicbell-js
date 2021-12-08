@@ -15,6 +15,7 @@ export default function CloseBannerButton({ onClick }) {
   return (
     <button
       onClick={handleClick}
+      aria-label="close notification"
       css={css`
         display: flex;
         align-items: center;

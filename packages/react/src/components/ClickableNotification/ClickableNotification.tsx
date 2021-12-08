@@ -34,7 +34,7 @@ export default function ClickableNotification({ notification: rawNotification, o
 
   return (
     <StyledContainer notification={notification}>
-      <button onClick={handleClick} data-testid="clickable-notification">
+      <button onClick={handleClick}>
         <div>
           <NotificationTitle notification={notification} />
           <NotificationContent notification={notification} />
