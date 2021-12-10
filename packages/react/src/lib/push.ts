@@ -1,6 +1,6 @@
 import { clientSettings, IRemoteConfig, postAPI } from '@magicbell/react-headless';
 import isEmpty from 'lodash/isEmpty';
-import prop from 'ramda/src/prop';
+import path from 'ramda/src/path';
 
 function stringToUint8Array(plainString: string) {
   const padding = '='.repeat((4 - (plainString.length % 4)) % 4);
@@ -58,7 +58,7 @@ export function subscribeToPushNotifications(pushManager: PushManager, publicKey
  * @param project
  */
 export async function createPushSubscription(pushManager: PushManager, config: IRemoteConfig) {
-  const vapidPublicKey = prop(
+  const vapidPublicKey = path(
     ['webPush', 'config', 'vapidAuthentication', 'publicKey'],
     config.channels,
   );
