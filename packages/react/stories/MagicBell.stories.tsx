@@ -99,3 +99,28 @@ WithUnreadCount.args = {
   userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
   bellCounter: 'unread',
 };
+
+export const WithCustomBadge = Template.bind({});
+WithCustomBadge.args = {
+  ...Default.args,
+  bellCounter: 'unread',
+  Badge: ({ count }) => (
+    <div
+      style={{
+        position: 'absolute',
+        background: '#5225c1',
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 12,
+        top: -4,
+        right: -2,
+        width: 16,
+        height: 16,
+        padding: 2,
+        borderRadius: 8,
+      }}
+    >
+      {count}
+    </div>
+  ),
+};

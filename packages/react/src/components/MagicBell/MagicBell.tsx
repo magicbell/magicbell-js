@@ -27,6 +27,7 @@ export interface Props {
   }) => JSX.Element;
   theme?: DeepPartial<IMagicBellTheme>;
   BellIcon?: JSX.Element;
+  Badge?: (props: { count: number }) => JSX.Element;
   defaultIsOpen?: boolean;
   stores?: StoreConfig[];
   locale?: string | CustomLocale;
@@ -49,6 +50,7 @@ export interface Props {
  * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
  * @param props.theme Object to customize the theme
  * @param props.BellIcon Icon for the bell
+ * @param props.Badge A custom badge component to show the number of unread or unseen notifications
  * @param props.defaultIsOpen Show the children when the component is rendered. It is false by default.
  * @param props.stores Configuration of stores to be created
  * @param props.locale Locale to use in the components
@@ -68,6 +70,7 @@ export interface Props {
 export default function MagicBell({
   children,
   BellIcon,
+  Badge,
   defaultIsOpen = false,
   onNewNotification,
   onToggle,
@@ -92,7 +95,7 @@ export default function MagicBell({
     <MagicBellChildrenWrapper {...settings}>
       <div>
         <div ref={launcherRef} aria-expanded={isOpen}>
-          <Bell onClick={handleToggle} Icon={BellIcon} counter={bellCounter} />
+          <Bell onClick={handleToggle} Icon={BellIcon} Badge={Badge} counter={bellCounter} />
         </div>
         {isOpen && children({ isOpen, toggle: handleToggle, launcherRef })}
       </div>

@@ -4,7 +4,7 @@ import { useTheme } from '../../context/MagicBellThemeContext';
 import Badge from '../Badge';
 
 export interface Props {
-  counter: number;
+  count: number;
 }
 
 /**
@@ -14,13 +14,14 @@ export interface Props {
  * It must be wrapped in a {@link MagicBellThemeProvider}.
  *
  * @example
- * <BellBadge store={notifications} displayCounterUnread />
+ * <BellBadge count={3} />
  */
-export default function BellBadge({ counter }: Props) {
+export default function BellBadge({ count }: Props) {
   const theme = useTheme();
   const { icon: iconTheme } = theme;
 
-  if (counter === 0) return null;
+  if (count === 0) return null;
+
   return (
     <div
       css={css`
@@ -30,7 +31,7 @@ export default function BellBadge({ counter }: Props) {
         left: 80%;
       `}
     >
-      <Badge count={counter} />
+      <Badge count={count} />
     </div>
   );
 }
