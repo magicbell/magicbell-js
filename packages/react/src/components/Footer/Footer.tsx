@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { useConfig } from '@magicbell/react-headless';
-import pathOr from 'ramda/src/pathOr';
-import useToggle from 'react-use/lib/useToggle';
 import { useTheme } from '../../context/MagicBellThemeContext';
-import UserPreferencesPanel from '../UserPreferencesPanel';
 import FooterLogo from './FooterLogo';
-import SettingsIcon from './SettingsIcon';
 import StyledFooter from './StyledFooter';
+import { ReactNode } from 'react';
+
+export type FooterProps = {
+  children?: ReactNode;
+};
 
 /**
  * Footer for the notification inbox. Renders a button to toggle the user
@@ -16,16 +16,7 @@ import StyledFooter from './StyledFooter';
  * @example
  * <Footer />
  */
-export default function Footer() {
-  const [showPreferences, togglePreferences] = useToggle(false);
-  const config = useConfig();
-  const { inbox } = config;
-  const preferencesEnabled = pathOr(
-    true,
-    ['features', 'notificationPreferences', 'enabled'],
-    inbox,
-  );
-
+export default function Footer({ children }: FooterProps) {
   const theme = useTheme();
   const { footer: footerTheme } = theme;
 
@@ -46,17 +37,11 @@ export default function Footer() {
     }
   `;
 
-  if (showPreferences) return <UserPreferencesPanel onClose={togglePreferences} />;
-
   return (
     <StyledFooter>
       <div css={contentStyle}>
         <FooterLogo />
-        {preferencesEnabled ? (
-          <button onClick={togglePreferences} aria-label="notification preferences">
-            <SettingsIcon />
-          </button>
-        ) : null}
+        {children}
       </div>
     </StyledFooter>
   );

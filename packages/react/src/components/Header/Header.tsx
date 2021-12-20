@@ -1,10 +1,12 @@
-import React from 'react';
-import Text from '../Text';
-import HeaderTitle from './HeaderTitle';
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+import { ReactNode } from 'react';
 import StyledHeader from './StyledHeader';
+import { css } from '@emotion/react';
 
 export interface Props {
-  onAllRead: () => void;
+  title: ReactNode;
+  actions?: ReactNode;
 }
 
 /**
@@ -14,17 +16,30 @@ export interface Props {
  * The component must be wrapped in a {@link MagicBellThemeProvider} component.
  *
  * @example
- * <Header onAllRead={markNotificationsAsRead} />
+ * <Header title="Inbox" actions={<button>mark as read</button>>} />
  */
-export default function Header({ onAllRead }: Props) {
-  const handleClick = () => onAllRead();
-
+export default function Header({ title, actions }: Props) {
   return (
     <StyledHeader>
-      <HeaderTitle />
-      <button onClick={handleClick}>
-        <Text id="header.mark-all-read" defaultMessage="Mark All Read" />
-      </button>
+      <p
+        role="heading"
+        css={css`
+          margin-right: 16px !important;
+        `}
+      >
+        {title}
+      </p>
+
+      <div
+        css={css`
+          height: 14px;
+          overflow: visible;
+          display: flex;
+          align-items: center;
+        `}
+      >
+        {actions}
+      </div>
     </StyledHeader>
   );
 }

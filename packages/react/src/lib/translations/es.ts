@@ -17,6 +17,7 @@ const es = {
   },
   preferences: {
     title: 'PREFERENCIAS',
+    toggle: 'Preferencias de notificación',
   },
 };
 

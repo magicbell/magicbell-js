@@ -3,11 +3,12 @@ import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-lib
 import faker from 'faker';
 import { Response, Server } from 'miragejs';
 import React from 'react';
-import MagicBell, { Header } from '../../../../src';
+import MagicBell from '../../../../src';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 // import { renderWithProviders as render } from '../../../__utils__/render';
 import userEvent from '@testing-library/user-event';
+import Text from '../../../../src/components/Text';
 
 const apiKey = faker.random.alphaNumeric(10);
 const userEmail = faker.internet.email();
@@ -54,7 +55,7 @@ test("renders the notification bell, but not it's children", async () => {
     </MagicBell>,
   );
 
-  screen.getByRole('button', { name: /notifications/i });
+  screen.getByRole('button', { name: 'Notifications' });
   expect(screen.queryByTestId('children')).not.toBeInTheDocument();
 });
 
@@ -106,11 +107,11 @@ test('supports custom translations', async () => {
       }}
       defaultIsOpen
     >
-      {() => <Header onAllRead={jest.fn()} />}
+      {() => <Text id="header.mark-all-read" defaultMessage="default" />}
     </MagicBell>,
   );
 
-  await waitFor(() => screen.getByText(/please mark all as read/i));
+  await waitFor(() => screen.getByText('Please mark all as read'));
 });
 
 test('shows the number of unread notifications', async () => {
@@ -122,7 +123,7 @@ test('shows the number of unread notifications', async () => {
 
   await waitFor(() =>
     screen.getByRole('status', {
-      name: /4 unread items/i,
+      name: '4 unread items',
     }),
   );
 });
@@ -134,7 +135,7 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
     </MagicBell>,
   );
 
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = screen.getByRole('button', { name: 'Notifications' });
   const removal = waitForElementToBeRemoved(() => screen.getByTestId('children'));
   userEvent.click(button);
   await removal;
@@ -155,7 +156,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
     </MagicBell>,
   );
 
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = screen.getByRole('button', { name: 'Notifications' });
   userEvent.click(button);
 
   expect(onToggle).toHaveBeenCalledTimes(1);

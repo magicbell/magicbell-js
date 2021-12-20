@@ -2,7 +2,7 @@ import pathOr from 'ramda/src/pathOr';
 import React from 'react';
 import { useTranslations } from '../../context/TranslationsContext';
 
-interface TextProps {
+type TextProps = {
   id: string;
   defaultMessage: string;
   html?: boolean;

@@ -56,7 +56,7 @@ export default function Bell({ Icon, Badge = BellBadge, onClick, storeId, counte
       role="button"
       onClick={handleClick}
       css={[cleanslate, containerStyle]}
-      aria-label="notifications"
+      aria-label="Notifications"
     >
       <div css={iconStyle}>{!isNil(Icon) ? Icon : <BellIcon />}</div>
       {notifications && (

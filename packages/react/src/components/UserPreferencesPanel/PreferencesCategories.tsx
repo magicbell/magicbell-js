@@ -2,6 +2,7 @@
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import CategoryPreferences from './CategoryPreferences';
+import { useEffect } from 'react';
 
 export default function PreferencesCategories() {
   const preferences = useNotificationPreferences();
@@ -12,21 +13,36 @@ export default function PreferencesCategories() {
     font-size: 0.7rem !important;
   `;
 
+  useEffect(() => {
+    if (!preferences.lastFetchedAt) {
+      preferences.fetch();
+    }
+  }, [preferences]);
+
   return (
     <div
       css={css`
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        flex: 1;
+        padding: 16px 20px !important;
+        height: 100%;
+        overflow-y: auto;
       `}
     >
-      <div />
-      <div css={headerStyle}>In-app</div>
-      <div css={headerStyle}>Email</div>
-      <div css={headerStyle}>Web push</div>
-      {Object.keys(preferences.categories).map((categoryKey) => (
-        <CategoryPreferences key={categoryKey} category={categoryKey} />
-      ))}
+      <div
+        css={css`
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        `}
+      >
+        <div />
+        <div css={headerStyle}>In-app</div>
+        <div css={headerStyle}>Email</div>
+        <div css={headerStyle}>Web push</div>
+        {Object.keys(preferences.categories).map((categoryKey) => (
+          <CategoryPreferences key={categoryKey} category={categoryKey} />
+        ))}
+      </div>
     </div>
   );
 }

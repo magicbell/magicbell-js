@@ -16,6 +16,10 @@ const de = {
   messages: {
     'empty-inbox': "Alles Sauber!<br>Wir melden uns, wenn's was neues gibt!",
   },
+  preferences: {
+    title: 'Einstellungen',
+    toggle: 'Benachrichtigungseinstellungen',
+  },
 };
 
 export default de;

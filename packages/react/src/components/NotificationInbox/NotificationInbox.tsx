@@ -1,22 +1,23 @@
-import { useNotifications } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
-import React from 'react';
-import EnablePushNotificationsBanner from '../EnablePushNotificationsBanner';
-import Footer from '../Footer';
-import Header from '../Header';
+import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import Layout from './Layout';
-import NotificationInboxContent from './NotificationInboxContent';
 import StyledContainer from './StyledContainer';
+import PreferencesView from './private/PreferencesView';
+import NotificationsView from './private/NotificationsView';
 
-export interface NotificationInboxProps {
+export type NotificationInboxProps = {
   height?: number;
   onAllRead?: () => void;
   onNotificationClick?: (notification: INotification) => void;
   storeId?: string;
   NotificationItem?: NotificationListItem;
-  layout?: string[];
-}
+  NotificationPreferences?: () => React.ReactElement;
+  notificationPreferencesEnabled?: boolean;
+  layout?: ComponentProps<typeof Layout>['order'];
+};
+
+export type SetViewHandler = Dispatch<SetStateAction<'inbox' | 'preferences'>>;
 
 /**
  * Component that renders all notifications as well as a header and a footer.
@@ -30,34 +31,17 @@ export interface NotificationInboxProps {
 export default function NotificationInbox({
   height,
   layout = ['header', 'content', 'push-notifications-banner', 'footer'],
-  onAllRead,
-  onNotificationClick,
-  NotificationItem,
-  storeId = 'default',
+  ...props
 }: NotificationInboxProps) {
-  const store = useNotifications(storeId);
-
-  const markAsRead = () => {
-    store?.markAllAsRead();
-    if (onAllRead) onAllRead();
-  };
-
-  if (!store) return null;
+  const [view, setView] = useState<'inbox' | 'preferences'>('inbox');
 
   return (
     <StyledContainer height={height} layout={layout}>
-      <Layout order={layout}>
-        <Header key="header" onAllRead={markAsRead} />
-        <NotificationInboxContent
-          key="content"
-          store={store}
-          onNotificationClick={onNotificationClick}
-          height={height}
-          NotificationItem={NotificationItem}
-        />
-        <EnablePushNotificationsBanner key="push-notifications-banner" />
-        <Footer key="footer" />
-      </Layout>
+      {view === 'preferences' ? (
+        <PreferencesView {...props} layout={layout} setView={setView} />
+      ) : (
+        <NotificationsView {...props} layout={layout} setView={setView} />
+      )}
     </StyledContainer>
   );
 }

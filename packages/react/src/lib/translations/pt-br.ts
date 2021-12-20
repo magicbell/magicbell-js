@@ -18,6 +18,10 @@ const pt_br = {
     'no-internet-connection':
       'Não conseguimos nos conectar à Internet.<br>Por favor, verifique sua conexão.',
   },
+  preferences: {
+    title: 'Preferências',
+    toggle: 'Preferências de notificação',
+  },
 };
 
 export default pt_br;
