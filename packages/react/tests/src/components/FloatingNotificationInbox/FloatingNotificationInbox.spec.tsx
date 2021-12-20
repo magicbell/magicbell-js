@@ -1,5 +1,5 @@
 import { useConfig } from '@magicbell/react-headless';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Response, createServer } from 'miragejs';
@@ -20,7 +20,9 @@ const stores = [
 let server;
 
 beforeEach(async () => {
-  useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  act(() => {
+    useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  });
 
   server = createServer({
     environment: 'test',

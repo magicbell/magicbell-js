@@ -4,7 +4,7 @@ import {
   useNotification,
   useNotificationStoresCollection,
 } from '@magicbell/react-headless';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
 import { Response, Server } from 'miragejs';
@@ -51,28 +51,28 @@ test('does not render the notification count if there are no notifications', () 
   expect(screen.queryByRole('status', { name: /1 unread items/i })).not.toBeInTheDocument();
 });
 
-test('renders the number of notifications if there are some', async() => {
+test('renders the number of notifications if there are some', async () => {
   render(<Bell onClick={jest.fn()} />);
 
-  useNotificationStoresCollection.setState({
-    stores: { default: buildStore({ unseenCount: 1 }) },
+  act(() => {
+    useNotificationStoresCollection.setState({
+      stores: { default: buildStore({ unseenCount: 1 }) },
+    });
   });
 
-  await waitFor(() => {
-    screen.getByRole('status', { name: /1 unread items/i });
-  });
+  await waitFor(() => screen.getByRole('status', { name: /1 unread items/i }));
 });
 
 test('shows the number of unread notifications if counter is set to unread', async () => {
   render(<Bell onClick={jest.fn()} counter="unread" />);
 
-  useNotificationStoresCollection.setState({
-    stores: { default: buildStore({ unreadCount: 2 }) },
+  act(() => {
+    useNotificationStoresCollection.setState({
+      stores: { default: buildStore({ unreadCount: 2 }) },
+    });
   });
 
-  await waitFor(() => {
-    screen.getByRole('status', { name: /2 unread items/i });
-  });
+  await waitFor(() => screen.getByRole('status', { name: /2 unread items/i }));
 });
 
 test('can render the bell icon with the custom color and size', () => {
