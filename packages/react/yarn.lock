@@ -1597,10 +1597,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/react-headless@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.4.0.tgz#4aa516eb9c9128cb83296ec4a12c2086bfce11d5"
-  integrity sha512-WoXxbVxUoGPzkt1H1J8rFZfak3gFz14GE3VNqpL7QOtEAONGZYVlQfUCzLRGdKsyZx5fn04iAbv0MaICHX6EVg==
+"@magicbell/react-headless@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.5.0.tgz#132fb384a55919b69215765875d0539e9b42ca50"
+  integrity sha512-aeSxezB05MaAL17ce3embZOOwRMuRwmJDuWdm17xUVp0Qn/nn7CldolsK/i3/PZPwM8E9KmRiRAd5bzZyUcSLg==
   dependencies:
     ably "^1.2.14"
     axios "^0.24.0"
