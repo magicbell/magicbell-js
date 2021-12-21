@@ -1,12 +1,11 @@
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/core';
-import weakMemoize from '@emotion/weak-memoize';
+import { CacheProvider } from '@emotion/react';
 import React from 'react';
 import { FrameContextConsumer } from 'react-frame-component';
 
-const createContainerCache = weakMemoize((container: HTMLElement) => {
+const createContainerCache = (container: HTMLElement) => {
   return createCache({ key: 'magicbell-embeddable-iframe', container });
-});
+};
 
 /**
  * Provider for rendering components in an iframe preserving their (emotion)
