@@ -1,10 +1,11 @@
 import { useNotification } from '@magicbell/react-headless';
-import { screen} from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import React from 'react';
+
 import NotificationContextMenu from '../../../../src/components/NotificationContextMenu';
-import { sampleNotification } from '../../../factories/NotificationFactory';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 test('renders a menu with all items', () => {
   const { result } = renderHook(() => useNotification(sampleNotification));

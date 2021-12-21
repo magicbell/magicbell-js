@@ -2,6 +2,7 @@
 import { css, jsx } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { useState } from 'react';
+
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';
 import NotificationContextMenu from '../NotificationContextMenu';

@@ -18,8 +18,8 @@ const cleanslate = css`
   direction: inherit;
   display: block;
   left: auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: normal;
   height: auto;

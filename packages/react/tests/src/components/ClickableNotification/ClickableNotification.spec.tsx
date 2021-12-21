@@ -1,9 +1,10 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+
 import ClickableNotification from '../../../../src/components/ClickableNotification';
-import { sampleNotification } from '../../../factories/NotificationFactory';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 test('renders the title and content of the notification', () => {
   render(

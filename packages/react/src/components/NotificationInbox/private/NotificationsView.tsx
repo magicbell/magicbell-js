@@ -1,19 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { ListItemProps } from '../../NotificationList';
-import { ReactElement } from 'react';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
-import { useTranslate } from '../../../context/TranslationsContext';
 import { useConfig, useNotifications } from '@magicbell/react-headless';
-import Layout from '../Layout';
-import Header from '../../Header';
-import Text from '../../Text';
-import NotificationInboxContent from '../NotificationInboxContent';
+import INotification from '@magicbell/react-headless/dist/types/INotification';
+import pathOr from 'ramda/src/pathOr';
+import { ReactElement } from 'react';
+
+import { useTranslate } from '../../../context/TranslationsContext';
 import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';
 import Footer from '../../Footer';
 import SettingsIcon from '../../Footer/SettingsIcon';
+import Header from '../../Header';
+import { ListItemProps } from '../../NotificationList';
+import Text from '../../Text';
+import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
-import pathOr from 'ramda/src/pathOr';
+import NotificationInboxContent from '../NotificationInboxContent';
 
 type NotificationsViewProps = {
   storeId?: string;

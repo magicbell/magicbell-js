@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+
 import { useMagicBellContext } from '../../context/MagicBellContext';
 import { useTheme } from '../../context/MagicBellThemeContext';
 import Text from '../Text';

@@ -1,14 +1,15 @@
 import { pushEventAggregator } from '@magicbell/react-headless';
 import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+// import { renderWithProviders as render } from '../../../__utils__/render';
+import userEvent from '@testing-library/user-event';
 import faker from 'faker';
 import { Response, Server } from 'miragejs';
 import React from 'react';
+
 import MagicBell from '../../../../src';
+import Text from '../../../../src/components/Text';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
 import { sampleConfig } from '../../../factories/ConfigFactory';
-// import { renderWithProviders as render } from '../../../__utils__/render';
-import userEvent from '@testing-library/user-event';
-import Text from '../../../../src/components/Text';
 
 const apiKey = faker.random.alphaNumeric(10);
 const userEmail = faker.internet.email();

@@ -1,10 +1,10 @@
 import { useConfig } from '@magicbell/react-headless';
 import { screen } from '@testing-library/react';
 import React from 'react';
-import Footer from '../../../../src/components/Footer';
-import ConfigFactory from '../../../factories/ConfigFactory';
 
+import Footer from '../../../../src/components/Footer';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import ConfigFactory from '../../../factories/ConfigFactory';
 
 test('renders a link to the magicbell site', () => {
   render(<Footer />);

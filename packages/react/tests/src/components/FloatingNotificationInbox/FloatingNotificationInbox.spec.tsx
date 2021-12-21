@@ -1,13 +1,13 @@
 import { useConfig } from '@magicbell/react-headless';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { Response, createServer } from 'miragejs';
+import { createServer, Response } from 'miragejs';
 import React from 'react';
+
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
+import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
-import { renderWithProviders as render } from '../../../__utils__/render';
 
 const stores = [
   {

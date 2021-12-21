@@ -2,9 +2,10 @@ import { useNotificationFactory } from '@magicbell/react-headless';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import React from 'react';
+
 import { NotificationContent } from '../../../../src';
-import { sampleNotification } from '../../../factories/NotificationFactory';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 beforeEach(() => {
   jest.useFakeTimers();

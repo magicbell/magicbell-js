@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+
 import Header from '../../../../src/components/Header';
 
 test('renders a title and a button to mark all notification as read', () => {

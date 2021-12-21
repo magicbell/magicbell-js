@@ -1,10 +1,11 @@
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react';
+
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import Layout from './Layout';
-import StyledContainer from './StyledContainer';
-import PreferencesView from './private/PreferencesView';
 import NotificationsView from './private/NotificationsView';
+import PreferencesView from './private/PreferencesView';
+import StyledContainer from './StyledContainer';
 
 export type NotificationInboxProps = {
   height?: number;

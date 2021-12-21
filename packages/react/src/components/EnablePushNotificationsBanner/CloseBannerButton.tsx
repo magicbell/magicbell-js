@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+
 import CloseIcon from '../UserPreferencesPanel/CloseIcon';
 
 /**

@@ -1,10 +1,11 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
+
 import CategoryPreferences from '../../../../src/components/UserPreferencesPanel/CategoryPreferences';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import userEvent from '@testing-library/user-event';
 
 beforeEach(() => {
   useNotificationPreferences.setState({

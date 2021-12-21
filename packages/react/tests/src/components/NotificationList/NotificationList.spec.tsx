@@ -1,12 +1,13 @@
 import { buildStore } from '@magicbell/react-headless';
+import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import { screen } from '@testing-library/react';
 import React from 'react';
+
 import NotificationList, { ListItemProps } from '../../../../src/components/NotificationList';
 import { MagicBellThemeProvider } from '../../../../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../../../../src/context/Theme';
-import { sampleNotification } from '../../../factories/NotificationFactory';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
 test('renders an empty list when there are no notifications', () => {
   const store = buildStore({ notifications: [] }) as NotificationStore;

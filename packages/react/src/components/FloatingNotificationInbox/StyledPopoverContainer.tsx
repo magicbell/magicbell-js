@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+
 import useContainerBorderRadius from '../NotificationInbox/useContainerBorderRadius';
 
 interface Props {
@@ -18,7 +19,8 @@ interface Props {
  * </StyledPopoverContainer>
  */
 export default function StyledPopoverContainer({ width = 400, children, attrs, layout }: Props) {
-  const [ltBorderRadius, rtBorderRadius, rbBorderRadius, lbBorderRadius] = useContainerBorderRadius(layout);
+  const [ltBorderRadius, rtBorderRadius, rbBorderRadius, lbBorderRadius] =
+    useContainerBorderRadius(layout);
 
   return (
     <div

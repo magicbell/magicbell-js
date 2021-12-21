@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import CategoryPreferences from './CategoryPreferences';
 import { useEffect } from 'react';
+
+import CategoryPreferences from './CategoryPreferences';
 
 export default function PreferencesCategories() {
   const preferences = useNotificationPreferences();

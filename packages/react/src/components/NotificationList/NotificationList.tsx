@@ -3,6 +3,7 @@ import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+
 import ClickableNotification from '../ClickableNotification';
 import Loader from './Loader';
 

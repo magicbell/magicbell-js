@@ -1,6 +1,8 @@
+import '../../../src/lib/date';
+
 import dayjs from 'dayjs';
 import Sinon from 'sinon';
-import '../../../src/lib/date';
+
 import { secondsToDate, toUnix } from '../../../src/lib/date';
 
 describe('lib', () => {

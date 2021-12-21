@@ -1,10 +1,11 @@
 import { useConfig } from '@magicbell/react-headless';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import React from 'react';
-import EnablePushNotificationsBanner from '../../../../src/components/EnablePushNotificationsBanner/EnablePushNotificationsBanner';
-import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
-import { renderWithProviders as render } from '../../../__utils__/render';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
+
+import EnablePushNotificationsBanner from '../../../../src/components/EnablePushNotificationsBanner/EnablePushNotificationsBanner';
+import { renderWithProviders as render } from '../../../__utils__/render';
+import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
 
 beforeEach(() => {
   localStorage.clear();

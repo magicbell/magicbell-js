@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import { ReactNode } from 'react';
+
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';
 import { cleanslate } from '../Styled';
-import { ReactNode } from 'react';
 
 export interface Props {
   children: ReactNode;

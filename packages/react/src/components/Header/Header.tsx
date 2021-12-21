@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import { ReactNode } from 'react';
-import StyledHeader from './StyledHeader';
 import { css } from '@emotion/react';
+import { ReactNode } from 'react';
+
+import StyledHeader from './StyledHeader';
 
 export interface Props {
   title: ReactNode;

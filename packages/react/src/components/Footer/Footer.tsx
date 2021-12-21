@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import { ReactNode } from 'react';
+
 import { useTheme } from '../../context/MagicBellThemeContext';
 import FooterLogo from './FooterLogo';
 import StyledFooter from './StyledFooter';
-import { ReactNode } from 'react';
 
 export type FooterProps = {
   children?: ReactNode;

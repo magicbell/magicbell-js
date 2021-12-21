@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
+
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { darken, toRGBA } from '../../lib/color';
 import { cleanslate } from '../Styled';

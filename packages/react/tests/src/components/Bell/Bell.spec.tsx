@@ -9,11 +9,12 @@ import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
 import { Response, Server } from 'miragejs';
 import React from 'react';
+
 import Bell from '../../../../src/components/Bell';
 import { defaultTheme } from '../../../../src/context/Theme';
+import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
-import { renderWithProviders as render } from '../../../__utils__/render';
 
 let server: any;
 

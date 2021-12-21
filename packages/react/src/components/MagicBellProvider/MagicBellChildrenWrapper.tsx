@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+
 import CurrentProviderContext, { NO_PROVIDER } from '../../context/CurrentProviderContext';
 import MagicBellProvider, { OptionalProps as MagicBellProviderProps } from './MagicBellProvider';
 

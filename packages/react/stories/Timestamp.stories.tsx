@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+
 import Timestamp from '../src/components/Timestamp';
 import { MagicBellThemeProvider } from '../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../src/context/Theme';

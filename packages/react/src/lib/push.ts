@@ -9,7 +9,7 @@ function stringToUint8Array(plainString: string) {
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
 
-  for (var i = 0; i < rawData.length; ++i) {
+  for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
 
@@ -82,16 +82,14 @@ export function createSafariPushSubscription(websitePushID = 'web.com.magicbell-
     hmacSecret: userKey,
   };
 
-  // @ts-ignore
-  const permissionData = window.safari.pushNotification.permission(websitePushID);
+  const permissionData = window['safari'].pushNotification.permission(websitePushID);
   if (permissionData.permission === 'granted') return Promise.resolve();
   if (permissionData.permission === 'denied') return Promise.reject();
 
   return new Promise(function (resolve, reject) {
     const webServiceURL = `${window.location.origin}/safari/push`;
 
-    // @ts-ignore
-    window.safari.pushNotification.requestPermission(
+    window['safari'].pushNotification.requestPermission(
       webServiceURL,
       websitePushID,
       user,

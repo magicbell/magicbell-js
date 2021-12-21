@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react';
+
 import { defaultTheme, IMagicBellTheme } from './Theme';
 
 const MagicBellThemeContext = createContext<IMagicBellTheme>(defaultTheme);

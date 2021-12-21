@@ -1,6 +1,7 @@
 import { INotification } from '@magicbell/react-headless';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+
 import MagicBell, { MagicBellProvider } from '../src';
 import FloatingNotificationInbox from '../src/components/FloatingNotificationInbox';
 import { MagicBellProps } from '../src/components/MagicBell';

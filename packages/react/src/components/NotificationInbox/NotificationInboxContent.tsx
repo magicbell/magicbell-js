@@ -2,11 +2,12 @@
 import { jsx } from '@emotion/react';
 import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { useRef } from 'react';
+
+import { useHeight } from '../../lib/window';
 import NotificationList from '../NotificationList';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import ClearInboxMessage from './ClearInboxMessage';
-import { useRef } from 'react';
-import { useHeight } from '../../lib/window';
 
 export interface NotificationInboxContentProps {
   height?: number;

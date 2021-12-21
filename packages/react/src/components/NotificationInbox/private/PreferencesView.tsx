@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import { ReactElement } from 'react';
-import PreferencesCategories from '../../UserPreferencesPanel/PreferencesCategories';
+
 import { useTranslate } from '../../../context/TranslationsContext';
-import Layout from '../Layout';
+import Footer from '../../Footer';
+import SettingsIcon from '../../Footer/SettingsIcon';
 import Header from '../../Header';
 import Text from '../../Text';
 import CloseIcon from '../../UserPreferencesPanel/CloseIcon';
-import Footer from '../../Footer';
-import SettingsIcon from '../../Footer/SettingsIcon';
+import PreferencesCategories from '../../UserPreferencesPanel/PreferencesCategories';
+import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 
 type PreferencesViewProps = {

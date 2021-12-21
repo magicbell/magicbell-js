@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
+
 import ClickableNotification from '../src/components/ClickableNotification/ClickableNotification';
 import { MagicBellThemeProvider } from '../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../src/context/Theme';

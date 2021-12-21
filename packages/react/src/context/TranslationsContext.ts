@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext } from 'react';
 import pathOr from 'ramda/src/pathOr';
+import { createContext, useCallback, useContext } from 'react';
 
 const TranslationsContext = createContext<any>({});
 export default TranslationsContext;

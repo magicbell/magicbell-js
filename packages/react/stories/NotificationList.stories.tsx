@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+
 import NotificationList from '../src/components/NotificationList/NotificationList';
 import { MagicBellThemeProvider } from '../src/context/MagicBellThemeContext';
 import { defaultTheme } from '../src/context/Theme';

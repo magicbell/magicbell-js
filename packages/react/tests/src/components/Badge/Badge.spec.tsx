@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
+
 import UnseenBadge from '../../../../src/components/Badge';
 import { renderWithProviders as render } from '../../../__utils__/render';
 

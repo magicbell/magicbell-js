@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+
 import { useTheme } from '../../../context/MagicBellThemeContext';
 import InternetConnectionErrorMessage from './InternetConnectionErrorMessage';
 import ServerErrorMessage from './ServerErrorMessage';

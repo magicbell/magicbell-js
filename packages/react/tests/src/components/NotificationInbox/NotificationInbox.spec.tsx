@@ -3,11 +3,12 @@ import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 import { Response, Server } from 'miragejs';
 import React from 'react';
+
 import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
+import { renderWithProviders as render } from '../../../__utils__/render';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
-import { renderWithProviders as render } from '../../../__utils__/render';
 
 let server;
 

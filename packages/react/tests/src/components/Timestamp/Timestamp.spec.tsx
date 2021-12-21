@@ -1,6 +1,7 @@
-import { screen, render, waitFor, act } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+
 import Timestamp from '../../../../src/components/Timestamp';
 import { renderWithProviders } from '../../../__utils__/render';
 

@@ -1,8 +1,9 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
+
 import { EnablePushNotificationsButton } from '../../../../src/components/EnablePushNotificationsBanner';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import userEvent from '@testing-library/user-event';
 
 test('renders a button', () => {
   render(<EnablePushNotificationsButton onClick={jest.fn()} />);

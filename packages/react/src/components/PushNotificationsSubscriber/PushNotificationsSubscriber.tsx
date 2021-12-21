@@ -1,5 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
 import { useEffect } from 'react';
+
 import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 
 export interface Props {

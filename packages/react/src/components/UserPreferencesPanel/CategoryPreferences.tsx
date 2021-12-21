@@ -1,5 +1,6 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import React from 'react';
+
 import ToggleInput from './ToggleInput';
 
 interface Props {
