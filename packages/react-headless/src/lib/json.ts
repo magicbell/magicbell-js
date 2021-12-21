@@ -6,7 +6,7 @@ import isNil from 'ramda/src/isNil';
  * @param obj
  * @returns
  */
-export function parseJSON(obj: Object | string | null) {
+export function parseJSON(obj: Record<string, unknown> | string | null) {
   if (isNil(obj)) return null;
   if (typeof obj === 'string') {
     try {

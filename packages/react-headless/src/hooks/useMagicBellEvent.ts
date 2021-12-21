@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { pushEventAggregator } from '../lib/realtime';
 
 /**

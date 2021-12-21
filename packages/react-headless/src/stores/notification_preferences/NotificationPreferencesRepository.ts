@@ -1,4 +1,5 @@
 import humps from 'humps';
+
 import { fetchAPI, putAPI } from '../../lib/ajax';
 import { DeepPartial } from '../../types/DeepPartial';
 import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';

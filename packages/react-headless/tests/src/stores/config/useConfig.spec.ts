@@ -3,6 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import humps from 'humps';
 import { Server } from 'miragejs';
 import { useEffect } from 'react';
+
 import useConfig from '../../../../src/stores/config';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 

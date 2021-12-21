@@ -1,5 +1,6 @@
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
+
 import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository';
 import NotificationPreferencesFactory from '../../../factories/NotificationPreferencesFactory';
 

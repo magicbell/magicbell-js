@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import clientSettings, { ClientSettings } from '../../stores/clientSettings';
 import useConfig from '../../stores/config';
 import { useNotificationStoresCollection } from '../../stores/notifications';
@@ -8,7 +9,7 @@ import RealtimeListener from '../RealtimeListener';
 
 type StoreConfig = {
   id: string;
-  defaultQueryParams: Object;
+  defaultQueryParams: Record<string, unknown>;
   defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 

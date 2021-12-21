@@ -1,6 +1,7 @@
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { useEffect } from 'react';
+
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
 import { pushEventAggregator } from '../../../src/lib/realtime';

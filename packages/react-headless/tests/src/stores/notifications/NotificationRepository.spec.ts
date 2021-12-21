@@ -1,6 +1,7 @@
 import faker from 'faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
+
 import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';
 import NotificationFactory from '../../../factories/NotificationFactory';
 

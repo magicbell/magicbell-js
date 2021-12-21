@@ -1,6 +1,8 @@
-import React from 'react';
-import { useNotification, useNotifications } from '../src';
 import './NotificationInbox.css';
+
+import React from 'react';
+
+import { useNotification, useNotifications } from '../src';
 
 function NotificationState({ isRead, onClick }) {
   return (

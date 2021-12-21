@@ -3,6 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import humps from 'humps';
 import { Server } from 'miragejs';
 import { useEffect } from 'react';
+
 import useNotificationPreferences from '../../../../src/stores/notification_preferences';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 

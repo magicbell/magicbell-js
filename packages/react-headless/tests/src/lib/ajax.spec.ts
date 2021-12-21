@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { Response, Server } from 'miragejs';
+
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
 

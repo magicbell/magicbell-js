@@ -1,4 +1,5 @@
 import isNil from 'ramda/src/isNil';
+
 import { IRemoteNotification } from '../../../types';
 import { IStrategyComparator } from '../../../types/INotificationStore';
 
@@ -34,8 +35,9 @@ export function objMatchesContext(
       (attr === 'read' && !comparator(!isNil(notification.readAt), conditionValue)) ||
       (attr === 'seen' && !comparator(!isNil(notification.seenAt), conditionValue)) ||
       (Object.hasOwnProperty.call(notification, attr) && !comparator(notification[attr], conditionValue))
-    )
+    ) {
       diff.push(attr);
+    }
   });
 
   return { result: diff.length === 0, delta: diff };

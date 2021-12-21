@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import INotification from '../types/INotification';
 
 /**

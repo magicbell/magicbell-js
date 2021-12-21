@@ -12,7 +12,11 @@ export default interface INotificationsStoresCollection {
    * @param defaultQueryParams Optional default query parameters used to fetch the store.
    * @param otherProps Properties used to initialize the store with
    */
-  setStore: (storeId: string, defaultQueryParams?: Object, otherProps?: Partial<INotificationStore>) => void;
+  setStore: (
+    storeId: string,
+    defaultQueryParams?: Record<string, unknown>,
+    otherProps?: Partial<INotificationStore>,
+  ) => void;
 
   /**
    * Fetch a store from the MagicBell server.
@@ -23,7 +27,7 @@ export default interface INotificationsStoresCollection {
    */
   fetchStore: (
     storeId: string,
-    queryParams?: Object,
+    queryParams?: Record<string, unknown>,
     options?: Partial<{ reset: boolean; prepend: boolean }>,
   ) => Promise<void>;
 
@@ -33,7 +37,10 @@ export default interface INotificationsStoresCollection {
    * @param queryParams Optional query parameters to fetch.
    * @param options.reset Whether to prepend notifications to the store or not
    */
-  fetchAllStores: (queryParams?: Object, options?: Partial<{ reset: boolean; prepend: boolean }>) => Promise<void>;
+  fetchAllStores: (
+    queryParams?: Record<string, unknown>,
+    options?: Partial<{ reset: boolean; prepend: boolean }>,
+  ) => Promise<void>;
 
   /**
    * Mark a notification as seen.
@@ -59,7 +66,7 @@ export default interface INotificationsStoresCollection {
   markNotificationAsUnread: (notification: IRemoteNotification) => Promise<boolean>;
 
   /**
-   * Delets a notification. Makes a request to the MagicBell server and
+   * Deletes a notification. Makes a request to the MagicBell server and
    * removes the notification immediately.
    *
    * @param notification Notification to mark as read.

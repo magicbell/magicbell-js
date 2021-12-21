@@ -1,5 +1,6 @@
 import mergeDeepRight from 'ramda/src/mergeDeepRight';
 import create from 'zustand';
+
 import { DeepPartial } from '../../types/DeepPartial';
 import IRemoteNotificationPreferences, { CategoryPreference } from '../../types/IRemoteNotificationPreferences';
 import NotificationPreferencesRepository from './NotificationPreferencesRepository';

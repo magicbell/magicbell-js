@@ -1,8 +1,9 @@
 import axios from 'axios';
+
 import clientSettings from '../stores/clientSettings';
 
 interface ServerResponse {
-  data: any;
+  data: unknown;
 }
 
 type AxiosMethod =
@@ -45,7 +46,12 @@ export function buildAPIHeaders() {
  * @param params - the URL parameters to be sent with the request
  * @param headers - the custom headers to be sent with the request
  */
-function sendAPIRequest(method: AxiosMethod, url: string, data?: object, params?: object) {
+function sendAPIRequest(
+  method: AxiosMethod,
+  url: string,
+  data?: Record<string, unknown>,
+  params?: Record<string, unknown>,
+) {
   const { serverURL } = clientSettings.getState();
   const headers = buildAPIHeaders();
 
@@ -81,7 +87,7 @@ export function fetchAPI(url: string, params = {}) {
  * @param data - the data to be sent as the request body
  * @param params - the URL parameters to be sent with the request
  */
-export function postAPI(url: string, data: object = {}, params = {}) {
+export function postAPI(url: string, data: Record<string, unknown> = {}, params = {}) {
   return sendAPIRequest('post', url, data, params);
 }
 
@@ -102,6 +108,6 @@ export function deleteAPI(url: string, params = {}) {
  * @param data - the data to be sent as the request body
  * @param params - the URL parameters to be sent with the request
  */
-export function putAPI(url: string, data: object, params = {}) {
+export function putAPI(url: string, data: Record<string, unknown>, params = {}) {
   return sendAPIRequest('put', url, data, params);
 }

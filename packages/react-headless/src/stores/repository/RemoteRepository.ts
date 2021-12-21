@@ -1,4 +1,5 @@
 import humps from 'humps';
+
 import { deleteAPI, fetchAPI } from '../../lib/ajax';
 
 /**
@@ -7,7 +8,7 @@ import { deleteAPI, fetchAPI } from '../../lib/ajax';
  * @example
  * class NotificationRepo extends RemoteRepository<Notification, NotificationStore> {}
  */
-export default abstract class RemoteRepository<Item extends Object, Collection> {
+export default abstract class RemoteRepository<Item, Collection> {
   remotePathOrUrl: string;
 
   constructor(remotePathOrUrl: string) {

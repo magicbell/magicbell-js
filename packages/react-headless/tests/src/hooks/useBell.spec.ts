@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { Response, Server } from 'miragejs';
+
 import useBell from '../../../src/hooks/useBell';
 import * as ajax from '../../../src/lib/ajax';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';

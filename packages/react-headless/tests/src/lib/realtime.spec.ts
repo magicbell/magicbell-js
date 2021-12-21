@@ -1,6 +1,7 @@
 import * as Ably from 'ably';
 import faker from 'faker';
 import { Server } from 'miragejs';
+
 import * as ajax from '../../../src/lib/ajax';
 import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';

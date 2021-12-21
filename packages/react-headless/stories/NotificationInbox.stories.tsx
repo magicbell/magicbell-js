@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+
 import { MagicBellProvider } from '../src';
 import NotificationInbox from './NotificationInbox';
 

@@ -3,7 +3,7 @@ import IRemoteNotification from './IRemoteNotification';
 export type IStrategyComparator = (attribute, rule) => boolean;
 
 export default interface INotificationStore {
-  context: Object;
+  context: Record<string, unknown>;
   total: number;
   totalPages: number;
   perPage: number;

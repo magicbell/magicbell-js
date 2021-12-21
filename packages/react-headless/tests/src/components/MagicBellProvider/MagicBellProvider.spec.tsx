@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import faker from 'faker';
 import React from 'react';
+
 import { MagicBellProvider, useConfig } from '../../../../src';
 import * as ajax from '../../../../src/lib/ajax';
 

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../lib/realtime';
 import useConfig from '../stores/config';
 import { WebSocketConfig } from '../types/IRemoteConfig';
@@ -32,6 +33,6 @@ export function useAbly() {
 
   useEffect(() => {
     if (config.ws) return createRealtimeSubscription(config.ws);
-    else return () => {};
+    else return () => undefined;
   }, [config.ws]);
 }

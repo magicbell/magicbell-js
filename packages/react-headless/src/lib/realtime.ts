@@ -1,5 +1,6 @@
 import * as Ably from 'ably';
 import mitt from 'mitt';
+
 import clientSettings from '../stores/clientSettings';
 import NotificationRepository from '../stores/notifications/NotificationRepository';
 import { WebSocketConfig } from '../types/IRemoteConfig';

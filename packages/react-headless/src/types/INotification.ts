@@ -1,4 +1,5 @@
 import { Dayjs } from 'dayjs';
+
 import IRemoteNotification from './IRemoteNotification';
 
 export default interface INotification

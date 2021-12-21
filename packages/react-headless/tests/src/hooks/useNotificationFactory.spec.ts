@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
 import { Response, Server } from 'miragejs';
+
 import useNotificationFactory from '../../../src/hooks/useNotificationFactory';
 import * as ajax from '../../../src/lib/ajax';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';

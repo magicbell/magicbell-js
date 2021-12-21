@@ -39,7 +39,7 @@
   },
   "scripts": {
     "build": "microbundle --jsx React.createElement",
-    "prepare": "yarn build",
+    "prepare": "yarn build && husky install",
     "start": "microbundle watch --jsx React.createElement",
     "test": "TZ=America/New_York jest --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York jest --watch",
@@ -48,7 +48,7 @@
     "lint": "tsc --noEmit && eslint '{src,stories,tests}/**/*.{js,ts,tx}'"
   },
   "lint-staged": {
-    "*.{jsx?,tsx?}": [
+    "*.{js,ts,tsx}": [
       "eslint --quiet --fix"
     ],
     "*.{md,html,css,scss}": "prettier --write"
@@ -74,11 +74,12 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "faker": "^5.5.3",
     "husky": "^7.0.2",
     "jest": "^27.3.1",
     "jest-watch-typeahead": "^1.0.0",
-    "lint-staged": "^11.2.6",
+    "lint-staged": "^12.1.3",
     "microbundle": "^0.14.1",
     "miragejs": "^0.1.42",
     "prettier": "^2.4.1",

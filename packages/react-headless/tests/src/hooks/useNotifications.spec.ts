@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
+
 import useNotifications from '../../../src/hooks/useNotifications';
 import * as ajax from '../../../src/lib/ajax';
 import useConfig from '../../../src/stores/config';

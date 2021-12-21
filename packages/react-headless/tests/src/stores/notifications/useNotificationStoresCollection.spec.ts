@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import faker from 'faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
+
 import * as ajax from '../../../../src/lib/ajax';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
 import NotificationFactory from '../../../factories/NotificationFactory';
@@ -24,7 +25,7 @@ describe('stores', () => {
         it('builds a store and sets it', () => {
           const { result } = renderHook(() => useNotificationStoresCollection());
           const storeId = faker.datatype.uuid();
-          const defaultQueryParams = faker.helpers.createCard();
+          const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
 
           act(() => {
             result.current.setStore(storeId, defaultQueryParams);
@@ -79,7 +80,7 @@ describe('stores', () => {
           it('updates the store with the response', async () => {
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
-            const defaultQueryParams = faker.helpers.createCard();
+            const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
 
             await act(async () => {
               result.current.setStore(storeId, defaultQueryParams);
@@ -101,7 +102,7 @@ describe('stores', () => {
             const notifications = NotificationFactory.buildList(4);
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
-            const defaultQueryParams = faker.helpers.createCard();
+            const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
 
             await act(async () => {
               result.current.setStore(storeId, defaultQueryParams, { notifications });

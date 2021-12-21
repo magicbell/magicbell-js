@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import faker from 'faker';
+
 import useMagicBellEvent from '../../../src/hooks/useMagicBellEvent';
 import { pushEventAggregator } from '../../../src/lib/realtime';
 

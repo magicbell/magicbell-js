@@ -3,6 +3,7 @@ import findIndex from 'ramda/src/findIndex';
 import mergeRight from 'ramda/src/mergeRight';
 import propEq from 'ramda/src/propEq';
 import create from 'zustand';
+
 import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
