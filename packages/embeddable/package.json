@@ -64,7 +64,7 @@
     "prettier": "^2.4.1",
     "react-color": "^2.19.3",
     "react-is": "^17.0.2",
-    "rollup": "^2.60.0",
+    "rollup": "^2.61.1",
     "rollup-plugin-alias": "^2.2.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-eslint": "^7.0.0",
