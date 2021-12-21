@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { cancel, render } from 'timeago.js';
 
 export interface Props {
@@ -17,10 +17,12 @@ export interface Props {
  */
 export default function NotificationContent({ notification }: Props) {
   const { sanitizedContent: markup } = notification;
+  const ref = useRef<HTMLElement>(null);
 
   // TODO: Move this to a plugin framework
   useEffect(() => {
-    const nodes = document.querySelectorAll('time[datetime]');
+    if (!ref.current) return;
+    const nodes = ref.current.querySelectorAll('time[datetime]');
     if (nodes.length > 0) render(nodes);
 
     return () => {
@@ -31,6 +33,7 @@ export default function NotificationContent({ notification }: Props) {
   if (!markup || markup.replace(/(\n|\s|\r)/gi, '') === '') return null;
   return (
     <article
+      ref={ref}
       css={css`
         color: inherit !important;
         cursor: inherit;
