@@ -22,6 +22,6 @@ yarn add @magicbell/embeddable
     height: 500,
   };
 
-  magicbell('render', targetEl, options);
+  renderWidget(targetEl, options);
 </script>
 ```
