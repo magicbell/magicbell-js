@@ -9,7 +9,7 @@
   "author": "Josue Montano <josuemontanoa@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=16.x"
+    "node": ">=12.x"
   },
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
