@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/react';
 import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import { useHeight } from '../../lib/window';
 import NotificationList from '../NotificationList';
@@ -32,14 +32,15 @@ export default function NotificationInboxContent({
   height,
   NotificationItem,
 }: NotificationInboxContentProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
+  // we use a refSetter so that the height observer is reattached on a ref change
+  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
   const contentHeight = useHeight(contentRef, height);
 
   if (!store.lastFetchedAt) return null;
   if (store.isEmpty) return <ClearInboxMessage />;
 
   return (
-    <div ref={contentRef} css={{ width: '100%', height: height ?? '100%' }}>
+    <div ref={setContentRef} css={{ width: '100%', height: height ?? '100%' }}>
       <NotificationList
         height={contentHeight}
         notifications={store}

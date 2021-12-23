@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 /**
@@ -16,26 +16,25 @@ export function openWindow(url: string) {
 /**
  * Custom hook to observe the height of an HTML element.
  *
- * @param ref
- * @param initialHeight
+ * @param ref - the element to observe, either a ref object or html element
+ * @param initialHeight - optional initial height
  */
-export function useHeight(ref, initialHeight) {
+export function useHeight(ref: MutableRefObject<Element> | Element | null, initialHeight?: number) {
   const [height, setHeight] = useState(initialHeight);
-  const resizeObserverRef = useRef() as any;
 
   useEffect(() => {
-    resizeObserverRef.current = new ResizeObserver((entries: any = []) => {
-      entries.forEach((entry) => {
-        setHeight(entry.contentRect.height);
-      });
+    if (!ref) return;
+
+    const target = ref instanceof Element ? ref : ref.current;
+    if (!target) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      setHeight(entry.contentRect.height);
     });
 
-    if (ref.current) resizeObserverRef.current.observe(ref.current);
-
-    return () => {
-      if (resizeObserverRef.current) resizeObserverRef.current.disconnect();
-    };
-  }, [ref]);
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [ref, setHeight]);
 
   return height;
 }
