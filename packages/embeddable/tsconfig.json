@@ -31,7 +31,8 @@
     "noEmit": true,
     // MobX
     "useDefineForClassFields": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "types": ["node", "cypress", "@testing-library/cypress"]
   },
   "include": ["src"]
 }
