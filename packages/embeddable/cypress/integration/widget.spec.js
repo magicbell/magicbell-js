@@ -31,18 +31,21 @@ context('Widget', () => {
       cy.wait('@config');
       cy.wait('@notifications');
 
-      cy.get('[data-testid="bell"]').should('contain.text', '1');
+      const notificationButton = cy.findByRole('button', { name: 'Notifications' });
+      notificationButton.should('contain.text', '1');
     });
 
     it('hides the badge on click', () => {
-      cy.get('[data-testid="bell"]').click();
-      cy.get('[data-testid="bell"]').should('not.contain.text', '1');
+      const notificationButton = cy.findByRole('button', { name: 'Notifications' });
+      notificationButton.click();
+      notificationButton.should('not.contain.text', '1');
     });
   });
 
   context('click outside', () => {
     it('closes the notification inbox', () => {
-      cy.get('[data-testid="bell"]').click();
+      const notificationButton = cy.findByRole('button', { name: 'Notifications' });
+      notificationButton.click();
 
       cy.get('iframe[id="magicbell-frame"]').should('be.visible');
       cy.contains('Quick Start').click();
@@ -52,7 +55,9 @@ context('Widget', () => {
 
   context('click a notification', () => {
     it.skip('opens the notification url ', () => {
-      cy.get('[data-testid="bell"]').click();
+      const notificationButton = cy.findByRole('button', { name: 'Notifications' });
+      notificationButton.click();
+
       cy.get('iframe[id="magicbell-frame"]')
         .its('0.contentDocument.body')
         .should('not.be.empty')
