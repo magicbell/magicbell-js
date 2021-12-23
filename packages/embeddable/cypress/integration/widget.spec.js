@@ -2,11 +2,11 @@
 
 context('Widget', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'https://api.magicbell.io/config**', { fixture: 'config.json', delay: 100 }).as('config');
-    cy.intercept('GET', 'https://api.magicbell.io/notifications**', { fixture: 'notifications.json', delay: 100 }).as(
+    cy.intercept('GET', 'https://api.magicbell.com/config**', { fixture: 'config.json', delay: 100 }).as('config');
+    cy.intercept('GET', 'https://api.magicbell.com/notifications**', { fixture: 'notifications.json', delay: 100 }).as(
       'notifications',
     );
-    cy.intercept('POST', 'https://api.magicbell.io/notifications/**/read', { fixture: 'read.json', delay: 100 });
+    cy.intercept('POST', 'https://api.magicbell.com/notifications/**/read', { fixture: 'read.json', delay: 100 });
 
     cy.visit('/');
   });
