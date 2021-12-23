@@ -368,7 +368,7 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^8.2.1":
+"@magicbell/magicbell-react@^8.2.2":
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.2.2.tgz#d7795dff0923fb2c89df0381941748c0cf7a2e69"
   integrity sha512-0wFjAPuRIG46mTG1xjTohV2KesgU+SGrutQouMsHZHV5zeoQeAK6BWFiRG1gutrgMlPMqtplSoV53XucJW8khw==
