@@ -3,6 +3,11 @@ orbs:
   cypress: cypress-io/cypress@1
   node: circleci/node@1.1.6
 
+executors:
+  cypress-node16:
+    docker:
+      - image: 'cypress/browsers:node16.5.0-chrome94-ff93'
+
 commands:
   configure-git:
     description: |
@@ -50,7 +55,7 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          executor: cypress/base-14
+          executor: cypress-node16
           yarn: true
           start: yarn start
           wait-on: 'http://localhost:10001'
