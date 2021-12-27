@@ -29,16 +29,6 @@ commands:
             git merge main
             git push origin stable
 
-  push-git-tag:
-    description: Push git tag to your repository
-    steps:
-      - run:
-          command: |
-            TAG=$(cat package.json | jq -r '.version')
-            git tag -a "v$TAG" -m "Release version $TAG"
-            git push origin "v$TAG"
-          name: Push git tag
-
 jobs:
   update_stable_branch:
     description: Update the stable branch
@@ -50,7 +40,6 @@ jobs:
       - configure-git
       - checkout
       - git-merge-main
-      - push-git-tag
 
 workflows:
   build:
