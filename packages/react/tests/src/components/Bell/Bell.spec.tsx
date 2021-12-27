@@ -45,6 +45,12 @@ test('renders the notification button', () => {
   screen.getByRole('button', { name: /notifications/i });
 });
 
+test('the notification button has a namespaced data attribute', () => {
+  render(<Bell onClick={jest.fn()} />);
+  const button = screen.getByRole('button', { name: /notifications/i });
+  expect(button).toHaveAttribute('data-magicbell-bell');
+});
+
 test('does not render the notification count if there are no notifications', () => {
   useConfig.setState({ lastFetchedAt: undefined });
 
