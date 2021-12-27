@@ -40,7 +40,7 @@ commands:
           name: Push git tag
 
 jobs:
-  deploy_to_netlify:
+  update_stable_branch:
     description: Update the stable branch
     machine: true
     steps:
@@ -78,8 +78,8 @@ workflows:
           pre-publish-steps:
             - run: yarn install
           publish-token-variable: NPM_TOKEN
-      - deploy_to_netlify:
-          name: deploy_to_production
+      - update_stable_branch:
+          name: deploy_to_netlify
           requires:
             - hold
           filters:
