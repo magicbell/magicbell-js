@@ -368,10 +368,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^8.2.2":
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.2.2.tgz#d7795dff0923fb2c89df0381941748c0cf7a2e69"
-  integrity sha512-0wFjAPuRIG46mTG1xjTohV2KesgU+SGrutQouMsHZHV5zeoQeAK6BWFiRG1gutrgMlPMqtplSoV53XucJW8khw==
+"@magicbell/magicbell-react@^8.2.3":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.2.3.tgz#8d736e2cbc7425441be2170909054975a0a8e5ad"
+  integrity sha512-NMeFcMyCulQsaqTe72OcA763kTt+0zusRDtWa+WWzZ2gxavf2KHIxpLjW4I9zjjUvYJ397/4I9Y6jtqKte8WGA==
   dependencies:
     "@emotion/react" "^11.4.1"
     "@magicbell/react-headless" "^2.5.0"
