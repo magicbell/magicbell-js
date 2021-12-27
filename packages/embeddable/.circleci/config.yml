@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
   node: circleci/node@1.1.6
+  npm-publisher: uraway/npm-publisher@0.2.0
 
 executors:
   cypress-node16:
@@ -39,7 +40,7 @@ commands:
           name: Push git tag
 
 jobs:
-  update_stable_branch:
+  deploy_to_netlify:
     description: Update the stable branch
     machine: true
     steps:
@@ -66,7 +67,18 @@ workflows:
           filters:
             branches:
               only: main
-      - update_stable_branch:
+      - npm-publisher/publish-from-package-version:
+          name: publish_to_npm
+          requires:
+            - hold
+          filters:
+            branches:
+              only: main
+          ssh-fingerprints: 94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba
+          pre-publish-steps:
+            - run: yarn install
+          publish-token-variable: NPM_TOKEN
+      - deploy_to_netlify:
           name: deploy_to_production
           requires:
             - hold
