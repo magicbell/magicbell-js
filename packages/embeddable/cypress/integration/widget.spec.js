@@ -67,4 +67,36 @@ context('Widget', () => {
       cy.url().should('eq', 'http://localhost:10001/#developers');
     });
   });
+
+  it('allows scrolling in the notification inbox', () => {
+    // we open the notification inbox before the notifications are fetched, to
+    // test for race conditions between fetching notifications & updating the
+    // infinite list and adding scrollbars
+    const notificationButton = cy.findByRole('button', { name: 'Notifications' });
+    notificationButton.click();
+
+    cy.wait('@config');
+    cy.wait('@notifications');
+
+    cy.get('iframe[id="magicbell-frame"]').then((elem) => {
+      const body = elem.contents().find('body');
+
+      // verify that the last notification is not visible
+      cy.wrap(body)
+        .findByText(/a notification with a long text, so we can test scrollbars/i)
+        .should('be.visible');
+      cy.wrap(body)
+        .findByText(/a notification that requires scrolling to be seen/i)
+        .should('not.be.visible');
+
+      // scroll down
+      const scrollable = body.find('.infinite-scroll-component');
+      cy.wrap(scrollable).scrollTo('bottom');
+
+      // verify that the last notification is now visible
+      cy.wrap(body)
+        .findByText(/a notification that requires scrolling to be seen/i)
+        .should('be.visible');
+    });
+  });
 });
