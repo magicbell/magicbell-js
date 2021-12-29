@@ -73,15 +73,24 @@ test('renders nothing if the notification store does not exist', () => {
   expect(container.textContent).toEqual('');
 });
 
-test('clicking the mark-all-read button invokes the onAllRead callback', () => {
+test('clicking the mark-all-read button invokes the onAllRead callback', async () => {
   const onAllRead = jest.fn();
 
   render(<NotificationInbox onAllRead={onAllRead} height={300} />);
 
-  const button = screen.getByRole('button', { name: /Mark All Read/ });
+  const button = await screen.findByRole('button', { name: /Mark All Read/ });
   userEvent.click(button);
 
   expect(onAllRead).toHaveBeenCalledTimes(1);
+});
+
+test('the mark-all-read button is not visible when there are no notifications', async () => {
+  server.get('/notifications', emptyNotificationPage);
+
+  render(<NotificationInbox />);
+
+  await waitFor(() => screen.getByText(/We'll let you know when there's more./));
+  expect(screen.queryByRole('button', { name: /Mark All Read/ })).not.toBeInTheDocument();
 });
 
 test('renders a message and a image if there are no notifications', async () => {
@@ -104,18 +113,18 @@ test('can render with a custom no-notifications placeholder if there are no noti
   expect(screen.queryByRole('img', { name: /No notifications/ })).not.toBeInTheDocument();
 });
 
-test('can render the inbox in Spanish', () => {
+test('can render the inbox in Spanish', async () => {
   render(<NotificationInbox />, { locale: 'es' });
   screen.getByRole('heading', { name: /NOTIFICACIONES/ });
-  screen.getByRole('button', { name: /Marcar todo como leído/ });
   screen.getByRole('button', { name: /Preferencias/ });
+  await screen.findByRole('button', { name: /Marcar todo como leído/ });
 });
 
 test('invokes the onAllRead callback when clicking the `mark all read` button', async () => {
   const onAllRead = jest.fn();
   render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
 
-  const markAllReadButton = screen.getByRole('button', { name: /Mark All Read/ });
+  const markAllReadButton = await screen.findByRole('button', { name: /Mark All Read/ });
   userEvent.click(markAllReadButton);
   await waitFor(() => expect(onAllRead).toBeCalledTimes(1));
 });

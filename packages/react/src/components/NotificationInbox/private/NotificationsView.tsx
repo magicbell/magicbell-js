@@ -60,9 +60,11 @@ export default function NotificationsView({
         key="header"
         title={<Text id="header.title" defaultMessage="NOTIFICATIONS" />}
         actions={
-          <button onClick={handleMarkAllAsRead}>
-            <Text id="header.mark-all-read" defaultMessage="Mark All Read" />
-          </button>
+          hasNotifications ? (
+            <button onClick={handleMarkAllAsRead}>
+              <Text id="header.mark-all-read" defaultMessage="Mark All Read" />
+            </button>
+          ) : null
         }
       />
 
