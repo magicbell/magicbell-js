@@ -18,7 +18,8 @@
     "cypress:headed": "cypress open",
     "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'",
     "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublishOnly": "yarn build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
