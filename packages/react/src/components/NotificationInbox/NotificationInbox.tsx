@@ -12,6 +12,7 @@ export type NotificationInboxProps = {
   onAllRead?: () => void;
   onNotificationClick?: (notification: INotification) => void;
   storeId?: string;
+  EmptyInboxPlaceholder?: () => React.ReactElement;
   NotificationItem?: NotificationListItem;
   NotificationPreferences?: () => React.ReactElement;
   notificationPreferencesEnabled?: boolean;

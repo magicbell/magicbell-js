@@ -32,3 +32,14 @@ export const sampleNotification = {
   readAt: null,
   archivedAt: null,
 };
+
+export const emptyNotificationPage = {
+  total: 0,
+  current_page: 1,
+  per_page: 15,
+  total_pages: 1,
+  project_id: 7,
+  unseen_count: 0,
+  unread_count: 0,
+  notifications: [],
+};

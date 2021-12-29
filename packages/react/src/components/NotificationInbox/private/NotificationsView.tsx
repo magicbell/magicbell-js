@@ -12,6 +12,7 @@ import SettingsIcon from '../../Footer/SettingsIcon';
 import Header from '../../Header';
 import { ListItemProps } from '../../NotificationList';
 import Text from '../../Text';
+import ClearInboxMessage from '../ClearInboxMessage';
 import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 import NotificationInboxContent from '../NotificationInboxContent';
@@ -24,6 +25,7 @@ type NotificationsViewProps = {
   height?: number;
   onAllRead?: () => void;
   NotificationItem?: (props: ListItemProps) => ReactElement;
+  EmptyInboxPlaceholder?: () => ReactElement;
   onNotificationClick?: (notification: INotification) => void;
 };
 
@@ -34,6 +36,7 @@ export default function NotificationsView({
   onAllRead,
   notificationPreferencesEnabled,
   NotificationItem,
+  EmptyInboxPlaceholder = ClearInboxMessage,
   setView,
 }: NotificationsViewProps) {
   const t = useTranslate();
@@ -41,6 +44,7 @@ export default function NotificationsView({
   const store = useNotifications(storeId);
   if (!store) return null;
 
+  const hasNotifications = !store.isEmpty;
   const showPreferencesButton =
     notificationPreferencesEnabled ??
     pathOr(true, ['features', 'notificationPreferences', 'enabled'], config.inbox);
@@ -63,11 +67,15 @@ export default function NotificationsView({
       />
 
       <div key="content" css={{ flex: 1, overflowY: 'hidden' }}>
-        <NotificationInboxContent
-          store={store}
-          onNotificationClick={onNotificationClick}
-          NotificationItem={NotificationItem}
-        />
+        {!store.lastFetchedAt ? null : hasNotifications ? (
+          <NotificationInboxContent
+            store={store}
+            onNotificationClick={onNotificationClick}
+            NotificationItem={NotificationItem}
+          />
+        ) : (
+          <EmptyInboxPlaceholder />
+        )}
       </div>
 
       <EnablePushNotificationsBanner key="push-notifications-banner" />

@@ -8,7 +8,7 @@ import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
-import { sampleNotification } from '../../../factories/NotificationFactory';
+import { emptyNotificationPage, sampleNotification } from '../../../factories/NotificationFactory';
 
 let server;
 
@@ -23,11 +23,8 @@ beforeEach(() => {
   });
 
   server.get('/notifications', {
+    ...emptyNotificationPage,
     total: 1,
-    current_page: 1,
-    per_page: 15,
-    total_pages: 1,
-    project_id: 7,
     unseen_count: 1,
     unread_count: 1,
     notifications: [sampleNotification],
@@ -88,21 +85,23 @@ test('clicking the mark-all-read button invokes the onAllRead callback', () => {
 });
 
 test('renders a message and a image if there are no notifications', async () => {
-  server.get('/notifications', {
-    total: 0,
-    current_page: 1,
-    per_page: 15,
-    total_pages: 1,
-    project_id: 7,
-    unseen_count: 0,
-    unread_count: 0,
-    notifications: [],
-  });
+  server.get('/notifications', emptyNotificationPage);
 
   render(<NotificationInbox />);
 
   await waitFor(() => screen.getByText(/We'll let you know when there's more./));
   screen.getByRole('img', { name: /No notifications/ });
+});
+
+test('can render with a custom no-notifications placeholder if there are no notifications', async () => {
+  server.get('/notifications', emptyNotificationPage);
+
+  const EmptyInboxPlaceholder = () => <div data-testid="empty-inbox-placeholder" />;
+  render(<NotificationInbox EmptyInboxPlaceholder={EmptyInboxPlaceholder} />, { locale: 'en' });
+
+  await waitFor(() => screen.findByTestId('empty-inbox-placeholder'));
+  expect(screen.queryByText(/We'll let you know when there's more./)).not.toBeInTheDocument();
+  expect(screen.queryByRole('img', { name: /No notifications/ })).not.toBeInTheDocument();
 });
 
 test('can render the inbox in Spanish', () => {

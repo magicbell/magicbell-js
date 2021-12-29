@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useHeight } from '../../lib/window';
 import NotificationList from '../NotificationList';
 import { NotificationListItem } from '../NotificationList/NotificationList';
-import ClearInboxMessage from './ClearInboxMessage';
 
 export interface NotificationInboxContentProps {
   height?: number;
@@ -35,9 +34,6 @@ export default function NotificationInboxContent({
   // we use a refSetter so that the height observer is reattached on a ref change
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
   const contentHeight = useHeight(contentRef, height);
-
-  if (!store.lastFetchedAt) return null;
-  if (store.isEmpty) return <ClearInboxMessage />;
 
   return (
     <div ref={setContentRef} css={{ width: '100%', height: height ?? '100%' }}>
