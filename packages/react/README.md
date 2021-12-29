@@ -77,6 +77,7 @@ These are all the properties accepted by this component.
 | `children`          | `({ isOpen, toggle, launcherRef }) => JSX.Element` | The children function to render a list of notifications for the user                                                                                                         |
 | `theme`             | `IMagicBellTheme`                                  | An optional object containing custom color values for the widget, see [Custom Themes](#custom-themes)                                                                        |
 | `BellIcon`          | `JSX.Element`                                      | An optional react element to be displayed instead of the default bell icon                                                                                                   |
+| `Badge`             | `({ count: number }) => JSX.Element`               | An optional custom component to use as notification badge                                                                                                                    |
 | `defaultIsOpen`     | `boolean`                                          | An optional flag to set the default visibility state of the element returned by the children function. It is `false` by default.                                             |
 | `onNewNotification` | `(notification) => void`                           | An optional function called when a new notification arrives.                                                                                                                 |
 | `onToggle`          | `(isOpen) => void`                                 | An optional function called when the bell is clicked.                                                                                                                        |
@@ -190,13 +191,16 @@ The `NotificationInbox` component renders a header, a footer and an infinite scr
 
 These are all the properties accepted by this component.
 
-| Property              | Type                                             | Description                                                                                                                       |
-| --------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| `height`              | `number`                                         | Optional height (in pixels) of the infinite scroll list                                                                           |
-| `onAllRead`           | `() => void`                                     | An optional callback function invoked when the "Mark All Read" button is clicked                                                  |
-| `onNotificationClick` | `(notification) => void`                         | An optional callback function invoked when a notification is clicked                                                              |
-| `storeId`             | `string`                                         | ID of the store to render (optional)                                                                                              |
-| `NotificationItem`    | `({ notification, onItemClick }) => JSX.Element` | An optional custom component to use for rendering each notification. Defaults to [ClickableNotification](#clickablenotification). |
+| Property                         | Type                                             | Description                                                                                                                       |
+| -------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `height`                         | `number`                                         | Optional height (in pixels) of the infinite scroll list                                                                           |
+| `onAllRead`                      | `() => void`                                     | An optional callback function invoked when the "Mark All Read" button is clicked                                                  |
+| `onNotificationClick`            | `(notification) => void`                         | An optional callback function invoked when a notification is clicked                                                              |
+| `storeId`                        | `string`                                         | ID of the store to render (optional)                                                                                              |
+| `EmptyInboxPlaceholder`          | `() => JSX.Element`                              | An optional custom component to use as placeholder when there are no notifications                                                |
+| `NotificationItem`               | `({ notification, onItemClick }) => JSX.Element` | An optional custom component to use for rendering each notification. Defaults to [ClickableNotification](#clickablenotification). |
+| `NotificationPreferences`        | `() => JSX.Element`                              | An optional custom component to use for rendering preferences. Shown when the user clicks the settings button`                    |
+| `notificationPreferencesEnabled` | `boolean`                                        | Optional, and defaults to `true`. Set to `false` to hide the settings button.                                                     |
 
 If the store wasn't fetched previously, this component will fetch the first page on mounted.
 
