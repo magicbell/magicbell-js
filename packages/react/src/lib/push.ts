@@ -1,5 +1,6 @@
 import { clientSettings, IRemoteConfig, postAPI } from '@magicbell/react-headless';
 import isEmpty from 'lodash/isEmpty';
+import omitBy from 'lodash/omitBy';
 import path from 'ramda/src/path';
 
 function stringToUint8Array(plainString: string) {
@@ -92,7 +93,7 @@ export function createSafariPushSubscription(websitePushID = 'web.com.magicbell-
     window['safari'].pushNotification.requestPermission(
       webServiceURL,
       websitePushID,
-      user,
+      omitBy(user, isEmpty),
       function (permissionData) {
         console.log(permissionData);
 
