@@ -72,10 +72,13 @@ export async function createPushSubscription(pushManager: PushManager, config: I
  * Request permission to send push notifications in Safari and store the
  * subscription in the backend.
  *
- * @param user
+ * @param webServiceUrl URL of the Safari web push service
  * @param websitePushID Apple identifier of the website push service
  */
-export function createSafariPushSubscription(websitePushID = 'web.com.magicbell-notifications') {
+export function createSafariPushSubscription(
+  webServiceUrl: string,
+  websitePushID = 'web.com.magicbell-notifications',
+) {
   const { userEmail, userExternalId, userKey } = clientSettings.getState();
   const user = {
     email: userEmail,
@@ -84,19 +87,15 @@ export function createSafariPushSubscription(websitePushID = 'web.com.magicbell-
   };
 
   const permissionData = window['safari'].pushNotification.permission(websitePushID);
-  if (permissionData.permission === 'granted') return Promise.resolve();
-  if (permissionData.permission === 'denied') return Promise.reject();
+  if (permissionData.permission === 'granted') return Promise.resolve(permissionData);
+  if (permissionData.permission === 'denied') return Promise.reject(false);
 
   return new Promise(function (resolve, reject) {
-    const webServiceURL = `${window.location.origin}/safari/push`;
-
     window['safari'].pushNotification.requestPermission(
-      webServiceURL,
+      webServiceUrl,
       websitePushID,
       omitBy(user, isEmpty),
       function (permissionData) {
-        console.log(permissionData);
-
         if (permissionData.deviceToken) {
           const subscriptionData = {
             endpoint: permissionData.deviceToken,

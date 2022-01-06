@@ -1,6 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
+import path from 'ramda/src/path';
 import { useEffect } from 'react';
-
 import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 
 export interface Props {
@@ -38,7 +38,13 @@ export default function PushNotificationsSubscriber({
   const createSubscription = async () => {
     if (!config) return Promise.reject(new Error('Context for MagicBell was not found'));
 
-    if (isSafari) return createSafariPushSubscription();
+    if (isSafari) {
+      const websitePushID = path(['safari', 'websitePushId'], config.channels?.webPush.config);
+      const webServiceUrl = path(['safari', 'webServiceUrl'], config.channels?.webPush.config);
+
+      return createSafariPushSubscription(webServiceUrl, websitePushID);
+    }
+
     if (isPushAPISupported) {
       return navigator.serviceWorker.ready.then(async (registration) => {
         await createPushSubscription(registration.pushManager, config);
