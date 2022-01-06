@@ -39,10 +39,14 @@ export default function PushNotificationsSubscriber({
     if (!config) return Promise.reject(new Error('Context for MagicBell was not found'));
 
     if (isSafari) {
+      const authenticationToken = path(
+        ['safari', 'authenticationToken'],
+        config.channels?.webPush.config,
+      );
       const websitePushID = path(['safari', 'websitePushId'], config.channels?.webPush.config);
       const webServiceUrl = path(['safari', 'webServiceUrl'], config.channels?.webPush.config);
 
-      return createSafariPushSubscription(webServiceUrl, websitePushID);
+      return createSafariPushSubscription(authenticationToken, webServiceUrl, websitePushID);
     }
 
     if (isPushAPISupported) {

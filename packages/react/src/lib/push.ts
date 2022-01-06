@@ -1,6 +1,5 @@
 import { clientSettings, IRemoteConfig, postAPI } from '@magicbell/react-headless';
 import isEmpty from 'lodash/isEmpty';
-import omitBy from 'lodash/omitBy';
 import path from 'ramda/src/path';
 
 function stringToUint8Array(plainString: string) {
@@ -72,20 +71,15 @@ export async function createPushSubscription(pushManager: PushManager, config: I
  * Request permission to send push notifications in Safari and store the
  * subscription in the backend.
  *
+ * @param authenticationToken A string that helps you identify the user
  * @param webServiceUrl URL of the Safari web push service
  * @param websitePushID Apple identifier of the website push service
  */
 export function createSafariPushSubscription(
+  authenticationToken: string,
   webServiceUrl: string,
   websitePushID = 'web.com.magicbell-notifications',
 ) {
-  const { userEmail, userExternalId, userKey } = clientSettings.getState();
-  const user = {
-    email: userEmail,
-    externalId: userExternalId,
-    hmacSecret: userKey,
-  };
-
   const permissionData = window['safari'].pushNotification.permission(websitePushID);
   if (permissionData.permission === 'granted') return Promise.resolve(permissionData);
   if (permissionData.permission === 'denied') return Promise.reject(false);
@@ -94,7 +88,7 @@ export function createSafariPushSubscription(
     window['safari'].pushNotification.requestPermission(
       webServiceUrl,
       websitePushID,
-      omitBy(user, isEmpty),
+      { authenticationToken },
       function (permissionData) {
         if (permissionData.deviceToken) {
           const subscriptionData = {
