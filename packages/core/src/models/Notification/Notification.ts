@@ -4,6 +4,7 @@ import { secondsToDate, toUnix } from '../../lib/date';
 import camelize from '../../lib/decorators/camelize';
 import unwrap from '../../lib/decorators/unwrap';
 import wrap from '../../lib/decorators/wrap';
+import { NewNotification } from './NewNotification';
 import NotificationFactory from './NotificationFactory';
 import NotificationRepository from './NotificationRepository';
 
@@ -34,11 +35,11 @@ export default class Notification {
   }
 
   @wrap('notification')
-  static async create(json) {
+  static async create(notificationContent: NewNotification) {
     const repo = new NotificationRepository();
 
     try {
-      const data = await repo.create(json);
+      const data = await repo.create(notificationContent);
       return NotificationFactory.create(data);
     } catch (error) {
       if (error.response?.status === 422) throw error.response.data;

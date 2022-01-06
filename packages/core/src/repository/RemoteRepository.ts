@@ -8,7 +8,9 @@ import IWriter from './IWriter';
  * @example
  * class NotificationRepo extends RemoteRepository<Notification> {}
  */
-export default abstract class RemoteRepository<T> implements IReader<T>, IWriter<T> {
+export default abstract class RemoteRepository<RemoteType, CreationType = RemoteType>
+  implements IReader<RemoteType>, IWriter<CreationType>
+{
   remotePathOrUrl: string;
 
   constructor(remotePathOrUrl: string) {
@@ -21,7 +23,7 @@ export default abstract class RemoteRepository<T> implements IReader<T>, IWriter
    * @example
    * const notification = await repo.get('3df592eb-5f09dd6b');
    */
-  get(id: string | number): Promise<T> {
+  get(id: string | number): Promise<RemoteType> {
     const url = `${this.remotePathOrUrl}/${id}`;
     return fetchAPI(url);
   }
@@ -32,15 +34,15 @@ export default abstract class RemoteRepository<T> implements IReader<T>, IWriter
    * @example
    * const notifications = await repo.findBy({ unread: true });
    */
-  findBy(queryParams: any): Promise<T[]> {
+  findBy(queryParams: any): Promise<RemoteType[]> {
     return fetchAPI(this.remotePathOrUrl, queryParams);
   }
 
-  create(item: T): Promise<T> {
+  create(item: CreationType): Promise<CreationType> {
     return postAPI(this.remotePathOrUrl, item);
   }
 
-  update(id: string | number, item: T): Promise<T> {
+  update(id: string | number, item: CreationType): Promise<CreationType> {
     const url = `${this.remotePathOrUrl}/${id}`;
     return putAPI(url, item);
   }

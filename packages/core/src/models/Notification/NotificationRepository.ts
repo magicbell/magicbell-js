@@ -1,6 +1,7 @@
 import { postAPI } from '../../lib/ajax';
 import RemoteRepository from '../../repository/RemoteRepository';
 import IRemoteNotification from './IRemoteNotification';
+import { NewNotification } from './NewNotification';
 
 /**
  * Class to interact with the notification API endpoints.
@@ -9,7 +10,7 @@ import IRemoteNotification from './IRemoteNotification';
  * const repo = new NotificationRepository();
  * const notifications = repo.findBy({ unseen: true });
  */
-export default class NotificationRepository extends RemoteRepository<IRemoteNotification> {
+export default class NotificationRepository extends RemoteRepository<IRemoteNotification, NewNotification> {
   constructor(remotePathOrUrl = '/notifications') {
     super(remotePathOrUrl);
   }
