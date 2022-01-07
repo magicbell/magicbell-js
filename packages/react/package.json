@@ -39,7 +39,7 @@
   "scripts": {
     "build": "microbundle --jsx React.createElement",
     "prepare": "yarn build && husky install",
-    "start": "microbundle watch --jsx React.createElement",
+    "start": "microbundle watch --jsx React.createElement --no-compress",
     "report-coverage": "codecov",
     "test": "TZ=America/New_York jest --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York jest --watch",
@@ -101,7 +101,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
-    "@magicbell/react-headless": "^2.5.0",
+    "@magicbell/react-headless": "^2.5.1",
     "@tippyjs/react": "^4.2.4",
     "ably": "^1.2.14",
     "axios": "^0.24.0",
