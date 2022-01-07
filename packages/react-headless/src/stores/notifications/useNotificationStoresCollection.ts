@@ -34,6 +34,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
     if (store) {
       const response = await _repository.findBy({ ...store.context, ...queryParams });
+      if (!response) return;
 
       set(
         produce<INotificationsStoresCollection>((draft) => {
@@ -47,9 +48,10 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
   fetchAllStores: async (queryParams = {}, options = {}) => {
     const { stores, fetchStore } = get();
-    for (const storeId in stores) {
-      fetchStore(storeId, queryParams, options);
-    }
+
+    const storeIds = Object.keys(stores);
+    const fetchers = storeIds.map((storeId) => fetchStore(storeId, queryParams, options));
+    await Promise.all(fetchers);
   },
 
   markNotificationAsSeen: (notification: IRemoteNotification) => {
