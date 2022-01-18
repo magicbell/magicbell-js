@@ -21,12 +21,12 @@ export default function RealtimeListener() {
   useAbly();
 
   useMagicBellEvent('wakeup', fetchAndResetAll);
-  useMagicBellEvent('notifications.new', fetchAndPrependAll);
-  useMagicBellEvent('notifications.seen.all', markAllAsSeen);
-  useMagicBellEvent('notifications.read.all', markAllAsRead);
-  useMagicBellEvent('notifications.read', fetchAndResetAll);
-  useMagicBellEvent('notifications.unread', fetchAndResetAll);
-  useMagicBellEvent('notifications.delete', removeNotification);
+  useMagicBellEvent('notifications.new', fetchAndPrependAll, { source: 'remote' });
+  useMagicBellEvent('notifications.seen.all', markAllAsSeen, { source: 'remote' });
+  useMagicBellEvent('notifications.read.all', markAllAsRead, { source: 'remote' });
+  useMagicBellEvent('notifications.read', fetchAndResetAll, { source: 'remote' });
+  useMagicBellEvent('notifications.unread', fetchAndResetAll, { source: 'remote' });
+  useMagicBellEvent('notifications.delete', removeNotification, { source: 'remote' });
 
   return null;
 }

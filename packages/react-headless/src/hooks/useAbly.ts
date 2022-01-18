@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-
-import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../lib/realtime';
+import { connectToAbly, emitEvent, handleAblyEvent } from '../lib/realtime';
 import useConfig from '../stores/config';
 import { WebSocketConfig } from '../types/IRemoteConfig';
 
@@ -8,7 +7,7 @@ function createRealtimeSubscription(config: WebSocketConfig) {
   const { channel: realtimeChannel } = config;
   const ablyClient = connectToAbly(config);
 
-  const emitWakeup = () => pushEventAggregator.emit('wakeup');
+  const emitWakeup = () => emitEvent('wakeup', null, 'local');
   ablyClient.connection.on('disconnected', emitWakeup);
   ablyClient.connection.on('suspended', emitWakeup);
 

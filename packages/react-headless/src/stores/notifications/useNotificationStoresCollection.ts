@@ -3,7 +3,7 @@ import findIndex from 'ramda/src/findIndex';
 import mergeRight from 'ramda/src/mergeRight';
 import propEq from 'ramda/src/propEq';
 import create from 'zustand';
-
+import { emitEvent } from '../../lib/realtime';
 import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
 import buildStore from './helpers/buildStore';
 import setStoreProps from './helpers/setStoreProps';
@@ -57,6 +57,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
   markNotificationAsSeen: (notification: IRemoteNotification) => {
     const { stores } = get();
     const notificationId = notification.id;
+    emitEvent('notifications.seen', notification, 'local');
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -83,6 +84,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     const { stores, _repository } = get();
     const { id: notificationId } = notification;
     const promise = _repository.markAsRead(notificationId);
+    emitEvent('notifications.read', notification, 'local');
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -123,6 +125,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     const { stores, _repository } = get();
     const { id: notificationId } = notification;
     const promise = _repository.markAsUnread(notificationId);
+    emitEvent('notifications.unread', notification, 'local');
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -162,7 +165,14 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
   deleteNotification: (notification: IRemoteNotification, options = {}) => {
     const { stores, _repository } = get();
     const notificationId = notification.id;
-    const promise = options.persist === false ? Promise.resolve(true) : _repository.delete(notificationId);
+    let promise = Promise.resolve(true);
+
+    // Do not persist the state is this op is a consequence of a remote event.
+    // Neither emit a local event.
+    if (options.persist !== false) {
+      promise = _repository.delete(notificationId);
+      emitEvent('notifications.delete', notification, 'local');
+    }
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -188,7 +198,14 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
   markAllAsSeen: (options = { persist: true, updateModels: true }) => {
     const { stores, _repository } = get();
-    const promise = options.persist !== false ? _repository.markAllAsSeen() : Promise.resolve(true);
+    let promise = Promise.resolve(true);
+
+    // Do not persist the state is this op is a consequence of a remote event.
+    // Neither emit a local event.
+    if (options.persist !== false) {
+      promise = _repository.markAllAsSeen();
+      emitEvent('notifications.seen.all', null, 'local');
+    }
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
@@ -211,7 +228,14 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
   markAllAsRead: (options = { persist: true, updateModels: true }) => {
     const { stores, _repository } = get();
-    const promise = options.persist !== false ? _repository.markAllAsRead() : Promise.resolve(true);
+    let promise = Promise.resolve(true);
+
+    // Do not persist the state is this op is a consequence of a remote event.
+    // Neither emit a local event.
+    if (options.persist !== false) {
+      promise = _repository.markAllAsRead();
+      emitEvent('notifications.read.all', null, 'local');
+    }
 
     set(
       produce<INotificationsStoresCollection>((draft) => {

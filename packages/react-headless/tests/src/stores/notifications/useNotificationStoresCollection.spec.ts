@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import faker from 'faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
-
 import * as ajax from '../../../../src/lib/ajax';
+import { eventAggregator } from '../../../../src/lib/realtime';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
 import NotificationFactory from '../../../factories/NotificationFactory';
 
@@ -181,6 +181,20 @@ describe('stores', () => {
           expect(result.current.stores['default'].notifications[0].seenAt).toEqual(now / 1000);
           spy.mockRestore();
         });
+
+        it('emits the "notifications.seen" event', async () => {
+          const spy = jest.spyOn(eventAggregator, 'emit');
+          const { result } = renderHook(() => useNotificationStoresCollection());
+
+          await act(async () => {
+            result.current.setStore('default', {}, { notifications: [notification] });
+            await result.current.markNotificationAsSeen(notification);
+          });
+
+          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalledWith('notifications.seen', { data: notification, source: 'local' });
+          spy.mockRestore();
+        });
       });
 
       describe('.markNotificationAsRead', () => {
@@ -216,6 +230,20 @@ describe('stores', () => {
             expect(result.current.stores['default'].notifications[0].readAt).toEqual(now / 1000);
             spy.mockRestore();
           });
+
+          it('emits the "notifications.read" event', async () => {
+            const spy = jest.spyOn(eventAggregator, 'emit');
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default', {}, { notifications: [notification] });
+              await result.current.markNotificationAsRead(notification);
+            });
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.read', { data: notification, source: 'local' });
+            spy.mockRestore();
+          });
         });
       });
 
@@ -247,6 +275,20 @@ describe('stores', () => {
             });
 
             expect(result.current.stores['default'].notifications[0].readAt).toBeNull();
+          });
+
+          it('emits the "notifications.unread" event', async () => {
+            const spy = jest.spyOn(eventAggregator, 'emit');
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default', {}, { notifications: [notification] });
+              await result.current.markNotificationAsUnread(notification);
+            });
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.unread', { data: notification, source: 'local' });
+            spy.mockRestore();
           });
         });
       });
@@ -308,6 +350,20 @@ describe('stores', () => {
 
             expect(result.current.stores['default'].notifications).toHaveLength(0);
           });
+
+          it('emits the "notifications.deleted" event', async () => {
+            const spy = jest.spyOn(eventAggregator, 'emit');
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default', {}, { notifications: [notification] });
+              await result.current.deleteNotification(notification);
+            });
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.delete', { data: notification, source: 'local' });
+            spy.mockRestore();
+          });
         });
       });
 
@@ -350,6 +406,19 @@ describe('stores', () => {
             spy.mockRestore();
           });
 
+          it('emits the "notifications.seen.all" event', async () => {
+            const spy = jest.spyOn(eventAggregator, 'emit');
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              await result.current.markAllAsSeen();
+            });
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.seen.all', { data: null, source: 'local' });
+            spy.mockRestore();
+          });
+
           describe('the updateModels options is false', () => {
             it('does not mark any notifications as seen', async () => {
               const notifications = NotificationFactory.buildList(3, { seenAt: null });
@@ -371,6 +440,19 @@ describe('stores', () => {
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
               const spy = jest.spyOn(ajax, 'postAPI');
+              const { result } = renderHook(() => useNotificationStoresCollection());
+
+              await act(async () => {
+                result.current.setStore('read', {});
+                await result.current.markAllAsSeen({ persist: false });
+              });
+
+              expect(spy).not.toHaveBeenCalled();
+              spy.mockRestore();
+            });
+
+            it('does not emit any event', async () => {
+              const spy = jest.spyOn(eventAggregator, 'emit');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
@@ -424,6 +506,19 @@ describe('stores', () => {
             spy.mockRestore();
           });
 
+          it('emits the "notifications.read.all" event', async () => {
+            const spy = jest.spyOn(eventAggregator, 'emit');
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              await result.current.markAllAsRead();
+            });
+
+            expect(spy).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledWith('notifications.read.all', { data: null, source: 'local' });
+            spy.mockRestore();
+          });
+
           describe('the updateModels options is false', () => {
             it('does not mark any notifications as read', async () => {
               const notifications = NotificationFactory.buildList(3, { readAt: null });
@@ -445,6 +540,19 @@ describe('stores', () => {
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
               const spy = jest.spyOn(ajax, 'postAPI');
+              const { result } = renderHook(() => useNotificationStoresCollection());
+
+              await act(async () => {
+                result.current.setStore('read', {});
+                await result.current.markAllAsRead({ persist: false });
+              });
+
+              expect(spy).not.toHaveBeenCalled();
+              spy.mockRestore();
+            });
+
+            it('does not emit any event', async () => {
+              const spy = jest.spyOn(eventAggregator, 'emit');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {

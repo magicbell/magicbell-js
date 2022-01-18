@@ -1,10 +1,9 @@
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { useEffect } from 'react';
-
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
-import { pushEventAggregator } from '../../../src/lib/realtime';
+import { emitEvent } from '../../../src/lib/realtime';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
@@ -35,7 +34,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
-            pushEventAggregator.emit('wakeup');
+            emitEvent('wakeup', null, 'local');
           });
 
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
@@ -48,7 +47,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
-            pushEventAggregator.emit('notifications.new');
+            emitEvent('notifications.new', { id: 'uuid' }, 'remote');
           });
 
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
@@ -61,7 +60,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
 
           act(() => {
-            pushEventAggregator.emit('notifications.new', notification);
+            emitEvent('notifications.new', notification, 'remote');
           });
 
           await waitForNextUpdate();
@@ -75,7 +74,7 @@ describe('components', () => {
           const { result } = renderHook(() => useNotificationStoresCollection());
 
           act(() => {
-            pushEventAggregator.emit('notifications.seen.all');
+            emitEvent('notifications.seen.all', null, 'remote');
           });
 
           expect(result.current.stores['default'].unseenCount).toBe(0);
@@ -85,7 +84,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'postAPI');
 
           act(() => {
-            pushEventAggregator.emit('notifications.seen.all');
+            emitEvent('notifications.seen.all', null, 'remote');
           });
 
           expect(spy).not.toHaveBeenCalled();
@@ -98,7 +97,7 @@ describe('components', () => {
           const { result } = renderHook(() => useNotificationStoresCollection());
 
           act(() => {
-            pushEventAggregator.emit('notifications.read.all');
+            emitEvent('notifications.read.all', null, 'remote');
           });
 
           for (const model of result.current.stores['default'].notifications) {
@@ -110,7 +109,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'postAPI');
 
           act(() => {
-            pushEventAggregator.emit('notifications.read.all');
+            emitEvent('notifications.read.all', null, 'remote');
           });
 
           expect(spy).not.toHaveBeenCalled();
@@ -123,7 +122,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
-            pushEventAggregator.emit('notifications.read');
+            emitEvent('notifications.read', { id: 'uuid' }, 'remote');
           });
 
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
@@ -136,7 +135,7 @@ describe('components', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
-            pushEventAggregator.emit('notifications.unread');
+            emitEvent('notifications.unread', { id: 'uuid' }, 'remote');
           });
 
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
@@ -151,7 +150,7 @@ describe('components', () => {
             const notification = NotificationFactory.build();
 
             act(() => {
-              pushEventAggregator.emit('notifications.delete', { id: notification.id });
+              emitEvent('notifications.delete', { id: notification.id }, 'remote');
             });
 
             expect(result.current.stores['default'].notifications).not.toEqual(expect.arrayContaining([notification]));
@@ -164,7 +163,7 @@ describe('components', () => {
             const notification = NotificationFactory.build();
 
             act(() => {
-              pushEventAggregator.emit('notifications.delete', { id: notification.id });
+              emitEvent('notifications.delete', { id: notification.id }, 'remote');
             });
 
             expect(result.current.stores['default'].total).toBe(0);

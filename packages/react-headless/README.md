@@ -179,9 +179,9 @@ function NotificationsList() {
 
 ## useMagicBellEvent
 
-This is a hook to listen to realtime events. Use it to be notified when a
-realtime event happens, for example to play a sound when a new notification
-arrives (read more [in our guides](https://magicbell.com/docs/react/play-sound-new-notification)).
+This is a hook to listen to events, including realtime ones (generated in other tabs). Use it to be notified when a
+realtime event happens, for example to play a sound when a new notification arrives
+(read more [in our guides](https://magicbell.com/docs/react/play-sound-new-notification)).
 
 ```javascript
 import { useMagicBellEvent } from '@magicbell/react-headless';
@@ -202,6 +202,20 @@ This is a list of events you can listen to:
 | `notifications.unread`   | A notification was marked as unread                       |
 | `notifications.seen.all` | All notifications were marked as seen                     |
 | `notifications.delete`   | A notification was deleted                                |
+
+You can also limit the source of the events you want to listen to:
+
+- `remote`, to listen to events generated _in other tabs_ or the _MagicBell server_ only
+- `local`, to listen to events generated _in the same tab_ only
+- `any`, to listen to all events regardless of where it was generated
+
+It is set to `any` by default.
+
+```javascript
+import { useMagicBellEvent } from '@magicbell/react-headless';
+
+useMagicBellEvent('notifications.new', callbackFn, { source: 'remote' });
+```
 
 ## useNotification
 

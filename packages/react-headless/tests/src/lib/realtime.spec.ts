@@ -1,9 +1,14 @@
 import * as Ably from 'ably';
 import faker from 'faker';
 import { Server } from 'miragejs';
-
 import * as ajax from '../../../src/lib/ajax';
-import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
+import {
+  connectToAbly,
+  emitEvent,
+  eventAggregator,
+  handleAblyEvent,
+  pushEventAggregator,
+} from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { sampleNotification } from '../../factories/NotificationFactory';
 
@@ -19,6 +24,20 @@ describe('lib', () => {
         pushEventAggregator.off('test', callback);
 
         pushEventAggregator.emit('test');
+        expect(callback).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('eventAggregator', () => {
+      it('exposes an API for pubsub', () => {
+        const callback = jest.fn();
+        eventAggregator.on('test', callback);
+        eventAggregator.emit('test');
+
+        expect(callback).toHaveBeenCalledTimes(1);
+        eventAggregator.off('test', callback);
+
+        eventAggregator.emit('test');
         expect(callback).toHaveBeenCalledTimes(1);
       });
     });
@@ -77,6 +96,16 @@ describe('lib', () => {
         spy.mockRestore();
       });
 
+      it('emits the event to the eventAggregator', () => {
+        const spy = jest.spyOn(eventAggregator, 'emit');
+        const event = { name: 'notification/new', data: faker.helpers.createCard() } as Ably.Types.Message;
+        handleAblyEvent(event);
+
+        expect(spy).toHaveBeenCalledTimes(1);
+        expect(spy).toHaveBeenCalledWith('notification.new', { data: event.data, source: 'remote' });
+        spy.mockRestore();
+      });
+
       describe('the data contains a notification ID', () => {
         let server;
 
@@ -123,6 +152,17 @@ describe('lib', () => {
 
       describe('the event has a client ID', () => {
         describe('the event was originated by this client', () => {
+          let server;
+
+          beforeEach(() => {
+            server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
+            server.get('/notifications/uuid', { notification: sampleNotification });
+          });
+
+          afterEach(() => {
+            server.shutdown();
+          });
+
           it('does not emit the event', async () => {
             const { getState } = clientSettings;
             const spy = jest.spyOn(pushEventAggregator, 'emit');
@@ -149,6 +189,43 @@ describe('lib', () => {
             expect(spy).toHaveBeenCalledTimes(1);
             spy.mockRestore();
           });
+        });
+      });
+
+      test('local events are only published to public emitter', async () => {
+        const localEmitter = jest.spyOn(pushEventAggregator, 'emit');
+        const publicEmitter = jest.spyOn(eventAggregator, 'emit');
+        const clientId = clientSettings.getState().clientId;
+
+        emitEvent('notifications.seen.all', { client_id: clientId, notification_id: 'uuid' }, 'local');
+
+        expect(localEmitter).not.toHaveBeenCalled();
+        expect(publicEmitter).toHaveBeenCalledTimes(1);
+        expect(publicEmitter).toHaveBeenCalledWith('notifications.seen.all', {
+          data: { client_id: clientId, notification_id: 'uuid' },
+          source: 'local',
+        });
+      });
+
+      test('remote events are published to internal and public emitter', async () => {
+        const localEmitter = jest.spyOn(pushEventAggregator, 'emit');
+        const publicEmitter = jest.spyOn(eventAggregator, 'emit');
+        const clientId = faker.random.alphaNumeric(10);
+
+        await handleAblyEvent({
+          name: 'notifications/seen/all',
+          data: { client_id: clientId },
+        } as any);
+
+        expect(localEmitter).toHaveBeenCalledTimes(1);
+        expect(localEmitter).toHaveBeenCalledWith('notifications.seen.all', {
+          client_id: clientId,
+        });
+
+        expect(publicEmitter).toHaveBeenCalledTimes(1);
+        expect(publicEmitter).toHaveBeenCalledWith('notifications.seen.all', {
+          data: { client_id: clientId },
+          source: 'remote',
         });
       });
     });
