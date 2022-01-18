@@ -29,6 +29,30 @@ commands:
             git merge main
             git push origin stable
 
+  rollbar-deploy:
+    description: Logs the deploy action in Rollbar
+    steps:
+      - run:
+          name: Deployment notification to Rollbar
+          command: |
+            curl https://api.rollbar.com/api/1/deploy/ \
+              -F access_token=$ROLLBAR_ACCESS_TOKEN \
+              -F environment=production \
+              -F revision=$(node -p -e "require('./package.json').version") \
+              -F local_username=$CIRCLE_USERNAME \
+
+  rollbar-sourcemaps:
+    description: Uploads sourcemaps to Rollbar
+    steps:
+      - run:
+          name: Upload sourcemap to Rollbar
+          command: |
+            curl https://api.rollbar.com/api/1/sourcemap/ \
+              -F access_token=$ROLLBAR_ACCESS_TOKEN \
+              -F version=$(node -p -e "require('./package.json').version") \
+              -F minified_url=//assets.magicbell.io/magicbell.min.js
+              -F source_map=@"./dist/magicbell.min.js.map"
+
 jobs:
   update_stable_branch:
     description: Update the stable branch
@@ -40,6 +64,13 @@ jobs:
       - configure-git
       - checkout
       - git-merge-main
+
+  update_rollbar:
+    description: Inform rollbar about the new version and register sourcemaps
+    machine: true
+    steps:
+      - rollbar-deploy
+      - rollbar-sourcemaps
 
 workflows:
   build:
@@ -74,3 +105,6 @@ workflows:
           filters:
             branches:
               only: main
+      - update_rollbar:
+          requires:
+            - deploy_to_netlify

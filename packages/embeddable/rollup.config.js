@@ -9,6 +9,7 @@ import license from 'rollup-plugin-license';
 import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import pkg from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -37,6 +38,7 @@ export default [
       replace({
         // eslint-disable-next-line no-undef
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'process.env.VERSION': JSON.stringify(pkg.version),
         preventAssignment: true,
       }),
       !isProduction &&
@@ -67,11 +69,13 @@ export default [
         name: 'MagicBell',
         file: 'dist/magicbell.min.js',
         format: 'umd',
+        sourcemap: true,
       },
       {
         name: 'MagicBell',
         file: 'dist/magicbell.esm.js',
         format: 'esm',
+        sourcemap: true,
       },
     ],
   },
@@ -102,6 +106,7 @@ export default [
       {
         file: 'dist/web-push-notifications/sw.js',
         format: 'cjs',
+        sourcemap: true,
       },
     ],
   },
