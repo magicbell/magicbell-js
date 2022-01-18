@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Widget, { WidgetProps } from './components/Widget';
+import emitter, { MagicBellEventEmitter } from './lib/emitter';
 
 function validateIsFn(fn, message) {
   if (fn && typeof fn !== 'function') throw message;
@@ -20,9 +21,11 @@ function validateParams(options) {
  * @example
  * renderWidget({ userEmail, apiKey, target: document.getElementById('test') })
  */
-export function renderWidget(target: HTMLElement, options: WidgetProps) {
+export function renderWidget(target: HTMLElement, options: WidgetProps): MagicBellEventEmitter {
   validateParams({ target, ...options });
   ReactDOM.render(<Widget {...options} />, target);
+
+  return emitter;
 }
 
 /**

@@ -368,13 +368,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^8.2.3":
-  version "8.2.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.2.3.tgz#8d736e2cbc7425441be2170909054975a0a8e5ad"
-  integrity sha512-NMeFcMyCulQsaqTe72OcA763kTt+0zusRDtWa+WWzZ2gxavf2KHIxpLjW4I9zjjUvYJ397/4I9Y6jtqKte8WGA==
+"@magicbell/magicbell-react@^8.4.0":
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.4.0.tgz#7e9d98b907a8ee395b6f6efb822297783ce360b9"
+  integrity sha512-J+zyjV68bH/3KT5zKZBUffN4L3gEFmQ8AK8SBQru19aUxr4IsCsf42oJwoPWIJiW+OzmL3IQehFDWwYxaGQ3iQ==
   dependencies:
     "@emotion/react" "^11.4.1"
-    "@magicbell/react-headless" "^2.5.0"
+    "@magicbell/react-headless" "^2.6.0"
     "@tippyjs/react" "^4.2.4"
     ably "^1.2.14"
     axios "^0.24.0"
@@ -382,7 +382,7 @@
     humps "^2.0.1"
     immer "^9.0.7"
     miragejs "^0.1.41"
-    ramda "^0.27.1"
+    ramda "^0.27.2"
     react-infinite-scroll-component "^6.0.0"
     react-use "^17.2.1"
     timeago.js "^4.0.2"
@@ -390,10 +390,10 @@
     tslib "^2.3.1"
     zustand "^3.6.4"
 
-"@magicbell/react-headless@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.5.0.tgz#132fb384a55919b69215765875d0539e9b42ca50"
-  integrity sha512-aeSxezB05MaAL17ce3embZOOwRMuRwmJDuWdm17xUVp0Qn/nn7CldolsK/i3/PZPwM8E9KmRiRAd5bzZyUcSLg==
+"@magicbell/react-headless@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.0.tgz#7cb41a6987be995cbe3fbb15a35a8827130cc1e5"
+  integrity sha512-l3O5uqEeoFxm1Ip+g1BmFk7kbk/jgiAyEVy/BfTvGIHsMVu24lUl6oidaKGBOplwFglsGPoD5lLTntHpJ1r9zQ==
   dependencies:
     ably "^1.2.14"
     axios "^0.24.0"
@@ -401,7 +401,7 @@
     humps "^2.0.1"
     immer "^9.0.6"
     mitt "^3.0.0"
-    ramda "^0.27.1"
+    ramda "^0.27.2"
     tslib "^2.3.1"
     zustand "^3.6.4"
 
@@ -3908,7 +3908,12 @@ quick-lru@^5.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
-ramda@^0.27.1, ramda@~0.27.1:
+ramda@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.2.tgz#84463226f7f36dc33592f6f4ed6374c48306c3f1"
+  integrity sha512-SbiLPU40JuJniHexQSAgad32hfwd+DRUdwF2PlVuI5RZD0/vahUco7R8vD86J/tcEKKF9vZrUVwgtmGCqlCKyA==
+
+ramda@~0.27.1:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.1.tgz#66fc2df3ef873874ffc2da6aa8984658abacf5c9"
   integrity sha512-PgIdVpn5y5Yns8vqb8FzBUEYn98V3xcPgawAkkgj0YJ0qDsnHCiNmZYfOGMgOvoB0eWFLpYbhxUR3mxfDIMvpw==
