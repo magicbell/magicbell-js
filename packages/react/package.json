@@ -109,7 +109,7 @@
     "humps": "^2.0.1",
     "immer": "^9.0.7",
     "miragejs": "^0.1.41",
-    "ramda": "^0.27.1",
+    "ramda": "^0.27.2",
     "react-infinite-scroll-component": "^6.0.0",
     "react-use": "^17.2.1",
     "timeago.js": "^4.0.2",
