@@ -38,7 +38,7 @@ commands:
             curl https://api.rollbar.com/api/1/deploy/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
               -F environment=production \
-              -F revision=$(node -p -e "require('./package.json').version") \
+              -F revision=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
               -F local_username=$CIRCLE_USERNAME \
 
   rollbar-sourcemaps:
@@ -49,9 +49,9 @@ commands:
           command: |
             curl https://api.rollbar.com/api/1/sourcemap/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
-              -F version=$(node -p -e "require('./package.json').version") \
+              -F version=$(awk -F\" '/"version":/ {print $4}' package.json) \
               -F minified_url=//assets.magicbell.io/magicbell.min.js
-              -F source_map=@"./dist/magicbell.min.js.map"
+              -F source_map=@"~/project/dist/magicbell.min.js.map"
 
 jobs:
   update_stable_branch:
@@ -107,4 +107,4 @@ workflows:
               only: main
       - update_rollbar:
           requires:
-            - deploy_to_netlify
+            - publish_to_npm
