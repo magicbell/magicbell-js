@@ -28,6 +28,7 @@ export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export { darken, toRGBA } from './lib/color';
 export {
   clientSettings,
+  eventAggregator,
   INotification,
   INotificationsStoresCollection,
   INotificationStore,

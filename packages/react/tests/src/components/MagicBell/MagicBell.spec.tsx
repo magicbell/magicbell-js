@@ -1,4 +1,4 @@
-import { pushEventAggregator } from '@magicbell/react-headless';
+import { eventAggregator } from '@magicbell/react-headless';
 import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 // import { renderWithProviders as render } from '../../../__utils__/render';
 import userEvent from '@testing-library/user-event';
@@ -211,7 +211,7 @@ test('calls the onNewNotification callback when a new notification is received',
   );
 
   const notification = NotificationFactory.build();
-  pushEventAggregator.emit('notifications.new', notification);
+  eventAggregator.emit('notifications.new', { data: notification, source: 'remote' });
 
   expect(onNewNotification).toHaveBeenCalledTimes(1);
   expect(onNewNotification).toHaveBeenCalledWith(notification);
