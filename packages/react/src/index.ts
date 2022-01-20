@@ -17,6 +17,7 @@ export { default as NotificationContent } from './components/NotificationContent
 export { default as NotificationInbox } from './components/NotificationInbox';
 export { default as NotificationList } from './components/NotificationList';
 export { default as NotificationState } from './components/NotificationState';
+export { default as NotificationPreferences } from './components/UserPreferencesPanel/PreferencesCategories';
 export type { PopoverPlacement } from './components/Popover';
 export { default as Popover } from './components/Popover';
 export { default as PushNotificationsSubscriber } from './components/PushNotificationsSubscriber';

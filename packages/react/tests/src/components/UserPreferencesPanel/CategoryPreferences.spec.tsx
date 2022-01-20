@@ -20,13 +20,13 @@ beforeEach(() => {
 afterEach(() => jest.clearAllMocks());
 
 test('renders a checkbox for each channel', () => {
-  render(<CategoryPreferences category="comments" />);
+  render(<CategoryPreferences category="comments" channels={['email', 'inApp', 'webPush']} />);
   const checkboxes = screen.getAllByRole('checkbox');
   expect(checkboxes).toHaveLength(3);
 });
 
 test('updates the preferences for the inApp category', async () => {
-  render(<CategoryPreferences category="comments" />);
+  render(<CategoryPreferences category="comments" channels={['inApp']} />);
 
   const { result } = renderHook(() => useNotificationPreferences());
   const spy = jest.spyOn(result.current, 'save');
@@ -39,7 +39,7 @@ test('updates the preferences for the inApp category', async () => {
 });
 
 test('updates the preferences for the email category', async () => {
-  render(<CategoryPreferences category="comments" />);
+  render(<CategoryPreferences category="comments" channels={['inApp', 'email']} />);
 
   const { result } = renderHook(() => useNotificationPreferences());
   const spy = jest.spyOn(result.current, 'save');
@@ -52,7 +52,7 @@ test('updates the preferences for the email category', async () => {
 });
 
 test('updates the preferences for the webPush category', async () => {
-  render(<CategoryPreferences category="comments" />);
+  render(<CategoryPreferences category="comments" channels={['inApp', 'email', 'webPush']} />);
 
   const { result } = renderHook(() => useNotificationPreferences());
   const spy = jest.spyOn(result.current, 'save');
