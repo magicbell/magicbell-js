@@ -1,0 +1,6 @@
+{
+  "name": "magicbell-project",
+  "dependencies": {
+    "@magicbell/magicbell-react": "8.0.0"
+  }
+}

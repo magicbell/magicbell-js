@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "template": "angular",
+  "dependencies": {
+    "@magicbell/embeddable": "latest"
+  }
+}

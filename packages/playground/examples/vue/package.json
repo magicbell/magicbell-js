@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "template": "vue3",
+  "dependencies": {
+    "@magicbell/embeddable": "latest"
+  }
+}
