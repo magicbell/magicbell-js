@@ -1,0 +1,6 @@
+{
+  "name": "magicbell-project",
+  "dependencies": {
+    "@magicbell/embeddable": "latest"
+  }
+}

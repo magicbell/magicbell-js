@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "dependencies": {
+    "@magicbell/magicbell-react": "latest",
+    "twind": "0.16.16"
+  }
+}
