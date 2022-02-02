@@ -7,12 +7,12 @@ import { storeSubscription, subscribeToPushNotifications } from './subscription'
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', (event) => {
   self.skipWaiting();
-  console.log('install');
+  console.log('MagicBellSW:install');
 });
 
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', (event) => {
-  console.log('activate');
+  console.log('MagicBellSW:activate');
   event.waitUntil(self.clients.claim());
 });
 
@@ -54,7 +54,7 @@ self.addEventListener(
 );
 
 self.addEventListener('pushsubscriptionchange', async (event) => {
-  console.log('Subscription expired');
+  console.log('MagicBellSW:subscription-expired');
 
   // TODO: Get project by subdomain
   const project = await at(0, 'projects');
@@ -62,7 +62,7 @@ self.addEventListener('pushsubscriptionchange', async (event) => {
 
   event.waitUntil(
     subscribeToPushNotifications(self.registration.pushManager, project.vapidPublicKey).then(async (subscription) => {
-      console.log('Subscribed after expiration', subscription);
+      console.log('MagicBellSW:resubscribed', subscription);
 
       // TODO: Get user by ID
       const user = await at(0, 'users');
