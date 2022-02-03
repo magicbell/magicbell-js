@@ -1,11 +1,9 @@
 import React from 'react';
-
 import { openActionUrl } from '../ClickableNotification/eventHandlers';
 import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
 import { NotificationListItem } from '../NotificationList/NotificationList';
-import Popover, { PopoverPlacement } from '../Popover';
-import Arrow from './Arrow';
-import StyledPopoverContainer from './StyledPopoverContainer';
+import { PopoverPlacement } from '../Popover';
+import FloatingInboxContainer from './FloatingInboxContainer';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;
@@ -38,7 +36,7 @@ export default function FloatingNotificationInbox({
   closeOnNotificationClick = true,
   popperOptions,
   hideArrow = false,
-  layout = ['header', 'content', 'push-notifications-banner', 'footer'],
+  layout,
   ...inboxProps
 }: Props) {
   const handleNotificationClick = (notification) => {
@@ -48,28 +46,23 @@ export default function FloatingNotificationInbox({
     if (closeOnNotificationClick) toggle?.();
   };
 
-  const handleClickOutside = () => {
-    if (closeOnClickOutside) toggle?.();
-  };
-
   return (
-    <Popover
-      isOpen={isOpen}
+    <FloatingInboxContainer
       launcherRef={launcherRef}
-      onClickOutside={handleClickOutside}
+      isOpen={isOpen}
+      toggle={toggle}
       placement={placement}
+      width={width}
+      closeOnClickOutside={closeOnClickOutside}
       popperOptions={popperOptions}
+      hideArrow={hideArrow}
+      layout={layout}
     >
-      {(attrs) => (
-        <StyledPopoverContainer width={width} attrs={attrs} layout={layout}>
-          <NotificationInbox
-            onNotificationClick={handleNotificationClick}
-            layout={layout}
-            {...inboxProps}
-          />
-          {hideArrow ? null : <Arrow placement={attrs['data-placement']} />}
-        </StyledPopoverContainer>
-      )}
-    </Popover>
+      <NotificationInbox
+        onNotificationClick={handleNotificationClick}
+        layout={layout}
+        {...inboxProps}
+      />
+    </FloatingInboxContainer>
   );
 }
