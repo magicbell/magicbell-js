@@ -51,7 +51,7 @@ commands:
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
               -F version=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
               -F minified_url=//assets.magicbell.io/magicbell.min.js \
-              -F source_map=@/home/circleci/project/magicbell.min.js.map
+              -F source_map=@/home/circleci/project/dist/magicbell.min.js.map
 
 jobs:
   update_stable_branch:
