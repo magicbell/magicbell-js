@@ -39,7 +39,7 @@ commands:
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
               -F environment=production \
               -F revision=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
-              -F local_username=$CIRCLE_USERNAME \
+              -F local_username=$CIRCLE_USERNAME
 
   rollbar-sourcemaps:
     description: Uploads sourcemaps to Rollbar
@@ -49,9 +49,9 @@ commands:
           command: |
             curl https://api.rollbar.com/api/1/sourcemap/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
-              -F version=$(awk -F\" '/"version":/ {print $4}' package.json) \
-              -F minified_url=//assets.magicbell.io/magicbell.min.js
-              -F source_map=@"~/project/dist/magicbell.min.js.map"
+              -F version=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
+              -F minified_url=//assets.magicbell.io/magicbell.min.js \
+              -F source_map=@/home/circleci/project/magicbell.min.js.map
 
 jobs:
   update_stable_branch:
@@ -69,6 +69,9 @@ jobs:
     description: Inform rollbar about the new version and register sourcemaps
     machine: true
     steps:
+      - restore_cache:
+          keys:
+            - 'dist-{{ .Branch }}-{{ .Revision }}'
       - rollbar-deploy
       - rollbar-sourcemaps
 
@@ -97,6 +100,12 @@ workflows:
           ssh-fingerprints: 94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba
           pre-publish-steps:
             - run: yarn install
+          post-publish-steps:
+            - save_cache:
+                key: 'dist-{{ .Branch }}-{{ .Revision }}'
+                paths:
+                  - dist
+                  - package.json
           publish-token-variable: NPM_TOKEN
       - update_stable_branch:
           name: deploy_to_netlify
