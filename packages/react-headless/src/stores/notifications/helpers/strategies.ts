@@ -7,6 +7,10 @@ function eq(value, other) {
   return value === other || (value !== value && other !== other);
 }
 
+function ensureArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+
 export type NotificationCompareStrategy = (
   notification: IRemoteNotification,
   context: Record<string, any>,
@@ -34,6 +38,8 @@ export function objMatchesContext(
     if (
       (attr === 'read' && !comparator(!isNil(notification.readAt), conditionValue)) ||
       (attr === 'seen' && !comparator(!isNil(notification.seenAt), conditionValue)) ||
+      (attr === 'categories' &&
+        ensureArray(conditionValue).some((category) => !comparator(notification.category, category))) ||
       (Object.hasOwnProperty.call(notification, attr) && !comparator(notification[attr], conditionValue))
     ) {
       diff.push(attr);
