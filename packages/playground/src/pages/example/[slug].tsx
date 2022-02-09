@@ -82,8 +82,8 @@ export default function Example({
             key={slug} // remount component on page change
             template={template}
             define={{
-              MAGICBELL_API_KEY: '...',
-              MAGICBELL_USER_EMAIL: 'stephan.meijer@gmail.com',
+              MAGICBELL_API_KEY: 'e1f70f214b0be42a8efde915af39feacc956b06b',
+              MAGICBELL_USER_EMAIL: 'person@example.com',
               MAGICBELL_USER_KEY: '...',
             }}
             setup={{ dependencies }}
