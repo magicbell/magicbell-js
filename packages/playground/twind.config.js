@@ -1,11 +1,88 @@
+import { apply, css } from 'twind/css';
+
+const join = (parts) => parts.join('-');
+
 /** @type {import('twind').Configuration} */
-export default {
+const config = {
   darkMode: 'class',
   mode: 'silent',
+  plugins: {
+    bg: (parts) =>
+      css`
+        background-color: var(--colors-bg-${join(parts)});
+      `,
+    fg: (parts) => {
+      const name = `--colors-fg-${join(parts)}`;
+
+      return css`
+        color: var(${name});
+
+        &:is(a):focus,
+        &:is(a):hover,
+        &:is(a)[data-active='true'],
+        &:is(button):focus,
+        &:is(button):hover,
+        &:is(button)[data-active='true'] {
+          outline: none;
+          color: var(${name}-active, var(${name}));
+        }
+      `;
+    },
+
+    'flex-row': apply`
+      flex items-center justify-center
+    `,
+
+    popper: () => css`
+      z-index: 999;
+      background: var(--colors-bg-popper);
+      color: var(--colors-fg-popper);
+
+      @apply inline-bock rounded-md shadow-md;
+
+      &:before {
+        content: '';
+        position: absolute;
+        height: 20px;
+        width: 100%;
+        top: 0;
+        transform: translateY(-100%);
+        z-index: -1;
+      }
+    `,
+
+    arrow: ([position]) => {
+      return css`
+        &,
+        &::before {
+          @apply absolute w-8 h-8 rounded-md;
+          background: inherit;
+        }
+
+        & {
+          visibility: hidden;
+          ${position}: -4px;
+        }
+
+        &::before {
+          visibility: visible;
+          content: '';
+          transform: rotate(45deg);
+        }
+      `;
+    },
+
+    'line-clamp': ([lines]) => css`
+      display: -webkit-box;
+      -webkit-line-clamp: ${lines};
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    `,
+  },
   theme: {
     extend: {
       fontFamily: {
-        sans: ['HarmoniaSans', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Moderat', 'Helvetica', 'Arial', 'sans-serif'],
         mono: [
           'GT America',
           'Menlo',
@@ -14,6 +91,10 @@ export default {
           'Courier New',
           'monospace',
         ],
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
       },
       colors: {
         purple: {
@@ -65,3 +146,5 @@ export default {
     },
   },
 };
+
+export default config;

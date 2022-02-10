@@ -5,6 +5,7 @@ import path from 'node:path';
 
 export type ExampleConfig = {
   name: string;
+  description?: string;
   dependencies: Record<string, string>;
   slug: string;
   template: SandpackPredefinedTemplate;
