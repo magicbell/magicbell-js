@@ -1,16 +1,13 @@
-import { GetStaticPropsResult } from 'next';
+import { handle, redirect } from 'next-runtime';
 
 import { getAllExamples } from '~/lib/utils';
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<any>> {
-  const examples = await getAllExamples();
-  return {
-    redirect: {
-      destination: `/example/${examples[0].slug}`,
-      permanent: false,
-    },
-  };
-}
+export const getServerSideProps = handle({
+  async get() {
+    const examples = await getAllExamples();
+    return redirect(`/example/${examples[0].slug}`);
+  },
+});
 
 export default function Page() {
   return null;
