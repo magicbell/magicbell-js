@@ -45,8 +45,7 @@ function Sandbox({
 }: PlaygroundProps) {
   const c = useClasser('pg');
   const [resetKey, setResetKey] = useState(0);
-  // const ref
-  // const height = useHeight()
+
   const customSetup = useMemo(() => {
     const allFiles: SandpackFiles = { ...setup?.files, ...files };
 

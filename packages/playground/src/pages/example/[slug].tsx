@@ -2,12 +2,14 @@ import {
   SandpackFile,
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
+import { FileTextIcon } from '@radix-ui/react-icons';
 import { GetStaticPropsResult } from 'next';
 import { useRef } from 'react';
 
 import Navbar from '~/components/layout/navbar';
-import Sidebar from '~/components/layout/sidebar';
 import Sandbox from '~/components/sandbox/sandbox';
+import Logo from '~/components/svg/logo';
+import SlackLogo from '~/components/svg/slack';
 import { useHeight } from '~/hooks/use-height';
 import {
   ExampleConfig,
@@ -62,21 +64,15 @@ export default function Example({
   const height = useHeight(contentRef, 300);
 
   return (
-    <div
-      className="h-screen grid grid-cols-2"
-      style={{
-        gridAutoRows: 'min-content 1fr', // auto-rows-[minmax(min-content,1fr)]
-        gridTemplateColumns: '18rem 1fr',
-      }}
-    >
-      <header className="col-span-full">
-        <Navbar />
+    <div className="h-screen max-w-9xl px-8 pt-6 mx-auto flex flex-col">
+      <header className="relative">
+        <div className="flex w-full">
+          <Logo />
+        </div>
+        <Navbar examples={examples} currentPath={slug} />
       </header>
-      <div className="overflow-hidden">
-        <Sidebar examples={examples} currentPath={slug} />
-      </div>
 
-      <div className="pb-8 pt-2 px-8 overflow-hidden">
+      <div className="mt-6 h-full overflow-hidden relative">
         <div className="h-full" ref={contentRef}>
           <Sandbox
             key={slug} // remount component on page change
@@ -92,6 +88,20 @@ export default function Example({
           />
         </div>
       </div>
+
+      <footer className="mt-6 mb-12 flex-row justify-end space-x-6 text-xs">
+        <a href="https://magicbell.com/docs" className="flex-row fg-body">
+          <FileTextIcon className="mr-2" /> Docs
+        </a>
+        <a
+          href="https://join.slack.com/t/magicbell-community/shared_invite/zt-trh6yi84-~jtPqNikvC1m3My_p0WUqw"
+          className="flex-row fg-body"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+        >
+          <SlackLogo className="mr-2" /> Slack
+        </a>
+      </footer>
     </div>
   );
 }

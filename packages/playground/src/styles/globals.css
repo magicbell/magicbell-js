@@ -2,22 +2,34 @@
 
 html {
   /* palette */
-  --colors-bg-body: #fff;
+  --colors-bg-body: #2F1570;
+  --colors-fg-body: #FFFFFF;
+  --colors-fg-body-active: #FFDB00;
 
+  --colors-bg-popper: #fff;
+  --colors-fg-popper: #3A424D;
+  --colors-fg-popper-active: #8341BD ;
+
+  --colors-bg-editor-body: #ffffff;
+  --colors-bg-editor-header: #FFFBE0;
+  --colors-fg-editor-header: #3A424D;
+}
+
+html .sp-wrapper {
   --sp-colors-fg-active: #24292e !important;
   --sp-colors-fg-default: #959da5 !important;
-  --sp-colors-fg-inactive: #e4e7eb !important;
+  --sp-colors-fg-inactive: #E3D1F2 !important;
   --sp-colors-bg-active: #e4e7eb !important;
   --sp-colors-bg-default: #ffffff !important;
   --sp-colors-bg-default-overlay: #ffffff !important;
   --sp-colors-bg-input: #ffffff !important;
   --sp-colors-accent: #c8c8fa !important;
-  --sp-colors-bg-error: #ffcdca !important;
-  --sp-colors-fg-error: #811e18 !important;
+  --sp-colors-bg-error: #D75353 !important;
+  --sp-colors-fg-error: #FFFFFF !important;
 
-  --pg-colors-fg-accent: #087ea4;
-  --pg-colors-bg-preview: #f4f4f5;
-  --pg-colors-bg-header: #fff;
+  --pg-colors-fg-accent: #8341BD;
+  --pg-colors-bg-preview: #FFFFFF;
+  --pg-colors-bg-header: #FFFBE0;
 
   --pg-shadow:
     rgba(0, 0, 0, 0) 0 0 0 0,
@@ -27,24 +39,36 @@ html {
     rgba(0, 0, 0, 0.08) 0 12px 30px 0;
 
   /* layout */
-  --sp-border-radius: 8px;
+  --sp-border-radius: 8px !important;
 
   /* syntax */
-  --theme-plain: #24292e;
-  --theme-comment: #6a737d;
-  --theme-keyword: #d73a49;
-  --theme-tag: #22863a;
-  --theme-punctuation: #24292e;
-  --theme-definition: #6f42c1;
-  --theme-property: #005cc5;
-  --theme-static: #032f62;
-  --theme-string: #032f62;
+  --theme-plain: #230F65;
+  --theme-comment: #999999;
+  --theme-keyword: #1588E0;
+  --theme-tag: #A38D00;
+  --theme-punctuation: #5225C1;
+  --theme-definition: #83B692;
+  --theme-property: #329BEC;
+  --theme-static: #D75353;
+  --theme-string: #5225C1;
 }
 
 html.dark {
-  --colors-bg-body: #121212;
-
   /* palette */
+  --colors-bg-body: #200E4B;
+  --colors-fg-body: #FFFFFF;
+  --colors-fg-body-active: #FFDB00;
+
+  --colors-bg-popper: #23272F;
+  --colors-fg-popper: #FFFFFF;
+  --colors-fg-popper-active: #8341BD ;
+
+  --colors-bg-editor-body: #ffffff;
+  --colors-bg-editor-header: #23272F;
+  --colors-fg-editor-header: red;
+}
+
+html.dark .sp-wrapper {
   --sp-colors-fg-active: #FFFFFF !important;
   --sp-colors-fg-default: #999999 !important;
   --sp-colors-fg-inactive: #343434 !important;
@@ -53,12 +77,12 @@ html.dark {
   --sp-colors-bg-default-overlay: #16181D !important;
   --sp-colors-bg-input: #242424 !important;
   --sp-colors-accent: #6caedd !important;
-  --sp-colors-bg-error: #ffcdca !important;
-  --sp-colors-fg-error: #811e18 !important;
+  --sp-colors-bg-error: #841F1F !important;
+  --sp-colors-fg-error: #FFFFFF !important;
 
-  --pg-colors-fg-accent: #149eca;
-  --pg-colors-bg-preview: #23272f;
-  --pg-colors-bg-header: #343a46;
+  --pg-colors-fg-accent: #8341BD;
+  --pg-colors-bg-preview: #16181D;
+  --pg-colors-bg-header: #23272F;
 
   --pg-shadow:
     rgba(0, 0, 0, 0) 0 0 0 0,
@@ -68,44 +92,37 @@ html.dark {
     rgba(0, 0, 0, 0.047) 0 3px 7px 0,
     rgba(0, 0, 0, 0.08) 0 12px 30px 0;
 
+  /* layout */
+  --sp-border-radius: 8px !important;
+
   /* syntax */
   --theme-plain: #FFFFFF;
-  --theme-comment: #757575;
-  --theme-keyword: #77B7D7;
-  --theme-tag: #DFAB5C;
-  --theme-punctuation: #ffffff;
-  --theme-definition: #86D9CA;
-  --theme-property: #77B7D7;
-  --theme-static: #C64640;
-  --theme-string: #977CDC;
+  --theme-comment: #999999;
+  --theme-keyword: #39A0ED;
+  --theme-tag: #FFDB00;
+  --theme-punctuation: #FFFFFF;
+  --theme-definition: #83B692;
+  --theme-property: #7CC0F3;
+  --theme-static: #D75353;
+  --theme-string: #9C67CB;
 }
 
-/* Fonts */
 @font-face {
-  font-family: 'HarmoniaSans';
+  font-family: 'Moderat';
   font-weight: 400;
-  src: url('/fonts/HarmoniaSansRegular.woff2') format('woff2'),
-  url('/fonts/HarmoniaSansRegular.woff') format('woff');
+  src: url('/fonts/Moderat/Moderat-Trial-Regular.otf') format('opentype');
 }
 
 @font-face {
-  font-family: 'HarmoniaSans';
-  font-weight: 600;
-  src: url('/fonts/HarmoniaSansSemiBold.woff2') format('woff2'),
-  url('/fonts/HarmoniaSansSemiBold.woff') format('woff');
+  font-family: 'Moderat';
+  font-weight: 700;
+  src: url('/fonts/Moderat/Moderat-Trial-Bold.otf') format('opentype');
 }
 
 @font-face {
-  font-family: 'ITCSouvenir';
-  font-weight: 600;
-  src: url('/fonts/ITCSouvenirDemi.woff2') format('woff2'),
-  url('/fonts/ITCSouvenirDemi.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'GT Monaco';
-  font-weight: 400;
-  src: url('/fonts/GT-America-Mono-Medium.woff2') format('woff2');
+  font-family: 'Moderat';
+  font-weight: 900;
+  src: url('/fonts/Moderat/Moderat-Trial-Black.otf') format('opentype');
 }
 
 html,
@@ -115,10 +132,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: var(--colors-bg-body);
+  color: var(--colors-fg-body);
 }
 
 body {
   scrollbar-gutter: stable;
+}
+
+body, .pg-header, .sp-overlay, .sp-wrapper, .sp-code-editor, .sp-error {
+  transition: all .4s ease;
 }
 
 ::-webkit-scrollbar {

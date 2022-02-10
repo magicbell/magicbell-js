@@ -1,5 +1,6 @@
 {
   "name": "magicbell-project",
+  "description": "Standard MagicBell integration in Vue.",
   "template": "angular",
   "dependencies": {
     "@magicbell/embeddable": "latest"

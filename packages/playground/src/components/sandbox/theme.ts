@@ -24,7 +24,7 @@ export const theme: SandpackTheme = {
     string: 'var(--theme-string)',
   },
   typography: {
-    bodyFont: '"Ubuntu", "arial"',
+    bodyFont: '"Moderat", "arial"',
     monoFont: '"Ubuntu Mono", "courier new"',
     fontSize: '14px',
     lineHeight: '24px',

@@ -1,5 +1,6 @@
 {
   "name": "magicbell-project",
+  "description": "Using a custom bell icon.",
   "dependencies": {
     "@magicbell/magicbell-react": "latest"
   }

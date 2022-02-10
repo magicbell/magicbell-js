@@ -1,5 +1,6 @@
 {
   "name": "magicbell-project",
+  "description": "Standard MagicBell integration in React.",
   "dependencies": {
     "@magicbell/magicbell-react": "latest"
   }
