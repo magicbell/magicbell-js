@@ -63,7 +63,10 @@ function Navbar({ examples, currentPath }: NavbarProps) {
   const popperStyles = useMemo(() => {
     const { transform = 'translate(20px, 184px)', ...rest } =
       styles.popper as Record<string, unknown>;
-    const [[x], [y]] = Array.from(String(transform).matchAll(/\d+/g));
+    const [x, y] = String(transform)
+      .replace(/[^0-9,]/g, '')
+      .split(',');
+
     return { ...rest, x: ~~x, y: ~~y };
   }, [styles.popper]);
 
