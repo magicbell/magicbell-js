@@ -194,7 +194,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
       <div className="ml-auto mr-6 relative flex-row">
         <CodeBell />
 
-        <div className="absolute w-8 h-8 transform rotate-45 rounded-md bg-editor-header translate-y-12" />
+        <div className="pg-header-arrow absolute w-8 h-8 transform rotate-45 rounded-md bg-editor-header translate-y-12" />
       </div>
     </nav>
   );
