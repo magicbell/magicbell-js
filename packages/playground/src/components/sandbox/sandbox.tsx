@@ -75,7 +75,7 @@ function Sandbox({
                 className={c('button')}
                 onClick={() => setResetKey((c) => c + 1)}
               >
-                <ReloadIcon width="13" />
+                <ReloadIcon width="12" />
                 Reset
               </button>
               <UnstyledOpenInCodeSandboxButton className={c('button')}>

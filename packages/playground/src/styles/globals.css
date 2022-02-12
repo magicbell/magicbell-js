@@ -143,6 +143,8 @@ body,
 .pg-header,
 .pg-button,
 .sp-overlay,
+.sp-overlay.sp-loading,
+.sp-overlay.sp-loading .sp-cube .sp-sides > div,
 .sp-wrapper,
 .sp-code-editor,
 .sp-error,
@@ -152,7 +154,7 @@ body,
 .cm-gutterElement,
 .sp-preview-container iframe,
 .sp-layout > :not(:first-child)::before {
-  transition: background-color .4s ease, color .4s ease;
+  transition: background-color .4s ease, color .4s ease !important;
 }
 
 ::-webkit-scrollbar {
