@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import cn from 'clsx';
 import Link from 'next/link';
 import { MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
@@ -60,16 +60,6 @@ function Navbar({ examples, currentPath }: NavbarProps) {
     ],
   });
 
-  const popperStyles = useMemo(() => {
-    const { transform = 'translate(20px, 184px)', ...rest } =
-      styles.popper as Record<string, unknown>;
-    const [x, y] = String(transform)
-      .replace(/[^0-9,]/g, '')
-      .split(',');
-
-    return { ...rest, x: ~~x, y: ~~y };
-  }, [styles.popper]);
-
   const { grouped, selectedGroup } = useMemo(() => {
     const sorted = [...examples.sort((a, b) => a.slug.localeCompare(b.slug))];
     let selectedExample;
@@ -77,8 +67,6 @@ function Navbar({ examples, currentPath }: NavbarProps) {
     const groups: Record<string, { name: string; items: ExampleConfig[] }> = {};
 
     for (const example of sorted) {
-      // determine the group name based on declared dependencies, note order matters
-      // we can have examples that declared both @magicbell/headless && @magicbell/react
       const group = groupMap[example.template] || example.template;
 
       if (example.slug === currentPath) {
@@ -124,7 +112,13 @@ function Navbar({ examples, currentPath }: NavbarProps) {
         <DarkModeToggle />
       </div>
 
-      <div ref={navRef} onMouseLeave={() => setShowPopper(false)}>
+      <div
+        ref={navRef}
+        className="perspective-2000 relative z-10"
+        onMouseLeave={() => {
+          setShowPopper(false);
+        }}
+      >
         {grouped
           .filter((group) => group.items.length)
           .map(({ name: group }) => (
@@ -140,55 +134,46 @@ function Navbar({ examples, currentPath }: NavbarProps) {
             </button>
           ))}
 
-        <AnimatePresence>
-          {showPopper ? (
-            <motion.div
-              ref={setPopperElement}
-              className="popper shadow-md"
-              initial={{
-                x: popperStyles.x,
-                opacity: 0,
-              }}
-              animate={{
-                x: popperStyles.x,
-                opacity: 1,
-              }}
-              exit={{ opacity: 0 }}
-              style={popperStyles}
-              transition={{
-                duration: 0.25,
-                type: 'tween',
-              }}
-              {...attributes.popper}
-            >
-              <ul className="grid grid-flow-col grid-rows-5 grid-cols-2 gap-x-16 gap-y-4 p-8">
-                {group?.items.map((example) => (
-                  <li key={example.slug}>
-                    <Link href={example.slug}>
-                      <a
-                        data-active={example.slug === currentPath}
-                        className="fg-popper block w-64"
-                      >
-                        <div className="truncate">
-                          {getName(activeGroup, example.slug)}
-                        </div>
-                        <div className="text-sm opacity-50 line-clamp-2 h-10">
-                          {example.description || ''}
-                        </div>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+        <div
+          ref={setPopperElement}
+          className={cn('popper shadow-md transition origin-top duration-250', {
+            'opacity-100': showPopper,
+            'opacity-0 pointer-events-none': !showPopper,
+          })}
+          style={{
+            ...styles.popper,
+            transform: `${styles.popper['transform'] || ''} rotateX(${
+              showPopper ? '0deg' : '-15deg'
+            })`,
+          }}
+          {...attributes.popper}
+        >
+          <ul className="grid grid-flow-col grid-rows-5 gap-x-16 gap-y-4 p-8">
+            {group?.items.map((example) => (
+              <li key={example.slug}>
+                <Link href={example.slug}>
+                  <a
+                    data-active={example.slug === currentPath}
+                    className="fg-popper block w-64"
+                  >
+                    <div className="truncate">
+                      {getName(activeGroup, example.slug)}
+                    </div>
+                    <div className="text-sm opacity-50 line-clamp-2 h-10">
+                      {example.description || ''}
+                    </div>
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-              <div
-                className="arrow-top"
-                ref={setArrowElement}
-                style={styles.arrow}
-              />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+          <div
+            className="arrow-top transition"
+            ref={setArrowElement}
+            style={styles.arrow}
+          />
+        </div>
       </div>
 
       <div className="ml-auto mr-6 relative flex-row">

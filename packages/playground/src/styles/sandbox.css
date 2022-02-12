@@ -29,7 +29,7 @@
   color: var(--sp-colors-fg-active);
   font-family: inherit;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .pg-button:focus {

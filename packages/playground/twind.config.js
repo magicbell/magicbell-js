@@ -78,6 +78,10 @@ const config = {
       -webkit-box-orient: vertical;
       overflow: hidden;
     `,
+
+    perspective: ([distance]) => css`
+      perspective: ${distance}px;
+    `,
   },
   theme: {
     extend: {
