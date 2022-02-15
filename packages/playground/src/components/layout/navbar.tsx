@@ -125,7 +125,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
             <button
               key={group}
               data-group={group}
-              data-active={group === (activeGroup || selectedGroup)}
+              data-active={group === (showPopper ? activeGroup : selectedGroup)}
               onClick={handleSetActiveGroup}
               onMouseEnter={handleSetActiveGroup}
               className="fg-body px-4"
