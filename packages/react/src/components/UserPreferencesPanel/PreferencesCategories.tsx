@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { CategoryPreference } from '@magicbell/react-headless/dist/types/IRemoteNotificationPreferences';
 import { useEffect } from 'react';
-
 import CategoryPreferences, { ChannelType } from './CategoryPreferences';
 
 function channelToTitle(channel: ChannelType) {
@@ -36,7 +35,7 @@ export default function PreferencesCategories() {
   const headerStyle = css`
     opacity: 0.8;
     text-transform: uppercase;
-    font-size: 0.7rem !important;
+    font-size: 0.7em !important;
   `;
 
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function PreferencesCategories() {
       <div
         css={css`
           display: grid;
-          gap: 1rem;
+          gap: 1em;
           grid-template-columns: 2fr ${' 1fr'.repeat(channels.length).trim()};
         `}
       >

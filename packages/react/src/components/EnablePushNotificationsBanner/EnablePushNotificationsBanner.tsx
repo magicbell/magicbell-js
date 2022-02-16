@@ -5,7 +5,6 @@ import axios from 'axios';
 import path from 'ramda/src/path';
 import pathOr from 'ramda/src/pathOr';
 import { useLocalStorage } from 'react-use';
-
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';
 import { openWindow } from '../../lib/window';
@@ -72,7 +71,7 @@ export default function EnablePushNotificationsBanner() {
         font-size: ${footerTheme.fontSize} !important;
 
         & > * {
-          margin-left: 1rem;
+          margin-left: 1em;
         }
       `}
     >
