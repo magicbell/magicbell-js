@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/magicbell-react",
-  "version": "8.5.2",
+  "version": "8.5.3",
   "description": "React components for building a notification inbox for your app",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
