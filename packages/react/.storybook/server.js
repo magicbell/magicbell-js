@@ -41,12 +41,26 @@ server.get('/config', {
   },
 });
 
-server.get('/notification_preferences', {
+server.get("/notification_preferences", {
   notification_preferences: {
     categories: {
-      comment: { email: false },
-      new_message: { email: false },
-      _replies: { in_app: true, web_push: true },
+      comment: {
+        label: "Comment",
+        email: false,
+        web_push: true,
+        mobile_push: true,
+      },
+      new_message: {
+        label: "New message",
+        email: false,
+        web_push: true,
+        mobile_push: false,
+      },
+      _replies: {
+        label: "replies",
+        in_app: true,
+        web_push: true,
+      },
     },
   },
 });
