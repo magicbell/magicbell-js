@@ -1,7 +1,11 @@
 export type CategoryChannelPreferences = {
+  label: string;
   email: boolean;
   inApp: boolean;
   webPush: boolean;
+  mobilePush: boolean;
+  slack: boolean;
+  sms: boolean;
 };
 
 export type CategoryPreference = {
