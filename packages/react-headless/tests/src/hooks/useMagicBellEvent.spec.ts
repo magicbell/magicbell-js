@@ -1,5 +1,6 @@
+import faker from '@faker-js/faker';
 import { act, renderHook } from '@testing-library/react-hooks';
-import faker from 'faker';
+
 import useMagicBellEvent from '../../../src/hooks/useMagicBellEvent';
 import { eventAggregator } from '../../../src/lib/realtime';
 
@@ -8,7 +9,7 @@ describe('hooks', () => {
     it('invokes the handler function when an event is emmited', () => {
       const eventName = faker.random.alphaNumeric();
       const handler = jest.fn();
-      const data = faker.random.objectElement();
+      const data = faker.random.objectElement({});
 
       renderHook(() => useMagicBellEvent(eventName, handler));
 
@@ -23,7 +24,7 @@ describe('hooks', () => {
     it('cleans up on unmount', async () => {
       const eventName = faker.random.alphaNumeric();
       const handler = jest.fn();
-      const data = faker.random.objectElement();
+      const data = faker.random.objectElement({});
 
       const { unmount } = renderHook(() => useMagicBellEvent(eventName, handler));
 
@@ -41,7 +42,7 @@ describe('hooks', () => {
         it('does not invoke the handler function', () => {
           const eventName = faker.random.alphaNumeric();
           const handler = jest.fn();
-          const data = faker.random.objectElement();
+          const data = faker.random.objectElement({});
 
           renderHook(() => useMagicBellEvent(eventName, handler, { source: 'remote' }));
 
@@ -59,7 +60,7 @@ describe('hooks', () => {
         it('does not invoke the handler function', () => {
           const eventName = faker.random.alphaNumeric();
           const handler = jest.fn();
-          const data = faker.random.objectElement();
+          const data = faker.random.objectElement({});
 
           renderHook(() => useMagicBellEvent(eventName, handler, { source: 'local' }));
 

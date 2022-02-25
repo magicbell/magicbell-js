@@ -1,6 +1,7 @@
+import faker from '@faker-js/faker';
 import * as Ably from 'ably';
-import faker from 'faker';
 import { Server } from 'miragejs';
+
 import * as ajax from '../../../src/lib/ajax';
 import {
   connectToAbly,

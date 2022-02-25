@@ -1,8 +1,9 @@
+import faker from '@faker-js/faker';
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
-import faker from 'faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
+
 import * as ajax from '../../../../src/lib/ajax';
 import { eventAggregator } from '../../../../src/lib/realtime';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';

@@ -1,4 +1,4 @@
-import faker from 'faker';
+import faker from '@faker-js/faker';
 import { Response, Server } from 'miragejs';
 
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';

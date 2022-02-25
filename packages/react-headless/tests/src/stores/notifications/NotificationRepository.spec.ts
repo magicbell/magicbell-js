@@ -1,4 +1,4 @@
-import faker from 'faker';
+import faker from '@faker-js/faker';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
 
