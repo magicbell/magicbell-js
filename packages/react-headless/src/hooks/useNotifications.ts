@@ -70,6 +70,9 @@ export default function useNotifications(storeId = 'default'): NotificationStore
   useEffect(() => {
     if (!store) return;
     if (config.lastFetchedAt && !store.lastFetchedAt) fetch({ page: 1 });
+    // TODO: Update code to follow lint suggestions of add missing dependencies,
+    // remove [] or wrap parent component in callback
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config.lastFetchedAt]);
 
   if (!store) return null;

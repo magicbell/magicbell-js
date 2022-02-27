@@ -216,7 +216,7 @@ describe('lib', () => {
         await handleAblyEvent({
           name: 'notifications/seen/all',
           data: { client_id: clientId },
-        } as any);
+        } as Ably.Types.Message);
 
         expect(localEmitter).toHaveBeenCalledTimes(1);
         expect(localEmitter).toHaveBeenCalledWith('notifications.seen.all', {

@@ -12,5 +12,6 @@ module.exports = {
       'error',
       { ignoreRestSiblings: true, varsIgnorePattern: 'jsx|^_', argsIgnorePattern: '^_' },
     ],
+    'no-console': ['error'],
   },
 };

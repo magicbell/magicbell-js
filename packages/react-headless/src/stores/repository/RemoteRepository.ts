@@ -34,6 +34,8 @@ export default abstract class RemoteRepository<Item, Collection> {
    * @example
    * const notifications = await repo.findBy({ unread: true });
    */
+  // TODO: Consider alternate to any type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async findBy(queryParams: any): Promise<Collection | void> {
     try {
       const json = await fetchAPI(this.remotePathOrUrl, queryParams);

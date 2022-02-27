@@ -21,5 +21,8 @@ export default function useNotificationUnmount(
       if (fn) fn(notification);
       else notification.markAsSeen();
     };
+    // TODO: Update code to follow lint suggestions of add missing dependencies,
+    // remove [] or wrap parent component in callback
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

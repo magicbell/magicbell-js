@@ -28,6 +28,9 @@ describe('hooks', () => {
       it('fetches from the MagicBell API config endpoint', async () => {
         const useFetchPreferences = () => {
           const preferences = useNotificationPreferences();
+          // preferences not added as dependency because test will loop forever
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          // eslint-disable-next-line react-hooks/exhaustive-deps
           useEffect(() => void preferences.fetch(), []);
 
           return preferences;
@@ -55,6 +58,8 @@ describe('hooks', () => {
         const data = { categories: { test: { inApp: false } } };
         const useFetchPreferences = () => {
           const preferences = useNotificationPreferences();
+          // preferences not added as dependency because test will loop forever
+          // eslint-disable-next-line react-hooks/exhaustive-deps
           useEffect(() => void preferences.save(data), []);
 
           return preferences;

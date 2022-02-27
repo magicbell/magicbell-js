@@ -119,6 +119,10 @@ describe('stores', () => {
           });
 
           it('sets the fetch timestamp for the store', async () => {
+            // We use any because undefined doesn't work, converting the date to
+            // a string (x.toISOString()) results in the error:
+            // get error  (intermediate value).getTime is not a function
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const now = new Date() as any;
             const spy = jest.spyOn(global, 'Date').mockImplementation(() => now);
             const { result } = renderHook(() => useNotificationStoresCollection());

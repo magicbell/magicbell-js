@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { eventAggregator, EventSource } from '../lib/realtime';
 
 interface HookOptions {
@@ -29,5 +30,8 @@ export default function useMagicBellEvent(
     return () => {
       eventAggregator.off(event, callback);
     };
+    // TODO: Update code to follow lint suggestions of add missing dependencies,
+    // remove [] or wrap parent component in callback
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }

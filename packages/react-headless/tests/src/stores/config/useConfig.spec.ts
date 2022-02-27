@@ -26,7 +26,7 @@ describe('hooks', () => {
       it('fetches from the MagicBell API config endpoint', async () => {
         const useFetchConfig = () => {
           const config = useConfig();
-          useEffect(() => void config.fetch(), []);
+          useEffect(() => void config.fetch(), [config]);
 
           return config;
         };

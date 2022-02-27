@@ -13,6 +13,9 @@ function ensureArray(value) {
 
 export type NotificationCompareStrategy = (
   notification: IRemoteNotification,
+  // TODO: Update this to unknown for V2. Also verify type is still used
+  // in code base.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   context: Record<string, any>,
   comparator?: IStrategyComparator,
 ) => { result: boolean; delta: string[] };
@@ -27,6 +30,8 @@ export type NotificationCompareStrategy = (
  */
 export function objMatchesContext(
   notification: IRemoteNotification,
+  // TODO: Convert this to unknown in V2
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   context: Record<string, any>,
   comparator: IStrategyComparator = eq,
 ) {

@@ -3,6 +3,7 @@ import findIndex from 'ramda/src/findIndex';
 import mergeRight from 'ramda/src/mergeRight';
 import propEq from 'ramda/src/propEq';
 import create from 'zustand';
+
 import { emitEvent } from '../../lib/realtime';
 import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
 import buildStore from './helpers/buildStore';
@@ -42,6 +43,8 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         }),
       );
     } else {
+      // Provided for development support.
+      // eslint-disable-next-line no-console
       console.error(`Store not found. Define a store with the ${storeId} ID`);
     }
   },
