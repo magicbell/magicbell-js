@@ -104,7 +104,7 @@
     "@magicbell/react-headless": "^2.6.1",
     "@tippyjs/react": "^4.2.4",
     "ably": "^1.2.14",
-    "axios": "^0.24.0",
+    "axios": "^0.26.0",
     "dayjs": "^1.10.4",
     "humps": "^2.0.1",
     "immer": "^9.0.7",
