@@ -9,6 +9,7 @@ export { default as useNotificationUnmount } from './hooks/useNotificationUnmoun
 export { deleteAPI, fetchAPI, postAPI, putAPI } from './lib/ajax';
 export { secondsToDate, toDate, toUnix } from './lib/date';
 export { eventAggregator, pushEventAggregator } from './lib/realtime';
+export { registry } from './lib/registry';
 export { default as clientSettings } from './stores/clientSettings';
 export { default as useConfig } from './stores/config';
 export { default as useNotificationPreferences } from './stores/notification_preferences';

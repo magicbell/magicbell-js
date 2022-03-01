@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import clientSettings from '../stores/clientSettings';
+import { registry } from './registry';
 
 interface ServerResponse {
   data: unknown;
@@ -55,7 +56,10 @@ function sendAPIRequest(
   const { serverURL } = clientSettings.getState();
   const headers = buildAPIHeaders();
 
-  return axios({
+  // get axios from the registry, to allow for mocking and use of interceptors
+  const client = registry.get('axios', axios);
+
+  return client({
     method,
     url,
     data,
