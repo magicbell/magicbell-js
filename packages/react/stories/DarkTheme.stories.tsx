@@ -1,7 +1,6 @@
 import { INotification } from '@magicbell/react-headless';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-
 import FloatingNotificationInbox from '../src/components/FloatingNotificationInbox';
 import MagicBell, { MagicBellProps } from '../src/components/MagicBell';
 import { IMagicBellTheme } from '../src/context/Theme';
@@ -53,7 +52,7 @@ const Template: Story<IStory> = ({ onAllRead, onNotificationClick, ...args }: IS
 export const Default = Template.bind({});
 Default.args = {
   apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@supportbee.com',
+  userEmail: 'josue@magicbell.io',
   userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
   theme: {
     icon: { borderColor: 'white' },

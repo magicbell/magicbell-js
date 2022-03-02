@@ -1,6 +1,5 @@
 import { MetaComponent, StoryComponent } from '@storybook/react';
 import React from 'react';
-
 import { MagicBellProvider } from '../src';
 import PushNotificationsSubscriber from '../src/components/PushNotificationsSubscriber';
 
@@ -22,6 +21,6 @@ const Template: StoryComponent<typeof MagicBellProvider> = (props) => (
 export const Default = Template.bind({});
 Default.args = {
   apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@supportbee.com',
+  userEmail: 'josue@magicbell.io',
   userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
 };
