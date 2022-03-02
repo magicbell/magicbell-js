@@ -41,7 +41,7 @@ export default function Index() {
       BellIcon={<BellIcon />}
       theme={theme}
     >
-      {(props) => <FloatingNotificationInbox height={300} {...props} />}
+      {(props) => <FloatingNotificationInbox height={450} {...props} />}
     </MagicBell>
   );
 }

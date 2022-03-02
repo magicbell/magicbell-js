@@ -2,7 +2,6 @@
   "name": "magicbell-project",
   "description": "Render the MagicBell in a navbar",
   "dependencies": {
-    "@magicbell/magicbell-react": "latest",
-    "twind": "0.16.16"
+    "@magicbell/magicbell-react": "latest"
   }
 }

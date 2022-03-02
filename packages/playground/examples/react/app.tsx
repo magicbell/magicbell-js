@@ -9,7 +9,7 @@ export default function Index() {
       userEmail="__MAGICBELL_USER_EMAIL__"
       userKey="__MAGICBELL_USER_KEY__"
     >
-      {(props) => <FloatingNotificationInbox height={300} {...props} />}
+      {(props) => <FloatingNotificationInbox height={450} {...props} />}
     </MagicBell>
   );
 }
