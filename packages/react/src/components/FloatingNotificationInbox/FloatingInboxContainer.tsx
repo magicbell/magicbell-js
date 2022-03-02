@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+
 import { NotificationInboxProps } from '../NotificationInbox';
 import Popover, { PopoverPlacement } from '../Popover';
 import Arrow from './Arrow';

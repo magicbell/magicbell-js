@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { openActionUrl } from '../ClickableNotification/eventHandlers';
 import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
 import { NotificationListItem } from '../NotificationList/NotificationList';

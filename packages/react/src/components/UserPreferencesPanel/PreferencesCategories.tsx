@@ -3,6 +3,7 @@ import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { CategoryPreference } from '@magicbell/react-headless/dist/types/IRemoteNotificationPreferences';
 import { useEffect } from 'react';
+
 import CategoryPreferences, { ChannelType } from './CategoryPreferences';
 
 function channelToTitle(channel: ChannelType) {
