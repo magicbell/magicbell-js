@@ -143,11 +143,20 @@
 }
 
 @media (max-width: 1024px) {
+  .sp-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .sp-layout {
     flex-direction: column;
+    height: 100%;
   }
   .sp-layout > .sp-stack {
     --sp-layout-height: 50vh;
+  }
+  .sp-layout > .sp-stack:not(:first-child) {
+    --sp-layout-height: auto;
   }
   .sp-layout > :not(:first-child) {
     border-left: none;
