@@ -10,8 +10,24 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 beforeEach(() => {
   useNotificationPreferences.setState({
     categories: {
-      comments: { email: false, webPush: true, inApp: true },
-      new_reply: { email: true, webPush: false, inApp: false },
+      comments: {
+        label: 'Comments',
+        email: false,
+        webPush: true,
+        inApp: true,
+        mobilePush: true,
+        slack: true,
+        sms: true,
+      },
+      new_reply: {
+        label: 'New Reply',
+        email: true,
+        webPush: false,
+        inApp: false,
+        mobilePush: true,
+        slack: true,
+        sms: true,
+      },
     },
     lastFetchedAt: Date.now(),
   });
