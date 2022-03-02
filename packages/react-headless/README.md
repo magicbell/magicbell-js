@@ -26,6 +26,7 @@ notification inbox for your site powered by [MagicBell](https://magicbell.com).
   - [useBell](#usebell)
   - [useMagicBellEvent](#usemagicbellevent)
   - [useNotification](#usenotification)
+  - [useNotificationPreferences](#usenotificationpreferences)
 
 - [The notification store](#the-notification-store)
 
@@ -239,6 +240,39 @@ function Notification(rawNotification) {
       <p>{notification.title}</p>
       <p>{notification.sentAt.format('DDD MM, YYYY')}</p>
     </button>
+  );
+}
+```
+
+## useNotificationPreferences
+
+Use this hook to fetch and update the notification preferences for the user.
+
+```javascript
+import { useNotificationPreferences } from '@magicbell/react-headless';
+
+function NotificationPreferences() {
+  const { fetch, categories } = useNotificationPreferences();
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  return (
+    <ul>
+      {categories.map((category) => (
+        <li key={category.slug}>
+          <p>{category.label}</p>
+          <div>
+            {category.channels.map((channel) => (
+              <p key={channel.slug}>
+                {channel.label}: {channel.enabled}
+              </p>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 ```
