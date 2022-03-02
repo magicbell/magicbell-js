@@ -1691,18 +1691,18 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@magicbell/react-headless@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.1.tgz#7b4a1b305f09b8f8fce2d51a9b651e3fbfebfa68"
-  integrity sha512-mS0i6RvxifFRKO4qN1xDmdkwWuKRWBJ9c/TpKhNAx37ZBLwj24ZWZVqP8RI7F0Wx37hzcUrmrR69ny0wPCfOzQ==
+"@magicbell/react-headless@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.3.tgz#f93793fe234d8f7627c2a1a5cae768c679fbfc95"
+  integrity sha512-RgjYkwZFExxAsV8zLL9roO1G5PS7cnZSrBsVu3S1KXJVPeI2MfqneL5N0FSKAfmI8KrSVB2076yZr50oCJKOfQ==
   dependencies:
     ably "^1.2.14"
-    axios "^0.24.0"
+    axios "^0.26.0"
     dayjs "^1.10.7"
     humps "^2.0.1"
     immer "^9.0.6"
     mitt "^3.0.0"
-    ramda "^0.27.2"
+    ramda "^0.28.0"
     tslib "^2.3.1"
     zustand "^3.6.4"
 
@@ -3940,13 +3940,6 @@ axe-core@^4.3.5:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.4.1.tgz#7dbdc25989298f9ad006645cd396782443757413"
   integrity sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==
-
-axios@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
-  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
-  dependencies:
-    follow-redirects "^1.14.4"
 
 axios@^0.26.0:
   version "0.26.0"
@@ -6691,7 +6684,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.14.4, follow-redirects@^1.14.8:
+follow-redirects@^1.14.8:
   version "1.14.9"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
   integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
@@ -11101,11 +11094,6 @@ ramda@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.21.0.tgz#a001abedb3ff61077d4ff1d577d44de77e8d0a35"
   integrity sha1-oAGr7bP/YQd9T/HVd9RN536NCjU=
-
-ramda@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.27.2.tgz#84463226f7f36dc33592f6f4ed6374c48306c3f1"
-  integrity sha512-SbiLPU40JuJniHexQSAgad32hfwd+DRUdwF2PlVuI5RZD0/vahUco7R8vD86J/tcEKKF9vZrUVwgtmGCqlCKyA==
 
 ramda@^0.28.0:
   version "0.28.0"
