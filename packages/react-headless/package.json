@@ -4,7 +4,9 @@
   "description": "Hooks to build a notification inbox",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
-    "Josue Montano <josue@magicbell.io>"
+    "Josue Montano <josuemontanoa@gmail.com>",
+    "Eric Hosick <erichosick@gmail.com>",
+    "Stephan Meijer <stephan.meijer@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
