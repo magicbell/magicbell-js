@@ -1,4 +1,4 @@
-import isNil from 'ramda/src/isNil';
+import { isNil } from 'ramda';
 
 /**
  * Function to parse an object.

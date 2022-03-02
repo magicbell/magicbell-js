@@ -1,7 +1,5 @@
 import produce from 'immer';
-import findIndex from 'ramda/src/findIndex';
-import mergeRight from 'ramda/src/mergeRight';
-import propEq from 'ramda/src/propEq';
+import { findIndex, mergeRight, propEq } from 'ramda';
 import create from 'zustand';
 
 import { emitEvent } from '../../lib/realtime';

@@ -1,4 +1,4 @@
-import isNil from 'ramda/src/isNil';
+import { isNil } from 'ramda';
 
 import { IRemoteNotification } from '../../../types';
 import { IStrategyComparator } from '../../../types/INotificationStore';

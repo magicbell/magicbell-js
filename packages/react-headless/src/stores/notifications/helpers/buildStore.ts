@@ -1,4 +1,4 @@
-import mergeRight from 'ramda/src/mergeRight';
+import { mergeRight } from 'ramda';
 
 import INotificationStore from '../../../types/INotificationStore';
 

@@ -1,4 +1,4 @@
-import uniqBy from 'ramda/src/uniqBy';
+import { uniqBy } from 'ramda';
 
 import INotificationStore from '../../../types/INotificationStore';
 

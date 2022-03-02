@@ -1,4 +1,4 @@
-import isNil from 'ramda/src/isNil';
+import { isNil } from 'ramda';
 
 import { secondsToDate } from '../lib/date';
 import { parseJSON } from '../lib/json';

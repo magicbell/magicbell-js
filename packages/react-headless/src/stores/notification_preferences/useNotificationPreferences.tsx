@@ -1,4 +1,4 @@
-import mergeDeepRight from 'ramda/src/mergeDeepRight';
+import { mergeDeepRight } from 'ramda';
 import create from 'zustand';
 
 import { DeepPartial } from '../../types/DeepPartial';
