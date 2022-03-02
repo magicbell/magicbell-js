@@ -368,13 +368,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^8.5.5":
-  version "8.5.5"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.5.5.tgz#9fe3c9679184717258d3e3dde75a1341cf9937fa"
-  integrity sha512-KmHf51CELUUGdWyh7oP+stgg3tBykxy/fCIZJ4DmcGBDJRd+W4i/DZFXqghRR7860h10aE4zxPdaP03J8lrQ4g==
+"@magicbell/magicbell-react@^8.5.6":
+  version "8.5.6"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.5.6.tgz#8f7f94dd60ca51621a7add0ca31ac0f0d15928f5"
+  integrity sha512-RLRQOg7UNC9jEamjwWSWjO6x9BQ9TONO/x4e5bqm0Q4VN1M7SI9cx7Bt531XDNBSBQd+cDOuAw7QbvSvKS8q7w==
   dependencies:
     "@emotion/react" "^11.4.1"
-    "@magicbell/react-headless" "^2.6.3"
+    "@magicbell/react-headless" "^2.6.4"
     "@tippyjs/react" "^4.2.4"
     ably "^1.2.14"
     axios "^0.26.0"
@@ -390,14 +390,14 @@
     tslib "^2.3.1"
     zustand "^3.6.4"
 
-"@magicbell/react-headless@^2.6.3":
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.3.tgz#f93793fe234d8f7627c2a1a5cae768c679fbfc95"
-  integrity sha512-RgjYkwZFExxAsV8zLL9roO1G5PS7cnZSrBsVu3S1KXJVPeI2MfqneL5N0FSKAfmI8KrSVB2076yZr50oCJKOfQ==
+"@magicbell/react-headless@^2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.4.tgz#093af1dad9a7a693eeaac56f71a9caa83094b6a5"
+  integrity sha512-0gToQaSHVTEAIwi8DMtBotu2iH5sNUC0XMfDsBqNQ/c9uZ9fEsQ36/pvpTzx65yQhwseRaWNZy8xY1t/+vXBdQ==
   dependencies:
     ably "^1.2.14"
     axios "^0.26.0"
-    dayjs "^1.10.7"
+    dayjs "1.10.8"
     humps "^2.0.1"
     immer "^9.0.6"
     mitt "^3.0.0"
@@ -1501,7 +1501,12 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dayjs@^1.10.4, dayjs@^1.10.7:
+dayjs@1.10.8:
+  version "1.10.8"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.8.tgz#267df4bc6276fcb33c04a6735287e3f429abec41"
+  integrity sha512-wbNwDfBHHur9UOzNUjeKUOJ0fCb0a52Wx0xInmQ7Y8FstyajiV1NmK1e00cxsr9YrE9r7yAChE0VvpuY5Rnlow==
+
+dayjs@^1.10.4:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
