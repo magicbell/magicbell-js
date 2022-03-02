@@ -35,12 +35,18 @@ export async function getStaticProps({
     getAllExamples(),
   ]);
 
-  const config = examples.find((x) => x.slug === slug);
-  const files = reshapeForSandpack(example, config.template) || null;
-  const dependencies = config.dependencies;
-  const template = config.template;
+  const { template, dependencies } =
+    examples.find((x) => x.slug === slug) || {};
 
-  const props = { files, template, dependencies, examples, slug };
+  const files = (await reshapeForSandpack(example, template)) || null;
+
+  const props = {
+    files,
+    template,
+    dependencies,
+    examples,
+    slug,
+  };
 
   return { props };
 }

@@ -65,6 +65,7 @@ function Sandbox({
       key={resetKey}
       template={template}
       customSetup={customSetup}
+      activePath={Object.entries(files).find((x) => x['active'])?.[0]}
     >
       <ClasserProvider classes={classes}>
         <SandpackThemeProvider theme={theme}>
