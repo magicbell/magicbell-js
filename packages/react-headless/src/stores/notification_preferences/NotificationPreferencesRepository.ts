@@ -1,7 +1,6 @@
 import humps from 'humps';
 
 import { fetchAPI, putAPI } from '../../lib/ajax';
-import { DeepPartial } from '../../types/DeepPartial';
 import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';
 
 interface IWrappedNotificationPreferences {
@@ -23,21 +22,28 @@ export default class NotificationPreferencesRepository {
   }
 
   /**
-   * Get the user preferences from the API server.
+   * Get the user preferences from the API server. Object properties will be camelized.
+   * Wrapping of message to server is handled for us (Design Principle: The Principle of Least
+   * Knowledge).
    */
   async get(): Promise<IWrappedNotificationPreferences> {
-    const json = await fetchAPI(this.remotePathOrUrl);
+    const url = this.remotePathOrUrl;
+    const json = await fetchAPI(url, undefined, { 'Accept-Version': 'v2' });
+
     return humps.camelizeKeys(json);
   }
 
   /**
-   * Update user preferences in the API server.
+   * Update user preferences in the API server. Object properties will be decamelized before
+   * being send to the server.
    *
-   * @param data Data to send to the server.
+   * @param data Preferences to send to the server.
    */
-  update(data: DeepPartial<IWrappedNotificationPreferences>): Promise<boolean> {
-    return putAPI(this.remotePathOrUrl, humps.decamelizeKeys(data))
-      .then(() => true)
-      .catch(() => false);
+  async update(data: IRemoteNotificationPreferences): Promise<IWrappedNotificationPreferences> {
+    const url = this.remotePathOrUrl;
+    const payload = humps.decamelizeKeys({ notificationPreferences: data });
+    const json = await putAPI(url, payload, undefined, { 'Accept-Version': 'v2' });
+
+    return humps.camelizeKeys(json);
   }
 }

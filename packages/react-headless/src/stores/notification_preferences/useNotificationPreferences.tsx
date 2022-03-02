@@ -1,16 +1,13 @@
-import { mergeDeepRight } from 'ramda';
 import create from 'zustand';
 
-import { DeepPartial } from '../../types/DeepPartial';
-import IRemoteNotificationPreferences, { CategoryPreference } from '../../types/IRemoteNotificationPreferences';
+import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';
 import NotificationPreferencesRepository from './NotificationPreferencesRepository';
 
-interface NotificationPreferences extends IRemoteNotificationPreferences {
+export interface INotificationPreferences extends IRemoteNotificationPreferences {
   lastFetchedAt?: number;
 
   /**
-   * Fetch the notification preferences for the current user from the MagicBell
-   * server.
+   * Fetch the notification preferences for the current user from the MagicBell server.
    */
   fetch: () => Promise<void>;
 
@@ -19,36 +16,43 @@ interface NotificationPreferences extends IRemoteNotificationPreferences {
    *
    * @preferences Object containing the new preferences.
    */
-  save: (preferences: { categories: DeepPartial<CategoryPreference> }) => Promise<void>;
+  save: (preferences: IRemoteNotificationPreferences) => Promise<void>;
 
   _repository: NotificationPreferencesRepository;
 }
 
 /**
- * Remote notification preferences store. It contains all preferences stored in
- * MagicBell servers for this user.
+ * Remote notification preferences store. It contains all preferences stored in MagicBell servers for this user.
  *
  * @example
  * const { fetch } = useNotificationPreferences();
  * useEffect(() => fetch(), []);
  */
-const useNotificationPreferences = create<NotificationPreferences>((set, get) => ({
-  categories: {},
+const useNotificationPreferences = create<INotificationPreferences>((set, get) => ({
+  categories: [],
 
   _repository: new NotificationPreferencesRepository(),
 
   fetch: async () => {
     const { _repository } = get();
-    const { notificationPreferences: json } = await _repository.get();
 
-    set({ ...json, lastFetchedAt: Date.now() });
+    try {
+      const { notificationPreferences: json } = await _repository.get();
+      set({ ...json, lastFetchedAt: Date.now() });
+    } catch (error) {
+      set({ categories: [], lastFetchedAt: Date.now() });
+    }
   },
 
-  save: async (data) => {
-    const { _repository, categories } = get();
-    _repository.update({ notificationPreferences: data });
+  save: async (preferences) => {
+    const { _repository } = get();
 
-    set({ categories: mergeDeepRight(categories, data.categories), lastFetchedAt: Date.now() });
+    try {
+      const { notificationPreferences: json } = await _repository.update(preferences);
+      set({ ...json, lastFetchedAt: Date.now() });
+    } catch (error) {
+      set({ categories: [], lastFetchedAt: Date.now() });
+    }
   },
 }));
 
