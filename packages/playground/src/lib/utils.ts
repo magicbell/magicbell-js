@@ -1,7 +1,12 @@
-import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
+import {
+  SandpackFile,
+  SandpackPredefinedTemplate,
+} from '@codesandbox/sandpack-react';
 import { globby } from 'globby';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+
+import { TEMPLATES } from '~/lib/templates';
 
 export type ExampleConfig = {
   name: string;
@@ -14,7 +19,12 @@ export type ExampleConfig = {
 export async function getAllExamples(): Promise<ExampleConfig[]> {
   const packages = await globby('*/package.json', {
     cwd: './examples',
+    ignore: ['shared'],
   });
+
+  const shared = JSON.parse(
+    await fs.readFile('./examples/shared/package.json', { encoding: 'utf-8' }),
+  );
 
   return Promise.all(
     packages.map((pkg) =>
@@ -22,8 +32,16 @@ export async function getAllExamples(): Promise<ExampleConfig[]> {
         .readFile(path.join('./examples', pkg), { encoding: 'utf-8' })
         .then((data) => {
           const pkgJSON = JSON.parse(data) as ExampleConfig;
+
+          const dependencies = Object.assign(
+            {},
+            shared.dependencies,
+            pkgJSON.dependencies,
+          );
+
           return {
             ...pkgJSON,
+            dependencies,
             slug: path.basename(path.dirname(pkg)),
             template: getSandpackTemplate(pkgJSON),
           };
@@ -32,42 +50,7 @@ export async function getAllExamples(): Promise<ExampleConfig[]> {
   );
 }
 
-function getIndexHtml(template: SandpackPredefinedTemplate) {
-  const body =
-    template === 'vanilla-ts'
-      ? '<div id="app"></div><script src="src/index.js"></script>'
-      : template === 'react-ts'
-      ? '<div id="root"></div>'
-      : template === 'angular'
-      ? '<app-root></app-root>'
-      : template === 'vue'
-      ? '<div id="app"></div>'
-      : template === 'vue3'
-      ? '<div id="app"></div>'
-      : '';
-
-  return `<!doctype html>
-<html lang="en">
-            
-<head>
-    <meta charset="utf-8">
-    <title>MagicBell Playground</title>
-    <base href="/">
-            
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-            
-<body>
-  <div class="inline-block">
-    ${body}
-  </div>
-</body>
-            
-</html>`;
-}
-
-export async function getFilesForExample(
+export async function readFolderContents(
   folder: string,
 ): Promise<Record<string, { code: string }>> {
   const filepaths = await globby(`**/*`, {
@@ -90,6 +73,12 @@ export async function getFilesForExample(
   return files;
 }
 
+export async function getFilesForExample(
+  folder: string,
+): Promise<Record<string, { code: string }>> {
+  return readFolderContents(folder);
+}
+
 export function getSandpackTemplate(
   config: ExampleConfig,
 ): SandpackPredefinedTemplate {
@@ -106,7 +95,7 @@ function pipe(...functions) {
     );
 }
 
-function rename(current: string, next: string) {
+function move(current: string, next: string) {
   return (obj) => {
     if (!obj.hasOwnProperty(current)) return obj;
     const nextObj = { ...obj, [next]: obj[current] };
@@ -116,12 +105,24 @@ function rename(current: string, next: string) {
 }
 
 function add(name: string, content: string, options: Record<string, any> = {}) {
+  return (obj) => ({
+    ...obj,
+    [name]: { code: content, ...options },
+  });
+}
+
+function rm(name: string) {
   return (obj) => {
-    return {
-      ...obj,
-      [name]: { code: content, ...options },
-    };
+    const { [name]: _, ...rest } = obj;
+    return rest;
   };
+}
+
+function edit(name: string, fn: (file: SandpackFile) => SandpackFile) {
+  return (obj) => ({
+    ...obj,
+    [name]: fn(obj[name]),
+  });
 }
 
 /**
@@ -132,42 +133,38 @@ function add(name: string, content: string, options: Record<string, any> = {}) {
  * @param files
  * @param template
  */
-export function reshapeForSandpack(
+export async function reshapeForSandpack(
   files: Record<string, { code: string }>,
   template: SandpackPredefinedTemplate,
-): Record<string, { code: string }> {
-  const newFiles = { ...files };
+): Promise<Record<string, { code: string }>> {
+  const shared = await readFolderContents('shared');
+  const ops = [];
+
+  for (const [file, { code }] of Object.entries(shared)) {
+    ops.push(add(file, code, { hidden: true }));
+  }
+
+  for (const [file, code] of Object.entries(TEMPLATES[template])) {
+    ops.push(add(file, code, { hidden: true }));
+  }
 
   // Sandpack won't use the template if we include a package.json
-  delete newFiles['/package.json'];
+  ops.push(rm('/package.json'));
 
   if (template === 'vanilla-ts') {
-    return pipe(
-      rename('/index.ts', '/src/index.ts'),
-      add('/index.html', getIndexHtml(template), { hidden: true }),
-    )(newFiles);
+    ops.push(edit('/app.ts', (file) => ({ ...file, active: true })));
   } else if (template === 'react-ts') {
-    return pipe(
-      rename('/app.tsx', '/App.tsx'),
-      add('/public/index.html', getIndexHtml(template), { hidden: true }),
-    )(newFiles);
+    ops.push(move('/app.tsx', '/App.tsx'));
   } else if (template === 'angular') {
-    return pipe(
-      rename('/app.component.ts', '/src/app/app.component.ts'),
-      rename('/app.component.html', '/src/app/app.component.html'),
-      add('/src/index.html', getIndexHtml(template), { hidden: true }),
-    )(newFiles);
+    ops.push(
+      move('/app.component.ts', '/src/app/app.component.ts'),
+      move('/app.component.html', '/src/app/app.component.html'),
+    );
   } else if (template === 'vue') {
-    return pipe(
-      rename('/app.vue', '/src/App.vue'),
-      add('/public/index.html', getIndexHtml(template), { hidden: true }),
-    )(newFiles);
+    ops.push(move('/app.vue', '/src/App.vue'));
   } else if (template === 'vue3') {
-    return pipe(
-      rename('/app.vue', '/src/App.vue'),
-      add('/public/index.html', getIndexHtml(template), { hidden: true }),
-    )(newFiles);
-  } else {
-    return newFiles;
+    ops.push(move('/app.vue', '/src/App.vue'));
   }
+
+  return pipe(...ops)(files);
 }
