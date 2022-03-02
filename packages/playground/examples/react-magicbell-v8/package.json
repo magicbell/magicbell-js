@@ -1,7 +1,0 @@
-{
-  "name": "magicbell-project",
-  "description": "Using a specific version of MagicBell",
-  "dependencies": {
-    "@magicbell/magicbell-react": "8.0.0"
-  }
-}
