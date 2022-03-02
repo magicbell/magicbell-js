@@ -3,7 +3,7 @@ import 'dayjs/locale/pt-br';
 import 'dayjs/locale/de';
 
 import dayjs from 'dayjs';
-import mergeDeepRight from 'ramda/src/mergeDeepRight';
+import { mergeDeepRight } from 'ramda';
 
 import de from './translations/de';
 import es from './translations/es';

@@ -1,5 +1,5 @@
 import { MagicBellProvider as Provider } from '@magicbell/react-headless';
-import mergeDeepRight from 'ramda/src/mergeDeepRight';
+import { mergeDeepRight } from 'ramda';
 import React from 'react';
 
 import CurrentProviderContext from '../../context/CurrentProviderContext';

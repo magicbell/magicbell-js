@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/react';
 import { useConfig, useNotifications } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
-import pathOr from 'ramda/src/pathOr';
+import { pathOr } from 'ramda';
 import { ReactElement } from 'react';
 
 import { useTranslate } from '../../../context/TranslationsContext';

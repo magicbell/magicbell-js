@@ -2,9 +2,9 @@
 import { css, jsx } from '@emotion/react';
 import { clientSettings, useConfig } from '@magicbell/react-headless';
 import axios from 'axios';
-import path from 'ramda/src/path';
-import pathOr from 'ramda/src/pathOr';
+import { path, pathOr } from 'ramda';
 import { useLocalStorage } from 'react-use';
+
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';
 import { openWindow } from '../../lib/window';

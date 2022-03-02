@@ -1,6 +1,7 @@
 import { useConfig } from '@magicbell/react-headless';
-import path from 'ramda/src/path';
+import { path } from 'ramda';
 import { useEffect } from 'react';
+
 import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 
 export interface Props {

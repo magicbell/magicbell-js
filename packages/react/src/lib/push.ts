@@ -1,6 +1,6 @@
 import { clientSettings, IRemoteConfig, postAPI } from '@magicbell/react-headless';
 import isEmpty from 'lodash/isEmpty';
-import path from 'ramda/src/path';
+import { path } from 'ramda';
 
 function stringToUint8Array(plainString: string) {
   const padding = '='.repeat((4 - (plainString.length % 4)) % 4);

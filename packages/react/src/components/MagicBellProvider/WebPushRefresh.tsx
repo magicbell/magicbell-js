@@ -1,5 +1,5 @@
 import IRemoteConfig from '@magicbell/react-headless/dist/types/IRemoteConfig';
-import pathOr from 'ramda/src/pathOr';
+import { pathOr } from 'ramda';
 import React from 'react';
 
 interface Props {

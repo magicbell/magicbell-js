@@ -1,5 +1,5 @@
 import { useConfig } from '@magicbell/react-headless';
-import pathOr from 'ramda/src/pathOr';
+import { pathOr } from 'ramda';
 import React from 'react';
 
 import MagicBellLogo from './MagicBellLogo';

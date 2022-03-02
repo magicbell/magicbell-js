@@ -1,4 +1,4 @@
-import pathOr from 'ramda/src/pathOr';
+import { pathOr } from 'ramda';
 import { createContext, useCallback, useContext } from 'react';
 
 const TranslationsContext = createContext<any>({});

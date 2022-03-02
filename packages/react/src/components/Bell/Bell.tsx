@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useBell } from '@magicbell/react-headless';
-import isNil from 'ramda/src/isNil';
+import { isNil } from 'ramda';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { cleanslate } from '../Styled';
