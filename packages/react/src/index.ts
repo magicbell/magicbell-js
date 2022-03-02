@@ -1,23 +1,6 @@
 import MagicBell from './components/MagicBell';
 export default MagicBell;
 
-export {
-  clientSettings,
-  eventAggregator,
-  INotification,
-  INotificationsStoresCollection,
-  INotificationStore,
-  IRemoteConfig,
-  IRemoteNotification,
-  IRemoteNotificationPreferences,
-  Notification,
-  useMagicBellEvent,
-  useNotification,
-  useNotificationPreferences,
-  useNotifications,
-  useNotificationStoresCollection,
-  useNotificationUnmount,
-} from '@magicbell/react-headless';
 export { default as Badge } from './components/Badge';
 export { default as Bell } from './components/Bell';
 export {
@@ -35,13 +18,31 @@ export { default as NotificationContent } from './components/NotificationContent
 export { default as NotificationInbox } from './components/NotificationInbox';
 export { default as NotificationList } from './components/NotificationList';
 export { default as NotificationState } from './components/NotificationState';
-export { default as Popover } from './components/Popover';
 export type { PopoverPlacement } from './components/Popover';
+export { default as Popover } from './components/Popover';
 export { default as PushNotificationsSubscriber } from './components/PushNotificationsSubscriber';
 export { default as Timestamp } from './components/Timestamp';
 export { default as NotificationPreferences } from './components/UserPreferencesPanel/PreferencesCategories';
 export { default as MagicBellContext, useMagicBellContext } from './context/MagicBellContext';
 export { default as MagicBellThemeContext, useTheme } from './context/MagicBellThemeContext';
-export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export type { IMagicBellTheme } from './context/Theme';
+export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export { darken, toRGBA } from './lib/color';
+export {
+  clientSettings,
+  eventAggregator,
+  INotification,
+  INotificationsStoresCollection,
+  INotificationStore,
+  IRemoteConfig,
+  IRemoteNotification,
+  IRemoteNotificationPreferences,
+  Notification,
+  registry,
+  useMagicBellEvent,
+  useNotification,
+  useNotificationPreferences,
+  useNotifications,
+  useNotificationStoresCollection,
+  useNotificationUnmount,
+} from '@magicbell/react-headless';
