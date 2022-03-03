@@ -1,6 +1,5 @@
 import { MetaComponent, StoryComponent } from '@storybook/react';
 import React from 'react';
-
 import MagicBellProvider from '../src/components/MagicBellProvider';
 import NotificationInbox from '../src/components/NotificationInbox';
 
@@ -13,15 +12,23 @@ export default {
   },
 } as MetaComponent<typeof NotificationInbox>;
 
-const Template: StoryComponent<typeof NotificationInbox> = (props) => (
-  <MagicBellProvider apiKey="">
+const Template: StoryComponent<typeof NotificationInbox> = ({
+  apiKey,
+  userEmail,
+  userKey,
+  ...props
+}) => (
+  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
     <NotificationInbox {...props} />
   </MagicBellProvider>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  height: 300,
+  height: 400,
+  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
+  userEmail: 'josue@magicbell.io',
+  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
 };
 
 export const WithCustomPreferences = Template.bind({});
