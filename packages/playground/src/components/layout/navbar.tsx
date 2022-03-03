@@ -28,7 +28,7 @@ const groupNames = {
 
 function getName(group, slug) {
   const parts = slug.split('-');
-  return parts[1] && parts[0] === group
+  return parts[1] && (parts[0] === group || parts[0] === 'embeddable')
     ? parts.slice(1).join(' ')
     : parts.join(' ');
 }
