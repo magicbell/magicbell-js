@@ -23,6 +23,7 @@ export interface WidgetProps extends FrameContentProps {
   }>;
   theme: DeepPartial<IMagicBellTheme>;
   onNewNotification?: (notification: Notification) => void;
+  defaultIsOpen?: boolean;
 }
 
 /**
@@ -55,6 +56,7 @@ export default class Widget extends Component<WidgetProps> {
       serverURL,
       images,
       onNewNotification,
+      defaultIsOpen,
       ...inboxProps
     } = this.props;
 
@@ -72,6 +74,7 @@ export default class Widget extends Component<WidgetProps> {
           locale={locale}
           images={images}
           serverURL={serverURL}
+          defaultIsOpen={defaultIsOpen}
           {...optionalProps}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
