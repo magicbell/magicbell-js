@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "description": "Show the inbox on initial load",
+  "dependencies": {
+    "@magicbell/embeddable": "latest"
+  }
+}
