@@ -46,7 +46,7 @@ export const TEMPLATES: Partial<
       import 'twind/shim';
       import "./styles.css";
       import '../mocks';
-      import '../app.ts',
+      import '../app.ts';
     `),
   },
 
