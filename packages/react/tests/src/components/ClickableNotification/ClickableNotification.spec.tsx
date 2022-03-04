@@ -101,6 +101,8 @@ test('passes the notification object to the onClick callback', () => {
 });
 
 test('opens the action url in the same tab', () => {
+  global.open = jest.fn();
+
   render(
     <ClickableNotification
       notification={{
@@ -117,4 +119,44 @@ test('opens the action url in the same tab', () => {
 
   expect(global.open).toHaveBeenCalledTimes(1);
   expect(global.open).toHaveBeenCalledWith('https://example.com', '_self');
+});
+
+test('invokes the click handler when clicking on a link in the notification', () => {
+  const onClick = jest.fn();
+  const notification = {
+    ...sampleNotification,
+    title: 'notification',
+    content: 'Some text <a href="https://example.com">browse the docs</a> and more text',
+  };
+
+  render(<ClickableNotification notification={notification} onClick={onClick} />);
+  const link = screen.getByRole('link', { name: /browse the docs/i });
+  userEvent.click(link);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledWith(
+    expect.objectContaining({
+      id: notification.id,
+      actionUrl: notification.actionUrl,
+      title: notification.title,
+    }),
+  );
+});
+
+test('does not invoke the action url when clicking on a link in the notification', () => {
+  global.open = jest.fn();
+
+  const onClick = jest.fn();
+  const notification = {
+    ...sampleNotification,
+    title: 'notification',
+    content: 'Some text <a href="https://example.com">browse other docs</a> and more text',
+    actionUrl: 'https://example.com/action-url',
+  };
+
+  render(<ClickableNotification notification={notification} onClick={onClick} />);
+  const link = screen.getByRole('link', { name: /browse other docs/i });
+  userEvent.click(link);
+
+  expect(global.open).toHaveBeenCalledTimes(0);
 });

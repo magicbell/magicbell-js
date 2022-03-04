@@ -26,10 +26,15 @@ export interface Props {
 export default function ClickableNotification({ notification: rawNotification, onClick }: Props) {
   const notification = useNotification(rawNotification);
 
-  const handleClick = () => {
+  const handleClick = (event) => {
     notification.markAsRead();
 
+    // As the notification is wrapped in a <button>, we don't want to invoke the action url when the
+    // user clicks a link inside that notification. The link should take precedence.
+    const clickedLink = event.target.tagName === 'A' && event.target.getAttribute('href');
+
     if (onClick) onClick(notification);
+    else if (clickedLink) return;
     else openActionUrl(notification);
   };
 
