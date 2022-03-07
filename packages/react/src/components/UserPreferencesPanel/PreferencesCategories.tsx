@@ -1,34 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { CategoryPreference } from '@magicbell/react-headless/dist/types/IRemoteNotificationPreferences';
 import { useEffect } from 'react';
 
-import CategoryPreferences, { ChannelType } from './CategoryPreferences';
-
-function channelToTitle(channel: ChannelType) {
-  return (
-    {
-      inApp: 'IN-APP',
-      email: 'EMAIL',
-      webPush: 'WEB PUSH',
-      mobilePush: 'MOBILE PUSH',
-    }[channel] || channel
-  );
-}
-
-function getChannelsFromPreferences(preferences: {
-  categories: CategoryPreference;
-}): ChannelType[] {
-  const channelPrefs = Object.values(preferences.categories);
-  if (!channelPrefs.length) return [];
-
-  const combinedChannels = channelPrefs.reduce((channels, otherChannels) => {
-    return { ...channels, ...otherChannels };
-  });
-
-  return Object.keys(combinedChannels) as ChannelType[];
-}
+import CategoryPreferences from './CategoryPreferences';
 
 export default function PreferencesCategories() {
   const preferences = useNotificationPreferences();
@@ -45,7 +20,13 @@ export default function PreferencesCategories() {
     }
   }, [preferences]);
 
-  const channels = getChannelsFromPreferences(preferences);
+  if (!preferences.categories.length) {
+    // TODO: Consider providing an "empty" screen or some other way to let the
+    // user know they have no categories and could go create some.
+    return null;
+  }
+
+  const channelHeaders = preferences.categories[0].channels;
 
   return (
     <div
@@ -60,18 +41,18 @@ export default function PreferencesCategories() {
         css={css`
           display: grid;
           gap: 1em;
-          grid-template-columns: 2fr ${' 1fr'.repeat(channels.length).trim()};
+          grid-template-columns: 2fr ${' 1fr'.repeat(channelHeaders.length).trim()};
         `}
       >
         <div />
-        {channels.map((channel) => (
-          <div key={channel} css={headerStyle}>
-            {channelToTitle(channel)}
+        {channelHeaders.map((header) => (
+          <div key={header.slug} css={headerStyle}>
+            {header.label}
           </div>
         ))}
-        {Object.keys(preferences.categories).map((categoryKey) => (
-          <CategoryPreferences key={categoryKey} category={categoryKey} channels={channels} />
-        ))}
+        {preferences.categories.map((category) => {
+          return <CategoryPreferences key={category.slug} category={category} />;
+        })}
       </div>
     </div>
   );

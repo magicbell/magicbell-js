@@ -9,6 +9,7 @@ import NotificationInbox from '../../../../src/components/NotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
 import { emptyNotificationPage, sampleNotification } from '../../../factories/NotificationFactory';
+import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 
 let server;
 
@@ -34,11 +35,7 @@ beforeEach(() => {
 
   server.get('/notification_preferences', {
     notification_preferences: {
-      categories: {
-        comment: { email: false },
-        new_message: { email: false },
-        _replies: { in_app: true, web_push: true },
-      },
+      ...sampleNotificationPreferences,
     },
   });
 });
@@ -153,7 +150,7 @@ test('shows the user preferences panel when the preferences button is clicked', 
   userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
-  expect(checkboxes).toHaveLength(9);
+  expect(checkboxes).toHaveLength(12);
 
   // clicking again closes the preferences
   const removal = waitForElementToBeRemoved(() => screen.getAllByRole('checkbox'));
@@ -167,7 +164,7 @@ test('the notifications panel contains a close button', async () => {
   userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
-  expect(checkboxes).toHaveLength(9);
+  expect(checkboxes).toHaveLength(12);
 
   // close the preferences, return to inbox
   const closeButton = screen.getByRole('button', { name: /close/i });

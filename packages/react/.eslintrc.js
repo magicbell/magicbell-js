@@ -1,6 +1,11 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['react-app', 'plugin:prettier/recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'react-app',
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   plugins: ['eslint-plugin-simple-import-sort'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',

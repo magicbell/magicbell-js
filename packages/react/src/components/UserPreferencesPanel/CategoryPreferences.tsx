@@ -1,52 +1,49 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
+import IRemoteNotificationPreferences, {
+  CategoryChannelPreference,
+  ChannelPreference,
+} from '@magicbell/react-headless/dist/types/IRemoteNotificationPreferences';
 import React from 'react';
 
 import ToggleInput from './ToggleInput';
 
-export type ChannelType = 'inApp' | 'email' | 'webPush' | 'mobilePush';
-
-interface Props {
-  category: string;
-  channels: Array<ChannelType>;
+interface CategoryPreferencesProps {
+  category: CategoryChannelPreference;
 }
 
-const humanize = (str) =>
-  str
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/(\W+)/g, ' ')
-    .replace(/^-|-$/g, '')
-    .toLowerCase()
-    .replace(/(^|\s)\S/g, (letter) => letter.toUpperCase())
-    .replace(/([._])/g, ' ');
-
-function channelToClass(channel: ChannelType): string {
-  return (
-    {
-      inApp: 'inapp',
-      email: 'email',
-      webPush: 'web-push',
-      mobilePush: 'mobile-push',
-    }[channel] || 'inapp'
-  );
-}
-
-export default function CategoryPreferences({ category, channels }: Props) {
+export default function CategoryPreferences({ category }: CategoryPreferencesProps) {
   const preferences = useNotificationPreferences();
-  const categoryTitle = humanize(category);
+  const channels = category.channels;
 
-  const updatePreferences = (data) => {
-    preferences.save({ categories: { [category]: data } });
+  const updatePreferences = async (channel: ChannelPreference, channelEnabled: boolean) => {
+    const newPreference: IRemoteNotificationPreferences = {
+      categories: [
+        {
+          label: category.label,
+          slug: category.slug,
+          channels: [
+            {
+              label: channel.label,
+              slug: channel.slug,
+              enabled: channelEnabled,
+            },
+          ],
+        },
+      ],
+    };
+
+    await preferences.save(newPreference);
   };
 
   return (
     <>
-      <div>{categoryTitle}</div>
+      <div>{category.label}</div>
       {channels.map((channel) => (
-        <div key={channel}>
+        <div key={channel.slug}>
           <ToggleInput
-            id={`${category}-${channelToClass(channel)}`}
-            value={preferences.categories[category][channel]}
-            onClick={(value) => updatePreferences({ [channel]: value })}
+            id={`${category.slug}-${channel.slug}`}
+            value={channel.enabled}
+            onClick={(value) => updatePreferences(channel, value)}
           />
         </div>
       ))}

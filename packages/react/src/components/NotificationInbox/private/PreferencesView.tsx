@@ -12,10 +12,12 @@ import PreferencesCategories from '../../UserPreferencesPanel/PreferencesCategor
 import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 
+// TODO: Remove null when PreferencesCategories or PreferencesView has been
+//  updated to support a preferences page.
 type PreferencesViewProps = {
   setView: SetViewHandler;
   layout: NonNullable<NotificationInboxProps['layout']>;
-  NotificationPreferences?: () => ReactElement;
+  NotificationPreferences?: () => ReactElement | null;
 };
 
 export default function PreferencesView({
