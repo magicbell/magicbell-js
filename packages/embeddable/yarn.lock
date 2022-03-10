@@ -368,13 +368,13 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@magicbell/magicbell-react@^8.5.6":
-  version "8.5.6"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-8.5.6.tgz#8f7f94dd60ca51621a7add0ca31ac0f0d15928f5"
-  integrity sha512-RLRQOg7UNC9jEamjwWSWjO6x9BQ9TONO/x4e5bqm0Q4VN1M7SI9cx7Bt531XDNBSBQd+cDOuAw7QbvSvKS8q7w==
+"@magicbell/magicbell-react@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-9.0.0.tgz#83a934226aacf282860019c6cfe04adf701da804"
+  integrity sha512-Qm4LMhPJpcM/SoftFdG3nxFZMyou5BRIWPt+eK89R0o7EHvk1BBppeJC9qsr+WQIfPanqdxUbiAriVhxEYb8gw==
   dependencies:
     "@emotion/react" "^11.4.1"
-    "@magicbell/react-headless" "^2.6.4"
+    "@magicbell/react-headless" "^3.0.0"
     "@tippyjs/react" "^4.2.4"
     ably "^1.2.14"
     axios "^0.26.0"
@@ -390,10 +390,10 @@
     tslib "^2.3.1"
     zustand "^3.6.4"
 
-"@magicbell/react-headless@^2.6.4":
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-2.6.4.tgz#093af1dad9a7a693eeaac56f71a9caa83094b6a5"
-  integrity sha512-0gToQaSHVTEAIwi8DMtBotu2iH5sNUC0XMfDsBqNQ/c9uZ9fEsQ36/pvpTzx65yQhwseRaWNZy8xY1t/+vXBdQ==
+"@magicbell/react-headless@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-3.0.0.tgz#7b7a56e0d6829e1f5acb17518be0c21c12dca2f6"
+  integrity sha512-pJBQLyog4hLwJd/JCGWgIgd8986WlBI2P6javAMfaHWC+/0OepEi1v31+zgTKm6apVVxcEwx+a9dE/W1/td9/Q==
   dependencies:
     ably "^1.2.14"
     axios "^0.26.0"
