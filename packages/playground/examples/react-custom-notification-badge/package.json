@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "description": "Example using a custom bell, badge and manipulated notification count.",
+  "dependencies": {
+    "@magicbell/magicbell-react": "latest"
+  }
+}
