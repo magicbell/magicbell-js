@@ -1,8 +1,3 @@
-// Preact debug must be the first import
-if (process.env.NODE_ENV === 'development') {
-  require('preact/debug');
-}
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Widget, { WidgetProps } from './components/Widget';
