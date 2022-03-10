@@ -64,14 +64,10 @@ magicbell('render', document.getElementById('notifications'), {
         });
       });
     </script>
-    <script>
-      // prettier-ignore
-      (function(i,s,o,g,r,a,m) {i['MagicBellObject'] = r;(i[r] =i[r] ||function() {
-      (i[r].q = i[r].q || []).push(arguments);}),(i[r].l = 1 * new Date());(a = s.createElement(o)), (
-      m = s.getElementsByTagName(o)[0]);a.async = 1;a.src = g;m.parentNode.insertBefore(a, m);
-      })(window, document, 'script', window.location.href + 'magicbell.min.js', 'magicbell');
+    <script type="module">
+      import { renderWidget } from 'https://assets.magicbell.io/magicbell.esm.js';
 
-      magicbell('render', document.querySelector('#notifications'), {
+      renderWidget(document.querySelector('#notifications'), {
         apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
         userEmail: 'josue@magicbell.io',
         theme: {
