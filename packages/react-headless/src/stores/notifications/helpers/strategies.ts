@@ -8,15 +8,12 @@ function eq(value, other) {
 }
 
 function ensureArray(value) {
-  return Array.isArray(value) ? value : [value];
+  return Array.isArray(value) ? value : String(value).split(',');
 }
 
 export type NotificationCompareStrategy = (
   notification: IRemoteNotification,
-  // TODO: Update this to unknown for V2. Also verify type is still used
-  // in code base.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  context: Record<string, any>,
+  context: Record<string, unknown>,
   comparator?: IStrategyComparator,
 ) => { result: boolean; delta: string[] };
 
@@ -30,22 +27,21 @@ export type NotificationCompareStrategy = (
  */
 export function objMatchesContext(
   notification: IRemoteNotification,
-  // TODO: Convert this to unknown in V2
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  context: Record<string, any>,
+  context: Record<string, unknown>,
   comparator: IStrategyComparator = eq,
 ) {
   const diff: string[] = [];
 
   Object.keys(context).forEach((attr) => {
-    const conditionValue = context[attr];
+    const condition = context[attr];
 
     if (
-      (attr === 'read' && !comparator(!isNil(notification.readAt), conditionValue)) ||
-      (attr === 'seen' && !comparator(!isNil(notification.seenAt), conditionValue)) ||
+      (attr === 'read' && !comparator(!isNil(notification.readAt), condition)) ||
+      (attr === 'seen' && !comparator(!isNil(notification.seenAt), condition)) ||
       (attr === 'categories' &&
-        ensureArray(conditionValue).some((category) => !comparator(notification.category, category))) ||
-      (Object.hasOwnProperty.call(notification, attr) && !comparator(notification[attr], conditionValue))
+        ensureArray(condition).every((category) => !comparator(notification.category, category))) ||
+      (attr === 'topics' && ensureArray(condition).every((topic) => !comparator(notification.topic, topic))) ||
+      (Object.hasOwnProperty.call(notification, attr) && !comparator(notification[attr], condition))
     ) {
       diff.push(attr);
     }
