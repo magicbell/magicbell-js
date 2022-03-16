@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.4.1",
-    "@magicbell/react-headless": "^3.1.0",
+    "@magicbell/react-headless": "^3.1.1",
     "@tippyjs/react": "^4.2.4",
     "ably": "^1.2.14",
     "axios": "^0.26.0",

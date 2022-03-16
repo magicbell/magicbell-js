@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/react';
 import { useNotification } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
-
 import NotificationContent from '../NotificationContent';
 import NotificationState from '../NotificationState';
 import Timestamp from '../Timestamp';
@@ -50,6 +49,8 @@ export default function ClickableNotification({ notification: rawNotification, o
             padding: 0.5em 0 0.5em 0.25em !important;
           `}
         >
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
           {notification.sentAt ? <Timestamp date={notification.sentAt} /> : null}
         </div>
       </button>
