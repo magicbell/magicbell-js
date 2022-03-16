@@ -7,6 +7,9 @@ dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
 dayjs.extend(updateLocale);
 
+// Export after the extensions have been registered so types are applied correctly.
+export { Dayjs };
+
 /**
  * Function to build a Date given a number of seconds.
  *
