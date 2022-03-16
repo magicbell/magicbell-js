@@ -10,6 +10,7 @@ export default new Factory()
   .attr('seenAt', () => faker.date.recent().getTime() / 1000)
   .attr('sentAt', () => faker.date.recent().getTime() / 1000)
   .attrs({
+    topic: null,
     customAttributes: { accountId: 4 },
     readAt: null,
     archivedAt: null,
@@ -20,6 +21,7 @@ export const sampleNotification = {
   title: 'New Comment: Tables in knowledgebase',
   content: '<p>This is a good content</p>',
   actionUrl: 'https://support.supportbee.com/tickets/27010651',
+  topic: null,
   category: '',
   customAttributes: {
     ticketId: 27010651,
