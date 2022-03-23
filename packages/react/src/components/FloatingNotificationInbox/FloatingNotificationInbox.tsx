@@ -3,7 +3,7 @@ import React from 'react';
 import { openActionUrl } from '../ClickableNotification/eventHandlers';
 import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
 import { NotificationListItem } from '../NotificationList/NotificationList';
-import { PopoverPlacement } from '../Popover';
+import { PopoverPlacement, PopperOptions } from '../Popover';
 import FloatingInboxContainer from './FloatingInboxContainer';
 
 export interface Props extends NotificationInboxProps {
@@ -14,7 +14,7 @@ export interface Props extends NotificationInboxProps {
   width?: number;
   closeOnClickOutside?: boolean;
   closeOnNotificationClick?: boolean;
-  popperOptions?;
+  popperOptions?: PopperOptions;
   hideArrow?: boolean;
   NotificationItem?: NotificationListItem;
   layout?: string[];

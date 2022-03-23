@@ -1,22 +1,10 @@
+import type { Options, Placement as PopoverPlacement } from '@popperjs/core';
 import Tippy from '@tippyjs/react/headless';
 import React from 'react';
 
-export type PopoverPlacement =
-  | 'auto'
-  | 'auto-start'
-  | 'auto-end'
-  | 'top'
-  | 'bottom'
-  | 'right'
-  | 'left'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'right-start'
-  | 'right-end'
-  | 'left-start'
-  | 'left-end';
+type PopperOptions = Partial<Options>;
+
+export { PopoverPlacement, PopperOptions };
 
 export interface PopoverProps {
   children: (attrs) => React.ReactNode;
@@ -27,7 +15,7 @@ export interface PopoverProps {
   offset?: { skidding: number; distance: number };
   onClickOutside?: () => void;
   placement?: PopoverPlacement;
-  popperOptions?;
+  popperOptions?: PopperOptions;
   zIndex?: number;
   trigger?: 'mouseenter focus' | 'click' | 'focusin' | 'mouseenter click' | 'manual';
 }

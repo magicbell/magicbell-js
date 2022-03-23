@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { NotificationInboxProps } from '../NotificationInbox';
-import Popover, { PopoverPlacement } from '../Popover';
+import Popover, { PopoverPlacement, PopperOptions } from '../Popover';
 import Arrow from './Arrow';
 import StyledPopoverContainer from './StyledPopoverContainer';
 
@@ -12,7 +12,7 @@ export interface Props extends NotificationInboxProps {
   placement?: PopoverPlacement;
   width?: number;
   closeOnClickOutside?: boolean;
-  popperOptions?;
+  popperOptions?: PopperOptions;
   hideArrow?: boolean;
   layout?: string[];
   children: ReactNode | ReactNode[];
