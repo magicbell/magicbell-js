@@ -87,7 +87,20 @@ These are all the properties accepted by this component.
 
 This component expects a children function. This is how you render whatever you want to based on the state of the `MagicBell`.
 
-You can use the notification inbox from this package (see [`NotificationInbox`](#notificationinbox)):
+You can use the standard notification inbox:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MagicBell from '@magicbell/magicbell-react';
+
+ReactDOM.render(
+  <MagicBell apiKey={MAGICBELL_API_KEY} userEmail="john@example.com" />,
+  document.body,
+);
+```
+
+Or the standard inbox with basic customizations (see [`NotificationInbox`](#notificationinbox)):
 
 ```javascript
 import React from 'react';
@@ -102,7 +115,7 @@ ReactDOM.render(
 );
 ```
 
-or use your own:
+Or use your own:
 
 <!-- prettier-ignore -->
 ```javascript

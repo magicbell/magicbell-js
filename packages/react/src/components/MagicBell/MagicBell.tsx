@@ -8,6 +8,7 @@ import { IMagicBellTheme } from '../../context/Theme';
 import { CustomLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 import Bell from '../Bell';
+import FloatingNotificationInbox from '../FloatingNotificationInbox';
 import MagicBellChildrenWrapper from '../MagicBellProvider/MagicBellChildrenWrapper';
 
 type StoreConfig = {
@@ -21,7 +22,7 @@ export interface Props {
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
-  children: (params: {
+  children?: (params: {
     launcherRef: React.RefObject<Element>;
     isOpen: boolean;
     toggle: () => void;
@@ -41,6 +42,8 @@ export interface Props {
   onToggle?: (isOpen: boolean) => void;
   bellCounter?: 'unread' | 'unseen';
 }
+
+const defaultInbox = (props) => <FloatingNotificationInbox height={500} {...props} />;
 
 /**
  * Magicbell root component. Use this one in your application.
@@ -69,7 +72,7 @@ export interface Props {
  * </MagicBell>
  */
 export default function MagicBell({
-  children,
+  children = defaultInbox,
   BellIcon,
   Badge,
   defaultIsOpen = false,

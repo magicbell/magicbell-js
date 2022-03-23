@@ -8,6 +8,12 @@ import { MagicBellProps } from '../src/components/MagicBell';
 import { IMagicBellTheme } from '../src/context/Theme';
 import { DeepPartial } from '../src/lib/types';
 
+const user = {
+  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
+  userEmail: 'josue@magicbell.io',
+  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+};
+
 interface IStory extends MagicBellProps {
   onAllRead: () => void;
   onNotificationClick: (notification: INotification) => void;
@@ -40,17 +46,13 @@ const Template: Story<IStory> = ({ onAllRead, onNotificationClick, ...args }: IS
 
 export const Default = Template.bind({});
 Default.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   locale: 'en',
 };
 
 export const WithCustomIcon = Template.bind({});
 WithCustomIcon.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   BellIcon: (
     <svg viewBox="0 0 24 24">
       <path d="M10,21.75a2.087,2.087,0,0,0,4.005,0" />
@@ -62,9 +64,7 @@ WithCustomIcon.args = {
 
 export const WithCustomTheme = Template.bind({});
 WithCustomTheme.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   theme: {
     header: { backgroundColor: '#FAD776', textColor: '#161C2D' },
     footer: { backgroundColor: '#FAD776', textColor: '#161C2D' },
@@ -76,17 +76,13 @@ WithCustomTheme.args = {
 
 export const WithInboxOpen = Template.bind({});
 WithInboxOpen.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   defaultIsOpen: true,
 };
 
 export const WithCustomEmptyImage = Template.bind({});
 WithCustomEmptyImage.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   images: {
     emptyInboxUrl:
       'https://thumbs.dreamstime.com/b/inbox-box-cabinet-document-empty-project-blue-icon-abstract-cloud-background-148443579.jpg',
@@ -95,15 +91,13 @@ WithCustomEmptyImage.args = {
 
 export const WithUnreadCount = Template.bind({});
 WithUnreadCount.args = {
-  apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-  userEmail: 'josue@magicbell.io',
-  userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
+  ...user,
   bellCounter: 'unread',
 };
 
 export const WithCustomBadge = Template.bind({});
 WithCustomBadge.args = {
-  ...Default.args,
+  ...user,
   bellCounter: 'unread',
   Badge: ({ count }) => (
     <div
@@ -125,3 +119,5 @@ WithCustomBadge.args = {
     </div>
   ),
 };
+
+export const Simple = () => <MagicBell {...user} />;

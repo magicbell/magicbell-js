@@ -49,7 +49,22 @@ afterEach(() => {
   server.shutdown();
 });
 
-test("renders the notification bell, but not it's children", async () => {
+test("renders the notification bell, but not it's default children", async () => {
+  render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
+
+  screen.getByRole('button', { name: 'Notifications' });
+  expect(screen.queryByRole('button', { name: /mark all read/i })).not.toBeInTheDocument();
+});
+
+test('clicking the bell opens the default inbox', async () => {
+  render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
+
+  const button = screen.getByRole('button');
+  userEvent.click(button);
+  await screen.findByRole('button', { name: /Mark All Read/i });
+});
+
+test("renders the notification bell, but not it's custom children", async () => {
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
       {() => <div data-testid="children" />}
@@ -60,7 +75,7 @@ test("renders the notification bell, but not it's children", async () => {
   expect(screen.queryByTestId('children')).not.toBeInTheDocument();
 });
 
-test('clicking the bell opens the inbox', async () => {
+test('clicking the bell opens the custom inbox', async () => {
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
       {() => <div data-testid="children" />}
