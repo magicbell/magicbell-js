@@ -1,5 +1,6 @@
-import { MetaComponent, StoryComponent } from '@storybook/react';
-import React from 'react';
+import { ComponentMeta, Story } from '@storybook/react';
+import React, { ComponentProps } from 'react';
+
 import MagicBellProvider from '../src/components/MagicBellProvider';
 import NotificationInbox from '../src/components/NotificationInbox';
 
@@ -10,14 +11,11 @@ export default {
     onNotificationClick: { action: 'onNotificationClick' },
     onAllRead: { action: 'onAllRead' },
   },
-} as MetaComponent<typeof NotificationInbox>;
+} as ComponentMeta<typeof NotificationInbox>;
 
-const Template: StoryComponent<typeof NotificationInbox> = ({
-  apiKey,
-  userEmail,
-  userKey,
-  ...props
-}) => (
+const Template: Story<
+  ComponentProps<typeof MagicBellProvider> & ComponentProps<typeof NotificationInbox>
+> = ({ apiKey, userEmail, userKey, ...props }) => (
   <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
     <NotificationInbox {...props} />
   </MagicBellProvider>
