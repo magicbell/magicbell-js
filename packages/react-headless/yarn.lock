@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ably/msgpack-js@^0.3.3":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@ably/msgpack-js/-/msgpack-js-0.3.4.tgz#21e56e6fc296b469887a622cdbde8874c8b155e2"
-  integrity sha512-gmnsxxcN/8WfoxZxQQF9LvM3ZUbuVH0LCS6oX7EJS+VfkXWBFIgDV+h7a0sntwKSvAEg4uJzNDje7kpH8/LJ3Q==
+"@ably/msgpack-js@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@ably/msgpack-js/-/msgpack-js-0.4.0.tgz#aaaf5d8dffacf7aa253effd8c3488aa09130e6a2"
+  integrity sha512-IPt/BoiQwCWubqoNik1aw/6M/DleMdrxJOUpSja6xmMRbT2p1TA8oqKWgfZabqzrq8emRNeSl/+4XABPNnW5pQ==
   dependencies:
     bops "^1.0.1"
 
@@ -3334,11 +3334,11 @@ abab@^2.0.3, abab@^2.0.5:
   integrity sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q==
 
 ably@^1.2.14:
-  version "1.2.17"
-  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.17.tgz#6e687e598b0b0e96c5cfbed7af2c173bdd25194e"
-  integrity sha512-h22zA0gdzxzp73RetNvDkx4Fbh4CyNIYzecYAsjClO3x++QgKAutlzWYm+gQmZ/KC2iRPs1MJuLXKkzvbGtPbg==
+  version "1.2.20"
+  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.20.tgz#8f5e130212a601873ae1ba87a8a884d07b754c2b"
+  integrity sha512-8lboyqpaEntB84lvETdfFUKycUVbjJne7V1ojTLszvquOdpn76EQD0WayhXOZeKgU18COfsxW8bwKDCwJzQXfA==
   dependencies:
-    "@ably/msgpack-js" "^0.3.3"
+    "@ably/msgpack-js" "^0.4.0"
     got "^11.8.2"
     ws "^5.1"
 
