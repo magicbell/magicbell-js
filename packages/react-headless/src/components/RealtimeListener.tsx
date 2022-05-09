@@ -20,7 +20,7 @@ export default function RealtimeListener() {
 
   useAbly();
 
-  useMagicBellEvent('wakeup', fetchAndResetAll);
+  useMagicBellEvent('reconnected', fetchAndResetAll);
   useMagicBellEvent('notifications.new', fetchAndPrependAll, { source: 'remote' });
   useMagicBellEvent('notifications.seen.all', markAllAsSeen, { source: 'remote' });
   useMagicBellEvent('notifications.read.all', markAllAsRead, { source: 'remote' });

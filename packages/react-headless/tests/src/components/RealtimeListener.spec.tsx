@@ -1,6 +1,7 @@
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { useEffect } from 'react';
+
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
 import { emitEvent } from '../../../src/lib/realtime';
@@ -29,12 +30,12 @@ describe('components', () => {
     });
 
     describe('realtime events', () => {
-      describe('wakeup', () => {
+      describe('reconnected', () => {
         it('fetches notifications', () => {
           const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
-            emitEvent('wakeup', null, 'local');
+            emitEvent('reconnected', null, 'local');
           });
 
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });

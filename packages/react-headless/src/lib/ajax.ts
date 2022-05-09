@@ -28,6 +28,7 @@ export function buildAPIHeaders() {
   const headers = {
     'X-MAGICBELL-CLIENT-ID': clientId,
     'X-MAGICBELL-API-KEY': apiKey,
+    'X-MagicBell-Client': 'ReactHeadless/4.0.0', // @todo: Get value from package.json
   };
 
   if (apiSecret) headers['X-MAGICBELL-API-SECRET'] = apiSecret;
