@@ -4,7 +4,6 @@ import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotif
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { useState } from 'react';
 
-import { useHeight } from '../../lib/window';
 import NotificationList from '../NotificationList';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 
@@ -33,17 +32,18 @@ export default function NotificationInboxContent({
 }: NotificationInboxContentProps) {
   // we use a refSetter so that the height observer is reattached on a ref change
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
-  const contentHeight = useHeight(contentRef, height);
 
   return (
-    <div ref={setContentRef} css={{ width: '100%', height: height ?? '100%' }}>
-      <NotificationList
-        height={contentHeight}
-        notifications={store}
-        onItemClick={onNotificationClick}
-        queryParams={store.context}
-        ListItem={NotificationItem}
-      />
+    <div ref={setContentRef} css={{ width: '100%', height: height ?? '100%', overflow: 'auto' }}>
+      {contentRef ? (
+        <NotificationList
+          scrollableTarget={contentRef}
+          notifications={store}
+          onItemClick={onNotificationClick}
+          queryParams={store.context}
+          ListItem={NotificationItem}
+        />
+      ) : null}
     </div>
   );
 }
