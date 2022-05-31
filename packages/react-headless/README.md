@@ -203,6 +203,8 @@ This is a list of events you can listen to:
 | `notifications.unread`   | A notification was marked as unread                       |
 | `notifications.seen.all` | All notifications were marked as seen                     |
 | `notifications.delete`   | A notification was deleted                                |
+| `disconnected`           | The websocket connection was dropped                      |
+| `reconnected`            | The websocket connection was reestablished                |
 
 You can also limit the source of the events you want to listen to:
 
