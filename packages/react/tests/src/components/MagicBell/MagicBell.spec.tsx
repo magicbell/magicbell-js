@@ -127,7 +127,8 @@ test('supports custom translations', async () => {
     </MagicBell>,
   );
 
-  await waitFor(() => screen.getByText('Please mark all as read'));
+  const header = await waitFor(() => screen.getByText('Please mark all as read'));
+  expect(header).toBeInTheDocument();
 });
 
 test('shows the number of unread notifications', async () => {
@@ -137,11 +138,12 @@ test('shows the number of unread notifications', async () => {
     </MagicBell>,
   );
 
-  await waitFor(() =>
+  const counter = await waitFor(() =>
     screen.getByRole('status', {
       name: '4 unread items',
     }),
   );
+  expect(counter).toBeInTheDocument();
 });
 
 test('can close the inbox when defaultIsOpen is provided', async () => {
@@ -202,9 +204,8 @@ test('sets the external id header for fetching from the API', async () => {
     </MagicBell>,
   );
 
-  await waitFor(() => expect(server.pretender.handledRequests.length).toBe(2));
   const requests = server.pretender.handledRequests;
-  expect(requests[1].requestHeaders).toMatchObject({
+  expect(requests[0].requestHeaders).toMatchObject({
     'X-MAGICBELL-API-KEY': apiKey,
     'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
     'X-MAGICBELL-USER-HMAC': userKey,
