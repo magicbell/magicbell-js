@@ -90,6 +90,7 @@
     "rosie": "^2.1.0",
     "sinon": "^13.0.1",
     "ts-jest": "^27.0.7",
+    "twind": "^0.16.17",
     "typescript": "^4.4.4",
     "utility-types": "^3.10.0"
   },

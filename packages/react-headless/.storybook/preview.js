@@ -1,3 +1,5 @@
+import 'twind/shim';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
