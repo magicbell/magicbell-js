@@ -28,7 +28,7 @@ describe('stores', () => {
         it('builds a store and sets it', () => {
           const { result } = renderHook(() => useNotificationStoresCollection());
           const storeId = faker.datatype.uuid();
-          const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
+          const defaultQueryParams = { [faker.lorem.word()]: faker.lorem.word() };
 
           act(() => {
             result.current.setStore(storeId, defaultQueryParams);
@@ -83,7 +83,7 @@ describe('stores', () => {
           it('updates the store with the response', async () => {
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
-            const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
+            const defaultQueryParams = { [faker.lorem.word()]: faker.lorem.word() };
 
             await act(async () => {
               result.current.setStore(storeId, defaultQueryParams);
@@ -105,7 +105,7 @@ describe('stores', () => {
             const notifications = NotificationFactory.buildList(4);
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
-            const defaultQueryParams = faker.helpers.createCard() as unknown as Record<string, unknown>;
+            const defaultQueryParams = { [faker.lorem.word()]: faker.lorem.word() };
 
             await act(async () => {
               result.current.setStore(storeId, defaultQueryParams, { notifications });

@@ -89,7 +89,10 @@ describe('lib', () => {
     describe('.handleAblyEvent', () => {
       it('emits the event to the pushEventAggregator', () => {
         const spy = jest.spyOn(pushEventAggregator, 'emit');
-        const event = { name: 'notification/new', data: faker.helpers.createCard() } as Ably.Types.Message;
+        const event = {
+          name: 'notification/new',
+          data: { [faker.lorem.word()]: faker.lorem.word() },
+        } as Ably.Types.Message;
         handleAblyEvent(event);
 
         expect(spy).toHaveBeenCalledTimes(1);
@@ -99,7 +102,10 @@ describe('lib', () => {
 
       it('emits the event to the eventAggregator', () => {
         const spy = jest.spyOn(eventAggregator, 'emit');
-        const event = { name: 'notification/new', data: faker.helpers.createCard() } as Ably.Types.Message;
+        const event = {
+          name: 'notification/new',
+          data: { [faker.lorem.word()]: faker.lorem.word() },
+        } as Ably.Types.Message;
         handleAblyEvent(event);
 
         expect(spy).toHaveBeenCalledTimes(1);
