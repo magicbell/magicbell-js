@@ -153,7 +153,7 @@ ReactDOM.render(
   <MagicBell
     apiKey={MAGICBELL_API_KEY}
     userEmail="john@example.com"
-    stores=[{ id: 'read', context: { read: true }}, { id: 'unread', context: { read: false }}]>
+    stores=[{ id: 'read', defaultQueryParams: { read: true }}, { id: 'unread', defaultQueryParams: { read: false }}]>
     {(props) => (
       <>
         <NotificationList {...props} storeId="read" />
