@@ -148,8 +148,8 @@ describe('stores', () => {
               unread: NotificationFactory.buildList(initialUnreadCount).map((x) => ({ ...x, readAt: null })),
             };
 
-            server.get('/notifications', (_, { queryParams: { read } }) => {
-              const storeId = read === 'true' ? 'read' : 'unread';
+            server.get('/notifications', (_, { queryParams }) => {
+              const storeId = queryParams?.read === 'true' ? 'read' : 'unread';
               return new Response(
                 200,
                 {},
