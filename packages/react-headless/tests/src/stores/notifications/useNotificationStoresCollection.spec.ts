@@ -272,8 +272,8 @@ describe('stores', () => {
             expect(notification.current).toHaveProperty('readAt', null);
             expect(notification.current).toHaveProperty('seenAt', null);
 
-            // mark as read
-            await act(() => notification.current.markAsSeen());
+            // mark as seen
+            act(() => notification.current.markAsSeen());
             expect(notification.current).toHaveProperty('readAt', null);
             expect(notification.current).toHaveProperty('seenAt', expect.anything());
           });
