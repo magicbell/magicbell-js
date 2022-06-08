@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 import humps from 'humps';
 import { Response, Server } from 'miragejs';
 
+import { useNotification } from '../../../../src';
+import useNotifications from '../../../../src/hooks/useNotifications';
 import * as ajax from '../../../../src/lib/ajax';
 import { eventAggregator } from '../../../../src/lib/realtime';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
@@ -135,6 +137,68 @@ describe('stores', () => {
 
             expect(result.current.stores[storeId].lastFetchedAt).toEqual(now);
             spy.mockRestore();
+          });
+
+          test('toggling read state correctly updates depended (split-inbox) stores', async () => {
+            const initialReadCount = 3;
+            const initialUnreadCount = 4;
+
+            const notifications = {
+              read: NotificationFactory.buildList(initialReadCount).map((x) => ({ ...x, readAt: Date.now() / 1000 })),
+              unread: NotificationFactory.buildList(initialUnreadCount).map((x) => ({ ...x, readAt: null })),
+            };
+
+            server.get('/notifications', (_, { queryParams: { read } }) => {
+              const storeId = read === 'true' ? 'read' : 'unread';
+              return new Response(
+                200,
+                {},
+                {
+                  total: notifications[storeId].length,
+                  unreadCount: storeId === 'read' ? 0 : notifications[storeId].length,
+                  notifications: notifications[storeId],
+                },
+              );
+            });
+
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('read', { read: true });
+              result.current.setStore('unread', { read: false });
+              await result.current.fetchAllStores();
+            });
+
+            const stores = renderHook(() => ({
+              read: useNotifications('read'),
+              unread: useNotifications('unread'),
+            })).result;
+
+            // Verify initial state,
+            expect(stores.current).toHaveProperty('read.total', initialReadCount);
+            expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
+
+            // mark one unread notification as read
+            const unread = renderHook(() => useNotification(stores.current.unread!.notifications[0])).result.current;
+            await act(async () => void (await unread.markAsRead()));
+
+            // verify state when one notification moves from unread > read
+            expect(stores.current).toHaveProperty('read.total', initialReadCount + 1);
+            expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('unread.total', initialUnreadCount - 1);
+            expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount - 1);
+
+            // mark one read notification as unread
+            const read = renderHook(() => useNotification(stores.current.read!.notifications[0])).result.current;
+            await act(async () => void (await read.markAsUnread()));
+
+            // verify state when one notification moves from read > unread
+            expect(stores.current).toHaveProperty('read.total', initialReadCount);
+            expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
           });
         });
 

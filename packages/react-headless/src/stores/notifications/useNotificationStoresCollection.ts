@@ -133,7 +133,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         const attrs = { readAt: null };
 
         for (const storeId in stores) {
-          const { total, notifications, context } = stores[storeId];
+          const { notifications, context } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
@@ -144,7 +144,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               draft.stores[storeId].notifications[index] = unreadNotification;
             } else {
               // Remove notification from the store
-              draft.stores[storeId].total -= Math.max(0, total - 1);
+              draft.stores[storeId].total -= 1;
               draft.stores[storeId].notifications.splice(index, 1);
             }
           } else {
