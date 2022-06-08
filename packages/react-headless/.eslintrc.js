@@ -14,4 +14,12 @@ module.exports = {
     ],
     'no-console': ['error'],
   },
+  overrides: [
+    {
+      files: '**/*.spec.{ts,tsx}',
+      rules: {
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
+  ],
 };
