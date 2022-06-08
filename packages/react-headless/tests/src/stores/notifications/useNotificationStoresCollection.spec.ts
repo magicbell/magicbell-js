@@ -200,6 +200,83 @@ describe('stores', () => {
             expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
             expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
           });
+
+          test('markAsRead also marks a notification as seen', async () => {
+            const notifications = NotificationFactory.buildList(4).map((x) => ({ ...x, readAt: null, seenAt: null }));
+
+            server.get(
+              '/notifications',
+              () =>
+                new Response(
+                  200,
+                  {},
+                  {
+                    total: notifications.length,
+                    unreadCount: notifications.length,
+                    notifications: notifications,
+                  },
+                ),
+            );
+
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default');
+              await result.current.fetchAllStores();
+            });
+
+            const store = renderHook(() => useNotifications()).result;
+
+            // Verify initial state,
+            expect(store.current).toHaveProperty('total', 4);
+            expect(store.current).toHaveProperty('unreadCount', 4);
+
+            const notification = renderHook(() => useNotification(store.current!.notifications[0])).result;
+            expect(notification.current).toHaveProperty('readAt', null);
+            expect(notification.current).toHaveProperty('seenAt', null);
+
+            // mark as read
+            await act(async () => void (await notification.current.markAsRead()));
+            expect(notification.current).toHaveProperty('readAt', expect.anything());
+            expect(notification.current).toHaveProperty('seenAt', expect.anything());
+          });
+
+          test('markAsSeen does not mark notification as read', async () => {
+            const notifications = NotificationFactory.buildList(4).map((x) => ({ ...x, readAt: null, seenAt: null }));
+
+            server.get(
+              '/notifications',
+              () =>
+                new Response(
+                  200,
+                  {},
+                  {
+                    total: notifications.length,
+                    unreadCount: notifications.length,
+                    notifications: notifications,
+                  },
+                ),
+            );
+
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default');
+              await result.current.fetchAllStores();
+            });
+
+            const store = renderHook(() => useNotifications()).result;
+            const notification = renderHook(() => useNotification(store.current!.notifications[0])).result;
+
+            // Verify initial state,
+            expect(notification.current).toHaveProperty('readAt', null);
+            expect(notification.current).toHaveProperty('seenAt', null);
+
+            // mark as read
+            await act(() => notification.current.markAsSeen());
+            expect(notification.current).toHaveProperty('readAt', null);
+            expect(notification.current).toHaveProperty('seenAt', expect.anything());
+          });
         });
 
         describe('error handling', () => {

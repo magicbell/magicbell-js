@@ -89,7 +89,8 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
-        const attrs = { readAt: Date.now() / 1000 };
+        const now = Date.now() / 1000;
+        const attrs = { readAt: now, seenAt: now };
 
         for (const storeId in stores) {
           const { total, notifications, unreadCount, context } = stores[storeId];
