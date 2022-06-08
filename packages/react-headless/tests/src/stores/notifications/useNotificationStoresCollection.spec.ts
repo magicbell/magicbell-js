@@ -11,7 +11,7 @@ import NotificationFactory from '../../../factories/NotificationFactory';
 
 describe('stores', () => {
   describe('notifications', () => {
-    let server;
+    let server: Server;
 
     beforeEach(() => {
       server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
@@ -140,7 +140,7 @@ describe('stores', () => {
 
         describe('error handling', () => {
           beforeEach(() => {
-            server.get('/notifications', new Response(403, {}, ''));
+            server.get('/notifications', () => new Response(403, {}, ''));
           });
 
           it('throws an error', async () => {
@@ -207,7 +207,7 @@ describe('stores', () => {
           const notification = NotificationFactory.build({ readAt: null });
 
           beforeEach(() => {
-            server.post(`/notifications/${notification.id}/read`, new Response(204, {}, ''));
+            server.post(`/notifications/${notification.id}/read`, () => new Response(204, {}, ''));
           });
 
           it('decreases the unreadCount prop of the store', async () => {
@@ -257,7 +257,7 @@ describe('stores', () => {
           const notification = NotificationFactory.build({ readAt: dayjs() });
 
           beforeEach(() => {
-            server.post(`/notifications/${notification.id}/unread`, new Response(204, {}, ''));
+            server.post(`/notifications/${notification.id}/unread`, () => new Response(204, {}, ''));
           });
 
           it('decreases the unreadCount prop of the store', async () => {
@@ -303,7 +303,7 @@ describe('stores', () => {
           const notification = NotificationFactory.build();
 
           beforeEach(() => {
-            server.delete(`/notifications/${notification.id}`, new Response(204, {}, ''));
+            server.delete(`/notifications/${notification.id}`, () => new Response(204, {}, ''));
           });
 
           describe('the notification is unread', () => {
@@ -375,7 +375,7 @@ describe('stores', () => {
       describe('.markAllAsSeen', () => {
         describe('successful response', () => {
           beforeEach(() => {
-            server.post('/notifications/seen', new Response(204, {}, ''));
+            server.post('/notifications/seen', () => new Response(204, {}, ''));
           });
 
           it('makes a request to the server', async () => {
@@ -475,7 +475,7 @@ describe('stores', () => {
       describe('.markAllAsRead', () => {
         describe('successful response', () => {
           beforeEach(() => {
-            server.post('/notifications/read', new Response(204, {}, ''));
+            server.post('/notifications/read', () => new Response(204, {}, ''));
           });
 
           it('makes a request to the server', async () => {
