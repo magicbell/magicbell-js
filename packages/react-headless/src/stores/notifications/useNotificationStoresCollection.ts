@@ -247,8 +247,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
           draft.stores[storeId].unreadCount = 0;
 
           if (options.updateModels !== false) {
+            const now = Date.now() / 1000;
             notifications.forEach((notification, index) => {
-              draft.stores[storeId].notifications[index] = mergeRight(notification, { readAt: Date.now() / 1000 });
+              draft.stores[storeId].notifications[index] = mergeRight(notification, { readAt: now, seenAt: now });
             });
           }
         }
