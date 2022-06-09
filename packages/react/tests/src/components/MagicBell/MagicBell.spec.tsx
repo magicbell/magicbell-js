@@ -15,7 +15,18 @@ const apiKey = faker.random.alphaNumeric(10);
 const userEmail = faker.internet.email();
 const userKey = faker.random.alphaNumeric(10);
 
-let server;
+let server: Server;
+
+const sampleNotifications = {
+  total: 5,
+  current_page: 1,
+  per_page: 15,
+  total_pages: 1,
+  project_id: 7,
+  unseen_count: 0,
+  unread_count: 4,
+  notifications: NotificationFactory.buildList(5),
+};
 
 beforeEach(() => {
   server = new Server({
@@ -24,25 +35,16 @@ beforeEach(() => {
     trackRequests: true,
     timing: 50,
   });
-  server.get('/notifications', {
-    total: 5,
-    current_page: 1,
-    per_page: 15,
-    total_pages: 1,
-    project_id: 7,
-    unseen_count: 0,
-    unread_count: 4,
-    notifications: NotificationFactory.buildList(5),
-  });
-  server.get('/config', sampleConfig);
-  server.get('/notification_preferences', {
+  server.get('/notifications', () => sampleNotifications);
+  server.get('/config', () => sampleConfig);
+  server.get('/notification_preferences', () => ({
     notification_preferences: {
       categories: {
         comments: { email: false },
       },
     },
-  });
-  server.post('/notifications/seen', new Response(204, {}, ''));
+  }));
+  server.post('/notifications/seen', () => new Response(204, {}, ''));
 });
 
 afterEach(() => {
@@ -180,36 +182,54 @@ test('calls the onToggle callback when the button is clicked', async () => {
   expect(onToggle).toHaveBeenCalledTimes(1);
 });
 
-test('sets the headers for fetching from the API', () => {
+test('sets the headers for fetching from the API', async () => {
+  const serverSpy = jest.fn();
+  server.get('/notifications', (_, req) => {
+    serverSpy(req.requestHeaders);
+    return new Response(200, {}, {});
+  });
+
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
-      {() => <div data-testid="children" />}
+      {() => <div />}
     </MagicBell>,
   );
 
-  const requests = server.pretender.handledRequests;
-  expect(requests[0].requestHeaders).toMatchObject({
-    'X-MAGICBELL-API-KEY': apiKey,
-    'X-MAGICBELL-USER-EMAIL': userEmail,
-    'X-MAGICBELL-USER-HMAC': userKey,
-  });
+  await waitFor(() => expect(serverSpy).toHaveBeenCalled());
+
+  expect(serverSpy).toHaveBeenCalledWith(
+    expect.objectContaining({
+      'X-MAGICBELL-API-KEY': apiKey,
+      'X-MAGICBELL-USER-EMAIL': userEmail,
+      'X-MAGICBELL-USER-HMAC': userKey,
+    }),
+  );
 });
 
 test('sets the external id header for fetching from the API', async () => {
   const userExternalId = faker.random.alphaNumeric(15);
 
+  const serverSpy = jest.fn();
+  server.get('/notifications', (_, req) => {
+    serverSpy(req.requestHeaders);
+    return new Response(200, {}, {});
+  });
+
   render(
     <MagicBell apiKey={apiKey} userExternalId={userExternalId} userKey={userKey}>
-      {() => <div data-testid="children" />}
+      {() => <div />}
     </MagicBell>,
   );
 
-  const requests = server.pretender.handledRequests;
-  expect(requests[0].requestHeaders).toMatchObject({
-    'X-MAGICBELL-API-KEY': apiKey,
-    'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
-    'X-MAGICBELL-USER-HMAC': userKey,
-  });
+  await waitFor(() => expect(serverSpy).toHaveBeenCalled());
+
+  expect(serverSpy).toHaveBeenCalledWith(
+    expect.objectContaining({
+      'X-MAGICBELL-API-KEY': apiKey,
+      'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
+      'X-MAGICBELL-USER-HMAC': userKey,
+    }),
+  );
 });
 
 test('calls the onNewNotification callback when a new notification is received', () => {
@@ -234,6 +254,7 @@ test('calls the onNewNotification callback when a new notification is received',
 });
 
 test('supports a custom notification Badge', async () => {
+  server.get('/notifications', () => sampleNotifications);
   const Badge = ({ count }) => <div data-testid="custom-badge">{count}</div>;
 
   render(
