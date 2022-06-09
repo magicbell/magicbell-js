@@ -5,6 +5,7 @@ import { Notification } from './Notification';
 
 export default function SplittedNotificationInbox() {
   const stores = {
+    Default: useNotifications('default'),
     Read: useNotifications('read'),
     Unread: useNotifications('unread'),
   };

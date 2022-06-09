@@ -93,11 +93,12 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         const attrs = { readAt: now, seenAt: now };
 
         for (const storeId in stores) {
-          const { total, notifications, unreadCount, context } = stores[storeId];
+          const { total, notifications, context } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
-            draft.stores[storeId].unreadCount = Math.max(0, unreadCount - 1);
+            draft.stores[storeId].unreadCount -= 1;
+            draft.stores[storeId].unseenCount -= 1;
 
             const readNotification = mergeRight(notifications[index], attrs);
             if (objMatchesContext(readNotification, context).result) {
@@ -245,6 +246,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
           const { notifications } = stores[storeId];
 
           draft.stores[storeId].unreadCount = 0;
+          draft.stores[storeId].unseenCount = 0;
 
           if (options.updateModels !== false) {
             const now = Date.now() / 1000;

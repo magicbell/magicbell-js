@@ -144,8 +144,16 @@ describe('stores', () => {
             const initialUnreadCount = 4;
 
             const notifications = {
-              read: NotificationFactory.buildList(initialReadCount).map((x) => ({ ...x, readAt: Date.now() / 1000 })),
-              unread: NotificationFactory.buildList(initialUnreadCount).map((x) => ({ ...x, readAt: null })),
+              read: NotificationFactory.buildList(initialReadCount).map((x) => ({
+                ...x,
+                readAt: Date.now() / 1000,
+                seenAt: Date.now() / 1000,
+              })),
+              unread: NotificationFactory.buildList(initialUnreadCount).map((x) => ({
+                ...x,
+                readAt: null,
+                seenAt: null,
+              })),
             };
 
             server.get('/notifications', (_, { queryParams }) => {
@@ -156,6 +164,7 @@ describe('stores', () => {
                 {
                   total: notifications[storeId].length,
                   unreadCount: storeId === 'read' ? 0 : notifications[storeId].length,
+                  unseenCount: storeId === 'read' ? 0 : notifications[storeId].length,
                   notifications: notifications[storeId],
                 },
               );
@@ -177,8 +186,10 @@ describe('stores', () => {
             // Verify initial state,
             expect(stores.current).toHaveProperty('read.total', initialReadCount);
             expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('read.unseenCount', 0);
             expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
             expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount);
 
             // mark one unread notification as read
             const unread = renderHook(() => useNotification(stores.current.unread!.notifications[0])).result.current;
@@ -187,18 +198,22 @@ describe('stores', () => {
             // verify state when one notification moves from unread > read
             expect(stores.current).toHaveProperty('read.total', initialReadCount + 1);
             expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('read.unseenCount', 0);
             expect(stores.current).toHaveProperty('unread.total', initialUnreadCount - 1);
             expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount - 1);
+            expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount - 1);
 
             // mark one read notification as unread
             const read = renderHook(() => useNotification(stores.current.read!.notifications[0])).result.current;
             await act(async () => void (await read.markAsUnread()));
 
-            // verify state when one notification moves from read > unread
+            // verify state when one notification moves from read > unread, and not to unseen
             expect(stores.current).toHaveProperty('read.total', initialReadCount);
             expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('read.unseenCount', 0);
             expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
             expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount - 1);
           });
 
           test('markAsRead also marks a notification as seen', async () => {
