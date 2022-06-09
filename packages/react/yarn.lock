@@ -1701,10 +1701,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@magicbell/react-headless@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.0.1.tgz#19d63c87767bad8b4746811c323510cd4e2a480e"
-  integrity sha512-KG1iIXGIiOoCEzTJEY7o4M61RzAVVIkgGKl/tx1alGkRW7O6WJYrmbD/ZSUmGYPjgSpGfSwrx1f4rZC+1xzcgw==
+"@magicbell/react-headless@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.0.2.tgz#25d3d4af4e38a033ea3bfcedfe952bde4b2124e5"
+  integrity sha512-GJteI8O+ceGT2xrK8W5lbaCZqkK/H6sybbWb9MvQcRFt5BSHcLgGtGbPvucBnHeQKjkOWOo9AzW4XnJl5fSpmw==
   dependencies:
     ably "^1.2.14"
     axios "^0.27.2"
