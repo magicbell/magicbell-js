@@ -256,6 +256,54 @@ describe('stores', () => {
             expect(notification.current).toHaveProperty('seenAt', expect.anything());
           });
 
+          test('markAsRead does not change unseenCount when notification was already seen', async () => {
+            const now = Date.now() / 1000;
+            const notifications = NotificationFactory.buildList(4).map((x) => ({ ...x, readAt: null, seenAt: now }));
+
+            server.get(
+              '/notifications',
+              () =>
+                new Response(
+                  200,
+                  {},
+                  {
+                    total: notifications.length,
+                    unreadCount: notifications.filter((x) => !x.readAt).length,
+                    unseenCount: notifications.filter((x) => !x.seenAt).length,
+                    notifications: notifications,
+                  },
+                ),
+            );
+
+            const { result } = renderHook(() => useNotificationStoresCollection());
+
+            await act(async () => {
+              result.current.setStore('default');
+              await result.current.fetchAllStores();
+            });
+
+            const store = renderHook(() => useNotifications()).result;
+
+            // Verify initial state,
+            expect(store.current).toHaveProperty('total', 4);
+            expect(store.current).toHaveProperty('unreadCount', 4);
+            expect(store.current).toHaveProperty('unseenCount', 0);
+
+            const notification = renderHook(() => useNotification(store.current!.notifications[0])).result;
+            expect(notification.current).toHaveProperty('readAt', null);
+            expect(notification.current).toHaveProperty('seenAt', expect.anything());
+
+            // mark as read
+            await act(async () => void (await notification.current.markAsRead()));
+            expect(notification.current).toHaveProperty('readAt', expect.anything());
+            expect(notification.current).toHaveProperty('seenAt', expect.anything());
+
+            // verify store
+            expect(store.current).toHaveProperty('total', 4);
+            expect(store.current).toHaveProperty('unreadCount', 3);
+            expect(store.current).toHaveProperty('unseenCount', 0);
+          });
+
           test('markAsSeen does not mark notification as read', async () => {
             const notifications = NotificationFactory.buildList(4).map((x) => ({ ...x, readAt: null, seenAt: null }));
 

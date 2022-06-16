@@ -97,8 +97,9 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
-            draft.stores[storeId].unreadCount -= 1;
-            draft.stores[storeId].unseenCount -= 1;
+            // only decrease total counters when the notification wasn't already read|seen
+            if (!notification.readAt) draft.stores[storeId].unreadCount -= 1;
+            if (!notification.seenAt) draft.stores[storeId].unseenCount -= 1;
 
             const readNotification = mergeRight(notifications[index], attrs);
             if (objMatchesContext(readNotification, context).result) {
