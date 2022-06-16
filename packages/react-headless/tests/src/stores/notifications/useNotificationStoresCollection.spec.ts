@@ -192,7 +192,8 @@ describe('stores', () => {
             expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount);
 
             // mark one unread notification as read
-            const unread = renderHook(() => useNotification(stores.current.unread!.notifications[0])).result.current;
+            let notification = stores.current.unread!.notifications[0];
+            const unread = renderHook(() => useNotification(notification)).result.current;
             await act(async () => void (await unread.markAsRead()));
 
             // verify state when one notification moves from unread > read
@@ -203,11 +204,38 @@ describe('stores', () => {
             expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount - 1);
             expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount - 1);
 
+            // mark same notification as read again
+            notification = stores.current.read!.notifications.find((x) => x.id === notification.id)!;
+            const reread = renderHook(() => useNotification(notification)).result.current;
+            await act(async () => void (await reread.markAsRead()));
+
+            // verify that things haven't changed
+            expect(stores.current).toHaveProperty('read.total', initialReadCount + 1);
+            expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('read.unseenCount', 0);
+            expect(stores.current).toHaveProperty('unread.total', initialUnreadCount - 1);
+            expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount - 1);
+            expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount - 1);
+
             // mark one read notification as unread
-            const read = renderHook(() => useNotification(stores.current.read!.notifications[0])).result.current;
+            notification = stores.current.read!.notifications.find((x) => x.id === notification.id)!;
+            const read = renderHook(() => useNotification(notification)).result.current;
             await act(async () => void (await read.markAsUnread()));
 
             // verify state when one notification moves from read > unread, and not to unseen
+            expect(stores.current).toHaveProperty('read.total', initialReadCount);
+            expect(stores.current).toHaveProperty('read.unreadCount', 0);
+            expect(stores.current).toHaveProperty('read.unseenCount', 0);
+            expect(stores.current).toHaveProperty('unread.total', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unreadCount', initialUnreadCount);
+            expect(stores.current).toHaveProperty('unread.unseenCount', initialUnreadCount - 1);
+
+            // mark same notification as unread again
+            notification = stores.current.unread!.notifications.find((x) => x.id === notification.id)!;
+            const repeat = renderHook(() => useNotification(notification)).result.current;
+            await act(async () => void (await repeat.markAsUnread()));
+
+            // verify that things haven't changed
             expect(stores.current).toHaveProperty('read.total', initialReadCount);
             expect(stores.current).toHaveProperty('read.unreadCount', 0);
             expect(stores.current).toHaveProperty('read.unseenCount', 0);

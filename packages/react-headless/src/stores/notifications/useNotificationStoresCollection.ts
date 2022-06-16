@@ -143,7 +143,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
             const unreadNotification = mergeRight(notifications[index], attrs);
             if (objMatchesContext(unreadNotification, context).result) {
               // Update the store
-              draft.stores[storeId].unreadCount += 1;
+              if (notification.readAt) draft.stores[storeId].unreadCount += 1;
               draft.stores[storeId].notifications[index] = unreadNotification;
             } else {
               // Remove notification from the store
@@ -155,7 +155,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
             if (objMatchesContext(unreadNotification, context).result) {
               // Add the notification to the store
               draft.stores[storeId].total += 1;
-              draft.stores[storeId].unreadCount += 1;
+              if (notification.readAt) draft.stores[storeId].unreadCount += 1;
               draft.stores[storeId].notifications.push(unreadNotification);
             }
           }
