@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   test:
+    resource_class: large
     description: Run all tests
     executor:
       name: node/default
