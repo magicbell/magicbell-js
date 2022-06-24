@@ -2,7 +2,7 @@ import { handle, redirect } from 'next-runtime';
 
 export const getServerSideProps = handle({
   async get() {
-    return redirect(`/react`);
+    return redirect(`/react`, 301);
   },
 });
 
