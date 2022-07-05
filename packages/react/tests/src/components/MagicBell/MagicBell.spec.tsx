@@ -186,7 +186,7 @@ test('sets the headers for fetching from the API', async () => {
   const serverSpy = jest.fn();
   server.get('/notifications', (_, req) => {
     serverSpy(req.requestHeaders);
-    return new Response(200, {}, {});
+    return sampleNotifications;
   });
 
   render(
@@ -212,7 +212,7 @@ test('sets the external id header for fetching from the API', async () => {
   const serverSpy = jest.fn();
   server.get('/notifications', (_, req) => {
     serverSpy(req.requestHeaders);
-    return new Response(200, {}, {});
+    return sampleNotifications;
   });
 
   render(
