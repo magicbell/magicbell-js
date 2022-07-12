@@ -41,6 +41,7 @@ export default function ClickableNotification({ notification: rawNotification, o
     padding: 0 5px !important;
     flex-direction: column;
     align-items: flex-end;
+    margin-left: auto !important;
   `;
 
   const content = css`
