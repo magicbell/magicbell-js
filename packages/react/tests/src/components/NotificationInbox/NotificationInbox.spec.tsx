@@ -1,43 +1,20 @@
-import { useConfig } from '@magicbell/react-headless';
-import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Response, Server } from 'miragejs';
 import React from 'react';
 
 import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { createServer } from '../../../__utils__/server';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
-import { emptyNotificationPage, sampleNotification } from '../../../factories/NotificationFactory';
-import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
+import { emptyNotificationPage } from '../../../factories/NotificationFactory';
 
-let server;
+let server: ReturnType<typeof createServer>;
 
 beforeEach(() => {
   useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
-
-  server = new Server({
-    environment: 'test',
-    urlPrefix: 'https://api.magicbell.com',
-    timing: 50,
-    trackRequests: true,
-  });
-
-  server.get('/notifications', {
-    ...emptyNotificationPage,
-    total: 1,
-    unseen_count: 1,
-    unread_count: 1,
-    notifications: [sampleNotification],
-  });
-  server.post('/notifications/read', () => new Response(204, {}, ''));
-  server.post('/notifications/*/read', () => new Response(204, {}, ''));
-
-  server.get('/notification_preferences', {
-    notification_preferences: {
-      ...sampleNotificationPreferences,
-    },
-  });
+  server = createServer();
 });
 
 afterEach(() => {
@@ -47,11 +24,11 @@ afterEach(() => {
 test('renders a header, the list of notifications and a footer if the notifications are fetched', async () => {
   render(<NotificationInbox height={300} />);
 
-  const requests = server.pretender.handledRequests;
+  const requests = server.pretender['handledRequests'];
   expect(requests[0].queryParams).toMatchObject({ page: '1' });
 
   // header
-  screen.getByRole('heading', { name: /NOTIFICATIONS/ });
+  screen.getByRole('heading', { name: /Notifications/ });
 
   // notification
   await waitFor(() => screen.getByText(/This is a good content/));
@@ -75,23 +52,23 @@ test('clicking the mark-all-read button invokes the onAllRead callback', async (
 
   render(<NotificationInbox onAllRead={onAllRead} height={300} />);
 
-  const button = await screen.findByRole('button', { name: /Mark All Read/ });
-  userEvent.click(button);
+  const button = await screen.findByRole('button', { name: /Mark all read/ });
+  await userEvent.click(button);
 
   expect(onAllRead).toHaveBeenCalledTimes(1);
 });
 
 test('the mark-all-read button is not visible when there are no notifications', async () => {
-  server.get('/notifications', emptyNotificationPage);
+  server.get('/notifications', () => emptyNotificationPage);
 
   render(<NotificationInbox />);
 
   await waitFor(() => screen.getByText(/We'll let you know when there's more./));
-  expect(screen.queryByRole('button', { name: /Mark All Read/ })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: /Mark all read/ })).not.toBeInTheDocument();
 });
 
 test('renders a message and a image if there are no notifications', async () => {
-  server.get('/notifications', emptyNotificationPage);
+  server.get('/notifications', () => emptyNotificationPage);
 
   render(<NotificationInbox />);
 
@@ -100,7 +77,7 @@ test('renders a message and a image if there are no notifications', async () => 
 });
 
 test('can render with a custom no-notifications placeholder if there are no notifications', async () => {
-  server.get('/notifications', emptyNotificationPage);
+  server.get('/notifications', () => emptyNotificationPage);
 
   const EmptyInboxPlaceholder = () => <div data-testid="empty-inbox-placeholder" />;
   render(<NotificationInbox EmptyInboxPlaceholder={EmptyInboxPlaceholder} />, { locale: 'en' });
@@ -112,7 +89,7 @@ test('can render with a custom no-notifications placeholder if there are no noti
 
 test('can render the inbox in Spanish', async () => {
   render(<NotificationInbox />, { locale: 'es' });
-  screen.getByRole('heading', { name: /NOTIFICACIONES/ });
+  screen.getByRole('heading', { name: /Notificaciones/ });
   screen.getByRole('button', { name: /Preferencias/ });
   await screen.findByRole('button', { name: /Marcar todo como leído/ });
 });
@@ -121,8 +98,8 @@ test('invokes the onAllRead callback when clicking the `mark all read` button', 
   const onAllRead = jest.fn();
   render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
 
-  const markAllReadButton = await screen.findByRole('button', { name: /Mark All Read/ });
-  userEvent.click(markAllReadButton);
+  const markAllReadButton = await screen.findByRole('button', { name: /Mark all read/ });
+  await userEvent.click(markAllReadButton);
   await waitFor(() => expect(onAllRead).toBeCalledTimes(1));
 });
 
@@ -145,32 +122,34 @@ test('notification preferences can be disabled trough useConfig hook', () => {
 });
 
 test('shows the user preferences panel when the preferences button is clicked', async () => {
+  useNotificationPreferences.setState({ lastFetchedAt: undefined });
+
   render(<NotificationInbox />, { locale: 'en' });
   const preferencesButton = screen.getByRole('button', { name: /Notification preferences/ });
-  userEvent.click(preferencesButton);
+  await userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
   expect(checkboxes).toHaveLength(12);
 
   // clicking again closes the preferences
-  const removal = waitForElementToBeRemoved(() => screen.getAllByRole('checkbox'));
-  userEvent.click(screen.getByRole('button', { name: /Notification preferences/ }));
-  await removal;
+  await userEvent.click(screen.getByRole('button', { name: /close/ }));
+  await waitFor(() => expect(screen.queryByRole('checkbox')).not.toBeInTheDocument());
 });
 
 test('the notifications panel contains a close button', async () => {
+  useNotificationPreferences.setState({ lastFetchedAt: undefined });
+
   render(<NotificationInbox />, { locale: 'en' });
   const preferencesButton = screen.getByRole('button', { name: /Notification preferences/ });
-  userEvent.click(preferencesButton);
+  await userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
   expect(checkboxes).toHaveLength(12);
 
   // close the preferences, return to inbox
   const closeButton = screen.getByRole('button', { name: /close/i });
-  const removal = waitForElementToBeRemoved(() => screen.getAllByRole('checkbox'));
-  userEvent.click(closeButton);
-  await removal;
+  await userEvent.click(closeButton);
+  await waitFor(() => expect(screen.queryByRole('checkbox')).not.toBeInTheDocument());
 });
 
 test('can render with a custom notification preferences component', async () => {
@@ -178,7 +157,7 @@ test('can render with a custom notification preferences component', async () => 
 
   render(<NotificationInbox NotificationPreferences={NotificationPreferences} />, { locale: 'en' });
   const button = screen.getByRole('button', { name: /Notification preferences/ });
-  userEvent.click(button);
+  await userEvent.click(button);
 
   await waitFor(() => screen.getByTestId('notification-preferences'));
 });

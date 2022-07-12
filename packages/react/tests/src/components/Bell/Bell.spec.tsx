@@ -7,33 +7,18 @@ import {
 import { act, screen, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
-import { Response, Server } from 'miragejs';
 import React from 'react';
 
 import Bell from '../../../../src/components/Bell';
 import { defaultTheme } from '../../../../src/context/Theme';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { sampleConfig } from '../../../factories/ConfigFactory';
+import { createServer } from '../../../__utils__/server';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
-let server: any;
+let server: ReturnType<typeof createServer>;
 
 beforeEach(() => {
-  server = new Server({
-    environment: 'test',
-    urlPrefix: 'https://api.magicbell.com',
-    timing: 0,
-  });
-  server.get('/config', sampleConfig);
-  server.post('/notifications/seen', new Response(204, {}, ''));
-  server.get('/notifications', {
-    total: 1,
-    per_page: 15,
-    current_page: 1,
-    unseen_count: 0,
-    unread_count: 1,
-    notifications: [sampleNotification],
-  });
+  server = createServer();
 });
 
 afterEach(() => {
@@ -90,26 +75,26 @@ test('can render the bell icon with the custom color and size', () => {
   expect(icon).toHaveAttribute('fill', 'red');
 });
 
-test('calls the onClick callback when the button is clicked', () => {
+test('calls the onClick callback when the button is clicked', async () => {
   const onClick = jest.fn();
   render(<Bell onClick={onClick} />);
 
   const button = screen.getByRole('button', { name: /notifications/i });
-  userEvent.click(button);
+  await userEvent.click(button);
 
   expect(onClick).toHaveBeenCalledTimes(1);
   expect(onClick).toHaveBeenCalledWith();
 });
 
-test('marks all notifications as seen', () => {
+test('marks all notifications as seen', async () => {
   const onClick = jest.fn();
   render(<Bell onClick={onClick} />);
 
   const button = screen.getByRole('button', { name: /notifications/i });
-  userEvent.click(button);
+  await userEvent.click(button);
 
   const { result } = renderHook(() => useNotification({ ...sampleNotification, seenAt: null }));
 
-  userEvent.click(button);
+  await userEvent.click(button);
   expect(result.current.seenAt).toBeDefined();
 });

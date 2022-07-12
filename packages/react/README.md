@@ -347,7 +347,7 @@ const store = useNotifications('mentions');
 
 ## Custom Themes
 
-Is is possible to customize the text color, font size and border radius of some elements by providing to the [`MagicBell`](#magicbell) component a `theme` property. This is going to be deep merged with the default theme.
+Is is possible to customize the text color, font size and border radius of some elements by providing to the [`MagicBell`](#magicbell) component a `theme` property. This is going to be deep merged with the default theme. Note that the notification unread and unseen definitions inherit properties from notification default style.
 
 This is the definition of the default theme:
 
@@ -363,9 +363,12 @@ This is the definition of the default theme:
     borderRadius: '8px',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
     fontSize: '14px',
+    fontWeight: 'inherit',
     textColor: 'white',
     textAlign: 'left',
-    textTransform: 'none',
+    textTransform: 'uppercase',
+    padding: '16px 24px',
+    borderColor: undefined,
   },
   footer: {
     backgroundColor: '#3498F4',
@@ -373,9 +376,21 @@ This is the definition of the default theme:
     borderRadius: '8px',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
     fontSize: '14px',
+    fontWeight: 'inherit',
     textColor: 'white',
     textAlign: 'right',
     textTransform: 'none',
+    padding: '16px 24px',
+    borderColor: undefined,
+  },
+  banner: {
+    backgroundColor: '#3498F4',
+    backgroundOpacity: 0.1,
+    textColor: '#000',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    textAlign: 'left',
+    fontSize: '14px',
+    boxShadow: 'none',
   },
   unseenBadge: {
     backgroundColor: '#DF4759',
@@ -383,6 +398,7 @@ This is the definition of the default theme:
     borderRadius: '2px',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
     fontSize: '14px',
+    fontWeight: 'inherit',
     textColor: 'white',
     textAlign: 'left',
     textTransform: 'none',
@@ -392,41 +408,53 @@ This is the definition of the default theme:
     backgroundOpacity: 1,
     borderRadius: '8px',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+    fontWeight: 'inherit',
     fontSize: '14px',
     textAlign: 'left',
     textColor: '#3A424D',
     textTransform: 'none',
+    boxShadow: '0px 20px 25px rgba(84, 95, 111, 0.1), 0px 10px 10px rgba(84, 95, 111, 0.04)',
   },
   notification: {
     default: {
-      backgroundColor: '#3498F4',
-      backgroundOpacity: 0.1,
+      backgroundColor: 'transparent',
+      backgroundOpacity: 0,
       borderRadius: '8px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
       fontSize: '14px',
-      textColor: '#3A424D',
+      fontWeight: 'inherit',
+      textColor: '#000',
       textAlign: 'left',
       textTransform: 'none',
+      margin: '4px',
+      padding: '16px 20px 16px 12px',
+      title: {
+        fontFamily: 'inherit',
+        fontSize: 'inherit',
+        fontWeight: 500,
+        textColor: 'inherit',
+      },
+      hover: {
+        backgroundColor: '#3498F4',
+        backgroundOpacity: 0.1,
+      },
+      state: {
+        color: 'transparent',
+      },
     },
     unread: {
       backgroundColor: '#D9E2EF',
       backgroundOpacity: 0.1,
-      borderRadius: '8px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-      fontSize: '14px',
-      textColor: '#3A424D',
-      textAlign: 'left',
-      textTransform: 'none',
+      state: {
+        color: '#3498F4',
+      },
     },
     unseen: {
       backgroundColor: '#D9E2EF',
       backgroundOpacity: 0.05,
-      borderRadius: '8px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-      fontSize: '14px',
-      textColor: '#3A424D',
-      textAlign: 'left',
-      textTransform: 'none',
+      state: {
+        color: '#3498F4',
+      },
     },
   },
 }

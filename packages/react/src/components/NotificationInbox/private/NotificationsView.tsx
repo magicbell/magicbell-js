@@ -3,13 +3,15 @@ import { jsx } from '@emotion/react';
 import { useConfig, useNotifications } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { pathOr } from 'ramda';
+import { Fragment } from 'react';
 import { ReactElement } from 'react';
 
 import { useTranslate } from '../../../context/TranslationsContext';
 import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';
 import Footer from '../../Footer';
-import SettingsIcon from '../../Footer/SettingsIcon';
 import Header from '../../Header';
+import CheckMarkIcon from '../../icons/CheckMarkIcon';
+import SettingsIcon from '../../icons/SettingsIcon';
 import { ListItemProps } from '../../NotificationList';
 import Text from '../../Text';
 import ClearInboxMessage from '../ClearInboxMessage';
@@ -58,13 +60,27 @@ export default function NotificationsView({
     <Layout order={layout}>
       <Header
         key="header"
-        title={<Text id="header.title" defaultMessage="NOTIFICATIONS" />}
+        title={<Text id="header.title" defaultMessage="Notifications" />}
         actions={
-          hasNotifications ? (
-            <button onClick={handleMarkAllAsRead}>
-              <Text id="header.mark-all-read" defaultMessage="Mark All Read" />
-            </button>
-          ) : null
+          <Fragment>
+            {hasNotifications ? (
+              <button
+                onClick={handleMarkAllAsRead}
+                aria-label={t('header.mark-all-read', 'Mark all read')}
+              >
+                <CheckMarkIcon />
+              </button>
+            ) : null}
+
+            {showPreferencesButton ? (
+              <button
+                onClick={() => setView('preferences')}
+                aria-label={t('preferences.toggle', 'Notification preferences')}
+              >
+                <SettingsIcon />
+              </button>
+            ) : null}
+          </Fragment>
         }
       />
 
@@ -82,16 +98,7 @@ export default function NotificationsView({
 
       <EnablePushNotificationsBanner key="push-notifications-banner" />
 
-      <Footer key="footer">
-        {showPreferencesButton ? (
-          <button
-            onClick={() => setView('preferences')}
-            aria-label={t('preferences.toggle', 'Notification preferences')}
-          >
-            <SettingsIcon />
-          </button>
-        ) : null}
-      </Footer>
+      <Footer key="footer" />
     </Layout>
   );
 }

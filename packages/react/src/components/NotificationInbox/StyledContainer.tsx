@@ -20,8 +20,7 @@ interface StyledContainerProps {
  * </StyledContainer>
  */
 export default function StyledContainer({ height, children, layout }: StyledContainerProps) {
-  const theme = useTheme();
-  const { container: containerTheme } = theme;
+  const { container: theme } = useTheme();
   const [ltBorderRadius, rtBorderRadius, rbBorderRadius, lbBorderRadius] =
     useContainerBorderRadius(layout);
 
@@ -30,14 +29,17 @@ export default function StyledContainer({ height, children, layout }: StyledCont
       css={[
         cleanslate,
         css`
-          background-color: ${containerTheme.backgroundColor};
+          background-color: ${theme.backgroundColor};
           border-radius: ${ltBorderRadius} ${rtBorderRadius} ${rbBorderRadius} ${lbBorderRadius};
-          color: ${containerTheme.textColor};
+          color: ${theme.textColor};
           display: flex;
           flex-direction: column;
-          font-family: ${containerTheme.fontFamily} !important;
+          font-family: ${theme.fontFamily} !important;
+          font-weight: ${theme.fontWeight} !important;
           height: ${height ? `${height}px` : 'auto'};
           overflow: hidden;
+          border: ${theme.borderColor ? `1px solid ${theme.borderColor} !important` : undefined};
+          box-shadow: ${theme.boxShadow ? `${theme.boxShadow} !important` : undefined};
         `,
       ]}
     >

@@ -27,8 +27,6 @@ export default function EnablePushNotificationsBanner() {
   const { apiKey, userEmail, userExternalId } = getState();
 
   const theme = useTheme();
-  const { footer: footerTheme } = theme;
-  const { notification: notificationTheme } = theme;
 
   const [wasRequested, setRequestedAt] = useLocalStorage<number | null>(
     `magicbell:${apiKey}:web-push-requested-at`,
@@ -61,14 +59,13 @@ export default function EnablePushNotificationsBanner() {
       css={css`
         padding: 14px 24px !important;
         display: flex;
-        text-align: left;
         align-items: center;
-        background: ${toRGBA(notificationTheme.unseen.backgroundColor, 0.1)};
-
-        color: ${notificationTheme.unseen.textColor} !important;
-        font-family: ${footerTheme.fontFamily} !important;
-        text-align: ${footerTheme.textAlign} !important;
-        font-size: ${footerTheme.fontSize} !important;
+        background: ${toRGBA(theme.banner.backgroundColor, theme.banner.backgroundOpacity)};
+        box-shadow: ${theme.banner.boxShadow ? `${theme.banner.boxShadow} !important` : undefined};
+        color: ${theme.banner.textColor} !important;
+        font-family: ${theme.banner.fontFamily} !important;
+        text-align: ${theme.banner.textAlign} !important;
+        font-size: ${theme.banner.fontSize} !important;
 
         & > * {
           margin-left: 1em;

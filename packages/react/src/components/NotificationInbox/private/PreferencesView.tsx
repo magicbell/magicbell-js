@@ -2,9 +2,7 @@
 import { jsx } from '@emotion/react';
 import { ReactElement } from 'react';
 
-import { useTranslate } from '../../../context/TranslationsContext';
 import Footer from '../../Footer';
-import SettingsIcon from '../../Footer/SettingsIcon';
 import Header from '../../Header';
 import Text from '../../Text';
 import CloseIcon from '../../UserPreferencesPanel/CloseIcon';
@@ -25,13 +23,11 @@ export default function PreferencesView({
   setView,
   NotificationPreferences = PreferencesCategories,
 }: PreferencesViewProps) {
-  const t = useTranslate();
-
   return (
     <Layout order={layout}>
       <Header
         key="header"
-        title={<Text id="preferences.title" defaultMessage="PREFERENCES" />}
+        title={<Text id="preferences.title" defaultMessage="Preferences" />}
         actions={
           <button onClick={() => setView('inbox')} aria-label="close">
             <CloseIcon />
@@ -43,14 +39,7 @@ export default function PreferencesView({
         <NotificationPreferences />
       </div>
 
-      <Footer key="footer">
-        <button
-          onClick={() => setView('inbox')}
-          aria-label={t('preferences.toggle', 'Notification preferences')}
-        >
-          <SettingsIcon />
-        </button>
-      </Footer>
+      <Footer key="footer" />
     </Layout>
   );
 }

@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/react';
 import { Dayjs } from 'dayjs';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
-import { darken, toRGBA } from '../../lib/color';
 
 export interface TimestampTooltipProps {
   date: Dayjs;
@@ -24,12 +23,13 @@ export default function TimestampTooltip({ date }: TimestampTooltipProps) {
     <span
       css={css`
         background: ${containerTheme.backgroundColor} !important;
-        border-radius: ${notificationTheme.default.borderRadius} !important;
-        box-shadow: 2px 2px 3px ${darken(toRGBA(containerTheme.backgroundColor, 0.5), 10)};
+        border-radius: 4px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         color: ${notificationTheme.default.textColor} !important;
         font-size: 0.8em !important;
         padding: 0.5em !important;
         text-transform: ${notificationTheme.default.textTransform};
+        white-space: nowrap !important;
       `}
     >
       {date.format('LL LT')}

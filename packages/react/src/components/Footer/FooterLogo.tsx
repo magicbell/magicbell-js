@@ -1,6 +1,7 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { useConfig } from '@magicbell/react-headless';
 import { pathOr } from 'ramda';
-import React from 'react';
 
 import MagicBellLogo from './MagicBellLogo';
 
@@ -15,10 +16,19 @@ export default function FooterLogo() {
   const inboxConfig = useConfig((state) => state.inbox);
   const hideBranding = pathOr(false, ['features', 'noMagicbellBranding', 'enabled'], inboxConfig);
 
-  if (hideBranding) return <p style={{ height: '20px' }} />;
+  const style = css`
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+  `;
+
+  if (hideBranding) return <div css={style} />;
+
   return (
-    <a href="https://magicbell.io/?utm_source=widget" target="_blank" rel="noopener noreferrer">
-      <MagicBellLogo />
-    </a>
+    <div css={style}>
+      <a href="https://magicbell.io/?utm_source=widget" target="_blank" rel="noopener noreferrer">
+        <MagicBellLogo />
+      </a>
+    </div>
   );
 }

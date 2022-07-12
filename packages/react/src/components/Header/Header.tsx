@@ -37,6 +37,9 @@ export default function Header({ title, actions }: Props) {
           overflow: visible;
           display: flex;
           align-items: center;
+          & > * + * {
+            margin-left: 8px;
+          }
         `}
       >
         {actions}

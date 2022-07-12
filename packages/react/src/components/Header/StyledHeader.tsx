@@ -33,8 +33,12 @@ export default function StyledHeader({ children }: Props) {
     justify-content: space-between;
     text-align: ${headerTheme.textAlign} !important;
     text-transform: ${headerTheme.textTransform} !important;
-    padding: 16px 24px !important;
+    padding: ${headerTheme.padding} !important;
     flex-shrink: 0 !important;
+    border-bottom: ${headerTheme.borderColor
+      ? `1px solid ${headerTheme.borderColor} !important`
+      : undefined};
+    font-weight: ${headerTheme.fontWeight};
 
     &:first-of-type {
       border-radius: ${headerTheme.borderRadius} ${headerTheme.borderRadius} 0 0 !important;
@@ -42,6 +46,14 @@ export default function StyledHeader({ children }: Props) {
 
     &:last-of-type {
       border-radius: 0 0 ${headerTheme.borderRadius} ${headerTheme.borderRadius}!important;
+    }
+
+    & button:hover {
+      opacity: 0.8;
+    }
+
+    & button:active {
+      opacity: 0.9;
     }
   `;
 

@@ -5,6 +5,7 @@ import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 
 import NotificationContent from '../NotificationContent';
+import NotificationMenu from '../NotificationMenu';
 import NotificationState from '../NotificationState';
 import Timestamp from '../Timestamp';
 import { openActionUrl } from './eventHandlers';
@@ -26,36 +27,45 @@ export interface Props {
 export default function ClickableNotification({ notification: rawNotification, onClick }: Props) {
   const notification = useNotification(rawNotification);
 
-  const handleClick = (event) => {
+  const handleMarkAsRead = () => {
     notification.markAsRead();
+  };
 
-    // As the notification is wrapped in a <button>, we don't want to invoke the action url when the
-    // user clicks a link inside that notification. The link should take precedence.
-    const clickedLink = event.target.tagName === 'A' && event.target.getAttribute('href');
-
+  const handleClick = () => {
     if (onClick) onClick(notification);
-    else if (clickedLink) return;
     else openActionUrl(notification);
   };
 
+  const actions = css`
+    display: flex;
+    padding: 0 5px !important;
+    flex-direction: column;
+    align-items: flex-end;
+  `;
+
+  const content = css`
+    margin: 0 8px !important;
+  `;
+
   return (
-    <StyledContainer notification={notification}>
-      <button onClick={handleClick}>
-        <div>
-          <NotificationTitle notification={notification} />
-          <NotificationContent notification={notification} />
-        </div>
-        <div
-          css={css`
-            padding: 0.5em 0 0.5em 0.25em !important;
-          `}
-        >
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/* @ts-ignore */}
-          {notification.sentAt ? <Timestamp date={notification.sentAt} /> : null}
-        </div>
-      </button>
+    <StyledContainer notification={notification} onClick={handleMarkAsRead}>
+      <button
+        onClick={handleClick}
+        aria-labelledby={`magicbell-notification-title-${notification.id}`}
+      />
       <NotificationState notification={notification} />
+      <div css={content}>
+        <NotificationTitle notification={notification} />
+        <NotificationContent notification={notification} />
+      </div>
+      <div css={actions}>
+        {notification.sentAt ? (
+          <Timestamp date={notification.sentAt} tooltipPlacement="left" />
+        ) : (
+          <div />
+        )}
+        <NotificationMenu notification={notification} />
+      </div>
     </StyledContainer>
   );
 }

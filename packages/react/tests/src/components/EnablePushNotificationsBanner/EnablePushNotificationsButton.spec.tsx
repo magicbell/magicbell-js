@@ -10,10 +10,10 @@ test('renders a button', () => {
   screen.getByRole('button', { name: /enable now/i });
 });
 
-test('calls the onClick handler on click', () => {
+test('calls the onClick handler on click', async () => {
   const onClick = jest.fn();
   render(<EnablePushNotificationsButton onClick={onClick} />);
   const button = screen.getByRole('button', { name: /enable now/i });
-  userEvent.click(button);
+  await userEvent.click(button);
   expect(onClick).toHaveBeenCalledTimes(1);
 });

@@ -37,11 +37,16 @@ test('renders the notification with seen/unseen background variation', () => {
   render(
     <>
       <ClickableNotification
-        notification={{ ...sampleNotification, title: 'new notification', seenAt: null }}
+        notification={{ ...sampleNotification, id: '1', title: 'new notification', seenAt: null }}
         onClick={jest.fn()}
       />
       <ClickableNotification
-        notification={{ ...sampleNotification, title: 'old notification', seenAt: Date.now() }}
+        notification={{
+          ...sampleNotification,
+          id: '2',
+          title: 'old notification',
+          seenAt: Date.now(),
+        }}
         onClick={jest.fn()}
       />
     </>,
@@ -56,32 +61,35 @@ test('renders the notification with seen/unseen background variation', () => {
   expect(unreadStyle.backgroundColor).not.toEqual(readStyle.backgroundColor);
 });
 
-test('renders the notification with the read/unread svg variation', async () => {
+test('renders the notification with the read/unread svg color variation', async () => {
   render(
     <>
       <ClickableNotification
-        notification={{ ...sampleNotification, title: 'new notification', seenAt: null }}
+        notification={{ ...sampleNotification, id: '1', title: 'new notification', seenAt: null }}
         onClick={jest.fn()}
       />
       <ClickableNotification
-        notification={{ ...sampleNotification, title: 'old notification', readAt: Date.now() }}
+        notification={{
+          ...sampleNotification,
+          id: '2',
+          title: 'old notification',
+          readAt: Date.now(),
+        }}
         onClick={jest.fn()}
       />
     </>,
   );
 
   const unreadItem = screen.getByRole('button', { name: /new notification/i });
-  const unreadSvg = unreadItem.parentElement!.querySelector('svg');
-  expect(unreadSvg?.tagName).toEqual('svg');
+  const unreadSvg = unreadItem.parentElement!.querySelector('svg')!.parentElement as HTMLElement;
 
   const readItem = screen.getByRole('button', { name: /old notification/i });
-  const readSvg = readItem.parentElement!.querySelector('svg');
-  expect(readSvg?.tagName).toEqual('svg');
+  const readSvg = readItem.parentElement!.querySelector('svg')!.parentElement as HTMLElement;
 
-  expect(unreadSvg!.outerHTML).not.toEqual(readSvg!.outerHTML);
+  expect(getComputedStyle(unreadSvg).color).not.toEqual(getComputedStyle(readSvg).color);
 });
 
-test('passes the notification object to the onClick callback', () => {
+test('passes the notification object to the onClick callback', async () => {
   const onClick = jest.fn();
   const notification = { ...sampleNotification, title: 'notification' };
 
@@ -89,7 +97,7 @@ test('passes the notification object to the onClick callback', () => {
 
   const notificationButton = screen.getByRole('button', { name: /notification/i });
 
-  userEvent.click(notificationButton);
+  await userEvent.click(notificationButton);
   expect(onClick).toHaveBeenCalledTimes(1);
   expect(onClick).toHaveBeenCalledWith(
     expect.objectContaining({
@@ -100,7 +108,7 @@ test('passes the notification object to the onClick callback', () => {
   );
 });
 
-test('opens the action url in the same tab', () => {
+test('opens the action url in the same tab', async () => {
   global.open = jest.fn();
 
   render(
@@ -115,48 +123,41 @@ test('opens the action url in the same tab', () => {
 
   const notification = screen.getByRole('button', { name: /notification/i });
 
-  userEvent.click(notification);
+  await userEvent.click(notification);
 
   expect(global.open).toHaveBeenCalledTimes(1);
   expect(global.open).toHaveBeenCalledWith('https://example.com', '_self');
 });
 
-test('invokes the click handler when clicking on a link in the notification', () => {
+test('does not invoke the click handler when clicking on a link in the notification', async () => {
   const onClick = jest.fn();
   const notification = {
     ...sampleNotification,
     title: 'notification',
-    content: 'Some text <a href="https://example.com">browse the docs</a> and more text',
+    content: 'Some text <a href="#">browse the docs</a> and more text',
   };
 
   render(<ClickableNotification notification={notification} onClick={onClick} />);
   const link = screen.getByRole('link', { name: /browse the docs/i });
-  userEvent.click(link);
+  await userEvent.click(link);
 
-  expect(onClick).toHaveBeenCalledTimes(1);
-  expect(onClick).toHaveBeenCalledWith(
-    expect.objectContaining({
-      id: notification.id,
-      actionUrl: notification.actionUrl,
-      title: notification.title,
-    }),
-  );
+  expect(onClick).not.toHaveBeenCalled();
 });
 
-test('does not invoke the action url when clicking on a link in the notification', () => {
+test('does not invoke the action url when clicking on a link in the notification', async () => {
   global.open = jest.fn();
 
   const onClick = jest.fn();
   const notification = {
     ...sampleNotification,
     title: 'notification',
-    content: 'Some text <a href="https://example.com">browse other docs</a> and more text',
+    content: 'Some text <a href="#">browse other docs</a> and more text',
     actionUrl: 'https://example.com/action-url',
   };
 
   render(<ClickableNotification notification={notification} onClick={onClick} />);
   const link = screen.getByRole('link', { name: /browse other docs/i });
-  userEvent.click(link);
+  await userEvent.click(link);
 
   expect(global.open).toHaveBeenCalledTimes(0);
 });

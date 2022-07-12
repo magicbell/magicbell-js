@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
@@ -43,18 +45,32 @@ export default function NotificationList({
   scrollableTarget,
   ListItem = ClickableNotification,
 }: NotificationListProps) {
+  const style = css`
+    height: 100%;
+
+    & .infinite-scroll-component__outerdiv {
+      height: 100%;
+    }
+
+    & .infinite-scroll-component {
+      min-height: 100%;
+    }
+  `;
+
   return (
-    <InfiniteScroll
-      dataLength={store.notifications.length}
-      hasMore={store.hasNextPage}
-      next={() => store.fetchNextPage(queryParams)}
-      loader={<Loader />}
-      height={height}
-      scrollableTarget={scrollableTarget}
-    >
-      {store.notifications.map((notification) => (
-        <ListItem key={notification.id} notification={notification} onClick={onItemClick} />
-      ))}
-    </InfiniteScroll>
+    <div css={style}>
+      <InfiniteScroll
+        dataLength={store.notifications.length}
+        hasMore={store.hasNextPage}
+        next={() => store.fetchNextPage(queryParams)}
+        loader={<Loader />}
+        height={height}
+        scrollableTarget={scrollableTarget}
+      >
+        {store.notifications.map((notification) => (
+          <ListItem key={notification.id} notification={notification} onClick={onItemClick} />
+        ))}
+      </InfiniteScroll>
+    </div>
   );
 }

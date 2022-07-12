@@ -4,7 +4,10 @@ import { Factory } from 'rosie';
 export default new Factory()
   .attr('id', () => faker.datatype.uuid())
   .attr('title', () => faker.random.words())
-  .attr('content', () => faker.lorem.paragraphs())
+  .attr(
+    'content',
+    () => faker.lorem.sentences(3) + ' <a target="_blank" href="http://example.com">more</a>',
+  )
   .attr('actionUrl', () => faker.internet.url())
   .attr('category', () => faker.random.word())
   .attr('seenAt', () => faker.date.recent().getTime() / 1000)

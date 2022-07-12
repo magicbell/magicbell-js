@@ -3,7 +3,10 @@ import { css, jsx } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
-import DotIcon from '../icons/DotIcon';
+import { useTranslate } from '../../context/TranslationsContext';
+import MenuIcon from '../icons/MenuIcon';
+import NotificationContextMenu from '../NotificationContextMenu';
+import Popover from '../Popover';
 
 export interface Props {
   notification: INotification;
@@ -26,13 +29,14 @@ export interface Props {
 }
 
 /**
- * Component that renders a dot with style based on notification state
+ * Component that renders the context menu
  *
  * @example
  * <NotificationState notification={notification} />
  */
-export default function NotificationState({ notification }: Props) {
+export default function NotificationMenu({ notification, menuPlacement = 'bottom-end' }: Props) {
   const { notification: themeVariants } = useTheme();
+  const t = useTranslate();
 
   const theme = !notification.isSeen
     ? themeVariants.unseen
@@ -40,19 +44,27 @@ export default function NotificationState({ notification }: Props) {
     ? themeVariants.unread
     : themeVariants.default;
 
-  return (
-    <div
+  const launcher = (
+    <button
+      type="button"
+      aria-label={t('notification.menu', 'Menu')}
       css={css`
-        flex: none !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 24px !important;
-        height: 24px !important;
-        color: ${theme.state.color} !important;
+        color: ${theme.textColor} !important;
       `}
     >
-      <DotIcon />
-    </div>
+      <MenuIcon />
+    </button>
+  );
+
+  return (
+    <Popover
+      launcher={launcher}
+      offset={{ skidding: -4, distance: 2 }}
+      placement={menuPlacement}
+      zIndex={1}
+      trigger="click"
+    >
+      {() => <NotificationContextMenu notification={notification} />}
+    </Popover>
   );
 }

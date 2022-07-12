@@ -3,7 +3,6 @@ import React from 'react';
 
 import ClickableNotification from '../src/components/ClickableNotification/ClickableNotification';
 import { MagicBellThemeProvider } from '../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../src/context/Theme';
 
 export default {
   title: 'MagicBell/ClickableNotification',
@@ -17,9 +16,9 @@ export default {
   },
 } as Meta;
 
-const Template = (args: { notification; onClick }) => (
-  <MagicBellThemeProvider value={defaultTheme}>
-    <ClickableNotification notification={args.notification} onClick={args.onClick} />
+const Template = ({ notification, onClick, theme }) => (
+  <MagicBellThemeProvider value={theme}>
+    <ClickableNotification notification={notification} onClick={onClick} />
   </MagicBellThemeProvider>
 );
 

@@ -1,12 +1,13 @@
 const pt_br = {
   header: {
-    title: 'NOTIFICAÇÕES',
+    title: 'Notificações',
     'mark-all-read': 'Marcar tudo como lido',
   },
   notification: {
     'mark-as-read': 'Marcar como lido',
     'mark-as-unread': 'Marcar como não lido',
     delete: 'Apagar',
+    menu: 'Menu',
   },
   'web-push-notifications': {
     notice: 'Ao ativar as notificações do navegador, você ficará ainda melhor atualizado.',

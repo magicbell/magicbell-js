@@ -40,7 +40,7 @@ export default function NotificationContent({ notification }: Props) {
         margin: 0;
         line-height: 1.2;
         font-size: 0.865em !important;
-        margin-top: 1em !important;
+        margin-top: 8px !important;
         word-break: break-word !important;
       `}
       dangerouslySetInnerHTML={{ __html: markup }}

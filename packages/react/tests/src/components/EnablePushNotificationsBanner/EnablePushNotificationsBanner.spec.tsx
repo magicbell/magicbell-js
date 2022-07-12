@@ -1,5 +1,5 @@
 import { useConfig } from '@magicbell/react-headless';
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -40,12 +40,12 @@ test('does not render anything if web push channel is disabled', () => {
   expect(screen.queryByRole('button', { name: /enable now/i })).not.toBeInTheDocument();
 });
 
-test('clicking the `enable now` button opens a new window to create the push subscription', () => {
+test('clicking the `enable now` button opens a new window to create the push subscription', async () => {
   const spy = jest.spyOn(window, 'open');
   render(<EnablePushNotificationsBanner />);
 
   const enableButton = screen.getByRole('button', { name: /enable now/i });
-  userEvent.click(enableButton);
+  await userEvent.click(enableButton);
   expect(spy).toHaveBeenCalledTimes(1);
 });
 
@@ -54,10 +54,6 @@ test('closes the banner when clicking the close button', async () => {
 
   const closeButton = screen.getByRole('button', { name: /close notification/i });
 
-  const removal = waitForElementToBeRemoved(() =>
-    screen.queryByRole('button', { name: /close notification/i }),
-  );
-
-  userEvent.click(closeButton);
-  await removal;
+  await userEvent.click(closeButton);
+  await waitFor(() => expect(closeButton).not.toBeInTheDocument());
 });

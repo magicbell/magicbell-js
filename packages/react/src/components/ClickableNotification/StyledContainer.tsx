@@ -1,15 +1,16 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
-import { darken, toRGBA } from '../../lib/color';
+import { toRGBA } from '../../lib/color';
 import { cleanslate } from '../Styled';
 
-export interface Props {
+export type Props = {
   notification: INotification;
-  children: React.ReactElement | React.ReactElement[];
-}
+  children: ReactNode;
+} & HTMLAttributes<HTMLDivElement>;
 
 /**
  * A container for the `ClickableNotification` component. The style is taken
@@ -18,56 +19,57 @@ export interface Props {
  * @example
  * <StyledContainer notification={notification} onClick={openActionUrl} />
  */
-export default function StyledContainer({ notification, children }: Props) {
-  const theme = useTheme();
-  const { notification: notificationTheme } = theme;
+export default function StyledContainer({ notification, children, ...props }: Props) {
+  const { notification: themeVariants } = useTheme();
 
-  let themeVariation = notificationTheme.default;
-  if (!notification.isSeen) themeVariation = notificationTheme.unseen;
-  else if (!notification.isRead) themeVariation = notificationTheme.unread;
+  const theme = !notification.isSeen
+    ? themeVariants.unseen
+    : !notification.isRead
+    ? themeVariants.unread
+    : themeVariants.default;
 
   const style = css`
-    background-color: ${notification.isSeen && notification.isRead
-      ? 'transparent'
-      : toRGBA(themeVariation.backgroundColor, themeVariation.backgroundOpacity)} !important;
-    border-radius: ${themeVariation.borderRadius};
-    color: ${themeVariation.textColor} !important;
+    background-color: ${toRGBA(theme.backgroundColor, theme.backgroundOpacity)} !important;
+    border-radius: ${theme.borderRadius} !important;
+    color: ${theme.textColor} !important;
     cursor: pointer;
     display: flex;
     align-items: center;
-    font-family: ${themeVariation.fontFamily} !important;
-    font-size: ${themeVariation.fontSize};
-    margin: 4px !important;
-    overflow: hidden;
-    text-align: ${themeVariation.textAlign} !important;
-    text-transform: ${themeVariation.textTransform};
+    font-family: ${theme.fontFamily} !important;
+    font-size: ${theme.fontSize};
+    margin: ${theme.margin} !important;
+    padding: ${theme.padding} !important;
+    text-align: ${theme.textAlign} !important;
+    text-transform: ${theme.textTransform};
     transition: background-color 300ms ease-out;
-    padding: 16px 20px !important;
     min-height: 32px;
+    position: relative !important;
 
     &:hover {
-      background-color: ${darken(
-        toRGBA(themeVariation.backgroundColor, themeVariation.backgroundOpacity),
-        5,
+      background-color: ${toRGBA(
+        theme.hover.backgroundColor,
+        theme.hover.backgroundOpacity,
       )} !important;
     }
 
+    & > * {
+      position: relative;
+    }
+
     & > button {
-      flex: 1;
-      display: inline-flex;
-      align-items: center;
-      margin: 0 0 0 -16px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       text-align: inherit !important;
-
-      & > div {
-        margin: 0 0 0 16px;
-      }
-
-      & > div:first-of-type {
-        flex: 1;
-      }
     }
   `;
 
-  return <div css={[cleanslate, style]}>{children}</div>;
+  return (
+    <div css={[cleanslate, style]} {...props}>
+      {children}
+    </div>
+  );
 }

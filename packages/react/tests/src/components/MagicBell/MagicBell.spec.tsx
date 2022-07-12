@@ -1,21 +1,19 @@
 import { eventAggregator } from '@magicbell/react-headless';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-// import { renderWithProviders as render } from '../../../__utils__/render';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
-import { Response, Server } from 'miragejs';
 import React from 'react';
 
 import MagicBell from '../../../../src';
 import Text from '../../../../src/components/Text';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
-import { sampleConfig } from '../../../factories/ConfigFactory';
+import { createServer } from '../../../__utils__/server';
 
 const apiKey = faker.random.alphaNumeric(10);
 const userEmail = faker.internet.email();
 const userKey = faker.random.alphaNumeric(10);
 
-let server: Server;
+let server: ReturnType<typeof createServer>;
 
 const sampleNotifications = {
   total: 5,
@@ -29,22 +27,8 @@ const sampleNotifications = {
 };
 
 beforeEach(() => {
-  server = new Server({
-    environment: 'test',
-    urlPrefix: 'https://api.magicbell.com',
-    trackRequests: true,
-    timing: 50,
-  });
+  server = createServer();
   server.get('/notifications', () => sampleNotifications);
-  server.get('/config', () => sampleConfig);
-  server.get('/notification_preferences', () => ({
-    notification_preferences: {
-      categories: {
-        comments: { email: false },
-      },
-    },
-  }));
-  server.post('/notifications/seen', () => new Response(204, {}, ''));
 });
 
 afterEach(() => {
@@ -62,7 +46,7 @@ test('clicking the bell opens the default inbox', async () => {
   render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
 
   const button = screen.getByRole('button');
-  userEvent.click(button);
+  await userEvent.click(button);
   await screen.findByRole('button', { name: /Mark All Read/i });
 });
 
@@ -85,7 +69,7 @@ test('clicking the bell opens the custom inbox', async () => {
   );
 
   const button = screen.getByRole('button');
-  userEvent.click(button);
+  await userEvent.click(button);
   await waitFor(() => screen.getByTestId('children'));
 });
 
@@ -156,9 +140,8 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
   );
 
   const button = screen.getByRole('button', { name: 'Notifications' });
-  const removal = waitForElementToBeRemoved(() => screen.getByTestId('children'));
-  userEvent.click(button);
-  await removal;
+  await userEvent.click(button);
+  await waitFor(() => expect(screen.queryByTestId('children')).not.toBeInTheDocument());
 });
 
 test('calls the onToggle callback when the button is clicked', async () => {
@@ -177,7 +160,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
   );
 
   const button = screen.getByRole('button', { name: 'Notifications' });
-  userEvent.click(button);
+  await userEvent.click(button);
 
   expect(onToggle).toHaveBeenCalledTimes(1);
 });

@@ -28,6 +28,7 @@ export default function Badge({ count }: Props) {
     display: flex;
     font-family: ${badgeTheme.fontFamily} !important;
     font-size: ${badgeTheme.fontSize} !important;
+    font-weight: ${badgeTheme.fontWeight} !important;
     height: 18px !important;
     min-width: 10px !important;
     padding: 0 2px !important;

@@ -23,9 +23,13 @@ export default function StyledFooter({ children }: StyledFooterProps) {
     background: ${toRGBA(footerTheme.backgroundColor, footerTheme.backgroundOpacity)};
     color: ${toRGBA(footerTheme.textColor, 0.75)} !important;
     font-family: ${footerTheme.fontFamily} !important;
-    text-align: ${footerTheme.textAlign} !important;
     font-size: ${footerTheme.fontSize} !important;
-    padding: 12px 24px !important;
+    font-weight: ${footerTheme.fontWeight} !important;
+    text-align: ${footerTheme.textAlign} !important;
+    padding: ${footerTheme.padding} !important;
+    border-top: ${footerTheme.borderColor
+      ? `1px solid ${footerTheme.borderColor} !important`
+      : undefined};
     flex-shrink: 0 !important;
 
     &:first-of-type {

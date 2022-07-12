@@ -1,11 +1,11 @@
 import { useConfig } from '@magicbell/react-headless';
 import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createServer, Response } from 'miragejs';
 import React from 'react';
 
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { createServer } from '../../../__utils__/server';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
@@ -17,29 +17,14 @@ const stores = [
   },
 ];
 
-let server;
+let server: ReturnType<typeof createServer>;
 
 beforeEach(async () => {
+  server = createServer();
+
   act(() => {
     useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
   });
-
-  server = createServer({
-    environment: 'test',
-    urlPrefix: 'https://api.magicbell.com',
-    timing: 0,
-  });
-
-  server.get('/notifications', {
-    total: 1,
-    per_page: 15,
-    current_page: 1,
-    unseen_count: 0,
-    unread_count: 1,
-    notifications: [sampleNotification],
-  });
-  server.post(`/notifications/${sampleNotification.id}/read`, new Response(204, {}, ''));
-  server.post(`/notifications/${sampleNotification.id}/unread`, new Response(204, {}, ''));
 });
 
 afterEach(() => {
@@ -115,7 +100,7 @@ test('can render the inbox with a custom layout', async () => {
   });
 });
 
-test('toggles the notification inbox', () => {
+test('toggles the notification inbox', async () => {
   const ref = React.createRef<any>();
   const onClick = jest.fn();
 
@@ -126,13 +111,13 @@ test('toggles the notification inbox', () => {
     </>,
   );
 
-  const title = screen.getByText(sampleNotification.title);
-  userEvent.click(title);
+  const title = await screen.findByRole('button', { name: sampleNotification.title });
+  await userEvent.click(title);
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
-test('calls the onNotificationClick callback', () => {
+test('calls the onNotificationClick callback', async () => {
   const ref = React.createRef<any>();
   const onClick = jest.fn();
 
@@ -148,13 +133,13 @@ test('calls the onNotificationClick callback', () => {
     </>,
   );
 
-  const title = screen.getByText(sampleNotification.title);
-  userEvent.click(title);
+  const title = await screen.findByRole('button', { name: sampleNotification.title });
+  await userEvent.click(title);
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
-test('opens the action url in the same window', () => {
+test('opens the action url in the same window', async () => {
   const ref = React.createRef<any>();
   const onClick = jest.fn();
 
@@ -170,8 +155,8 @@ test('opens the action url in the same window', () => {
     </>,
   );
 
-  const title = screen.getByText(sampleNotification.title);
-  userEvent.click(title);
+  const title = await screen.findByRole('button', { name: sampleNotification.title });
+  await userEvent.click(title);
 
   expect(global.open).toHaveBeenCalledTimes(1);
   expect(global.open).toHaveBeenCalledWith(sampleNotification.actionUrl, '_self');
