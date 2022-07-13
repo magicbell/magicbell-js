@@ -1,21 +1,16 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import FloatingNotificationInbox from '../src/components/FloatingNotificationInbox';
-import MagicBell from '../src/components/MagicBell';
+import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
+import MagicBell from '../../src/components/MagicBell';
+import { merge } from '../../src/lib/merge';
 
 function Component({ onAllRead, onNotificationClick, ...props }) {
-  const auth = {
-    apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-    userEmail: 'josue@magicbell.io',
-    userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
-  };
-
   return (
     <nav className="flex items-center justify-between flex-wrap p-6">
       <div className="flex-1" />
       <div>
-        <MagicBell {...auth} {...props}>
+        <MagicBell {...props}>
           {(props) => (
             <FloatingNotificationInbox
               onAllRead={onAllRead}
@@ -32,7 +27,6 @@ function Component({ onAllRead, onNotificationClick, ...props }) {
 }
 
 const meta: Meta = {
-  title: 'Examples/Themes',
   component: Component,
   argTypes: {
     onAllRead: { action: 'onAllRead' },
@@ -58,23 +52,20 @@ export const Default = {
   },
 };
 
-export const DarkTheme = {
-  ...Default,
+export const DarkTheme = merge(Default, {
   parameters: {
     theme: 'dark',
   },
-};
+});
 
-export const LightTheme = {
-  ...Default,
+export const LightTheme = merge(Default, {
   parameters: {
     theme: 'light',
   },
-};
+});
 
-export const Outline = {
-  ...Default,
+export const Outline = merge(Default, {
   parameters: {
     theme: 'outline',
   },
-};
+});

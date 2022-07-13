@@ -1,25 +1,10 @@
-import { INotification } from '@magicbell/react-headless';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 
-import FloatingNotificationInbox from '../src/components/FloatingNotificationInbox';
-import MagicBell from '../src/components/MagicBell';
+import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
+import MagicBell from '../../src/components/MagicBell';
 
-interface IStory {
-  handleAllRead: () => void;
-  onNotificationClick: (notification: INotification) => void;
-}
-
-export default {
-  title: 'Examples/Tailwind integration',
-  component: MagicBell,
-  argTypes: {
-    handleAllRead: { action: 'handleAllRead' },
-    onNotificationClick: { action: 'onNotificationClick' },
-  },
-} as Meta;
-
-const Template: Story<IStory> = ({ handleAllRead, onNotificationClick }: IStory) => {
+const Component = ({ handleAllRead, onNotificationClick }) => {
   return (
     <div className="max-w-5xl w-screen">
       <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-6">
@@ -55,5 +40,14 @@ const Template: Story<IStory> = ({ handleAllRead, onNotificationClick }: IStory)
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {};
+const meta: Meta = {
+  component: Component,
+  argTypes: {
+    handleAllRead: { action: 'handleAllRead' },
+    onNotificationClick: { action: 'onNotificationClick' },
+  },
+};
+
+export default meta;
+
+export const Default = {};
