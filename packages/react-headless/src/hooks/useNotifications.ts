@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import useConfig from '../stores/config';
 import { useNotificationStoresCollection } from '../stores/notifications';
@@ -59,8 +59,10 @@ export default function useNotifications(storeId = 'default'): NotificationStore
   const config = useConfig();
   const store = stores[storeId];
 
-  const fetch = (queryParams?: Record<string, unknown>, options?: FetchOptions) =>
-    fetchStore(storeId, queryParams, options);
+  const fetch = useCallback(
+    (queryParams?: Record<string, unknown>, options?: FetchOptions) => fetchStore(storeId, queryParams, options),
+    [fetchStore, storeId],
+  );
 
   const fetchNextPage = (queryParams: Record<string, unknown> = {}, options?: FetchOptions) => {
     const page = store.currentPage + 1;
@@ -70,10 +72,7 @@ export default function useNotifications(storeId = 'default'): NotificationStore
   useEffect(() => {
     if (!store) return;
     if (config.lastFetchedAt && !store.lastFetchedAt) fetch({ page: 1 });
-    // TODO: Update code to follow lint suggestions of add missing dependencies,
-    // remove [] or wrap parent component in callback
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [config.lastFetchedAt]);
+  }, [config.lastFetchedAt, store, fetch]);
 
   if (!store) return null;
 
