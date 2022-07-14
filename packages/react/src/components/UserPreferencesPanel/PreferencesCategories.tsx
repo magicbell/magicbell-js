@@ -1,18 +1,20 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { useEffect, useMemo } from 'react';
+import { ComponentProps, useEffect, useMemo } from 'react';
 
 import CategoryPreferences from './CategoryPreferences';
 
 export type PreferencesCategoriesProps = {
   channels?: Array<string>;
   categories?: Array<string>;
+  onChange?: ComponentProps<typeof CategoryPreferences>['onChange'];
 };
 
 export default function PreferencesCategories({
   channels: selectedChannels,
   categories: selectedCategories,
+  onChange,
 }: PreferencesCategoriesProps) {
   const preferences = useNotificationPreferences();
 
@@ -76,14 +78,16 @@ export default function PreferencesCategories({
         `}
       >
         <div />
+
         {channelHeaders.map((header) => (
           <div key={header.slug} css={headerStyle}>
             {header.label}
           </div>
         ))}
-        {categories.map((category) => {
-          return <CategoryPreferences key={category.slug} category={category} />;
-        })}
+
+        {categories.map((category) => (
+          <CategoryPreferences key={category.slug} category={category} onChange={onChange} />
+        ))}
       </div>
     </div>
   );

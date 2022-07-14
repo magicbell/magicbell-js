@@ -34,5 +34,9 @@ export function createServer(config?: ServerConfig<any, any>) {
     notification_preferences: sampleNotificationPreferences,
   }));
 
+  server.put('/notification_preferences', () => ({
+    notification_preferences: sampleNotificationPreferences,
+  }));
+
   return server;
 }

@@ -1,5 +1,5 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import IRemoteNotificationPreferences, {
+import {
   CategoryChannelPreference,
   ChannelPreference,
 } from '@magicbell/react-headless/dist/types/IRemoteNotificationPreferences';
@@ -9,30 +9,28 @@ import ToggleInput from './ToggleInput';
 
 interface CategoryPreferencesProps {
   category: CategoryChannelPreference;
+  onChange?: (data: { category: CategoryChannelPreference }) => void;
 }
 
-export default function CategoryPreferences({ category }: CategoryPreferencesProps) {
+export default function CategoryPreferences({ category, onChange }: CategoryPreferencesProps) {
   const preferences = useNotificationPreferences();
   const channels = category.channels;
 
   const updatePreferences = async (channel: ChannelPreference, channelEnabled: boolean) => {
-    const newPreference: IRemoteNotificationPreferences = {
-      categories: [
+    const preference: CategoryChannelPreference = {
+      label: category.label,
+      slug: category.slug,
+      channels: [
         {
-          label: category.label,
-          slug: category.slug,
-          channels: [
-            {
-              label: channel.label,
-              slug: channel.slug,
-              enabled: channelEnabled,
-            },
-          ],
+          label: channel.label,
+          slug: channel.slug,
+          enabled: channelEnabled,
         },
       ],
     };
 
-    await preferences.save(newPreference);
+    await preferences.save({ categories: [preference] });
+    onChange?.({ category: preference });
   };
 
   return (

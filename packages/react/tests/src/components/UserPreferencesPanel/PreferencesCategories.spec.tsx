@@ -1,10 +1,22 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import PreferencesCategories from '../../../../src/components/UserPreferencesPanel/PreferencesCategories';
 import { renderWithProviders as render } from '../../../__utils__/render';
+import { createServer } from '../../../__utils__/server';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
+
+let server: ReturnType<typeof createServer>;
+
+beforeEach(() => {
+  server = createServer();
+});
+
+afterEach(() => {
+  server.shutdown();
+});
 
 describe('PreferencesCategories component', () => {
   describe('no categories', () => {
@@ -61,6 +73,54 @@ describe('PreferencesCategories component', () => {
 
       screen.getByText(/Comments Label/i);
       expect(screen.queryByText(/New Reply/i)).not.toBeInTheDocument();
+    });
+
+    test('it calls the onChange callback when preferences are changed', async () => {
+      const onChangeSpy = jest.fn();
+      render(<PreferencesCategories onChange={onChangeSpy} />);
+
+      const checkboxes = screen.getAllByRole('checkbox');
+      const commentInApp = checkboxes.find(
+        (x) => x.getAttribute('id') === 'comments-in_app',
+      ) as HTMLElement;
+
+      const commentWebPush = checkboxes.find(
+        (x) => x.getAttribute('id') === 'comments-web_push',
+      ) as HTMLElement;
+
+      const replyMobilePush = checkboxes.find(
+        (x) => x.getAttribute('id') === 'new_reply-mobile_push',
+      ) as HTMLElement;
+
+      const commentInAppPreference = {
+        channels: [{ enabled: false, label: 'In app', slug: 'in_app' }],
+        label: 'Comments Label',
+        slug: 'comments',
+      };
+
+      const commentWebPushPreference = {
+        channels: [{ enabled: false, label: 'Web push', slug: 'web_push' }],
+        label: 'Comments Label',
+        slug: 'comments',
+      };
+
+      const replyMobilePushPreference = {
+        channels: [{ enabled: false, label: 'Mobile push', slug: 'mobile_push' }],
+        label: 'New Reply',
+        slug: 'new_reply',
+      };
+
+      await userEvent.click(commentInApp);
+      await waitFor(() => expect(onChangeSpy).toHaveBeenCalledTimes(1));
+      expect(onChangeSpy).toHaveBeenLastCalledWith({ category: commentInAppPreference });
+
+      await userEvent.click(commentWebPush);
+      await waitFor(() => expect(onChangeSpy).toHaveBeenCalledTimes(2));
+      expect(onChangeSpy).toHaveBeenLastCalledWith({ category: commentWebPushPreference });
+
+      await userEvent.click(replyMobilePush);
+      await waitFor(() => expect(onChangeSpy).toHaveBeenCalledTimes(3));
+      expect(onChangeSpy).toHaveBeenLastCalledWith({ category: replyMobilePushPreference });
     });
   });
 });
