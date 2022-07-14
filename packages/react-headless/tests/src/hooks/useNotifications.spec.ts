@@ -15,6 +15,7 @@ describe('hooks', () => {
           // @TODO: Rest all stores after specs
           useConfig.setState({ lastFetchedAt: undefined });
           result.current.setStore('default', {});
+          result.current.setStore('archive', { read: true });
         });
       });
 
@@ -46,6 +47,26 @@ describe('hooks', () => {
 
           expect(spy).toHaveBeenCalledTimes(1);
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
+          spy.mockRestore();
+        });
+
+        it('fetches the other store when storeId changes', async () => {
+          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const { rerender } = renderHook(({ storeId }) => useNotifications(storeId), {
+            initialProps: { storeId: 'default' },
+          });
+
+          act(() => {
+            useConfig.setState({ lastFetchedAt: Date.now() });
+          });
+
+          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
+
+          rerender({ storeId: 'archive' });
+          expect(spy).toHaveBeenCalledTimes(2);
+          expect(spy).toHaveBeenLastCalledWith('/notifications', { page: 1, read: true });
+
           spy.mockRestore();
         });
       });
