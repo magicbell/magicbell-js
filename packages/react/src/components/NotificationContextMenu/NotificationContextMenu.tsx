@@ -30,6 +30,7 @@ export default function NotificationContextMenu({ notification }: Props) {
 
   return (
     <div
+      onClick={(e) => e.preventDefault()}
       css={css`
         background: ${containerTheme.backgroundColor} !important;
         border-radius: 4px !important;

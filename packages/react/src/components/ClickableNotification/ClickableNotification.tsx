@@ -27,7 +27,9 @@ export interface Props {
 export default function ClickableNotification({ notification: rawNotification, onClick }: Props) {
   const notification = useNotification(rawNotification);
 
-  const handleMarkAsRead = () => {
+  const handleMarkAsRead = (event) => {
+    // don't mark as read when user clicks inside the menu
+    if (event.isDefaultPrevented()) return;
     notification.markAsRead();
   };
 
