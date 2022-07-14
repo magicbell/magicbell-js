@@ -296,6 +296,60 @@ These are all the properties accepted by this component.
 
 TIP: If the content has a `time` tag with the `datetime` attribute, the content of this tag will be replaced with a relative time. For example, `<time datetime="2021-06-10T03:00:00Z">on Jun 10</time>` will be replaced with `<time>in 3 months</time>`.
 
+## NotificationPreferences
+
+The preferences component enables you to create your own notification preferences page. By default it shows all notification channels and all categories, but it's possible to only show a subset of the available options.
+
+**Properties**
+
+| Property     | Type                                                | Description                                                                                                                                            |
+| ------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `channels`   | `string[]`                                          | An optional string array specifying channel slugs to include in the preferences grid. When `channels` is empty or absent, all channels are shown.      |
+| `categories` | `string[]`                                          | An optional string array specifying category slugs to include in the preferences grid. When `categories` is empty or absent, all categories are shown. |
+| `onChange`   | `({ category: CategoryChannelPreference }) => void` | An optional onChange handler, that is invoked after our server has responded to the change.                                                            |
+
+### Show preference for all channels & all categories
+
+```jsx
+import { MagicBellProvider, NotificationPreferences } from '@magicbell/magicbell-react';
+
+function Component() {
+  return (
+    <MagicBellProvider apiKey={API_KEY} userEmail={USER_EMAIL}>
+      <NotificationPreferences />
+    </MagicBellProvider>
+  );
+}
+```
+
+### Show preference for specific channels, for specific categories
+
+```jsx
+import { MagicBellProvider, NotificationPreferences } from '@magicbell/magicbell-react';
+
+function Component() {
+  return (
+    <MagicBellProvider apiKey={API_KEY} userEmail={USER_EMAIL}>
+      <NotificationPreferences channels={['email']} categories={['announcements', 'billing']} />
+    </MagicBellProvider>
+  );
+}
+```
+
+### Invoke a callback when a preference gets updated
+
+```jsx
+import { MagicBellProvider, NotificationPreferences } from '@magicbell/magicbell-react';
+
+function Component() {
+  return (
+    <MagicBellProvider apiKey={API_KEY} userEmail={USER_EMAIL}>
+      <NotificationPreferences onChange={() => alert('preferences updated!')} />
+    </MagicBellProvider>
+  );
+}
+```
+
 ## useMagicBellEvent
 
 This a hook to listen to realtime events.
