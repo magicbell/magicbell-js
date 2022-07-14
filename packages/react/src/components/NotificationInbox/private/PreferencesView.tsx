@@ -6,7 +6,9 @@ import Footer from '../../Footer';
 import Header from '../../Header';
 import Text from '../../Text';
 import CloseIcon from '../../UserPreferencesPanel/CloseIcon';
-import PreferencesCategories from '../../UserPreferencesPanel/PreferencesCategories';
+import PreferencesCategories, {
+  PreferencesCategoriesProps,
+} from '../../UserPreferencesPanel/PreferencesCategories';
 import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 
@@ -15,7 +17,7 @@ import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 type PreferencesViewProps = {
   setView: SetViewHandler;
   layout: NonNullable<NotificationInboxProps['layout']>;
-  NotificationPreferences?: () => ReactElement | null;
+  NotificationPreferences?: (props: PreferencesCategoriesProps) => ReactElement | null;
 };
 
 export default function PreferencesView({

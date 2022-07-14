@@ -1,11 +1,17 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import CategoryPreferences from './CategoryPreferences';
 
-export default function PreferencesCategories() {
+export type PreferencesCategoriesProps = {
+  channels?: Array<string>;
+};
+
+export default function PreferencesCategories({
+  channels: selectedChannels,
+}: PreferencesCategoriesProps) {
   const preferences = useNotificationPreferences();
 
   const headerStyle = css`
@@ -20,13 +26,24 @@ export default function PreferencesCategories() {
     }
   }, [preferences]);
 
-  if (!preferences.categories.length) {
+  const categories = useMemo(() => {
+    if (!selectedChannels?.length || !preferences.categories?.length) return preferences.categories;
+
+    const channelsSet = new Set(selectedChannels);
+
+    return preferences.categories.map((category) => ({
+      ...category,
+      channels: category.channels.filter((channel) => channelsSet.has(channel.slug)),
+    }));
+  }, [preferences.categories, selectedChannels]);
+
+  if (!categories.length) {
     // TODO: Consider providing an "empty" screen or some other way to let the
     // user know they have no categories and could go create some.
     return null;
   }
 
-  const channelHeaders = preferences.categories[0].channels;
+  const channelHeaders = categories[0].channels;
 
   return (
     <div
@@ -50,7 +67,7 @@ export default function PreferencesCategories() {
             {header.label}
           </div>
         ))}
-        {preferences.categories.map((category) => {
+        {categories.map((category) => {
           return <CategoryPreferences key={category.slug} category={category} />;
         })}
       </div>

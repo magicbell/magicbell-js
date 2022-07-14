@@ -32,5 +32,13 @@ describe('PreferencesCategories component', () => {
       screen.getByText(/web push/i);
       screen.getByText(/email/i);
     });
+
+    test('it only displays selected channels', () => {
+      render(<PreferencesCategories channels={['in_app', 'web_push']} />);
+      screen.getByText(/in app/i);
+      screen.getByText(/web push/i);
+
+      expect(screen.queryByText(/email/i)).not.toBeInTheDocument();
+    });
   });
 });
