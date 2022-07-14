@@ -7,10 +7,12 @@ import CategoryPreferences from './CategoryPreferences';
 
 export type PreferencesCategoriesProps = {
   channels?: Array<string>;
+  categories?: Array<string>;
 };
 
 export default function PreferencesCategories({
   channels: selectedChannels,
+  categories: selectedCategories,
 }: PreferencesCategoriesProps) {
   const preferences = useNotificationPreferences();
 
@@ -27,15 +29,27 @@ export default function PreferencesCategories({
   }, [preferences]);
 
   const categories = useMemo(() => {
-    if (!selectedChannels?.length || !preferences.categories?.length) return preferences.categories;
+    if (!preferences.categories?.length) {
+      return preferences.categories;
+    }
 
-    const channelsSet = new Set(selectedChannels);
+    let categories = preferences.categories;
 
-    return preferences.categories.map((category) => ({
-      ...category,
-      channels: category.channels.filter((channel) => channelsSet.has(channel.slug)),
-    }));
-  }, [preferences.categories, selectedChannels]);
+    if (selectedCategories?.length) {
+      const categoriesSet = new Set(selectedCategories);
+      categories = categories.filter((category) => categoriesSet.has(category.slug));
+    }
+
+    if (selectedChannels?.length) {
+      const channelsSet = new Set(selectedChannels);
+      categories = categories.map((category) => ({
+        ...category,
+        channels: category.channels.filter((channel) => channelsSet.has(channel.slug)),
+      }));
+    }
+
+    return categories;
+  }, [preferences.categories, selectedChannels, selectedCategories]);
 
   if (!categories.length) {
     // TODO: Consider providing an "empty" screen or some other way to let the

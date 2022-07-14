@@ -29,3 +29,16 @@ export const SelectedChannelsOnly = {
     channels: ['email', 'sms'],
   },
 };
+
+export const SelectedCategoriesOnly = {
+  args: {
+    categories: ['announcements', 'billing'],
+  },
+};
+
+export const SelectedChannelsAndCategoriesOnly = {
+  args: {
+    channels: ['email', 'sms'],
+    categories: ['announcements', 'billing'],
+  },
+};
