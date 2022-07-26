@@ -2,8 +2,8 @@ import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import MagicBellProvider from '../src/components/MagicBellProvider';
-import PreferencesCategories from '../src/components/UserPreferencesPanel/PreferencesCategories';
+import MagicBellProvider from '../../src/components/MagicBellProvider';
+import PreferencesCategories from '../../src/components/UserPreferencesPanel/PreferencesCategories';
 
 const Component = ({ apiKey, userEmail, userKey, ...props }) => (
   <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
@@ -13,11 +13,7 @@ const Component = ({ apiKey, userEmail, userKey, ...props }) => (
 
 const meta: Meta = {
   component: Component,
-  title: 'MagicBell/Preferences',
   args: {
-    apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
-    userEmail: 'josue@magicbell.io',
-    userKey: 'pvorWv0ff2MvYFNyadwOLmFzTZnT1LCFxzTELAULYT4=',
     onChange: action('onChange'),
   },
 };
@@ -34,13 +30,13 @@ export const SelectedChannelsOnly = {
 
 export const SelectedCategoriesOnly = {
   args: {
-    categories: ['announcements', 'billing'],
+    categories: ['comments'],
   },
 };
 
 export const SelectedChannelsAndCategoriesOnly = {
   args: {
     channels: ['email', 'sms'],
-    categories: ['announcements', 'billing'],
+    categories: ['comments'],
   },
 };

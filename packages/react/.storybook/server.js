@@ -1,5 +1,6 @@
 import {Server} from 'miragejs';
 import NotificationFactory from '../tests/factories/NotificationFactory';
+import {sampleNotificationPreferences} from "../tests/factories/NotificationPreferencesFactory";
 
 function buildNotifications(page) {
   const isFirstPage = page === 1;
@@ -81,7 +82,13 @@ function start() {
   // Settings
   server.get('/config', fixtures.config);
 
-  server.get("/notification_preferences", fixtures.preferences);
+  server.get('/notification_preferences', () => ({
+    notification_preferences: sampleNotificationPreferences,
+  }));
+
+  server.put('/notification_preferences', () => ({
+    notification_preferences: sampleNotificationPreferences,
+  }));
 
   // Notifications
   server.get('/notifications', (req, res) => buildNotifications(parseInt(res.queryParams.page)));
