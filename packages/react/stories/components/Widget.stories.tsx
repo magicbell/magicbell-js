@@ -133,13 +133,23 @@ export const WithCustomBadge = merge(Default, {
   },
 });
 
-const NotificationItem = (props: ClickableNotificationProps) => (
-  <ClickableNotification {...props} prose={false} />
-);
-
 export const WithoutRichText = merge(Default, {
   args: {
     bellCounter: 'unread',
-    NotificationItem,
+    NotificationItem: (props: ClickableNotificationProps) => (
+      <ClickableNotification {...props} prose={false} />
+    ),
+  },
+});
+
+export const WithConditionalRichText = merge(Default, {
+  args: {
+    bellCounter: 'unread',
+    NotificationItem: (props: ClickableNotificationProps) => (
+      <ClickableNotification
+        {...props}
+        prose={!/getting started/i.test(props.notification.title)}
+      />
+    ),
   },
 });

@@ -3,15 +3,30 @@ import NotificationFactory from '../tests/factories/NotificationFactory';
 import {sampleNotificationPreferences} from "../tests/factories/NotificationPreferencesFactory";
 
 const richTextMessages = [
-  `<h1>Hi!</h1><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's an H1 after all.</p>`,
-  `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>`,
-  `<p>And you can even use <a href="https://magicbell.com">links</a>, <button>buttons</button>, and <a class="button">button links</a></p>`,
-  `<p>Or \`inline code\` and code blocks</p><pre><code>const foo = 'bar';</code></pre>`,
-  `<p>And paragraphs with lists</p>
+  { title: 'Getting started with MagicBell',
+    content: `
+      <div>
+        <p>
+          <span aria-label="waving emoji" class="emoji" style="margin-right: 0.5rem;">👋</span>
+          Hey There!
+        </p>
+        <p>
+          Please take a look at our docs to get started with MagicBell. You can also send test notifications using ‘Compose’, or using the code snippets shared on this page.
+        </p>
+        <p style="text-align: center; margin-top: 2.5em;">
+          <a class="button" style="border-radius: 0.5rem; display: inline-block; background-color: #FDE047; padding: 0.75rem 2rem; border: none;">BROWSE THE DOCS</a>
+        </p>
+      </div>`
+  },
+  { content: `<h1>Hi!</h1><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's an H1 after all.</p>` },
+  { content: `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>` },
+  { content: `<p>And you can even use <a href="https://magicbell.com">links</a>, <button>buttons</button>, and <a class="button">button links</a></p>` },
+  { content: `<p>Or \`inline code\` and code blocks</p><pre><code>const foo = 'bar';</code></pre>` },
+  { content: `<p>And paragraphs with lists</p>
    <ul><li>one</li><li>two</li><li>three</li></ul>
    <p>Both unordered and ordered</p>
    <ol><li>one</li><li>two</li><li>three</li></ol>
-  `,
+  ` },
 ]
 
 function buildNotifications(page) {
@@ -27,9 +42,9 @@ function buildNotifications(page) {
     notifications[0].readAt = null;
     notifications[1].readAt = null;
 
-    notifications.forEach((notification, index) => {
-      notification.content = richTextMessages[index] || notification.content;
-    });
+    notifications.forEach((notification, index) =>
+      Object.assign(notification, richTextMessages[index])
+    );
   }
 
   return {
