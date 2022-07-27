@@ -401,12 +401,29 @@ const store = useNotifications('mentions');
 
 ## Custom Themes
 
-Is is possible to customize the text color, font size and border radius of some elements by providing to the [`MagicBell`](#magicbell) component a `theme` property. This is going to be deep merged with the default theme. Note that the notification unread and unseen definitions inherit properties from notification default style.
+It is possible to customize the text color, font size and border radius of some elements by providing to the [`MagicBell`](#magicbell) component a `theme` property. This is going to be deep merged with the default theme. Note that the notification unread and unseen definitions inherit properties from notification default style.
 
 This is the definition of the default theme:
 
 ```javascript
 {
+  prose: {
+    headings: '#0f172a',
+    links: '#0f172a',
+    bold: '#0f172a',
+    hr: '#e2e8f0',
+    quotes: '#0f172a',
+    quoteBorders: '#e2e8f0',
+    captions: '#64748b',
+    code: '#0f172a',
+    preCode: '#e2e8f0',
+    preBg: '#1e293b',
+    thBorders: '#cbd5e1',
+    tdBorders: '#e2e8f0',
+    buttonBorders: '#1e293b',
+    buttons: '#0f172a',
+    fontMono: 'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
+  },
   icon: {
     borderColor: '#3498F4',
     width: '24px',
