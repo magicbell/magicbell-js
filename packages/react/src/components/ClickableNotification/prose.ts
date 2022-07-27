@@ -8,7 +8,7 @@ export function useProse() {
   // double && to make sure that it's more specific than the cleanslate
   return css`
     && {
-      line-height: 1.75;
+      line-height: 1.5;
     }
 
     && p {
