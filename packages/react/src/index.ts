@@ -5,6 +5,7 @@ export { default as Badge } from './components/Badge';
 export { default as Bell } from './components/Bell';
 export {
   default as ClickableNotification,
+  ClickableNotificationProps,
   StyledNotificationContainer,
 } from './components/ClickableNotification';
 export { EnablePushNotificationsButton } from './components/EnablePushNotificationsBanner';
