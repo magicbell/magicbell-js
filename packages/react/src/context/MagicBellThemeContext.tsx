@@ -65,6 +65,7 @@ export function MagicBellThemeProvider({
 
         merged.notification[variant].state = merge(
           { color },
+          current.state,
           partialTheme.notification?.default?.state,
           partialTheme.notification?.[variant]?.state,
         );

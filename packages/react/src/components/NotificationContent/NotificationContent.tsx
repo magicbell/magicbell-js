@@ -4,8 +4,11 @@ import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { useEffect, useRef } from 'react';
 import { cancel, render } from 'timeago.js';
 
+import { useProse } from '../ClickableNotification/prose';
+
 export interface Props {
   notification: INotification;
+  prose?: boolean;
 }
 
 /**
@@ -15,9 +18,11 @@ export interface Props {
  * @example
  * <NotificationContent notification={notification} />
  */
-export default function NotificationContent({ notification }: Props) {
+export default function NotificationContent({ notification, prose: withProse = true }: Props) {
   const { sanitizedContent: markup } = notification;
   const ref = useRef<HTMLElement>(null);
+
+  const prose = useProse();
 
   // TODO: Move this to a plugin framework
   useEffect(() => {
@@ -31,18 +36,21 @@ export default function NotificationContent({ notification }: Props) {
   }, [markup]);
 
   if (!markup || markup.replace(/(\n|\s|\r)/gi, '') === '') return null;
+
+  const style = css`
+    color: inherit !important;
+    cursor: inherit;
+    margin: 0;
+    line-height: 1.2;
+    font-size: 0.865em !important;
+    margin-top: 8px !important;
+    word-break: break-word !important;
+  `;
+
   return (
     <article
       ref={ref}
-      css={css`
-        color: inherit !important;
-        cursor: inherit;
-        margin: 0;
-        line-height: 1.2;
-        font-size: 0.865em !important;
-        margin-top: 8px !important;
-        word-break: break-word !important;
-      `}
+      css={withProse ? [style, prose] : style}
       dangerouslySetInnerHTML={{ __html: markup }}
     />
   );

@@ -1,11 +1,20 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import MagicBell, { MagicBellProvider } from '../../src';
+import MagicBell, { ClickableNotification, MagicBellProvider } from '../../src';
+import { ClickableNotificationProps } from '../../src/components/ClickableNotification';
 import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
 import { merge } from '../../src/lib/merge';
 
-const Component = ({ onAllRead, onNotificationClick, apiKey, userEmail, userKey, ...props }) => (
+const Component = ({
+  onAllRead,
+  onNotificationClick,
+  apiKey,
+  userEmail,
+  userKey,
+  NotificationItem,
+  ...props
+}) => (
   <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
     <MagicBell {...props}>
       {(props) => (
@@ -13,6 +22,7 @@ const Component = ({ onAllRead, onNotificationClick, apiKey, userEmail, userKey,
           onAllRead={onAllRead}
           onNotificationClick={onNotificationClick}
           height={500}
+          NotificationItem={NotificationItem}
           {...props}
         />
       )}
@@ -103,5 +113,16 @@ export const WithCustomBadge = merge(Default, {
         {count}
       </div>
     ),
+  },
+});
+
+const NotificationItem = (props: ClickableNotificationProps) => (
+  <ClickableNotification {...props} prose={false} />
+);
+
+export const WithoutRichText = merge(Default, {
+  args: {
+    bellCounter: 'unread',
+    NotificationItem,
   },
 });

@@ -30,6 +30,7 @@ interface NotificationTheme extends IElementTheme {
 }
 
 export interface IMagicBellTheme {
+  prose: typeof prose;
   icon: {
     borderColor: string;
     width: string;
@@ -92,7 +93,27 @@ const notification: NotificationTheme = {
   },
 };
 
+const prose = {
+  headings: '#0f172a',
+  links: '#0f172a',
+  bold: '#0f172a',
+  hr: '#e2e8f0',
+  quotes: '#0f172a',
+  quoteBorders: '#e2e8f0',
+  captions: '#64748b',
+  code: '#0f172a',
+  preCode: '#e2e8f0',
+  preBg: '#1e293b',
+  thBorders: '#cbd5e1',
+  tdBorders: '#e2e8f0',
+  buttonBorders: '#1e293b',
+  buttons: '#0f172a',
+  fontMono:
+    'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
+};
+
 export const defaultTheme: IMagicBellTheme = {
+  prose,
   icon: {
     borderColor: blue,
     width: '24px',

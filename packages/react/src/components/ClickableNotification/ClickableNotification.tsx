@@ -15,6 +15,7 @@ import StyledContainer from './StyledContainer';
 export interface Props {
   notification: IRemoteNotification;
   onClick?: (notification: INotification) => void;
+  prose?: boolean;
 }
 
 /**
@@ -24,7 +25,11 @@ export interface Props {
  * @example
  * <ClickableNotification notification={notification} onClick={openActionUrl} />
  */
-export default function ClickableNotification({ notification: rawNotification, onClick }: Props) {
+export default function ClickableNotification({
+  notification: rawNotification,
+  onClick,
+  prose,
+}: Props) {
   const notification = useNotification(rawNotification);
 
   const handleMarkAsRead = (event) => {
@@ -38,16 +43,17 @@ export default function ClickableNotification({ notification: rawNotification, o
     else openActionUrl(notification);
   };
 
+  const content = css`
+    margin: 0 8px !important;
+    width: 100%;
+  `;
+
   const actions = css`
     display: flex;
     padding: 0 5px !important;
     flex-direction: column;
     align-items: flex-end;
     margin-left: auto !important;
-  `;
-
-  const content = css`
-    margin: 0 8px !important;
   `;
 
   return (
@@ -59,7 +65,7 @@ export default function ClickableNotification({ notification: rawNotification, o
       <NotificationState notification={notification} />
       <div css={content}>
         <NotificationTitle notification={notification} />
-        <NotificationContent notification={notification} />
+        <NotificationContent notification={notification} prose={prose} />
       </div>
       <div css={actions}>
         {notification.sentAt ? (

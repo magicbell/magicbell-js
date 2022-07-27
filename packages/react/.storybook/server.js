@@ -2,6 +2,18 @@ import {Server} from 'miragejs';
 import NotificationFactory from '../tests/factories/NotificationFactory';
 import {sampleNotificationPreferences} from "../tests/factories/NotificationPreferencesFactory";
 
+const richTextMessages = [
+  `<h1>Hi!</h1><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's an H1 after all.</p>`,
+  `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>`,
+  `<p>And you can even use <a href="https://magicbell.com">links</a>, <button>buttons</button>, and <a class="button">button links</a></p>`,
+  `<p>Or \`inline code\` and code blocks</p><pre><code>const foo = 'bar';</code></pre>`,
+  `<p>And paragraphs with lists</p>
+   <ul><li>one</li><li>two</li><li>three</li></ul>
+   <p>Both unordered and ordered</p>
+   <ol><li>one</li><li>two</li><li>three</li></ol>
+  `,
+]
+
 function buildNotifications(page) {
   const isFirstPage = page === 1;
 
@@ -14,6 +26,10 @@ function buildNotifications(page) {
     notifications[0].seenAt = null;
     notifications[0].readAt = null;
     notifications[1].readAt = null;
+
+    notifications.forEach((notification, index) => {
+      notification.content = richTextMessages[index] || notification.content;
+    });
   }
 
   return {
@@ -26,7 +42,6 @@ function buildNotifications(page) {
     unread_count: 100,
   };
 }
-
 
 const fixtures = {
   config: {
