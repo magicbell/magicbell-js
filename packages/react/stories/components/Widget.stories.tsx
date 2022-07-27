@@ -13,9 +13,10 @@ const Component = ({
   userEmail,
   userKey,
   NotificationItem,
+  theme,
   ...props
 }) => (
-  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
+  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme}>
     <MagicBell {...props}>
       {(props) => (
         <FloatingNotificationInbox
@@ -65,6 +66,22 @@ export const WithCustomTheme = merge(Default, {
       footer: { backgroundColor: '#FAD776', textColor: '#161C2D' },
       notification: {
         unread: { backgroundColor: '#FAD776', backgroundOpacity: 0.1 },
+      },
+    },
+  },
+});
+
+export const WithCustomThemeTwo = merge(Default, {
+  args: {
+    theme: {
+      icon: { borderColor: '#6113A3', width: '24px' },
+      unseenBadge: { backgroundColor: '#DF4759' },
+      header: { backgroundColor: '#6113A3', textColor: '#ffffff', borderRadius: '16px' },
+      footer: { backgroundColor: '#6113A3', textColor: '#ffffff', borderRadius: '16px' },
+      notification: {
+        default: { textColor: '#15091F', borderRadius: '8px', backgroundColor: '#6113A3' },
+        unseen: { backgroundColor: '#6113A3' },
+        unread: { backgroundColor: '#6113A3' },
       },
     },
   },

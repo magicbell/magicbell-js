@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { createContext, useContext, useMemo } from 'react';
 
-import { darken, toRGBA } from '../lib/color';
+import { darken } from '../lib/color';
 import { merge } from '../lib/merge';
 import { DeepPartial } from '../lib/types';
 import { defaultTheme, IMagicBellTheme } from './Theme';
@@ -59,16 +59,11 @@ export function MagicBellThemeProvider({
     if (!hasDeclaredStateStyles) {
       for (const variant of ['default', 'unseen', 'unread']) {
         const current = merged.notification[variant];
-
-        const color =
-          variant === 'default' ? toRGBA(current.textColor, 0.5) : merged.header.backgroundColor;
-
-        merged.notification[variant].state = merge(
-          { color },
-          current.state,
-          partialTheme.notification?.default?.state,
-          partialTheme.notification?.[variant]?.state,
-        );
+        // note that default was technically `toRGBA(current.textColor, 0.5)`, but it also didn't show
+        // the state dot back then, as it was hidden behind the menu button when the notification was read.
+        // so this color differs, but the result is closer to the old behavior - don't show the dot -.
+        const color = variant === 'default' ? 'transparent' : merged.header.backgroundColor;
+        merged.notification[variant].state = merge(current.state, { color });
       }
     }
 
