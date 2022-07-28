@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "description": "Using the flat theme. Modern, subtle and minimal, inspired by email.",
+  "dependencies": {
+    "@magicbell/magicbell-react": "10.0.0-beta.9"
+  }
+}
