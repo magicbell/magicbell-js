@@ -18,7 +18,7 @@ const richTextMessages = [
   },
   { content: `<h3>Hi!</h3><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's a title after all.</p>` },
   { content: `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>` },
-  { content: `<p>And you can even use <a href="https://magicbell.com">links</a>, <button>buttons</button>, and <a class="button">button links</a></p>` },
+  { content: `<p>And you can even use <a href="https://magicbell.com" target="_blank">links</a>, <button onclick="javascript:alert('click');">buttons</button>, and <a class="button">button links</a></p>` },
   { content: `<p>Or <code>inline code</code> and code blocks</p><pre><code>const foo = 'bar';</code></pre>` },
   { content: `<p>And paragraphs with lists</p>
    <ul><li>one</li><li>two</li><li>three</li></ul>

@@ -51,6 +51,7 @@ export default function NotificationMenu({ notification, menuPlacement = 'bottom
       css={css`
         color: ${theme.textColor} !important;
       `}
+      onClick={(e) => e.preventDefault()}
     >
       <MenuIcon />
     </button>

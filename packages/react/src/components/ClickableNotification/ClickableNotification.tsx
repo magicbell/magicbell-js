@@ -36,15 +36,18 @@ export default function ClickableNotification({
   } = useTheme();
   const notification = useNotification(rawNotification);
 
-  const handleMarkAsRead = (event) => {
-    // don't mark as read when user clicks inside the menu
+  const handleClick = (event) => {
+    // ignore event when user clicks inside the menu
     if (event.isDefaultPrevented()) return;
     notification.markAsRead();
-  };
-
-  const handleClick = () => {
     if (onClick) onClick(notification);
-    else openActionUrl(notification);
+
+    // We don't want to invoke the action url when the user clicks a link or button inside the notification.
+    // Notification content should take precedence.
+    const isActionableElement = /a|button|input/i.test(event.target.tagName);
+
+    if (isActionableElement) return;
+    if (notification.actionUrl) openActionUrl(notification);
   };
 
   const content = css`
@@ -62,11 +65,12 @@ export default function ClickableNotification({
   `;
 
   return (
-    <StyledContainer notification={notification} onClick={handleMarkAsRead}>
-      <button
-        onClick={handleClick}
-        aria-labelledby={`magicbell-notification-title-${notification.id}`}
-      />
+    <StyledContainer
+      role="button"
+      aria-labelledby={`magicbell-notification-title-${notification.id}`}
+      notification={notification}
+      onClick={handleClick}
+    >
       <NotificationState notification={notification} />
       <div css={content}>
         <NotificationTitle notification={notification} />
