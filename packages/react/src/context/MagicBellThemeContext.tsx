@@ -23,6 +23,18 @@ export function MagicBellThemeProvider({
 
     const merged: IMagicBellTheme = merge(defaultTheme, partialTheme);
 
+    // backwards compatibility for prose
+    if (!partialTheme.prose) {
+      for (const key of Object.keys(merged.prose).filter((x) => !/code|pre/i.test(x))) {
+        merged.prose[key] = merged.notification.default.textColor;
+      }
+    }
+
+    // backwards compatibility for notification titles
+    if (!partialTheme.notification?.default?.title?.textColor) {
+      merged.notification.default.title.textColor = merged.notification.default.textColor;
+    }
+
     // make notification unseen & unread state fallback to custom default state before falling back to default theme
     for (const variant of ['unseen', 'unread']) {
       merged.notification[variant] = merge(
@@ -42,10 +54,11 @@ export function MagicBellThemeProvider({
       for (const variant of ['default', 'unseen', 'unread']) {
         const current = merged.notification[variant];
 
+        merged.notification[variant].backgroundOpacity = variant === 'default' ? 0 : 0.05;
         merged.notification[variant].hover = merge(
           {
             backgroundColor: darken(current.backgroundColor, 5),
-            backgroundOpacity: 0.1,
+            backgroundOpacity: 0.15,
           },
           partialTheme.notification?.default?.hover,
           partialTheme.notification?.[variant]?.hover,

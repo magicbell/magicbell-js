@@ -32,4 +32,20 @@ export const themes: Record<
     background: '#ffffff',
     theme: classicTheme,
   },
+  custom: {
+    name: 'custom',
+    background: '#ffffff',
+    theme: {
+      // A theme copied from the dashboard
+      icon: { borderColor: '#13AFAF', width: '24px' },
+      unseenBadge: { backgroundColor: '#3890E9' },
+      header: { backgroundColor: '#EC5252', textColor: '#ffffff', borderRadius: '2px' },
+      footer: { backgroundColor: '#EC5252', textColor: '#ffffff', borderRadius: '2px' },
+      notification: {
+        default: { textColor: '#3890E9', borderRadius: '2px', backgroundColor: '#EC5252' },
+        unseen: { backgroundColor: '#EC5252', textColor: '#3890E9', borderRadius: '2px' },
+        unread: { backgroundColor: '#EC5252', textColor: '#3890E9', borderRadius: '2px' },
+      },
+    },
+  },
 };

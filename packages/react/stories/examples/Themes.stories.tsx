@@ -69,3 +69,9 @@ export const ClassicTheme = merge(Default, {
     theme: ['classic'],
   },
 });
+
+export const CustomTheme = merge(Default, {
+  parameters: {
+    theme: 'custom',
+  },
+});

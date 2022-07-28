@@ -56,6 +56,7 @@ const header: IMagicBellTheme['header'] = {
 
 const footer: IMagicBellTheme['footer'] = {
   ...header,
+  fontSize: '12px', // set for backward compatibility
   padding: '8px 16px',
 };
 
