@@ -40,13 +40,13 @@ export default function ClickableNotification({
     // ignore event when user clicks inside the menu
     if (event.isDefaultPrevented()) return;
     notification.markAsRead();
-    if (onClick) onClick(notification);
 
     // We don't want to invoke the action url when the user clicks a link or button inside the notification.
     // Notification content should take precedence.
     const isActionableElement = /a|button|input/i.test(event.target.tagName);
 
     if (isActionableElement) return;
+    if (onClick) onClick(notification);
     if (notification.actionUrl) openActionUrl(notification);
   };
 

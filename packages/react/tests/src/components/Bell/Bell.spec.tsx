@@ -71,7 +71,7 @@ test('can render the bell icon with the custom color and size', () => {
   const theme = { ...defaultTheme, icon: { borderColor: 'red', width: '14px' } };
   render(<Bell onClick={jest.fn()} />, { theme });
   const button = screen.getByRole('button', { name: /notifications/i });
-  const icon = button.querySelector('svg');
+  const icon = button.querySelector('path');
   expect(icon).toHaveAttribute('fill', 'red');
 });
 

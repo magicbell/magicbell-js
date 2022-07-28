@@ -142,6 +142,7 @@ test('calls the onNotificationClick callback', async () => {
 test('opens the action url in the same window', async () => {
   const ref = React.createRef<any>();
   const onClick = jest.fn();
+  global.open = jest.fn();
 
   render(
     <>

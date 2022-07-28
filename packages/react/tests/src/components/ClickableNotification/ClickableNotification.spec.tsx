@@ -37,7 +37,13 @@ test('renders the notification with seen/unseen background variation', () => {
   render(
     <>
       <ClickableNotification
-        notification={{ ...sampleNotification, id: '1', title: 'new notification', seenAt: null }}
+        notification={{
+          ...sampleNotification,
+          id: '1',
+          title: 'new notification',
+          readAt: null,
+          seenAt: null,
+        }}
         onClick={jest.fn()}
       />
       <ClickableNotification
@@ -45,6 +51,7 @@ test('renders the notification with seen/unseen background variation', () => {
           ...sampleNotification,
           id: '2',
           title: 'old notification',
+          readAt: Date.now(),
           seenAt: Date.now(),
         }}
         onClick={jest.fn()}
@@ -53,10 +60,10 @@ test('renders the notification with seen/unseen background variation', () => {
   );
 
   const unreadItem = screen.getByRole('button', { name: /new notification/i });
-  const unreadStyle = window.getComputedStyle(unreadItem.parentElement!);
+  const unreadStyle = window.getComputedStyle(unreadItem);
 
   const readItem = screen.getByRole('button', { name: /old notification/i });
-  const readStyle = window.getComputedStyle(readItem.parentElement!);
+  const readStyle = window.getComputedStyle(readItem);
 
   expect(unreadStyle.backgroundColor).not.toEqual(readStyle.backgroundColor);
 });
@@ -81,10 +88,10 @@ test('renders the notification with the read/unread svg color variation', async 
   );
 
   const unreadItem = screen.getByRole('button', { name: /new notification/i });
-  const unreadSvg = unreadItem.parentElement!.querySelector('svg')!.parentElement as HTMLElement;
+  const unreadSvg = unreadItem.querySelector('svg')!.parentElement as HTMLElement;
 
   const readItem = screen.getByRole('button', { name: /old notification/i });
-  const readSvg = readItem.parentElement!.querySelector('svg')!.parentElement as HTMLElement;
+  const readSvg = readItem.querySelector('svg')!.parentElement as HTMLElement;
 
   expect(getComputedStyle(unreadSvg).color).not.toEqual(getComputedStyle(readSvg).color);
 });
