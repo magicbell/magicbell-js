@@ -58,6 +58,14 @@ export default function NotificationContextMenu({ notification }: Props) {
               notificationTheme.hover.backgroundOpacity,
             )} !important;
           }
+
+          &:focus {
+            outline: none;
+          }
+
+          &:focus-visible {
+            outline: 2px ${notificationTheme.textColor} solid !important;
+          }
         }
       `}
     >

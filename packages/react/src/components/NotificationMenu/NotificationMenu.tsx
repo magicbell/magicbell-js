@@ -50,6 +50,14 @@ export default function NotificationMenu({ notification, menuPlacement = 'bottom
       aria-label={t('notification.menu', 'Menu')}
       css={css`
         color: ${theme.textColor} !important;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:focus-visible {
+          outline: 2px ${theme.textColor} auto !important;
+        }
       `}
       onClick={(e) => e.preventDefault()}
     >

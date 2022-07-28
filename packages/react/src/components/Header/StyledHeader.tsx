@@ -55,6 +55,14 @@ export default function StyledHeader({ children }: Props) {
     & button:active {
       opacity: 0.9;
     }
+
+    & button:focus {
+      outline: none;
+    }
+
+    & button:focus-visible {
+      outline: 2px ${headerTheme.textColor} auto !important;
+    }
   `;
 
   return <div css={[cleanslate, style]}>{children}</div>;
