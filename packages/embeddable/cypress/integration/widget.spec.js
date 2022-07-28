@@ -68,7 +68,7 @@ context('Widget', () => {
     });
   });
 
-  it('allows scrolling in the notification inbox', () => {
+  it.skip('allows scrolling in the notification inbox', () => {
     // we open the notification inbox before the notifications are fetched, to
     // test for race conditions between fetching notifications & updating the
     // infinite list and adding scrollbars
