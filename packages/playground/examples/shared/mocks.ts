@@ -68,7 +68,9 @@ const getHandler = (method: Method, url: string) => {
 axios.interceptors.request.use(
   (config) => {
     // don't use the mock when the user uses their own API keys.
-    if (!config.headers['X-MAGICBELL-USER-EMAIL'].endsWith('@example.com')) {
+    if (
+      !String(config.headers['X-MAGICBELL-USER-EMAIL']).endsWith('@example.com')
+    ) {
       return config;
     }
 
