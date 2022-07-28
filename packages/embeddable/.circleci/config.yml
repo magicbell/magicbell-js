@@ -20,15 +20,6 @@ commands:
             git config --global user.email "$CIRCLE_USERNAME@users.noreply.github.com"
           name: git config
 
-  git-merge-main:
-    description: Merge main into stable
-    steps:
-      - run:
-          command: |
-            git checkout stable
-            git merge main
-            git push origin stable
-
   rollbar-deploy:
     description: Logs the deploy action in Rollbar
     steps:
@@ -50,21 +41,10 @@ commands:
             curl https://api.rollbar.com/api/1/sourcemap/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
               -F version=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
-              -F minified_url=//assets.magicbell.io/magicbell.min.js \
+              -F minified_url=//unpkg.com/@magicbell/embeddable/dist/magicbell.min.js \
               -F source_map=@/home/circleci/project/dist/magicbell.min.js.map
 
 jobs:
-  update_stable_branch:
-    description: Update the stable branch
-    machine: true
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - '94:b8:cc:b6:44:bf:93:61:92:2f:bf:1b:3e:93:88:ba'
-      - configure-git
-      - checkout
-      - git-merge-main
-
   update_rollbar:
     description: Inform rollbar about the new version and register sourcemaps
     machine: true
@@ -107,13 +87,6 @@ workflows:
                   - dist
                   - package.json
           publish-token-variable: NPM_TOKEN
-      - update_stable_branch:
-          name: deploy_to_netlify
-          requires:
-            - hold
-          filters:
-            branches:
-              only: main
       - update_rollbar:
           requires:
             - publish_to_npm
