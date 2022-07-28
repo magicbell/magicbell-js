@@ -16,19 +16,21 @@ const Component = ({
   theme,
   ...props
 }) => (
-  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme}>
-    <MagicBell {...props}>
-      {(props) => (
-        <FloatingNotificationInbox
-          onAllRead={onAllRead}
-          onNotificationClick={onNotificationClick}
-          height={500}
-          NotificationItem={NotificationItem}
-          {...props}
-        />
-      )}
-    </MagicBell>
-  </MagicBellProvider>
+  <div className="flex flex-row justify-center p-4">
+    <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme}>
+      <MagicBell {...props}>
+        {(props) => (
+          <FloatingNotificationInbox
+            onAllRead={onAllRead}
+            onNotificationClick={onNotificationClick}
+            height={500}
+            NotificationItem={NotificationItem}
+            {...props}
+          />
+        )}
+      </MagicBell>
+    </MagicBellProvider>
+  </div>
 );
 
 const meta: Meta = {

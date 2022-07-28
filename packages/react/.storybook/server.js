@@ -5,7 +5,6 @@ import {sampleNotificationPreferences} from "../tests/factories/NotificationPref
 const richTextMessages = [
   { title: 'Getting started with MagicBell',
     content: `
-      <div>
         <p>
           <span aria-label="waving emoji" class="emoji" style="margin-right: 0.5rem;">👋</span>
           Hey There!
@@ -15,13 +14,12 @@ const richTextMessages = [
         </p>
         <p style="text-align: center; margin-top: 2.5em;">
           <a class="button" style="border-radius: 0.5rem; display: inline-block; background-color: #FDE047; padding: 0.75rem 2rem; border: none;">BROWSE THE DOCS</a>
-        </p>
-      </div>`
+        </p>`
   },
-  { content: `<h1>Hi!</h1><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's an H1 after all.</p>` },
+  { content: `<h3>Hi!</h3><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's a title after all.</p>` },
   { content: `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>` },
   { content: `<p>And you can even use <a href="https://magicbell.com">links</a>, <button>buttons</button>, and <a class="button">button links</a></p>` },
-  { content: `<p>Or \`inline code\` and code blocks</p><pre><code>const foo = 'bar';</code></pre>` },
+  { content: `<p>Or <code>inline code</code> and code blocks</p><pre><code>const foo = 'bar';</code></pre>` },
   { content: `<p>And paragraphs with lists</p>
    <ul><li>one</li><li>two</li><li>three</li></ul>
    <p>Both unordered and ordered</p>

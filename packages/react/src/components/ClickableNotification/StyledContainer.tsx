@@ -36,7 +36,7 @@ export default function StyledContainer({ notification, children, ...props }: Pr
     display: flex;
     align-items: center;
     font-family: ${theme.fontFamily} !important;
-    font-size: ${theme.fontSize};
+    font-size: ${theme.fontSize} !important;
     margin: ${theme.margin} !important;
     padding: ${theme.padding} !important;
     text-align: ${theme.textAlign} !important;

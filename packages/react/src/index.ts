@@ -3,6 +3,8 @@ export default MagicBell;
 
 export { default as Badge } from './components/Badge';
 export { default as Bell } from './components/Bell';
+export * from './components/Bell';
+export { default as ClassicBellIcon } from './components/Bell/ClassicBellIcon';
 export {
   default as ClickableNotification,
   ClickableNotificationProps,
@@ -29,6 +31,8 @@ export { default as MagicBellThemeContext, useTheme } from './context/MagicBellT
 export type { IMagicBellTheme } from './context/Theme';
 export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export { darken, toRGBA } from './lib/color';
+export { merge } from './lib/merge';
+export * from './themes';
 export {
   clientSettings,
   eventAggregator,

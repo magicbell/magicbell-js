@@ -4,6 +4,7 @@ import { useNotification } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
 
+import { useTheme } from '../../context/MagicBellThemeContext';
 import NotificationContent from '../NotificationContent';
 import NotificationMenu from '../NotificationMenu';
 import NotificationState from '../NotificationState';
@@ -30,6 +31,9 @@ export default function ClickableNotification({
   onClick,
   prose,
 }: Props) {
+  const {
+    notification: { default: theme },
+  } = useTheme();
   const notification = useNotification(rawNotification);
 
   const handleMarkAsRead = (event) => {
@@ -54,6 +58,7 @@ export default function ClickableNotification({
     flex-direction: column;
     align-items: flex-end;
     margin-left: auto !important;
+    font-size: ${theme.fontSize} !important;
   `;
 
   return (

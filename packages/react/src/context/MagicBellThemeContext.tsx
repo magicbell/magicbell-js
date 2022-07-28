@@ -67,6 +67,12 @@ export function MagicBellThemeProvider({
       }
     }
 
+    // backwards compatibility for unseenBadge
+    merged.unseenBadge.borderColor = partialTheme?.unseenBadge?.borderColor || 'transparent';
+
+    // backwards compatibility for container
+    merged.container.borderColor = partialTheme?.container?.borderColor || '';
+
     // backwards compatibility for banner style
     merged.banner = merge(
       merged.banner,

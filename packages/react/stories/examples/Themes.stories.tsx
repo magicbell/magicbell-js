@@ -15,7 +15,7 @@ function Component({ onAllRead, onNotificationClick, ...props }) {
             <FloatingNotificationInbox
               onAllRead={onAllRead}
               onNotificationClick={onNotificationClick}
-              height={600}
+              height={700}
               {...props}
               placement="bottom-end"
             />
@@ -52,20 +52,20 @@ export const Default = {
   },
 };
 
-export const DarkTheme = merge(Default, {
-  parameters: {
-    theme: 'dark',
-  },
-});
-
 export const LightTheme = merge(Default, {
   parameters: {
-    theme: 'light',
+    theme: ['light'],
   },
 });
 
-export const Outline = merge(Default, {
+export const FlatTheme = merge(Default, {
   parameters: {
-    theme: 'outline',
+    theme: ['flat'],
+  },
+});
+
+export const ClassicTheme = merge(Default, {
+  parameters: {
+    theme: ['classic'],
   },
 });

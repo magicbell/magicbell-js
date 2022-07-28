@@ -23,15 +23,14 @@ export default function Badge({ count }: Props) {
   const style = css`
     align-items: center;
     background: ${toRGBA(badgeTheme.backgroundColor, badgeTheme.backgroundOpacity)} !important;
+    border: 1px solid ${badgeTheme.borderColor} !important;
     border-radius: ${badgeTheme.borderRadius} !important;
     color: ${badgeTheme.textColor} !important;
     display: flex;
     font-family: ${badgeTheme.fontFamily} !important;
     font-size: ${badgeTheme.fontSize} !important;
     font-weight: ${badgeTheme.fontWeight} !important;
-    height: 18px !important;
-    min-width: 10px !important;
-    padding: 0 2px !important;
+    padding: ${badgeTheme.padding} !important;
     text-align: ${badgeTheme.textAlign} !important;
     text-transform: ${badgeTheme.textTransform} !important;
 

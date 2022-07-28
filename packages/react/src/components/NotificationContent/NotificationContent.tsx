@@ -42,7 +42,7 @@ export default function NotificationContent({ notification, prose: withProse = t
     cursor: inherit;
     margin: 0;
     line-height: 1.2;
-    font-size: 0.865em !important;
+    font-size: ${withProse ? 'inherit' : '0.865em'} !important;
     margin-top: 8px !important;
     word-break: break-word !important;
   `;

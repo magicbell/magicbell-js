@@ -66,6 +66,7 @@ export default function EnablePushNotificationsBanner() {
         font-family: ${theme.banner.fontFamily} !important;
         text-align: ${theme.banner.textAlign} !important;
         font-size: ${theme.banner.fontSize} !important;
+        line-height: 1.5 !important;
 
         & > * {
           margin-left: 1em;
