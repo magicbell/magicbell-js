@@ -3,26 +3,23 @@ import { defaultTheme } from '../../../src/context/Theme';
 describe('Theme', () => {
   describe('defaultTheme', () => {
     it('defines default values for the bell icon', () => {
-      expect(defaultTheme.icon).toEqual({
-        borderColor: '#3498F4',
-        width: '24px',
-      });
+      expect(defaultTheme.icon).toEqual({ borderColor: '#5225C1', width: '24px' });
     });
 
     it('defines default values for the header', () => {
       expect(defaultTheme.header).toEqual({
-        backgroundColor: '#3498F4',
+        backgroundColor: '#FFFFFF',
         backgroundOpacity: 1,
-        borderColor: undefined,
-        borderRadius: '8px',
+        borderColor: '#EFEEF1',
+        borderRadius: '16px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
-        fontWeight: 'inherit',
-        padding: '16px 24px',
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '15px',
+        fontWeight: 400,
+        padding: '16px',
         textAlign: 'left',
-        textColor: 'white',
-        textTransform: 'uppercase',
+        textColor: '#5225C1',
+        textTransform: 'none',
       });
     });
 
@@ -30,11 +27,12 @@ describe('Theme', () => {
       expect(defaultTheme.container).toEqual({
         backgroundColor: '#FFFFFF',
         backgroundOpacity: 1,
+        borderColor: 'transparent',
         borderRadius: '8px',
-        boxShadow: '0px 20px 25px rgba(84, 95, 111, 0.1), 0px 10px 10px rgba(84, 95, 111, 0.04)',
+        boxShadow: '0px 0px 6px rgba(0, 0, 0, 0.08), 0px 5px 12px rgba(0, 0, 0, 0.16)',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '16px',
         fontWeight: 'inherit',
         textAlign: 'left',
         textColor: '#3A424D',
@@ -44,30 +42,32 @@ describe('Theme', () => {
 
     it('defines default values for the footer', () => {
       expect(defaultTheme.footer).toEqual({
-        backgroundColor: '#3498F4',
+        backgroundColor: '#FFFFFF',
         backgroundOpacity: 1,
-        borderColor: undefined,
-        borderRadius: '8px',
+        borderColor: '#EFEEF1',
+        borderRadius: '16px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
-        fontWeight: 'inherit',
-        padding: '12px 24px',
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '12px',
+        fontWeight: 400,
+        padding: '8px 16px',
         textAlign: 'left',
-        textColor: 'white',
+        textColor: '#5225C1',
         textTransform: 'none',
       });
     });
 
     it('defines default values for the unseen badge', () => {
       expect(defaultTheme.unseenBadge).toEqual({
-        backgroundColor: '#DF4759',
+        backgroundColor: '#F80808',
         backgroundOpacity: 1,
-        borderRadius: '2px',
+        borderColor: 'white',
+        borderRadius: '4px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '10px',
-        fontWeight: 'inherit',
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '9px',
+        fontWeight: 400,
+        padding: '2px 3px',
         textAlign: 'center',
         textColor: 'white',
         textTransform: 'none',
@@ -76,16 +76,16 @@ describe('Theme', () => {
 
     it('defines default values for the default state of a notification', () => {
       expect(defaultTheme.notification.default).toEqual({
-        backgroundColor: 'transparent',
-        backgroundOpacity: 0,
-        borderRadius: '8px',
+        backgroundColor: '#FFFFFF',
+        backgroundOpacity: 1,
+        borderRadius: '16px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
-        fontWeight: 'inherit',
-        hover: { backgroundColor: '#3498F4', backgroundOpacity: 0.1 },
-        margin: '4px',
-        padding: '16px 20px 16px 12px',
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '12px',
+        fontWeight: 400,
+        hover: { backgroundColor: '#F2EDFC', backgroundOpacity: 1 },
+        margin: '8px',
+        padding: '16px 8px',
         state: { color: 'transparent' },
         textAlign: 'left',
         textColor: '#3A424D',
@@ -93,58 +93,58 @@ describe('Theme', () => {
         title: {
           fontFamily: 'inherit',
           fontSize: 'inherit',
-          fontWeight: 500,
-          textColor: 'inherit',
+          fontWeight: 600,
+          textColor: '#181B20',
         },
       });
     });
 
     it('defines default values for the unread state of a notification', () => {
       expect(defaultTheme.notification.unread).toEqual({
-        backgroundColor: '#3498F4',
-        backgroundOpacity: 0,
-        borderRadius: '8px',
+        backgroundColor: '#F8F5FF',
+        backgroundOpacity: 1,
+        borderRadius: '16px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
-        fontWeight: 'inherit',
-        hover: { backgroundColor: '#3498F4', backgroundOpacity: 0.1 },
-        margin: '4px',
-        padding: '16px 20px 16px 12px',
-        state: { color: '#3498F4' },
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '12px',
+        fontWeight: 400,
+        hover: { backgroundColor: '#F2EDFC', backgroundOpacity: 1 },
+        margin: '8px',
+        padding: '16px 8px',
+        state: { color: '#5225C1' },
         textAlign: 'left',
         textColor: '#3A424D',
         textTransform: 'none',
         title: {
           fontFamily: 'inherit',
           fontSize: 'inherit',
-          fontWeight: 500,
-          textColor: 'inherit',
+          fontWeight: 600,
+          textColor: '#181B20',
         },
       });
     });
 
     it('defines default values for the unseen state of a notification', () => {
       expect(defaultTheme.notification.unseen).toEqual({
-        backgroundColor: '#3498F4',
-        backgroundOpacity: 0.05,
-        borderRadius: '8px',
+        backgroundColor: '#F8F5FF',
+        backgroundOpacity: 1,
+        borderRadius: '16px',
         fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
-        fontSize: '14px',
-        fontWeight: 'inherit',
-        hover: { backgroundColor: '#3498F4', backgroundOpacity: 0.1 },
-        margin: '4px',
-        padding: '16px 20px 16px 12px',
-        state: { color: '#3498F4' },
+          'Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system',
+        fontSize: '12px',
+        fontWeight: 400,
+        hover: { backgroundColor: '#F2EDFC', backgroundOpacity: 1 },
+        margin: '8px',
+        padding: '16px 8px',
+        state: { color: '#5225C1' },
         textAlign: 'left',
         textColor: '#3A424D',
         textTransform: 'none',
         title: {
           fontFamily: 'inherit',
           fontSize: 'inherit',
-          fontWeight: 500,
-          textColor: 'inherit',
+          fontWeight: 600,
+          textColor: '#181B20',
         },
       });
     });
