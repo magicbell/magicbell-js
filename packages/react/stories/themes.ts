@@ -12,6 +12,11 @@ export const themes: Record<
     theme: DeepPartial<IMagicBellTheme>;
   }
 > = {
+  default: {
+    name: 'default',
+    background: '#ffffff',
+    theme: {},
+  },
   light: {
     name: 'light',
     background: '#ffffff',

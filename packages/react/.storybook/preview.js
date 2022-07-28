@@ -43,7 +43,7 @@ const withTheme = (Story, context)  => {
           background: theme.background,
           minWidth: 600,
         }}>
-          <Story args={{ theme: theme.theme, ...context.args }} />
+          <Story args={{ theme: theme.name === 'default' ? undefined : theme.theme, ...context.args }} />
         </div>
       )}
     </div>

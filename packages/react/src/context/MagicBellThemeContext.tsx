@@ -18,6 +18,9 @@ export function MagicBellThemeProvider({
   ...props
 }: MagicBellProviderProps) {
   const theme = useMemo(() => {
+    // don't run backwards compatibility code if no partial theme was provided
+    if (!partialTheme || Object.keys(partialTheme).length === 0) return defaultTheme;
+
     const merged: IMagicBellTheme = merge(defaultTheme, partialTheme);
 
     // make notification unseen & unread state fallback to custom default state before falling back to default theme
