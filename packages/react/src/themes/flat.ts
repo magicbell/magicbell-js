@@ -44,7 +44,7 @@ export const flatTheme: DeepPartial<IMagicBellTheme> = {
   header: headerFooterProps,
   footer: headerFooterProps,
   banner: {
-    backgroundColor: colors.bgHighlight,
+    backgroundColor: colors.bg,
     backgroundOpacity: 1,
     textColor: colors.text,
     fontFamily: fonts.sans,
@@ -63,7 +63,7 @@ export const flatTheme: DeepPartial<IMagicBellTheme> = {
   },
   notification: {
     default: {
-      backgroundColor: colors.bg,
+      backgroundColor: colors.bgHighlight,
       borderRadius: '0',
       textColor: colors.text,
       margin: '0',
@@ -79,7 +79,7 @@ export const flatTheme: DeepPartial<IMagicBellTheme> = {
       },
     },
     unread: {
-      backgroundColor: colors.bgHighlight,
+      backgroundColor: colors.bg,
       hover: {
         backgroundColor: colors.bgActive,
       },
@@ -88,7 +88,7 @@ export const flatTheme: DeepPartial<IMagicBellTheme> = {
       },
     },
     unseen: {
-      backgroundColor: colors.bgHighlight,
+      backgroundColor: colors.bg,
       hover: {
         backgroundColor: colors.bgActive,
       },
