@@ -16,8 +16,12 @@ const getIndexHtml = (body) =>
     </head>
                 
     <body>
+      <!-- note, codesandbox applies the <head>, sandpack does not -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        
       <style>
-        /* note, codesandbox applies the <head>, sandpack does not */
         html, body {
           margin: 0;
           padding: 0;
