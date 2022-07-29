@@ -152,16 +152,20 @@ addHandler('get', '/notifications', () => ({
       notification({
         title: `Welcome to MagicBell Playground! 🎉`,
         content: 'Here you can explore, and play with, our various web SDKs.',
-        sent_at: timeAgo(300),
+        sent_at: timeAgo(60),
       }),
       notification({
         title: 'Make demos or reproductions. 👀',
         content:
           'Click the "Fork" button in the top right corner when you wish to save your changes. It will load the current playground - including all modifications - in CodeSandbox. The sandbox can then be easily shared with coworkers, or with us.',
+        seen_at: timeAgo(0),
         sent_at: timeAgo(120),
       }),
       notification({
         title: 'Escape the Sandbox. 🚀',
+        read_at: timeAgo(0),
+        seen_at: timeAgo(0),
+        sent_at: timeAgo(300),
         content: `You're currently looking at mock data. Working with your own production data, is possible by changing the API key and userEmail in the code editor.`,
       }),
     ],
