@@ -15,7 +15,7 @@ afterEach(() => {
 });
 
 test('renders the relative date', async () => {
-  renderWithProviders(<Timestamp date={new Date()} />);
+  renderWithProviders(<Timestamp date={new Date()} delay={0} />);
   act(() => {
     jest.advanceTimersByTime(60_000);
   });
@@ -24,7 +24,7 @@ test('renders the relative date', async () => {
 });
 
 test('updates the relative date text', async () => {
-  renderWithProviders(<Timestamp date={new Date()} />);
+  renderWithProviders(<Timestamp date={new Date()} delay={0} />);
   act(() => {
     jest.advanceTimersByTime(180_000);
   });
@@ -33,7 +33,7 @@ test('updates the relative date text', async () => {
 });
 
 test('renders a tooltip showing the date in expanded format', async () => {
-  renderWithProviders(<Timestamp date={new Date()} />);
+  renderWithProviders(<Timestamp date={new Date()} delay={0} />);
   act(() => {
     jest.advanceTimersByTime(60_000);
   });
@@ -45,7 +45,7 @@ test('renders a tooltip showing the date in expanded format', async () => {
 });
 
 test('renders a menu in the specified position', async () => {
-  render(<Timestamp date={new Date()} tooltipPlacement="left-end" />);
+  render(<Timestamp date={new Date()} tooltipPlacement="left-end" delay={0} />);
   act(() => {
     jest.advanceTimersByTime(60_000);
   });
