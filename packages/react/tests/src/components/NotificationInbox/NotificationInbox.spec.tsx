@@ -132,7 +132,7 @@ test('shows the user preferences panel when the preferences button is clicked', 
   expect(checkboxes).toHaveLength(12);
 
   // clicking again closes the preferences
-  await userEvent.click(screen.getByRole('button', { name: /close/ }));
+  await userEvent.click(screen.getByRole('button', { name: /Close preferences/ }));
   await waitFor(() => expect(screen.queryByRole('checkbox')).not.toBeInTheDocument());
 });
 

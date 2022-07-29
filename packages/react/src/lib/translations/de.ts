@@ -20,6 +20,7 @@ const de = {
   preferences: {
     title: 'Einstellungen',
     toggle: 'Benachrichtigungseinstellungen',
+    close: 'Einstellungen schließen',
   },
 };
 

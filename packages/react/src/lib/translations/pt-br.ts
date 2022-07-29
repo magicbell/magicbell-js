@@ -22,6 +22,7 @@ const pt_br = {
   preferences: {
     title: 'Preferências',
     toggle: 'Preferências de notificação',
+    close: 'Fechar preferências',
   },
 };
 

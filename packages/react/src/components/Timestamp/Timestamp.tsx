@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import useInterval from 'react-use/lib/useInterval';
 
 import { toDate } from '../../lib/date';
-import Popover, { PopoverPlacement } from '../Popover';
-import TimestampTooltip from './TimestampTooltip';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
 
 export interface Props {
   date: Dayjs | Date | number | string;
-  tooltipPlacement?: PopoverPlacement;
+  tooltipPlacement?: TooltipProps['placement'];
 }
 
 /**
@@ -24,8 +23,8 @@ export default function Timestamp({ date, tooltipPlacement = 'bottom-end' }: Pro
   useInterval(() => setRelativeTime(dateObj.fromNow(true)), 60_000);
 
   return (
-    <Popover launcher={<div>{relativeTime}</div>} placement={tooltipPlacement}>
-      {() => <TimestampTooltip date={dateObj} />}
-    </Popover>
+    <Tooltip tooltip={dateObj.format('LL LT')} placement={tooltipPlacement}>
+      <div>{relativeTime}</div>
+    </Tooltip>
   );
 }

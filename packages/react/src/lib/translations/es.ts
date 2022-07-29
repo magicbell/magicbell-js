@@ -19,6 +19,7 @@ const es = {
   preferences: {
     title: 'Preferencias',
     toggle: 'Preferencias de notificación',
+    close: 'Cerrar preferencias',
   },
 };
 

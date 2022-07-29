@@ -10,6 +10,7 @@ import { useTranslate } from '../../../context/TranslationsContext';
 import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';
 import Footer from '../../Footer';
 import Header from '../../Header';
+import IconButton from '../../IconButton/IconButton';
 import CheckMarkIcon from '../../icons/CheckMarkIcon';
 import SettingsIcon from '../../icons/SettingsIcon';
 import { ListItemProps } from '../../NotificationList';
@@ -64,21 +65,21 @@ export default function NotificationsView({
         actions={
           <Fragment>
             {hasNotifications ? (
-              <button
+              <IconButton
                 onClick={handleMarkAllAsRead}
                 aria-label={t('header.mark-all-read', 'Mark all read')}
               >
                 <CheckMarkIcon />
-              </button>
+              </IconButton>
             ) : null}
 
             {showPreferencesButton ? (
-              <button
+              <IconButton
                 onClick={() => setView('preferences')}
                 aria-label={t('preferences.toggle', 'Notification preferences')}
               >
                 <SettingsIcon />
-              </button>
+              </IconButton>
             ) : null}
           </Fragment>
         }

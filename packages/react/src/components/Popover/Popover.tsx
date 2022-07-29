@@ -1,5 +1,5 @@
 import type { Options, Placement as PopoverPlacement } from '@popperjs/core';
-import Tippy from '@tippyjs/react/headless';
+import Tippy, { TippyProps } from '@tippyjs/react/headless';
 import React from 'react';
 
 type PopperOptions = Partial<Options>;
@@ -18,6 +18,7 @@ export interface PopoverProps {
   popperOptions?: PopperOptions;
   zIndex?: number;
   trigger?: 'mouseenter focus' | 'click' | 'focusin' | 'mouseenter click' | 'manual';
+  delay?: TippyProps['delay'];
 }
 
 /**
@@ -43,6 +44,7 @@ export default function Popover({
   popperOptions,
   zIndex = 9999,
   trigger = 'mouseenter focus',
+  ...props
 }: PopoverProps) {
   const controlledMode = isOpen !== undefined;
   const triggerProps = controlledMode ? { visible: isOpen } : { trigger };
@@ -53,6 +55,7 @@ export default function Popover({
 
   return (
     <Tippy
+      {...props}
       render={children}
       offset={[offset.skidding, offset.distance]}
       onClickOutside={handleClickOutside}
