@@ -31,7 +31,7 @@ export default function NotificationTitle({ notification }: Props) {
         font-weight: ${theme.fontWeight} !important;
         font-family: ${theme.fontFamily} !important;
         font-size: ${theme.fontSize} !important;
-        color: ${theme.textColor} !important;
+        color: inherit !important;
         line-height: 1.2 !important;
         word-break: break-word !important;
       `}
