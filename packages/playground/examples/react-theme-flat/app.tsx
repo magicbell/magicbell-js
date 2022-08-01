@@ -10,6 +10,7 @@ export default function Index() {
       userEmail="__MAGICBELL_USER_EMAIL__"
       userKey="__MAGICBELL_USER_KEY__"
       theme={flatTheme}
+      defaultIsOpen
     >
       {(props) => <FloatingNotificationInbox height={450} {...props} />}
     </MagicBell>
