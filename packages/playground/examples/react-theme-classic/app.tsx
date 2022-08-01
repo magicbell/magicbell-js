@@ -12,6 +12,7 @@ export default function Index() {
       userKey="__MAGICBELL_USER_KEY__"
       BellIcon={<ClassicBellIcon />}
       theme={classicTheme}
+      defaultIsOpen
     >
       {(props) => <FloatingNotificationInbox height={450} {...props} />}
     </MagicBell>
