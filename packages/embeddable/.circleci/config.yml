@@ -53,7 +53,7 @@ jobs:
           keys:
             - 'dist-{{ .Branch }}-{{ .Revision }}'
       - rollbar-deploy
-      - rollbar-sourcemaps
+      # - rollbar-sourcemaps
 
 workflows:
   build:
