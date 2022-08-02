@@ -22,8 +22,7 @@ context('Widget', () => {
     cy.get('iframe[id="magicbell-frame"]')
       .its('0.contentDocument.body')
       .should('not.be.empty')
-      .should('contain', 'NOTIFICATIONS')
-      .should('contain', 'Mark All Read');
+      .should('contain', 'Notifications');
   });
 
   context('unseen badge', () => {

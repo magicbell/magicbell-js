@@ -75,13 +75,32 @@ magicbell('render', document.getElementById('notifications'), {
         apiKey: 'df24a28e8921181f6c4220fc306ba76701592d21',
         userEmail: 'josue@magicbell.io',
         theme: {
-          icon: { borderColor: 'white' },
-          header: { fontFamily: 'IBM Plex Sans' },
-          footer: { fontFamily: 'IBM Plex Sans' },
+          icon: { borderColor: '#fff', width: '24px' },
+          banner: { backgroundColor: '#F8F5FF', textColor: '#3A424D', backgroundOpacity: 1 },
+          unseenBadge: { backgroundColor: '#F80808' },
+          header: { backgroundColor: '#FFFFFF', textColor: '#5225C1', borderRadius: '16px' },
+          footer: { backgroundColor: '#FFFFFF', textColor: '#5225C1', borderRadius: '16px' },
           notification: {
-            default: { fontFamily: 'IBM Plex Sans' },
-            unseen: { fontFamily: 'IBM Plex Sans' },
-            unread: { fontFamily: 'IBM Plex Sans' },
+            default: {
+              textColor: '#3A424D',
+              borderRadius: '16px',
+              backgroundColor: '#FFFFFF',
+              hover: { backgroundColor: '#F2EDFC' },
+              state: { color: 'transparent' },
+              margin: '8px',
+            },
+            unseen: {
+              textColor: '#3A424D',
+              backgroundColor: '#F8F5FF',
+              hover: { backgroundColor: '#F2EDFC' },
+              state: { color: '#5225C1' },
+            },
+            unread: {
+              textColor: '#3A424D',
+              backgroundColor: '#F8F5FF',
+              hover: { backgroundColor: '#F2EDFC' },
+              state: { color: '#5225C1' },
+            },
           },
         },
         stylesheets: [
