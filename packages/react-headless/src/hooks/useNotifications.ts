@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import useConfig from '../stores/config';
 import { useNotificationStoresCollection } from '../stores/notifications';
+import { QueryParams } from '../types/INotificationsStoresCollection';
 import INotificationStore from '../types/INotificationStore';
 
 type FetchOptions = Partial<{
@@ -18,7 +19,7 @@ export interface NotificationStore extends INotificationStore {
    *
    * @param queryParams Parameters to send to the API.
    */
-  fetch: (queryParams?: Record<string, unknown>, options?: FetchOptions) => Promise<void>;
+  fetch: (queryParams?: QueryParams, options?: FetchOptions) => Promise<void>;
 
   /**
    * Fetch the next page of notifications from the API server. The notifications
@@ -26,7 +27,7 @@ export interface NotificationStore extends INotificationStore {
    *
    * @param queryParams Parameters to send to the API.
    */
-  fetchNextPage: (queryParams?: Record<string, unknown>) => Promise<void>;
+  fetchNextPage: (queryParams?: Omit<QueryParams, 'page' | 'per_page'>, options?: FetchOptions) => Promise<void>;
 
   /**
    * Mark all notifications as seen. Resets the `unseenCount` attribute.
@@ -59,20 +60,33 @@ export default function useNotifications(storeId = 'default'): NotificationStore
   const config = useConfig();
   const store = stores[storeId];
 
-  const fetch = useCallback(
-    (queryParams?: Record<string, unknown>, options?: FetchOptions) => fetchStore(storeId, queryParams, options),
+  const fetch = useCallback<NotificationStore['fetch']>(
+    (queryParams, options) => fetchStore(storeId, queryParams, options),
     [fetchStore, storeId],
   );
 
-  const fetchNextPage = (queryParams: Record<string, unknown> = {}, options?: FetchOptions) => {
-    const page = store.currentPage + 1;
-    return fetchStore(storeId, { ...queryParams, page }, options);
-  };
+  const fetchNextPage = useCallback<NotificationStore['fetchNextPage']>(
+    (queryParams = {}, options) => {
+      const page = store.currentPage + 1;
+      return fetchStore(storeId, { ...queryParams, page }, options);
+    },
+    [fetchStore, storeId, store?.currentPage],
+  );
 
   useEffect(() => {
     if (!store) return;
     if (config.lastFetchedAt && !store.lastFetchedAt) fetch({ page: 1 });
   }, [config.lastFetchedAt, store, fetch]);
+
+  const markAllAsReadFn = useCallback<NotificationStore['markAllAsRead']>(
+    (options) => markAllAsRead({ ...options, storeId }),
+    [markAllAsRead, storeId],
+  );
+
+  const markAllAsSeenFn = useCallback<NotificationStore['markAllAsSeen']>(
+    (options) => markAllAsSeen({ ...options, storeId }),
+    [markAllAsSeen, storeId],
+  );
 
   if (!store) return null;
 
@@ -82,7 +96,7 @@ export default function useNotifications(storeId = 'default'): NotificationStore
     hasNextPage: store.currentPage < store.totalPages,
     fetch,
     fetchNextPage,
-    markAllAsSeen,
-    markAllAsRead,
+    markAllAsSeen: markAllAsSeenFn,
+    markAllAsRead: markAllAsReadFn,
   };
 }

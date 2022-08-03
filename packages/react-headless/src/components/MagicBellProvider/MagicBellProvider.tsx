@@ -4,12 +4,13 @@ import clientSettings, { ClientSettings } from '../../stores/clientSettings';
 import useConfig from '../../stores/config';
 import { useNotificationStoresCollection } from '../../stores/notifications';
 import buildStore from '../../stores/notifications/helpers/buildStore';
+import { QueryParams } from '../../types/INotificationsStoresCollection';
 import INotificationStore from '../../types/INotificationStore';
 import RealtimeListener from '../RealtimeListener';
 
 type StoreConfig = {
   id: string;
-  defaultQueryParams: Record<string, unknown>;
+  defaultQueryParams: QueryParams;
   defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 

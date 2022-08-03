@@ -68,7 +68,7 @@ describe('stores', () => {
             const spy = jest.spyOn(ajax, 'fetchAPI');
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
-            const defaultQueryParams = { unread: true };
+            const defaultQueryParams = { read: false };
 
             await act(async () => {
               result.current.setStore(storeId, defaultQueryParams);

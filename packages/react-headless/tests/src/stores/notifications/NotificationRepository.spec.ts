@@ -71,7 +71,7 @@ describe('stores', () => {
             server.get('/notifications', new Response(403, {}, {}));
             expect.hasAssertions();
 
-            await expect(() => repo.findBy({ unread: true })).rejects.toThrow('Request failed with status code 403');
+            await expect(() => repo.findBy({ read: false })).rejects.toThrow('Request failed with status code 403');
           });
         });
       });

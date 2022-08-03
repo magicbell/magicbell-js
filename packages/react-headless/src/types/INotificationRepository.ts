@@ -1,4 +1,5 @@
 import RemoteRepository from '../stores/repository/RemoteRepository';
+import { QueryParams } from './INotificationsStoresCollection';
 import INotificationStore from './INotificationStore';
 import IRemoteNotification from './IRemoteNotification';
 
@@ -24,10 +25,10 @@ export default interface INotificationRepository extends RemoteRepository<IWrapp
   /**
    * Mark all notifications as seen.
    */
-  markAllAsSeen(): Promise<boolean>;
+  markAllAsSeen(params?: Omit<QueryParams, 'page' | 'per_page'>): Promise<boolean>;
 
   /**
    * Mark all notifications as read.
    */
-  markAllAsRead(): Promise<boolean>;
+  markAllAsRead(params?: Omit<QueryParams, 'page' | 'per_page'>): Promise<boolean>;
 }

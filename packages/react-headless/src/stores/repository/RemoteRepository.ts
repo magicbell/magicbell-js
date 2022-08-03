@@ -1,6 +1,7 @@
 import humps from 'humps';
 
 import { deleteAPI, fetchAPI } from '../../lib/ajax';
+import { QueryParams } from '../../types/INotificationsStoresCollection';
 
 /**
  * Class to represent a client that interacts with the MagicBell API.
@@ -32,11 +33,9 @@ export default abstract class RemoteRepository<Item, Collection> {
    * Get elements that match params from the API server.
    *
    * @example
-   * const notifications = await repo.findBy({ unread: true });
+   * const notifications = await repo.findBy({ read: false });
    */
-  // TODO: Consider alternate to any type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async findBy(queryParams: any): Promise<Collection | void> {
+  async findBy(queryParams?: QueryParams): Promise<Collection | void> {
     try {
       const json = await fetchAPI(this.remotePathOrUrl, queryParams);
       return humps.camelizeKeys(json);
