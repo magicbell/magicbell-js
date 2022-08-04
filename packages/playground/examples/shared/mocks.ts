@@ -140,7 +140,7 @@ const channelSettings = () => ({
 addHandler('get', '/config');
 
 addHandler('get', '/notifications', () => ({
-  data: notification({
+  data: {
     project_id: id('prj'),
     unseen_count: 3,
     unread_count: 3,
@@ -170,7 +170,7 @@ addHandler('get', '/notifications', () => ({
       }),
     ],
     user: { email: 'person@example.com' },
-  }),
+  },
 }));
 
 addHandler('get', '/notification_preferences', () => ({
