@@ -83,6 +83,7 @@ axios.interceptors.request.use(
     mockError['data'] = mock.handler
       ? mock.handler({ params: { ...params, ...config.params } })
       : { data: {} };
+
     return Promise.reject(mockError);
   },
   (error) => Promise.reject(error),
@@ -103,7 +104,7 @@ axios.interceptors.response.use(
       return Promise.reject(err);
     }
 
-    return Promise.resolve({
+    const response = {
       data: {},
       status: 200,
       statusText: 'OK',
@@ -111,6 +112,11 @@ axios.interceptors.response.use(
       config,
       isMock: true,
       ...data,
+    };
+
+    return new Promise((resolve) => {
+      // add a bit of delay to simulate network
+      setTimeout(() => resolve(response), 250);
     });
   },
 );
