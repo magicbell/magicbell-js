@@ -121,7 +121,7 @@ axios.interceptors.response.use(
   },
 );
 
-const notification = (data) => ({
+const notification = (data: Record<string, unknown>) => ({
   id: id('not'),
   title: 'Test Notification',
   content: 'Notification Content',
@@ -132,7 +132,7 @@ const notification = (data) => ({
   recipient: {
     id: id('usr'),
     email: 'person@example.com',
-    ...data.recipient,
+    ...(data.recipient as any),
   },
 });
 
@@ -145,39 +145,89 @@ const channelSettings = () => ({
 
 addHandler('get', '/config');
 
-addHandler('get', '/notifications', () => ({
-  data: {
-    project_id: id('prj'),
-    unseen_count: 3,
-    unread_count: 3,
-    total: 1,
-    total_pages: 1,
-    per_page: 15,
-    current_page: 1,
-    notifications: [
-      notification({
-        title: `Welcome to MagicBell Playground! 🎉`,
-        content: 'Here you can explore, and play with, our various web SDKs.',
-        sent_at: timeAgo(60),
-      }),
-      notification({
-        title: 'Make demos or reproductions. 👀',
-        content:
-          'Click the "Fork" button in the top right corner when you wish to save your changes. It will load the current playground - including all modifications - in CodeSandbox. The sandbox can then be easily shared with coworkers, or with us.',
-        seen_at: timeAgo(0),
-        sent_at: timeAgo(120),
-      }),
-      notification({
-        title: 'Escape the Sandbox. 🚀',
-        read_at: timeAgo(0),
-        seen_at: timeAgo(0),
-        sent_at: timeAgo(300),
-        content: `You're currently looking at mock data. Working with your own production data, is possible by changing the API key and userEmail in the code editor.`,
-      }),
-    ],
-    user: { email: 'person@example.com' },
-  },
-}));
+const fakeNotifications = {
+  latest: [
+    notification({
+      title: `Welcome to MagicBell Playground! 🎉`,
+      content: 'Here you can explore, and play with, our various web SDKs.',
+    }),
+    notification({
+      title: 'Make demos or reproductions. 👀',
+      content:
+        'Click the "Fork" button in the top right corner when you wish to save your changes. It will load the current playground - including all modifications - in CodeSandbox. The sandbox can then be easily shared with coworkers, or with us.',
+    }),
+    notification({
+      title: 'Escape the Sandbox. 🚀',
+      content: `You're currently looking at mock data. Working with your own production data, is possible by changing the API key and userEmail in the code editor.`,
+    }),
+  ],
+  billing: [
+    notification({
+      title: `Invoice for ${new Date().toLocaleString('en-us', {
+        month: 'short',
+        year: 'numeric',
+      })}`,
+      content: `Your invoice is due in 7 days. Please reach out if you need assistance.`,
+    }),
+    notification({
+      title: `Quota threshold reached (90% used)`,
+      content: `You've exceeded 90% of your quota. Please upgrade your plan to ensure continued access.`,
+    }),
+    notification({
+      title: 'Failed to charge card.',
+      content: `We were unable to charge your card. Please update your card details via account settings.`,
+    }),
+  ],
+};
+
+addHandler('get', '/notifications', ({ params }) => {
+  const category = Array.isArray(params.categories)
+    ? params.categories[Math.floor(Math.random() * params.categories.length)]
+    : null;
+
+  let notifications = fakeNotifications[category] || fakeNotifications.latest;
+
+  // set some read/seen dates
+  notifications = notifications.map((notification, idx) => ({
+    ...notification,
+    read_at: idx > 1 ? timeAgo(0) : null,
+    seen_at: idx > 0 ? timeAgo(0) : null,
+    sent_at: timeAgo((idx + 1) * 60),
+  }));
+
+  if (typeof params.seen !== 'undefined') {
+    notifications = notifications.filter(
+      (x) => Boolean(x.seen_at) === params.seen,
+    );
+  }
+
+  if (typeof params.read !== 'undefined') {
+    notifications = notifications.filter(
+      (x) => Boolean(x.read_at) === params.read,
+    );
+  }
+
+  if (category) {
+    notifications = notifications.map((notification) => ({
+      ...notification,
+      category,
+    }));
+  }
+
+  return {
+    data: {
+      project_id: id('prj'),
+      unseen_count: notifications.filter((x) => !x.seen_at).length,
+      unread_count: notifications.filter((x) => !x.read_at).length,
+      total: notifications.length,
+      total_pages: 1,
+      per_page: params.per_page || 15,
+      current_page: params.page || 1,
+      notifications,
+      user: { email: 'person@example.com' },
+    },
+  };
+});
 
 addHandler('get', '/notification_preferences', () => ({
   data: {

@@ -1,0 +1,7 @@
+{
+  "name": "magicbell-project",
+  "description": "Using multiple stores and tabs in the inbox.",
+  "dependencies": {
+    "@magicbell/magicbell-react": "10.2.0-beta.1"
+  }
+}
