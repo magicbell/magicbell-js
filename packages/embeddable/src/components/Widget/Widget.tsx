@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import { CacheProvider } from '@emotion/react';
-import MagicBell, { Notification } from '@magicbell/magicbell-react';
+import MagicBell from '@magicbell/magicbell-react';
 import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/context/Theme';
 import { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
 import { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
-import React, { Component } from 'react';
+import React, { Component, ComponentProps } from 'react';
 import { cache } from '../../lib/emotion';
 import { ReactError } from '../../lib/error';
 import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
+
+type MagicBellProps = ComponentProps<typeof MagicBell>;
 
 export interface WidgetProps extends FrameContentProps {
   apiKey: string;
@@ -22,7 +24,7 @@ export interface WidgetProps extends FrameContentProps {
     emptyInboxUrl: string;
   }>;
   theme: DeepPartial<IMagicBellTheme>;
-  onNewNotification?: (notification: Notification) => void;
+  onNewNotification?: MagicBellProps['onNewNotification'];
   defaultIsOpen?: boolean;
 }
 
@@ -60,9 +62,6 @@ export default class Widget extends Component<WidgetProps> {
       ...inboxProps
     } = this.props;
 
-    const optionalProps = {} as Partial<Record<string, WidgetProps['onNewNotification']>>;
-    if (onNewNotification) optionalProps.onNewNotification = onNewNotification;
-
     return (
       <CacheProvider value={cache}>
         <MagicBell
@@ -75,7 +74,7 @@ export default class Widget extends Component<WidgetProps> {
           images={images}
           serverURL={serverURL}
           defaultIsOpen={defaultIsOpen}
-          {...optionalProps}
+          onNewNotification={onNewNotification}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
         </MagicBell>
