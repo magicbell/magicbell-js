@@ -52,7 +52,7 @@ export default function FloatingFrame({
             background-color: ${containerTheme.backgroundColor} !important;
             color: ${containerTheme.textColor} !important;
             border-radius: ${headerTheme.borderRadius} ${footerTheme.borderRadius} !important;
-            box-shadow: 0px 20px 25px rgba(84, 95, 111, 0.1), 0px 10px 10px rgba(84, 95, 111, 0.04) !important;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.08), 0 5px 12px rgba(0, 0, 0, 0.16) !important;
           `}
           {...attrs}
         >
