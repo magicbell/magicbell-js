@@ -23,7 +23,7 @@
     "@angular/core": "^13.1.1",
     "@codesandbox/sandpack-react": "^0.10.11",
     "@magicbell/embeddable": "^2.15.3",
-    "@magicbell/magicbell-react": "^10.0.0",
+    "@magicbell/magicbell-react": "^10.2.0-beta.1",
     "@magicbell/react-headless": "^2.5.0",
     "@radix-ui/react-icons": "^1.0.3",
     "@types/react": "^17.0.38",
