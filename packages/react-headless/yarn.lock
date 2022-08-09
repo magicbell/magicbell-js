@@ -3834,9 +3834,9 @@ abab@^2.0.3, abab@^2.0.5:
   integrity sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q==
 
 ably@^1.2.14:
-  version "1.2.25"
-  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.25.tgz#f5f9aac272e6fe4163b62012ad0cd9bf46cc4754"
-  integrity sha512-2TqkhoYfBkYCogvlE8DOzyOnIrCbccu3LESEaiynwbqz1M2l9Ka+Fl7IW1s8IPwhvKgb2cXNm0Vux8GdHQ5Vqw==
+  version "1.2.29"
+  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.29.tgz#fa6d5cd2cfa693feb627b26c67d5b24a1e9535f6"
+  integrity sha512-bgacOwmDBpHACysn1o0ZoScJsaiOeJoZXhIEUw9aMrqd91B3JBrtJwU80XJjPAw02lE7mxeGCWh85SDNNUN+hg==
   dependencies:
     "@ably/msgpack-js" "^0.4.0"
     got "^11.8.2"
