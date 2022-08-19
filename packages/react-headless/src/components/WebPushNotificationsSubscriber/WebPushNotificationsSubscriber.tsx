@@ -4,27 +4,26 @@ import { useEffect } from 'react';
 import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 import useConfig from '../../stores/config';
 
-export interface PushNotificationsSubscriberProps {
+export interface Props {
   children: (params: { createSubscription: () => Promise<unknown>; isPushAPISupported: boolean }) => JSX.Element;
   serviceWorkerPath?: string;
   skipServiceWorkerRegistration?: boolean;
 }
 
 /**
- * Headless component to create subscriptions to push notifications for the
- * current user.
+ * Headless component to create subscriptions to web push notifications.
  *
  * @example
- * <PushNotificationsSubscriber>
+ * <WebPushNotificationsSubscriber>
  *   {({ createSubscription }) =>
  *     <button onClick={createSubscription}>Subscribe</button>}
- * <PushNotificationsSubscriber>
+ * <WebPushNotificationsSubscriber>
  */
-export default function PushNotificationsSubscriber({
+export default function WebPushNotificationsSubscriber({
   children,
   serviceWorkerPath = '/service-worker.js',
   skipServiceWorkerRegistration = false,
-}: PushNotificationsSubscriberProps) {
+}: Props) {
   const config = useConfig();
   const isSafari = 'safari' in window;
   const isPushAPISupported = 'PushManager' in window;

@@ -1,5 +1,5 @@
 export { default as MagicBellProvider } from './components/MagicBellProvider';
-export { default as PushNotificationsSubscriber } from './components/PushNotificationsSubscriber';
+export { default as WebPushNotificationsSubscriber } from './components/WebPushNotificationsSubscriber';
 export { default as RealtimeListener } from './components/RealtimeListener';
 export { default as useBell } from './hooks/useBell';
 export { default as useMagicBellEvent } from './hooks/useMagicBellEvent';
