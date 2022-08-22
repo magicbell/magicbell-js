@@ -3,13 +3,14 @@ import { jsx } from '@emotion/react';
 import { useConfig, useNotifications } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { pathOr } from 'ramda';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { ReactElement } from 'react';
 
 import { useTranslate } from '../../../context/TranslationsContext';
 import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';
 import Footer from '../../Footer';
 import Header from '../../Header';
+import HeaderTabs, { HeaderTabsProps } from '../../Header/HeaderTabs';
 import IconButton from '../../IconButton/IconButton';
 import CheckMarkIcon from '../../icons/CheckMarkIcon';
 import SettingsIcon from '../../icons/SettingsIcon';
@@ -20,7 +21,7 @@ import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 import NotificationInboxContent from '../NotificationInboxContent';
 
-type NotificationsViewProps = {
+export type NotificationsViewProps = {
   storeId?: string;
   notificationPreferencesEnabled?: boolean;
   setView: SetViewHandler;
@@ -30,6 +31,7 @@ type NotificationsViewProps = {
   NotificationItem?: (props: ListItemProps) => ReactElement;
   EmptyInboxPlaceholder?: () => ReactElement;
   onNotificationClick?: (notification: INotification) => void;
+  tabs?: HeaderTabsProps['tabsConfig'];
 };
 
 export default function NotificationsView({
@@ -41,10 +43,14 @@ export default function NotificationsView({
   NotificationItem,
   EmptyInboxPlaceholder = ClearInboxMessage,
   setView,
+  tabs: tabsConfig,
 }: NotificationsViewProps) {
   const t = useTranslate();
   const config = useConfig();
-  const store = useNotifications(storeId);
+
+  const [activeStore, setActiveStore] = useState(storeId || tabsConfig?.[0].storeId);
+  const store = useNotifications(activeStore);
+
   if (!store) return null;
 
   const hasNotifications = !store.isEmpty;
@@ -57,11 +63,18 @@ export default function NotificationsView({
     onAllRead?.();
   };
 
+  const showTabs = tabsConfig && activeStore;
+  const tabs = showTabs ? (
+    <HeaderTabs activeTab={activeStore} onChange={setActiveStore} tabsConfig={tabsConfig} />
+  ) : null;
+
+  const title = <Text id="header.title" defaultMessage="Notifications" />;
+
   return (
     <Layout order={layout}>
       <Header
         key="header"
-        title={<Text id="header.title" defaultMessage="Notifications" />}
+        title={showTabs ? tabs : title}
         actions={
           <Fragment>
             {hasNotifications ? (

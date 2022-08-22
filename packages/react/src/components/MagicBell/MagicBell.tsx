@@ -13,7 +13,14 @@ import MagicBellChildrenWrapper from '../MagicBellProvider/MagicBellChildrenWrap
 
 type StoreConfig = {
   id: string;
-  defaultQueryParams: Record<string, unknown>;
+  defaultQueryParams: {
+    read?: boolean;
+    seen?: boolean;
+    archived?: boolean;
+    categories?: string[];
+    topics?: string[];
+    [key: string]: unknown;
+  };
   defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 

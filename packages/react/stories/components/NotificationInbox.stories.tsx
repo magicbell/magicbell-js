@@ -5,8 +5,14 @@ import MagicBellProvider from '../../src/components/MagicBellProvider';
 import NotificationInbox from '../../src/components/NotificationInbox';
 import { merge } from '../../src/lib/merge';
 
-const Component = ({ apiKey, userEmail, userKey, ...props }) => (
-  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
+const Component = ({ apiKey, userEmail, userKey, stores, theme, ...props }) => (
+  <MagicBellProvider
+    apiKey={apiKey}
+    userEmail={userEmail}
+    userKey={userKey}
+    stores={stores}
+    theme={theme}
+  >
     <NotificationInbox {...props} />
   </MagicBellProvider>
 );
@@ -49,5 +55,20 @@ export const WithCustomPreferences = merge(Default, {
 export const WithPreferencesDisabled = merge(Default, {
   args: {
     notificationPreferencesEnabled: false,
+  },
+});
+
+export const SplitInbox = merge(Default, {
+  args: {
+    stores: [
+      { id: 'default', defaultQueryParams: {} },
+      { id: 'unread', defaultQueryParams: { read: true } },
+      { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
+    ],
+    tabs: [
+      { storeId: 'default', label: 'Latest' },
+      { storeId: 'unread', label: 'Archive' },
+      { storeId: 'billing', label: 'Billing' },
+    ],
   },
 });

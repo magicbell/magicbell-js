@@ -3,7 +3,7 @@ import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react
 
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import Layout from './Layout';
-import NotificationsView from './private/NotificationsView';
+import NotificationsView, { NotificationsViewProps } from './private/NotificationsView';
 import PreferencesView from './private/PreferencesView';
 import StyledContainer from './StyledContainer';
 
@@ -17,6 +17,7 @@ export type NotificationInboxProps = {
   NotificationPreferences?: () => React.ReactElement;
   notificationPreferencesEnabled?: boolean;
   layout?: ComponentProps<typeof Layout>['order'];
+  tabs?: NotificationsViewProps['tabs'];
 };
 
 export type SetViewHandler = Dispatch<SetStateAction<'inbox' | 'preferences'>>;
@@ -33,6 +34,7 @@ export type SetViewHandler = Dispatch<SetStateAction<'inbox' | 'preferences'>>;
 export default function NotificationInbox({
   height,
   layout = ['header', 'content', 'push-notifications-banner', 'footer'],
+  tabs,
   ...props
 }: NotificationInboxProps) {
   const [view, setView] = useState<'inbox' | 'preferences'>('inbox');
@@ -42,7 +44,7 @@ export default function NotificationInbox({
       {view === 'preferences' ? (
         <PreferencesView {...props} layout={layout} setView={setView} />
       ) : (
-        <NotificationsView {...props} layout={layout} setView={setView} />
+        <NotificationsView {...props} tabs={tabs} layout={layout} setView={setView} />
       )}
     </StyledContainer>
   );

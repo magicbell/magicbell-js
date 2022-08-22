@@ -1660,14 +1660,14 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@magicbell/react-headless@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.0.3.tgz#b1b2abede3ae937b1048b1b11f10bedb53815a11"
-  integrity sha512-XZZrkkWccXmWQx2XkScMuhKkX6TKN8i6XlDZyamwuGL0pS0WMtVys1rcoDnJZUylWkJvDiLtVu4PYH8gIcqxaQ==
+"@magicbell/react-headless@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.1.0.tgz#d3cbe35ffe512d2968cbec7aceddd76c2b61a1d1"
+  integrity sha512-bdxv2FWOBGYMOipYdXS7uWTYXlOTII86BjWVvmcwIQMYxLk5ASqUJYmbDTCIHghbgV0r9PKB0fV1qMBjgxkCkQ==
   dependencies:
     ably "^1.2.14"
     axios "^0.27.2"
-    dayjs "1.11.3"
+    dayjs "1.11.5"
     humps "^2.0.1"
     immer "^9.0.6"
     mitt "^3.0.0"
@@ -5536,10 +5536,10 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-dayjs@1.11.3, dayjs@^1.10.4:
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
-  integrity sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==
+dayjs@1.11.5, dayjs@^1.11.5:
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
+  integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"

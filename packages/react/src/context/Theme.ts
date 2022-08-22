@@ -49,6 +49,15 @@ interface ProseTheme {
   fontMono: string;
 }
 
+interface TabsTheme {
+  margin: string;
+  spacing: string;
+  fontSize: string;
+  fontWeight: number;
+  color: string;
+  activeColor: string;
+}
+
 export interface IMagicBellTheme {
   prose: ProseTheme;
   icon: {
@@ -56,6 +65,7 @@ export interface IMagicBellTheme {
     width: string;
   };
   unseenBadge: IElementTheme;
+  tabs: TabsTheme;
   header: IElementTheme;
   container: IElementTheme & { boxShadow?: string };
   footer: IElementTheme;

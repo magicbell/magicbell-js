@@ -27,7 +27,10 @@ const richTextMessages = [
   ` },
 ]
 
-function buildNotifications(page) {
+// https://www.magicbell.com/docs/rest-api/reference#fetch-notifications
+function buildNotifications({ page, read, ...params }) {
+  page = Number(page) || 1;
+  read = !read ? undefined : read === 'true';
   const isFirstPage = page === 1;
 
   const notifications = NotificationFactory.buildList(10, {
@@ -35,7 +38,7 @@ function buildNotifications(page) {
     readAt: new Date().getTime() / 1000,
   });
 
-  if (isFirstPage) {
+  if (isFirstPage && read === undefined) {
     notifications[0].seenAt = null;
     notifications[0].readAt = null;
     notifications[1].readAt = null;
@@ -119,7 +122,7 @@ function start() {
   }));
 
   // Notifications
-  server.get('/notifications', (req, res) => buildNotifications(parseInt(res.queryParams.page)));
+  server.get('/notifications', (req, res) => buildNotifications(res.queryParams));
   server.post('/notifications/read', {});
   server.post('/notifications/seen', {});
   server.post('/notifications/*/read', {});

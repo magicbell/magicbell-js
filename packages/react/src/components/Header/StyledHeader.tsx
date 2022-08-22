@@ -39,6 +39,7 @@ export default function StyledHeader({ children }: Props) {
       ? `1px solid ${headerTheme.borderColor} !important`
       : undefined};
     font-weight: ${headerTheme.fontWeight};
+    height: ${headerTheme.fontSize} !important;
 
     &:first-of-type {
       border-radius: ${headerTheme.borderRadius} ${headerTheme.borderRadius} 0 0 !important;

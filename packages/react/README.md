@@ -214,8 +214,30 @@ These are all the properties accepted by this component.
 | `NotificationItem`               | `({ notification, onItemClick }) => JSX.Element` | An optional custom component to use for rendering each notification. Defaults to [ClickableNotification](#clickablenotification). |
 | `NotificationPreferences`        | `() => JSX.Element`                              | An optional custom component to use for rendering preferences. Shown when the user clicks the settings button`                    |
 | `notificationPreferencesEnabled` | `boolean`                                        | Optional, and defaults to `true`. Set to `false` to hide the settings button.                                                     |
+| `tabs`                           | `{ storeId: string, label: string }[]`           | Optional, a map to render inbox tabs, where each tab is connected to a defined store.                                             |
 
-If the store wasn't fetched previously, this component will fetch the first page on mounted.
+If the store wasn't fetched previously, this component will fetch the first page on first render.
+
+**Example:** an inbox using tabs and custom stores:
+
+```javascript
+const stores = [
+  { id: 'default', defaultQueryParams: {} },
+  { id: 'unread', defaultQueryParams: { read: true } },
+  { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
+];
+
+// can list all stores, but doesn't need to
+const tabs = [
+  { storeId: 'default', label: 'Latest' },
+  { storeId: 'unread', label: 'Archive' },
+  { storeId: 'billing', label: 'Billing' },
+];
+
+<MagicBellProvider stores={stores}>
+  <NotificationInbox tabs={tabs} />
+</MagicBellProvider>;
+```
 
 ## FloatingNotificationInbox
 

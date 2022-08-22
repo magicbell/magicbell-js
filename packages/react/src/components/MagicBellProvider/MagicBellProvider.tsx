@@ -8,6 +8,7 @@ import { IMagicBellTheme } from '../../context/Theme';
 import { TranslationsProvider } from '../../context/TranslationsContext';
 import { CustomLocale, useLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
+import { Props as MagicBellProps } from '../MagicBell/MagicBell';
 
 export interface OptionalProps {
   userEmail?: string;
@@ -15,7 +16,7 @@ export interface OptionalProps {
   userKey?: string;
   children: React.ReactElement | React.ReactElement[];
   theme?: DeepPartial<IMagicBellTheme>;
-  stores?;
+  stores?: MagicBellProps['stores'];
   locale?: string | CustomLocale;
   images?: Partial<{
     emptyInboxUrl: string;

@@ -8,7 +8,7 @@ import NotificationInbox from '../../../../src/components/NotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { createServer } from '../../../__utils__/server';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
-import { emptyNotificationPage } from '../../../factories/NotificationFactory';
+import { emptyNotificationPage, sampleNotification } from '../../../factories/NotificationFactory';
 
 let server: ReturnType<typeof createServer>;
 
@@ -160,4 +160,72 @@ test('can render with a custom notification preferences component', async () => 
   await userEvent.click(button);
 
   await waitFor(() => screen.getByTestId('notification-preferences'));
+});
+
+test('can render with multiple inbox tabs, and active tab changes when clicked', async () => {
+  const stores = [
+    { id: 'default', defaultQueryParams: {} },
+    { id: 'comments', defaultQueryParams: { read: true, categories: ['comments'] } },
+    { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
+  ];
+
+  const tabs = [
+    { storeId: 'default', label: 'Feed' },
+    { storeId: 'comments', label: 'Comments' },
+    { storeId: 'billing', label: 'Billing' },
+  ];
+
+  render(<NotificationInbox tabs={tabs} />, { stores });
+  const feedTab = screen.getByRole('tab', { name: /feed/i });
+  const commentsTab = screen.getByRole('tab', { name: /comments/i });
+
+  expect(feedTab).toHaveAttribute('aria-selected', 'true');
+  expect(commentsTab).not.toHaveAttribute('aria-selected', 'true');
+
+  await userEvent.click(commentsTab);
+  expect(feedTab).not.toHaveAttribute('aria-selected', 'true');
+  expect(commentsTab).toHaveAttribute('aria-selected', 'true');
+});
+
+test('renders notifications matching selected tab', async () => {
+  const stores = [
+    { id: 'default', defaultQueryParams: {} },
+    { id: 'comments', defaultQueryParams: { read: true, categories: ['comments'] } },
+  ];
+
+  const tabs = [
+    { storeId: 'default', label: 'Feed' },
+    { storeId: 'comments', label: 'Comments' },
+  ];
+
+  server.get('/notifications', (_, req) => {
+    return {
+      ...emptyNotificationPage,
+      notifications: [
+        {
+          ...sampleNotification,
+          content: `notification in ${req.queryParams?.categories?.[0] || 'default'} tab`,
+        },
+      ],
+    };
+  });
+
+  render(<NotificationInbox tabs={tabs} />, { stores });
+  const feedTab = screen.getByRole('tab', { name: /feed/i });
+  const commentsTab = screen.getByRole('tab', { name: /comments/i });
+
+  // navigate to feed tab
+  await userEvent.click(feedTab);
+  await screen.findByText(/notification in default tab/i);
+  expect(screen.queryByText(/notification in comments tab/i)).not.toBeInTheDocument();
+
+  // navigate to comments tab
+  await userEvent.click(commentsTab);
+  await screen.findByText(/notification in comments tab/i);
+  expect(screen.queryByText(/notification in default tab/i)).not.toBeInTheDocument();
+
+  // and back to feed tab, to ensure that there is no leakage
+  await userEvent.click(feedTab);
+  await screen.findByText(/notification in default tab/i);
+  expect(screen.queryByText(/notification in comments tab/i)).not.toBeInTheDocument();
 });

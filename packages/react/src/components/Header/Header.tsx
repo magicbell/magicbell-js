@@ -22,14 +22,14 @@ export interface Props {
 export default function Header({ title, actions }: Props) {
   return (
     <StyledHeader>
-      <p
+      <div
         role="heading"
         css={css`
           margin-right: 16px !important;
         `}
       >
         {title}
-      </p>
+      </div>
 
       <div
         css={css`

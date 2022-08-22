@@ -9,6 +9,7 @@ const colors = {
   bg: '#FFFFFF',
   caption: '#181B20',
   text: '#3A424D',
+  ghost: '#6E7D91',
   stroke: '#EFEEF1',
   accent: '#5225C1',
   badge: '#F80808',
@@ -38,6 +39,15 @@ const prose: IMagicBellTheme['prose'] = {
 const icon: IMagicBellTheme['icon'] = {
   borderColor: colors.accent,
   width: '24px',
+};
+
+const tabs: IMagicBellTheme['tabs'] = {
+  margin: '-8px 0 -16px 0',
+  spacing: '4px',
+  fontSize: '12px',
+  fontWeight: 500,
+  color: colors.ghost,
+  activeColor: colors.accent,
 };
 
 const header: IMagicBellTheme['header'] = {
@@ -140,6 +150,7 @@ const unreadNotification: IMagicBellTheme['notification']['unread'] = {
 export const lightTheme: IMagicBellTheme = {
   prose,
   icon,
+  tabs,
   header,
   footer,
   banner,

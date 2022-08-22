@@ -14,10 +14,18 @@ const Component = ({
   userKey,
   NotificationItem,
   theme,
+  stores,
+  tabs,
   ...props
 }) => (
   <div className="flex flex-row justify-center p-4">
-    <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme}>
+    <MagicBellProvider
+      apiKey={apiKey}
+      userEmail={userEmail}
+      userKey={userKey}
+      theme={theme}
+      stores={stores}
+    >
       <MagicBell {...props}>
         {(props) => (
           <FloatingNotificationInbox
@@ -25,6 +33,7 @@ const Component = ({
             onNotificationClick={onNotificationClick}
             height={500}
             NotificationItem={NotificationItem}
+            tabs={tabs}
             {...props}
           />
         )}
@@ -153,5 +162,20 @@ export const WithConditionalRichText = merge(Default, {
         prose={!/getting started/i.test(props.notification.title)}
       />
     ),
+  },
+});
+
+export const WithSplitInbox = merge(Default, {
+  args: {
+    stores: [
+      { id: 'default', defaultQueryParams: {} },
+      { id: 'unread', defaultQueryParams: { read: true } },
+      { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
+    ],
+    tabs: [
+      { storeId: 'default', label: 'Latest' },
+      { storeId: 'unread', label: 'Archive' },
+      { storeId: 'billing', label: 'Billing' },
+    ],
   },
 });
