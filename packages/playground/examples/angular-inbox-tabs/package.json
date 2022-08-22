@@ -4,6 +4,6 @@
 
   "template": "angular",
   "dependencies": {
-    "@magicbell/embeddable": "beta"
+    "@magicbell/embeddable": "latest"
   }
 }
