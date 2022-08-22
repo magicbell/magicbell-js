@@ -3,6 +3,6 @@
   "description": "Using multiple stores and tabs in the inbox.",
   "template": "vue3",
   "dependencies": {
-    "@magicbell/embeddable": "beta"
+    "@magicbell/embeddable": "latest"
   }
 }
