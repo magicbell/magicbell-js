@@ -2,10 +2,13 @@
 import { transform } from '@babel/core';
 import { exec } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
+import { promisify } from 'util';
 
+const execAsync = promisify(exec);
 const pkg = require('../../package.json');
 
 function importBundle(filepath: string) {
+  if (!existsSync(filepath)) throw new Error(`missing bundle: ${filepath}`);
   const source = readFileSync(filepath, { encoding: 'utf-8' });
 
   try {
@@ -19,8 +22,15 @@ function importBundle(filepath: string) {
     plugins: [require.resolve('@babel/plugin-transform-modules-commonjs')],
   });
 
-  const module = eval(`(function() { ${commonjs?.code}; return exports; })()`);
-  return { source, module };
+  try {
+    // some vars might not exist in the global scope of the module. Those
+    // will throw errors like: "ReferenceError: msCrypto is not defined".
+    // Provide them as function argument.
+    const mod = eval(`(function(msCrypto) { ${commonjs?.code}; return exports; })()`);
+    return { source, module: mod };
+  } catch {}
+
+  return { source, module: {} };
 }
 
 function assertShape(module: any) {
@@ -34,36 +44,45 @@ function assertShape(module: any) {
 
 jest.setTimeout(60_000);
 
-beforeAll(() => {
+beforeAll(async () => {
   // don't rebuild all the time when running in wallaby
   if (process.env.WALLABY_ENV && existsSync('./dist')) return;
-  exec('yarn build');
+  await execAsync('yarn build');
 });
 
 test('creates all bundles', () => {
-  expect(pkg.main).toEqual('dist/magicbell-react-headless.js');
-  expect(pkg.module).toEqual('dist/magicbell-react-headless.esm.js');
-  expect(pkg.unpkg).toEqual('dist/magicbell-react-headless.umd.js');
+  expect(pkg.main).toEqual('dist/index.js');
+  expect(pkg.module).toEqual('dist/react-headless.esm.js');
+  expect(pkg.unpkg).toEqual('dist/react-headless.umd.production.min.js');
   expect(pkg.typings).toEqual('dist/index.d.ts');
 });
 
 test('can import functions from main module', () => {
-  const { source, module } = importBundle(pkg.main);
+  const entry = importBundle(pkg.main);
+  expect(entry.source).toMatch(/require\('.\/react-headless.cjs.production.min.js'\)/);
+  expect(entry.source).toMatch(/require\('.\/react-headless.cjs.development.js'\)/);
 
-  expect(source).toMatch(/require\("react"\)/i);
-  expect(source).not.toMatch(/import.*from\s?"react"/i);
-  assertShape(module);
+  const dev = importBundle('dist/react-headless.cjs.development.js');
+  expect(dev.source).toMatch(/Object.defineProperty\(exports, '__esModule', { value: true }\);/);
+  expect(dev.source).toMatch(/require\('react'\)/i);
+  assertShape(dev.module);
+
+  const prd = importBundle('dist/react-headless.cjs.production.min.js');
+  expect(prd.source).toMatch(/Object.defineProperty\(exports,"__esModule",{value:!0}\);/);
+  expect(prd.source).toMatch(/require\("react"\)/i);
+  assertShape(prd.module);
 });
 
-test('can import functions from esm module', async () => {
-  const { source, module } = importBundle(pkg.module);
+test('can import functions from esm module', () => {
+  // note that we don't assert this bundle shape
+  // importing esm will result in `Cannot use import statement outside a module`
+  const { source } = importBundle(pkg.module);
 
-  expect(source).toMatch(/import.*from\s?"react"/i);
+  expect(source).toMatch(/import.*from\s?'react'/i);
   expect(source).not.toMatch(/require\("react"\)/i);
-  assertShape(module);
 });
 
-test('can import functions from umd module', async () => {
+test('can import functions from umd module', () => {
   const { source, module } = importBundle(pkg.unpkg);
 
   expect(source).toMatch(/"object"\s?==\s?typeof exports\s?&&\s?"undefined"\s?!=\s?typeof module/i);

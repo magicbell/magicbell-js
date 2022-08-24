@@ -6,4 +6,8 @@ module.exports = {
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   coveragePathIgnorePatterns: ['/node_modules/', 'tests/'],
   restoreMocks: true,
+  setupFilesAfterEnv: ['./jest.setup.js'],
+  globals: {
+    __DEV__: false,
+  },
 };
