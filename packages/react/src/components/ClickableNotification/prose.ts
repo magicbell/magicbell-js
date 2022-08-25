@@ -95,7 +95,7 @@ export function useProse() {
       padding-left: 1em;
     }
 
-    && blockquote p:first-child::before {
+    && blockquote p:first-of-type::before {
       content: open-quote;
     }
 
@@ -239,13 +239,14 @@ export function useProse() {
       margin: 0.75em 0;
     }
 
-    && > ul > li > *:first-child,
-    && > ol > li > *:first-child {
+    /* first-child, but in a way that emotion doesn't cry */
+    && > ul > li > :not(* + *),
+    && > ol > li > :not(* + *) {
       margin-top: 1.25em;
     }
 
-    && > ul > li > *:last-child,
-    && > ol > li > *:last-child {
+    && > ul > li > :last-child,
+    && > ol > li > :last-child {
       margin-bottom: 1.25em;
     }
 
@@ -265,17 +266,17 @@ export function useProse() {
       margin-top: 0;
     }
 
-    && thead th:first-child,
-    && tbody td:first-child {
+    && thead tr th:first-of-type,
+    && tbody tr td:first-of-type {
       padding-left: 0;
     }
 
-    && thead th:last-child,
-    && tbody td:last-child {
+    && thead tr th:last-of-type,
+    && tbody tr td:last-of-type {
       padding-right: 0;
     }
 
-    && > :first-child {
+    && > :not(* + *) {
       margin-top: 0;
     }
 
