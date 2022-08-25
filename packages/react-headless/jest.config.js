@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const pkg = require('./package.json');
+
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
@@ -9,5 +12,7 @@ module.exports = {
   setupFilesAfterEnv: ['./jest.setup.js'],
   globals: {
     __DEV__: false,
+    __PACKAGE_NAME__: pkg.name,
+    __PACKAGE_VERSION__: pkg.version,
   },
 };
