@@ -22,7 +22,7 @@ export default [
         entries: [
           { find: 'react', replacement: require.resolve('preact/compat') },
           { find: 'react-dom', replacement: require.resolve('preact/compat') },
-          // { find: 'axios', replacement: require.resolve('redaxios') },
+          { find: 'axios', replacement: require.resolve('redaxios') },
         ],
       }),
       nodeResolve({ browser: true }),
