@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { FloatingNotificationInboxArrow, Notification, Popover, useTheme } from '@magicbell/magicbell-react';
-import { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
+import type { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
 import IFrame from '../IFrame';
 
 /**

@@ -1,5 +1,5 @@
 import { NotificationInbox } from '@magicbell/magicbell-react';
-import { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
+import type { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
 import React, { Component } from 'react';
 import { ReactError } from '../../lib/error';
 

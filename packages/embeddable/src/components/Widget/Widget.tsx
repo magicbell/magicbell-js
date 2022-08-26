@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { CacheProvider } from '@emotion/react';
 import MagicBell from '@magicbell/magicbell-react';
-import { IMagicBellTheme } from '@magicbell/magicbell-react/dist/context/Theme';
-import { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
-import { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
+import type { IMagicBellTheme } from '@magicbell/magicbell-react/dist/context/Theme';
+import type { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
+import type { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
 import React, { Component, ComponentProps } from 'react';
 import { cache } from '../../lib/emotion';
 import { ReactError } from '../../lib/error';
