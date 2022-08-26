@@ -407,40 +407,47 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@magicbell/magicbell-react@^10.2.0":
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-10.2.0.tgz#8fb513469616c7418efde311d688824df73ac275"
-  integrity sha512-djQ0IkKUVkd33nXRe31813ImoSkMkb8eKnG7NyowYR5+WMp+QNhZPTXer+/wZ+EWc3oFYjYTwtSi7HA9HZEGmA==
+"@magicbell/magicbell-react@10.3.0":
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/magicbell-react/-/magicbell-react-10.3.0.tgz#7959607aae7bd4948ac4009a7c977d30e2e0e237"
+  integrity sha512-hw7MiG7KfLz7Su63HvHMTKE9xa0/y4wp79pZpfgbYMydfUYxVloU82ciUdOefw35hEx2MwdrSJAOCL0E/eI9Sg==
   dependencies:
     "@emotion/react" "^11.4.1"
-    "@magicbell/react-headless" "4.1.0"
+    "@magicbell/react-headless" "^4.2.0"
     "@tippyjs/react" "^4.2.4"
-    ably "^1.2.14"
     axios "^0.27.2"
     dayjs "^1.11.5"
     humps "^2.0.1"
     immer "^9.0.7"
+    lodash "^4.17.21"
+    lodash-es "^4.17.21"
     miragejs "^0.1.41"
     ramda "^0.28.0"
     react-infinite-scroll-component "^6.0.0"
     react-use "^17.2.1"
     timeago.js "^4.0.2"
+    tiny-invariant "^1.2.0"
+    tiny-warning "^1.0.3"
     tinycolor2 "^1.4.2"
     tslib "^2.3.1"
     zustand "^3.6.4"
 
-"@magicbell/react-headless@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.1.0.tgz#d3cbe35ffe512d2968cbec7aceddd76c2b61a1d1"
-  integrity sha512-bdxv2FWOBGYMOipYdXS7uWTYXlOTII86BjWVvmcwIQMYxLk5ASqUJYmbDTCIHghbgV0r9PKB0fV1qMBjgxkCkQ==
+"@magicbell/react-headless@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react-headless/-/react-headless-4.2.0.tgz#ba1537806a4a6219aca92750ef90a5ec610db3e0"
+  integrity sha512-3VBlrWDhNfRqmAnSwHCteS2Z1hQut979BmH0fUckc/7tk9e6ze/CwgZ/FWOQH631KRDmC/p5EClZc+yRMmUlRw==
   dependencies:
     ably "^1.2.14"
     axios "^0.27.2"
     dayjs "1.11.5"
     humps "^2.0.1"
     immer "^9.0.6"
+    lodash "^4.17.21"
+    lodash-es "^4.17.21"
     mitt "^3.0.0"
     ramda "^0.28.0"
+    tiny-invariant "^1.2.0"
+    tiny-warning "^1.0.3"
     tslib "^2.3.1"
     zustand "^3.6.4"
 
@@ -3147,7 +3154,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.15:
+lodash-es@^4.17.15, lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
@@ -4756,6 +4763,16 @@ timeago.js@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/timeago.js/-/timeago.js-4.0.2.tgz#724e8c8833e3490676c7bb0a75f5daf20e558028"
   integrity sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==
+
+tiny-invariant@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.2.0.tgz#a1141f86b672a9148c72e978a19a73b9b94a15a9"
+  integrity sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==
+
+tiny-warning@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
+  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
 
 tinycolor2@^1.4.1, tinycolor2@^1.4.2:
   version "1.4.2"
