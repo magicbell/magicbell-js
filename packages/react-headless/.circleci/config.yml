@@ -6,9 +6,9 @@ orbs:
 jobs:
   test:
     description: Run all tests
-    executor:
-      name: node/default
-      tag: '14.17'
+    resource_class: large
+    docker:
+      - image: cimg/node:16.14
     steps:
       - checkout
       - node/install-packages:
@@ -16,6 +16,21 @@ jobs:
       - run:
           name: 'Run jest tests'
           command: yarn run test -w=2
+  publish:
+    description: Publish to npm
+    resource_class: large
+    docker:
+      - image: cimg/node:16.14
+    steps:
+      - checkout
+      - npm-publisher/publish-from-package-version:
+          publish-token-variable: NPM_TOKEN
+          pre-publish-steps:
+            - run: yarn install
+      - add_ssh_keys:
+          fingerprints: 5f:84:a5:a8:0c:df:b9:fb:86:18:88:d5:67:4c:ac:ac
+      - npm-publisher/configure-git
+      - npm-publisher/push-git-tag
 
 workflows:
   deploy:
@@ -28,14 +43,9 @@ workflows:
           type: approval
           requires:
             - test
-      - npm-publisher/publish-from-package-version:
-          name: publish_to_npm
+      - publish:
           requires:
             - hold
           filters:
             branches:
               only: main
-          ssh-fingerprints: 5f:84:a5:a8:0c:df:b9:fb:86:18:88:d5:67:4c:ac:ac
-          pre-publish-steps:
-            - run: yarn install --ignore-engines # ignore engines, circleci uses non-lts v17 ?
-          publish-token-variable: NPM_TOKEN
