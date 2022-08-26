@@ -5,11 +5,10 @@ orbs:
 
 jobs:
   test:
-    resource_class: large
     description: Run all tests
-    executor:
-      name: node/default
-      tag: '14.17'
+    resource_class: large
+    docker:
+      - image: cimg/node:16.14
     steps:
       - checkout
       - node/install-packages:
@@ -17,9 +16,22 @@ jobs:
       - run:
           name: 'Run jest tests'
           command: yarn run test -w=2
-      - run:
-          name: 'Upload coverage report'
-          command: yarn report-coverage
+  publish:
+    description: Publish to npm
+    resource_class: large
+    docker:
+      - image: cimg/node:16.14
+    steps:
+      - checkout
+      - npm-publisher/publish-from-package-version:
+          publish-token-variable: NPM_TOKEN
+          pre-publish-steps:
+            - run: yarn install
+      - add_ssh_keys:
+          fingerprints: 2b:f3:89:84:d1:78:48:cb:9e:4b:ef:e7:34:57:b0:e0
+      - npm-publisher/configure-git
+      - npm-publisher/push-git-tag
+
 
 workflows:
   deploy:
@@ -32,14 +44,9 @@ workflows:
           type: approval
           requires:
             - test
-      - npm-publisher/publish-from-package-version:
-          name: publish_to_npm
+      - publish:
           requires:
             - hold
           filters:
             branches:
               only: main
-          ssh-fingerprints: 2b:f3:89:84:d1:78:48:cb:9e:4b:ef:e7:34:57:b0:e0
-          pre-publish-steps:
-            - run: yarn install
-          publish-token-variable: NPM_TOKEN
