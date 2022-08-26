@@ -37,5 +37,5 @@ workflows:
               only: main
           ssh-fingerprints: 5f:84:a5:a8:0c:df:b9:fb:86:18:88:d5:67:4c:ac:ac
           pre-publish-steps:
-            - run: yarn install
+            - run: yarn install --ignore-engines # ignore engines, circleci uses non-lts v17 ?
           publish-token-variable: NPM_TOKEN
