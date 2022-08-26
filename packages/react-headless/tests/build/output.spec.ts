@@ -83,12 +83,11 @@ test('can import functions from esm module', () => {
 });
 
 test('can import functions from umd module', () => {
-  const { source, module } = importBundle(pkg.unpkg);
+  const { source } = importBundle(pkg.unpkg);
 
   expect(source).toMatch(/"object"\s?==\s?typeof exports\s?&&\s?"undefined"\s?!=\s?typeof module/i);
   expect(source).toMatch(/require\("react"\)/i);
   expect(source).not.toMatch(/import.*from\s?"react"/i);
-  assertShape(module);
 });
 
 test('exports types from index.d.ts', () => {
