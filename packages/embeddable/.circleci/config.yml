@@ -29,7 +29,7 @@ commands:
             curl https://api.rollbar.com/api/1/deploy/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
               -F environment=production \
-              -F revision=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
+              -F revision=$CIRCLE_SHA1 \
               -F local_username=$CIRCLE_USERNAME
 
   rollbar-sourcemaps:
@@ -38,10 +38,11 @@ commands:
       - run:
           name: Upload sourcemap to Rollbar
           command: |
+            VERSION=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json)
             curl https://api.rollbar.com/api/1/sourcemap/ \
               -F access_token=$ROLLBAR_ACCESS_TOKEN \
-              -F version=$(awk -F\" '/"version":/ {print $4}' ~/project/package.json) \
-              -F minified_url=//unpkg.com/@magicbell/embeddable/dist/magicbell.min.js \
+              -F version=$CIRCLE_SHA1 \
+              -F minified_url=https://unpkg.com/@magicbell/embeddable@$VERSION/dist/magicbell.min.js \
               -F source_map=@/home/circleci/project/dist/magicbell.min.js.map
 
 jobs:
@@ -53,7 +54,7 @@ jobs:
           keys:
             - 'dist-{{ .Branch }}-{{ .Revision }}'
       - rollbar-deploy
-      # - rollbar-sourcemaps
+      - rollbar-sourcemaps
 
 workflows:
   build:

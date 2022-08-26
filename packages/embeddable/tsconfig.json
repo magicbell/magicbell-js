@@ -34,5 +34,5 @@
     "experimentalDecorators": true,
     "types": ["node", "cypress", "@testing-library/cypress"]
   },
-  "include": ["src"]
+  "include": ["src", "types"]
 }

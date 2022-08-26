@@ -10,8 +10,11 @@ import serve from 'rollup-plugin-serve';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
+import { execSync } from 'child_process';
 
 const isProduction = process.env.NODE_ENV === 'production';
+
+const revision = execSync(`git rev-parse HEAD`).toString('utf-8');
 
 export default [
   {
@@ -38,7 +41,7 @@ export default [
       replace({
         // eslint-disable-next-line no-undef
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        'process.env.VERSION': JSON.stringify(pkg.version),
+        __CODE_VERSION__: JSON.stringify(revision),
         preventAssignment: true,
       }),
       !isProduction &&

@@ -25,7 +25,7 @@ export default abstract class MonitoredError {
       client: {
         javascript: {
           browser: browserInfo,
-          code_version: process.env.VERSION,
+          code_version: __CODE_VERSION__,
         },
       },
       person,
