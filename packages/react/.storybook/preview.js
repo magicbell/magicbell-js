@@ -5,6 +5,12 @@ import server from './server.js';
 
 server.start();
 
+const pkg = require('../package.json');
+
+global.__DEV__ = true;
+global['__PACKAGE_NAME__'] = pkg.name;
+global['__PACKAGE_VERSION__'] = pkg.version;
+
 // Some stories may set up keyboard event handlers, which interfers with storybook
 addons.setConfig({
   enableShortcuts: false
