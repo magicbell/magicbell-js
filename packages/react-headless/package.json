@@ -64,11 +64,11 @@
     },
     {
       "path": "dist/react-headless.umd.production.min.js",
-      "limit": "100 KB"
+      "limit": "125 KB"
     },
     {
       "path": "dist/react-headless.esm.js",
-      "limit": "100 KB"
+      "limit": "125 KB"
     }
   ],
   "devDependencies": {
