@@ -1,0 +1,47 @@
+{
+  "name": "@ts-project/utils",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Stephan Meijer",
+  "main": "dist/index.js",
+  "module": "dist/utils.esm.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "start": "dts watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "dts build --tsconfig tsconfig.build.json",
+    "test": "dts test --passWithNoTests",
+    "lint": "dts lint",
+    "prepublish": "npm run build",
+    "size": "size-limit"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "size-limit": [
+    {
+      "path": "dist/utils.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/utils.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+    "tiny-invariant": "^1.2.0",
+    "tiny-warning": "^1.0.3"
+  },
+  "devDependencies": {
+    "react": "^18.1.0"
+  }
+}

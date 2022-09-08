@@ -1,0 +1,87 @@
+{
+  "name": "ts-project",
+  "private": true,
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE",
+  "author": "Stephan Meijer",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "turbo run start --parallel --no-cache",
+    "start:example": "yarn --cwd example && yarn --cwd example start",
+    "start:storybook": "start-storybook -p 6006",
+    "build": "turbo run build",
+    "build:example": "yarn --cwd example && yarn --cwd example build",
+    "build:storybook": "build-storybook",
+    "lint": "turbo run lint -- --fix",
+    "test": "turbo run test",
+    "postinstall": "husky install && node scripts/sync-paths.js && manypkg check",
+    "changeset": "changeset",
+    "release": "yarn build && changeset publish"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "lint-staged": {
+    "*.{md,json,yml,yaml}": [
+      "prettier -w"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "prettier -w",
+      "node dist/index.js lint --fix"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/dts-cli/conf/eslint-config-react-app/index.js",
+      "prettier",
+      "plugin:prettier/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.2",
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.4",
+    "@manypkg/cli": "^0.19.1",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@storybook/addon-essentials": "^6.5.8",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.5.8",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addons": "^6.5.8",
+    "@storybook/react": "^6.5.8",
+    "@testing-library/react": "^13.3.0",
+    "@tsconfig/create-react-app": "^1.0.2",
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "cssnano": "^5.1.12",
+    "dts-cli": "^1.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "lint-staged": "^13.0.1",
+    "postcss": "^8.4.14",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "size-limit": "^7.0.8",
+    "tiny-glob": "^0.2.9",
+    "tslib": "^2.4.0",
+    "turbo": "^1.4.5",
+    "typescript": "^4.7.3"
+  }
+}

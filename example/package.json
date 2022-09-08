@@ -1,0 +1,28 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react-app-polyfill": "^3.0.0"
+  },
+  "alias": {
+    "react": "../node_modules/react",
+    "react-dom": "../node_modules/react-dom/profiling",
+    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
+    "@ts-project/react": "../packages/react",
+    "@ts-project/utils": "../packages/utils"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.6",
+    "vite": "latest",
+    "vite-preset-react": "latest",
+    "typescript": "^4"
+  }
+}
