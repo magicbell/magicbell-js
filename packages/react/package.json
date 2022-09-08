@@ -1,5 +1,5 @@
 {
-  "name": "@ts-project/react",
+  "name": "@magicbell/react",
   "version": "0.0.0",
   "license": "MIT",
   "author": "Stephan Meijer",
@@ -38,7 +38,7 @@
     }
   ],
   "dependencies": {
-    "@ts-project/utils": "^0.0.0",
+    "@magicbell/utils": "^0.0.0",
     "tiny-invariant": "^1.2.0",
     "tiny-warning": "^1.0.3"
   },

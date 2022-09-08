@@ -6,8 +6,8 @@
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
-      "@ts-project/react": ["packages/react/src"],
-      "@ts-project/utils": ["packages/utils/src"]
+      "@magicbell/react": ["packages/react/src"],
+      "@magicbell/utils": ["packages/utils/src"]
     }
   }
 }

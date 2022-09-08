@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import css from './index.module.css';
-import { sayHi } from '@ts-project/utils';
+import { sayHi } from '@magicbell/utils';
 
 export type ThingProps = HTMLAttributes<HTMLDivElement> & {
   /** custom content */
