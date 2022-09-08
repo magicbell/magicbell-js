@@ -1,5 +1,5 @@
 import IRemoteConfig from '@magicbell/react-headless/dist/types/IRemoteConfig';
-import { pathOr } from 'ramda';
+import {path, pathOr} from 'ramda';
 import React from 'react';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
  */
 export default function WebPushRefresh({ config }: Props) {
   const isWebPushEnabled = pathOr(false, ['webPush', 'enabled'], config.channels);
-  const subscribeUrl = pathOr(false, ['webPush', 'config', 'subscribeUrl'], config.channels);
+  const subscribeUrl = path<string>( ['webPush', 'config', 'subscribeUrl'], config.channels);
 
   if (!isWebPushEnabled) return null;
   return (

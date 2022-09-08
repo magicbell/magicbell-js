@@ -21,7 +21,7 @@ export function MagicBellThemeProvider({
     // don't run backwards compatibility code if no partial theme was provided
     if (!partialTheme || Object.keys(partialTheme).length === 0) return defaultTheme;
 
-    const merged: IMagicBellTheme = merge(defaultTheme, partialTheme);
+    const merged = merge(defaultTheme, partialTheme) as IMagicBellTheme;
 
     // backwards compatibility for prose
     if (!partialTheme.prose) {
@@ -101,7 +101,7 @@ export function MagicBellThemeProvider({
         fontSize: merged.footer.fontSize,
       },
       partialTheme.banner,
-    );
+    ) as IMagicBellTheme['banner'];
 
     return merged;
   }, [partialTheme]);

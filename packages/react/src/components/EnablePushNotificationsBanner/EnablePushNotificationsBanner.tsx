@@ -34,7 +34,7 @@ export default function EnablePushNotificationsBanner() {
   );
 
   const enablePushNotifications = () => {
-    const subscribeUrl = path(['webPush', 'config', 'subscribeUrl'], channels);
+    const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
     const url = axios.getUri({
       url: subscribeUrl,
       params: {

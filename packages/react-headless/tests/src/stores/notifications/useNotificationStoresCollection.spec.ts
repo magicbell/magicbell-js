@@ -61,7 +61,11 @@ describe('stores', () => {
               notifications: NotificationFactory.buildList(1),
             };
 
-            server.get('/notifications', humps.decamelizeKeys(response));
+            server.get('/notifications', () => new Response(
+              200,
+              {},
+                humps.decamelizeKeys(response),
+            ));
           });
 
           it('fetches a store from the MagicBell server', async () => {

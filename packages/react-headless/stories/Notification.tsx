@@ -1,4 +1,3 @@
-import cn from 'clsx';
 import React from 'react';
 
 import { useNotification } from '../src';
@@ -25,13 +24,13 @@ export function Notification({ notification: data }) {
       </div>
       <div className="flex space-x-4 items-center">
         <button
-          className={cn('p-2 rounded focus:outline-none', notification.isRead ? 'bg-green-500' : 'bg-green-100')}
+          className={`p-2 rounded focus:outline-none ${notification.isRead ? 'bg-green-500' : 'bg-green-100'}`}
           onClick={() => (notification.isRead ? notification.markAsUnread() : notification.markAsRead())}
         >
           {notification.isRead ? 'read' : 'unread'}
         </button>
         <button
-          className={cn('p-2 rounded focus:outline-none', notification.isSeen ? 'bg-yellow-500' : 'bg-yellow-100')}
+          className={`p-2 rounded focus:outline-none ${notification.isSeen ? 'bg-yellow-500' : 'bg-yellow-100'}`}
           onClick={() => notification.markAsSeen()}
         >
           {notification.isSeen ? 'seen' : 'unseen'}

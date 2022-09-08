@@ -80,10 +80,10 @@ function dequeue(window) {
 
   if (queue) {
     queue.forEach((element) => {
-      const [method, ...options] = Array.from(element);
+      const [method, target, options] = Array.from(element) as [string, HTMLElement, WidgetProps];
 
       if (method.toLowerCase().trim() === 'render') {
-        renderWidget(options[0], options[1]);
+        renderWidget(target, options);
       }
     });
   }

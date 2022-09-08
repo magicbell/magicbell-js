@@ -26,7 +26,7 @@ export default abstract class RemoteRepository<Item, Collection> {
     const url = `${this.remotePathOrUrl}/${id}`;
     const json = await fetchAPI(url);
 
-    return humps.camelizeKeys(json);
+    return humps.camelizeKeys(json) as Item;
   }
 
   /**
@@ -38,7 +38,7 @@ export default abstract class RemoteRepository<Item, Collection> {
   async findBy(queryParams?: QueryParams): Promise<Collection | void> {
     try {
       const json = await fetchAPI(this.remotePathOrUrl, queryParams);
-      return humps.camelizeKeys(json);
+      return humps.camelizeKeys(json) as Collection;
     } catch (error) {
       // Don't throw Network Errors. Browsers log these themselves and the realtime connection makes
       // MagicBell sensitive to connection errors. We don't want to have these flooding consumer logs.

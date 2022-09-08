@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
@@ -12,6 +13,9 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "esModuleInterop": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
   }
 }

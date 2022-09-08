@@ -9,7 +9,7 @@ import get from 'lodash/get';
  * set(json) { Object.assign(this, json) }
  */
 export default function wrap(wrapKey: string) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (target: any, propertyKey: string, descriptor?: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = function (...args: any[]) {
