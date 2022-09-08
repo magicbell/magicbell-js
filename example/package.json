@@ -15,8 +15,10 @@
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
-    "@magicbell/react": "../packages/react",
-    "@magicbell/utils": "../packages/utils"
+    "@magicbell/core": "../packages/core",
+    "@magicbell/embeddable": "../packages/embeddable",
+    "@magicbell/magicbell-react": "../packages/react",
+    "@magicbell/react-headless": "../packages/react-headless"
   },
   "devDependencies": {
     "@types/react": "^18.0.6",

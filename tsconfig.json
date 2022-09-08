@@ -6,8 +6,10 @@
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
-      "@magicbell/react": ["packages/react/src"],
-      "@magicbell/utils": ["packages/utils/src"]
+      "@magicbell/core": ["packages/core/src"],
+      "@magicbell/embeddable": ["packages/embeddable/src"],
+      "@magicbell/magicbell-react": ["packages/react/src"],
+      "@magicbell/react-headless": ["packages/react-headless/src"]
     }
   }
 }

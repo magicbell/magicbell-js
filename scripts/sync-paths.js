@@ -4,7 +4,7 @@ const prettier = require('prettier');
 const fs = require('fs');
 
 function getPackages() {
-  return glob(`./packages/**/package.json`).map((file) => [
+  return glob(`./packages/*/package.json`).map((file) => [
     require(path.resolve(file)).name,
     path.dirname(file),
   ]);
