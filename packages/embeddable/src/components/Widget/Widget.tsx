@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { CacheProvider } from '@emotion/react';
 import MagicBell from '@magicbell/magicbell-react';
-import type { IMagicBellTheme } from '@magicbell/magicbell-react/dist/context/Theme';
-import type { CustomLocale } from '@magicbell/magicbell-react/dist/lib/i18n';
-import type { DeepPartial } from '@magicbell/magicbell-react/dist/lib/types';
+import type { IMagicBellTheme, CustomLocale } from '@magicbell/magicbell-react';
+
 import React, { Component, ComponentProps } from 'react';
 import { cache } from '../../lib/emotion';
 import { ReactError } from '../../lib/error';
@@ -11,6 +10,10 @@ import FloatingFrame from '../FloatingFrame';
 import { FrameContentProps } from '../FrameContent';
 
 type MagicBellProps = ComponentProps<typeof MagicBell>;
+
+export type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};
 
 export interface WidgetProps extends FrameContentProps {
   apiKey: string;

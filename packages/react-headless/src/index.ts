@@ -17,7 +17,7 @@ export { default as useNotificationPreferences } from './stores/notification_pre
 export { useNotificationStoresCollection } from './stores/notifications';
 export { default as buildStore } from './stores/notifications/helpers/buildStore';
 export * from './types';
-export { INotification as Notification } from './types';
+export { type INotification as Notification } from './types';
 
 import warning from 'tiny-warning';
 

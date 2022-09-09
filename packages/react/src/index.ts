@@ -9,7 +9,7 @@ export * from './components/Bell';
 export { default as ClassicBellIcon } from './components/Bell/ClassicBellIcon';
 export {
   default as ClickableNotification,
-  ClickableNotificationProps,
+  type ClickableNotificationProps,
   StyledNotificationContainer,
 } from './components/ClickableNotification';
 export { EnablePushNotificationsButton } from './components/EnablePushNotificationsBanner';
@@ -38,13 +38,13 @@ export * from './themes';
 export {
   clientSettings,
   eventAggregator,
-  INotification,
-  INotificationsStoresCollection,
-  INotificationStore,
-  IRemoteConfig,
-  IRemoteNotification,
-  IRemoteNotificationPreferences,
-  Notification,
+  type INotification,
+  type INotificationsStoresCollection,
+  type INotificationStore,
+  type IRemoteConfig,
+  type IRemoteNotification,
+  type IRemoteNotificationPreferences,
+  type Notification,
   registry,
   useMagicBellEvent,
   useNotification,
@@ -53,6 +53,7 @@ export {
   useNotificationStoresCollection,
   useNotificationUnmount,
 } from '@magicbell/react-headless';
+export type { CustomLocale } from './lib/i18n';
 
 if (__DEV__) {
   // eslint-disable-next-line @typescript-eslint/no-empty-function

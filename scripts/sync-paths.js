@@ -1,13 +1,18 @@
-const glob = require('tiny-glob/sync');
-const path = require('path');
-const prettier = require('prettier');
-const fs = require('fs');
+import glob from 'tiny-glob';
+import path from 'path';
+import prettier from 'prettier';
+import fs from 'fs';
 
-function getPackages() {
-  return glob(`./packages/*/package.json`).map((file) => [
-    require(path.resolve(file)).name,
-    path.dirname(file),
-  ]);
+function readJSON(filepath) {
+  return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf-8'));
+}
+
+async function getPackages() {
+  return glob(`./packages/*/package.json`)
+    .then((files) => files.map(file => [
+      readJSON(file).name,
+      path.dirname(file),
+    ]));
 }
 
 function writeJson(filepath, json) {
@@ -19,7 +24,7 @@ function writeJson(filepath, json) {
 }
 
 function writePathsToTsConfig(pkgs) {
-  const tsConfig = require('../tsconfig.json');
+  const tsConfig = readJSON('./tsconfig.json');
   tsConfig.compilerOptions.paths = Object.fromEntries(
     pkgs.map(([k, v]) => [k, [`${v}/src`]])
   );
@@ -28,7 +33,7 @@ function writePathsToTsConfig(pkgs) {
 }
 
 function writeAliasToExamplePackageJson(pkgs) {
-  const pkgJson = require('../example/package.json');
+  const pkgJson = readJSON('./example/package.json');
 
   const others = Object.entries(pkgJson.alias).filter(
     ([k, v]) => !v.startsWith('../packages/')
@@ -39,6 +44,7 @@ function writeAliasToExamplePackageJson(pkgs) {
   writeJson('./example/package.json', pkgJson);
 }
 
-const pkgs = getPackages();
-writePathsToTsConfig(pkgs);
-writeAliasToExamplePackageJson(pkgs);
+getPackages().then(pkgs => {
+  writePathsToTsConfig(pkgs);
+  writeAliasToExamplePackageJson(pkgs);
+});

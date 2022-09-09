@@ -7,6 +7,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "start": "turbo run start --parallel --no-cache",
     "start:example": "yarn --cwd example && yarn --cwd example start",
@@ -77,11 +78,17 @@
     "postcss": "^8.4.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.33.0",
     "size-limit": "^8.0.1",
+    "terser": "^5.15.0",
     "tiny-glob": "^0.2.9",
     "tslib": "^2.3.1",
     "turbo": "^1.4.5",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "vite": "^3.1.0",
+    "vite-plugin-dts": "^1.4.1"
   }
 }

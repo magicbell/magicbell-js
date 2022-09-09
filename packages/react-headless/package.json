@@ -40,10 +40,11 @@
     "url": "https://github.com/magicbell-io/react-headless/issues"
   },
   "scripts": {
-    "build": "dts build --format cjs,esm,umd && yarn size",
-    "prepare": "husky install",
-    "prepublishOnly": "yarn build",
-    "start": "dts watch",
+    "clean": "rimraf dist",
+    "build": "yarn clean && yarn build:dev && yarn build:prod",
+    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
+    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "start": "yarn build:dev --watch",
     "test": "TZ=America/New_York jest --collectCoverage --no-cache",
     "test:watch": "TZ=America/New_York jest --watch",
     "size": "size-limit",

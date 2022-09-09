@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { FloatingNotificationInboxArrow, Notification, Popover, useTheme } from '@magicbell/magicbell-react';
-import type { FloatingNotificationInboxProps } from '@magicbell/magicbell-react/dist/components/FloatingNotificationInbox';
+import { FloatingNotificationInbox, FloatingNotificationInboxArrow, Notification, Popover, useTheme } from '@magicbell/magicbell-react';
 import IFrame from '../IFrame';
+import {ComponentProps} from "react";
 
+type FloatingNotificationInboxProps = ComponentProps<typeof FloatingNotificationInbox>
 /**
  * Renders an iframe within a popover. Its position can be customized through the
  * optional `placement` property. The popover has a poiting arrow.

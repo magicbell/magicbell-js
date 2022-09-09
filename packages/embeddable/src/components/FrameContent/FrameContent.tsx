@@ -1,9 +1,8 @@
 import { NotificationInbox } from '@magicbell/magicbell-react';
-import type { NotificationInboxProps } from '@magicbell/magicbell-react/dist/components/NotificationInbox';
-import React, { Component } from 'react';
+import React, { Component, ComponentProps } from 'react';
 import { ReactError } from '../../lib/error';
 
-export type FrameContentProps = NotificationInboxProps;
+export type FrameContentProps = ComponentProps<typeof NotificationInbox>;
 
 /**
  * Content to be rendered by the iframe.

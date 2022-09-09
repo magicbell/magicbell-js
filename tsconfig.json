@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.build.json",
   "include": ["packages", "scripts", "types"],
+  "exclude": ["packages/*/dist"],
   "compilerOptions": {
-    "allowJs": false,
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
@@ -10,13 +10,6 @@
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"]
-    },
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-    "noUnusedParameters": false,
-    "strict": false,
-    "noImplicitReturns": false,
-    "useDefineForClassFields": true,
-    "experimentalDecorators": true
+    }
   }
 }

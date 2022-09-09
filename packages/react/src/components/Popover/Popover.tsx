@@ -4,7 +4,7 @@ import React from 'react';
 
 type PopperOptions = Partial<Options>;
 
-export { PopoverPlacement, PopperOptions };
+export type { PopoverPlacement, PopperOptions };
 
 export interface PopoverProps {
   children: (attrs) => React.ReactNode;
