@@ -67,9 +67,9 @@ To run tests, use `yarn test`.
 
 Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
 
-### Jest
+### Vitest
 
-Jest tests are set up to run with `yarn test`.
+Vite tests are set up to run with `yarn test`.
 
 ### Rollup
 

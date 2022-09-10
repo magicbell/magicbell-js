@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`components MagicBellProvider renders the children 1`] = `
+exports[`components > MagicBellProvider > renders the children 1`] = `
 <div>
   <p>
     We are gradually adding new functionality and we welcome your suggestions and feedback.

@@ -48,7 +48,7 @@ test('renders nothing if the notification store does not exist', () => {
 });
 
 test('clicking the mark-all-read button invokes the onAllRead callback', async () => {
-  const onAllRead = jest.fn();
+  const onAllRead = vi.fn();
 
   render(<NotificationInbox onAllRead={onAllRead} height={300} />);
 
@@ -95,7 +95,7 @@ test('can render the inbox in Spanish', async () => {
 });
 
 test('invokes the onAllRead callback when clicking the `mark all read` button', async () => {
-  const onAllRead = jest.fn();
+  const onAllRead = vi.fn();
   render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
 
   const markAllReadButton = await screen.findByRole('button', { name: /Mark all read/ });

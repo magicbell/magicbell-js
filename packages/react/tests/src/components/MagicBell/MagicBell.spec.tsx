@@ -145,7 +145,7 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
 });
 
 test('calls the onToggle callback when the button is clicked', async () => {
-  const onToggle = jest.fn();
+  const onToggle = vi.fn();
 
   render(
     <MagicBell
@@ -166,7 +166,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
 });
 
 test('sets the headers for fetching from the API', async () => {
-  const serverSpy = jest.fn();
+  const serverSpy = vi.fn();
   server.get('/notifications', (_, req) => {
     serverSpy(req.requestHeaders);
     return sampleNotifications;
@@ -192,7 +192,7 @@ test('sets the headers for fetching from the API', async () => {
 test('sets the external id header for fetching from the API', async () => {
   const userExternalId = faker.random.alphaNumeric(15);
 
-  const serverSpy = jest.fn();
+  const serverSpy = vi.fn();
   server.get('/notifications', (_, req) => {
     serverSpy(req.requestHeaders);
     return sampleNotifications;
@@ -216,7 +216,7 @@ test('sets the external id header for fetching from the API', async () => {
 });
 
 test('calls the onNewNotification callback when a new notification is received', () => {
-  const onNewNotification = jest.fn();
+  const onNewNotification = vi.fn();
 
   render(
     <MagicBell

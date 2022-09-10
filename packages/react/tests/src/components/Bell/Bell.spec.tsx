@@ -26,12 +26,12 @@ afterEach(() => {
 });
 
 test('renders the notification button', () => {
-  render(<Bell onClick={jest.fn()} />);
+  render(<Bell onClick={vi.fn()} />);
   screen.getByRole('button', { name: /notifications/i });
 });
 
 test('the notification button has a namespaced data attribute', () => {
-  render(<Bell onClick={jest.fn()} />);
+  render(<Bell onClick={vi.fn()} />);
   const button = screen.getByRole('button', { name: /notifications/i });
   expect(button).toHaveAttribute('data-magicbell-bell');
 });
@@ -39,12 +39,12 @@ test('the notification button has a namespaced data attribute', () => {
 test('does not render the notification count if there are no notifications', () => {
   useConfig.setState({ lastFetchedAt: undefined });
 
-  render(<Bell onClick={jest.fn()} />);
+  render(<Bell onClick={vi.fn()} />);
   expect(screen.queryByRole('status', { name: /1 unread items/i })).not.toBeInTheDocument();
 });
 
 test('renders the number of notifications if there are some', async () => {
-  render(<Bell onClick={jest.fn()} />);
+  render(<Bell onClick={vi.fn()} />);
 
   act(() => {
     useNotificationStoresCollection.setState({
@@ -56,7 +56,7 @@ test('renders the number of notifications if there are some', async () => {
 });
 
 test('shows the number of unread notifications if counter is set to unread', async () => {
-  render(<Bell onClick={jest.fn()} counter="unread" />);
+  render(<Bell onClick={vi.fn()} counter="unread" />);
 
   act(() => {
     useNotificationStoresCollection.setState({
@@ -69,14 +69,14 @@ test('shows the number of unread notifications if counter is set to unread', asy
 
 test('can render the bell icon with the custom color and size', () => {
   const theme = { ...defaultTheme, icon: { borderColor: 'red', width: '14px' } };
-  render(<Bell onClick={jest.fn()} />, { theme });
+  render(<Bell onClick={vi.fn()} />, { theme });
   const button = screen.getByRole('button', { name: /notifications/i });
   const icon = button.querySelector('path');
   expect(icon).toHaveAttribute('fill', 'red');
 });
 
 test('calls the onClick callback when the button is clicked', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   render(<Bell onClick={onClick} />);
 
   const button = screen.getByRole('button', { name: /notifications/i });
@@ -87,7 +87,7 @@ test('calls the onClick callback when the button is clicked', async () => {
 });
 
 test('marks all notifications as seen', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   render(<Bell onClick={onClick} />);
 
   const button = screen.getByRole('button', { name: /notifications/i });

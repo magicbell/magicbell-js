@@ -10,7 +10,7 @@ describe('lib', () => {
   describe('realtime', () => {
     describe('pushEventAggregator', () => {
       it('exposes an API for pubsub', () => {
-        const callback = jest.fn();
+        const callback = vi.fn();
         pushEventAggregator.on('test', callback);
         pushEventAggregator.emit('test');
 
@@ -91,7 +91,7 @@ describe('lib', () => {
 
     describe('.handleAblyEvent', () => {
       it('emits the event to the pushEventAggregator', () => {
-        const spy = jest.spyOn(pushEventAggregator, 'emit');
+        const spy = vi.spyOn(pushEventAggregator, 'emit');
         const event = { name: 'notification/new', data: faker.helpers.createCard() } as Ably.Types.Message;
         handleAblyEvent(event);
 
@@ -114,7 +114,7 @@ describe('lib', () => {
 
         it('emits the event with the notification', async () => {
           // const notification = new Notification(sampleNotification);
-          const spy = jest.spyOn(pushEventAggregator, 'emit');
+          const spy = vi.spyOn(pushEventAggregator, 'emit');
           const event = { name: 'notification/new', data: { id: 'uuid' } } as Ably.Types.Message;
           await handleAblyEvent(event);
 
@@ -135,7 +135,7 @@ describe('lib', () => {
           });
 
           it('does not emit the event', async () => {
-            const spy = jest.spyOn(pushEventAggregator, 'emit');
+            const spy = vi.spyOn(pushEventAggregator, 'emit');
             const event = {
               name: 'notification/new',
               data: { id: 'uuid', client_id: clientId },
@@ -148,7 +148,7 @@ describe('lib', () => {
 
         describe('the event was originated by someone else', () => {
           it('emits the event', async () => {
-            const spy = jest.spyOn(pushEventAggregator, 'emit');
+            const spy = vi.spyOn(pushEventAggregator, 'emit');
             const event = {
               name: 'notification/seen/all',
               data: { client_id: faker.random.alphaNumeric(10) },

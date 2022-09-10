@@ -66,13 +66,13 @@ describe('CategoryPreferences component', () => {
       });
     });
 
-    afterEach(() => jest.clearAllMocks());
+    afterEach(() => vi.clearAllMocks());
 
     test('updates the preferences for the inbox channel of the Comments category', async () => {
       render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
 
       const { result } = renderHook(() => useNotificationPreferences());
-      const spy = jest.spyOn(result.current, 'save');
+      const spy = vi.spyOn(result.current, 'save');
 
       const inAppCheckbox = screen.getAllByRole('checkbox')[0];
       await userEvent.click(inAppCheckbox);

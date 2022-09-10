@@ -21,38 +21,52 @@ const flags = {
   analyze: Boolean(process.env.ANALYZE),
 };
 
-export default defineConfig(({ mode }) => ({
-  root: cwd,
-  publicDir: false,
-  plugins: [
-    flags.analyze && analyze({}),
-    writeIndexFile({ outDir: resolve(cwd, 'dist') }),
-    runTSC(),
-  ].filter(Boolean),
-  define: {
-    __DEV__: !flags.minify || mode === 'development',
-    __PACKAGE_NAME__: JSON.stringify(pkg.name),
-    __PACKAGE_VERSION__: JSON.stringify(pkg.version),
-    __CODE_VERSION: JSON.stringify(revision),
-  },
-  build: {
-    target: ['chrome60', 'firefox60', 'safari11', 'edge18'],
-    minify: flags.minify,
-    sourcemap: true,
-    emptyOutDir: false,
-    watch: flags.watch,
-    lib: {
-      entry: resolve(cwd, pkg.source || 'src/index.ts'),
-      fileName: (format) => createFilename(format, flags.minify),
-      formats: ['cjs', 'esm'],
+export default defineConfig(({ mode }) => {
+  const isTest = mode === 'test';
+  const isProduction = mode === 'production';
+  const isDev = mode === 'development';
+
+  return {
+    root: cwd,
+    publicDir: false,
+    plugins: [
+      isProduction && flags.analyze && analyze({}),
+      isProduction && writeIndexFile({ outDir: resolve(cwd, 'dist') }),
+      isProduction && runTSC(),
+    ].filter(Boolean),
+    define: {
+      __DEV__: isDev || (isProduction && !flags.minify),
+      __PACKAGE_NAME__: JSON.stringify(pkg.name),
+      __PACKAGE_VERSION__: JSON.stringify(pkg.version),
+      __CODE_VERSION: JSON.stringify(revision),
     },
-    rollupOptions: {
-      external: isExternal,
-      output: {
-        exports: 'named',
-        globals: globalModules,
-        // preserveModules: true,
+    build: {
+      target: ['chrome60', 'firefox60', 'safari11', 'edge18'],
+      minify: flags.minify,
+      sourcemap: true,
+      emptyOutDir: false,
+      watch: flags.watch,
+      lib: {
+        entry: resolve(cwd, pkg.source || 'src/index.ts'),
+        fileName: (format) => createFilename(format, flags.minify),
+        formats: ['cjs', 'esm'],
+      },
+      rollupOptions: {
+        external: isExternal,
+        output: {
+          exports: 'named',
+          globals: globalModules,
+          // preserveModules: true,
+        },
       },
     },
-  },
-}));
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: resolve(__dirname, 'test.setup.js'),
+      restoreMocks: true,
+      mockReset: true,
+      clearMocks: true,
+    },
+  };
+});

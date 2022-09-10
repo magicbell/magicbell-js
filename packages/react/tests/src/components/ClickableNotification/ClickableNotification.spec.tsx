@@ -14,7 +14,7 @@ test('renders the title and content of the notification', () => {
         title: 'sample notification title',
         content: 'sample notification content',
       }}
-      onClick={jest.fn()}
+      onClick={vi.fn()}
     />,
   );
 
@@ -26,7 +26,7 @@ test('renders the title when no content is provided', () => {
   render(
     <ClickableNotification
       notification={{ ...sampleNotification, title: 'sample notification title' }}
-      onClick={jest.fn()}
+      onClick={vi.fn()}
     />,
   );
 
@@ -44,7 +44,7 @@ test('renders the notification with seen/unseen background variation', () => {
           readAt: null,
           seenAt: null,
         }}
-        onClick={jest.fn()}
+        onClick={vi.fn()}
       />
       <ClickableNotification
         notification={{
@@ -54,7 +54,7 @@ test('renders the notification with seen/unseen background variation', () => {
           readAt: Date.now(),
           seenAt: Date.now(),
         }}
-        onClick={jest.fn()}
+        onClick={vi.fn()}
       />
     </>,
   );
@@ -73,7 +73,7 @@ test('renders the notification with the read/unread svg color variation', async 
     <>
       <ClickableNotification
         notification={{ ...sampleNotification, id: '1', title: 'new notification', seenAt: null }}
-        onClick={jest.fn()}
+        onClick={vi.fn()}
       />
       <ClickableNotification
         notification={{
@@ -82,7 +82,7 @@ test('renders the notification with the read/unread svg color variation', async 
           title: 'old notification',
           readAt: Date.now(),
         }}
-        onClick={jest.fn()}
+        onClick={vi.fn()}
       />
     </>,
   );
@@ -97,7 +97,7 @@ test('renders the notification with the read/unread svg color variation', async 
 });
 
 test('passes the notification object to the onClick callback', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const notification = { ...sampleNotification, title: 'notification' };
 
   render(<ClickableNotification notification={notification} onClick={onClick} />);
@@ -116,7 +116,7 @@ test('passes the notification object to the onClick callback', async () => {
 });
 
 test('opens the action url in the same tab', async () => {
-  global.open = jest.fn();
+  global.open = vi.fn();
 
   render(
     <ClickableNotification
@@ -137,7 +137,7 @@ test('opens the action url in the same tab', async () => {
 });
 
 test('does not invoke the click handler when clicking on a link in the notification', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const notification = {
     ...sampleNotification,
     title: 'notification',
@@ -152,9 +152,9 @@ test('does not invoke the click handler when clicking on a link in the notificat
 });
 
 test('does not invoke the action url when clicking on a link in the notification', async () => {
-  global.open = jest.fn();
+  global.open = vi.fn();
 
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const notification = {
     ...sampleNotification,
     title: 'notification',

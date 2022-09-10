@@ -32,7 +32,7 @@ describe('components', () => {
     describe('realtime events', () => {
       describe('reconnected', () => {
         it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('reconnected', null, 'local');
@@ -45,7 +45,7 @@ describe('components', () => {
 
       describe('notifications.new', () => {
         it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.new', { id: 'uuid' }, 'remote');
@@ -58,7 +58,7 @@ describe('components', () => {
         it('prepends the new notifications', async () => {
           const notification = NotificationFactory.build();
           const { result, waitForNextUpdate } = renderHook(() => useNotificationStoresCollection());
-          const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
+          const spy = vi.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
 
           act(() => {
             emitEvent('notifications.new', notification, 'remote');
@@ -82,7 +82,7 @@ describe('components', () => {
         });
 
         it('does not make a post request to avoid infinite loops', () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+          const spy = vi.spyOn(ajax, 'postAPI');
 
           act(() => {
             emitEvent('notifications.seen.all', null, 'remote');
@@ -107,7 +107,7 @@ describe('components', () => {
         });
 
         it('does not make a post request to avoid infinite loops', () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+          const spy = vi.spyOn(ajax, 'postAPI');
 
           act(() => {
             emitEvent('notifications.read.all', null, 'remote');
@@ -120,7 +120,7 @@ describe('components', () => {
 
       describe('notifications.read', () => {
         it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.read', { id: 'uuid' }, 'remote');
@@ -133,7 +133,7 @@ describe('components', () => {
 
       describe('notifications.unread', () => {
         it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.unread', { id: 'uuid' }, 'remote');

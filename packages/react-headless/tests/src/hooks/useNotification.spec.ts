@@ -20,7 +20,7 @@ describe('hooks', () => {
       describe('no callback function is provided', () => {
         it('marks the notification as seen', async () => {
           const { result, unmount } = renderHook(() => useNotification(notifications[0]));
-          const spy = jest.spyOn(result.current, 'markAsSeen');
+          const spy = vi.spyOn(result.current, 'markAsSeen');
 
           await act(async () => {
             await unmount();
@@ -33,7 +33,7 @@ describe('hooks', () => {
 
       describe('a callback function is provided', () => {
         it('invockes the callback function', async () => {
-          const unmountCallback = jest.fn();
+          const unmountCallback = vi.fn();
           const { unmount } = renderHook(() => useNotification(notifications[0], unmountCallback));
 
           await act(async () => {
@@ -44,9 +44,9 @@ describe('hooks', () => {
         });
 
         it('does not mark the notification as seen', async () => {
-          const unmountCallback = jest.fn();
+          const unmountCallback = vi.fn();
           const { result, unmount } = renderHook(() => useNotification(notifications[0], unmountCallback));
-          const spy = jest.spyOn(result.current, 'markAsSeen');
+          const spy = vi.spyOn(result.current, 'markAsSeen');
 
           await act(async () => {
             await unmount();

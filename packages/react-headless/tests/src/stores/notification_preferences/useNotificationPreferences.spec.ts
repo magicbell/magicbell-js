@@ -26,8 +26,6 @@ describe('useNotificationPreferences', () => {
 
   describe('.fetch', () => {
     it('fetches preferences from the /notification_preferences endpoint', async () => {
-      jest.spyOn(global.Date, 'now').mockImplementationOnce(() => new Date('2019-05-14T11:01:58.135Z').valueOf());
-
       const response = {
         notification_preferences: humps.decamelizeKeys(sampleNotificationPreferences),
       };
@@ -45,7 +43,7 @@ describe('useNotificationPreferences', () => {
       expect(preferences.categories).toStrictEqual<CategoryChannelPreference[]>(
         sampleNotificationPreferences.categories,
       );
-      expect(preferences.lastFetchedAt).toEqual(new Date('2019-05-14T11:01:58.135Z').valueOf());
+      expect(preferences.lastFetchedAt).toBeGreaterThan(Date.now() - 5_000);
     });
   });
 

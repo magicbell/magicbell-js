@@ -38,7 +38,7 @@ describe('hooks', () => {
 
       describe('config is fetched', () => {
         it('fetches the store', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           act(() => {
@@ -51,7 +51,7 @@ describe('hooks', () => {
         });
 
         it('fetches the other store when storeId changes', async () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
           const { rerender } = renderHook(({ storeId }) => useNotifications(storeId), {
             initialProps: { storeId: 'default' },
           });
@@ -73,7 +73,7 @@ describe('hooks', () => {
 
       describe('config is not fetched', () => {
         it('does not fetch the store', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+          const spy = vi.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           expect(spy).not.toHaveBeenCalled();

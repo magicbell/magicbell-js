@@ -57,7 +57,7 @@ describe('hooks', () => {
       });
 
       it('marks the notification as read', async () => {
-        const spy = jest.spyOn(ajax, 'postAPI');
+        const spy = vi.spyOn(ajax, 'postAPI');
         const { result } = renderHook(() => useNotificationFactory(json));
         const { current: notification } = result;
 
@@ -84,7 +84,7 @@ describe('hooks', () => {
       });
 
       it('marks the notification as unread', async () => {
-        const spy = jest.spyOn(ajax, 'postAPI');
+        const spy = vi.spyOn(ajax, 'postAPI');
         const { result } = renderHook(() => useNotificationFactory(json));
         const { current: notification } = result;
 
@@ -111,7 +111,7 @@ describe('hooks', () => {
       });
 
       it('deletes the notification', async () => {
-        const spy = jest.spyOn(ajax, 'deleteAPI');
+        const spy = vi.spyOn(ajax, 'deleteAPI');
         const { result } = renderHook(() => useNotificationFactory(json));
         const { current: notification } = result;
 

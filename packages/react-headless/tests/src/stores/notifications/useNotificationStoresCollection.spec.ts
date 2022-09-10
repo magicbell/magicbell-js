@@ -11,6 +11,8 @@ import { eventAggregator } from '../../../../src/lib/realtime';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
 import NotificationFactory from '../../../factories/NotificationFactory';
 
+const fiveSecondsAgo = () => Math.floor(Date.now() / 1_000) - 5_000;
+
 describe('stores', () => {
   describe('notifications', () => {
     let server: Server;
@@ -61,15 +63,11 @@ describe('stores', () => {
               notifications: NotificationFactory.buildList(1),
             };
 
-            server.get('/notifications', () => new Response(
-              200,
-              {},
-                humps.decamelizeKeys(response),
-            ));
+            server.get('/notifications', () => new Response(200, {}, humps.decamelizeKeys(response)));
           });
 
           it('fetches a store from the MagicBell server', async () => {
-            const spy = jest.spyOn(ajax, 'fetchAPI');
+            const spy = vi.spyOn(ajax, 'fetchAPI');
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
             const defaultQueryParams = { read: false };
@@ -125,12 +123,6 @@ describe('stores', () => {
           });
 
           it('sets the fetch timestamp for the store', async () => {
-            // We use any because undefined doesn't work, converting the date to
-            // a string (x.toISOString()) results in the error:
-            // get error  (intermediate value).getTime is not a function
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const now = new Date() as any;
-            const spy = jest.spyOn(global, 'Date').mockImplementation(() => now);
             const { result } = renderHook(() => useNotificationStoresCollection());
             const storeId = faker.datatype.uuid();
 
@@ -139,8 +131,7 @@ describe('stores', () => {
               await result.current.fetchStore(storeId, { page: 2 });
             });
 
-            expect(result.current.stores[storeId].lastFetchedAt).toEqual(now);
-            spy.mockRestore();
+            expect(new Date(result.current.stores[storeId].lastFetchedAt).getTime()).toBeGreaterThan(fiveSecondsAgo());
           });
 
           test('toggling read state correctly updates depended (split-inbox) stores', async () => {
@@ -496,8 +487,6 @@ describe('stores', () => {
         });
 
         it('marks the notification as seen', async () => {
-          const now = Date.now();
-          const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
           const { result } = renderHook(() => useNotificationStoresCollection());
 
           await act(async () => {
@@ -505,12 +494,11 @@ describe('stores', () => {
             await result.current.markNotificationAsSeen(notification);
           });
 
-          expect(result.current.stores['default'].notifications[0].seenAt).toEqual(now / 1000);
-          spy.mockRestore();
+          expect(result.current.stores['default'].notifications[0].seenAt).toBeGreaterThan(fiveSecondsAgo());
         });
 
         it('emits the "notifications.seen" event', async () => {
-          const spy = jest.spyOn(eventAggregator, 'emit');
+          const spy = vi.spyOn(eventAggregator, 'emit');
           const { result } = renderHook(() => useNotificationStoresCollection());
 
           await act(async () => {
@@ -545,8 +533,6 @@ describe('stores', () => {
           });
 
           it('marks the notification as read', async () => {
-            const now = Date.now();
-            const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -554,12 +540,11 @@ describe('stores', () => {
               await result.current.markNotificationAsRead(notification);
             });
 
-            expect(result.current.stores['default'].notifications[0].readAt).toEqual(now / 1000);
-            spy.mockRestore();
+            expect(result.current.stores['default'].notifications[0].readAt).toBeGreaterThan(fiveSecondsAgo());
           });
 
           it('emits the "notifications.read" event', async () => {
-            const spy = jest.spyOn(eventAggregator, 'emit');
+            const spy = vi.spyOn(eventAggregator, 'emit');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -605,7 +590,7 @@ describe('stores', () => {
           });
 
           it('emits the "notifications.unread" event', async () => {
-            const spy = jest.spyOn(eventAggregator, 'emit');
+            const spy = vi.spyOn(eventAggregator, 'emit');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -679,7 +664,7 @@ describe('stores', () => {
           });
 
           it('emits the "notifications.deleted" event', async () => {
-            const spy = jest.spyOn(eventAggregator, 'emit');
+            const spy = vi.spyOn(eventAggregator, 'emit');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -701,7 +686,7 @@ describe('stores', () => {
           });
 
           it('makes a request to the server', async () => {
-            const spy = jest.spyOn(ajax, 'postAPI');
+            const spy = vi.spyOn(ajax, 'postAPI');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -714,8 +699,6 @@ describe('stores', () => {
           });
 
           it('marks all notifications as seen', async () => {
-            const now = Date.now();
-            const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
             const notifications = NotificationFactory.buildList(3, { seenAt: null });
 
             const { result } = renderHook(() => useNotificationStoresCollection());
@@ -727,14 +710,13 @@ describe('stores', () => {
 
             const store = result.current.stores['read'];
 
-            expect(store.notifications[0].seenAt).toEqual(now / 1000);
-            expect(store.notifications[1].seenAt).toEqual(now / 1000);
-            expect(store.notifications[2].seenAt).toEqual(now / 1000);
-            spy.mockRestore();
+            expect(store.notifications[0].seenAt).toBeGreaterThan(fiveSecondsAgo());
+            expect(store.notifications[1].seenAt).toBeGreaterThan(fiveSecondsAgo());
+            expect(store.notifications[2].seenAt).toBeGreaterThan(fiveSecondsAgo());
           });
 
           it('emits the "notifications.seen.all" event', async () => {
-            const spy = jest.spyOn(eventAggregator, 'emit');
+            const spy = vi.spyOn(eventAggregator, 'emit');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -766,7 +748,7 @@ describe('stores', () => {
 
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
-              const spy = jest.spyOn(ajax, 'postAPI');
+              const spy = vi.spyOn(ajax, 'postAPI');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
@@ -779,7 +761,7 @@ describe('stores', () => {
             });
 
             it('does not emit any event', async () => {
-              const spy = jest.spyOn(eventAggregator, 'emit');
+              const spy = vi.spyOn(eventAggregator, 'emit');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
@@ -801,7 +783,7 @@ describe('stores', () => {
           });
 
           it('makes a request to the server', async () => {
-            const spy = jest.spyOn(ajax, 'postAPI');
+            const spy = vi.spyOn(ajax, 'postAPI');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -814,8 +796,6 @@ describe('stores', () => {
           });
 
           it('marks all notifications as read', async () => {
-            const now = Date.now();
-            const spy = jest.spyOn(Date, 'now').mockImplementation(() => now);
             const notifications = NotificationFactory.buildList(3, { readAt: null });
 
             const { result } = renderHook(() => useNotificationStoresCollection());
@@ -827,14 +807,13 @@ describe('stores', () => {
 
             const store = result.current.stores['unread'];
 
-            expect(store.notifications[0].readAt).toEqual(now / 1000);
-            expect(store.notifications[1].readAt).toEqual(now / 1000);
-            expect(store.notifications[2].readAt).toEqual(now / 1000);
-            spy.mockRestore();
+            expect(store.notifications[0].readAt).toBeGreaterThan(fiveSecondsAgo());
+            expect(store.notifications[1].readAt).toBeGreaterThan(fiveSecondsAgo());
+            expect(store.notifications[2].readAt).toBeGreaterThan(fiveSecondsAgo());
           });
 
           it('emits the "notifications.read.all" event', async () => {
-            const spy = jest.spyOn(eventAggregator, 'emit');
+            const spy = vi.spyOn(eventAggregator, 'emit');
             const { result } = renderHook(() => useNotificationStoresCollection());
 
             await act(async () => {
@@ -866,7 +845,7 @@ describe('stores', () => {
 
           describe('the persist option is false', () => {
             it('does not make a request to the server', async () => {
-              const spy = jest.spyOn(ajax, 'postAPI');
+              const spy = vi.spyOn(ajax, 'postAPI');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {
@@ -879,7 +858,7 @@ describe('stores', () => {
             });
 
             it('does not emit any event', async () => {
-              const spy = jest.spyOn(eventAggregator, 'emit');
+              const spy = vi.spyOn(eventAggregator, 'emit');
               const { result } = renderHook(() => useNotificationStoresCollection());
 
               await act(async () => {

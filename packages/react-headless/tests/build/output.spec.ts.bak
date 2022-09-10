@@ -42,13 +42,11 @@ function assertShape(module: any) {
   expect(typeof module.useNotification).toEqual('function');
 }
 
-jest.setTimeout(60_000);
-
 beforeAll(async () => {
   // don't rebuild all the time when running in wallaby
   if (process.env.WALLABY_ENV && existsSync('./dist')) return;
   await execAsync('yarn build');
-});
+}, 60_000);
 
 test('creates all bundles', () => {
   expect(pkg.main).toEqual('dist/index.js');

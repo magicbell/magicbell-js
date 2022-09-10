@@ -22,7 +22,7 @@ describe('components', () => {
     });
 
     it('fetches config', async () => {
-      const spy = jest.spyOn(ajax, 'fetchAPI');
+      const spy = vi.spyOn(ajax, 'fetchAPI');
 
       render(
         <MagicBellProvider apiKey={apiKey} userExternalId={userExternalId}>
@@ -41,7 +41,7 @@ describe('components', () => {
       });
 
       it('does not fetch config', async () => {
-        const spy = jest.spyOn(ajax, 'fetchAPI');
+        const spy = vi.spyOn(ajax, 'fetchAPI');
 
         render(
           <MagicBellProvider apiKey={apiKey} userExternalId={userExternalId}>

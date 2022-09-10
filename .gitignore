@@ -11,3 +11,4 @@ packages/react/yarn.lock
 yalc.lock
 
 .turbo
+coverage

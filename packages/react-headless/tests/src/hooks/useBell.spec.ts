@@ -65,7 +65,7 @@ describe('hooks', () => {
         });
 
         it('makes a request to the server', async () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+          const spy = vi.spyOn(ajax, 'postAPI');
           const { result } = renderHook(() => useBell());
 
           await act(async () => {
@@ -93,7 +93,7 @@ describe('hooks', () => {
 
       describe('the store does not have unseen notifications', () => {
         it('does not make a request to the server', async () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+          const spy = vi.spyOn(ajax, 'postAPI');
           const { result } = renderHook(() => useBell());
 
           await act(async () => {

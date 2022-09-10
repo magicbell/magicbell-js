@@ -102,7 +102,7 @@ test('can render the inbox with a custom layout', async () => {
 
 test('toggles the notification inbox', async () => {
   const ref = React.createRef<any>();
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   render(
     <>
@@ -119,7 +119,7 @@ test('toggles the notification inbox', async () => {
 
 test('calls the onNotificationClick callback', async () => {
   const ref = React.createRef<any>();
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   render(
     <>
@@ -141,8 +141,8 @@ test('calls the onNotificationClick callback', async () => {
 
 test('opens the action url in the same window', async () => {
   const ref = React.createRef<any>();
-  const onClick = jest.fn();
-  global.open = jest.fn();
+  const onClick = vi.fn();
+  global.open = vi.fn();
 
   render(
     <>
