@@ -1,5 +1,4 @@
-/* @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
 import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { useState } from 'react';

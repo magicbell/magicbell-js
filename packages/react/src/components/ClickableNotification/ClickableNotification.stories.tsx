@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import ClickableNotification from '../../src/components/ClickableNotification/ClickableNotification';
-import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
-import { merge } from '../../src/lib/merge';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
+import { merge } from '../../lib/merge';
+import ClickableNotification from './ClickableNotification';
 
 const DEFAULT_NOTIFICATION = {
   id: 1,

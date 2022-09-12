@@ -1,8 +1,7 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
-import MagicBell from '../../src/components/MagicBell';
+import MagicBell, { FloatingNotificationInbox } from '../src';
 
 const Component = ({ handleAllRead, onNotificationClick }) => {
   return (

@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { ComponentProps, useEffect, useMemo } from 'react';
 

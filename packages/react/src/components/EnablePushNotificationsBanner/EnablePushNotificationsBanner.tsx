@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
 import { css, jsx } from '@emotion/react';
 import { clientSettings, useConfig } from '@magicbell/react-headless';
 import axios from 'axios';

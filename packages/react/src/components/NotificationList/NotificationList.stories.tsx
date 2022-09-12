@@ -1,11 +1,11 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import NotificationList from '../../src/components/NotificationList/NotificationList';
-import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../src/context/Theme';
-import { merge } from '../../src/lib/merge';
-import NotificationFactory from '../../tests/factories/NotificationFactory';
+import NotificationFactory from '../../../tests/factories/NotificationFactory';
+import NotificationList from '../../components/NotificationList/NotificationList';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
+import { defaultTheme } from '../../context/Theme';
+import { merge } from '../../lib/merge';
 
 const Component = (props) => (
   <MagicBellThemeProvider value={defaultTheme}>

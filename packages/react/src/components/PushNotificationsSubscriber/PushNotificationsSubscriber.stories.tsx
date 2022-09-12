@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import { MagicBellProvider } from '../../src';
-import PushNotificationsSubscriber from '../../src/components/PushNotificationsSubscriber';
+import MagicBellProvider from '../MagicBellProvider';
+import PushNotificationsSubscriber from './PushNotificationsSubscriber';
 
 const Component = (props) => (
   <MagicBellProvider {...props}>

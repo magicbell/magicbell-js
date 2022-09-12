@@ -1,6 +1,8 @@
 import {Server} from 'miragejs';
-import NotificationFactory from '../tests/factories/NotificationFactory';
-import {sampleNotificationPreferences} from "../tests/factories/NotificationPreferencesFactory";
+import NotificationFactory from '../../packages/react/tests/factories/NotificationFactory';
+import {sampleNotificationPreferences} from "../../packages/react/tests/factories/NotificationPreferencesFactory";
+
+// TODO: move /server to packages/mock-server
 
 const richTextMessages = [
   { title: 'Getting started with MagicBell',

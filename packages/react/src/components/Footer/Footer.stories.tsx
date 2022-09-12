@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import Footer from '../../src/components/Footer';
-import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../src/context/Theme';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
+import { defaultTheme } from '../../context/Theme';
+import Footer from './Footer';
 
 const Component = (props) => (
   <MagicBellThemeProvider value={defaultTheme}>

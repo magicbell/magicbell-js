@@ -46,8 +46,6 @@
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
     "start": "yarn build:dev --watch",
     "size": "size-limit",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "lint": "tsc --noEmit && eslint '{src,stories,tests}/**/*.{js,jsx,ts,tsx}'"
   },
   "lint-staged": {
@@ -73,10 +71,6 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@size-limit/preset-small-lib": "^8.0.1",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/react": "^6.5.9",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^14.2.1",

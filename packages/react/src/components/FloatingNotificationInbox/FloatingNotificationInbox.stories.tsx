@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import MagicBell, { ClickableNotification, MagicBellProvider } from '../../src';
-import { ClickableNotificationProps } from '../../src/components/ClickableNotification';
-import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
-import { merge } from '../../src/lib/merge';
+import { merge } from '../../lib/merge';
+import ClickableNotification, { ClickableNotificationProps } from '../ClickableNotification';
+import FloatingNotificationInbox from '../FloatingNotificationInbox';
+import MagicBell from '../MagicBell';
+import MagicBellProvider from '../MagicBellProvider';
 
 const Component = ({
   onAllRead,

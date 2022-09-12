@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
 import {
   createFilename,
   globalModules,
@@ -10,6 +10,11 @@ import {
 
 import { runTSC, writeIndexFile } from './plugins.js';
 import analyze from 'rollup-plugin-analyzer';
+
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const cwd = process.cwd();
 
@@ -39,6 +44,9 @@ export default defineConfig(({ mode }) => {
       __PACKAGE_NAME__: JSON.stringify(pkg.name),
       __PACKAGE_VERSION__: JSON.stringify(pkg.version),
       __CODE_VERSION: JSON.stringify(revision),
+    },
+    esbuild: {
+      jsx: 'automatic',
     },
     build: {
       target: ['chrome60', 'firefox60', 'safari11', 'edge18'],

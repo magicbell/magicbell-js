@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import MagicBellProvider from '../../src/components/MagicBellProvider';
-import NotificationInbox from '../../src/components/NotificationInbox';
-import { merge } from '../../src/lib/merge';
+import { merge } from '../../lib/merge';
+import MagicBellProvider from '../MagicBellProvider';
+import NotificationInbox from './NotificationInbox';
 
 const Component = ({ apiKey, userEmail, userKey, stores, theme, ...props }) => (
   <MagicBellProvider

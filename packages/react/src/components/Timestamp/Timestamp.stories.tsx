@@ -1,13 +1,13 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import Timestamp from '../../src/components/Timestamp';
-import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../src/context/Theme';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
+import { defaultTheme } from '../../context/Theme';
+import Timestamp from './Timestamp';
 
-const Component = (args) => (
+const Component = (props) => (
   <MagicBellThemeProvider value={defaultTheme}>
-    <Timestamp {...args} />
+    <Timestamp {...props} />
   </MagicBellThemeProvider>
 );
 

@@ -1,9 +1,8 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import FloatingNotificationInbox from '../../src/components/FloatingNotificationInbox';
-import MagicBell from '../../src/components/MagicBell';
-import { merge } from '../../src/lib/merge';
+import MagicBell, { FloatingNotificationInbox } from '../src';
+import { merge } from '../src/lib/merge';
 
 function Component({ onAllRead, onNotificationClick, ...props }) {
   return (

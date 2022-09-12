@@ -4,15 +4,15 @@ import prettier from 'prettier';
 import fs from 'fs';
 
 function readJSON(filepath) {
-  return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf-8'));
+  return JSON.parse(
+    fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf-8')
+  );
 }
 
 async function getPackages() {
-  return glob(`./packages/*/package.json`)
-    .then((files) => files.map(file => [
-      readJSON(file).name,
-      path.dirname(file),
-    ]));
+  return glob(`./packages/*/package.json`).then((files) =>
+    files.map((file) => [readJSON(file).name, path.dirname(file)])
+  );
 }
 
 function writeJson(filepath, json) {
@@ -25,10 +25,13 @@ function writeJson(filepath, json) {
 
 function writePathsToTsConfig(pkgs) {
   const tsConfig = readJSON('./tsconfig.json');
-  tsConfig.compilerOptions.paths = Object.fromEntries(
-    pkgs.map(([k, v]) => [k, [`${v}/src`]])
+
+  const others = Object.entries(tsConfig.compilerOptions.paths).filter(
+    ([k]) => k[0] === '~'
   );
 
+  const locals = pkgs.map(([k, v]) => [k, [`${v}/src`]]);
+  tsConfig.compilerOptions.paths = Object.fromEntries([...others, ...locals]);
   writeJson('./tsconfig.json', tsConfig);
 }
 
@@ -36,7 +39,7 @@ function writeAliasToExamplePackageJson(pkgs) {
   const pkgJson = readJSON('./example/package.json');
 
   const others = Object.entries(pkgJson.alias).filter(
-    ([k, v]) => !v.startsWith('../packages/')
+    ([, v]) => !v.startsWith('../packages/')
   );
 
   const locals = pkgs.map(([k, v]) => [k, `../${v}`]);
@@ -44,7 +47,7 @@ function writeAliasToExamplePackageJson(pkgs) {
   writeJson('./example/package.json', pkgJson);
 }
 
-getPackages().then(pkgs => {
+getPackages().then((pkgs) => {
   writePathsToTsConfig(pkgs);
   writeAliasToExamplePackageJson(pkgs);
 });

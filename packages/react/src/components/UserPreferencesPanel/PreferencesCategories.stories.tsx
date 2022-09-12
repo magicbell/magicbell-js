@@ -2,8 +2,8 @@ import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import MagicBellProvider from '../../src/components/MagicBellProvider';
-import PreferencesCategories from '../../src/components/UserPreferencesPanel/PreferencesCategories';
+import MagicBellProvider from '../MagicBellProvider';
+import PreferencesCategories from './PreferencesCategories';
 
 const Component = ({ apiKey, userEmail, userKey, ...props }) => (
   <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey}>

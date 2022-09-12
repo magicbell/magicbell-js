@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
+      "~/sb-decorators": [".storybook/decorators"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],

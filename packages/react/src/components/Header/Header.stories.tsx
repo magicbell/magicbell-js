@@ -1,11 +1,11 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 
-import Header from '../../src/components/Header';
-import CheckMarkIcon from '../../src/components/icons/CheckMarkIcon';
-import SettingsIcon from '../../src/components/icons/SettingsIcon';
-import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
-import { defaultTheme } from '../../src/context/Theme';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
+import { defaultTheme } from '../../context/Theme';
+import CheckMarkIcon from '../icons/CheckMarkIcon';
+import SettingsIcon from '../icons/SettingsIcon';
+import Header from './Header';
 
 const Component = (props) => (
   <MagicBellThemeProvider value={defaultTheme}>
