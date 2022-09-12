@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { jsx } from '@emotion/react';
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 

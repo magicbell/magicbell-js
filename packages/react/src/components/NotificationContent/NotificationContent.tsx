@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { useEffect, useRef } from 'react';
 import { cancel, render } from 'timeago.js';

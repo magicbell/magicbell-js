@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { jsx } from '@emotion/react';
 import { ReactElement } from 'react';
 
 import { useTranslate } from '../../../context/TranslationsContext';

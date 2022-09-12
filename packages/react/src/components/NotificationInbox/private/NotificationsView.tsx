@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { jsx } from '@emotion/react';
 import { useConfig, useNotifications } from '@magicbell/react-headless';
 import INotification from '@magicbell/react-headless/dist/types/INotification';
 import { pathOr } from 'ramda';
