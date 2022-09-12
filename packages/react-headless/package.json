@@ -11,8 +11,8 @@
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/react-headless.esm.js",
-  "unpkg": "dist/react-headless.umd.production.min.js",
+  "module": "dist/magicbell-react-headless.esm.js",
+  "unpkg": "dist/magicbell-react-headless.umd.production.min.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -41,7 +41,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "yarn clean && yarn build:dev && yarn build:prod",
+    "build": "run-s clean build:*",
     "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
     "start": "yarn build:dev --watch",
@@ -56,15 +56,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/react-headless.cjs.production.min.js",
+      "path": "dist/magicbell-react-headless.cjs.min.js",
       "limit": "125 KB"
     },
     {
-      "path": "dist/react-headless.umd.production.min.js",
-      "limit": "125 KB"
-    },
-    {
-      "path": "dist/react-headless.esm.js",
+      "path": "dist/magicbell-react-headless.esm.min.js",
       "limit": "125 KB"
     }
   ],

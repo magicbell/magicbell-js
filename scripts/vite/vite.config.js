@@ -6,6 +6,10 @@ import {
   isExternal,
   pkg,
   revision,
+  cwd,
+  isAnalyze,
+  shouldMinify,
+  isWatchMode,
 } from './settings.js';
 
 import { runTSC, writeIndexFile } from './plugins.js';
@@ -16,55 +20,53 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const cwd = process.cwd();
+const outDir = resolve(cwd, 'dist');
 
-const args = process.argv.slice(2);
-
-const flags = {
-  watch: args.includes('--watch') || args.includes('-w'),
-  minify: args.includes('--minify'),
-  analyze: Boolean(process.env.ANALYZE),
-};
-
-export default defineConfig(({ mode }) => {
-  const isTest = mode === 'test';
-  const isProduction = mode === 'production';
+export default defineConfig(async ({ mode, command }) => {
   const isDev = mode === 'development';
+  const isBuild = command === 'build';
 
   return {
     root: cwd,
     publicDir: false,
-    plugins: [
-      isProduction && flags.analyze && analyze({}),
-      isProduction && writeIndexFile({ outDir: resolve(cwd, 'dist') }),
-      isProduction && runTSC(),
-    ].filter(Boolean),
+    plugins: isBuild
+      ? [
+          isAnalyze && analyze({}),
+          pkg.main === 'dist/index.js' &&
+            writeIndexFile({ fileName: pkg.name, outDir }),
+          !shouldMinify && pkg.typings && runTSC(),
+        ].filter(Boolean)
+      : [],
     define: {
-      __DEV__: isDev || (isProduction && !flags.minify),
+      __DEV__: isDev || (isBuild && !shouldMinify),
       __PACKAGE_NAME__: JSON.stringify(pkg.name),
       __PACKAGE_VERSION__: JSON.stringify(pkg.version),
-      __CODE_VERSION: JSON.stringify(revision),
+      __CODE_VERSION__: JSON.stringify(revision),
     },
     esbuild: {
       jsx: 'automatic',
     },
     build: {
       target: ['chrome60', 'firefox60', 'safari11', 'edge18'],
-      minify: flags.minify,
+      minify: shouldMinify,
       sourcemap: true,
       emptyOutDir: false,
-      watch: flags.watch,
+      watch: isWatchMode,
       lib: {
         entry: resolve(cwd, pkg.source || 'src/index.ts'),
-        fileName: (format) => createFilename(format, flags.minify),
         formats: ['cjs', 'esm'],
+        fileName: (format) =>
+          createFilename({
+            name: pkg.name,
+            format,
+            minify: shouldMinify,
+          }),
       },
       rollupOptions: {
         external: isExternal,
         output: {
           exports: 'named',
           globals: globalModules,
-          // preserveModules: true,
         },
       },
     },

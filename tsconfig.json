@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.build.json",
   "include": ["packages", "scripts", "types", "vitest/globals"],
-  "exclude": ["packages/*/dist"],
   "compilerOptions": {
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],

@@ -1,6 +1,7 @@
 {
   "name": "@magicbell/embeddable",
   "version": "3.2.0",
+  "source": "./src/index.tsx",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "module": "dist/magicbell.esm.js",
@@ -17,8 +18,12 @@
     "node": ">=12.x"
   },
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
-    "start": "NODE_ENV=development rollup -c -w",
+    "clean": "rimraf dist",
+    "build": "run-s clean build:*",
+    "build:dev": "vite build",
+    "build:prod": "vite build --minify",
+    "build:sw": "cross-env ENTRY=sw vite build --minify",
+    "start": "yarn build:dev --watch",
     "cypress": "cypress run",
     "cypress:headed": "cypress open",
     "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'",
