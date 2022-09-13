@@ -16,8 +16,7 @@ const pt_br = {
   messages: {
     'empty-inbox': 'Nenhuma notificação disponível!',
     'server-error': 'Não conseguimos recuperar suas notificações.<br>Por favor, volte em breve.',
-    'no-internet-connection':
-      'Não conseguimos nos conectar à Internet.<br>Por favor, verifique sua conexão.',
+    'no-internet-connection': 'Não conseguimos nos conectar à Internet.<br>Por favor, verifique sua conexão.',
   },
   preferences: {
     title: 'Preferências',

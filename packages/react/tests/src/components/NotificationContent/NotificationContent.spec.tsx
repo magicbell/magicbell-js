@@ -41,8 +41,7 @@ test('replaces the content of time elements with a relative datetime', async () 
   const { result } = renderHook(() =>
     useNotificationFactory({
       ...sampleNotification,
-      content:
-        '<p>The event starts <time datetime="2021-03-11T05:33:12Z" data-testid="time">on March 11</time>.</p>',
+      content: '<p>The event starts <time datetime="2021-03-11T05:33:12Z" data-testid="time">on March 11</time>.</p>',
     }),
   );
 
@@ -61,8 +60,7 @@ test('does not replace time elements in upper scopes', async () => {
   const { result } = renderHook(() =>
     useNotificationFactory({
       ...sampleNotification,
-      content:
-        '<p>The event starts <time datetime="" data-testid="in-scope">on March 10</time>.</p>',
+      content: '<p>The event starts <time datetime="" data-testid="in-scope">on March 10</time>.</p>',
     }),
   );
 

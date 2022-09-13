@@ -13,10 +13,7 @@ type MagicBellProviderProps = {
   children: ReactNode;
 };
 
-export function MagicBellThemeProvider({
-  value: partialTheme = {},
-  ...props
-}: MagicBellProviderProps) {
+export function MagicBellThemeProvider({ value: partialTheme = {}, ...props }: MagicBellProviderProps) {
   const theme = useMemo(() => {
     // don't run backwards compatibility code if no partial theme was provided
     if (!partialTheme || Object.keys(partialTheme).length === 0) return defaultTheme;

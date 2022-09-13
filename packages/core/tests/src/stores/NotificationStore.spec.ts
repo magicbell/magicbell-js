@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { Response, Server } from 'miragejs';
+
 import Notification from '../../../src/models/Notification';
 import NotificationStore from '../../../src/stores/NotificationStore';
 import NotificationFactory from '../../factories/NotificationFactory';

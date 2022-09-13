@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { CacheProvider } from '@emotion/react';
+import type { CustomLocale, IMagicBellTheme } from '@magicbell/magicbell-react';
 import MagicBell from '@magicbell/magicbell-react';
-import type { IMagicBellTheme, CustomLocale } from '@magicbell/magicbell-react';
-
 import React, { Component, ComponentProps } from 'react';
+
 import { cache } from '../../lib/emotion';
 import { ReactError } from '../../lib/error';
 import FloatingFrame from '../FloatingFrame';

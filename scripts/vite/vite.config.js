@@ -1,21 +1,20 @@
+import { dirname, resolve } from 'path';
+import analyze from 'rollup-plugin-analyzer';
+import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
-import { resolve, dirname } from 'path';
-import {
-  createFilename,
-  globalModules,
-  isExternal,
-  pkg,
-  revision,
-  cwd,
-  isAnalyze,
-  shouldMinify,
-  isWatchMode,
-} from './settings.js';
 
 import { runTSC, writeIndexFile } from './plugins.js';
-import analyze from 'rollup-plugin-analyzer';
-
-import { fileURLToPath } from 'url';
+import {
+  createFilename,
+  cwd,
+  globalModules,
+  isAnalyze,
+  isExternal,
+  isWatchMode,
+  pkg,
+  revision,
+  shouldMinify,
+} from './settings.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,8 +31,7 @@ export default defineConfig(async ({ mode, command }) => {
     plugins: isBuild
       ? [
           isAnalyze && analyze({}),
-          pkg.main === 'dist/index.js' &&
-            writeIndexFile({ fileName: pkg.name, outDir }),
+          pkg.main === 'dist/index.js' && writeIndexFile({ fileName: pkg.name, outDir }),
           !shouldMinify && pkg.typings && runTSC(),
         ].filter(Boolean)
       : [],

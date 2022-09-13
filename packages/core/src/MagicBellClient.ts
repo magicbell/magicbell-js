@@ -1,4 +1,5 @@
 import isNil from 'lodash/isNil';
+
 import { setupAjax } from './lib/ajax';
 import { connectToAbly, handleAblyEvent, pushEventAggregator } from './lib/realtime';
 import Config from './models/Config';

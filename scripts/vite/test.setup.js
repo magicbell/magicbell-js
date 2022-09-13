@@ -1,8 +1,6 @@
 import '@testing-library/jest-dom';
-import {
-  useConfig,
-  useNotificationPreferences,
-} from '@magicbell/react-headless';
+
+import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
 
 // it's defined in vitest environemtn
 // eslint-disable-next-line no-undef

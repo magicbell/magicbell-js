@@ -79,12 +79,7 @@ test('can render the inbox with a custom layout', async () => {
   render(
     <>
       <div ref={ref} />
-      <FloatingNotificationInbox
-        launcherRef={ref}
-        height={350}
-        layout={['footer', 'content', 'header']}
-        isOpen
-      />
+      <FloatingNotificationInbox launcherRef={ref} height={350} layout={['footer', 'content', 'header']} isOpen />
     </>,
     { stores },
   );
@@ -124,12 +119,7 @@ test('calls the onNotificationClick callback', async () => {
   render(
     <>
       <div ref={ref} />
-      <FloatingNotificationInbox
-        launcherRef={ref}
-        height={350}
-        isOpen
-        onNotificationClick={onClick}
-      />
+      <FloatingNotificationInbox launcherRef={ref} height={350} isOpen onNotificationClick={onClick} />
     </>,
   );
 
@@ -147,12 +137,7 @@ test('opens the action url in the same window', async () => {
   render(
     <>
       <div ref={ref} />
-      <FloatingNotificationInbox
-        launcherRef={ref}
-        height={350}
-        isOpen
-        onNotificationClick={onClick}
-      />
+      <FloatingNotificationInbox launcherRef={ref} height={350} isOpen onNotificationClick={onClick} />
     </>,
   );
 

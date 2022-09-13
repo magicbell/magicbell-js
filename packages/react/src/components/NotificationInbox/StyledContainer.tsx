@@ -21,8 +21,7 @@ interface StyledContainerProps {
  */
 export default function StyledContainer({ height, children, layout }: StyledContainerProps) {
   const { container: theme } = useTheme();
-  const [ltBorderRadius, rtBorderRadius, rbBorderRadius, lbBorderRadius] =
-    useContainerBorderRadius(layout);
+  const [ltBorderRadius, rtBorderRadius, rbBorderRadius, lbBorderRadius] = useContainerBorderRadius(layout);
 
   return (
     <div

@@ -25,10 +25,7 @@ const defaultOptions: RenderWithProvidersOptions = {
   theme: defaultTheme,
 };
 
-export function renderWithProviders(
-  node: ReactNode,
-  options?: Partial<RenderWithProvidersOptions>,
-) {
+export function renderWithProviders(node: ReactNode, options?: Partial<RenderWithProvidersOptions>) {
   const { apiKey, locale, theme, stores } = Object.assign(defaultOptions, options);
 
   return TLRender(

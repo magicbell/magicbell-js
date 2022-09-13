@@ -1,15 +1,12 @@
 // inspired by https://github.com/FormidableLabs/urql/blob/78368cf5bfcdd04bd663d8775d8883962128376b/scripts/rollup/settings.js
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-
-import { execSync } from 'child_process';
 
 export const cwd = process.cwd();
 const args = process.argv.slice(2);
 
-export const pkg = JSON.parse(
-  fs.readFileSync(path.resolve(cwd, './package.json'), 'utf-8')
-);
+export const pkg = JSON.parse(fs.readFileSync(path.resolve(cwd, './package.json'), 'utf-8'));
 
 export const revision = execSync(`git rev-parse HEAD`).toString('utf-8');
 
@@ -54,16 +51,12 @@ if (hasReact) {
 }
 
 export function createFilename({ name, format, minify }) {
-  return [normalize(name), format, minify && 'min', 'js']
-    .filter(Boolean)
-    .join('.');
+  return [normalize(name), format, minify && 'min', 'js'].filter(Boolean).join('.');
 }
 
 export function createLibName(name) {
   return name
     .split('-')
-    .map((x) =>
-      x === 'magicbell' ? 'MagicBell' : x[0].toUpperCase() + x.slice(1)
-    )
+    .map((x) => (x === 'magicbell' ? 'MagicBell' : x[0].toUpperCase() + x.slice(1)))
     .join('');
 }

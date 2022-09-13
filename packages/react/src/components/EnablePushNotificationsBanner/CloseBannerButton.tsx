@@ -3,12 +3,16 @@ import { css } from '@emotion/react';
 
 import CloseIcon from '../UserPreferencesPanel/CloseIcon';
 
+type CloseBannerButtonProps = {
+  onClick: () => void;
+};
+
 /**
  *
  * @example
  * <EnablePushNotificationsButton onClick={closeBanner} />
  */
-export default function CloseBannerButton({ onClick }) {
+export default function CloseBannerButton({ onClick }: CloseBannerButtonProps) {
   const handleClick = () => {
     onClick();
   };

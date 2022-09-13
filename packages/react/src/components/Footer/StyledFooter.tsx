@@ -27,9 +27,7 @@ export default function StyledFooter({ children }: StyledFooterProps) {
     font-weight: ${footerTheme.fontWeight} !important;
     text-align: ${footerTheme.textAlign} !important;
     padding: ${footerTheme.padding} !important;
-    border-top: ${footerTheme.borderColor
-      ? `1px solid ${footerTheme.borderColor} !important`
-      : undefined};
+    border-top: ${footerTheme.borderColor ? `1px solid ${footerTheme.borderColor} !important` : undefined};
     flex-shrink: 0 !important;
 
     &:first-of-type {

@@ -6,13 +6,7 @@ import MagicBellProvider from '../MagicBellProvider';
 import NotificationInbox from './NotificationInbox';
 
 const Component = ({ apiKey, userEmail, userKey, stores, theme, ...props }) => (
-  <MagicBellProvider
-    apiKey={apiKey}
-    userEmail={userEmail}
-    userKey={userKey}
-    stores={stores}
-    theme={theme}
-  >
+  <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} stores={stores} theme={theme}>
     <NotificationInbox {...props} />
   </MagicBellProvider>
 );

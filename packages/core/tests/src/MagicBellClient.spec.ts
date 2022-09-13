@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { Server } from 'miragejs';
+
 import MagicBellClient, { Config } from '../../src';
 import * as ajax from '../../src/lib/ajax';
 

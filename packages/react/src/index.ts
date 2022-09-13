@@ -8,8 +8,8 @@ export { default as Bell } from './components/Bell';
 export * from './components/Bell';
 export { default as ClassicBellIcon } from './components/Bell/ClassicBellIcon';
 export {
-  default as ClickableNotification,
   type ClickableNotificationProps,
+  default as ClickableNotification,
   StyledNotificationContainer,
 } from './components/ClickableNotification';
 export { EnablePushNotificationsButton } from './components/EnablePushNotificationsBanner';
@@ -33,11 +33,10 @@ export { default as MagicBellThemeContext, useTheme } from './context/MagicBellT
 export type { IMagicBellTheme } from './context/Theme';
 export { defaultTheme as defaultMagicBellTheme } from './context/Theme';
 export { darken, toRGBA } from './lib/color';
+export type { CustomLocale } from './lib/i18n';
 export { merge } from './lib/merge';
 export * from './themes';
 export {
-  clientSettings,
-  eventAggregator,
   type INotification,
   type INotificationsStoresCollection,
   type INotificationStore,
@@ -45,6 +44,8 @@ export {
   type IRemoteNotification,
   type IRemoteNotificationPreferences,
   type Notification,
+  clientSettings,
+  eventAggregator,
   registry,
   useMagicBellEvent,
   useNotification,
@@ -53,7 +54,6 @@ export {
   useNotificationStoresCollection,
   useNotificationUnmount,
 } from '@magicbell/react-headless';
-export type { CustomLocale } from './lib/i18n';
 
 if (__DEV__) {
   // eslint-disable-next-line @typescript-eslint/no-empty-function

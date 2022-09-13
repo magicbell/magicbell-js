@@ -1,7 +1,8 @@
+import { execSync } from 'child_process';
 import fs from 'fs/promises';
 import { join } from 'path';
+
 import { createFilename } from './settings.js';
-import { execSync } from 'child_process';
 
 export async function writeIndexFile({ fileName, outDir }) {
   return {
@@ -35,9 +36,7 @@ export async function runTSC() {
     name: 'generate types',
     buildEnd: async (errors) => {
       if (errors) return;
-      execSync(
-        `tsc --emitDeclarationOnly --declaration --noEmit false --project tsconfig.build.json --outDir dist`
-      );
+      execSync(`tsc --emitDeclarationOnly --declaration --noEmit false --project tsconfig.build.json --outDir dist`);
     },
   };
 }

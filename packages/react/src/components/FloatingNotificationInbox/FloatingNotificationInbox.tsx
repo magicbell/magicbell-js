@@ -59,11 +59,7 @@ export default function FloatingNotificationInbox({
       hideArrow={hideArrow}
       layout={layout}
     >
-      <NotificationInbox
-        onNotificationClick={handleNotificationClick}
-        layout={layout}
-        {...inboxProps}
-      />
+      <NotificationInbox onNotificationClick={handleNotificationClick} layout={layout} {...inboxProps} />
     </FloatingInboxContainer>
   );
 }

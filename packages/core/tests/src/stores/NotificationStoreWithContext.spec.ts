@@ -1,4 +1,5 @@
 import { Response, Server } from 'miragejs';
+
 import { Notification, NotificationStoreWithContext } from '../../../src';
 import NotificationFactory from '../../factories/NotificationFactory';
 

@@ -30,13 +30,6 @@
     "prepare": "husky install",
     "prepublishOnly": "yarn build"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint ./src/ --fix",
-      "prettier --write"
-    ],
-    "*.{md,html,css,scss}": "prettier --write"
-  },
   "dependencies": {
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.1",

@@ -48,13 +48,7 @@ export interface Props extends OptionalProps {
  * </MagicBellProvider>
  * ```
  */
-export default function MagicBellProvider({
-  children,
-  theme = {},
-  images,
-  locale = 'en',
-  ...settings
-}: Props) {
+export default function MagicBellProvider({ children, theme = {}, images, locale = 'en', ...settings }: Props) {
   const textTranslations = useLocale(locale);
 
   return (

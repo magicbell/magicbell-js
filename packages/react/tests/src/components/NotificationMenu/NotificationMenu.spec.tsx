@@ -16,9 +16,7 @@ test('renders an button for the context menu', () => {
 });
 
 test('renders the context menu on click', async () => {
-  render(
-    <ClickableNotification notification={{ ...sampleNotification, seenAt: null, readAt: null }} />,
-  );
+  render(<ClickableNotification notification={{ ...sampleNotification, seenAt: null, readAt: null }} />);
   const menu = screen.getByRole('button', { name: /menu/i });
   await userEvent.click(menu);
 

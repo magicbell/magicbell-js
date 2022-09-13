@@ -1,6 +1,7 @@
 import * as Ably from 'ably';
 import faker from 'faker';
 import { Server } from 'miragejs';
+
 import { api } from '../../../src/lib/ajax';
 import { connectToAbly, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
 import Config from '../../../src/models/Config';
@@ -26,7 +27,11 @@ describe('lib', () => {
       let server;
 
       beforeEach(() => {
-        server = new Server({ environment: 'test', trackRequests: true, timing: 50 });
+        server = new Server({
+          environment: 'test',
+          trackRequests: true,
+          timing: 50,
+        });
 
         server.post('https://api.magicbell.com/ably/auth', {
           keyName: 'rerP7g.9NH_TA',
@@ -92,11 +97,13 @@ describe('lib', () => {
     describe('.handleAblyEvent', () => {
       it('emits the event to the pushEventAggregator', () => {
         const spy = vi.spyOn(pushEventAggregator, 'emit');
-        const event = { name: 'notification/new', data: faker.helpers.createCard() } as Ably.Types.Message;
+        const event = {
+          name: 'notification/new',
+          data: faker.helpers.createCard(),
+        } as Ably.Types.Message;
         handleAblyEvent(event);
 
         expect(spy).toHaveBeenCalledTimes(1);
-        // @ts-ignore
         expect(spy).toHaveBeenCalledWith('notification.new', event.data);
       });
 
@@ -104,8 +111,14 @@ describe('lib', () => {
         let server;
 
         beforeEach(() => {
-          server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
-          server.get('/notifications/uuid', { notification: sampleNotification });
+          server = new Server({
+            environment: 'test',
+            urlPrefix: 'https://api.magicbell.com',
+            timing: 50,
+          });
+          server.get('/notifications/uuid', {
+            notification: sampleNotification,
+          });
         });
 
         afterEach(() => {
@@ -115,11 +128,13 @@ describe('lib', () => {
         it('emits the event with the notification', async () => {
           // const notification = new Notification(sampleNotification);
           const spy = vi.spyOn(pushEventAggregator, 'emit');
-          const event = { name: 'notification/new', data: { id: 'uuid' } } as Ably.Types.Message;
+          const event = {
+            name: 'notification/new',
+            data: { id: 'uuid' },
+          } as Ably.Types.Message;
           await handleAblyEvent(event);
 
           expect(spy).toHaveBeenCalledTimes(1);
-          // @ts-ignore
           // @TODO Investigate why it fails
           // expect(spy).toHaveBeenCalledWith('notification.new', notification);
         });

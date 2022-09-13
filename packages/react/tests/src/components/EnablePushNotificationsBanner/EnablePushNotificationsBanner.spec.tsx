@@ -21,10 +21,7 @@ test("renders a button to enable push notifications if the user hasn't enabled t
 });
 
 test('does not render anything if push notifications are enabled', () => {
-  localStorage.setItem(
-    'magicbell:cf63e9f2fcb30bcd58eb:web-push-requested-at',
-    JSON.stringify(Date.now()),
-  );
+  localStorage.setItem('magicbell:cf63e9f2fcb30bcd58eb:web-push-requested-at', JSON.stringify(Date.now()));
 
   render(<EnablePushNotificationsBanner />, { apiKey: 'cf63e9f2fcb30bcd58eb' });
   expect(screen.queryByRole('button', { name: /enable now/i })).not.toBeInTheDocument();

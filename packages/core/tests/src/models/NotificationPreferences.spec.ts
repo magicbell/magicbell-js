@@ -1,4 +1,5 @@
 import { Server } from 'miragejs';
+
 import NotificationPreferences from '../../../src/models/NotificationPreferences';
 
 describe('models', () => {

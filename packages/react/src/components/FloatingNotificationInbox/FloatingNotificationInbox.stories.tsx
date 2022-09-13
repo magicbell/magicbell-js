@@ -20,13 +20,7 @@ const Component = ({
   ...props
 }) => (
   <div className="flex flex-row justify-center p-4">
-    <MagicBellProvider
-      apiKey={apiKey}
-      userEmail={userEmail}
-      userKey={userKey}
-      theme={theme}
-      stores={stores}
-    >
+    <MagicBellProvider apiKey={apiKey} userEmail={userEmail} userKey={userKey} theme={theme} stores={stores}>
       <MagicBell {...props}>
         {(props) => (
           <FloatingNotificationInbox
@@ -148,9 +142,7 @@ export const WithCustomBadge = merge(Default, {
 export const WithoutRichText = merge(Default, {
   args: {
     bellCounter: 'unread',
-    NotificationItem: (props: ClickableNotificationProps) => (
-      <ClickableNotification {...props} prose={false} />
-    ),
+    NotificationItem: (props: ClickableNotificationProps) => <ClickableNotification {...props} prose={false} />,
   },
 });
 
@@ -158,10 +150,7 @@ export const WithConditionalRichText = merge(Default, {
   args: {
     bellCounter: 'unread',
     NotificationItem: (props: ClickableNotificationProps) => (
-      <ClickableNotification
-        {...props}
-        prose={!/getting started/i.test(props.notification.title)}
-      />
+      <ClickableNotification {...props} prose={!/getting started/i.test(props.notification.title)} />
     ),
   },
 });

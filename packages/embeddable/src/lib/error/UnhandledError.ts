@@ -1,4 +1,5 @@
 import * as ErrorStackParser from 'error-stack-parser';
+
 import MonitoredError from './MonitoredError';
 
 export class UnhandledError extends MonitoredError {

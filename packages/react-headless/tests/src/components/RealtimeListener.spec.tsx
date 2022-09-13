@@ -17,7 +17,7 @@ describe('components', () => {
         const collection = useNotificationStoresCollection();
         useEffect(() => {
           collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
-        }, []);
+        }, [collection]);
 
         return <RealtimeListener />;
       };

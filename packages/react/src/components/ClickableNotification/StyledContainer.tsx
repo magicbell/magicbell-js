@@ -46,10 +46,7 @@ export default function StyledContainer({ notification, children, ...props }: Pr
     position: relative !important;
 
     &:hover {
-      background-color: ${toRGBA(
-        theme.hover.backgroundColor,
-        theme.hover.backgroundOpacity,
-      )} !important;
+      background-color: ${toRGBA(theme.hover.backgroundColor, theme.hover.backgroundOpacity)} !important;
     }
 
     & > * {

@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { useNotification } from '../src';
+import IRemoteNotification from '../src/types/IRemoteNotification';
 
-export function Notification({ notification: data }) {
+export function Notification({ notification: data }: { notification: IRemoteNotification }) {
   const notification = useNotification(data);
 
   const toggleRead = () => {

@@ -1,6 +1,7 @@
 import * as Ably from 'ably';
 import get from 'lodash/get';
 import mitt from 'mitt';
+
 import Config from '../models/Config';
 import Notification from '../models/Notification';
 import { api } from './ajax';
@@ -42,8 +43,9 @@ export function handleAblyEvent(event: Ably.Types.Message) {
   const name = event.name.replace(/\//gi, '.');
   const eventData = event.data;
 
-  if (eventData.client_id && eventData.client_id === get(api, 'defaults.headers.X-MAGICBELL-CLIENT-ID'))
+  if (eventData.client_id && eventData.client_id === get(api, 'defaults.headers.X-MAGICBELL-CLIENT-ID')) {
     return Promise.resolve();
+  }
 
   if (typeof eventData.id === 'string') {
     const notification = new Notification({ id: eventData.id });

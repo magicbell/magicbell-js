@@ -26,11 +26,7 @@ export interface Props {
  * @example
  * <ClickableNotification notification={notification} onClick={openActionUrl} />
  */
-export default function ClickableNotification({
-  notification: rawNotification,
-  onClick,
-  prose,
-}: Props) {
+export default function ClickableNotification({ notification: rawNotification, onClick, prose }: Props) {
   const {
     notification: { default: theme },
   } = useTheme();
@@ -77,11 +73,7 @@ export default function ClickableNotification({
         <NotificationContent notification={notification} prose={prose} />
       </div>
       <div css={actions}>
-        {notification.sentAt ? (
-          <Timestamp date={notification.sentAt} tooltipPlacement="left" />
-        ) : (
-          <div />
-        )}
+        {notification.sentAt ? <Timestamp date={notification.sentAt} tooltipPlacement="left" /> : <div />}
         <NotificationMenu notification={notification} />
       </div>
     </StyledContainer>

@@ -1,5 +1,6 @@
 import DOMPurify from 'dompurify';
 import isNil from 'lodash/isNil';
+
 import { secondsToDate, toUnix } from '../../lib/date';
 import camelize from '../../lib/decorators/camelize';
 import unwrap from '../../lib/decorators/unwrap';
@@ -89,7 +90,9 @@ export default class Notification {
       this.set(json);
 
       return json;
-    } else throw Error('The notification does not exist yet, save it first');
+    } else {
+      throw Error('The notification does not exist yet, save it first');
+    }
   }
 
   /**
@@ -99,7 +102,9 @@ export default class Notification {
     if (this.id) {
       this.deletedAt = Date.now();
       return this.repo.delete(this.id);
-    } else throw Error('The notification does not exist yet, save it first');
+    } else {
+      throw Error('The notification does not exist yet, save it first');
+    }
   }
 
   /**

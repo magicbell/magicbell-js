@@ -35,9 +35,7 @@ export default function StyledHeader({ children }: Props) {
     text-transform: ${headerTheme.textTransform} !important;
     padding: ${headerTheme.padding} !important;
     flex-shrink: 0 !important;
-    border-bottom: ${headerTheme.borderColor
-      ? `1px solid ${headerTheme.borderColor} !important`
-      : undefined};
+    border-bottom: ${headerTheme.borderColor ? `1px solid ${headerTheme.borderColor} !important` : undefined};
     font-weight: ${headerTheme.fontWeight};
     height: ${headerTheme.fontSize} !important;
 

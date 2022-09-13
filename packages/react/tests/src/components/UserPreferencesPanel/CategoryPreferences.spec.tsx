@@ -78,9 +78,7 @@ describe('CategoryPreferences component', () => {
       await userEvent.click(inAppCheckbox);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(result.current.categories[0]).toStrictEqual(
-        threeChannelAfterUpdatePreference.categories[0],
-      );
+      expect(result.current.categories[0]).toStrictEqual(threeChannelAfterUpdatePreference.categories[0]);
     });
   });
 });

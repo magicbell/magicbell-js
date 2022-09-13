@@ -1,13 +1,14 @@
 import { Global } from '@emotion/react';
-import {FloatingNotificationInbox, useTheme} from '@magicbell/magicbell-react';
-import React, { ComponentProps} from 'react';
+import { FloatingNotificationInbox, useTheme } from '@magicbell/magicbell-react';
+import React, { ComponentProps } from 'react';
 import Frame from 'react-frame-component';
+
 import { useFrameSize } from '../../lib/window';
 import FrameContent from '../FrameContent';
 import FrameProvider from '../FrameProvider';
 import IFrameHead from './IFrameHead';
 
-type NotificationInboxProps = Omit<ComponentProps<typeof FloatingNotificationInbox>, 'isOpen' | 'launcherRef'>
+type NotificationInboxProps = Omit<ComponentProps<typeof FloatingNotificationInbox>, 'isOpen' | 'launcherRef'>;
 export interface IFrameProps extends NotificationInboxProps {
   width?: number;
   height?: number;
@@ -31,6 +32,7 @@ export default function IFrame({
   const { width, height } = useFrameSize(defaultWidth, defaultHeight);
 
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <Frame
       id="magicbell-frame"

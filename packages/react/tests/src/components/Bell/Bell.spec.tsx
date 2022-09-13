@@ -1,9 +1,4 @@
-import {
-  buildStore,
-  useConfig,
-  useNotification,
-  useNotificationStoresCollection,
-} from '@magicbell/react-headless';
+import { buildStore, useConfig, useNotification, useNotificationStoresCollection } from '@magicbell/react-headless';
 import { act, screen, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';

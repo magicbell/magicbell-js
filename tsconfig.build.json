@@ -1,10 +1,5 @@
 {
-  "exclude": [
-    "packages/*/dist",
-    "**/*.stories.*",
-    "**/*.spec.*",
-  ],
-
+  "exclude": ["packages/*/dist", "**/*.stories.*", "**/*.spec.*"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",

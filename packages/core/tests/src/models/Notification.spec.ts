@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { Server } from 'miragejs';
 import Sinon from 'sinon';
+
 import * as ajax from '../../../src/lib/ajax';
 import Notification from '../../../src/models/Notification';
 import NotificationFactory from '../../factories/NotificationFactory';
@@ -17,7 +18,9 @@ describe('models', () => {
       describe('custom attributes', () => {
         describe('it is a string', () => {
           it('parses the value', () => {
-            expect(notification.customAttributes).toStrictEqual({ accountId: 4 });
+            expect(notification.customAttributes).toStrictEqual({
+              accountId: 4,
+            });
           });
         });
 
@@ -34,7 +37,6 @@ describe('models', () => {
           it('sets the value as it is', () => {
             notification = new Notification(NotificationFactory.build({ customAttributes: 'lorem ipsum' }));
 
-            // @ts-ignore
             expect(notification.customAttributes).toStrictEqual('lorem ipsum');
           });
         });
@@ -187,8 +189,14 @@ describe('models', () => {
       const response = NotificationFactory.build();
 
       beforeEach(() => {
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
-        server.get(`/notifications/${notification.id}`, { notification: response });
+        server = new Server({
+          environment: 'test',
+          urlPrefix: 'https://api.magicbell.com',
+          timing: 50,
+        });
+        server.get(`/notifications/${notification.id}`, {
+          notification: response,
+        });
       });
 
       afterEach(() => {
@@ -229,7 +237,11 @@ describe('models', () => {
       let server: any;
 
       beforeEach(() => {
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
+        server = new Server({
+          environment: 'test',
+          urlPrefix: 'https://api.magicbell.com',
+          timing: 50,
+        });
         server.post(`/notifications/${notification.id}/read`, {});
       });
 
@@ -290,7 +302,11 @@ describe('models', () => {
       let server: any;
 
       beforeEach(() => {
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
+        server = new Server({
+          environment: 'test',
+          urlPrefix: 'https://api.magicbell.com',
+          timing: 50,
+        });
         server.post(`/notifications/${notification.id}/unread`, {});
       });
 
@@ -338,7 +354,11 @@ describe('models', () => {
       let server: any;
 
       beforeEach(() => {
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
+        server = new Server({
+          environment: 'test',
+          urlPrefix: 'https://api.magicbell.com',
+          timing: 50,
+        });
         server.delete(`/notifications/${notification.id}`, {});
       });
 

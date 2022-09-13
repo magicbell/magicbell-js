@@ -105,20 +105,14 @@ test('invokes the onAllRead callback when clicking the `mark all read` button', 
 
 test('notification preferences can be disabled trough property', () => {
   render(<NotificationInbox notificationPreferencesEnabled={false} />, { locale: 'en' });
-  expect(
-    screen.queryByRole('button', { name: /Notification preferences/ }),
-  ).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: /Notification preferences/ })).not.toBeInTheDocument();
 });
 
 test('notification preferences can be disabled trough useConfig hook', () => {
-  useConfig.setState(
-    ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }),
-  );
+  useConfig.setState(ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }));
 
   render(<NotificationInbox />, { locale: 'en' });
-  expect(
-    screen.queryByRole('button', { name: /Notification preferences/ }),
-  ).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: /Notification preferences/ })).not.toBeInTheDocument();
 });
 
 test('shows the user preferences panel when the preferences button is clicked', async () => {

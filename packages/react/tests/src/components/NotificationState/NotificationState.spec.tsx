@@ -7,9 +7,7 @@ import NotificationState from '../../../../src/components/NotificationState';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
 test('renders a dot when the notification is unread', () => {
-  const { result } = renderHook(() =>
-    useNotificationFactory({ ...sampleNotification, readAt: null }),
-  );
+  const { result } = renderHook(() => useNotificationFactory({ ...sampleNotification, readAt: null }));
 
   const { container } = render(<NotificationState notification={result.current} />);
 

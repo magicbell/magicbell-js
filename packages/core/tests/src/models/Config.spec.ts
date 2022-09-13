@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { Server } from 'miragejs';
+
 import Config from '../../../src/models/Config';
 
 describe('models', () => {

@@ -63,9 +63,7 @@ export default function Bell({ Icon, Badge = BellBadge, onClick, storeId, counte
     >
       <div css={iconStyle}>{!isNil(Icon) ? Icon : <BellIcon />}</div>
       {notifications && (
-        <Badge
-          count={counter === 'unread' ? notifications?.unreadCount : notifications?.unseenCount}
-        />
+        <Badge count={counter === 'unread' ? notifications?.unreadCount : notifications?.unseenCount} />
       )}
     </a>
   );

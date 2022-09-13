@@ -1,4 +1,5 @@
 import { Response, Server } from 'miragejs';
+
 import { deleteAPI, fetchAPI, postAPI, putAPI, setupAjax } from '../../../src/lib/ajax';
 
 describe('lib', () => {

@@ -31,16 +31,9 @@ export default function ClearInboxMessage() {
       `}
     >
       <p>
-        <Text
-          id="messages.empty-inbox"
-          defaultMessage="All clear!<br>We'll let you know when there's more."
-          html
-        />
+        <Text id="messages.empty-inbox" defaultMessage="All clear!<br>We'll let you know when there's more." html />
       </p>
-      <img
-        src={images?.emptyInboxUrl || 'https://assets.magicbell.io/images/empty_inbox.png'}
-        alt="No notifications"
-      />
+      <img src={images?.emptyInboxUrl || 'https://assets.magicbell.io/images/empty_inbox.png'} alt="No notifications" />
     </div>
   );
 }

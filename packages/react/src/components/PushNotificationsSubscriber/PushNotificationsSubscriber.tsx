@@ -5,10 +5,7 @@ import { useEffect } from 'react';
 import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 
 export interface Props {
-  children: (params: {
-    createSubscription: () => Promise<any>;
-    isPushAPISupported: boolean;
-  }) => JSX.Element;
+  children: (params: { createSubscription: () => Promise<any>; isPushAPISupported: boolean }) => JSX.Element;
   serviceWorkerPath?: string;
   skipServiceWorkerRegistration?: boolean;
 }
@@ -33,17 +30,18 @@ export default function PushNotificationsSubscriber({
   const isPushAPISupported = 'PushManager' in window;
 
   useEffect(() => {
-    if (!skipServiceWorkerRegistration) navigator.serviceWorker.register(serviceWorkerPath);
-  }, []);
+    if (!skipServiceWorkerRegistration) {
+      navigator.serviceWorker.register(serviceWorkerPath);
+    }
+  }, [serviceWorkerPath, skipServiceWorkerRegistration]);
 
   const createSubscription = async () => {
-    if (!config) return Promise.reject(new Error('Context for MagicBell was not found'));
+    if (!config) {
+      return Promise.reject(new Error('Context for MagicBell was not found'));
+    }
 
     if (isSafari) {
-      const authenticationToken = path<string>(
-        ['safari', 'authenticationToken'],
-        config.channels?.webPush.config,
-      );
+      const authenticationToken = path<string>(['safari', 'authenticationToken'], config.channels?.webPush.config);
       const websitePushID = path<string>(['safari', 'websitePushId'], config.channels?.webPush.config);
       const webServiceUrl = path<string>(['safari', 'webServiceUrl'], config.channels?.webPush.config);
 

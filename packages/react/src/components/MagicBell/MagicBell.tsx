@@ -29,11 +29,7 @@ export interface Props {
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
-  children?: (params: {
-    launcherRef: React.RefObject<Element>;
-    isOpen: boolean;
-    toggle: () => void;
-  }) => JSX.Element;
+  children?: (params: { launcherRef: React.RefObject<Element>; isOpen: boolean; toggle: () => void }) => JSX.Element;
   theme?: DeepPartial<IMagicBellTheme>;
   BellIcon?: JSX.Element;
   Badge?: (props: { count: number }) => JSX.Element;

@@ -58,10 +58,7 @@ export function subscribeToPushNotifications(pushManager: PushManager, publicKey
  * @param project
  */
 export async function createPushSubscription(pushManager: PushManager, config: IRemoteConfig) {
-  const vapidPublicKey = path<string>(
-    ['webPush', 'config', 'vapidAuthentication', 'publicKey'],
-    config.channels,
-  );
+  const vapidPublicKey = path<string>(['webPush', 'config', 'vapidAuthentication', 'publicKey'], config.channels);
   const subscription = await subscribeToPushNotifications(pushManager, vapidPublicKey);
 
   return storeSubscription(subscription.toJSON());

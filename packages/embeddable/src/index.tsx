@@ -5,6 +5,7 @@ import 'preact/debug';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import Widget, { WidgetProps } from './components/Widget';
 import emitter, { MagicBellEventEmitter } from './lib/emitter';
 

@@ -1,6 +1,7 @@
 import eq from 'lodash/eq';
 import has from 'lodash/has';
 import keys from 'lodash/keys';
+
 import { Notification } from '../models';
 
 export type NotificationCompareStrategy = (
@@ -27,8 +28,9 @@ export function compareAttributeStrategy(notification: Notification, context, co
       (attr === 'read' && !comparator(notification.isRead, conditionValue)) ||
       (attr === 'seen' && !comparator(notification.isSeen, conditionValue)) ||
       (has(notification, attr) && !comparator(notification[attr], conditionValue))
-    )
+    ) {
       diff.push(attr);
+    }
   });
 
   return { result: diff.length === 0, delta: diff };

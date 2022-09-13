@@ -44,7 +44,7 @@ function Tabs({
   );
 }
 
-function Tab({ children, value, ...props }: { children: ReactNode; value: string }) {
+function Tab({ children, value, ...props }: { children: ReactNode; value: string; 'data-selected'?: boolean }) {
   const { tabs } = useTheme();
 
   // use [aria-selected] to increase specificity, we'll lose from header > button without it
@@ -65,11 +65,7 @@ function Tab({ children, value, ...props }: { children: ReactNode; value: string
 
   return (
     <button {...props} css={style} role="tab" aria-selected={Boolean(props['data-selected'])}>
-      {typeof children === 'string' ? (
-        <Text id={`tab.${value}`} defaultMessage={children} />
-      ) : (
-        children
-      )}
+      {typeof children === 'string' ? <Text id={`tab.${value}`} defaultMessage={children} /> : children}
     </button>
   );
 }

@@ -80,17 +80,11 @@ describe('PreferencesCategories component', () => {
       render(<PreferencesCategories onChange={onChangeSpy} />);
 
       const checkboxes = screen.getAllByRole('checkbox');
-      const commentInApp = checkboxes.find(
-        (x) => x.getAttribute('id') === 'comments-in_app',
-      ) as HTMLElement;
+      const commentInApp = checkboxes.find((x) => x.getAttribute('id') === 'comments-in_app') as HTMLElement;
 
-      const commentWebPush = checkboxes.find(
-        (x) => x.getAttribute('id') === 'comments-web_push',
-      ) as HTMLElement;
+      const commentWebPush = checkboxes.find((x) => x.getAttribute('id') === 'comments-web_push') as HTMLElement;
 
-      const replyMobilePush = checkboxes.find(
-        (x) => x.getAttribute('id') === 'new_reply-mobile_push',
-      ) as HTMLElement;
+      const replyMobilePush = checkboxes.find((x) => x.getAttribute('id') === 'new_reply-mobile_push') as HTMLElement;
 
       const commentInAppPreference = {
         channels: [{ enabled: false, label: 'In app', slug: 'in_app' }],

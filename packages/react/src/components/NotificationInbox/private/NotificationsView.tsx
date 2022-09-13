@@ -54,8 +54,7 @@ export default function NotificationsView({
 
   const hasNotifications = !store.isEmpty;
   const showPreferencesButton =
-    notificationPreferencesEnabled ??
-    pathOr(true, ['features', 'notificationPreferences', 'enabled'], config.inbox);
+    notificationPreferencesEnabled ?? pathOr(true, ['features', 'notificationPreferences', 'enabled'], config.inbox);
 
   const handleMarkAllAsRead = () => {
     store?.markAllAsRead();
@@ -77,10 +76,7 @@ export default function NotificationsView({
         actions={
           <Fragment>
             {hasNotifications ? (
-              <IconButton
-                onClick={handleMarkAllAsRead}
-                aria-label={t('header.mark-all-read', 'Mark all read')}
-              >
+              <IconButton onClick={handleMarkAllAsRead} aria-label={t('header.mark-all-read', 'Mark all read')}>
                 <CheckMarkIcon />
               </IconButton>
             ) : null}

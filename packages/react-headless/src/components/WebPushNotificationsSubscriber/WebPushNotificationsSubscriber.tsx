@@ -29,11 +29,15 @@ export default function WebPushNotificationsSubscriber({
   const isPushAPISupported = 'PushManager' in window;
 
   useEffect(() => {
-    if (!skipServiceWorkerRegistration) navigator.serviceWorker.register(serviceWorkerPath);
-  }, []);
+    if (!skipServiceWorkerRegistration) {
+      navigator.serviceWorker.register(serviceWorkerPath);
+    }
+  }, [serviceWorkerPath, skipServiceWorkerRegistration]);
 
   const createSubscription = async () => {
-    if (!config) return Promise.reject(new Error('Context for MagicBell was not found'));
+    if (!config) {
+      return Promise.reject(new Error('Context for MagicBell was not found'));
+    }
 
     if (isSafari) {
       const authenticationToken = path(['safari', 'authenticationToken'], config.channels?.webPush.config) as string;

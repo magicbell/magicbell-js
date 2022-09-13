@@ -125,8 +125,7 @@ export const WithRelativeTimes = merge(Default, {
     notification: {
       id: 1,
       title: 'Lorem ipsum',
-      content:
-        '@John the changes in the API were approved <time datetime="2021-03-12T05:33:12Z">on March 12</time>',
+      content: '@John the changes in the API were approved <time datetime="2021-03-12T05:33:12Z">on March 12</time>',
       actionUrl: 'https://magicbell.io',
       sentAt: 1599900000,
       seenAt: 1599900000,

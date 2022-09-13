@@ -14,7 +14,5 @@ interface LayoutProps {
  * </Layout>
  */
 export default function Layout({ order, children }: LayoutProps) {
-  return (
-    <>{order.map((key) => children.find((child: React.ReactElement) => child?.key === key))}</>
-  );
+  return <>{order.map((key) => children.find((child: React.ReactElement) => child?.key === key))}</>;
 }

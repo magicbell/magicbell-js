@@ -46,11 +46,5 @@ export default function NotificationContent({ notification, prose: withProse = t
     word-break: break-word !important;
   `;
 
-  return (
-    <article
-      ref={ref}
-      css={withProse ? [style, prose] : style}
-      dangerouslySetInnerHTML={{ __html: markup }}
-    />
-  );
+  return <article ref={ref} css={withProse ? [style, prose] : style} dangerouslySetInnerHTML={{ __html: markup }} />;
 }

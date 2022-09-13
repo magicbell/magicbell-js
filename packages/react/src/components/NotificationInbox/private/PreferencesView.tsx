@@ -7,9 +7,7 @@ import Header from '../../Header';
 import IconButton from '../../IconButton/IconButton';
 import Text from '../../Text';
 import CloseIcon from '../../UserPreferencesPanel/CloseIcon';
-import PreferencesCategories, {
-  PreferencesCategoriesProps,
-} from '../../UserPreferencesPanel/PreferencesCategories';
+import PreferencesCategories, { PreferencesCategoriesProps } from '../../UserPreferencesPanel/PreferencesCategories';
 import Layout from '../Layout';
 import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
 
@@ -34,10 +32,7 @@ export default function PreferencesView({
         key="header"
         title={<Text id="preferences.title" defaultMessage="Preferences" />}
         actions={
-          <IconButton
-            onClick={() => setView('inbox')}
-            aria-label={t('preferences.close', 'Close preferences')}
-          >
+          <IconButton onClick={() => setView('inbox')} aria-label={t('preferences.close', 'Close preferences')}>
             <CloseIcon />
           </IconButton>
         }

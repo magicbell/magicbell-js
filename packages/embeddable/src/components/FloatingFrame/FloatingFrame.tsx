@@ -1,10 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { FloatingNotificationInbox, FloatingNotificationInboxArrow, Notification, Popover, useTheme } from '@magicbell/magicbell-react';
-import IFrame from '../IFrame';
-import {ComponentProps} from "react";
+import {
+  FloatingNotificationInbox,
+  FloatingNotificationInboxArrow,
+  Notification,
+  Popover,
+  useTheme,
+} from '@magicbell/magicbell-react';
+import { ComponentProps } from 'react';
 
-type FloatingNotificationInboxProps = ComponentProps<typeof FloatingNotificationInbox>
+import IFrame from '../IFrame';
+
+type FloatingNotificationInboxProps = ComponentProps<typeof FloatingNotificationInbox>;
 /**
  * Renders an iframe within a popover. Its position can be customized through the
  * optional `placement` property. The popover has a poiting arrow.
@@ -29,8 +36,11 @@ export default function FloatingFrame({
   const handleNotificationClick = (notification: Notification) => {
     if (closeOnNotificationClick) toggle?.();
 
-    if (onNotificationClick) onNotificationClick(notification);
-    else if (notification.actionUrl) window.open(notification.actionUrl, '_self');
+    if (onNotificationClick) {
+      onNotificationClick(notification);
+    } else if (notification.actionUrl) {
+      window.open(notification.actionUrl, '_self');
+    }
   };
 
   const handleClickOutside = () => {

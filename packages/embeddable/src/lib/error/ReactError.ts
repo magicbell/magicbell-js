@@ -1,5 +1,6 @@
 import * as ErrorStackParser from 'error-stack-parser';
 import { ErrorInfo } from 'react';
+
 import MonitoredError, { Context, Person } from './MonitoredError';
 
 export class ReactError extends MonitoredError {

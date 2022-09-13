@@ -148,13 +148,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
   const onToggle = vi.fn();
 
   render(
-    <MagicBell
-      apiKey={apiKey}
-      userEmail={userEmail}
-      userKey={userKey}
-      onToggle={onToggle}
-      defaultIsOpen
-    >
+    <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onToggle={onToggle} defaultIsOpen>
       {({ toggle }) => <div data-testid="children" onClick={toggle} />}
     </MagicBell>,
   );
@@ -219,12 +213,7 @@ test('calls the onNewNotification callback when a new notification is received',
   const onNewNotification = vi.fn();
 
   render(
-    <MagicBell
-      apiKey={apiKey}
-      userEmail={userEmail}
-      userKey={userKey}
-      onNewNotification={onNewNotification}
-    >
+    <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onNewNotification={onNewNotification}>
       {() => <div data-testid="children" />}
     </MagicBell>,
   );
@@ -241,13 +230,7 @@ test('supports a custom notification Badge', async () => {
   const Badge = ({ count }) => <div data-testid="custom-badge">{count}</div>;
 
   render(
-    <MagicBell
-      apiKey={apiKey}
-      userEmail={userEmail}
-      userKey={userKey}
-      Badge={Badge}
-      bellCounter="unread"
-    >
+    <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} Badge={Badge} bellCounter="unread">
       {() => <div data-testid="children" />}
     </MagicBell>,
   );

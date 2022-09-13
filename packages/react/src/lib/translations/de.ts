@@ -10,8 +10,7 @@ const de = {
     menu: 'Menu',
   },
   'web-push-notifications': {
-    notice:
-      'Wenn Sie Browser-Benachrichtigungen aktivieren, bleiben Sie noch besser auf dem Laufenden.',
+    notice: 'Wenn Sie Browser-Benachrichtigungen aktivieren, bleiben Sie noch besser auf dem Laufenden.',
     'enable-now': 'Aktivieren',
   },
   messages: {
