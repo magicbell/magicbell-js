@@ -28,20 +28,6 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    {
-      name: '@storybook/addon-postcss',
-      options: {
-        styleLoaderOptions: {},
-        cssLoaderOptions: {
-          modules: true,
-          sourceMap: true,
-          importLoaders: 1,
-        },
-        postcssLoaderOptions: {
-          implementation: require('postcss'),
-        },
-      },
-    },
   ],
   typescript: {
     check: true,
@@ -53,9 +39,8 @@ module.exports = {
     previewCsfV3: true,
   },
   async viteFinal(config) {
-    const buildConfig = (await import('../scripts/vite/vite.config.js')).default({
-      mode: 'development'
-    });
+    const buildConfig = await import('../scripts/vite/vite.config.js').then(x => x.default(config));
+
     return mergeConfig(config, {
       esbuild: { jsx: 'automatic' },
       define: buildConfig.define,

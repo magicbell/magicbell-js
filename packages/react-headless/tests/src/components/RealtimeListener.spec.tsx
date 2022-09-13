@@ -17,7 +17,9 @@ describe('components', () => {
         const collection = useNotificationStoresCollection();
         useEffect(() => {
           collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
-        }, [collection]);
+          // Adding collection to the deps, will cause an infinite loop
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
         return <RealtimeListener />;
       };

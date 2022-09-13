@@ -23,8 +23,7 @@
     "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
     "start": "yarn build:dev --watch",
-    "report-coverage": "codecov",
-    "console": "ts-node"
+    "report-coverage": "codecov"
   },
   "devDependencies": {
     "@types/faker": "^5.5.9",
@@ -35,10 +34,7 @@
     "faker": "^5.5.3",
     "miragejs": "^0.1.42",
     "rosie": "^2.1.0",
-    "sinon": "^13.0.1",
-    "ts-node": "^10.3.0",
-    "tsdx": "^0.14.1",
-    "typescript": "^4.4.4"
+    "sinon": "^13.0.1"
   },
   "dependencies": {
     "ably": "^1.2.14",
