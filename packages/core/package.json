@@ -10,19 +10,20 @@
   ],
   "source": "./src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/core.esm.js",
+  "module": "dist/magicbell-core.esm.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
-    "/dist"
+    "/dist",
+    "/src"
   ],
   "scripts": {
-    "build": "tsdx build",
-    "prepublishOnly": "yarn build",
-    "start": "tsdx watch",
+    "clean": "rimraf dist",
+    "build": "run-s clean build:*",
+    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
+    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "start": "yarn build:dev --watch",
     "report-coverage": "codecov",
-    "test": "TZ=America/New_York tsdx test --collectCoverage --no-cache",
-    "test:watch": "TZ=America/New_York tsdx test --watch",
     "console": "ts-node"
   },
   "devDependencies": {
