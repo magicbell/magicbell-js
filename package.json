@@ -15,38 +15,20 @@
     "build": "turbo run build",
     "build:example": "yarn --cwd example && yarn --cwd example build",
     "build:storybook": "build-storybook",
-    "lint": "turbo run lint -- --fix",
+    "lint": "tsc --noEmit && eslint --fix",
     "test": "vitest -c scripts/vite/vite.config.js --run --coverage",
     "test:watch": "vitest -c scripts/vite/vite.config.js",
     "postinstall": "husky install && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
     "release": "yarn build && changeset publish"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "lint-staged": {
     "*.{md,json,yml,yaml}": [
       "prettier -w"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "dts lint --fix"
+      "eslint --fix"
     ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "./node_modules/dts-cli/conf/eslint-config-react-app/index.js",
-      "prettier",
-      "plugin:prettier/recommended"
-    ],
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    }
   },
   "engines": {
     "node": ">=12"
@@ -72,16 +54,27 @@
     "@tsconfig/create-react-app": "^1.0.2",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
     "@vitest/coverage-c8": "^0.23.2",
     "cross-env": "^7.0.3",
     "dts-cli": "^1.6.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "lerna": "^5.5.0",
     "lint-staged": "^12.1.3",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",

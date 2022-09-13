@@ -25,35 +25,14 @@
     "test:watch": "TZ=America/New_York tsdx test --watch",
     "console": "ts-node"
   },
-  "lint-staged": {
-    "*.{jsx?,tsx?}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{md,html,css,scss}": "prettier --write"
-  },
   "devDependencies": {
     "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.184",
     "@types/rosie": "^0.0.40",
     "@types/sinon": "^10.0.6",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
     "codecov": "^3.8.3",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.9.2",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.3.0",
     "faker": "^5.5.3",
-    "husky": "^7.0.2",
-    "lint-staged": "^12.1.3",
     "miragejs": "^0.1.42",
-    "prettier": "^2.4.1",
     "rosie": "^2.1.0",
     "sinon": "^13.0.1",
     "ts-node": "^10.3.0",

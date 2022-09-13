@@ -1,7 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['plugin:prettier/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['eslint-plugin-simple-import-sort'],
+  extends: ['plugin:prettier/recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['eslint-plugin-simple-import-sort', 'cypress'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'prefer-const': ['error', { destructuring: 'all' }],
@@ -14,12 +14,20 @@ module.exports = {
     ],
     'no-console': ['error'],
   },
+  settings: {
+    react: {
+      version: 'detect',
+    }
+  },
   overrides: [
     {
       files: '**/*.spec.{ts,tsx}',
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
       },
+      env: {
+        'cypress/globals': true,
+      }
     },
   ],
 };
