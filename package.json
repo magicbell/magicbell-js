@@ -20,8 +20,8 @@
     "test:watch": "vitest -c scripts/vite/vite.config.js",
     "postinstall": "husky install && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
-    "version": "changeset version",
-    "release": "yarn build && changeset publish",
+    "changeset:version": "changeset version",
+    "changeset:release": "yarn build && changeset publish",
     "console": "ts-node"
   },
   "lint-staged": {

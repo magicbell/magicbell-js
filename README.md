@@ -1,145 +1,114 @@
-# DTS / React / Storybook / Vite / mono-repo setup
+# MagicBell
 
-Congrats! You just saved yourself hours of work by bootstrapping your project with this template. Let’s get you oriented with what’s here and how to use it.
+This monorepo contains JavaScript/TypeScript based SDKs to build a notification inbox for your site, powered by [MagicBell](https://magicbell.com).
 
-> This setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## Documentation
+
+You can find the MagicBell documentation on [magicbell.com/docs](https://magicbell.com/docs). Documentation found in this README applies to the dev setup of this monorepo. It does not cover or apply to the consumption of the SDKs.
+
+For SDK documentation see [magicbell.com/docs](https://magicbell.com/docs), or the package readmes at: [packages/core](packages/core), [packages/embeddable](packages/embeddable), [packages/magicbell-react](packages/react), [packages/react-headless](packages/react-headless).
 
 ## Requirements
 
-Note that this repo is a mono-repo based on yarn workspaces. It won't work with `npm`, so use `yarn` instead.
+The development environment for this repo supports `node:v18` and up. We use `yarn` as package manager.
 
 ## Setup
 
-First things first, search for occurrences of `ts-project` in this folder, and replace them with your org name. For example in these config files:
+Run the following commands in your terminal to get a copy of this repo, and install required dependencies.
 
 ```
-.changeset/config.json
-example/package.json
-packages/react/package.json
-packages/utils/package.json
-package.json
-tsconfig.json
+git clone git@github.com:magicbell-io/magicbell-js.git
+cd magicbell-js
+yarn
 ```
 
-Run `yarn install` once you're done replacing, and test a build with `yarn build` to see if you've missed some references.
+### Packages
 
-## Commands
+When working on the packages, you'll want to run the builder in watch mode. You can do so by:
 
-We work with packages in `/packages`, and have a [Vite-based](https://vitejs.dev) playground inside `/example`.
-
-The recommended workflow is to run package bundlers in one terminal:
-
-```shell
+```
 yarn start
 ```
 
-This uses [turborepo](https://www.npmjs.com/package/turbo) to build individual packages to their `/dist` folder, and runs the project in watch mode so any edits you save inside `/packages` causes a rebuild that, and all related packages.
-
-Then run either Storybook or the example playground:
+This builds the packages, and recompiles all affected ones when you make changes in the `packages` folder.
 
 ### Storybook
 
-Run inside another terminal:
+We have a single storybook instance available for stories in all packages. Run it with:
 
-```bash
+```
 yarn start:storybook
 ```
 
-This loads the stories from `*.stories.tsx` files from package source folders (`packages/*/src`).
-
-> NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
+After that, visit http://localhost:6006. Storybook will hot-reload on any change that you make in `/packages`. Make sure that you're running `yarn start` in another terminal, when you have the feeling that you're dealing with stale data.
 
 ### Example
 
-Then run the example inside another:
+There is a vite based example application located in the /example folder. This gives one the opportunity to try out use cases in a production like environment. Run it with:
 
-```bash
+```
 yarn start:example
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure you're running the package builders in watch mode like we recommend above.
+After that, visit http://localhost:3000. The example app will hot-reload on any change that you make in `/packages`. Make sure that you're running `yarn start` in another terminal, when you have the feeling that you're dealing with stale data.
 
-To do a one-off production build, use `yarn build`.
+## Contribute
 
-To run tests, use `yarn test`.
-
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-
-### Vitest
-
-Vite tests are set up to run with `yarn test`.
-
-### Rollup
-
-DTS uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Three actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [size-limit](https://github.com/ai/size-limit)
-- `release` which creates release pull-requests, and releases new versions
+Code quality is set up for you with `eslint`, `prettier`, `husky`, and `lint-staged`. Please keep the pre-commit hooks enabled.
 
 ## Optimizations
 
-Please see the main `dts` [optimizations docs](https://github.com/weiran-zsd/dts-cli#optimizations). In particular, know that you can take advantage of development-only optimizations:
+You can take advantage of [invariant](https://npmjs.com/tiny-invariant), [warning](https://npmjs.com/tiny-warning) and `__DEV__` to add development-only warnings which won't end up in our production bundles.
 
 ```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
+import invariant from 'tiny-invariant';
+import warning from 'tiny-warning';
 
-// inside your code...
+invariant(truthyValue, 'This should not throw!');
+invariant(falsyValue, 'This will throw!');
+
+warning(truthyValue, 'This should not log a warning');
+warning(falsyValue, 'This should log a warning');
+
 if (__DEV__) {
-  console.log('foo');
+  // this is excluded from the production bundle
 }
 ```
 
-You can also choose to install and use [invariant](https://github.com/weiran-zsd/dts-cli#invariant) and [warning](https://github.com/weiran-zsd/dts-cli#warning) functions.
+### Tests
 
-## Module Formats
+Tests are setup using [vitest](https://npmjs.com/vitest). They can be run once with coverage with `yarn test` or use `yarn test:watch` to run them in watch mode.
 
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Deploying the Example Playground
-
-The Playground is just a simple [Vite](https://vitejs.dev) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-yarn build # builds to dist
-netlify deploy # deploy the dist folder
+```
+yarn test:watch
 ```
 
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
+### Pull Requests
 
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
+When contributing changes, make sure to document them in a changeset. You'll usually do this when you're ready to push the changes and create a pull-request. To do so, run:
+
+```
+yarn changeset
 ```
 
-## Named Exports
+`Changeset` will ask you for a change description, and how different packages are affected. Your answers help us determine if packages should be bumped in version, and if it should be a `patch`, `minor`, or `major` version bump. The description you provide may end up in our changelogs.
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
+Please review, polish, and commit the files after completing the steps.
 
-## Including Styles
+## Publish
 
-There are many ways to ship styles, including with CSS-in-JS. DTS has no opinion on this, configure how you like.
+Manual publishing is done in two steps:
 
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
+```
+yarn changeset:version
+```
 
-## Publishing to NPM
+This command consumes the changesets as collected in [.changeset](.changeset), and proposes changelogs and version bumps. Please review the proposed changes, and polish the changelogs. Make sure that breaking changes result in major version bumps.
 
-Provide the `NPM_TOKEN` to github to deploy via github actions, or run `yarn release` for manual publishing.
+Commit the change with `git add . && git commit -m 'version packages`, and move on to the next step to publish.
+
+```
+yarn changeset:release
+```
+
+This will publish all changed packages to npm, and tag the last commit. Please don't commit anything between the release commit, and the publish action. These command are separate to enable you to check if the release commit is accurate.
