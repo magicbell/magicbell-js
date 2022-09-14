@@ -12,7 +12,7 @@
     "Stephan Meijer <stephan.meijer@gmail.com>",
     "Eric Hosick <erichosick@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "node": ">=12.x"
   },
@@ -26,9 +26,7 @@
     "cypress": "cypress run",
     "cypress:headed": "cypress open",
     "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'",
-    "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'",
-    "prepare": "husky install",
-    "prepublishOnly": "yarn build"
+    "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'"
   },
   "dependencies": {
     "@emotion/cache": "^11.4.0",
