@@ -3,7 +3,7 @@ import analyze from 'rollup-plugin-analyzer';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 
-import { runTSC, writeIndexFile } from './plugins.js';
+import { writeIndexFile, writeTypeDefs } from './plugins';
 import {
   createFilename,
   cwd,
@@ -19,8 +19,6 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const outDir = resolve(cwd, 'dist');
-
 export default defineConfig(async ({ mode, command }) => {
   const isDev = mode === 'development';
   const isBuild = command === 'build';
@@ -31,8 +29,8 @@ export default defineConfig(async ({ mode, command }) => {
     plugins: isBuild
       ? [
           isAnalyze && analyze({}),
-          pkg.main === 'dist/index.js' && writeIndexFile({ fileName: pkg.name, outDir }),
-          !shouldMinify && pkg.typings && runTSC(),
+          pkg.main === 'dist/index.js' && writeIndexFile({ fileName: pkg.name }),
+          !shouldMinify && writeTypeDefs(),
         ].filter(Boolean)
       : [],
     define: {
