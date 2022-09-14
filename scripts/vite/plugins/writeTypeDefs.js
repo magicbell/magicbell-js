@@ -9,6 +9,7 @@ export async function writeTypeDefs() {
       if (errors) return;
       if (!pkg.typings) {
         this.warn(`package ${pkg.name} does not export any types. Set package.json#typings if this is a mistake.`);
+        return;
       }
       execSync(`tsc --emitDeclarationOnly --declaration --noEmit false --project tsconfig.build.json --outDir dist`);
     },

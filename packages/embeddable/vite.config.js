@@ -1,7 +1,3 @@
-//       license({
-//         banner: `MagicBell JavaScript Library <%= pkg.version %>\nhttps://magicbell.io\nCopyright <%= new Date().getFullYear() %>, MagicBell Inc.`,
-//       }),
-
 import { defineConfig } from 'vite';
 
 import { createFilename, shouldMinify } from '../../scripts/vite/settings.js';
