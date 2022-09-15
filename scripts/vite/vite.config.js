@@ -92,7 +92,7 @@ export default defineConfig(async ({ mode, command }) => {
       restoreMocks: true,
       mockReset: true,
       clearMocks: true,
-      reporters: process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
+      reporters: isTest && process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
     },
   };
 });
