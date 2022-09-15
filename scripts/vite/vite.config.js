@@ -3,6 +3,7 @@ import analyze from 'rollup-plugin-analyzer';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
+import GithubActionsReporter from 'vitest-github-actions-reporter';
 
 import { writeIndexFile, writeTypeDefs } from './plugins';
 import {
@@ -86,6 +87,7 @@ export default defineConfig(async ({ mode, command }) => {
       restoreMocks: true,
       mockReset: true,
       clearMocks: true,
+      reporters: process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
     },
   };
 });

@@ -1,32 +1,43 @@
 name: CI
 on: [push]
-jobs:
-  build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
 
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: ['16.x']
-        os: [ubuntu-latest]
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
+  eslint:
+    name: ESLint
+    needs: [setup]
+    runs-on: ubuntu-latest
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
-
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
       - name: Lint
-        run: yarn lint
+        run: yarn lint:eslint
 
-      - name: Test
-        run: yarn test --ci --coverage --maxWorkers=2
+  typescript:
+    name: TypeScript
+    needs: [setup]
+    runs-on: ubuntu-latest
 
-      - name: Build
-        run: yarn build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Lint
+        run: yarn lint:typescript
+
+  test:
+    name: Test
+    needs: [setup]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - run: yarn test

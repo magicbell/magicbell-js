@@ -1,0 +1,29 @@
+# see https://docs.github.com/en/actions/creating-actions/creating-a-composite-action#creating-an-action-metadata-file
+name: 'Setup NOde'
+description: 'Setup node and install dependencies (with cache)'
+
+inputs:
+  node-version: # id of input
+    description: 'What node version to use'
+    required: false
+    default: '18.x'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node ${{ inputs.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Cache node modules
+      id: cache
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock') }}
+
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn --frozen-lockfile
