@@ -1,4 +1,4 @@
-import IRemoteConfig from '@magicbell/react-headless/dist/types/IRemoteConfig';
+import { IRemoteConfig } from '@magicbell/react-headless';
 import { path, pathOr } from 'ramda';
 import React from 'react';
 

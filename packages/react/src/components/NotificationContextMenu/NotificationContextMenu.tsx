@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { INotification } from '@magicbell/react-headless';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { toRGBA } from '../../lib/color';

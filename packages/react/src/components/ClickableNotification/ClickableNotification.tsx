@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useNotification } from '@magicbell/react-headless';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
-import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
+import { INotification, IRemoteNotification, useNotification } from '@magicbell/react-headless';
 
 import { useTheme } from '../../context/MagicBellThemeContext';
 import NotificationContent from '../NotificationContent';

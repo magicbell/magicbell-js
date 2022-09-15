@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { INotification, useNotifications } from '@magicbell/react-headless';
 import { useState } from 'react';
 
 import NotificationList from '../NotificationList';
 import { NotificationListItem } from '../NotificationList/NotificationList';
+
+type NotificationStore = ReturnType<typeof useNotifications>;
 
 export interface NotificationInboxContentProps {
   height?: number;

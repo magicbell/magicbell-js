@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { useConfig, useNotifications } from '@magicbell/react-headless';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { INotification, useConfig, useNotifications } from '@magicbell/react-headless';
 import { pathOr } from 'ramda';
-import { Fragment, useState } from 'react';
-import { ReactElement } from 'react';
+import { Fragment, ReactElement, useState } from 'react';
 
 import { useTranslate } from '../../../context/TranslationsContext';
 import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';

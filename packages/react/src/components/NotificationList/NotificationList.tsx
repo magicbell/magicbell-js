@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
-import INotification from '@magicbell/react-headless/dist/types/INotification';
-import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
+import { INotification, IRemoteNotification, useNotifications } from '@magicbell/react-headless';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import ClickableNotification from '../ClickableNotification';
 import Loader from './Loader';
+
+type NotificationStore = ReturnType<typeof useNotifications>;
 
 export type NotificationListItem = (props: ListItemProps) => React.ReactElement;
 export type ClickCallbackFn = (notification: INotification) => void;

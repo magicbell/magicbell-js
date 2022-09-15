@@ -1,4 +1,4 @@
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { INotification } from '@magicbell/react-headless';
 
 /**
  * Function that opens the `actionUrl` of a notification in the same window.

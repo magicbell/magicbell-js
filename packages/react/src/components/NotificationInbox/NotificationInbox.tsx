@@ -1,4 +1,4 @@
-import INotification from '@magicbell/react-headless/dist/types/INotification';
+import { INotification } from '@magicbell/react-headless';
 import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react';
 
 import { NotificationListItem } from '../NotificationList/NotificationList';

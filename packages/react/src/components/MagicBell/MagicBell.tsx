@@ -1,6 +1,4 @@
-import { useMagicBellEvent } from '@magicbell/react-headless';
-import INotificationStore from '@magicbell/react-headless/dist/types/INotificationStore';
-import IRemoteNotification from '@magicbell/react-headless/dist/types/IRemoteNotification';
+import { INotificationStore, IRemoteNotification, useMagicBellEvent } from '@magicbell/react-headless';
 import React, { useRef } from 'react';
 import useToggle from 'react-use/lib/useToggle';
 
