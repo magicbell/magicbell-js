@@ -21,6 +21,7 @@
     "lint:eslint": "eslint --fix .",
     "test": "vitest -c scripts/vite/vite.config.js --run --coverage",
     "test:watch": "vitest -c scripts/vite/vite.config.js",
+    "test:ci": "cross-env CI=true vitest -c scripts/vite/vite.config.js",
     "postinstall": "husky install && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
     "changeset:version": "changeset version",
