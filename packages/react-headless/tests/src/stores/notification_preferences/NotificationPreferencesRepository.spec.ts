@@ -47,7 +47,7 @@ describe('stores', () => {
             });
 
             const response = await repo.get();
-            expect(response).toEqual(preferences);
+            expect(response).toEqual({ notificationPreferences: preferences });
           });
         });
 
@@ -58,7 +58,7 @@ describe('stores', () => {
 
             await expect(() => repo.get()).rejects.toThrow('Request failed with status code 403');
           });
-          it.only('throws an error on 403 on update', async () => {
+          it('throws an error on 403 on update', async () => {
             server.put('/notification_preferences', new Response(403, {}, {}));
             expect.hasAssertions();
 
@@ -76,7 +76,7 @@ describe('stores', () => {
             server.put('/notification_preferences', new Response(200, {}, { notification_preferences: preferences }));
             const response = await repo.update(preferences);
 
-            expect(response).toEqual(preferences);
+            expect(response).toEqual({ notificationPreferences: preferences });
           });
         });
 
@@ -84,9 +84,7 @@ describe('stores', () => {
           it('returns false on 500', async () => {
             const data = NotificationPreferencesFactory.build();
             server.put('/notification_preferences', new Response(500, {}, ''));
-            const response = await repo.update(data);
-
-            expect(response).toBe(false);
+            await expect(() => repo.update(data)).rejects.toThrow('Request failed with status code 500');
           });
         });
       });
