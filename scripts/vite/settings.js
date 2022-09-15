@@ -2,9 +2,14 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import glob from 'tiny-glob/sync.js';
 
 export const cwd = process.cwd();
 const args = process.argv.slice(2);
+
+function readJSON(filepath) {
+  return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), filepath), 'utf-8'));
+}
 
 export const pkg = JSON.parse(fs.readFileSync(path.resolve(cwd, './package.json'), 'utf-8'));
 
@@ -59,4 +64,13 @@ export function createLibName(name) {
     .split('-')
     .map((x) => (x === 'magicbell' ? 'MagicBell' : x[0].toUpperCase() + x.slice(1)))
     .join('');
+}
+
+export function getPackageAliases(useSourceAsRoot) {
+  const files = glob(`./packages/*/package.json`, { absolute: true });
+  const entries = files.map((file) => [
+    readJSON(file).name,
+    path.join(path.dirname(file), useSourceAsRoot ? 'src' : ''),
+  ]);
+  return Object.fromEntries(entries);
 }

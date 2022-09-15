@@ -22,6 +22,7 @@ describe('components', () => {
     });
 
     it('fetches config', async () => {
+      useConfig.setState({ lastFetchedAt: null });
       const spy = vi.spyOn(ajax, 'fetchAPI');
 
       render(

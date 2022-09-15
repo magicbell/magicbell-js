@@ -9,6 +9,7 @@
   ],
   "type": "module",
   "scripts": {
+    "clean": "manypkg exec yarn clean",
     "start": "turbo run start --parallel --no-cache",
     "start:example": "yarn --cwd example && yarn --cwd example start",
     "start:storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",

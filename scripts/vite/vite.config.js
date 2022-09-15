@@ -9,6 +9,7 @@ import { writeIndexFile, writeTypeDefs } from './plugins';
 import {
   createFilename,
   cwd,
+  getPackageAliases,
   globalModules,
   isAnalyze,
   isExternal,
@@ -34,6 +35,7 @@ const copyRightNotice = `
 
 export default defineConfig(async ({ mode, command }) => {
   const isDev = mode === 'development';
+  const isTest = mode === 'test';
   const isBuild = command === 'build';
 
   return {
@@ -55,6 +57,9 @@ export default defineConfig(async ({ mode, command }) => {
     },
     esbuild: {
       jsx: 'automatic',
+    },
+    resolve: {
+      alias: isTest ? getPackageAliases(true) : {},
     },
     build: {
       target: ['chrome60', 'firefox60', 'safari11', 'edge18'],
