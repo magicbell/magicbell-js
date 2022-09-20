@@ -9,7 +9,7 @@ function readJSON(filepath) {
 
 async function getPackages() {
   return glob(`./packages/*/package.json`).then((files) =>
-    files.map((file) => [readJSON(file).name, path.dirname(file)]),
+    files.map((file) => [readJSON(file).name, path.dirname(file)]).sort(([a], [b]) => a.localeCompare(b)),
   );
 }
 

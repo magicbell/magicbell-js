@@ -9,7 +9,8 @@
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
-      "@magicbell/react-headless": ["packages/react-headless/src"]
+      "@magicbell/react-headless": ["packages/react-headless/src"],
+      "magicbell": ["packages/magicbell/src"]
     }
   }
 }

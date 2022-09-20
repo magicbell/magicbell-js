@@ -22,7 +22,7 @@ const normalize = (name) =>
     .replace(/\s+/, '-')
     .toLowerCase();
 
-export const externalModules = ['fs', 'path', 'url'];
+export const externalModules = ['fs', 'path', 'url', 'os', 'crypto'];
 externalModules.push(...Object.keys(pkg.peerDependencies || {}));
 externalModules.push(...Object.keys(pkg.devDependencies || {}));
 externalModules.push(...Object.keys(pkg.dependencies || {}));

@@ -46,7 +46,7 @@ export default defineConfig(async ({ mode, command }) => {
           banner(copyRightNotice),
           isAnalyze && analyze({}),
           pkg.main === 'dist/index.js' && writeIndexFile({ fileName: pkg.name }),
-          !shouldMinify && writeTypeDefs(),
+          !shouldMinify && isBuild && writeTypeDefs(),
         ].filter(Boolean)
       : [],
     define: {

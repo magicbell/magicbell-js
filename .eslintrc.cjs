@@ -26,7 +26,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: '**/*.{stories,spec}.{ts,tsx}',
+      files: '**/*.{stories,spec,test}.{ts,tsx}',
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
         'react/prop-types': 'off',
