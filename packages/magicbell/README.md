@@ -50,7 +50,7 @@ try {
 or go old-school with require and promises:
 
 ```js
-const MagicBell = new require('magicbell').default;
+const MagicBell = require('magicbell').default;
 
 const magicbell = new MagicBell({
   apiKey: 'your-api-key',
