@@ -28,9 +28,9 @@ The package needs to be configured with your project's secret key & api key, whi
 available in the [MagicBell Dashboard][dashboard].
 
 ```js
-const MagicBell = new require('magicbell');
+import MagicBell from 'magicbell';
 
-const magicbell = new Client({
+const magicbell = new MagicBell({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -50,9 +50,9 @@ try {
 or go old-school with require and promises:
 
 ```js
-const MagicBell = new require('magicbell');
+const MagicBell = new require('magicbell').default;
 
-const magicbell = new Client({
+const magicbell = new MagicBell({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -70,7 +70,7 @@ magicbell.notifications
 Some endpoints, like `notifications.list` are user oriented, and require the `userEmail` option to be set. This can be done via the client options, or on a per-request basis:
 
 ```js
-const magicbell = new Client({
+const magicbell = new MagicBell({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
   userEmail: 'you@example.com',
