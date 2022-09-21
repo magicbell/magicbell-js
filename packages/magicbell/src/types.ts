@@ -16,14 +16,14 @@ export type ClientOptions = {
   debug?: boolean;
 };
 
-export type RequestClientOptions = Pick<
+export type RequestOptions = Pick<
   ClientOptions,
   'userEmail' | 'idempotencyKey' | 'timeout' | 'maxRetries' | 'maxRetryDelay'
 >;
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-export type RequestOptions = {
+export type RequestArgs = {
   method: RequestMethod;
   path: string;
   data?: Record<string, unknown>;

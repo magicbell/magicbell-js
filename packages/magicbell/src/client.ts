@@ -12,7 +12,7 @@ import { NotificationPreferences } from './resources/notification-preferences';
 import { Notifications } from './resources/notifications';
 import { Subscriptions } from './resources/subscriptions';
 import { Users } from './resources/users';
-import { ClientOptions, RequestClientOptions, RequestMethod, RequestOptions } from './types';
+import { ClientOptions, RequestArgs, RequestMethod, RequestOptions } from './types';
 
 export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   host: 'https://api.magicbell.com',
@@ -57,7 +57,7 @@ export class Client {
     this.#clientId = getClientId();
   }
 
-  async request({ method, path, data, params }: RequestOptions, options?: RequestClientOptions) {
+  async request({ method, path, data, params }: RequestArgs, options?: RequestOptions) {
     const requestOptions = { ...this.#options, ...options };
 
     // compute headers out of the retry-loop, only append the telemetry later
