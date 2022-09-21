@@ -36,6 +36,7 @@
     "build": "run-s clean build:*",
     "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "generate:resources": "tsx scripts/generate-resources.ts --no-cache",
     "start": "yarn build:dev --watch",
     "size": "size-limit"
   },
@@ -50,11 +51,17 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.0.1"
+    "@apidevtools/swagger-parser": "^10.1.0",
+    "@size-limit/preset-small-lib": "^8.0.1",
+    "ast-types": "^0.14.2",
+    "dox": "^1.0.0",
+    "openapi-types": "^12.0.2",
+    "recast": "^0.21.2"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "axios-retry": "^3.3.1",
-    "qs": "^6.11.0"
+    "qs": "^6.11.0",
+    "tsx": "^3.9.0"
   }
 }
