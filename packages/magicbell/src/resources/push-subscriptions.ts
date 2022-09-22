@@ -2,7 +2,7 @@
 import { createMethod } from '../method';
 import { Resource } from '../resource';
 
-export class Devices extends Resource {
+export class PushSubscriptions extends Resource {
   path = 'push_subscriptions';
   entity = 'push_subscription';
 

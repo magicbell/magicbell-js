@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import parser from '@apidevtools/swagger-parser';
 import { builders } from 'ast-types';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import path from 'path';
 import prettier from 'prettier';
 import prettyMarkdown from 'prettier/parser-markdown';
 import * as recast from 'recast';
+import * as recastTypeScriptParser from 'recast/parsers/typescript';
 
 function formatMarkdown(document) {
   return prettier.format(document, {
@@ -18,46 +20,14 @@ function formatMarkdown(document) {
 }
 
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/docs/main/docs/rest-api/reference/openapi.json';
+const eslint = new ESLint({ fix: true, useEslintrc: true, cwd: path.join(process.cwd(), '../..') });
+async function formatCode(code: string) {
+  return eslint.lintText(code).then((x) => x[0].output);
+}
 
 const CACHE_DIR = path.join(process.cwd(), 'scripts', '.cache');
 const CACHE_FILE = path.join(CACHE_DIR, 'openapi.json');
 const OUT_DIR = path.join(process.cwd(), 'src', 'resources');
-
-const ENTITY_MAP = {
-  push_subscriptions: 'devices',
-};
-
-// TODO: cleanup source openapi.json
-const NAME_MAP = {
-  'notifications-create-notification': 'create',
-  'notifications-get-notifications': 'list',
-  'notifications-get-notification': 'retrieve',
-  'notifications-delete-notification': 'delete',
-  'notifications-mark-user-notification-as-read': 'markAsRead',
-  'notifications-mark-user-notification-as-unread': 'markAsUnread',
-  'notifications-archive-notification': 'archive',
-  'notifications-unarchive-notification': 'unarchive',
-  'notifications-mark-a-users-notification-as-read': 'markAllRead',
-  'notifications-mark-a-users-notification-as-seen': 'markAllSeen',
-  'users-create-user': 'create',
-  'users-update-user': 'update',
-  'users-delete-user': 'delete',
-  'users-update-user-by-email': 'updateByEmail',
-  'users-delete-user-by-email': 'deleteByEmail',
-  'users-update-user-by-external-id': 'updateByExternalId',
-  'users-delete-user-by-external-id': 'deleteByExternalId',
-  'notification_preferences-get-preferences': 'retrieve',
-  'notification_preferences-put-preferences': 'update',
-  'push_subscriptions-create-push-subscription': 'create',
-  'push_subscriptions-delete-push-subscription': 'delete',
-  'subscriptions-list-topic-subscription': 'list',
-  'subscriptions-create-topic-subscription': 'create',
-  'subscriptions-unsubscribe-topic-subscription': 'unsubscribe',
-  'subscriptions-show-topic-subscription': 'retrieve',
-  'subscriptions-delete-topic-subscription': 'delete',
-};
-
-const eslint = new ESLint({ fix: true, useEslintrc: true, cwd: path.join(process.cwd(), '../..') });
 
 const args = process.argv.slice(2);
 
@@ -82,18 +52,20 @@ function getRootPaths(document: OpenAPI.Document) {
 }
 
 function getRootPathMethods(document: OpenAPI.Document, path: string) {
-  const result: Array<Method> = [];
-
+  const methods: Array<Method> = [];
   const apiPaths = Object.keys(document.paths).filter((x) => x.startsWith(`/${path}`));
+
   for (const apiPath of apiPaths) {
     const rootPath = apiPath.split('/').filter(Boolean)[0];
 
     for (const method of Object.keys(document.paths[apiPath])) {
       const operation = document.paths[apiPath][method];
-      const name = getMethodName(rootPath, operation.operationId);
+      if (operation['x-beta']) continue;
+
+      const name = camelCase(operation.operationId.slice(rootPath.length + 1));
       const type = name === 'list' ? 'list' : null;
 
-      result.push({
+      methods.push({
         name,
         type,
         path: apiPath.replace(`/${path}`, '').replace(/^\//, ''),
@@ -103,7 +75,7 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
     }
   }
 
-  return result;
+  return methods;
 }
 
 function capitalize(str: string) {
@@ -125,12 +97,6 @@ function hyphenCase(str: string) {
   return str.replace(/_/g, '-');
 }
 
-function getMethodName(path: string, operationId: string) {
-  const name = NAME_MAP[`${path}-${operationId}`];
-  if (!name) throw new Error(`No method name alias found for ${path} / ${operationId}`);
-  return name;
-}
-
 function getRequestBody(method: Method) {
   if (!('requestBody' in method && 'content' in method.requestBody)) return null;
 
@@ -147,7 +113,7 @@ type Method = {
   type?: string;
 } & OpenAPI.Operation;
 
-function createResource({ name, apiPath, methods }: { name: string; apiPath: string; methods: Array<Method> }) {
+function createResource({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
   const entity = methods
     .map((x) => {
       const requestBody = getRequestBody(x);
@@ -156,8 +122,6 @@ function createResource({ name, apiPath, methods }: { name: string; apiPath: str
       return keys.length === 1 && keys[0] !== 'errors' ? keys[0] : false;
     })
     .find(Boolean);
-
-  if (typeof entity !== 'string') throw new Error(`Could not determine entity name for ${apiPath}`);
 
   return builders.program.from({
     comments: [
@@ -176,7 +140,7 @@ function createResource({ name, apiPath, methods }: { name: string; apiPath: str
       }),
       builders.exportNamedDeclaration.from({
         declaration: builders.classDeclaration.from({
-          id: builders.identifier(pascalCase(name)),
+          id: builders.identifier(pascalCase(apiPath)),
           // typeParameters: builders.typeParameterDeclaration([builders.typeParameter('T')]),
           superClass: builders.identifier('Resource'),
           // superTypeParameters: builders.typeParameterInstantiation([
@@ -195,8 +159,7 @@ function createResource({ name, apiPath, methods }: { name: string; apiPath: str
                 }),
 
               ...methods.map((method) => {
-                const name = getMethodName(apiPath, method.operationId);
-                const type = name === 'list' ? 'list' : null;
+                const type = method.name === 'list' ? 'list' : null;
 
                 return builders.classProperty.from({
                   comments: [
@@ -204,7 +167,7 @@ function createResource({ name, apiPath, methods }: { name: string; apiPath: str
                       value: `*\n * ${method.summary}\n *`,
                     }),
                   ],
-                  key: builders.identifier(name),
+                  key: builders.identifier(method.name),
                   value: builders.callExpression.from({
                     callee: builders.identifier('createMethod'),
                     arguments: [
@@ -241,12 +204,12 @@ function createResource({ name, apiPath, methods }: { name: string; apiPath: str
   });
 }
 
-function createDocs({ name, apiPath, methods }: { name: string; apiPath: string; methods: Array<Method> }) {
+function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
   const lines: Array<string> = [];
   const startLevel = 3;
   const entity = apiPath.split('/').filter(Boolean)[0];
 
-  lines.push(`${'#'.repeat(startLevel)} ${capitalize(name)}\n`);
+  lines.push(`${'#'.repeat(startLevel)} ${capitalize(apiPath)}\n`);
 
   function schemaToObject(schema) {
     if (schema == null) return null;
@@ -310,7 +273,7 @@ ${'#'.repeat(startLevel + 1)} ${method.summary}
 ${method.description || ''}
 
 \`\`\`js
-await magicbell.${camelCase(name)}.${method.name}(${args});
+await magicbell.${camelCase(apiPath)}.${method.name}(${args});
 \`\`\`
 `.trim() + '\n',
     );
@@ -327,35 +290,86 @@ async function updateReadme(filePath: string, blockName: string, content: string
   return fs.writeFile(filePath, lines.join('\n'), 'utf-8');
 }
 
+async function updateClient(filePath: string, files: File[]) {
+  const resources = files
+    .filter((x) => x.name.endsWith('.ts'))
+    .map((x) => x.name.replace(/\.ts$/, ''))
+    .map((name) => ({
+      file: `./resources/${name.replace(/.ts$/, '')}`,
+      class: pascalCase(name),
+      property: camelCase(name),
+    }))
+    .sort((a, b) => a.property.localeCompare(b.property));
+
+  const source = await fs.readFile(filePath, 'utf-8');
+  const ast = recast.parse(source, { parser: recastTypeScriptParser });
+  const program = ast.program;
+
+  // update import statements
+  program.body = program.body.filter(
+    (x) => !(x.type === 'ImportDeclaration' && x.source.value.startsWith('./resources/')),
+  );
+  const imports = resources.map((resource) =>
+    builders.importDeclaration.from({
+      specifiers: [builders.importSpecifier(builders.identifier(resource.class))],
+      source: builders.literal(resource.file),
+    }),
+  );
+  program.body.splice(0, 0, ...imports);
+
+  // update the class
+  const classDeclaration = program.body.find(
+    (x) => x.type === 'ExportNamedDeclaration' && x.declaration.type === 'ClassDeclaration',
+  ).declaration;
+
+  const classBody = classDeclaration.body;
+  classBody.body = classBody.body.filter((x) => !(x.type === 'ClassProperty' && x.value.type === 'NewExpression'));
+
+  const constructor = classBody.body.find((x) => x.type === 'ClassMethod' && x.kind === 'constructor');
+  const firstIdx = classBody.body.indexOf(constructor);
+
+  const properties = resources.map((x) =>
+    builders.classProperty.from({
+      key: builders.identifier(camelCase(x.property)),
+      value: builders.newExpression.from({
+        callee: builders.identifier(x.class),
+        arguments: [builders.identifier('this')],
+      }),
+    }),
+  );
+
+  classBody.body.splice(firstIdx, 0, ...properties);
+  const { code } = recast.print(ast, { tabWidth: 2, quote: 'single' });
+  const output = await formatCode(code);
+  await fs.writeFile(filePath, output, 'utf-8');
+}
+
+type File = { name: string; source: string; docs?: string };
+
 async function main() {
   const document = await getOpenAPIDocument();
   const paths = getRootPaths(document);
 
-  const files: Array<{ name: string; source: string }> = [];
-  const docs = [];
+  const files: Array<File> = [];
 
   // generate ast for new resource files
   for (const apiPath of paths) {
     const methods = getRootPathMethods(document, apiPath);
-    const name = ENTITY_MAP[apiPath] || apiPath;
+    if (methods.length === 0) continue;
 
-    const ast = createResource({ name, apiPath, methods });
+    const ast = createResource({ apiPath, methods });
+    const docs = createDocs({ apiPath, methods });
+
     const { code } = recast.prettyPrint(ast, { tabWidth: 2, quote: 'single' });
-    files.push({ name: hyphenCase(name) + '.ts', source: code });
+    const source = await formatCode(code);
 
-    const doc = createDocs({ name, apiPath, methods });
-    docs.push(doc);
-  }
-
-  // prettify sources
-  for (const file of files) {
-    file.source = await eslint.lintText(file.source).then((x) => x[0].output);
+    files.push({ name: hyphenCase(apiPath) + '.ts', source, docs });
   }
 
   // add readme - this should not go through eslint
   files.push({
     name: 'README.md',
-    source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.',
+    source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
   });
 
   // all files are generated & linted, now it makes sense to flush the old files and write new ones
@@ -365,14 +379,16 @@ async function main() {
   for (const file of files) {
     const outFile = path.join(OUT_DIR, file.name);
     await fs.writeFile(outFile, file.source, 'utf-8');
-    // eslint-disable-next-line no-console
     console.log(`generated ${path.relative(process.cwd(), outFile)}`);
   }
 
   // update method docs in readme
+  const docs = files.map((x) => x.docs).filter(Boolean);
   await updateReadme(path.join(process.cwd(), 'README.md'), 'RESOURCE_METHODS', docs);
-  // eslint-disable-next-line no-console
   console.log(`updated README.md`);
+
+  await updateClient(path.join(process.cwd(), 'src', 'client.ts'), files);
+  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'client.ts'))}`);
 }
 
 main();

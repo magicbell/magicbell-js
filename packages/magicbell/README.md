@@ -612,7 +612,7 @@ await magicbell.notificationPreferences.update(
 );
 ```
 
-### Devices
+### Push Subscriptions
 
 #### Register a device
 
@@ -621,7 +621,7 @@ Register a device token for push notifications.
 Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
 
 ```js
-await magicbell.devices.create(
+await magicbell.pushSubscriptions.create(
   {
     push_subscription: {
       device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
@@ -639,7 +639,7 @@ await magicbell.devices.create(
 Remove the subscription of a device to mobile push notifications. The device will be discarded immediately.
 
 ```js
-await magicbell.devices.delete('{device_token}', {
+await magicbell.pushSubscriptions.delete('{device_token}', {
   userEmail: 'person@example.com',
 });
 ```
