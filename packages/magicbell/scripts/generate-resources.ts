@@ -19,12 +19,12 @@ function formatMarkdown(document) {
   });
 }
 
-const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/docs/main/docs/rest-api/reference/openapi.json';
 const eslint = new ESLint({ fix: true, useEslintrc: true, cwd: path.join(process.cwd(), '../..') });
 async function formatCode(code: string) {
   return eslint.lintText(code).then((x) => x[0].output);
 }
 
+const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/openapi/main/spec/openapi.json';
 const CACHE_DIR = path.join(process.cwd(), 'scripts', '.cache');
 const CACHE_FILE = path.join(CACHE_DIR, 'openapi.json');
 const OUT_DIR = path.join(process.cwd(), 'src', 'resources');
