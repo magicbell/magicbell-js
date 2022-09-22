@@ -290,6 +290,447 @@ const magicbell = new MagicBell({
 });
 ```
 
+## Resource methods
+
+Below you'll find the all supported resource methods, with their signatures. The full documentation can be found in our [api-reference][api-reference]. When comparing the api-reference with these methods, you'll notice that the SDK removes any wrapping entities for your convenience. Meaning, instead of posting `{ notification: { title: 'hi' } }`, you'll call `create({ title: 'hi' })`.
+
+Apart from the removal of the wrappers, returned entities and provided parameters are identical between our REST API and this SDK.
+
+<!-- AUTO-GENERATED-CONTENT:START (RESOURCE_METHODS) -->
+
+### Notifications
+
+#### Create notifications
+
+Send a notification to one or multiple users. You can identify users by their email address or by an external_id.
+
+You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
+
+You can send user attributes like first_name, custom_attributes, and more when creating a notification.
+
+The new notification will be shown in the notification inbox of each recipient in real-time. It will also be delivered to each recipient through all channels your have enabled for your MagicBell project.
+
+```js
+await magicbell.notifications.create({
+  notification: {
+    title: "We're processing your order",
+    content: "<p>Thank you for your order. We'll notify you when these items are ready.</p>",
+    category: 'order_created',
+    topic: 'order:33098',
+    recipients: [
+      {
+        email: 'dan@example.com',
+      },
+      {
+        external_id: '83d987a-83fd034',
+        first_name: 'Hana',
+        last_name: 'Mohan',
+        custom_attributes: {
+          plan: 'enterprise',
+          pricing_version: 'v10',
+          preferred_pronoun: 'She',
+        },
+        phone_numbers: ['+15005550001'],
+      },
+      {
+        matches: 'custom_attributes.order.id = 88492',
+      },
+    ],
+    overrides: {
+      email: {
+        title: "[MagicBell] We're processing your order",
+        content:
+          "Thank you for your order. If you need help, or have any questions please don't hesitate to reach out to us directly at hello@magicbell.com",
+      },
+    },
+  },
+});
+```
+
+#### Fetch notifications
+
+Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
+
+```js
+await magicbell.notifications.list(
+  {
+    per_page: 1,
+    page: 1,
+    read: true,
+    seen: true,
+    archived: true,
+    categories: ['…'],
+    topics: ['…'],
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Fetch a notification
+
+Fetch a user's notification by its ID.
+
+```js
+await magicbell.notifications.retrieve('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Delete a notification
+
+Delete a user's notification by its ID. The notification is deleted immediately and removed from the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.delete('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Mark a notification as read
+
+Mark a user notification as read. The notification will be automatically marked as seen, too.
+
+The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsRead('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Mark a notification as unread
+
+Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsUnread('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Archive a notification
+
+Mark a user notification as archived.
+
+```js
+await magicbell.notifications.archive('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Unarchive a notification
+
+Mark a user notification as unarchived.
+
+```js
+await magicbell.notifications.unarchive('{notification_id}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Mark all notifications as read
+
+Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllRead(
+  {
+    archived: true,
+    read: true,
+    seen: true,
+    categories: ['…'],
+    topics: ['…'],
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Mark all notifications as seen
+
+Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllSeen(
+  {
+    archived: true,
+    read: true,
+    seen: true,
+    categories: ['…'],
+    topics: ['…'],
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+### Users
+
+#### Create a user
+
+Create a user. Please note that you must provide the user's email or the external id so MagicBell can uniquely identify the user.
+
+The external id, if provided, must be unique to the user.
+
+```js
+await magicbell.users.create({
+  user: {
+    external_id: '56780',
+    email: 'hana@supportbee.com',
+    first_name: 'Hana',
+    last_name: 'Mohan',
+    custom_attributes: {
+      plan: 'enterprise',
+      pricing_version: 'v10',
+      preferred_pronoun: 'She',
+    },
+    phone_numbers: ['+15005550001'],
+  },
+});
+```
+
+#### Update a user
+
+Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
+
+```js
+await magicbell.users.update('{user_id}', {
+  user: {
+    email: 'hana@magicbell.io',
+  },
+});
+```
+
+#### Delete a user
+
+Immediately deletes a user.
+
+```js
+await magicbell.users.delete('{user_id}');
+```
+
+#### Update a user by email
+
+Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
+
+```js
+await magicbell.users.updateByEmail('{user_email}', {
+  user: {
+    external_id: '56780',
+    email: 'hana@supportbee.com',
+    first_name: 'Hana',
+    last_name: 'Mohan',
+    custom_attributes: {
+      plan: 'enterprise',
+      pricing_version: 'v10',
+      preferred_pronoun: 'She',
+    },
+    phone_numbers: ['+15005550001'],
+  },
+});
+```
+
+#### Delete a user by email
+
+Immediately deletes a user.
+
+```js
+await magicbell.users.deleteByEmail('{user_email}');
+```
+
+#### Update a user by external ID
+
+Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
+
+```js
+await magicbell.users.updateByExternalId('{external_id}', {
+  user: {
+    external_id: '56780',
+    email: 'hana@supportbee.com',
+    first_name: 'Hana',
+    last_name: 'Mohan',
+    custom_attributes: {
+      plan: 'enterprise',
+      pricing_version: 'v10',
+      preferred_pronoun: 'She',
+    },
+    phone_numbers: ['+15005550001'],
+  },
+});
+```
+
+#### Delete a user by external ID
+
+Immediately deletes a user.
+
+```js
+await magicbell.users.deleteByExternalId('{external_id}');
+```
+
+### Notification Preferences
+
+#### Fetch user notification preferences
+
+Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
+
+```js
+await magicbell.notificationPreferences.retrieve({
+  userEmail: 'person@example.com',
+});
+```
+
+#### Update user notification preferences
+
+Update a user's notification preferences. These preferences will be applied only to channels you enabled for your project.
+
+```js
+await magicbell.notificationPreferences.update(
+  {
+    categories: [
+      {
+        slug: 'billing',
+        channels: [
+          {
+            slug: 'email',
+            enabled: false,
+          },
+          {
+            slug: 'web_push',
+            enabled: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+### Devices
+
+#### Register a device
+
+Register a device token for push notifications.
+
+Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
+
+```js
+await magicbell.devices.create(
+  {
+    push_subscription: {
+      device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
+      platform: 'ios',
+    },
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Unregister a device
+
+Remove the subscription of a device to mobile push notifications. The device will be discarded immediately.
+
+```js
+await magicbell.devices.delete('{device_token}', {
+  userEmail: 'person@example.com',
+});
+```
+
+### Subscriptions
+
+#### List subscriptions
+
+List a user's subscriptions status for all topics and categories.
+
+```js
+await magicbell.subscriptions.list({
+  userEmail: 'person@example.com',
+});
+```
+
+#### Create a topic subscription
+
+Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
+
+```js
+await magicbell.subscriptions.create(
+  {
+    subscription: {
+      categories: [
+        {
+          slug: 'comments',
+          reason: 'watching-the-repo',
+        },
+      ],
+      topic: 'acme-inc.orders.1234',
+    },
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Unsubscribe from a topic
+
+Unusbscribe a user from a particular topic (and optional categories).
+
+```js
+await magicbell.subscriptions.unsubscribe(
+  '{topic}',
+  {
+    subscription: {
+      categories: [
+        {
+          slug: 'comments',
+        },
+      ],
+    },
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Show a topic subscription
+
+Show a user's subscription status for a particular topic and categories.
+
+```js
+await magicbell.subscriptions.retrieve('{topic}', {
+  userEmail: 'person@example.com',
+});
+```
+
+#### Delete topic subscription(s)
+
+```js
+await magicbell.subscriptions.delete(
+  '{topic}',
+  {
+    categories: [
+      {
+        slug: '…',
+      },
+    ],
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
+
 ## Support
 
 New features and bug fixes are released on the latest major version of the `magicbell` package. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.
@@ -301,3 +742,4 @@ Credit where credits due, this package is inspired by and based on the [Stripe N
 [dashboard]: https://app.magicbell.com
 [idempotent-requests]: https://www.magicbell.com/docs/rest-api/idempotent-requests
 [hmac-authentication]: https://www.magicbell.com/docs/hmac-authentication
+[api-reference]: https://www.magicbell.com/docs/rest-api/reference
