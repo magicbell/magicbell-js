@@ -2,7 +2,9 @@
 
 This package provides a convenient interface to query the [MagicBell](https://magicbell.com) API. Note that as some methods depend on your secret key, this SDK is not to be used in browsers.
 
-> note: This package is in early release and is subject to change. TypeScript is supported, but api responses are untyped at the moment. We'll add types before we reach v1.0.0.
+> **Note**
+>
+> This package is in early release and is subject to change. TypeScript is supported, but api responses are untyped at the moment. We'll add types before we reach v1.0.0.
 
 ## Requirements
 
@@ -312,36 +314,34 @@ The new notification will be shown in the notification inbox of each recipient i
 
 ```js
 await magicbell.notifications.create({
-  notification: {
-    title: "We're processing your order",
-    content: "<p>Thank you for your order. We'll notify you when these items are ready.</p>",
-    category: 'order_created',
-    topic: 'order:33098',
-    recipients: [
-      {
-        email: 'dan@example.com',
+  title: "We're processing your order",
+  content: "<p>Thank you for your order. We'll notify you when these items are ready.</p>",
+  category: 'order_created',
+  topic: 'order:33098',
+  recipients: [
+    {
+      email: 'dan@example.com',
+    },
+    {
+      external_id: '83d987a-83fd034',
+      first_name: 'Hana',
+      last_name: 'Mohan',
+      custom_attributes: {
+        plan: 'enterprise',
+        pricing_version: 'v10',
+        preferred_pronoun: 'She',
       },
-      {
-        external_id: '83d987a-83fd034',
-        first_name: 'Hana',
-        last_name: 'Mohan',
-        custom_attributes: {
-          plan: 'enterprise',
-          pricing_version: 'v10',
-          preferred_pronoun: 'She',
-        },
-        phone_numbers: ['+15005550001'],
-      },
-      {
-        matches: 'custom_attributes.order.id = 88492',
-      },
-    ],
-    overrides: {
-      email: {
-        title: "[MagicBell] We're processing your order",
-        content:
-          "Thank you for your order. If you need help, or have any questions please don't hesitate to reach out to us directly at hello@magicbell.com",
-      },
+      phone_numbers: ['+15005550001'],
+    },
+    {
+      matches: 'custom_attributes.order.id = 88492',
+    },
+  ],
+  overrides: {
+    email: {
+      title: "[MagicBell] We're processing your order",
+      content:
+        "Thank you for your order. If you need help, or have any questions please don't hesitate to reach out to us directly at hello@magicbell.com",
     },
   },
 });
@@ -478,18 +478,16 @@ The external id, if provided, must be unique to the user.
 
 ```js
 await magicbell.users.create({
-  user: {
-    external_id: '56780',
-    email: 'hana@supportbee.com',
-    first_name: 'Hana',
-    last_name: 'Mohan',
-    custom_attributes: {
-      plan: 'enterprise',
-      pricing_version: 'v10',
-      preferred_pronoun: 'She',
-    },
-    phone_numbers: ['+15005550001'],
+  external_id: '56780',
+  email: 'hana@supportbee.com',
+  first_name: 'Hana',
+  last_name: 'Mohan',
+  custom_attributes: {
+    plan: 'enterprise',
+    pricing_version: 'v10',
+    preferred_pronoun: 'She',
   },
+  phone_numbers: ['+15005550001'],
 });
 ```
 
@@ -499,9 +497,7 @@ Update a user's data. If you identify users by their email addresses, you need t
 
 ```js
 await magicbell.users.update('{user_id}', {
-  user: {
-    email: 'hana@magicbell.io',
-  },
+  email: 'hana@magicbell.io',
 });
 ```
 
@@ -519,18 +515,16 @@ Update a user's data. If you identify users by their email addresses, you need t
 
 ```js
 await magicbell.users.updateByEmail('{user_email}', {
-  user: {
-    external_id: '56780',
-    email: 'hana@supportbee.com',
-    first_name: 'Hana',
-    last_name: 'Mohan',
-    custom_attributes: {
-      plan: 'enterprise',
-      pricing_version: 'v10',
-      preferred_pronoun: 'She',
-    },
-    phone_numbers: ['+15005550001'],
+  external_id: '56780',
+  email: 'hana@supportbee.com',
+  first_name: 'Hana',
+  last_name: 'Mohan',
+  custom_attributes: {
+    plan: 'enterprise',
+    pricing_version: 'v10',
+    preferred_pronoun: 'She',
   },
+  phone_numbers: ['+15005550001'],
 });
 ```
 
@@ -548,18 +542,16 @@ Update a user's data. If you identify users by their email addresses, you need t
 
 ```js
 await magicbell.users.updateByExternalId('{external_id}', {
-  user: {
-    external_id: '56780',
-    email: 'hana@supportbee.com',
-    first_name: 'Hana',
-    last_name: 'Mohan',
-    custom_attributes: {
-      plan: 'enterprise',
-      pricing_version: 'v10',
-      preferred_pronoun: 'She',
-    },
-    phone_numbers: ['+15005550001'],
+  external_id: '56780',
+  email: 'hana@supportbee.com',
+  first_name: 'Hana',
+  last_name: 'Mohan',
+  custom_attributes: {
+    plan: 'enterprise',
+    pricing_version: 'v10',
+    preferred_pronoun: 'She',
   },
+  phone_numbers: ['+15005550001'],
 });
 ```
 
@@ -623,10 +615,8 @@ Please keep in mind that mobile push notifications will be delivered to this dev
 ```js
 await magicbell.pushSubscriptions.create(
   {
-    push_subscription: {
-      device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
-      platform: 'ios',
-    },
+    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
+    platform: 'ios',
   },
   {
     userEmail: 'person@example.com',
@@ -663,15 +653,13 @@ Set a user's subscription status to subscribed for a particular topic (and optio
 ```js
 await magicbell.subscriptions.create(
   {
-    subscription: {
-      categories: [
-        {
-          slug: 'comments',
-          reason: 'watching-the-repo',
-        },
-      ],
-      topic: 'acme-inc.orders.1234',
-    },
+    categories: [
+      {
+        slug: 'comments',
+        reason: 'watching-the-repo',
+      },
+    ],
+    topic: 'acme-inc.orders.1234',
   },
   {
     userEmail: 'person@example.com',
@@ -687,13 +675,11 @@ Unusbscribe a user from a particular topic (and optional categories).
 await magicbell.subscriptions.unsubscribe(
   '{topic}',
   {
-    subscription: {
-      categories: [
-        {
-          slug: 'comments',
-        },
-      ],
-    },
+    categories: [
+      {
+        slug: 'comments',
+      },
+    ],
   },
   {
     userEmail: 'person@example.com',

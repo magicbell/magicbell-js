@@ -260,7 +260,12 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
 
     // TODO: validate example based on schema
     const bodyObj = requestBody?.example || schemaToObject(requestBody?.schema);
-    const body = Object.keys(bodyObj || {}).length === 1 && bodyObj[entity] ? bodyObj[entity] : bodyObj;
+
+    const body =
+      Object.keys(bodyObj || {}).length === 1 && (bodyObj[entity] || bodyObj[entity.replace(/s$/, '')])
+        ? bodyObj[entity] || bodyObj[entity.replace(/s$/, '')]
+        : bodyObj;
+
     const args = [...pathParams, body, query, options]
       .filter((x) => x != null)
       .map((x) => stringify(x, { space: 2, quote: "'" }))
