@@ -24,7 +24,7 @@ export class Notifications extends Resource {
   /**
    * Fetch a notification
    **/
-  retrieve = createMethod({
+  get = createMethod({
     method: 'GET',
     path: '{notification_id}',
   });

@@ -32,7 +32,7 @@ export class Subscriptions extends Resource {
   /**
    * Show a topic subscription
    **/
-  retrieve = createMethod({
+  get = createMethod({
     method: 'GET',
     path: '{topic}',
   });

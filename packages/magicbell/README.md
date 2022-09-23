@@ -373,7 +373,7 @@ await magicbell.notifications.list(
 Fetch a user's notification by its ID.
 
 ```js
-await magicbell.notifications.retrieve('{notification_id}', {
+await magicbell.notifications.get('{notification_id}', {
   userEmail: 'person@example.com',
 });
 ```
@@ -570,7 +570,7 @@ await magicbell.users.deleteByExternalId('{external_id}');
 Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
 
 ```js
-await magicbell.notificationPreferences.retrieve({
+await magicbell.notificationPreferences.get({
   userEmail: 'person@example.com',
 });
 ```
@@ -602,36 +602,6 @@ await magicbell.notificationPreferences.update(
     userEmail: 'person@example.com',
   },
 );
-```
-
-### Push Subscriptions
-
-#### Register a device
-
-Register a device token for push notifications.
-
-Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
-
-```js
-await magicbell.pushSubscriptions.create(
-  {
-    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
-    platform: 'ios',
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Unregister a device
-
-Remove the subscription of a device to mobile push notifications. The device will be discarded immediately.
-
-```js
-await magicbell.pushSubscriptions.delete('{device_token}', {
-  userEmail: 'person@example.com',
-});
 ```
 
 ### Subscriptions
@@ -692,7 +662,7 @@ await magicbell.subscriptions.unsubscribe(
 Show a user's subscription status for a particular topic and categories.
 
 ```js
-await magicbell.subscriptions.retrieve('{topic}', {
+await magicbell.subscriptions.get('{topic}', {
   userEmail: 'person@example.com',
 });
 ```

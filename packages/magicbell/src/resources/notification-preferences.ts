@@ -9,7 +9,7 @@ export class NotificationPreferences extends Resource {
   /**
    * Fetch user notification preferences
    **/
-  retrieve = createMethod({
+  get = createMethod({
     method: 'GET',
   });
 

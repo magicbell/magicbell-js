@@ -9,7 +9,6 @@ import { compact, hasOwn, joinAnd, sleep, uuid4 } from './lib/utils';
 import { isOptionsHash } from './options';
 import { NotificationPreferences } from './resources/notification-preferences';
 import { Notifications } from './resources/notifications';
-import { PushSubscriptions } from './resources/push-subscriptions';
 import { Subscriptions } from './resources/subscriptions';
 import { Users } from './resources/users';
 import { ClientOptions, RequestArgs, RequestMethod, RequestOptions } from './types';
@@ -33,7 +32,6 @@ export class Client {
 
   notificationPreferences = new NotificationPreferences(this);
   notifications = new Notifications(this);
-  pushSubscriptions = new PushSubscriptions(this);
   subscriptions = new Subscriptions(this);
   users = new Users(this);
 
