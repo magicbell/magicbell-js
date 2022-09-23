@@ -18,6 +18,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: yarn changeset:release
+          commit: 'chore: version packages'
+          title: 'next release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
