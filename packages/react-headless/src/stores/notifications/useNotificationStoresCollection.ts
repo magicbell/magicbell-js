@@ -93,13 +93,14 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
         const attrs = { readAt: now, seenAt: now };
 
         for (const storeId in stores) {
-          const { total, notifications, context } = stores[storeId];
+          const { total, notifications, context, unreadCount, unseenCount } = stores[storeId];
           const index = findIndex(propEq('id', notificationId), notifications);
 
           if (index > -1) {
-            // only decrease total counters when the notification wasn't already read|seen
-            if (!notification.readAt) draft.stores[storeId].unreadCount -= 1;
-            if (!notification.seenAt) draft.stores[storeId].unseenCount -= 1;
+            // Decrease the counters if the notification wasn't already read|seen, and clamp to zero as it might happen
+            // that markAsSeen has set the counter to zero, while the notification.seenAt is still undefined
+            if (!notification.readAt) draft.stores[storeId].unreadCount = Math.max(0, unreadCount - 1);
+            if (!notification.seenAt) draft.stores[storeId].unseenCount = Math.max(0, unseenCount - 1);
 
             const readNotification = mergeRight(notifications[index], attrs);
             if (objMatchesContext(readNotification, context).result) {
@@ -147,7 +148,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               draft.stores[storeId].notifications[index] = unreadNotification;
             } else {
               // Remove notification from the store
-              draft.stores[storeId].total -= 1;
+              draft.stores[storeId].total = Math.max(0, draft.stores[storeId].total - 1);
               draft.stores[storeId].notifications.splice(index, 1);
             }
           } else {
