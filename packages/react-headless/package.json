@@ -33,10 +33,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell-io/react-headless"
+    "url": "git@github.com:magicbell-io/magicbell-js.git"
   },
   "bugs": {
-    "url": "https://github.com/magicbell-io/react-headless/issues"
+    "url": "https://github.com/magicbell-io/magicbell-js/issues"
   },
   "scripts": {
     "clean": "rimraf dist",
