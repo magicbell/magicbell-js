@@ -37,7 +37,7 @@ export default function ClickableNotification({ notification: rawNotification, o
 
     // We don't want to invoke the action url when the user clicks a link or button inside the notification.
     // Notification content should take precedence.
-    const isActionableElement = /a|button|input/i.test(event.target.tagName);
+    const isActionableElement = /^(a|button|input)$/i.test(event.target.tagName);
 
     if (isActionableElement) return;
     if (onClick) onClick(notification);
