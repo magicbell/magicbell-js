@@ -11,4 +11,5 @@ export default defineConfig({
       injectReact: false,
     }),
   ],
+  publicDir: '../packages/embeddable/dist',
 });
