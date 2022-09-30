@@ -54,6 +54,11 @@ export default defineConfig(async ({ mode, command }) => {
       __PACKAGE_NAME__: JSON.stringify(pkg.name),
       __PACKAGE_VERSION__: JSON.stringify(pkg.version),
       __CODE_VERSION__: JSON.stringify(revision),
+      ...(shouldMinify
+        ? {
+            'process.env.NODE_ENV': JSON.stringify('production'),
+          }
+        : {}),
     },
     esbuild: {
       jsx: 'automatic',
