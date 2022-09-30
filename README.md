@@ -97,6 +97,10 @@ Please review, polish, and commit the files after completing the steps.
 
 ## Publish
 
+Publishing new package versions is an automated process managed via the `release` workflow. To trigger a release, push a commit containing changesets (`yarn changeset`) to `main`. This will trigger the bot to open or update a pull-request named `next release`. Once that pull request gets merged, the bot will publish the new versions to npm and create the release notes on GitHub.
+
+### Manual publishing
+
 Manual publishing is done in two steps:
 
 ```
