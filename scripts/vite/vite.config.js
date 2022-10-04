@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
 import GithubActionsReporter from 'vitest-github-actions-reporter';
 
-import { writeIndexFile, writeTypeDefs } from './plugins';
+import { writeIndexFile, writeTypeDefs } from './plugins/index.js';
 import {
   createFilename,
   cwd,
