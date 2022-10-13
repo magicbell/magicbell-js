@@ -246,17 +246,52 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
+        const changedNotifications = new Map();
+        const now = Date.now() / 1000;
+
         for (const storeId in stores) {
-          const { notifications } = stores[storeId];
+          const { context } = stores[storeId];
 
           draft.stores[storeId].unreadCount = 0;
           draft.stores[storeId].unseenCount = 0;
 
-          if (options.updateModels !== false) {
-            const now = Date.now() / 1000;
-            notifications.forEach((notification, index) => {
-              draft.stores[storeId].notifications[index] = mergeRight(notification, { readAt: now, seenAt: now });
-            });
+          if (options.updateModels === false) continue;
+
+          // don't iterate over notifications in stores that only hold read notifications
+          if (context.read !== true) {
+            for (const notification of draft.stores[storeId].notifications) {
+              // don't change notifications that are already read
+              if (notification.readAt) continue;
+
+              notification.readAt = now;
+              notification.seenAt = now;
+              changedNotifications.set(notification.id, notification);
+            }
+          }
+
+          // stores that don't include read notifications, can be flushed
+          if (context.read === false) {
+            draft.stores[storeId].notifications = [];
+            draft.stores[storeId].total = 0;
+          }
+        }
+
+        // do a second run to add changed notifications to stores that didn't hold unread notifications
+        for (const storeId in stores) {
+          const { context } = stores[storeId];
+
+          // skip stores that already contain the notification
+          if (context.read !== true) continue;
+
+          const notifications = draft.stores[storeId].notifications;
+          for (const notification of changedNotifications.values()) {
+            if (
+              objMatchesContext(notification, context).result &&
+              !notifications.find((n) => n.id === notification.id)
+            ) {
+              notifications.push(notification);
+              draft.stores[storeId].total += 1;
+            }
           }
         }
       }),
