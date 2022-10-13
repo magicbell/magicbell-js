@@ -205,7 +205,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     const { stores, _repository } = get();
     let promise = Promise.resolve(true);
 
-    // Do not persist the state is this op is a consequence of a remote event.
+    // Do not persist the state if this op is a consequence of a remote event.
     // Neither emit a local event.
     if (options.persist !== false) {
       const params = options.storeId ? stores[options.storeId]?.context : {};
