@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 import React from 'react';
 
@@ -13,8 +12,8 @@ const Component = ({ apiKey, userEmail, userKey, ...props }) => (
 
 const meta: Meta = {
   component: Component,
-  args: {
-    onChange: action('onChange'),
+  argTypes: {
+    onChange: { action: 'onChange' },
   },
 };
 
