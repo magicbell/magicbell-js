@@ -109,7 +109,7 @@ yarn changeset:version
 
 This command consumes the changesets as collected in [.changeset](.changeset), and proposes changelogs and version bumps. Please review the proposed changes, and polish the changelogs. Make sure that breaking changes result in major version bumps.
 
-Commit the change with `git add . && git commit -m 'version packages`, and move on to the next step to publish.
+Commit the change with `git add . && git commit -m 'version packages'`, and move on to the next step to publish.
 
 ```
 yarn changeset:release
