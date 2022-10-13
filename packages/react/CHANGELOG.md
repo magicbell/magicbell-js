@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- [`08f4abb`](https://github.com/magicbell-io/magicbell-js/commit/08f4abb6605de603688e970c49218e5aa41ebc08) Thanks [@smeijer](https://github.com/smeijer)! - upgraded react-headless to 4.2.2 to fix tab synchronization
+- Updated dependencies [[`08f4abb`](https://github.com/magicbell-io/magicbell-js/commit/08f4abb6605de603688e970c49218e5aa41ebc08)]
+  - @magicbell/react-headless@4.2.2
 
 ## 10.3.1
 
