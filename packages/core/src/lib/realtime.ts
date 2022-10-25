@@ -15,7 +15,7 @@ export { pushEventAggregator };
  * @param config The configuration used to open the connection.
  */
 export function connectToAbly(config: Config, authServerUrl = 'https://api.magicbell.com') {
-  const authUrl = `${authServerUrl}/${config.ws.authUrl}`;
+  const authUrl = `${authServerUrl}${config.ws.authUrl}`;
 
   const authHeaders = { 'X-MAGICBELL-API-KEY': config.apiKey };
   if (config.userEmail) authHeaders['X-MAGICBELL-USER-EMAIL'] = config.userEmail;
