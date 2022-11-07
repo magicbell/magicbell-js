@@ -35,11 +35,13 @@ export default function EnablePushNotificationsBanner() {
   const enablePushNotifications = () => {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
 
+    const { backgroundColor, textColor } = theme.header;
+    
     const url = new URL(subscribeUrl);
-    url.searchParams.append('user_email', userEmail);
-    url.searchParams.append('user_external_id', userExternalId);
-    url.searchParams.append('background_color', theme.header.backgroundColor);
-    url.searchParams.append('text_color', theme.header.textColor);
+    if (userEmail) url.searchParams.append('user_email', userEmail);
+    if (userExternalId) url.searchParams.append('user_external_id', userExternalId);
+    if (backgroundColor) url.searchParams.append('background_color', backgroundColor);
+    if (textColor) url.searchParams.append('text_color', textColor);
 
     setRequestedAt(Date.now());
     openWindow(url.toString());
