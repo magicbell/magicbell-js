@@ -36,7 +36,7 @@ export default function EnablePushNotificationsBanner() {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
 
     const { backgroundColor, textColor } = theme.header;
-    
+
     const url = new URL(subscribeUrl);
     if (userEmail) url.searchParams.append('user_email', userEmail);
     if (userExternalId) url.searchParams.append('user_external_id', userExternalId);
