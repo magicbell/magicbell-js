@@ -1,5 +1,14 @@
 # @magicbell/embeddable
 
+## 3.2.4
+
+### Patch Changes
+
+- [#15](https://github.com/magicbell-io/magicbell-js/pull/15) [`7767b69`](https://github.com/magicbell-io/magicbell-js/commit/7767b69ed20539c4ccf2ba7cdc53bd5783a36d12) Thanks [@smeijer](https://github.com/smeijer)! - ensure that the minified esm bundle is imported when importing from unpkg.
+
+- Updated dependencies [[`1cb984c`](https://github.com/magicbell-io/magicbell-js/commit/1cb984cfac485254c286385d8a750bc3c62cfbbb)]:
+  - @magicbell/magicbell-react@10.3.3
+
 ## 3.2.3
 
 ### Patch Changes

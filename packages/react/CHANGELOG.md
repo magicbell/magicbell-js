@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 10.3.3
+
+### Patch Changes
+
+- [#13](https://github.com/magicbell-io/magicbell-js/pull/13) [`1cb984c`](https://github.com/magicbell-io/magicbell-js/commit/1cb984cfac485254c286385d8a750bc3c62cfbbb) Thanks [@3v0k4](https://github.com/3v0k4)! - Fix embeddable web notifications: since embeddable aliases axios (redaxios) and redaxios does not implement `.getUri`, the code was failing for the embeddable package (that uses redaxios) but not for the react package (that uses axios).
+
 ## 10.3.2
 
 ### Patch Changes
