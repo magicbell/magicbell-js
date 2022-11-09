@@ -5,6 +5,7 @@
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "module": "dist/magicbell.esm.js",
+  "unpkg": "dist/magicbell.esm.min.js",
   "repository": "git@github.com:magicbell-io/embeddable-web.git",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
