@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { clientSettings, useConfig } from '@magicbell/react-headless';
-import axios from 'axios';
 import { path, pathOr } from 'ramda';
 import { useLocalStorage } from 'react-use';
 
@@ -35,18 +34,17 @@ export default function EnablePushNotificationsBanner() {
 
   const enablePushNotifications = () => {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
-    const url = axios.getUri({
-      url: subscribeUrl,
-      params: {
-        user_email: userEmail,
-        user_external_id: userExternalId,
-        background_color: theme.header.backgroundColor,
-        text_color: theme.header.textColor,
-      },
-    });
+
+    const { backgroundColor, textColor } = theme.header;
+
+    const url = new URL(subscribeUrl);
+    if (userEmail) url.searchParams.append('user_email', userEmail);
+    if (userExternalId) url.searchParams.append('user_external_id', userExternalId);
+    if (backgroundColor) url.searchParams.append('background_color', backgroundColor);
+    if (textColor) url.searchParams.append('text_color', textColor);
 
     setRequestedAt(Date.now());
-    openWindow(url);
+    openWindow(url.toString());
   };
 
   const closeBanner = () => {
