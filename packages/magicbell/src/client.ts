@@ -13,6 +13,11 @@ import { Subscriptions } from './resources/subscriptions';
 import { Users } from './resources/users';
 import { ClientOptions, RequestArgs, RequestMethod, RequestOptions } from './types';
 
+// some environments, like vscode extensions, don't have the XMLHttpRequest object defined.
+if (typeof XMLHttpRequest !== 'function') {
+  axios.defaults.adapter = require('axios/lib/adapters/http');
+}
+
 export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   host: 'https://api.magicbell.com',
   timeout: 30_000,
