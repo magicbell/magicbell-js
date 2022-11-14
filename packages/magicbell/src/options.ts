@@ -8,6 +8,7 @@ const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean>
   apiKey: isString,
   maxRetries: isNumber,
   userEmail: isString,
+  userExternalId: isString,
   idempotencyKey: isString,
   telemetry: isBoolean,
   apiSecret: isString,

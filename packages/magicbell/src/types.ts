@@ -3,6 +3,7 @@ export type ClientOptions = {
   apiKey: string;
   apiSecret?: string;
   userEmail?: string;
+  userExternalId?: string;
   appInfo?: {
     name: string;
     version?: string;
@@ -18,7 +19,7 @@ export type ClientOptions = {
 
 export type RequestOptions = Pick<
   ClientOptions,
-  'userEmail' | 'idempotencyKey' | 'timeout' | 'maxRetries' | 'maxRetryDelay'
+  'userEmail' | 'userExternalId' | 'idempotencyKey' | 'timeout' | 'maxRetries' | 'maxRetryDelay'
 >;
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';

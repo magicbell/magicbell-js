@@ -129,6 +129,7 @@ export class Client {
         'X-MAGICBELL-CLIENT-USER-AGENT': this.#clientUserAgent,
         'X-MAGICBELL-USER-EMAIL': options.userEmail,
         'X-MAGICBELL-USER-KEY': computeUserKey(options.apiSecret, options.userEmail),
+        'X-MAGICBELL-USER-EXTERNAL-ID': options.userExternalId,
       }),
     );
   }
