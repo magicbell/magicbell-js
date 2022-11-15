@@ -19,6 +19,11 @@ function formatMarkdown(document) {
   return prettier.format(document, {
     parser: 'markdown',
     plugins: [prettyMarkdown],
+    singleQuote: true,
+    semi: true,
+    trailingComma: 'all',
+    printWidth: 120,
+    tabWidth: 2,
   });
 }
 
