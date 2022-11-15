@@ -36,7 +36,7 @@
     "build": "run-s clean build:*",
     "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "generate:resources": "tsx scripts/generate-resources.ts -- --no-cache",
+    "generate:resources": "tsx scripts/generate-resources.ts",
     "start": "yarn build:dev --watch",
     "size": "size-limit"
   },

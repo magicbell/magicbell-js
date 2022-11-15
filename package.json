@@ -92,6 +92,7 @@
     "vite": "^3.1.0",
     "vite-plugin-banner": "^0.5.0",
     "vitest": "^0.23.1",
-    "vitest-github-actions-reporter": "^0.8.3"
+    "vitest-github-actions-reporter": "^0.8.3",
+    "zx": "^7.1.1"
   }
 }
