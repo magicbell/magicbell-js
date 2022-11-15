@@ -713,6 +713,69 @@ await magicbell.subscriptions.delete(
 
 <!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
 
+## Realtime
+
+Listen to realtime events using Server Sent Events / EventSource. This feature supports auto-retry for authentication requests, and auto-reconnect when streaming. In case the connection is lost, the client will try to reconnect and resume the stream from the last received event.
+
+It's possible to listen via an async iterator, or via a callback. The listen method is for a single user. Just like with the resource methods, the user email or external-id can be provided via the client, or passed as argument to the listen method.
+
+```js
+const magicbell = new MagicBell({
+  apiKey: 'your-api-key',
+  userEmail: 'someone@example.com',
+});
+
+magicbell.listen({ userEmail: 'someone@example.com' });
+```
+
+**async iterator** - this iterates over all events. Call `break` when you wish to step out of the iteration and stop listening.
+
+```js
+for await (const notification of magicbell.listen()) {
+  console.log(notification.data.id);
+  // break to abort and stop listening
+  if (shouldStop()) break;
+}
+```
+
+**forEach** - similar to the iterator, but in a callback style fashion. Return `false` when you wish to stop listening.
+
+```js
+magicbell.listen().forEach((notification) => {
+  console.log(notification.data.id);
+  // return false to abort and stop listening
+  if (shouldStop()) return false;
+});
+```
+
+### Realtime events
+
+The following events are emitted by the client:
+
+| event.name               | description                                |
+| ------------------------ | ------------------------------------------ |
+| `notifications/new`      | a new notification has been created        |
+| `notifications/read`     | a notification has been read               |
+| `notifications/unread`   | a notification has been marked as unread   |
+| `notifications/delete`   | a notification has been deleted            |
+| `notifications/read/all` | all notifications have been marked as read |
+| `notifications/seen/all` | all notifications have been marked as seen |
+
+### Realtime with extended data
+
+Note that the realtime listener returns a limited set of data. We do this intentionally, so that the listener stays fast, and doesn't use more bandwidth or battery than necessary. If you need more data, you can complement it using the notification resource method.
+
+```js
+for await (let event of client.listen()) {
+  if ('id' in event.data) {
+    const notification = await client.notifications.get(event.data.id);
+    doSomething({ event, notification });
+  } else {
+    doSomething({ event });
+  }
+}
+```
+
 ## Support
 
 New features and bug fixes are released on the latest major version of the `magicbell` package. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.

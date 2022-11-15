@@ -6,6 +6,7 @@ import { createError } from './lib/error';
 import { normalizeHeaders } from './lib/headers';
 import { Logger } from './lib/log';
 import { compact, hasOwn, joinAnd, sleep, uuid4 } from './lib/utils';
+import { createListener } from './listen';
 import { isOptionsHash } from './options';
 import { NotificationPreferences } from './resources/notification-preferences';
 import { Notifications } from './resources/notifications';
@@ -26,6 +27,8 @@ export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   telemetry: true,
 };
 
+type Telemetry = { id: string; runtime: number; duration: number; status: number };
+
 export class Client {
   #userAgent: string;
   #clientId: string;
@@ -33,8 +36,8 @@ export class Client {
   #options: ClientOptions;
   #logger = new Logger();
   #features: Record<string, boolean> = {};
-
-  #lastRequest: { id: string; runtime: number; duration: number; status: number }[] = [];
+  #lastRequest: Telemetry[] = [];
+  listen = createListener(this);
 
   notificationPreferences = new NotificationPreferences(this);
   notifications = new Notifications(this);
@@ -65,7 +68,7 @@ export class Client {
     return this.#features[flag] || false;
   }
 
-  async request({ method, path, data, params }: RequestArgs, options?: RequestOptions) {
+  async request<TResponse = any>({ method, path, data, params }: RequestArgs, options?: RequestOptions) {
     const requestOptions = { ...this.#options, ...options };
 
     // compute headers out of the retry-loop, only append the telemetry later
@@ -73,7 +76,7 @@ export class Client {
 
     const maxRetries = Math.max(0, requestOptions.maxRetries);
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      let response: AxiosResponse;
+      let response: AxiosResponse<TResponse, any>;
       let error: AxiosError | null;
       const startTime = Date.now();
 
@@ -116,7 +119,7 @@ export class Client {
           type: error['type'],
           status: response.status,
           statusText: response.statusText,
-          ...response?.data?.errors?.[0],
+          ...(response?.data as any)?.errors?.[0],
         });
       }
 
