@@ -132,7 +132,7 @@ for await (const notification of magicbell.notifications.list()) {
 }
 ```
 
-**forEach** - similiar to the iterator, but in a callback style fashion. Return `false` when you wish to step out of the iteration / auto fetching.
+**forEach** - similar to the iterator, but in a callback style fashion. Return `false` when you wish to step out of the iteration / auto fetching.
 
 ```js
 await magicbell.notifications.list().forEach((notification) => {
@@ -310,7 +310,7 @@ You don't have to import your users into MagicBell. If a user does not exist we'
 
 You can send user attributes like first_name, custom_attributes, and more when creating a notification.
 
-The new notification will be shown in the notification inbox of each recipient in real-time. It will also be delivered to each recipient through all channels your have enabled for your MagicBell project.
+The new notification will be shown in the notification inbox of each recipient in real-time. It will also be delivered to each recipient through all channels you have enabled for your MagicBell project.
 
 ```js
 await magicbell.notifications.create({
