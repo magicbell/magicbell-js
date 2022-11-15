@@ -1,3 +1,6 @@
+#!/usr/bin/env zx
+import 'zx/globals';
+
 /* eslint-disable no-console */
 import parser from '@apidevtools/swagger-parser';
 import { builders } from 'ast-types';
@@ -29,10 +32,13 @@ const CACHE_DIR = path.join(process.cwd(), 'scripts', '.cache');
 const CACHE_FILE = path.join(CACHE_DIR, 'openapi.json');
 const OUT_DIR = path.join(process.cwd(), 'src', 'resources');
 
-const args = process.argv.slice(2);
-
 async function getOpenAPIDocument() {
-  if (!args.includes('--no-cache')) {
+  if (argv.spec) {
+    const contents = await fs.readFile(argv.spec, 'utf-8').then((x) => JSON.parse(x));
+    return parser.dereference(contents);
+  }
+
+  if (argv.cache) {
     try {
       await fs.mkdir(CACHE_DIR, { recursive: true });
       const contents = await fs.readFile(CACHE_FILE, 'utf-8').then((x) => JSON.parse(x));
