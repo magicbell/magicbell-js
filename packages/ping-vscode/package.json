@@ -1,0 +1,118 @@
+{
+  "name": "ping-vscode",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Ping VSCode extension by Magicbell",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "publisher": "magicbell",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.tsx",
+  "main": "dist/extension.js",
+  "engines": {
+    "vscode": "^1.73.0",
+    "node": "^18.9.0"
+  },
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "notifications",
+    "notification center",
+    "notification inbox",
+    "vscode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/magicbell-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magicbell-io/magicbell-js/issues"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean build:*",
+    "build:ext": "cross-env ENTRY=extension vite build --minify",
+    "build:app": "cross-env ENTRY=app vite build --minify",
+    "start": "run-p \"build:ext --watch\" \"build:app --watch\"",
+    "vscode:prepublish": "yarn build",
+    "package": "vsce package -o dist/ping.vsix --yarn",
+    "deploy:local": "yarn package && code --install-extension dist/ping.vsix --force",
+    "code:dev": "code --extensionDevelopmentPath=${PWD}"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/vscode": "^1.73.0",
+    "@types/vscode-webview": "^1.57.0",
+    "@vscode/test-electron": "^2.2.0",
+    "nodemon": "^2.0.20"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ping",
+          "title": "Ping",
+          "icon": "public/bell.svg"
+        }
+      ]
+    },
+    "views": {
+      "ping": [
+        {
+          "id": "ping.list",
+          "name": "Notifications",
+          "type": "webview",
+          "initialSize": 4
+        },
+        {
+          "id": "ping.listDetail",
+          "name": "Notification Detail",
+          "type": "webview",
+          "_when": "ping.activeNotification",
+          "initialSize": 1
+        }
+      ]
+    },
+    "commands": [],
+    "configuration": {
+      "type": "object",
+      "title": "MagicBell Ping",
+      "properties": {
+        "ping.apiKey": {
+          "type": "string",
+          "description": "The MagicBell API Key to use."
+        },
+        "ping.userHmac": {
+          "type": "string",
+          "description": "The MagicBell (HMAC) User Key to use."
+        },
+        "ping.username": {
+          "type": "string",
+          "description": "Your github username."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@preact/signals-core": "^1.2.2",
+    "@preact/signals-react": "^1.2.1",
+    "@primer/octicons-react": "^17.9.0",
+    "@stitches/react": "^1.2.8",
+    "@vscode/webview-ui-toolkit": "^1.1.0",
+    "magicbell": "^0.2.0",
+    "pluralize": "^8.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "use-async-effect": "^2.2.7"
+  }
+}

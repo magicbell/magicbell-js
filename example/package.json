@@ -19,7 +19,8 @@
     "@magicbell/embeddable": "../packages/embeddable",
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
-    "magicbell": "../packages/magicbell"
+    "magicbell": "../packages/magicbell",
+    "ping-vscode": "../packages/ping-vscode"
   },
   "devDependencies": {
     "@types/react": "^18.0.6",

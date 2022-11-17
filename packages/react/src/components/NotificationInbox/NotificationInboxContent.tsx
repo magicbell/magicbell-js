@@ -31,7 +31,7 @@ export default function NotificationInboxContent({
   NotificationItem,
 }: NotificationInboxContentProps) {
   // we use a refSetter so that the height observer is reattached on a ref change
-  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+  const [contentRef, setContentRef] = useState<any>(null);
 
   return (
     <div ref={setContentRef} css={{ width: '100%', height: height ?? '100%', overflow: 'auto' }}>
