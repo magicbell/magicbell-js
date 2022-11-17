@@ -32,6 +32,7 @@ export class Client {
   #clientUserAgent: string;
   #options: ClientOptions;
   #logger = new Logger();
+  #features: Record<string, boolean> = {};
 
   #lastRequest: { id: string; runtime: number; duration: number; status: number }[] = [];
 
@@ -57,6 +58,11 @@ export class Client {
     this.#clientUserAgent = getClientUserAgent(options.appInfo);
     this.#userAgent = getUserAgent(options.appInfo);
     this.#clientId = getClientId();
+    this.#features = options.features || {};
+  }
+
+  hasFlag(flag: string) {
+    return this.#features[flag] || false;
   }
 
   async request({ method, path, data, params }: RequestArgs, options?: RequestOptions) {

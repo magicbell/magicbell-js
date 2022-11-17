@@ -10,6 +10,7 @@ export class NotificationPreferences extends Resource {
    * Fetch user notification preferences
    **/
   get = createMethod({
+    id: 'notification-preferences-get',
     method: 'GET',
   });
 
@@ -17,6 +18,7 @@ export class NotificationPreferences extends Resource {
    * Update user notification preferences
    **/
   update = createMethod({
+    id: 'notification-preferences-update',
     method: 'PUT',
   });
 }

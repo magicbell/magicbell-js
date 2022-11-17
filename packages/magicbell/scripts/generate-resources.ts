@@ -71,8 +71,6 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
 
     for (const method of Object.keys(document.paths[apiPath])) {
       const operation = document.paths[apiPath][method];
-      if (operation['x-beta']) continue;
-
       const name = camelCase(operation.operationId.slice(rootPath.length + 1));
       const type = name === 'list' ? 'list' : null;
 
@@ -81,6 +79,8 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
         type,
         path: apiPath.replace(`/${path}`, '').replace(/^\//, ''),
         method,
+        private: Boolean(operation['x-private']),
+        beta: Boolean(operation['x-beta']),
         ...operation,
       });
     }
@@ -122,6 +122,8 @@ type Method = {
   method: string;
   name: string;
   type?: string;
+  beta: boolean;
+  private: boolean;
 } & OpenAPI.Operation;
 
 function createResource({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
@@ -169,44 +171,52 @@ function createResource({ apiPath, methods }: { apiPath: string; methods: Array<
                   value: builders.stringLiteral(entity),
                 }),
 
-              ...methods.map((method) => {
-                const type = method.name === 'list' ? 'list' : null;
+              ...methods
+                .filter((x) => !x.private)
+                .map((method) => {
+                  const type = method.name === 'list' ? 'list' : null;
 
-                return builders.classProperty.from({
-                  comments: [
-                    builders.commentBlock.from({
-                      value: `*\n * ${method.summary}\n *`,
-                    }),
-                  ],
-                  key: builders.identifier(method.name),
-                  value: builders.callExpression.from({
-                    callee: builders.identifier('createMethod'),
-                    arguments: [
-                      builders.objectExpression.from({
-                        properties: [
-                          builders.property.from({
-                            key: builders.identifier('method'),
-                            value: builders.stringLiteral(method.method.toUpperCase()),
-                            kind: 'init',
-                          }),
-                          method.path &&
-                            builders.property.from({
-                              key: builders.identifier('path'),
-                              value: builders.stringLiteral(method.path),
-                              kind: 'init',
-                            }),
-                          type &&
-                            builders.property.from({
-                              key: builders.identifier('type'),
-                              value: builders.stringLiteral('list'),
-                              kind: 'init',
-                            }),
-                        ].filter(Boolean),
+                  return builders.classProperty.from({
+                    comments: [
+                      builders.commentBlock.from({
+                        value: `*\n * ${method.summary}\n *`,
                       }),
                     ],
-                  }),
-                });
-              }),
+                    key: builders.identifier(method.name),
+                    value: builders.callExpression.from({
+                      callee: builders.identifier('createMethod'),
+                      arguments: [
+                        builders.objectExpression.from({
+                          properties: [
+                            builders.objectProperty.from({
+                              key: builders.identifier('id'),
+                              value: builders.stringLiteral(method.operationId),
+                            }),
+                            builders.objectProperty.from({
+                              key: builders.identifier('method'),
+                              value: builders.stringLiteral(method.method.toUpperCase()),
+                            }),
+                            method.path &&
+                              builders.objectProperty.from({
+                                key: builders.identifier('path'),
+                                value: builders.stringLiteral(method.path),
+                              }),
+                            type &&
+                              builders.objectProperty.from({
+                                key: builders.identifier('type'),
+                                value: builders.stringLiteral('list'),
+                              }),
+                            method.beta &&
+                              builders.objectProperty.from({
+                                key: builders.identifier('beta'),
+                                value: builders.booleanLiteral(true),
+                              }),
+                          ].filter(Boolean),
+                        }),
+                      ],
+                    }),
+                  });
+                }),
             ].filter(Boolean),
           ),
         }),
@@ -256,6 +266,9 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
   }
 
   for (const method of methods) {
+    // don't document private methods
+    if (method.private) continue;
+
     const parameters = method.parameters as OpenAPIV3.ParameterObject[];
     const requiresUserEmail = parameters.some((x) => /x-magicbell-user-email/i.test(x.name));
     const pathParams = method.path.split(/[/:]/).filter((x) => x && x.startsWith('{'));
@@ -268,6 +281,14 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
     const requestBody = getRequestBody(method);
 
     const options = requiresUserEmail ? { userEmail: 'person@example.com' } : null;
+
+    const note = method.beta
+      ? `
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the \`${method.operationId}\` [feature flag](#feature-flags).
+`.trim()
+      : '';
 
     // TODO: validate example based on schema
     const bodyObj = requestBody?.example || schemaToObject(requestBody?.schema);
@@ -286,6 +307,8 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
       `
 ${'#'.repeat(startLevel + 1)} ${method.summary}
 
+${note}
+
 ${method.description || ''}
 
 \`\`\`js
@@ -296,6 +319,22 @@ await magicbell.${camelCase(apiPath)}.${method.name}(${args});
   }
 
   return formatMarkdown(lines.join('\n'));
+}
+
+function createFeatureFlagTable(methods: Method[]) {
+  if (!methods.some((x) => x.beta)) return '_There are no features in beta at this time._';
+
+  const lines: Array<string> = [];
+
+  lines.push('| Feature Flag | Description |');
+  lines.push('|--------------|-------------|');
+
+  for (const method of methods) {
+    if (!method.beta) continue;
+    lines.push(`| \`${method.operationId}\` | ${method.summary} ([docs](#${method.operationId})) |`);
+  }
+
+  return lines.join('\n');
 }
 
 async function updateReadme(filePath: string, blockName: string, content: string | string[]) {
@@ -311,7 +350,7 @@ async function updateClient(filePath: string, files: File[]) {
     .filter((x) => x.name.endsWith('.ts'))
     .map((x) => x.name.replace(/\.ts$/, ''))
     .map((name) => ({
-      file: `./resources/${name.replace(/.ts$/, '')}`,
+      file: `./resources/${name}`,
       class: pascalCase(name),
       property: camelCase(name),
     }))
@@ -382,6 +421,12 @@ async function main() {
     files.push({ name: hyphenCase(apiPath) + '.ts', source, docs });
   }
 
+  // collect beta methods to list feature flags
+  const betaMethods = paths
+    .map((apiPath) => getRootPathMethods(document, apiPath))
+    .flat()
+    .filter((x) => x.beta);
+
   // add readme - this should not go through eslint
   files.push({
     name: 'README.md',
@@ -401,6 +446,7 @@ async function main() {
   // update method docs in readme
   const docs = files.map((x) => x.docs).filter(Boolean);
   await updateReadme(path.join(process.cwd(), 'README.md'), 'RESOURCE_METHODS', docs);
+  await updateReadme(path.join(process.cwd(), 'README.md'), 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
   console.log(`updated README.md`);
 
   await updateClient(path.join(process.cwd(), 'src', 'client.ts'), files);

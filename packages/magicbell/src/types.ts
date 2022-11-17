@@ -16,6 +16,7 @@ export type ClientOptions = {
   idempotencyKey?: string;
   telemetry?: boolean;
   debug?: boolean;
+  features?: Record<string, boolean>;
 };
 
 export type RequestOptions = Pick<

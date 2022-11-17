@@ -5,10 +5,12 @@ import { Resource } from './resource';
 import { ClientOptions, RequestMethod } from './types';
 
 type CreateMethodOptions = {
+  id: string;
   method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'PATCH';
   path?: string;
   entity?: string;
   type?: 'list';
+  beta?: boolean;
 };
 
 type IterablePromise<TData, TNode> = Promise<TData> & {
@@ -25,8 +27,12 @@ export function createMethod<TData = any>(
   options: CreateMethodOptions & { type?: never },
 ): (this: Resource, ...args) => Promise<TData>;
 
-export function createMethod({ method, path: _path, type }: CreateMethodOptions) {
+export function createMethod({ method, path: _path, type, id, beta }: CreateMethodOptions) {
   return function methodHandler(this: Resource, ...args) {
+    if (beta && !this.client.hasFlag(id)) {
+      throw new Error(`This is a beta feature, please enable it via the "${id}" flag.`);
+    }
+
     const { path, data, params, options } = normalizeArgs({
       path: joinUrlSegments(this.path, _path),
       method,
