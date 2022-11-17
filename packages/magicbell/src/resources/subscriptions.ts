@@ -10,6 +10,7 @@ export class Subscriptions extends Resource {
    * List subscriptions
    **/
   list = createMethod({
+    id: 'subscriptions-list',
     method: 'GET',
     type: 'list',
   });
@@ -18,6 +19,7 @@ export class Subscriptions extends Resource {
    * Create a topic subscription
    **/
   create = createMethod({
+    id: 'subscriptions-create',
     method: 'POST',
   });
 
@@ -25,6 +27,7 @@ export class Subscriptions extends Resource {
    * Unsubscribe from a topic
    **/
   unsubscribe = createMethod({
+    id: 'subscriptions-unsubscribe',
     method: 'POST',
     path: '{topic}/unsubscribe',
   });
@@ -33,6 +36,7 @@ export class Subscriptions extends Resource {
    * Show a topic subscription
    **/
   get = createMethod({
+    id: 'subscriptions-get',
     method: 'GET',
     path: '{topic}',
   });
@@ -41,6 +45,7 @@ export class Subscriptions extends Resource {
    * Delete topic subscription(s)
    **/
   delete = createMethod({
+    id: 'subscriptions-delete',
     method: 'DELETE',
     path: '{topic}',
   });

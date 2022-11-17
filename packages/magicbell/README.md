@@ -210,6 +210,10 @@ const magicbell = new MagicBell({
 
   Each request - after the first - includes a header with the response time of the previous request. This helps us to improve the performance of the API. You can opt out of this by setting this option to `false`.
 
+- **features** _Record<string, boolean>_
+
+  A map of feature flags to get access to beta features. See [Feature Flags](#feature-flags) for more information.
+
 ### Configuring Timeout
 
 Timeout can be set globally via the config object:
@@ -291,6 +295,28 @@ const magicbell = new MagicBell({
   telemetry: false,
 });
 ```
+
+### Feature Flags
+
+Features that in beta or early release are "hidden" behind a feature flag. You can enable them by passing a `features` object to the config, provided with a key for each feature that you wish to enable.
+
+Note that these features are behind a flag for a reason. They may change or be removed at any time and are not covered by our semantic versioning (semver) policy.
+
+```js
+const magicbell = new MagicBell({
+  features: {
+    'a-new-beta-feature': true,
+  },
+});
+```
+
+Below is a list of features that are currently behind feature flags.
+
+<!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
+
+_There are no features in beta at this time._
+
+<!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
 ## Resource methods
 

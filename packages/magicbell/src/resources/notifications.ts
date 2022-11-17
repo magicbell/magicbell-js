@@ -10,6 +10,7 @@ export class Notifications extends Resource {
    * Create notifications
    **/
   create = createMethod({
+    id: 'notifications-create',
     method: 'POST',
   });
 
@@ -17,6 +18,7 @@ export class Notifications extends Resource {
    * Fetch notifications
    **/
   list = createMethod({
+    id: 'notifications-list',
     method: 'GET',
     type: 'list',
   });
@@ -25,6 +27,7 @@ export class Notifications extends Resource {
    * Fetch a notification
    **/
   get = createMethod({
+    id: 'notifications-get',
     method: 'GET',
     path: '{notification_id}',
   });
@@ -33,6 +36,7 @@ export class Notifications extends Resource {
    * Delete a notification
    **/
   delete = createMethod({
+    id: 'notifications-delete',
     method: 'DELETE',
     path: '{notification_id}',
   });
@@ -41,6 +45,7 @@ export class Notifications extends Resource {
    * Mark a notification as read
    **/
   markAsRead = createMethod({
+    id: 'notifications-mark-as-read',
     method: 'POST',
     path: '{notification_id}/read',
   });
@@ -49,6 +54,7 @@ export class Notifications extends Resource {
    * Mark a notification as unread
    **/
   markAsUnread = createMethod({
+    id: 'notifications-mark-as-unread',
     method: 'POST',
     path: '{notification_id}/unread',
   });
@@ -57,6 +63,7 @@ export class Notifications extends Resource {
    * Archive a notification
    **/
   archive = createMethod({
+    id: 'notifications-archive',
     method: 'POST',
     path: '{notification_id}/archive',
   });
@@ -65,6 +72,7 @@ export class Notifications extends Resource {
    * Unarchive a notification
    **/
   unarchive = createMethod({
+    id: 'notifications-unarchive',
     method: 'DELETE',
     path: '{notification_id}/archive',
   });
@@ -73,6 +81,7 @@ export class Notifications extends Resource {
    * Mark all notifications as read
    **/
   markAllRead = createMethod({
+    id: 'notifications-mark-all-read',
     method: 'POST',
     path: 'read',
   });
@@ -81,6 +90,7 @@ export class Notifications extends Resource {
    * Mark all notifications as seen
    **/
   markAllSeen = createMethod({
+    id: 'notifications-mark-all-seen',
     method: 'POST',
     path: 'seen',
   });

@@ -10,6 +10,7 @@ export class Users extends Resource {
    * Create a user
    **/
   create = createMethod({
+    id: 'users-create',
     method: 'POST',
   });
 
@@ -17,6 +18,7 @@ export class Users extends Resource {
    * Update a user
    **/
   update = createMethod({
+    id: 'users-update',
     method: 'PUT',
     path: '{user_id}',
   });
@@ -25,6 +27,7 @@ export class Users extends Resource {
    * Delete a user
    **/
   delete = createMethod({
+    id: 'users-delete',
     method: 'DELETE',
     path: '{user_id}',
   });
@@ -33,6 +36,7 @@ export class Users extends Resource {
    * Update a user by email
    **/
   updateByEmail = createMethod({
+    id: 'users-update-by-email',
     method: 'PUT',
     path: 'email:{user_email}',
   });
@@ -41,6 +45,7 @@ export class Users extends Resource {
    * Delete a user by email
    **/
   deleteByEmail = createMethod({
+    id: 'users-delete-by-email',
     method: 'DELETE',
     path: 'email:{user_email}',
   });
@@ -49,6 +54,7 @@ export class Users extends Resource {
    * Update a user by external ID
    **/
   updateByExternalId = createMethod({
+    id: 'users-update-by-external-id',
     method: 'PUT',
     path: 'external_id:{external_id}',
   });
@@ -57,6 +63,7 @@ export class Users extends Resource {
    * Delete a user by external ID
    **/
   deleteByExternalId = createMethod({
+    id: 'users-delete-by-external-id',
     method: 'DELETE',
     path: 'external_id:{external_id}',
   });

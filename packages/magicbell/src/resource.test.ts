@@ -21,34 +21,45 @@ function pagedResponse({ total_pages, per_page }: { total_pages: number; per_pag
   };
 }
 
-const client = new Client({
-  host: 'https://example.com',
-  apiKey: 'my-api-key',
-});
-
 class FakeResource extends Resource {
   path = 'fakes';
   entity = 'fake';
 
   get = createMethod({
+    id: 'fakes-get',
     method: 'GET',
     path: '{id}',
   });
 
   getNested = createMethod({
+    id: 'fake-get-nested',
     method: 'GET',
     path: '/box/{id}/with/{name}',
   });
 
   getList = createMethod({
+    id: 'fake-list',
     method: 'GET',
     type: 'list',
   });
 
   post = createMethod({
+    id: 'fake-post',
     method: 'POST',
   });
+
+  betaMethod = createMethod({
+    id: 'fake-beta-method',
+    method: 'GET',
+    path: '{id}',
+    beta: true,
+  });
 }
+
+const client = new Client({
+  host: 'https://example.com',
+  apiKey: 'my-api-key',
+});
 
 const fakeResource = new FakeResource(client);
 
@@ -164,7 +175,6 @@ test('list methods are iterable over single nodes, and auto fetch next pages', a
 
   let counter = 0;
   for await (const node of fakeResource.getList()) {
-    node; /*?*/
     expect(node).toHaveProperty('id', ++counter);
   }
 
@@ -221,4 +231,41 @@ test('toArray stops fetching when limit is reached', async () => {
   const nodes = await fakeResource.getList().toArray({ limit: 5 });
   expect(nodes).toHaveLength(5);
   expect(spy.handledRequests).toEqual(3);
+});
+
+test('beta method throws when used without feature flag', () => {
+  expect(() => fakeResource.betaMethod()).toThrow(
+    'This is a beta feature, please enable it via the "fake-beta-method" flag.',
+  );
+});
+
+test('beta method throws when used with wrong feature flag', async () => {
+  const betaClient = new Client({
+    host: 'https://example.com',
+    apiKey: 'my-api-key',
+    features: {
+      'fake-beta-method-does-not-exist': true,
+    },
+  });
+
+  const fakeResource = new FakeResource(betaClient);
+  expect(() => fakeResource.betaMethod()).toThrow(
+    'This is a beta feature, please enable it via the "fake-beta-method" flag.',
+  );
+});
+
+test('beta method can be enabled via feature flags', async () => {
+  const spy = server.intercept('all');
+
+  const betaClient = new Client({
+    host: 'https://example.com',
+    apiKey: 'my-api-key',
+    features: {
+      'fake-beta-method': true,
+    },
+  });
+
+  const fakeResource = new FakeResource(betaClient);
+  await fakeResource.betaMethod('obj-1');
+  expect(spy.lastRequest.url.pathname).toEqual('/fakes/obj-1');
 });

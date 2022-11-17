@@ -15,6 +15,7 @@ const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean>
   apiSecret: isString,
   appInfo: isObject,
   debug: isBoolean,
+  features: isObject,
 };
 
 export function isOptionsHash(object) {
