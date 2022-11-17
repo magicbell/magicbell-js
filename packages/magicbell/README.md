@@ -711,6 +711,52 @@ await magicbell.subscriptions.delete(
 );
 ```
 
+### Imports
+
+#### Create a user import
+
+Send a request to start the import of a list of users. The import allows the creation of slack connections as well.
+
+```js
+await magicbell.imports.create({
+  users: [
+    {
+      external_id: 'ugiabqertz',
+      email: 'johndoe@example.com',
+      first_name: 'John',
+      last_name: 'Doe',
+      custom_attributes: {
+        age: 32,
+        country: 'Spain',
+      },
+      channels: {
+        slack: {
+          providers: [
+            {
+              oauth: {
+                channel_id: 'U039446XF3Y',
+                app: {
+                  app_id: 'your_slack_app_id',
+                  team_id: 'workspace_id_from_slack',
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
+});
+```
+
+#### Get a user import
+
+Send a request to query the status & errors of the import.
+
+```js
+await magicbell.imports.get('{import_id}');
+```
+
 <!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
 
 ## Support
