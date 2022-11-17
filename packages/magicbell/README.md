@@ -314,7 +314,10 @@ Below is a list of features that are currently behind feature flags.
 
 <!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
 
-_There are no features in beta at this time._
+| Feature Flag                | Description                                              |
+| --------------------------- | -------------------------------------------------------- |
+| `push-subscriptions-create` | Register a device ([docs](#push-subscriptions-create))   |
+| `push-subscriptions-delete` | Unregister a device ([docs](#push-subscriptions-delete)) |
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
@@ -628,6 +631,44 @@ await magicbell.notificationPreferences.update(
     userEmail: 'person@example.com',
   },
 );
+```
+
+### Push Subscriptions
+
+#### Register a device
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `push-subscriptions-create` [feature flag](#feature-flags).
+
+Register a device token for push notifications.
+
+Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
+
+```js
+await magicbell.pushSubscriptions.create(
+  {
+    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
+    platform: 'ios',
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Unregister a device
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `push-subscriptions-delete` [feature flag](#feature-flags).
+
+Remove the subscription of a device to mobile push notifications. The device will be discarded immediately.
+
+```js
+await magicbell.pushSubscriptions.delete('{device_token}', {
+  userEmail: 'person@example.com',
+});
 ```
 
 ### Subscriptions
