@@ -37,8 +37,23 @@ export function setupMockServer() {
 
       server.use(
         rest[method]('*', (req, res, ctx) => {
-          const { status, json, ...data } = cb?.(req, res, context) || {};
-          const response = res(ctx.status(status || 200), ctx.json(json || data || ''));
+          const {
+            status,
+            json,
+            contentType = 'application/json',
+            cacheControl = 'no-cache',
+            passThrough = false,
+            ...data
+          } = cb?.(req, res, context) || {};
+
+          if (passThrough) return req.passthrough();
+
+          const response = res(
+            ctx.status(status || 200),
+            ctx.set('Content-Type', contentType),
+            ctx.set('Cache-Control', cacheControl),
+            ctx.json(json || data || ''),
+          );
 
           context.handledRequests++;
           context.lastRequest = req;

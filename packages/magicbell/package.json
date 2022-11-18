@@ -56,6 +56,7 @@
     "ast-types": "^0.14.2",
     "json5": "^2.2.1",
     "openapi-types": "^12.0.2",
+    "portfinder": "^1.0.32",
     "recast": "^0.21.2"
   },
   "dependencies": {

@@ -41,7 +41,7 @@ type IterableEventSource<TNode> = {
   forEach(cb: (node: TNode, index: number) => void | boolean | Promise<void | boolean>): Promise<void>;
 };
 
-export function createListener(client: InstanceType<typeof Client>) {
+export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}) {
   let eventSource: EventSource;
   let channels: string;
   let lastEvent: string;
@@ -78,8 +78,11 @@ export function createListener(client: InstanceType<typeof Client>) {
     // make sure that the optional config request has finished
     await configPromise;
 
-    // establish a connection with that token
-    const url = new URL('https://realtime.ably.io/sse');
+    // establish a connection with that token, the only reason we allow passing in the sseHost via args,
+    // is so that we have a way to reroute to localhost for testing.
+    const sseHost = args.sseHost || 'https://realtime.ably.io';
+    const url = new URL('sse', sseHost);
+
     url.searchParams.append('v', '1.1');
     url.searchParams.append('accessToken', token);
     url.searchParams.append('channels', channels);
@@ -97,12 +100,16 @@ export function createListener(client: InstanceType<typeof Client>) {
 
     // handle incoming messages
     eventSource.onmessage = (event) => {
-      if (event.origin !== 'https://realtime.ably.io') return;
+      if (event.origin !== sseHost) return;
 
       lastEvent = event.lastEventId;
       if (!('data' in event)) return;
 
       const message = JSON.parse(event.data);
+      if (message.type === 'close') {
+        return pushMessage({ value: null, done: true });
+      }
+
       message.data = message.encoding === 'json' ? JSON.parse(message.data) : message.data;
       pushMessage({ value: message, done: false });
     };
@@ -119,12 +126,12 @@ export function createListener(client: InstanceType<typeof Client>) {
         pushMessage({ value: null, done: true });
       } else {
         // eslint-disable-next-line no-console
-        console.log('err', err);
+        console.log('err', msg);
       }
     };
   }
 
-  function listen(options: RequestOptions): IterableEventSource<Event> {
+  function listen(options?: RequestOptions): IterableEventSource<Event> {
     void connect(options);
 
     const asyncIteratorNext = async () => {
