@@ -8,6 +8,7 @@ import { Logger } from './lib/log';
 import { compact, hasOwn, joinAnd, sleep, uuid4 } from './lib/utils';
 import { createListener } from './listen';
 import { isOptionsHash } from './options';
+import { Imports } from './resources/imports';
 import { NotificationPreferences } from './resources/notification-preferences';
 import { Notifications } from './resources/notifications';
 import { Subscriptions } from './resources/subscriptions';
@@ -39,6 +40,7 @@ export class Client {
   #lastRequest: Telemetry[] = [];
   listen = createListener(this);
 
+  imports = new Imports(this);
   notificationPreferences = new NotificationPreferences(this);
   notifications = new Notifications(this);
   subscriptions = new Subscriptions(this);
