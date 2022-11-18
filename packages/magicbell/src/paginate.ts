@@ -88,7 +88,7 @@ function memoizedPromise(promiseCache, cb) {
   return promiseCache.currentPromise;
 }
 
-function makeForEach(asyncIteratorNext) {
+export function makeForEach(asyncIteratorNext, onDoneCallback?: () => void) {
   return function forEach(onItem) {
     return new Promise<void>((resolve, reject) => {
       let idx = 0;
@@ -103,6 +103,7 @@ function makeForEach(asyncIteratorNext) {
           resolve(onItem(item, idx));
         }).then((shouldContinue) => {
           if (shouldContinue === false) {
+            onDoneCallback?.();
             return handleIteration({ done: true });
           } else {
             idx++;
