@@ -1,52 +1,164 @@
 // This file is generated. Do not update manually!
-import { createMethod } from '../method';
+
+import { type FromSchema } from 'json-schema-to-ts';
+
+import { type IterablePromise } from '../method';
 import { Resource } from '../resource';
+import * as schemas from '../schemas/subscriptions';
+import { type RequestOptions } from '../types';
+
+type ListSubscriptionsResponse = FromSchema<typeof schemas.ListSubscriptionsResponseSchema>;
+type CreateSubscriptionsResponse = FromSchema<typeof schemas.CreateSubscriptionsResponseSchema>;
+type CreateSubscriptionsPayload = FromSchema<typeof schemas.CreateSubscriptionsPayloadSchema>;
+type UnsubscribeSubscriptionsResponse = FromSchema<typeof schemas.UnsubscribeSubscriptionsResponseSchema>;
+type UnsubscribeSubscriptionsPayload = FromSchema<typeof schemas.UnsubscribeSubscriptionsPayloadSchema>;
+type GetSubscriptionsResponse = FromSchema<typeof schemas.GetSubscriptionsResponseSchema>;
+type GetSubscriptionsPayload = FromSchema<typeof schemas.GetSubscriptionsPayloadSchema>;
+type DeleteSubscriptionsPayload = FromSchema<typeof schemas.DeleteSubscriptionsPayloadSchema>;
 
 export class Subscriptions extends Resource {
   path = 'subscriptions';
   entity = 'subscription';
 
   /**
-   * List subscriptions
+   * List a user's subscriptions status for all topics and categories.
+   *
+   * @param options - override client request options.
+   * @returns
    **/
-  list = createMethod({
-    id: 'subscriptions-list',
-    method: 'GET',
-    type: 'list',
-  });
+  list(options?: RequestOptions): IterablePromise<ListSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        paged: true,
+      },
+      options,
+    );
+  }
 
   /**
-   * Create a topic subscription
+   * Set a user's subscription status to subscribed for a particular topic (and
+   * optional categories). If the user previously unsubscribed, the user will be
+   * resubscribed.
+   *
+   * @param data
+   * @param options - override client request options.
+   * @returns
    **/
-  create = createMethod({
-    id: 'subscriptions-create',
-    method: 'POST',
-  });
+  create(data: CreateSubscriptionsPayload, options?: RequestOptions): Promise<CreateSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'POST',
+      },
+      data,
+      options,
+    );
+  }
 
   /**
-   * Unsubscribe from a topic
+   * Unusbscribe a user from a particular topic (and optional categories).
+   *
+   * @param topic
+   * @param options - override client request options.
+   * @returns
    **/
-  unsubscribe = createMethod({
-    id: 'subscriptions-unsubscribe',
-    method: 'POST',
-    path: '{topic}/unsubscribe',
-  });
+  unsubscribe(topic: string, options?: RequestOptions): Promise<UnsubscribeSubscriptionsResponse>;
 
   /**
-   * Show a topic subscription
+   * Unusbscribe a user from a particular topic (and optional categories).
+   *
+   * @param topic
+   * @param data
+   * @param options - override client request options.
+   * @returns
    **/
-  get = createMethod({
-    id: 'subscriptions-get',
-    method: 'GET',
-    path: '{topic}',
-  });
+  unsubscribe(
+    topic: string,
+    data: UnsubscribeSubscriptionsPayload,
+    options?: RequestOptions,
+  ): Promise<UnsubscribeSubscriptionsResponse>;
+
+  unsubscribe(
+    topic: string,
+    dataOrOptions: UnsubscribeSubscriptionsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<UnsubscribeSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'POST',
+        path: '{topic}/unsubscribe',
+      },
+      topic,
+      dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Show a user's subscription status for a particular topic and categories.
+   *
+   * @param topic
+   * @param options - override client request options.
+   * @returns
+   **/
+  get(topic: string, options?: RequestOptions): Promise<GetSubscriptionsResponse>;
+
+  /**
+   * Show a user's subscription status for a particular topic and categories.
+   *
+   * @param topic
+   * @param data
+   * @param options - override client request options.
+   * @returns
+   **/
+  get(topic: string, data: GetSubscriptionsPayload, options?: RequestOptions): Promise<GetSubscriptionsResponse>;
+
+  get(
+    topic: string,
+    dataOrOptions: GetSubscriptionsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<GetSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        path: '{topic}',
+      },
+      topic,
+      dataOrOptions,
+      options,
+    );
+  }
 
   /**
    * Delete topic subscription(s)
+   *
+   * @param topic
+   * @param options - override client request options.
    **/
-  delete = createMethod({
-    id: 'subscriptions-delete',
-    method: 'DELETE',
-    path: '{topic}',
-  });
+  delete(topic: string, options?: RequestOptions): Promise<void>;
+
+  /**
+   * Delete topic subscription(s)
+   *
+   * @param topic
+   * @param data
+   * @param options - override client request options.
+   **/
+  delete(topic: string, data: DeleteSubscriptionsPayload, options?: RequestOptions): Promise<void>;
+
+  delete(
+    topic: string,
+    dataOrOptions: DeleteSubscriptionsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return this.request(
+      {
+        method: 'DELETE',
+        path: '{topic}',
+      },
+      topic,
+      dataOrOptions,
+      options,
+    );
+  }
 }

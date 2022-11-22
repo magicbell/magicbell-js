@@ -8,12 +8,14 @@ import axios from 'axios';
 import { ESLint } from 'eslint';
 import fs from 'fs/promises';
 import { stringify } from 'json5';
-import { OpenAPI, OpenAPIV3 } from 'openapi-types';
+import { IJsonSchema, OpenAPI, OpenAPIV3 } from 'openapi-types';
 import path from 'path';
 import prettier from 'prettier';
 import prettyMarkdown from 'prettier/parser-markdown';
 import * as recast from 'recast';
 import * as recastTypeScriptParser from 'recast/parsers/typescript';
+
+const RECAST_OPTIONS: recast.Options = { tabWidth: 2, quote: 'single', wrapColumn: 120 };
 
 function formatMarkdown(document) {
   return prettier.format(document, {
@@ -27,39 +29,105 @@ function formatMarkdown(document) {
   });
 }
 
-const eslint = new ESLint({ fix: true, useEslintrc: true, cwd: path.join(process.cwd(), '../..') });
+const eslint = new ESLint({
+  fix: true,
+  useEslintrc: true,
+  cwd: path.join(process.cwd(), '../..'),
+  overrideConfig: {
+    rules: {
+      'prettier/prettier': ['error', { parser: 'typescript' }],
+    },
+  },
+});
+
+function wrap(text, width) {
+  return text
+    .replace(new RegExp(`(?![^\\n]{1,${width}}$)([^\\n]{1,${width}})\\s`, 'g'), '$1\n')
+    .split('\n')
+    .map((x) => x.trim())
+    .join('\n');
+}
+
 async function formatCode(code: string) {
-  return eslint.lintText(code).then((x) => x[0].output);
+  return eslint.lintText(code).then((x) => {
+    if (x[0].messages?.length) {
+      console.log('ERRORS DURING CODE GENERATION:');
+      // console.dir(
+      //   {
+      //     t: typeof code,
+      //     messages: x[0].messages,
+      //     code: code
+      //       .split('\n')
+      //       .map((x, idx, all) => `${String(idx + 1).padStart(String(all.length).length, ' ')} ${x}`)
+      //       .join('\n'),
+      //   },
+      //   { depth: null },
+      // );
+    }
+    return x[0].output;
+  });
 }
 
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
 const CACHE_DIR = path.join(process.cwd(), 'scripts', '.cache');
 const CACHE_FILE = path.join(CACHE_DIR, 'openapi.json');
-const OUT_DIR = path.join(process.cwd(), 'src', 'resources');
+const OUT_DIR = path.join(process.cwd(), 'src');
 
-async function getOpenAPIDocument() {
+async function getOpenAPIDocument(options = { dereference: true }) {
+  const parse = options.dereference ? parser.dereference.bind(parser) : parser.parse.bind(parser);
+
   if (argv.spec) {
     const contents = await fs.readFile(argv.spec, 'utf-8').then((x) => JSON.parse(x));
-    return parser.dereference(contents);
+    return parse(contents);
   }
 
   if (argv.cache) {
     try {
       await fs.mkdir(CACHE_DIR, { recursive: true });
       const contents = await fs.readFile(CACHE_FILE, 'utf-8').then((x) => JSON.parse(x));
-      return parser.dereference(contents);
+      return parse(contents);
     } catch {}
   }
 
   const contents = await axios.get(SPEC_URL).then((x) => x.data);
   await fs.writeFile(CACHE_FILE, JSON.stringify(contents, null, 2), 'utf-8');
-  return parser.dereference(contents);
+  return parse(contents);
 }
 
 function getRootPaths(document: OpenAPI.Document) {
   const paths = Object.keys(document.paths);
   const rootPaths = paths.map((x) => x.split('/').filter(Boolean)[0]);
   return Array.from(new Set(rootPaths));
+}
+
+// function createTypeFromJsonSchema(name: string, schema: IJsonSchema) {
+//   // TODO: jsonschema to ts ast, recursively
+//   const parseMembers = (schema: IJsonSchema) => {
+//     return [];
+//   };
+//
+//   return builders.tsTypeAliasDeclaration.from({
+//     id: builders.identifier(name),
+//     typeParameters: null,
+//     typeAnnotation: builders.tsTypeLiteral.from({
+//       members: parseMembers(schema),
+//     }),
+//   });
+// }
+
+function getSuccessStatusCode(operation: OpenAPIV3.OperationObject) {
+  return Object.keys(operation?.responses || {})
+    .map((x) => Number(x))
+    .find((response) => response >= 200 && response <= 299);
+}
+
+function isEmptySchema(schema: IJsonSchema) {
+  return (
+    !schema ||
+    !schema.type ||
+    (schema.type === 'object' && !schema.properties) ||
+    (schema.type === 'array' && !schema.items)
+  );
 }
 
 function getRootPathMethods(document: OpenAPI.Document, path: string) {
@@ -71,8 +139,59 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
 
     for (const method of Object.keys(document.paths[apiPath])) {
       const operation = document.paths[apiPath][method];
+      const resource = operation.operationId.slice(0, rootPath.length);
       const name = camelCase(operation.operationId.slice(rootPath.length + 1));
       const type = name === 'list' ? 'list' : null;
+
+      // url params, are applied like notifications.get('id')
+      const urlParams = (apiPath.match(/{\w+}/g) || []).map((param) => param.replace(/[{}]/g, ''));
+      const params = urlParams.map((param) => {
+        const source = operation.parameters.find((x) => x.in === 'path' && x.name === param);
+        return {
+          title: camelCase(param),
+          description: source?.description,
+          type: 'string',
+          ...source?.schema,
+        };
+      });
+
+      // data is applied after url params, in an object, like notifications.create({ title: 'hi' })
+      // TODO: reduce to object ???!
+      const query = (operation.parameters || [])
+        .filter((x) => x.in === 'query')
+        .map((x) => ({
+          title: camelCase(x.name),
+          description: x.description,
+          ...x.schema,
+        }));
+
+      // const requestOptions = operation.parameters?.filter((x) => x.in === 'header').map((x) => x.name) ?? [];
+      const TypePrefix = pascalCase(name) + pascalCase(resource);
+
+      const requestBody = operation.requestBody?.content['application/json']?.schema;
+      const data = query.length
+        ? {
+            title: TypePrefix + 'PayloadSchema',
+            type: 'object',
+            properties: query.reduce((acc, x) => ({ ...acc, [x.title]: x }), {}),
+            additionalProperties: false,
+            required: query.filter((x) => x.required).map((x) => x.title),
+          }
+        : {
+            title: TypePrefix + 'PayloadSchema',
+            type: 'object',
+            ...getSchema(document, requestBody),
+            additionalProperties: false,
+          };
+
+      const successCode = getSuccessStatusCode(operation);
+      const successResponse = operation?.responses[successCode]?.content?.['application/json']?.schema;
+
+      const returns = {
+        title: TypePrefix + 'ResponseSchema',
+        description: successResponse?.description,
+        ...getSchema(document, successResponse),
+      };
 
       methods.push({
         name,
@@ -81,6 +200,9 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
         method,
         private: Boolean(operation['x-private']),
         beta: Boolean(operation['x-beta']),
+        returns: isEmptySchema(returns) ? null : returns,
+        params: params.filter((x) => !isEmptySchema(x)),
+        data: isEmptySchema(data) ? null : data,
         ...operation,
       });
     }
@@ -97,11 +219,11 @@ function capitalize(str: string) {
 }
 
 function camelCase(str: string) {
-  return str.replace(/[_-](\w)/g, (g) => g[1].toUpperCase());
+  return str[0].toLowerCase() + str.slice(1).replace(/[_-](\w)/g, (g) => g[1].toUpperCase());
 }
 
 function pascalCase(str: string) {
-  return str[0].toUpperCase() + camelCase(str.slice(1));
+  return str[0].toUpperCase() + camelCase(str).slice(1);
 }
 
 function hyphenCase(str: string) {
@@ -124,6 +246,9 @@ type Method = {
   type?: string;
   beta: boolean;
   private: boolean;
+  params?: IJsonSchema[];
+  data?: IJsonSchema;
+  returns?: IJsonSchema;
 } & OpenAPI.Operation;
 
 function createResource({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
@@ -136,29 +261,60 @@ function createResource({ apiPath, methods }: { apiPath: string; methods: Array<
     })
     .find(Boolean);
 
+  const hasListMethod = methods.some((x) => x.name === 'list');
+  const resourceName = pascalCase(apiPath);
+
   return builders.program.from({
     comments: [
       builders.commentLine.from({
-        value: ' This file is generated. Do not update manually!',
+        value: ' This file is generated. Do not update manually!\n\n',
       }),
     ],
     body: [
-      builders.importDeclaration.from({
-        specifiers: [builders.importSpecifier(builders.identifier('createMethod'))],
-        source: builders.literal('../method'),
-      }),
-      builders.importDeclaration.from({
-        specifiers: [builders.importSpecifier(builders.identifier('Resource'))],
-        source: builders.literal('../resource'),
-      }),
+      buildImportDeclaration(['type FromSchema'], 'json-schema-to-ts'),
+      buildImportDeclaration(['Resource'], '../resource'),
+      buildImportDeclaration('* as schemas', `../schemas/${hyphenCase(apiPath)}`),
+      buildImportDeclaration(['type RequestOptions'], '../types'),
+      hasListMethod && buildImportDeclaration(['type IterablePromise'], '../method'),
+
+      ...methods
+        .filter((x) => x.returns || x.data)
+        .flatMap((method) =>
+          [
+            method.returns &&
+              builders.tsTypeAliasDeclaration.from({
+                id: builders.identifier(method.returns.title.replace(/Schema$/, '')),
+                typeAnnotation: builders.tsTypeReference.from({
+                  typeName: builders.identifier('FromSchema'),
+                  typeParameters: builders.tsTypeParameterInstantiation.from({
+                    params: [
+                      builders.tsTypeQuery.from({
+                        exprName: builders.identifier(`schemas.${method.returns.title}`),
+                      }),
+                    ],
+                  }),
+                }),
+              }),
+            method.data &&
+              builders.tsTypeAliasDeclaration.from({
+                id: builders.identifier(method.data.title.replace(/Schema$/, '')),
+                typeAnnotation: builders.tsTypeReference.from({
+                  typeName: builders.identifier('FromSchema'),
+                  typeParameters: builders.tsTypeParameterInstantiation.from({
+                    params: [
+                      builders.tsTypeQuery.from({
+                        exprName: builders.identifier(`schemas.${method.data.title}`),
+                      }),
+                    ],
+                  }),
+                }),
+              }),
+          ].filter(Boolean),
+        ),
       builders.exportNamedDeclaration.from({
         declaration: builders.classDeclaration.from({
-          id: builders.identifier(pascalCase(apiPath)),
-          // typeParameters: builders.typeParameterDeclaration([builders.typeParameter('T')]),
+          id: builders.identifier(resourceName),
           superClass: builders.identifier('Resource'),
-          // superTypeParameters: builders.typeParameterInstantiation([
-          // builders.genericTypeAnnotation(builders.identifier('U'), null),
-          // ]),
           body: builders.classBody(
             [
               builders.classProperty.from({
@@ -173,54 +329,210 @@ function createResource({ apiPath, methods }: { apiPath: string; methods: Array<
 
               ...methods
                 .filter((x) => !x.private)
-                .map((method) => {
-                  const type = method.name === 'list' ? 'list' : null;
+                .flatMap((method) => {
+                  const paged = method.name === 'list';
 
-                  return builders.classProperty.from({
-                    comments: [
-                      builders.commentBlock.from({
-                        value: `*\n * ${method.summary}\n *`,
-                      }),
-                    ],
-                    key: builders.identifier(method.name),
-                    value: builders.callExpression.from({
-                      callee: builders.identifier('createMethod'),
-                      arguments: [
-                        builders.objectExpression.from({
-                          properties: [
-                            builders.objectProperty.from({
-                              key: builders.identifier('id'),
-                              value: builders.stringLiteral(method.operationId),
-                            }),
-                            builders.objectProperty.from({
-                              key: builders.identifier('method'),
-                              value: builders.stringLiteral(method.method.toUpperCase()),
-                            }),
-                            method.path &&
-                              builders.objectProperty.from({
-                                key: builders.identifier('path'),
-                                value: builders.stringLiteral(method.path),
-                              }),
-                            type &&
-                              builders.objectProperty.from({
-                                key: builders.identifier('type'),
-                                value: builders.stringLiteral('list'),
-                              }),
-                            method.beta &&
-                              builders.objectProperty.from({
-                                key: builders.identifier('beta'),
-                                value: builders.booleanLiteral(true),
-                              }),
-                          ].filter(Boolean),
+                  const responseType = method.returns?.title?.replace(/Schema$/, '') || 'void';
+                  const returnType = builders.tsTypeAnnotation(
+                    builders.tsTypeReference(
+                      builders.identifier(paged ? `IterablePromise<${responseType}>` : `Promise<${responseType}>`),
+                    ),
+                  );
+
+                  const hasData = method.data;
+                  const isDataOptional = method.data?.required?.length === 0;
+                  const hasOverloads = method.data && isDataOptional;
+
+                  const payloadType = method.data?.title.replace(/Schema$/, '');
+                  const payloadOrOptionsType = `${payloadType} | RequestOptions`;
+
+                  const pathParams = method.params.map((param) => buildParam(param.title, 'string'));
+                  const dataParam = buildParam('data', payloadType);
+                  const optionsParam = buildParam('options', 'RequestOptions', true);
+
+                  const paramsDocs = method.params.map(
+                    (x) => `@param ${x.title} ${x.description ? `- ${x.description}` : ''}`,
+                  );
+
+                  const fullSignatureComment = buildComment(
+                    method.description || method.summary,
+                    '',
+                    ...paramsDocs,
+                    method.data && `@param data ${method.data.description ? `- ${method.data.description}` : ''}`,
+                    `@param options - override client request options.`,
+                    method.returns && `@returns ${method.returns.description || ''}`,
+                    method.beta && '',
+                    method.beta && `@beta`,
+                  );
+
+                  const overloads = hasOverloads
+                    ? [
+                        // create(options?: RequestOptions)
+                        builders.tsDeclareMethod.from({
+                          comments: [
+                            buildComment(
+                              method.description || method.summary,
+                              '',
+                              ...paramsDocs,
+                              `@param options - override client request options.`,
+                              method.returns && `@returns ${method.returns.description || ''}`,
+                              method.beta && '',
+                              method.beta && `@beta`,
+                            ),
+                          ],
+                          key: builders.identifier(method.name),
+                          params: [...pathParams, optionsParam],
+                          returnType,
                         }),
-                      ],
+                        // create(data: EntityPayload, options?: RequestOptions)
+                        builders.tsDeclareMethod.from({
+                          comments: [fullSignatureComment],
+                          key: builders.identifier(method.name),
+                          params: [...pathParams, dataParam, optionsParam],
+                          returnType,
+                        }),
+                      ]
+                    : [];
+
+                  return [
+                    ...(hasOverloads ? overloads : []),
+                    builders.classMethod.from({
+                      key: builders.identifier(method.name),
+                      comments: hasOverloads ? [] : [fullSignatureComment],
+                      returnType,
+                      params: [
+                        ...pathParams,
+                        hasData &&
+                          (hasOverloads
+                            ? buildParam('dataOrOptions', payloadOrOptionsType)
+                            : buildParam('data', payloadType)),
+                        optionsParam,
+                      ].filter(Boolean),
+                      body: builders.blockStatement(
+                        [
+                          method.beta &&
+                            builders.expressionStatement(
+                              builders.callExpression.from({
+                                callee: builders.identifier(`this.assertFeatureFlag`),
+                                arguments: [builders.stringLiteral(method.operationId)].filter(Boolean),
+                              }),
+                            ),
+                          builders.returnStatement.from({
+                            argument: builders.callExpression.from({
+                              // typeArguments: builders.typeParameterInstantiation([TData]),
+                              callee: builders.identifier('this.request'),
+                              arguments: [
+                                builders.objectExpression.from({
+                                  properties: [
+                                    buildProperty('method', method.method.toUpperCase()),
+                                    method.path && buildProperty('path', method.path),
+                                    paged && buildProperty('paged', true),
+                                  ].filter(Boolean),
+                                }),
+                                ...method.params.map((param) => builders.identifier(param.title)),
+                                method.data && builders.identifier(hasOverloads ? 'dataOrOptions' : 'data'),
+                                builders.identifier('options'),
+                              ].filter(Boolean),
+                            }),
+                          }),
+                        ].filter(Boolean),
+                      ),
                     }),
-                  });
+                  ].filter(Boolean);
                 }),
             ].filter(Boolean),
           ),
         }),
       }),
+    ].filter(Boolean),
+  });
+}
+
+function buildImportDeclaration(specifiers: string | string[], source: string) {
+  const specifierArray = Array.isArray(specifiers) ? specifiers : [specifiers];
+
+  return builders.importDeclaration.from({
+    specifiers: specifierArray.map((x) =>
+      x.startsWith('* as ')
+        ? builders.importNamespaceSpecifier(builders.identifier(x.replace('* as ', '')))
+        : builders.importSpecifier(builders.identifier(x)),
+    ),
+    source: builders.literal(source),
+  });
+}
+
+function buildComment(...lines: (string | undefined | null)[]) {
+  return builders.commentBlock.from({
+    value: `*\n${lines
+      .filter((x) => typeof x === 'string')
+      .flatMap((x) =>
+        wrap(x, 80)
+          .split('\n')
+          .map((x, idx, all) => (idx > 0 && all[0][0] === '@' ? `  ${x}` : x)),
+      )
+      .map((line) => ` * ${line}`)
+      .join('\n')}\n *`,
+  });
+}
+
+function buildProperty(name: string, value: any) {
+  return builders.objectProperty.from({
+    key: builders.identifier(name),
+    value:
+      typeof value === 'boolean'
+        ? builders.booleanLiteral(value)
+        : typeof value === 'number'
+        ? builders.numericLiteral(value)
+        : builders.stringLiteral(value),
+  });
+}
+
+function buildParam(name: string, type: string, optional = false) {
+  return builders.identifier.from({
+    name: optional ? `${name}?` : `${name}`,
+    typeAnnotation: builders.tsTypeAnnotation(
+      type === 'string' ? builders.tsStringKeyword() : builders.tsTypeReference(builders.identifier(`${type}`)),
+    ),
+  });
+}
+
+function buildExportObjectAsConst(id: string, obj: any) {
+  const expression = recast.parse(`const schema = ${JSON.stringify(obj)}`, {
+    parser: recastTypeScriptParser,
+  }).program.body[0].declarations[0].init;
+
+  return builders.exportNamedDeclaration.from({
+    declaration: builders.variableDeclaration.from({
+      kind: 'const',
+      declarations: [
+        builders.variableDeclarator.from({
+          id: builders.identifier(id),
+          init: builders.tsAsExpression.from({
+            expression,
+            typeAnnotation: builders.tsTypeReference(builders.identifier('const')),
+          }),
+        }),
+      ],
+    }),
+  });
+}
+
+function createResourceTypes({ methods }: { apiPath: string; methods: Array<Method> }) {
+  return builders.program.from({
+    comments: [
+      builders.commentLine.from({
+        value: ' This file is generated. Do not update manually!',
+      }),
+    ],
+    body: [
+      ...methods
+        .filter((method) => method.returns || method.data)
+        .flatMap((method) =>
+          [
+            method.returns && buildExportObjectAsConst(method.returns.title, method.returns),
+            method.data && buildExportObjectAsConst(method.data.title, method.data),
+          ].filter(Boolean),
+        ),
     ],
   });
 }
@@ -341,13 +653,19 @@ async function updateReadme(filePath: string, blockName: string, content: string
   const lines = await fs.readFile(filePath, 'utf-8').then((x) => x.split('\n'));
   const startIdx = lines.indexOf(`<!-- AUTO-GENERATED-CONTENT:START (${blockName}) -->`);
   const endIdx = lines.indexOf(`<!-- AUTO-GENERATED-CONTENT:END (${blockName}) -->`);
-  lines.splice(startIdx + 1, endIdx - startIdx - 1, ...(Array.isArray(content) ? content : [content]));
+  lines.splice(
+    startIdx + 1,
+    endIdx - startIdx - 1,
+    '',
+    (Array.isArray(content) ? content : [content]).join('\n').trim(),
+    '',
+  );
   return fs.writeFile(filePath, lines.join('\n'), 'utf-8');
 }
 
 async function updateClient(filePath: string, files: File[]) {
   const resources = files
-    .filter((x) => x.name.endsWith('.ts'))
+    .filter((x) => x.type === 'resources' && x.name.endsWith('.ts'))
     .map((x) => x.name.replace(/\.ts$/, ''))
     .map((name) => ({
       file: `./resources/${name}`,
@@ -396,10 +714,24 @@ async function updateClient(filePath: string, files: File[]) {
   classBody.body.splice(firstIdx, 0, ...properties);
   const { code } = recast.print(ast, { tabWidth: 2, quote: 'single' });
   const output = await formatCode(code);
+  if (!output) return;
   await fs.writeFile(filePath, output, 'utf-8');
 }
 
-type File = { name: string; source: string; docs?: string };
+type File = { type: string; name: string; source: string; docs?: string };
+
+function getByRef(doc: OpenAPI.Document, ref: string) {
+  const [ns, type, name] = ref.replace('#/', '').split('/');
+  return doc[ns][type][name];
+}
+
+function getSchema(doc: OpenAPI.Document, schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject) {
+  if (!schema) return null;
+  const maybeWrapped = '$ref' in schema ? getByRef(doc, schema.$ref) : schema;
+  const keys = Object.keys(maybeWrapped?.properties || {});
+  const unwrapped = keys.length === 1 ? maybeWrapped.properties[keys[0]] : maybeWrapped;
+  return '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
+}
 
 async function main() {
   const document = await getOpenAPIDocument();
@@ -415,11 +747,18 @@ async function main() {
     const ast = createResource({ apiPath, methods });
     const docs = createDocs({ apiPath, methods });
 
-    const { code } = recast.prettyPrint(ast, { tabWidth: 2, quote: 'single' });
+    const { code } = recast.prettyPrint(ast, RECAST_OPTIONS);
     const source = await formatCode(code);
 
-    files.push({ name: hyphenCase(apiPath) + '.ts', source, docs });
+    files.push({ type: 'resources', name: hyphenCase(apiPath) + '.ts', source, docs });
+
+    const typeAst = recast.prettyPrint(createResourceTypes({ apiPath, methods }), RECAST_OPTIONS);
+    const types = await formatCode(typeAst.code);
+
+    files.push({ type: 'schemas', name: hyphenCase(apiPath) + '.ts', source: types });
   }
+
+  const outDirs = Array.from(new Set(files.map((x) => x.type)));
 
   // collect beta methods to list feature flags
   const betaMethods = paths
@@ -428,18 +767,23 @@ async function main() {
     .filter((x) => x.beta);
 
   // add readme - this should not go through eslint
-  files.push({
-    name: 'README.md',
-    source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
+  outDirs.forEach((dir) => {
+    files.push({
+      type: dir,
+      name: 'README.md',
+      source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
+    });
   });
 
   // all files are generated & linted, now it makes sense to flush the old files and write new ones
-  await fs.rm(OUT_DIR, { recursive: true });
-  await fs.mkdir(OUT_DIR, { recursive: true });
+  for (const dir of outDirs) {
+    await fs.rm(path.join(OUT_DIR, dir), { recursive: true }).catch(() => void 0);
+    await fs.mkdir(path.join(OUT_DIR, dir), { recursive: true });
+  }
 
   for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.name);
-    await fs.writeFile(outFile, file.source, 'utf-8');
+    const outFile = path.join(OUT_DIR, file.type, file.name);
+    await fs.writeFile(outFile, file.source || '', 'utf-8');
     console.log(`generated ${path.relative(process.cwd(), outFile)}`);
   }
 

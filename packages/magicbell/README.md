@@ -2,10 +2,6 @@
 
 This package provides a convenient interface to query the [MagicBell](https://magicbell.com) API. Note that as some methods depend on your secret key, this SDK is not to be used in browsers.
 
-> **Note**
->
-> This package is in early release and is subject to change. TypeScript is supported, but api responses are untyped at the moment. We'll add types before we reach v1.0.0.
-
 ## Requirements
 
 Node 14 or higher.

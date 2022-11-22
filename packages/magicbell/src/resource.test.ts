@@ -2,9 +2,9 @@ import { MockedRequest } from 'msw';
 
 import { setupMockServer } from '../test/mock-server';
 import { Client } from './client';
-import { createMethod } from './method';
 import { ASYNC_ITERATOR_SYMBOL } from './paginate';
 import { Resource } from './resource';
+import { RequestOptions } from './types';
 
 const server = setupMockServer();
 
@@ -25,35 +25,26 @@ class FakeResource extends Resource {
   path = 'fakes';
   entity = 'fake';
 
-  get = createMethod({
-    id: 'fakes-get',
-    method: 'GET',
-    path: '{id}',
-  });
+  get(id: string, options?: RequestOptions) {
+    return this.request({ method: 'GET', path: '{id}' }, id, options);
+  }
 
-  getNested = createMethod({
-    id: 'fake-get-nested',
-    method: 'GET',
-    path: '/box/{id}/with/{name}',
-  });
+  getNested(id: string, name: string, options?: RequestOptions) {
+    return this.request({ method: 'GET', path: '/box/{id}/with/{name}' }, id, name, options);
+  }
 
-  getList = createMethod({
-    id: 'fake-list',
-    method: 'GET',
-    type: 'list',
-  });
+  getList(options?: RequestOptions) {
+    return this.request({ method: 'GET', paged: true }, options);
+  }
 
-  post = createMethod({
-    id: 'fake-post',
-    method: 'POST',
-  });
+  post(data: any, options?: RequestOptions) {
+    return this.request({ method: 'POST' }, data, options);
+  }
 
-  betaMethod = createMethod({
-    id: 'fake-beta-method',
-    method: 'GET',
-    path: '{id}',
-    beta: true,
-  });
+  betaMethod(id: string, options?: RequestOptions) {
+    this.assertFeatureFlag('fake-beta-method');
+    return this.request({ method: 'GET', path: '{id}' }, id, options);
+  }
 }
 
 const client = new Client({
@@ -112,6 +103,7 @@ test('methods can override client options', async () => {
 });
 
 test('methods throw an error when unknown arguments are provided', async () => {
+  // @ts-expect-error testing invalid options
   expect(() => fakeResource.get('obj-1', 'invalid')).toThrow(
     'MagicBell: Unknown arguments (["invalid"]). (on API request to `GET /fakes/obj-1`)',
   );
@@ -234,8 +226,8 @@ test('toArray stops fetching when limit is reached', async () => {
 });
 
 test('beta method throws when used without feature flag', () => {
-  expect(() => fakeResource.betaMethod()).toThrow(
-    'This is a beta feature, please enable it via the "fake-beta-method" flag.',
+  expect(() => fakeResource.betaMethod('n/a')).toThrow(
+    'This is a beta feature, please enable it by providing the "fake-beta-method" feature flag.',
   );
 });
 
@@ -249,8 +241,8 @@ test('beta method throws when used with wrong feature flag', async () => {
   });
 
   const fakeResource = new FakeResource(betaClient);
-  expect(() => fakeResource.betaMethod()).toThrow(
-    'This is a beta feature, please enable it via the "fake-beta-method" flag.',
+  expect(() => fakeResource.betaMethod('n/a')).toThrow(
+    'This is a beta feature, please enable it by providing the "fake-beta-method" feature flag.',
   );
 });
 

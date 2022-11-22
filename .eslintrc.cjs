@@ -1,7 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   extends: ['plugin:prettier/recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended'],
-  plugins: ['eslint-plugin-simple-import-sort', 'cypress'],
+  plugins: ['eslint-plugin-simple-import-sort', 'import', 'cypress'],
   rules: {
     // we use jsx-runtime automatic
     "react/jsx-uses-react": "off",
@@ -12,6 +12,9 @@ module.exports = {
     'prefer-const': ['error', { destructuring: 'all' }],
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'import/newline-after-import': 'error',
+    'import/first': 'error',
+    'import/no-duplicates': 'error',
     curly: ['error', 'multi-line', 'consistent'],
     '@typescript-eslint/no-unused-vars': [
       'error',
