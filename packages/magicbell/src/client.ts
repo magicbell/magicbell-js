@@ -11,6 +11,7 @@ import { isOptionsHash } from './options';
 import { Imports } from './resources/imports';
 import { NotificationPreferences } from './resources/notification-preferences';
 import { Notifications } from './resources/notifications';
+import { PushSubscriptions } from './resources/push-subscriptions';
 import { Subscriptions } from './resources/subscriptions';
 import { Users } from './resources/users';
 import { ClientOptions, RequestArgs, RequestMethod, RequestOptions } from './types';
@@ -43,6 +44,7 @@ export class Client {
   imports = new Imports(this);
   notificationPreferences = new NotificationPreferences(this);
   notifications = new Notifications(this);
+  pushSubscriptions = new PushSubscriptions(this);
   subscriptions = new Subscriptions(this);
   users = new Users(this);
 
