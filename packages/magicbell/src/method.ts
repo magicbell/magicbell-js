@@ -1,63 +1,20 @@
-import { isArray, isBoolean, isObject, isString, isStringArray, joinUrlSegments } from './lib/utils';
+import { isArray, isBoolean, isObject, isString, isStringArray } from './lib/utils';
 import { isOptionsHash } from './options';
-import { autoPaginate } from './paginate';
-import { Resource } from './resource';
 import { ClientOptions, RequestMethod } from './types';
 
-type CreateMethodOptions = {
-  id: string;
-  method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'PATCH';
-  path?: string;
-  entity?: string;
-  type?: 'list';
-  beta?: boolean;
+type KeyOfType<T, V> = keyof {
+  [P in keyof T as T[P] extends V ? P : never]: any;
 };
 
-type IterablePromise<TData, TNode> = Promise<TData> & {
+export type IterablePromise<
+  TData,
+  TKey extends KeyOfType<TData, Array<unknown>> = KeyOfType<TData, Array<unknown>>,
+  TNode = TData[TKey] extends Array<unknown> ? TData[TKey][number] : never,
+> = Promise<TData> & {
   [Symbol.asyncIterator](): Iterator<TNode>;
   forEach(cb: (node: TNode, index: number) => void | boolean | Promise<void | boolean>): Promise<void>;
   toArray(options: { limit: number }): Promise<Array<TNode>>;
 };
-
-export function createMethod<TData = any, TNode = any>(
-  options: CreateMethodOptions & { type: 'list' },
-): (this: Resource, ...args) => IterablePromise<TData, TNode>;
-
-export function createMethod<TData = any>(
-  options: CreateMethodOptions & { type?: never },
-): (this: Resource, ...args) => Promise<TData>;
-
-export function createMethod({ method, path: _path, type, id, beta }: CreateMethodOptions) {
-  return function methodHandler(this: Resource, ...args) {
-    if (beta && !this.client.hasFlag(id)) {
-      throw new Error(`This is a beta feature, please enable it via the "${id}" flag.`);
-    }
-
-    const { path, data, params, options } = normalizeArgs({
-      path: joinUrlSegments(this.path, _path),
-      method,
-      args,
-    });
-
-    const makeRequest = ({ data, params }) => {
-      const entity = this.entity || this.path;
-      data = data ? { [entity]: data } : data;
-
-      return this.client
-        .request({ method, path, data, params }, options)
-        .then((response) => response[entity] || response);
-    };
-
-    if (type === 'list') {
-      return autoPaginate(makeRequest, {
-        data,
-        params,
-      });
-    }
-
-    return makeRequest({ data, params });
-  };
-}
 
 const queryParamValidators = {
   archived: isBoolean,
@@ -110,14 +67,14 @@ function getOptionsFromArgs(args): Partial<ClientOptions> {
   return { ...args.pop() };
 }
 
-function normalizeArgs({
+export function normalizeArgs({
   path,
   method,
   args,
 }: {
   path: string;
   method: RequestMethod;
-  args: Record<string, unknown>[];
+  args: (Record<string, unknown> | string)[];
 }) {
   const argsCopy = [...args];
 

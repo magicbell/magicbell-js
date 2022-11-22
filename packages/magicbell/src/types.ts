@@ -19,10 +19,15 @@ export type ClientOptions = {
   features?: Record<string, boolean>;
 };
 
-export type RequestOptions = Pick<
-  ClientOptions,
-  'userEmail' | 'userExternalId' | 'userHmac' | 'idempotencyKey' | 'timeout' | 'maxRetries' | 'maxRetryDelay'
->;
+export type RequestOptions = {
+  userEmail?: string;
+  userExternalId?: string;
+  userHmac?: string;
+  idempotencyKey?: string;
+  timeout?: number;
+  maxRetries?: number;
+  maxRetryDelay?: number;
+};
 
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
