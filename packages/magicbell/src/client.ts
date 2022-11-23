@@ -136,6 +136,7 @@ export class Client {
       normalizeHeaders({
         'User-Agent': this.#userAgent,
         'Idempotency-Key': options.idempotencyKey || this.#getDefaultIdempotencyKey(method, options.maxRetries),
+        'Accept-Version': 'v2',
         'X-MAGICBELL-API-KEY': options.apiKey,
         'X-MAGICBELL-API-SECRET': options.apiSecret,
         'X-MAGICBELL-CLIENT-ID': this.#clientId,
