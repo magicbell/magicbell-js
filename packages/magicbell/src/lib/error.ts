@@ -40,9 +40,9 @@ type ErrorConfig = {
 
 /**
  * BaseError is the base error from which all other more specific errors derive.
- * Specifically for errors returned from Stripe's REST API.
+ * Specifically for errors returned from REST API.
  */
-export class BaseError extends Error {
+class BaseError extends Error {
   name: string;
   message: string;
   type?: string;
