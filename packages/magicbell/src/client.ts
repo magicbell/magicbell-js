@@ -146,6 +146,7 @@ export class Client {
         'X-MAGICBELL-USER-HMAC':
           options.userHmac || computeUserKey(options.apiSecret, options.userExternalId || options.userEmail),
       }),
+      true,
     );
   }
 
