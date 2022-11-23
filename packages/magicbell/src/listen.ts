@@ -41,7 +41,9 @@ type IterableEventSource<TNode> = {
   forEach(cb: (node: TNode, index: number) => void | boolean | Promise<void | boolean>): Promise<void>;
 };
 
-export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}) {
+export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
+
+export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}): Listener {
   let eventSource: EventSource;
   let channels: string;
   let lastEvent: string;
