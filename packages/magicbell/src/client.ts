@@ -4,7 +4,7 @@ import { computeUserKey } from './lib/crypto';
 import { getClientId, getClientUserAgent, getUserAgent } from './lib/env';
 import { createError } from './lib/error';
 import { normalizeHeaders } from './lib/headers';
-import { Logger } from './lib/log';
+import { Logger, toCurl } from './lib/log';
 import { compact, hasOwn, joinAnd, sleep, uuid4 } from './lib/utils';
 import { createListener } from './listen';
 import { isOptionsHash } from './options';
@@ -104,6 +104,9 @@ export class Client {
           response = res;
         })
         .catch((e) => {
+          const curl = toCurl({ method, baseURL: requestOptions.host, url: path, data, params, headers });
+          this.#logger.error(`${e.message}: ${curl}`);
+
           error = e;
           response = e.response;
         });
