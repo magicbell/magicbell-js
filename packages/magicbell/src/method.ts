@@ -34,8 +34,10 @@ function isForcedQueryParams(object) {
   return true;
 }
 
-function getUrl(path: string, params: Record<string, string>) {
-  return path.replace(/{([\s\S]+?)}/g, ($0, $1) => encodeURIComponent(params[$1] || ''));
+function getUrl(path: string, params: Record<string, string>, options = { encode: true }) {
+  return path.replace(/{([\s\S]+?)}/g, ($0, $1) =>
+    options.encode ? encodeURIComponent(params[$1] || '') : params[$1] || '',
+  );
 }
 
 function extractUrlParams(path: string) {
@@ -93,7 +95,8 @@ export function normalizeArgs({
     return urlData;
   }, {});
 
-  const url = getUrl(path, urlData);
+  // We don't encode atm because the backend doesn't support that in PUT /users/email:user@domain.com
+  const url = getUrl(path, urlData, { encode: false });
   const dataFromArgs = getDataFromArgs(argsCopy);
   const options = getOptionsFromArgs(argsCopy);
 
