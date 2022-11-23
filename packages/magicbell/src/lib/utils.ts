@@ -27,7 +27,7 @@ export function isObject(value) {
   return value && typeof value === 'object';
 }
 
-export function compact(obj: Record<string, unknown>) {
+export function compact(obj: Record<string, unknown>, dropEmptyString = false) {
   if (typeof obj !== 'object') {
     throw new Error('Argument must be an object');
   }
@@ -35,6 +35,7 @@ export function compact(obj: Record<string, unknown>) {
   const result = {};
   for (const key of Object.keys(obj)) {
     if (obj[key] == null) continue;
+    if (dropEmptyString && obj[key] === '') continue;
     result[key] = obj[key];
   }
 
