@@ -9,27 +9,37 @@ type ResourceRequestOptions = {
   paged?: boolean;
 };
 
+function isEmptyPayload(data: unknown): boolean {
+  if (!data) return true;
+  if (Array.isArray(data)) return data.length === 0;
+  if (typeof data === 'object') return Object.keys(data).length === 0;
+  return false;
+}
+
 export class Resource {
   path: string;
   entity: string;
 
-  client: InstanceType<typeof Client>;
+  protected client: InstanceType<typeof Client>;
 
   constructor(client: InstanceType<typeof Client>) {
     this.client = client;
   }
 
-  request<TData = any>(
+  protected request<TData = any>(
     options: ResourceRequestOptions & { paged: true },
     ...args: (string | Record<string, unknown>)[]
   ): IterablePromise<TData>;
 
-  request<TData = any>(
+  protected request<TData = any>(
     options: ResourceRequestOptions & { paged?: false | never },
     ...args: (string | Record<string, unknown>)[]
   ): Promise<TData>;
 
-  request({ method, paged, path: tplPath }: ResourceRequestOptions, ...args: (string | Record<string, unknown>)[]) {
+  protected request(
+    { method, paged, path: tplPath }: ResourceRequestOptions,
+    ...args: (string | Record<string, unknown>)[]
+  ) {
     const { path, data, params, options } = normalizeArgs({
       path: joinUrlSegments(this.path, tplPath),
       method,
@@ -38,7 +48,8 @@ export class Resource {
 
     const makeRequest = ({ data, params }) => {
       const entity = this.entity || this.path;
-      data = data ? { [entity]: data } : data;
+      data = isEmptyPayload(data) ? undefined : { [entity]: data };
+      params = isEmptyPayload(params) ? undefined : params;
 
       return this.client
         .request({ method, path, data, params }, options)
@@ -55,7 +66,7 @@ export class Resource {
     return makeRequest({ data, params });
   }
 
-  assertFeatureFlag(flag: string) {
+  protected assertFeatureFlag(flag: string) {
     if (!this.client.hasFlag(flag)) {
       throw new Error(`This is a beta feature, please enable it by providing the "${flag}" feature flag.`);
     }
