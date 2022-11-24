@@ -35,6 +35,15 @@ export class NotificationPreferences extends Resource {
    * Update a user's notification preferences. These preferences will be applied only
    * to channels you enabled for your project.
    *
+   * @param options - override client request options.
+   * @returns
+   **/
+  update(options?: RequestOptions): Promise<UpdateNotificationPreferencesResponse>;
+
+  /**
+   * Update a user's notification preferences. These preferences will be applied only
+   * to channels you enabled for your project.
+   *
    * @param data
    * @param options - override client request options.
    * @returns
@@ -42,12 +51,17 @@ export class NotificationPreferences extends Resource {
   update(
     data: UpdateNotificationPreferencesPayload,
     options?: RequestOptions,
+  ): Promise<UpdateNotificationPreferencesResponse>;
+
+  update(
+    dataOrOptions: UpdateNotificationPreferencesPayload | RequestOptions,
+    options?: RequestOptions,
   ): Promise<UpdateNotificationPreferencesResponse> {
     return this.request(
       {
         method: 'PUT',
       },
-      data,
+      dataOrOptions,
       options,
     );
   }

@@ -5,56 +5,63 @@ export const CreateImportsResponseSchema = {
   additionalProperties: false,
 
   properties: {
-    id: {
-      type: 'string',
-      description: 'ID of the import. This is used to query the status of the import.',
-    },
-
-    status: {
-      type: 'string',
-      enum: ['processing'],
-    },
-
-    summary: {
+    notification: {
       type: 'object',
       additionalProperties: false,
 
       properties: {
-        total: {
-          type: 'integer',
-          description: 'The total number of records processed.',
+        id: {
+          type: 'string',
+          description: 'ID of the import. This is used to query the status of the import.',
         },
 
-        failures: {
-          type: 'integer',
-          description: 'The total number of failed records.',
+        status: {
+          type: 'string',
+          enum: ['processing'],
         },
-      },
-    },
 
-    errors: {
-      type: 'array',
+        summary: {
+          type: 'object',
+          additionalProperties: false,
 
-      items: {
-        type: 'object',
-        additionalProperties: false,
+          properties: {
+            total: {
+              type: 'integer',
+              description: 'The total number of records processed.',
+            },
 
-        properties: {
-          email: {
-            type: 'string',
-            description:
-              "The identifying email of the user. If the user's external_id is used as identifier, the email key will not be present",
+            failures: {
+              type: 'integer',
+              description: 'The total number of failed records.',
+            },
           },
+        },
 
-          external_id: {
-            type: 'string',
-            description:
-              "The identifying external_id of the user. If the user's email is used as identifier, the external_id key will not be present",
-          },
+        errors: {
+          type: 'array',
 
-          message: {
-            type: 'string',
-            description: 'The error message indicating why importing the user failed',
+          items: {
+            type: 'object',
+            additionalProperties: false,
+
+            properties: {
+              email: {
+                type: 'string',
+                description:
+                  "The identifying email of the user. If the user's external_id is used as identifier, the email key will not be present",
+              },
+
+              external_id: {
+                type: 'string',
+                description:
+                  "The identifying external_id of the user. If the user's email is used as identifier, the external_id key will not be present",
+              },
+
+              message: {
+                type: 'string',
+                description: 'The error message indicating why importing the user failed',
+              },
+            },
           },
         },
       },
@@ -110,6 +117,11 @@ export const CreateImportsPayloadSchema = {
           phone_numbers: {
             type: 'array',
             description: 'An array of phone numbers to use for sending SMS notifications.',
+
+            items: {
+              type: 'string',
+            },
+
             maxItems: 50,
           },
 

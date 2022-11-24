@@ -13,7 +13,6 @@ type CreateSubscriptionsPayload = FromSchema<typeof schemas.CreateSubscriptionsP
 type UnsubscribeSubscriptionsResponse = FromSchema<typeof schemas.UnsubscribeSubscriptionsResponseSchema>;
 type UnsubscribeSubscriptionsPayload = FromSchema<typeof schemas.UnsubscribeSubscriptionsPayloadSchema>;
 type GetSubscriptionsResponse = FromSchema<typeof schemas.GetSubscriptionsResponseSchema>;
-type GetSubscriptionsPayload = FromSchema<typeof schemas.GetSubscriptionsPayloadSchema>;
 type DeleteSubscriptionsPayload = FromSchema<typeof schemas.DeleteSubscriptionsPayloadSchema>;
 
 export class Subscriptions extends Resource {
@@ -58,16 +57,7 @@ export class Subscriptions extends Resource {
   /**
    * Unusbscribe a user from a particular topic (and optional categories).
    *
-   * @param topic
-   * @param options - override client request options.
-   * @returns
-   **/
-  unsubscribe(topic: string, options?: RequestOptions): Promise<UnsubscribeSubscriptionsResponse>;
-
-  /**
-   * Unusbscribe a user from a particular topic (and optional categories).
-   *
-   * @param topic
+   * @param topic - The topic for which we'd like to filter topic subscriptions.
    * @param data
    * @param options - override client request options.
    * @returns
@@ -76,12 +66,6 @@ export class Subscriptions extends Resource {
     topic: string,
     data: UnsubscribeSubscriptionsPayload,
     options?: RequestOptions,
-  ): Promise<UnsubscribeSubscriptionsResponse>;
-
-  unsubscribe(
-    topic: string,
-    dataOrOptions: UnsubscribeSubscriptionsPayload | RequestOptions,
-    options?: RequestOptions,
   ): Promise<UnsubscribeSubscriptionsResponse> {
     return this.request(
       {
@@ -89,7 +73,7 @@ export class Subscriptions extends Resource {
         path: '{topic}/unsubscribe',
       },
       topic,
-      dataOrOptions,
+      data,
       options,
     );
   }
@@ -97,34 +81,17 @@ export class Subscriptions extends Resource {
   /**
    * Show a user's subscription status for a particular topic and categories.
    *
-   * @param topic
+   * @param topic - The topic for which we'd like to filter topic subscriptions.
    * @param options - override client request options.
    * @returns
    **/
-  get(topic: string, options?: RequestOptions): Promise<GetSubscriptionsResponse>;
-
-  /**
-   * Show a user's subscription status for a particular topic and categories.
-   *
-   * @param topic
-   * @param data
-   * @param options - override client request options.
-   * @returns
-   **/
-  get(topic: string, data: GetSubscriptionsPayload, options?: RequestOptions): Promise<GetSubscriptionsResponse>;
-
-  get(
-    topic: string,
-    dataOrOptions: GetSubscriptionsPayload | RequestOptions,
-    options?: RequestOptions,
-  ): Promise<GetSubscriptionsResponse> {
+  get(topic: string, options?: RequestOptions): Promise<GetSubscriptionsResponse> {
     return this.request(
       {
         method: 'GET',
         path: '{topic}',
       },
       topic,
-      dataOrOptions,
       options,
     );
   }
@@ -132,7 +99,7 @@ export class Subscriptions extends Resource {
   /**
    * Delete topic subscription(s)
    *
-   * @param topic
+   * @param topic - The topic for which we'd like to filter topic subscriptions.
    * @param options - override client request options.
    **/
   delete(topic: string, options?: RequestOptions): Promise<void>;
@@ -140,7 +107,7 @@ export class Subscriptions extends Resource {
   /**
    * Delete topic subscription(s)
    *
-   * @param topic
+   * @param topic - The topic for which we'd like to filter topic subscriptions.
    * @param data
    * @param options - override client request options.
    **/

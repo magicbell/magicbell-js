@@ -25,19 +25,44 @@ export class Users extends Resource {
    *
    * The external id, if provided, must be unique to the user.
    *
+   * @param options - override client request options.
+   * @returns
+   **/
+  create(options?: RequestOptions): Promise<CreateUsersResponse>;
+
+  /**
+   * Create a user. Please note that you must provide the user's email or the
+   * external id so MagicBell can uniquely identify the user.
+   *
+   * The external id, if provided, must be unique to the user.
+   *
    * @param data
    * @param options - override client request options.
    * @returns
    **/
-  create(data: CreateUsersPayload, options?: RequestOptions): Promise<CreateUsersResponse> {
+  create(data: CreateUsersPayload, options?: RequestOptions): Promise<CreateUsersResponse>;
+
+  create(dataOrOptions: CreateUsersPayload | RequestOptions, options?: RequestOptions): Promise<CreateUsersResponse> {
     return this.request(
       {
         method: 'POST',
       },
-      data,
+      dataOrOptions,
       options,
     );
   }
+
+  /**
+   * Update a user's data. If you identify users by their email addresses, you need
+   * to update the MagicBell data, so this user can still access their notifications.
+   *
+   * @param userId - The user id is the MagicBell user id. Alternatively, provide an
+   *   id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as
+   *   the user id.
+   * @param options - override client request options.
+   * @returns
+   **/
+  update(userId: string, options?: RequestOptions): Promise<UpdateUsersResponse>;
 
   /**
    * Update a user's data. If you identify users by their email addresses, you need
@@ -50,14 +75,20 @@ export class Users extends Resource {
    * @param options - override client request options.
    * @returns
    **/
-  update(userId: string, data: UpdateUsersPayload, options?: RequestOptions): Promise<UpdateUsersResponse> {
+  update(userId: string, data: UpdateUsersPayload, options?: RequestOptions): Promise<UpdateUsersResponse>;
+
+  update(
+    userId: string,
+    dataOrOptions: UpdateUsersPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<UpdateUsersResponse> {
     return this.request(
       {
         method: 'PUT',
         path: '{user_id}',
       },
       userId,
-      data,
+      dataOrOptions,
       options,
     );
   }
@@ -86,6 +117,16 @@ export class Users extends Resource {
    * to update the MagicBell data, so this user can still access their notifications.
    *
    * @param userEmail
+   * @param options - override client request options.
+   * @returns
+   **/
+  updateByEmail(userEmail: string, options?: RequestOptions): Promise<UpdateByEmailUsersResponse>;
+
+  /**
+   * Update a user's data. If you identify users by their email addresses, you need
+   * to update the MagicBell data, so this user can still access their notifications.
+   *
+   * @param userEmail
    * @param data
    * @param options - override client request options.
    * @returns
@@ -94,6 +135,12 @@ export class Users extends Resource {
     userEmail: string,
     data: UpdateByEmailUsersPayload,
     options?: RequestOptions,
+  ): Promise<UpdateByEmailUsersResponse>;
+
+  updateByEmail(
+    userEmail: string,
+    dataOrOptions: UpdateByEmailUsersPayload | RequestOptions,
+    options?: RequestOptions,
   ): Promise<UpdateByEmailUsersResponse> {
     return this.request(
       {
@@ -101,7 +148,7 @@ export class Users extends Resource {
         path: 'email:{user_email}',
       },
       userEmail,
-      data,
+      dataOrOptions,
       options,
     );
   }
@@ -128,6 +175,16 @@ export class Users extends Resource {
    * to update the MagicBell data, so this user can still access their notifications.
    *
    * @param externalId
+   * @param options - override client request options.
+   * @returns
+   **/
+  updateByExternalId(externalId: string, options?: RequestOptions): Promise<UpdateByExternalIdUsersResponse>;
+
+  /**
+   * Update a user's data. If you identify users by their email addresses, you need
+   * to update the MagicBell data, so this user can still access their notifications.
+   *
+   * @param externalId
    * @param data
    * @param options - override client request options.
    * @returns
@@ -136,6 +193,12 @@ export class Users extends Resource {
     externalId: string,
     data: UpdateByExternalIdUsersPayload,
     options?: RequestOptions,
+  ): Promise<UpdateByExternalIdUsersResponse>;
+
+  updateByExternalId(
+    externalId: string,
+    dataOrOptions: UpdateByExternalIdUsersPayload | RequestOptions,
+    options?: RequestOptions,
   ): Promise<UpdateByExternalIdUsersResponse> {
     return this.request(
       {
@@ -143,7 +206,7 @@ export class Users extends Resource {
         path: 'external_id:{external_id}',
       },
       externalId,
-      data,
+      dataOrOptions,
       options,
     );
   }
