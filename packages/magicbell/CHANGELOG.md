@@ -1,5 +1,38 @@
 # magicbell
 
+## 0.3.0
+
+### Minor Changes
+
+- [#22](https://github.com/magicbell-io/magicbell-js/pull/22) [`366adc6`](https://github.com/magicbell-io/magicbell-js/commit/366adc6af3ee2d198f5f9ad3507deee93dd88ebb) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.imports` resource to import users in bulk, and query the status of import jobs. Methods that have been made available are `magicbell.imports.create` and `magicbell.imports.get`.
+
+  See [#imports](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#imports) for more information.
+
+- [#24](https://github.com/magicbell-io/magicbell-js/pull/24) [`6cf938c`](https://github.com/magicbell-io/magicbell-js/commit/6cf938c384ea4db6e3260f8c35f9af762edc48a7) Thanks [@smeijer](https://github.com/smeijer)! - Released the `.listen` method. With this method you can listen to server sent events in realtime. For example, to do something when new notifications come in, or to trigger an event when a user marks a notification as read.
+
+  The following events are currently emitted. Please note that all events are bound to a specific user. See [#realtime](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#realtime) for more information.
+
+  | event.name               | description                                |
+  | ------------------------ | ------------------------------------------ |
+  | `notifications/new`      | a new notification has been created        |
+  | `notifications/read`     | a notification has been read               |
+  | `notifications/unread`   | a notification has been marked as unread   |
+  | `notifications/delete`   | a notification has been deleted            |
+  | `notifications/read/all` | all notifications have been marked as read |
+  | `notifications/seen/all` | all notifications have been marked as seen |
+
+- [#16](https://github.com/magicbell-io/magicbell-js/pull/16) [`615b2fa`](https://github.com/magicbell-io/magicbell-js/commit/615b2faa558c19a2a50c0cb2b67b95ad3b5e68e3) Thanks [@smeijer](https://github.com/smeijer)! - - Loads the axios http adapter when `XMLHttpRequest` is unsupported. This allows `magicbell` to be used in for example vscode extensions.
+
+  - Don't persist config if `os.homedir` is unavailable, which is for example the case in vscode extensions.
+  - Add support for authentication using `x-magicbell-user-external-id` header.
+  - Allow specifying the `userKey`. This allows users to use `magicbell`, without the need to provide the `apiSecret` key to generate the HMAC on runtime.
+
+- [#25](https://github.com/magicbell-io/magicbell-js/pull/25) [`13ee1d2`](https://github.com/magicbell-io/magicbell-js/commit/13ee1d242baddc97c0eabd3bf49867c3280432c5) Thanks [@smeijer](https://github.com/smeijer)! - Add type annotations to all resource methods
+
+- [#23](https://github.com/magicbell-io/magicbell-js/pull/23) [`bb857a7`](https://github.com/magicbell-io/magicbell-js/commit/bb857a738d5abfda805fecdd1154027a8077d3ed) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.pushSubscriptions` resource to manage mobile devices / push subscriptions. Methods that have been made available are `magicbell.pushSubscriptions.create` and `magicbell.pushSubscriptions.delete`. Note that these methods are currently in beta, and need to be enabled via [feature flags](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#feature-flags).
+
+  See [#pushSubscriptions](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#pushSubscriptions) for more information.
+
 ## 0.2.0
 
 ### Minor Changes
