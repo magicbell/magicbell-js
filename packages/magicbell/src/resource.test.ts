@@ -129,11 +129,12 @@ test('methods dont put categories and topics in query params if they hold object
   expect(spy.lastRequest.url.searchParams.get('topics[]')).toEqual(null);
 
   await fakeResource.post({ categories: ['comments'] });
-  expect(await spy.lastRequest.json()).toEqual({ fake: {} });
+
+  expect(await spy.lastRequest.text()).toEqual('');
   expect(spy.lastRequest.url.searchParams.get('categories[]')).toEqual('comments');
 
   await fakeResource.post({ topics: ['issue.3'] });
-  expect(await spy.lastRequest.json()).toEqual({ fake: {} });
+  expect(await spy.lastRequest.text()).toEqual('');
   expect(spy.lastRequest.url.searchParams.get('topics[]')).toEqual('issue.3');
 });
 
