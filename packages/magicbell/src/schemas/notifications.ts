@@ -8,7 +8,57 @@ export const CreateNotificationsResponseSchema = {
     id: {
       type: 'string',
     },
+
+    title: {
+      type: 'string',
+      description: 'Title of the notification.',
+      nullable: false,
+      maxLength: 255,
+    },
+
+    content: {
+      type: 'string',
+      description:
+        'Content of the notification. If you provide HTML content, the notification inbox will render it correctly. It should not exceed 4MB.',
+      nullable: true,
+    },
+
+    action_url: {
+      type: 'string',
+      format: 'uri',
+      description: 'A URL to redirect the user to when they click the notification in their notification inbox.',
+      nullable: true,
+      maxLength: 2048,
+    },
+
+    category: {
+      type: 'string',
+      description: 'Category the notification belongs to. This is useful to allow users to set their preferences.',
+      nullable: true,
+      maxLength: 100,
+    },
+
+    topic: {
+      type: 'string',
+      description: 'Topic the notification belongs to. This is useful to create threads.',
+      nullable: true,
+      maxLength: 100,
+    },
+
+    custom_attributes: {
+      type: 'object',
+      description:
+        'Set of key-value pairs that you can attach to a notification, 6KB at maximum. It accepts objects for the value of a key.\n\nYou can use it to share data between channels or to render a custom UI.',
+      nullable: true,
+      additionalProperties: true,
+    },
+
+    sent_at: {
+      type: 'number',
+    },
   },
+
+  required: ['id', 'title', 'sent_at'],
 } as const;
 
 export const CreateNotificationsPayloadSchema = {
@@ -291,6 +341,10 @@ export const ListNotificationsResponseSchema = {
         additionalProperties: false,
 
         properties: {
+          id: {
+            type: 'string',
+          },
+
           title: {
             type: 'string',
             description: 'Title of the notification.',
@@ -313,47 +367,6 @@ export const ListNotificationsResponseSchema = {
             maxLength: 2048,
           },
 
-          recipients: {
-            description:
-              'Users to send the notification to. You can specify up to 1000 users at once. Use matches to send a notification to everyone.',
-            nullable: false,
-            minItems: 1,
-            maxItems: 1000,
-            type: 'array',
-
-            items: {
-              type: 'object',
-              additionalProperties: true,
-
-              properties: {
-                email: {
-                  type: 'string',
-                  description: "The user's email",
-                },
-
-                external_id: {
-                  type: 'string',
-                  description:
-                    "A unique string that MagicBell can utilize to uniquely identify the user. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
-                },
-
-                matches: {
-                  type: 'string',
-                  description:
-                    'An SQL-like expression to match users by their stored attributes. Set it to "*" to send a notification to all users.',
-                },
-              },
-            },
-          },
-
-          custom_attributes: {
-            type: 'object',
-            description:
-              'Set of key-value pairs that you can attach to a notification, 6KB at maximum. It accepts objects for the value of a key.\n\nYou can use it to share data between channels or to render a custom UI.',
-            nullable: true,
-            additionalProperties: true,
-          },
-
           category: {
             type: 'string',
             description:
@@ -369,144 +382,82 @@ export const ListNotificationsResponseSchema = {
             maxLength: 100,
           },
 
-          overrides: {
+          custom_attributes: {
             type: 'object',
-            description: 'Optional overrides to configure notifications per target destination.',
+            description:
+              'Set of key-value pairs that you can attach to a notification, 6KB at maximum. It accepts objects for the value of a key.\n\nYou can use it to share data between channels or to render a custom UI.',
             nullable: true,
+            additionalProperties: true,
+          },
+
+          sent_at: {
+            type: 'number',
+          },
+
+          seen_at: {
+            type: 'number',
+          },
+
+          read_at: {
+            type: 'number',
+          },
+
+          archived_at: {
+            type: 'number',
+          },
+
+          recipient: {
+            type: 'object',
+            additionalProperties: false,
 
             properties: {
-              channels: {
-                type: 'object',
-                description: 'Overrides for specific channels',
-
-                properties: {
-                  in_app: {
-                    type: 'object',
-
-                    properties: {
-                      title: {
-                        type: 'string',
-                        description: 'Overriden title for this channel',
-                      },
-
-                      content: {
-                        type: 'string',
-                        description: 'Overriden content for this channel',
-                      },
-
-                      action_url: {
-                        type: 'string',
-                        description: 'Overriden action_url for this channel',
-                      },
-                    },
-                  },
-
-                  email: {
-                    type: 'object',
-
-                    properties: {
-                      title: {
-                        type: 'string',
-                        description: 'Overriden title for this channel',
-                      },
-
-                      content: {
-                        type: 'string',
-                        description: 'Overriden content for this channel',
-                      },
-
-                      action_url: {
-                        type: 'string',
-                        description: 'Overriden action_url for this channel',
-                      },
-                    },
-                  },
-
-                  web_push: {
-                    type: 'object',
-
-                    properties: {
-                      title: {
-                        type: 'string',
-                        description: 'Overriden title for this channel',
-                      },
-
-                      content: {
-                        type: 'string',
-                        description: 'Overriden content for this channel',
-                      },
-
-                      action_url: {
-                        type: 'string',
-                        description: 'Overriden action_url for this channel',
-                      },
-                    },
-                  },
-
-                  mobile_push: {
-                    type: 'object',
-
-                    properties: {
-                      title: {
-                        type: 'string',
-                        description: 'Overriden title for this channel',
-                      },
-
-                      content: {
-                        type: 'string',
-                        description: 'Overriden content for this channel',
-                      },
-
-                      action_url: {
-                        type: 'string',
-                        description: 'Overriden action_url for this channel',
-                      },
-                    },
-                  },
-                },
+              external_id: {
+                type: 'string',
+                description:
+                  "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
+                maxLength: 255,
               },
 
-              providers: {
+              email: {
+                type: 'string',
+                description: "The user's email.",
+                maxLength: 255,
+              },
+
+              first_name: {
+                type: 'string',
+                description: "The user's first name.",
+                maxLength: 50,
+              },
+
+              last_name: {
+                type: 'string',
+                description: "The user's last name.",
+                maxLength: 50,
+              },
+
+              custom_attributes: {
                 type: 'object',
-                description: 'Overrides for specific providers (Sendgrid, Postmark, APNs, etc)',
+                description:
+                  "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
+                additionalProperties: true,
+              },
 
-                properties: {
-                  sendgrid: {
-                    type: 'object',
-                    description:
-                      'Set of key-value pairs that you can pass on to Sendgrid. Applied only if it is configured for your project.',
-                  },
+              phone_numbers: {
+                type: 'array',
+                description: 'An array of phone numbers to use for sending SMS notifications.',
 
-                  mailgun: {
-                    type: 'object',
-                    description:
-                      'Set of key-value pairs that you can pass on to Mailgun. Applied only if it is configured for your project.',
-                  },
-
-                  postmark: {
-                    type: 'object',
-                    description:
-                      'Set of key-value pairs that you can pass on to Postmark. Applied only if it is configured for your project.',
-                  },
-
-                  ios: {
-                    type: 'object',
-                    description:
-                      'Set of key-value pairs that you can pass on to APNs. Applied only if it is configured for your project.',
-                  },
-
-                  android: {
-                    type: 'object',
-                    description:
-                      'Set of key-value pairs that you can pass on to FCM. Applied only if it is configured for your project.',
-                  },
+                items: {
+                  type: 'string',
                 },
+
+                maxItems: 50,
               },
             },
           },
         },
 
-        required: ['title', 'recipients'],
+        required: ['id', 'title', 'sent_at'],
       },
     },
   },

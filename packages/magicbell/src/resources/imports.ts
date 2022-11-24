@@ -18,16 +18,30 @@ export class Imports extends Resource {
    * Send a request to start the import of a list of users. The import allows the
    * creation of slack connections as well.
    *
+   * @param options - override client request options.
+   * @returns
+   **/
+  create(options?: RequestOptions): Promise<CreateImportsResponse>;
+
+  /**
+   * Send a request to start the import of a list of users. The import allows the
+   * creation of slack connections as well.
+   *
    * @param data
    * @param options - override client request options.
    * @returns
    **/
-  create(data: CreateImportsPayload, options?: RequestOptions): Promise<CreateImportsResponse> {
+  create(data: CreateImportsPayload, options?: RequestOptions): Promise<CreateImportsResponse>;
+
+  create(
+    dataOrOptions: CreateImportsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<CreateImportsResponse> {
     return this.request(
       {
         method: 'POST',
       },
-      data,
+      dataOrOptions,
       options,
     );
   }
