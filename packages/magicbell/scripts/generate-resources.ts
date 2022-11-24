@@ -8,12 +8,18 @@ import axios from 'axios';
 import { ESLint } from 'eslint';
 import fs from 'fs/promises';
 import { stringify } from 'json5';
-import { IJsonSchema, OpenAPI, OpenAPIV3 } from 'openapi-types';
+import { IJsonSchema, OpenAPI, OpenAPIV3, OpenAPIV3_1 } from 'openapi-types';
 import path from 'path';
 import prettier from 'prettier';
 import prettyMarkdown from 'prettier/parser-markdown';
 import * as recast from 'recast';
 import * as recastTypeScriptParser from 'recast/parsers/typescript';
+
+type SchemaObject =
+  | OpenAPIV3.SchemaObject
+  | OpenAPIV3.ReferenceObject
+  | OpenAPIV3_1.SchemaObject
+  | OpenAPIV3_1.ReferenceObject;
 
 const RECAST_OPTIONS: recast.Options = { tabWidth: 2, quote: 'single', wrapColumn: 120 };
 
@@ -52,17 +58,17 @@ async function formatCode(code: string) {
   return eslint.lintText(code).then((x) => {
     if (x[0].messages?.length) {
       console.log('ERRORS DURING CODE GENERATION:');
-      // console.dir(
-      //   {
-      //     t: typeof code,
-      //     messages: x[0].messages,
-      //     code: code
-      //       .split('\n')
-      //       .map((x, idx, all) => `${String(idx + 1).padStart(String(all.length).length, ' ')} ${x}`)
-      //       .join('\n'),
-      //   },
-      //   { depth: null },
-      // );
+      console.dir(
+        {
+          t: typeof code,
+          messages: x[0].messages,
+          code: code
+            .split('\n')
+            .map((x, idx, all) => `${String(idx + 1).padStart(String(all.length).length, ' ')} ${x}`)
+            .join('\n'),
+        },
+        { depth: null },
+      );
     }
     return x[0].output;
   });
@@ -100,22 +106,7 @@ function getRootPaths(document: OpenAPI.Document) {
   return Array.from(new Set(rootPaths));
 }
 
-// function createTypeFromJsonSchema(name: string, schema: IJsonSchema) {
-//   // TODO: jsonschema to ts ast, recursively
-//   const parseMembers = (schema: IJsonSchema) => {
-//     return [];
-//   };
-//
-//   return builders.tsTypeAliasDeclaration.from({
-//     id: builders.identifier(name),
-//     typeParameters: null,
-//     typeAnnotation: builders.tsTypeLiteral.from({
-//       members: parseMembers(schema),
-//     }),
-//   });
-// }
-
-function getSuccessStatusCode(operation: OpenAPIV3.OperationObject) {
+function getSuccessStatusCode(operation: OpenAPI.Operation) {
   return Object.keys(operation?.responses || {})
     .map((x) => Number(x))
     .find((response) => response >= 200 && response <= 299);
@@ -133,6 +124,12 @@ function isEmptySchema(schema: IJsonSchema) {
 function getRootPathMethods(document: OpenAPI.Document, path: string) {
   const methods: Array<Method> = [];
   const apiPaths = Object.keys(document.paths).filter((x) => x.startsWith(`/${path}`));
+
+  // we're using "entity" to wrap data and unwrap response. We might want to improve this, and
+  // decide whether and how to wrap/unwrap on the method level, instead of making the resource
+  // level decide for the method.
+  const body = getRequestBody(document.paths[`/${path}`].post) || getResponseBody(document.paths[`/${path}`].get);
+  const entity = Object.keys(body.schema['properties'])[0];
 
   for (const apiPath of apiPaths) {
     const rootPath = apiPath.split('/').filter(Boolean)[0];
@@ -156,7 +153,6 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
       });
 
       // data is applied after url params, in an object, like notifications.create({ title: 'hi' })
-      // TODO: reduce to object ???!
       const query = (operation.parameters || [])
         .filter((x) => x.in === 'query')
         .map((x) => ({
@@ -168,7 +164,7 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
       // const requestOptions = operation.parameters?.filter((x) => x.in === 'header').map((x) => x.name) ?? [];
       const TypePrefix = pascalCase(name) + pascalCase(resource);
 
-      const requestBody = operation.requestBody?.content['application/json']?.schema;
+      const requestBody = getRequestBody(operation)?.schema;
       const data = query.length
         ? {
             title: TypePrefix + 'PayloadSchema',
@@ -180,21 +176,21 @@ function getRootPathMethods(document: OpenAPI.Document, path: string) {
         : {
             title: TypePrefix + 'PayloadSchema',
             type: 'object',
-            ...getSchema(document, requestBody),
+            ...getSchema(document, requestBody, entity),
             additionalProperties: false,
           };
 
-      const successCode = getSuccessStatusCode(operation);
-      const successResponse = operation?.responses[successCode]?.content?.['application/json']?.schema;
+      const successResponse = getResponseBody(operation)?.schema;
 
       const returns = {
         title: TypePrefix + 'ResponseSchema',
-        description: successResponse?.description,
-        ...getSchema(document, successResponse),
+        description: successResponse?.['description'],
+        ...getSchema(document, successResponse, entity),
       };
 
       methods.push({
         name,
+        entity,
         type,
         path: apiPath.replace(`/${path}`, '').replace(/^\//, ''),
         method,
@@ -230,8 +226,20 @@ function hyphenCase(str: string) {
   return str.replace(/_/g, '-');
 }
 
-function getRequestBody(method: Method) {
-  if (!('requestBody' in method && 'content' in method.requestBody)) return null;
+function snakeCase(str: string) {
+  return (
+    str[0].toLowerCase() +
+    str
+      .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+      .replace(/-/g, '_')
+      .slice(1)
+  );
+}
+
+function getRequestBody(method: OpenAPI.Operation) {
+  if (!method || typeof method !== 'object' || !('requestBody' in method && 'content' in method.requestBody)) {
+    return null;
+  }
 
   const content = method.requestBody.content['application/json'];
   if (!content) return null;
@@ -239,7 +247,20 @@ function getRequestBody(method: Method) {
   return content;
 }
 
+function getResponseBody(method: OpenAPI.Operation, code = getSuccessStatusCode(method)) {
+  const response = method?.responses?.[code];
+  if (!response || typeof response !== 'object' || !('content' in response && 'application/json' in response.content)) {
+    return null;
+  }
+
+  const content = response.content['application/json'];
+  if (!content) return null;
+
+  return content;
+}
+
 type Method = {
+  entity: string;
   path: string;
   method: string;
   name: string;
@@ -252,15 +273,6 @@ type Method = {
 } & OpenAPI.Operation;
 
 function createResource({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
-  const entity = methods
-    .map((x) => {
-      const requestBody = getRequestBody(x);
-      if (!requestBody) return false;
-      const keys = Object.keys(requestBody.example || {});
-      return keys.length === 1 && keys[0] !== 'errors' ? keys[0] : false;
-    })
-    .find(Boolean);
-
   const hasListMethod = methods.some((x) => x.name === 'list');
   const resourceName = pascalCase(apiPath);
 
@@ -321,11 +333,10 @@ function createResource({ apiPath, methods }: { apiPath: string; methods: Array<
                 key: builders.identifier('path'),
                 value: builders.stringLiteral(apiPath),
               }),
-              entity &&
-                builders.classProperty.from({
-                  key: builders.identifier('entity'),
-                  value: builders.stringLiteral(entity),
-                }),
+              builders.classProperty.from({
+                key: builders.identifier('entity'),
+                value: builders.stringLiteral(methods[0].entity),
+              }),
 
               ...methods
                 .filter((x) => !x.private)
@@ -340,7 +351,7 @@ function createResource({ apiPath, methods }: { apiPath: string; methods: Array<
                   );
 
                   const hasData = method.data;
-                  const isDataOptional = method.data?.required?.length === 0;
+                  const isDataOptional = (method.data?.required || []).length === 0;
                   const hasOverloads = method.data && isDataOptional;
 
                   const payloadType = method.data?.title.replace(/Schema$/, '');
@@ -537,45 +548,44 @@ function createResourceTypes({ methods }: { apiPath: string; methods: Array<Meth
   });
 }
 
+function schemaToObject(schema) {
+  if (schema == null) return null;
+
+  if (schema.type === 'object' || !schema.type) {
+    return Object.keys(schema.properties || {}).reduce(
+      (acc, key) => Object.assign(acc, { [key]: schemaToObject(schema.properties[key]) }),
+      {},
+    );
+  }
+
+  if (schema.type === 'array') {
+    return [schemaToObject(schema.items)];
+  }
+
+  if (schema.type === 'string') {
+    return '…';
+  }
+
+  if (schema.type === 'integer') {
+    return 1;
+  }
+
+  if (schema.type === 'boolean') {
+    return true;
+  }
+
+  if (schema.type) {
+    throw new Error(`unimplemented schema type: ${schema.type}`);
+  }
+
+  return schema;
+}
+
 function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Method> }) {
   const lines: Array<string> = [];
   const startLevel = 3;
-  const entity = apiPath.split('/').filter(Boolean)[0];
 
   lines.push(`${'#'.repeat(startLevel)} ${capitalize(apiPath)}\n`);
-
-  function schemaToObject(schema) {
-    if (schema == null) return null;
-
-    if (schema.type === 'object' || !schema.type) {
-      return Object.keys(schema.properties || {}).reduce(
-        (acc, key) => Object.assign(acc, { [key]: schemaToObject(schema.properties[key]) }),
-        {},
-      );
-    }
-
-    if (schema.type === 'array') {
-      return [schemaToObject(schema.items)];
-    }
-
-    if (schema.type === 'string') {
-      return '…';
-    }
-
-    if (schema.type === 'integer') {
-      return 1;
-    }
-
-    if (schema.type === 'boolean') {
-      return true;
-    }
-
-    if (schema.type) {
-      throw new Error(`unimplemented schema type: ${schema.type} at /${apiPath}`);
-    }
-
-    return schema;
-  }
 
   for (const method of methods) {
     // don't document private methods
@@ -583,13 +593,7 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
 
     const parameters = method.parameters as OpenAPIV3.ParameterObject[];
     const requiresUserEmail = parameters.some((x) => /x-magicbell-user-email/i.test(x.name));
-    const pathParams = method.path.split(/[/:]/).filter((x) => x && x.startsWith('{'));
-    const pathParamsCleaned = pathParams.map((x) => x.replace(/[{}]/g, ''));
-    const queryParams = parameters.filter((x) => x.in === 'query' && !pathParamsCleaned.includes(x.name));
-    const query = queryParams.length
-      ? queryParams.reduce((acc, x) => Object.assign(acc, { [x.name]: schemaToObject(x.schema) }), {})
-      : null;
-
+    const pathParams = method.params.map((x) => `{${snakeCase(x.title)}}`);
     const requestBody = getRequestBody(method);
 
     const options = requiresUserEmail ? { userEmail: 'person@example.com' } : null;
@@ -604,11 +608,11 @@ function createDocs({ apiPath, methods }: { apiPath: string; methods: Array<Meth
 
     // TODO: validate example based on schema
     const bodyObj = requestBody?.example || schemaToObject(requestBody?.schema);
-
-    const body =
-      Object.keys(bodyObj || {}).length === 1 && (bodyObj[entity] || bodyObj[entity.replace(/s$/, '')])
-        ? bodyObj[entity] || bodyObj[entity.replace(/s$/, '')]
-        : bodyObj;
+    const body = bodyObj?.[method.entity] || bodyObj;
+    const query =
+      method.data && !body
+        ? Object.fromEntries(Object.entries(schemaToObject(method.data)).map(([k, v]) => [snakeCase(k), v]))
+        : null;
 
     const args = [...pathParams, body, query, options]
       .filter((x) => x != null)
@@ -725,11 +729,11 @@ function getByRef(doc: OpenAPI.Document, ref: string) {
   return doc[ns][type][name];
 }
 
-function getSchema(doc: OpenAPI.Document, schema: OpenAPIV3.SchemaObject | OpenAPIV3.ReferenceObject) {
+// TODO: get schema unwrapped, or not ?!
+function getSchema(doc: OpenAPI.Document, schema: SchemaObject, entity: string) {
   if (!schema) return null;
   const maybeWrapped = '$ref' in schema ? getByRef(doc, schema.$ref) : schema;
-  const keys = Object.keys(maybeWrapped?.properties || {});
-  const unwrapped = keys.length === 1 ? maybeWrapped.properties[keys[0]] : maybeWrapped;
+  const unwrapped = maybeWrapped.properties?.[entity] || maybeWrapped;
   return '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
 }
 
@@ -738,11 +742,17 @@ async function main() {
   const paths = getRootPaths(document);
 
   const files: Array<File> = [];
+  const betaMethods: Method[] = [];
 
   // generate ast for new resource files
   for (const apiPath of paths) {
     const methods = getRootPathMethods(document, apiPath);
     if (methods.length === 0) continue;
+
+    // collect beta methods to list feature flags
+    for (const method of methods) {
+      if (method.beta) betaMethods.push(method);
+    }
 
     const ast = createResource({ apiPath, methods });
     const docs = createDocs({ apiPath, methods });
@@ -759,12 +769,6 @@ async function main() {
   }
 
   const outDirs = Array.from(new Set(files.map((x) => x.type)));
-
-  // collect beta methods to list feature flags
-  const betaMethods = paths
-    .map((apiPath) => getRootPathMethods(document, apiPath))
-    .flat()
-    .filter((x) => x.beta);
 
   // add readme - this should not go through eslint
   outDirs.forEach((dir) => {

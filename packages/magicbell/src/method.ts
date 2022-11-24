@@ -107,7 +107,10 @@ export function normalizeArgs({
     );
   }
 
-  let dataInQuery = method === 'GET' || method === 'DELETE';
+  // Note, DELETE requests should have data in the params, but our `subscriptions.delete`
+  //   endpoint reads it from the body. Other delete requests don't have data, so this seems
+  //   to be the best solution for now.
+  let dataInQuery = method === 'GET'; // || method === 'DELETE';
 
   // We have a few POST methods using query data instead of body data.
   if (method === 'POST' && isForcedQueryParams(dataFromArgs)) {
