@@ -21,13 +21,19 @@
   | `notifications/read/all` | all notifications have been marked as read |
   | `notifications/seen/all` | all notifications have been marked as seen |
 
-- [#16](https://github.com/magicbell-io/magicbell-js/pull/16) [`615b2fa`](https://github.com/magicbell-io/magicbell-js/commit/615b2faa558c19a2a50c0cb2b67b95ad3b5e68e3) Thanks [@smeijer](https://github.com/smeijer)! - - Loads the axios http adapter when `XMLHttpRequest` is unsupported. This allows `magicbell` to be used in for example vscode extensions.
+- [#16](https://github.com/magicbell-io/magicbell-js/pull/16) [`615b2fa`](https://github.com/magicbell-io/magicbell-js/commit/615b2faa558c19a2a50c0cb2b67b95ad3b5e68e3) Thanks [@smeijer](https://github.com/smeijer)! - Loads the axios http adapter when `XMLHttpRequest` is unsupported. This allows `magicbell` to be used in for example vscode extensions.
 
   - Don't persist config if `os.homedir` is unavailable, which is for example the case in vscode extensions.
   - Add support for authentication using `x-magicbell-user-external-id` header.
-  - Allow specifying the `userKey`. This allows users to use `magicbell`, without the need to provide the `apiSecret` key to generate the HMAC on runtime.
+  - Allow specifying the `userKey`. This allows users to use `magicbell`, without the need to provide the `apiSecret` key to generate the HMAC at runtime.
 
-- [#25](https://github.com/magicbell-io/magicbell-js/pull/25) [`13ee1d2`](https://github.com/magicbell-io/magicbell-js/commit/13ee1d242baddc97c0eabd3bf49867c3280432c5) Thanks [@smeijer](https://github.com/smeijer)! - Add type annotations to all resource methods
+- [#25](https://github.com/magicbell-io/magicbell-js/pull/25) [`13ee1d2`](https://github.com/magicbell-io/magicbell-js/commit/13ee1d242baddc97c0eabd3bf49867c3280432c5) Thanks [@smeijer](https://github.com/smeijer)! - Add type coverage to all resource methods.
+
+  - Payload and Response types are driven by json schemas, which are stored under `/schemas`.
+  - Requests now use the `accept-version: v2` header, so we use the latest version of our preferences api.
+  - Failed requests now log a curl command when `debug: true` is provided to the client.
+  - Requests no longer include empty headers.
+  - Requests no longer include empty wrapping entities in the body.
 
 - [#23](https://github.com/magicbell-io/magicbell-js/pull/23) [`bb857a7`](https://github.com/magicbell-io/magicbell-js/commit/bb857a738d5abfda805fecdd1154027a8077d3ed) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.pushSubscriptions` resource to manage mobile devices / push subscriptions. Methods that have been made available are `magicbell.pushSubscriptions.create` and `magicbell.pushSubscriptions.delete`. Note that these methods are currently in beta, and need to be enabled via [feature flags](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#feature-flags).
 
