@@ -1,7 +1,7 @@
 {
-  "name": "magicbell",
-  "version": "0.3.0",
-  "description": "MagicBell API wrapper",
+  "name": "@magicbell/codegen",
+  "version": "0.0.0",
+  "description": "MagicBell codegen",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
     "Stephan Meijer <stephan.meijer@gmail.com>"
@@ -9,7 +9,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/magicbell.esm.js",
+  "module": "dist/codegen.esm.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -19,17 +19,11 @@
   "homepage": "https://magicbell.com",
   "keywords": [
     "magicbell",
-    "notifications",
-    "notification center",
-    "notification inbox",
-    "api"
+    "codegen"
   ],
   "repository": {
     "type": "git",
     "url": "git@github.com:magicbell-io/magicbell-js.git"
-  },
-  "bugs": {
-    "url": "https://github.com/magicbell-io/magicbell-js/issues"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -37,34 +31,18 @@
     "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
     "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
     "generate:resources": "tsx scripts/generate-resources.ts",
+    "dev": "yarn build:dev && node dist/index.js",
     "start": "yarn build:dev --watch",
     "size": "size-limit"
   },
-  "size-limit": [
-    {
-      "path": "dist/magicbell.cjs.min.js",
-      "limit": "250 KB"
-    },
-    {
-      "path": "dist/magicbell.esm.min.js",
-      "limit": "175 KB"
-    }
-  ],
-  "devDependencies": {
-    "@magicbell/codegen": "^0.0.0",
-    "@size-limit/preset-small-lib": "^8.0.1",
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^10.1.0",
     "ast-types": "^0.14.2",
+    "axios": "^0.27.2",
+    "eslint": "^8.23.1",
     "json5": "^2.2.1",
     "openapi-types": "^12.0.2",
-    "portfinder": "^1.0.32",
+    "prettier": "^2.7.1",
     "recast": "^0.21.5"
-  },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "axios-retry": "^3.3.1",
-    "eventsource": "^2.0.2",
-    "json-schema-to-ts": "2.6.0",
-    "qs": "^6.11.0",
-    "tsx": "^3.9.0"
   }
 }

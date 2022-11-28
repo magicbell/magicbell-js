@@ -6,11 +6,13 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
+      "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "magicbell": ["packages/magicbell/src"],
+      "magicbell-cli": ["packages/magicbell-cli/src"],
       "ping-vscode": ["packages/ping-vscode/src"]
     }
   }
