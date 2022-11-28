@@ -1,0 +1,22 @@
+{
+  "resources": {
+    "notifications": {
+      "description": "Send and retrieve notifications"
+    },
+    "users": {
+      "description": "Manage all known users"
+    },
+    "notification_preferences": {
+      "description": "Manage notification preferences"
+    },
+    "push_subscriptions": {
+      "description": "Manage push subscriptions"
+    },
+    "subscriptions": {
+      "description": "Manage subscriptions"
+    },
+    "imports": {
+      "description": "Manage imports"
+    }
+  }
+}
