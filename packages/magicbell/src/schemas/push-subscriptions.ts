@@ -19,6 +19,7 @@ export const CreatePushSubscriptionsResponseSchema = {
 
     app_bundle_id: {
       type: 'string',
+      nullable: true,
     },
   },
 } as const;

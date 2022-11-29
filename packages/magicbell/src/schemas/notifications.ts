@@ -7,6 +7,8 @@ export const CreateNotificationsResponseSchema = {
   properties: {
     id: {
       type: 'string',
+      description: 'The unique id for this notification.',
+      readOnly: true,
     },
 
     title: {
@@ -55,6 +57,8 @@ export const CreateNotificationsResponseSchema = {
 
     sent_at: {
       type: 'number',
+      description: 'The timestamp when the notification was sent to its recipients.',
+      readOnly: true,
     },
   },
 
@@ -105,12 +109,14 @@ export const CreateNotificationsPayloadSchema = {
           email: {
             type: 'string',
             description: "The user's email",
+            nullable: true,
           },
 
           external_id: {
             type: 'string',
             description:
               "A unique string that MagicBell can utilize to uniquely identify the user. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
+            nullable: true,
           },
 
           matches: {
@@ -343,6 +349,8 @@ export const ListNotificationsResponseSchema = {
         properties: {
           id: {
             type: 'string',
+            description: 'The unique id for this notification.',
+            readOnly: true,
           },
 
           title: {
@@ -396,14 +404,17 @@ export const ListNotificationsResponseSchema = {
 
           seen_at: {
             type: 'number',
+            nullable: true,
           },
 
           read_at: {
             type: 'number',
+            nullable: true,
           },
 
           archived_at: {
             type: 'number',
+            nullable: true,
           },
 
           recipient: {
@@ -411,29 +422,39 @@ export const ListNotificationsResponseSchema = {
             additionalProperties: false,
 
             properties: {
+              id: {
+                type: 'string',
+                description: 'The unique id for this user.',
+                readOnly: true,
+              },
+
               external_id: {
                 type: 'string',
                 description:
                   "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
                 maxLength: 255,
+                nullable: true,
               },
 
               email: {
                 type: 'string',
                 description: "The user's email.",
                 maxLength: 255,
+                nullable: true,
               },
 
               first_name: {
                 type: 'string',
                 description: "The user's first name.",
                 maxLength: 50,
+                nullable: true,
               },
 
               last_name: {
                 type: 'string',
                 description: "The user's last name.",
                 maxLength: 50,
+                nullable: true,
               },
 
               custom_attributes: {
@@ -457,7 +478,7 @@ export const ListNotificationsResponseSchema = {
           },
         },
 
-        required: ['id', 'title', 'sent_at'],
+        required: ['title', 'recipient'],
       },
     },
   },
@@ -534,6 +555,12 @@ export const GetNotificationsResponseSchema = {
   additionalProperties: false,
 
   properties: {
+    id: {
+      type: 'string',
+      description: 'The unique id for this notification.',
+      readOnly: true,
+    },
+
     title: {
       type: 'string',
       description: 'Title of the notification.',
@@ -556,47 +583,6 @@ export const GetNotificationsResponseSchema = {
       maxLength: 2048,
     },
 
-    recipients: {
-      description:
-        'Users to send the notification to. You can specify up to 1000 users at once. Use matches to send a notification to everyone.',
-      nullable: false,
-      minItems: 1,
-      maxItems: 1000,
-      type: 'array',
-
-      items: {
-        type: 'object',
-        additionalProperties: true,
-
-        properties: {
-          email: {
-            type: 'string',
-            description: "The user's email",
-          },
-
-          external_id: {
-            type: 'string',
-            description:
-              "A unique string that MagicBell can utilize to uniquely identify the user. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
-          },
-
-          matches: {
-            type: 'string',
-            description:
-              'An SQL-like expression to match users by their stored attributes. Set it to "*" to send a notification to all users.',
-          },
-        },
-      },
-    },
-
-    custom_attributes: {
-      type: 'object',
-      description:
-        'Set of key-value pairs that you can attach to a notification, 6KB at maximum. It accepts objects for the value of a key.\n\nYou can use it to share data between channels or to render a custom UI.',
-      nullable: true,
-      additionalProperties: true,
-    },
-
     category: {
       type: 'string',
       description: 'Category the notification belongs to. This is useful to allow users to set their preferences.',
@@ -611,144 +597,95 @@ export const GetNotificationsResponseSchema = {
       maxLength: 100,
     },
 
-    overrides: {
+    custom_attributes: {
       type: 'object',
-      description: 'Optional overrides to configure notifications per target destination.',
+      description:
+        'Set of key-value pairs that you can attach to a notification, 6KB at maximum. It accepts objects for the value of a key.\n\nYou can use it to share data between channels or to render a custom UI.',
       nullable: true,
+      additionalProperties: true,
+    },
+
+    sent_at: {
+      type: 'number',
+    },
+
+    seen_at: {
+      type: 'number',
+      nullable: true,
+    },
+
+    read_at: {
+      type: 'number',
+      nullable: true,
+    },
+
+    archived_at: {
+      type: 'number',
+      nullable: true,
+    },
+
+    recipient: {
+      type: 'object',
+      additionalProperties: false,
 
       properties: {
-        channels: {
-          type: 'object',
-          description: 'Overrides for specific channels',
-
-          properties: {
-            in_app: {
-              type: 'object',
-
-              properties: {
-                title: {
-                  type: 'string',
-                  description: 'Overriden title for this channel',
-                },
-
-                content: {
-                  type: 'string',
-                  description: 'Overriden content for this channel',
-                },
-
-                action_url: {
-                  type: 'string',
-                  description: 'Overriden action_url for this channel',
-                },
-              },
-            },
-
-            email: {
-              type: 'object',
-
-              properties: {
-                title: {
-                  type: 'string',
-                  description: 'Overriden title for this channel',
-                },
-
-                content: {
-                  type: 'string',
-                  description: 'Overriden content for this channel',
-                },
-
-                action_url: {
-                  type: 'string',
-                  description: 'Overriden action_url for this channel',
-                },
-              },
-            },
-
-            web_push: {
-              type: 'object',
-
-              properties: {
-                title: {
-                  type: 'string',
-                  description: 'Overriden title for this channel',
-                },
-
-                content: {
-                  type: 'string',
-                  description: 'Overriden content for this channel',
-                },
-
-                action_url: {
-                  type: 'string',
-                  description: 'Overriden action_url for this channel',
-                },
-              },
-            },
-
-            mobile_push: {
-              type: 'object',
-
-              properties: {
-                title: {
-                  type: 'string',
-                  description: 'Overriden title for this channel',
-                },
-
-                content: {
-                  type: 'string',
-                  description: 'Overriden content for this channel',
-                },
-
-                action_url: {
-                  type: 'string',
-                  description: 'Overriden action_url for this channel',
-                },
-              },
-            },
-          },
+        id: {
+          type: 'string',
+          description: 'The unique id for this user.',
+          readOnly: true,
         },
 
-        providers: {
+        external_id: {
+          type: 'string',
+          description:
+            "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
+          maxLength: 255,
+          nullable: true,
+        },
+
+        email: {
+          type: 'string',
+          description: "The user's email.",
+          maxLength: 255,
+          nullable: true,
+        },
+
+        first_name: {
+          type: 'string',
+          description: "The user's first name.",
+          maxLength: 50,
+          nullable: true,
+        },
+
+        last_name: {
+          type: 'string',
+          description: "The user's last name.",
+          maxLength: 50,
+          nullable: true,
+        },
+
+        custom_attributes: {
           type: 'object',
-          description: 'Overrides for specific providers (Sendgrid, Postmark, APNs, etc)',
+          description:
+            "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
+          additionalProperties: true,
+        },
 
-          properties: {
-            sendgrid: {
-              type: 'object',
-              description:
-                'Set of key-value pairs that you can pass on to Sendgrid. Applied only if it is configured for your project.',
-            },
+        phone_numbers: {
+          type: 'array',
+          description: 'An array of phone numbers to use for sending SMS notifications.',
 
-            mailgun: {
-              type: 'object',
-              description:
-                'Set of key-value pairs that you can pass on to Mailgun. Applied only if it is configured for your project.',
-            },
-
-            postmark: {
-              type: 'object',
-              description:
-                'Set of key-value pairs that you can pass on to Postmark. Applied only if it is configured for your project.',
-            },
-
-            ios: {
-              type: 'object',
-              description:
-                'Set of key-value pairs that you can pass on to APNs. Applied only if it is configured for your project.',
-            },
-
-            android: {
-              type: 'object',
-              description:
-                'Set of key-value pairs that you can pass on to FCM. Applied only if it is configured for your project.',
-            },
+          items: {
+            type: 'string',
           },
+
+          maxItems: 50,
         },
       },
     },
   },
 
-  required: ['title', 'recipients'],
+  required: ['title', 'recipient'],
 } as const;
 
 export const MarkAllReadNotificationsPayloadSchema = {

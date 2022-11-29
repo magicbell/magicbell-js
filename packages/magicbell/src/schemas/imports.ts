@@ -5,63 +5,56 @@ export const CreateImportsResponseSchema = {
   additionalProperties: false,
 
   properties: {
-    notification: {
+    id: {
+      type: 'string',
+      description: 'ID of the import. This is used to query the status of the import.',
+    },
+
+    status: {
+      type: 'string',
+      enum: ['processing'],
+    },
+
+    summary: {
       type: 'object',
       additionalProperties: false,
 
       properties: {
-        id: {
-          type: 'string',
-          description: 'ID of the import. This is used to query the status of the import.',
+        total: {
+          type: 'integer',
+          description: 'The total number of records processed.',
         },
 
-        status: {
-          type: 'string',
-          enum: ['processing'],
+        failures: {
+          type: 'integer',
+          description: 'The total number of failed records.',
         },
+      },
+    },
 
-        summary: {
-          type: 'object',
-          additionalProperties: false,
+    errors: {
+      type: 'array',
 
-          properties: {
-            total: {
-              type: 'integer',
-              description: 'The total number of records processed.',
-            },
+      items: {
+        type: 'object',
+        additionalProperties: false,
 
-            failures: {
-              type: 'integer',
-              description: 'The total number of failed records.',
-            },
+        properties: {
+          email: {
+            type: 'string',
+            description:
+              "The identifying email of the user. If the user's external_id is used as identifier, the email key will not be present",
           },
-        },
 
-        errors: {
-          type: 'array',
+          external_id: {
+            type: 'string',
+            description:
+              "The identifying external_id of the user. If the user's email is used as identifier, the external_id key will not be present",
+          },
 
-          items: {
-            type: 'object',
-            additionalProperties: false,
-
-            properties: {
-              email: {
-                type: 'string',
-                description:
-                  "The identifying email of the user. If the user's external_id is used as identifier, the email key will not be present",
-              },
-
-              external_id: {
-                type: 'string',
-                description:
-                  "The identifying external_id of the user. If the user's email is used as identifier, the external_id key will not be present",
-              },
-
-              message: {
-                type: 'string',
-                description: 'The error message indicating why importing the user failed',
-              },
-            },
+          message: {
+            type: 'string',
+            description: 'The error message indicating why importing the user failed',
           },
         },
       },
@@ -87,24 +80,28 @@ export const CreateImportsPayloadSchema = {
             description:
               "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
             maxLength: 255,
+            nullable: true,
           },
 
           email: {
             type: 'string',
             description: "The user's email.",
             maxLength: 255,
+            nullable: true,
           },
 
           first_name: {
             type: 'string',
             description: "The user's first name.",
             maxLength: 50,
+            nullable: true,
           },
 
           last_name: {
             type: 'string',
             description: "The user's last name.",
             maxLength: 50,
+            nullable: true,
           },
 
           custom_attributes: {
