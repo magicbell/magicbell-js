@@ -5,29 +5,39 @@ export const CreateUsersResponseSchema = {
   additionalProperties: false,
 
   properties: {
+    id: {
+      type: 'string',
+      description: 'The unique id for this user.',
+      readOnly: true,
+    },
+
     external_id: {
       type: 'string',
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -61,24 +71,28 @@ export const CreateUsersPayloadSchema = {
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -107,29 +121,39 @@ export const UpdateUsersResponseSchema = {
   additionalProperties: false,
 
   properties: {
+    id: {
+      type: 'string',
+      description: 'The unique id for this user.',
+      readOnly: true,
+    },
+
     external_id: {
       type: 'string',
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -163,24 +187,28 @@ export const UpdateUsersPayloadSchema = {
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -209,29 +237,39 @@ export const UpdateByEmailUsersResponseSchema = {
   additionalProperties: false,
 
   properties: {
+    id: {
+      type: 'string',
+      description: 'The unique id for this user.',
+      readOnly: true,
+    },
+
     external_id: {
       type: 'string',
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -265,24 +303,28 @@ export const UpdateByEmailUsersPayloadSchema = {
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -311,29 +353,39 @@ export const UpdateByExternalIdUsersResponseSchema = {
   additionalProperties: false,
 
   properties: {
+    id: {
+      type: 'string',
+      description: 'The unique id for this user.',
+      readOnly: true,
+    },
+
     external_id: {
       type: 'string',
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
@@ -367,24 +419,28 @@ export const UpdateByExternalIdUsersPayloadSchema = {
       description:
         "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
       maxLength: 255,
+      nullable: true,
     },
 
     email: {
       type: 'string',
       description: "The user's email.",
       maxLength: 255,
+      nullable: true,
     },
 
     first_name: {
       type: 'string',
       description: "The user's first name.",
       maxLength: 50,
+      nullable: true,
     },
 
     last_name: {
       type: 'string',
       description: "The user's last name.",
       maxLength: 50,
+      nullable: true,
     },
 
     custom_attributes: {
