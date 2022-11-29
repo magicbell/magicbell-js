@@ -95,7 +95,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
         : {
             title: TypePrefix + 'PayloadSchema',
             type: 'object',
-            ...getSchema(document, requestBody, entity),
+            ...getSchema(document, requestBody, { entity, excludeReadOnly: true }),
             additionalProperties: false,
           };
 
@@ -104,7 +104,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
       const returns = {
         title: TypePrefix + 'ResponseSchema',
         description: successResponse?.['description'],
-        ...getSchema(document, successResponse, entity),
+        ...getSchema(document, successResponse, { entity }),
       };
 
       methods.push({
@@ -127,9 +127,23 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
 }
 
 // TODO: move this out to the implementing side
-function getSchema(doc: OpenAPI.Document, schema: SchemaObject | ReferenceObject, entity: string) {
+function getSchema(
+  doc: OpenAPI.Document,
+  schema: SchemaObject | ReferenceObject,
+  options: { entity: string; excludeReadOnly?: boolean },
+) {
   if (!schema) return null;
   const maybeWrapped = '$ref' in schema ? getByRef(doc, schema.$ref) : schema;
-  const unwrapped = maybeWrapped.properties?.[entity] || maybeWrapped;
-  return '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
+  const unwrapped = maybeWrapped.properties?.[options.entity] || maybeWrapped;
+  const objectSchema = '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
+
+  if (!options.excludeReadOnly || !objectSchema.properties) return objectSchema;
+
+  const copy = { ...objectSchema, properties: {} };
+  for (const [key, value] of Object.entries(objectSchema.properties || {})) {
+    if (value?.['readOnly'] === true) continue;
+    copy.properties[key] = objectSchema.properties[key];
+  }
+
+  return copy;
 }
