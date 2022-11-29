@@ -336,7 +336,7 @@ async function updateClient(filePath: string, files: File[]) {
 type File = { type: string; name: string; source: string; docs?: string };
 
 async function main() {
-  const resources = await getResources(SPEC_URL);
+  const resources = await getResources(argv.spec || SPEC_URL);
 
   const files: Array<File> = [];
   const betaMethods = resources.flatMap((x) => x.methods).filter((x) => x.beta);
