@@ -1,5 +1,11 @@
 # @magicbell/react-headless
 
+## 4.2.3
+
+### Patch Changes
+
+- [#26](https://github.com/magicbell-io/magicbell-js/pull/26) [`2f295b0`](https://github.com/magicbell-io/magicbell-js/commit/2f295b0a02bf735e0f594f0bd0985b1523615ac7) Thanks [@smeijer](https://github.com/smeijer)! - Remove react-dom from peer-dependencies, so we don't cause trouble in react-native projects.
+
 ## 4.2.2
 
 ### Patch Changes
