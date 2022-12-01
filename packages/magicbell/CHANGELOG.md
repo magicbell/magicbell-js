@@ -4,8 +4,7 @@
 
 ### Major Changes
 
-- [#27](https://github.com/magicbell-io/magicbell-js/pull/27) [`c698320`](https://github.com/magicbell-io/magicbell-js/commit/c69832021cba9a0686a14be22dd7f46c613b954d) Thanks [@smeijer](https://github.com/smeijer)! - - improve types for `notifications`, `push-subscriptions`, `imports` and `users` resources.
-  - remove from beta.
+- [#27](https://github.com/magicbell-io/magicbell-js/pull/27) [`c698320`](https://github.com/magicbell-io/magicbell-js/commit/c69832021cba9a0686a14be22dd7f46c613b954d) Thanks [@smeijer](https://github.com/smeijer)! - improve types for `notifications`, `push-subscriptions`, `imports` and `users` resources.
 
 ## 0.3.0
 
