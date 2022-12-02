@@ -17,7 +17,7 @@ interface useBellArgs {
  * @example
  * const { unreadCount, markAllAsSeen } = useBell();
  */
-export default function useBell({ storeId }: useBellArgs = {}): NotificationStore | null {
+export default function useBell({ storeId }: useBellArgs = {}): NotificationStore {
   const store = useNotifications(storeId);
 
   const markAllAsSeen = () => {
