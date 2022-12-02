@@ -78,7 +78,7 @@ export function normalizeArgs({
   method: RequestMethod;
   args: (Record<string, unknown> | string)[];
 }) {
-  const argsCopy = [...args];
+  const argsCopy = [...args].filter((x) => x !== undefined);
 
   const urlParams = extractUrlParams(path);
   const urlData = urlParams.reduce((urlData, param) => {
