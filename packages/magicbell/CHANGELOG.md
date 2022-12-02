@@ -1,5 +1,11 @@
 # magicbell
 
+## 1.0.1
+
+### Patch Changes
+
+- [#29](https://github.com/magicbell-io/magicbell-js/pull/29) [`1640aef`](https://github.com/magicbell-io/magicbell-js/commit/1640aeff3f6158047883c999fa580202651b067b) Thanks [@smeijer](https://github.com/smeijer)! - fix: be forgiving about `undefined` arguments
+
 ## 1.0.0
 
 ### Major Changes
