@@ -9,8 +9,8 @@ import { useRef } from 'react';
 import Navbar from '~/components/layout/navbar';
 import SocialHead from '~/components/layout/social-head';
 import Sandbox from '~/components/sandbox/sandbox';
+import GitHubLogo from '~/components/svg/github';
 import Logo from '~/components/svg/logo';
-import SlackLogo from '~/components/svg/slack';
 import { useHeight } from '~/hooks/use-height';
 import {
   ExampleConfig,
@@ -112,12 +112,12 @@ export default function Example({
             <FileTextIcon className="mr-2" /> Docs
           </a>
           <a
-            href="https://join.slack.com/t/magicbell-community/shared_invite/zt-trh6yi84-~jtPqNikvC1m3My_p0WUqw"
+            href="https://github.com/orgs/magicbell-io/discussions"
             className="flex-row fg-body"
             target="_blank"
             rel="noopener nofollow noreferrer"
           >
-            <SlackLogo className="mr-2" /> Slack
+            <GitHubLogo className="mr-2" /> Discussions
           </a>
         </footer>
       </div>
