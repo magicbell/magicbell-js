@@ -26,10 +26,10 @@ export interface WidgetProps extends FrameContentProps {
   images?: Partial<{
     emptyInboxUrl: string;
   }>;
-  theme: DeepPartial<IMagicBellTheme>;
+  theme?: DeepPartial<IMagicBellTheme>;
   onNewNotification?: MagicBellProps['onNewNotification'];
   defaultIsOpen?: boolean;
-  stores: MagicBellProps['stores'];
+  stores?: MagicBellProps['stores'];
 }
 
 /**
