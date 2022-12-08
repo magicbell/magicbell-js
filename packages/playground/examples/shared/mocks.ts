@@ -24,19 +24,12 @@ function match(pattern, url) {
   const matches = escapedPattern.match(/:([^?\/\\]+)/g);
   const keys = matches ? matches.map((e) => e.slice(1)) : null;
 
-  const expression = new RegExp(
-    `^${escapedPattern
-      .replace(/:[^\/&.?]+/g, '([^/]+)')
-      .replace(/\)\?/, ')\\?')}$`,
-  );
+  const expression = new RegExp(`^${escapedPattern.replace(/:[^\/&.?]+/g, '([^/]+)').replace(/\)\?/, ')\\?')}$`);
   const results = url.match(expression);
 
   if (!keys || !results) return { match: false, pattern, params: {} };
 
-  const params = keys.reduce(
-    (acc, key, idx) => Object.assign(acc, { [key]: results[idx + 1] }),
-    {},
-  );
+  const params = keys.reduce((acc, key, idx) => Object.assign(acc, { [key]: results[idx + 1] }), {});
 
   return { match: true, pattern, params };
 }
@@ -47,9 +40,7 @@ const mocks = new Set<{
   handler?: MockHandler;
 }>();
 
-type MockHandler = (options: {
-  params: Record<string, unknown>;
-}) => Record<string, unknown>;
+type MockHandler = (options: { params: Record<string, unknown> }) => Record<string, unknown>;
 
 const addHandler = (method: Method, url: string, handler?: MockHandler) => {
   mocks.add({ method, url, handler });
@@ -68,21 +59,17 @@ const getHandler = (method: Method, url: string) => {
 axios.interceptors.request.use(
   (config) => {
     // don't use the mock when the user uses their own API keys.
-    if (
-      !String(config.headers['X-MAGICBELL-USER-EMAIL']).endsWith('@example.com')
-    ) {
+    if (!String(config.headers['X-MAGICBELL-USER-EMAIL']).endsWith('@example.com')) {
       return config;
     }
 
-    const mock = getHandler(config.method, config.url);
+    const mock = getHandler(config.method as Method, config.url);
     if (!mock) return config;
 
     const { params } = match(mock.url, config.url);
     const mockError = new Error();
     mockError['config'] = config;
-    mockError['data'] = mock.handler
-      ? mock.handler({ params: { ...params, ...config.params } })
-      : { data: {} };
+    mockError['data'] = mock.handler ? mock.handler({ params: { ...params, ...config.params } }) : { data: {} };
 
     return Promise.reject(mockError);
   },
@@ -196,15 +183,11 @@ addHandler('get', '/notifications', ({ params }) => {
   }));
 
   if (typeof params.seen !== 'undefined') {
-    notifications = notifications.filter(
-      (x) => Boolean(x.seen_at) === params.seen,
-    );
+    notifications = notifications.filter((x) => Boolean(x.seen_at) === params.seen);
   }
 
   if (typeof params.read !== 'undefined') {
-    notifications = notifications.filter(
-      (x) => Boolean(x.read_at) === params.read,
-    );
+    notifications = notifications.filter((x) => Boolean(x.read_at) === params.read);
   }
 
   if (category) {

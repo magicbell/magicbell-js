@@ -1,7 +1,7 @@
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import useDarkmode from '~/hooks/use-darkmode';
+import useDarkmode from '../../hooks/use-darkmode';
 
 function DarkModeToggle() {
   const [mode, setMode] = useDarkmode();
@@ -28,9 +28,7 @@ function DarkModeToggle() {
       }}
       className="h-5 w-5 flex-row overflow-visible transition fg-body relative"
       data-m={mode}
-      aria-label={
-        mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
-      }
+      aria-label={mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <span
         data-r={rotate}

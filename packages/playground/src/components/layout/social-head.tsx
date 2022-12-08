@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import * as React from 'react';
 
-import { absoluteUrl } from '~/lib/absolute-url';
+import { absoluteUrl } from '../../lib/absolute-url';
 
 interface SocialProps {
   color?: string;
@@ -28,20 +28,13 @@ function SocialHead({
   socialTitle = title,
   description = 'MagicBell Playground',
   image = absoluteUrl('/social.png'),
-  icons = [
-    absoluteUrl('/logo-24.png'),
-    absoluteUrl('/logo-48.png'),
-    absoluteUrl('/logo-96.png'),
-  ],
+  icons = [absoluteUrl('/logo-24.png'), absoluteUrl('/logo-48.png'), absoluteUrl('/logo-96.png')],
   url = absoluteUrl('/'),
 }: SocialProps) {
   return (
     <Head>
       <meta charSet="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
       {title ? <title>{title}</title> : null}
 

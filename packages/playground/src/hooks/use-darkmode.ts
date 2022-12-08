@@ -1,14 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-function useDarkmode(): [
-  'light' | 'dark',
-  Dispatch<SetStateAction<'light' | 'dark'>>,
-] {
+function useDarkmode(): ['light' | 'dark', Dispatch<SetStateAction<'light' | 'dark'>>] {
   const [mode, setMode] = useState<'light' | 'dark'>(() =>
-    typeof window !== 'undefined' &&
-    window.matchMedia?.('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light',
+    typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
   );
 
   useEffect(() => {
