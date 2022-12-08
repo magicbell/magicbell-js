@@ -20,6 +20,7 @@
 
 # Fonts
 *.woff2 binary
+*.woff binary
 
 # Other
 *.exe binary
