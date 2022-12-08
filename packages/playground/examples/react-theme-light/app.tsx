@@ -1,6 +1,5 @@
-import MagicBell, {
-  FloatingNotificationInbox,
-} from '@magicbell/magicbell-react';
+import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
+import React from 'react';
 
 export default function Index() {
   return (

@@ -1,8 +1,9 @@
-import '~/styles/globals.css';
+import '../styles/globals.css';
 import '@codesandbox/sandpack-react/dist/index.css';
-import '~/styles/sandbox.css';
+import '../styles/sandbox.css';
 
 import withTwindApp from '@twind/next/shim/app';
+import React from 'react';
 
 import twindConfig from '../../twind.config';
 

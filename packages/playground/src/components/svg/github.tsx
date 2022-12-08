@@ -1,3 +1,5 @@
+import React from 'react';
+
 function GitHubLogo({ className }: { className?: string }) {
   return (
     <svg

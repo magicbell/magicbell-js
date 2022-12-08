@@ -29,6 +29,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: './packages/playground/**/*',
+      rules: {
+        'react/prop-types': 'off',
+      }
+    },
+    {
       files: '**/*.{stories,spec,test}.{ts,tsx}',
       rules: {
         '@typescript-eslint/no-non-null-assertion': 'off',
@@ -36,6 +42,13 @@ module.exports = {
       },
       env: {
         'cypress/globals': true,
+      }
+    },
+    {
+      files: ['**/*.vue'],
+      extends: ['plugin:vue/vue3-recommended'],
+      rules: {
+        'vue/singleline-html-element-content-newline': 'off',
       }
     },
   ],

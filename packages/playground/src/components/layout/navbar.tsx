@@ -1,11 +1,10 @@
 import cn from 'clsx';
 import Link from 'next/link';
-import { MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 
-import CodeBell from '~/components/svg/code-bell';
-import { ExampleConfig } from '~/lib/utils';
-
+import { ExampleConfig } from '../../lib/utils';
+import CodeBell from '../svg/code-bell';
 import DarkModeToggle from './dark-mode-toggle';
 
 type NavbarProps = {
@@ -28,9 +27,7 @@ const groupNames = {
 
 function getName(group, slug) {
   const parts = slug.split('-');
-  return parts[1] && (parts[0] === group || parts[0] === 'embeddable')
-    ? parts.slice(1).join(' ')
-    : parts.join(' ');
+  return parts[1] && (parts[0] === group || parts[0] === 'embeddable') ? parts.slice(1).join(' ') : parts.join(' ');
 }
 
 function Navbar({ examples, currentPath }: NavbarProps) {
@@ -79,9 +76,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
       groups[group].items.push(example);
     }
 
-    const grouped = Object.values(groups).sort((a, b) =>
-      a.name.localeCompare(b.name),
-    );
+    const grouped = Object.values(groups).sort((a, b) => a.name.localeCompare(b.name));
 
     return {
       grouped,
@@ -90,9 +85,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
     };
   }, [examples, currentPath]);
 
-  const handleSetActiveGroup: MouseEventHandler<HTMLButtonElement> = (
-    event,
-  ) => {
+  const handleSetActiveGroup: MouseEventHandler<HTMLButtonElement> = (event) => {
     setActiveGroup(event.currentTarget.dataset.group);
     setReferenceElement(event.currentTarget);
     setShowPopper(true);
@@ -103,8 +96,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
     setReferenceElement(navRef.current.querySelector('button'));
   }, [navRef]);
 
-  const group =
-    referenceElement && grouped.find((group) => group.name === activeGroup);
+  const group = referenceElement && grouped.find((group) => group.name === activeGroup);
 
   return (
     <nav className="flex-row justify-start mt-6">
@@ -142,9 +134,7 @@ function Navbar({ examples, currentPath }: NavbarProps) {
           })}
           style={{
             ...styles.popper,
-            transform: `${styles.popper['transform'] || ''} rotateX(${
-              showPopper ? '0deg' : '-15deg'
-            })`,
+            transform: `${styles.popper['transform'] || ''} rotateX(${showPopper ? '0deg' : '-15deg'})`,
           }}
           {...attributes.popper}
         >
@@ -152,27 +142,16 @@ function Navbar({ examples, currentPath }: NavbarProps) {
             {group?.items.map((example) => (
               <li key={example.slug}>
                 <Link href={example.slug}>
-                  <a
-                    data-active={example.slug === currentPath}
-                    className="fg-popper block w-64"
-                  >
-                    <div className="truncate">
-                      {getName(activeGroup, example.slug)}
-                    </div>
-                    <div className="text-sm opacity-50 line-clamp-2 h-10">
-                      {example.description || ''}
-                    </div>
+                  <a data-active={example.slug === currentPath} className="fg-popper block w-64">
+                    <div className="truncate">{getName(activeGroup, example.slug)}</div>
+                    <div className="text-sm opacity-50 line-clamp-2 h-10">{example.description || ''}</div>
                   </a>
                 </Link>
               </li>
             ))}
           </ul>
 
-          <div
-            className="arrow-top transition"
-            ref={setArrowElement}
-            style={styles.arrow}
-          />
+          <div className="arrow-top transition" ref={setArrowElement} style={styles.arrow} />
         </div>
       </div>
 

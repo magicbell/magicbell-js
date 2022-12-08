@@ -1,12 +1,10 @@
-import {
-  SandpackFile,
-  SandpackPredefinedTemplate,
-} from '@codesandbox/sandpack-react';
-import { globby } from 'globby';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { TEMPLATES } from '~/lib/templates';
+import { SandpackFile, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
+import { globby } from 'globby';
+
+import { TEMPLATES } from './templates';
 
 export type ExampleConfig = {
   name: string;
@@ -22,37 +20,27 @@ export async function getAllExamples(): Promise<ExampleConfig[]> {
     ignore: ['shared'],
   });
 
-  const shared = JSON.parse(
-    await fs.readFile('./examples/shared/package.json', { encoding: 'utf-8' }),
-  );
+  const shared = JSON.parse(await fs.readFile('./examples/shared/package.json', { encoding: 'utf-8' }));
 
   return Promise.all(
     packages.map((pkg) =>
-      fs
-        .readFile(path.join('./examples', pkg), { encoding: 'utf-8' })
-        .then((data) => {
-          const pkgJSON = JSON.parse(data) as ExampleConfig;
+      fs.readFile(path.join('./examples', pkg), { encoding: 'utf-8' }).then((data) => {
+        const pkgJSON = JSON.parse(data) as ExampleConfig;
 
-          const dependencies = Object.assign(
-            {},
-            shared.dependencies,
-            pkgJSON.dependencies,
-          );
+        const dependencies = Object.assign({}, shared.dependencies, pkgJSON.dependencies);
 
-          return {
-            ...pkgJSON,
-            dependencies,
-            slug: path.basename(path.dirname(pkg)),
-            template: getSandpackTemplate(pkgJSON),
-          };
-        }),
+        return {
+          ...pkgJSON,
+          dependencies,
+          slug: path.basename(path.dirname(pkg)),
+          template: getSandpackTemplate(pkgJSON),
+        };
+      }),
     ),
   );
 }
 
-export async function readFolderContents(
-  folder: string,
-): Promise<Record<string, { code: string }>> {
+export async function readFolderContents(folder: string): Promise<Record<string, { code: string }>> {
   const filepaths = await globby(`**/*`, {
     cwd: `./examples/${folder}`,
   });
@@ -73,26 +61,18 @@ export async function readFolderContents(
   return files;
 }
 
-export async function getFilesForExample(
-  folder: string,
-): Promise<Record<string, { code: string }>> {
+export async function getFilesForExample(folder: string): Promise<Record<string, { code: string }>> {
   return readFolderContents(folder);
 }
 
-export function getSandpackTemplate(
-  config: ExampleConfig,
-): SandpackPredefinedTemplate {
+export function getSandpackTemplate(config: ExampleConfig): SandpackPredefinedTemplate {
   if (config.template) return config.template;
   if (config.dependencies['@magicbell/magicbell-react']) return 'react-ts';
   return 'vanilla-ts';
 }
 
 function pipe(...functions) {
-  return (value) =>
-    functions.reduce(
-      (currentValue, currentFunction) => currentFunction(currentValue),
-      value,
-    );
+  return (value) => functions.reduce((currentValue, currentFunction) => currentFunction(currentValue), value);
 }
 
 function move(current: string, next: string) {

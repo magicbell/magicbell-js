@@ -1,6 +1,6 @@
 import { SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
 
-import { stripIndent } from '~/components/sandbox/utils';
+import { stripIndent } from '../components/sandbox/utils';
 
 const getIndexHtml = (body) =>
   stripIndent(`
@@ -39,13 +39,9 @@ const getIndexHtml = (body) =>
   </html>
 `);
 
-export const TEMPLATES: Partial<
-  Record<SandpackPredefinedTemplate, Record<string, string>>
-> = {
+export const TEMPLATES: Partial<Record<SandpackPredefinedTemplate, Record<string, string>>> = {
   'vanilla-ts': {
-    '/index.html': getIndexHtml(
-      `<div id="app"></div><script src="src/index.js"></script>`,
-    ),
+    '/index.html': getIndexHtml(`<div id="app"></div><script src="src/index.js"></script>`),
     '/src/index.ts': stripIndent(`
       import 'twind/shim';
       import "./styles.css";

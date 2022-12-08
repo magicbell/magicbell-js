@@ -6,10 +6,7 @@
  */
 import { MutableRefObject, useEffect, useState } from 'react';
 
-export function useHeight(
-  ref: MutableRefObject<Element> | Element | null,
-  initialHeight?: number,
-) {
+export function useHeight(ref: MutableRefObject<Element> | Element | null, initialHeight?: number) {
   const [height, setHeight] = useState(initialHeight);
 
   useEffect(() => {

@@ -1,23 +1,15 @@
-import {
-  SandpackFile,
-  SandpackPredefinedTemplate,
-} from '@codesandbox/sandpack-react';
+import { SandpackFile, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
 import { FileTextIcon } from '@radix-ui/react-icons';
 import { GetStaticPropsResult } from 'next';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
-import Navbar from '~/components/layout/navbar';
-import SocialHead from '~/components/layout/social-head';
-import Sandbox from '~/components/sandbox/sandbox';
-import GitHubLogo from '~/components/svg/github';
-import Logo from '~/components/svg/logo';
-import { useHeight } from '~/hooks/use-height';
-import {
-  ExampleConfig,
-  getAllExamples,
-  getFilesForExample,
-  reshapeForSandpack,
-} from '~/lib/utils';
+import Navbar from '../components/layout/navbar';
+import SocialHead from '../components/layout/social-head';
+import Sandbox from '../components/sandbox/sandbox';
+import GitHubLogo from '../components/svg/github';
+import Logo from '../components/svg/logo';
+import { useHeight } from '../hooks/use-height';
+import { ExampleConfig, getAllExamples, getFilesForExample, reshapeForSandpack } from '../lib/utils';
 
 export async function getStaticPaths() {
   const examples = await getAllExamples();
@@ -28,16 +20,10 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({
-  params: { slug },
-}): Promise<GetStaticPropsResult<ExampleProps>> {
-  const [example, examples] = await Promise.all([
-    getFilesForExample(slug),
-    getAllExamples(),
-  ]);
+export async function getStaticProps({ params: { slug } }): Promise<GetStaticPropsResult<ExampleProps>> {
+  const [example, examples] = await Promise.all([getFilesForExample(slug), getAllExamples()]);
 
-  const { template, dependencies } =
-    examples.find((x) => x.slug === slug) || {};
+  const { template, dependencies } = examples.find((x) => x.slug === slug) || {};
 
   const files = (await reshapeForSandpack(example, template)) || null;
 
@@ -60,13 +46,7 @@ type ExampleProps = {
   slug: string;
 };
 
-export default function Example({
-  files,
-  dependencies,
-  template,
-  examples,
-  slug,
-}) {
+export default function Example({ files, dependencies, template, examples, slug }) {
   const contentRef = useRef();
   const height = useHeight(contentRef, 300);
 
@@ -78,10 +58,7 @@ export default function Example({
 
   return (
     <>
-      <SocialHead
-        title={`${name} | MagicBell Playground`}
-        description={example.description}
-      />
+      <SocialHead title={`${name} | MagicBell Playground`} description={example.description} />
       <div className="h-screen max-w-9xl px-8 pt-6 mx-auto flex flex-col">
         <header className="relative">
           <div className="flex w-full">

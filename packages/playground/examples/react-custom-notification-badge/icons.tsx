@@ -1,12 +1,8 @@
+import React from 'react';
+
 export function BellIcon() {
   return (
-    <svg
-      width="312"
-      height="396"
-      viewBox="0 0 312 396"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="312" height="396" viewBox="0 0 312 396" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -87,14 +87,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ['Moderat', 'Helvetica', 'Arial', 'sans-serif'],
-        mono: [
-          'GT America',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          'Courier New',
-          'monospace',
-        ],
+        mono: ['GT America', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
       },
       maxWidth: {
         '8xl': '88rem',

@@ -1,6 +1,5 @@
-import MagicBell, {
-  FloatingNotificationInbox,
-} from '@magicbell/magicbell-react';
+import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
+import React from 'react';
 
 const stores = [
   { id: 'default', defaultQueryParams: {} },
@@ -23,9 +22,7 @@ export default function Index() {
       stores={stores}
       defaultIsOpen
     >
-      {(props) => (
-        <FloatingNotificationInbox height={450} tabs={tabs} {...props} />
-      )}
+      {(props) => <FloatingNotificationInbox height={450} tabs={tabs} {...props} />}
     </MagicBell>
   );
 }

@@ -1,7 +1,5 @@
-import MagicBell, {
-  FloatingNotificationInbox,
-} from '@magicbell/magicbell-react';
-import { useEffect, useState } from 'react';
+import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
+import React, { useEffect, useState } from 'react';
 
 // See the tabs above for the icon, it's just an SVG.
 import { BellIcon } from './icons';
