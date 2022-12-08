@@ -1,5 +1,3 @@
-import '../../../src/lib/date';
-
 import dayjs from 'dayjs';
 import Sinon from 'sinon';
 

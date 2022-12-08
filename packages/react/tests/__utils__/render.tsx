@@ -1,6 +1,5 @@
 import { render as TLRender } from '@testing-library/react';
-import { ReactNode } from 'react';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import MagicBellProvider from '../../src/components/MagicBellProvider';
 import { MagicBellThemeProvider } from '../../src/context/MagicBellThemeContext';
