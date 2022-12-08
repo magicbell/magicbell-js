@@ -1,5 +1,4 @@
-import React from 'react';
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
 

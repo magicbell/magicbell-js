@@ -1,6 +1,7 @@
 import warning from 'tiny-warning';
 
 import MagicBell from './components/MagicBell';
+
 export default MagicBell;
 
 export { default as Badge } from './components/Badge';

@@ -1,8 +1,8 @@
 /// <reference lib="webworker" />
-declare const self: ServiceWorkerGlobalScope;
-
 import { at } from './db';
 import { storeSubscription, subscribeToPushNotifications } from './subscription';
+
+declare const self: ServiceWorkerGlobalScope;
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', () => {

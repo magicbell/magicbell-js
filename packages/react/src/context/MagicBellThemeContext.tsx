@@ -1,5 +1,4 @@
-import React, { ReactNode } from 'react';
-import { createContext, useContext, useMemo } from 'react';
+import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 
 import { darken } from '../lib/color';
 import { merge } from '../lib/merge';

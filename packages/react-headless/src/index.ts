@@ -1,3 +1,5 @@
+import warning from 'tiny-warning';
+
 export { default as MagicBellProvider } from './components/MagicBellProvider';
 export { default as RealtimeListener } from './components/RealtimeListener';
 export { default as WebPushNotificationsSubscriber } from './components/WebPushNotificationsSubscriber';
@@ -18,8 +20,6 @@ export { useNotificationStoresCollection } from './stores/notifications';
 export { default as buildStore } from './stores/notifications/helpers/buildStore';
 export * from './types';
 export { type INotification as Notification } from './types';
-
-import warning from 'tiny-warning';
 
 if (__DEV__) {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
