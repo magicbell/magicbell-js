@@ -9,7 +9,7 @@ function App() {
     <div id="target">
       <MagicBell apiKey="api-key-here" userEmail="stephan@magicbell.io" userKey="...">
         {(props) => <FloatingNotificationInbox height={450} {...props} />}
-      </MagicBell>{' '}
+      </MagicBell>
     </div>
   );
 }
