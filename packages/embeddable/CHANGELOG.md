@@ -1,5 +1,11 @@
 # @magicbell/embeddable
 
+## 3.2.6
+
+### Patch Changes
+
+- [#33](https://github.com/magicbell-io/magicbell-js/pull/33) [`c2eb349`](https://github.com/magicbell-io/magicbell-js/commit/c2eb349734f659e237ce9984414dd44acf98c19c) Thanks [@smeijer](https://github.com/smeijer)! - Declare widget `theme` and `store` props as optional.
+
 ## 3.2.5
 
 ### Patch Changes
