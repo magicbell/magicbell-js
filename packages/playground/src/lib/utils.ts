@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { SandpackFile, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
-import { globby } from 'globby';
+import glob from 'glob';
 
 import { TEMPLATES } from './templates';
 
@@ -15,9 +15,9 @@ export type ExampleConfig = {
 };
 
 export async function getAllExamples(): Promise<ExampleConfig[]> {
-  const packages = await globby('*/package.json', {
+  const packages = glob.sync('*/package.json', {
     cwd: './examples',
-    ignore: ['shared'],
+    ignore: ['shared/package.json'],
   });
 
   const shared = JSON.parse(await fs.readFile('./examples/shared/package.json', { encoding: 'utf-8' }));
@@ -41,7 +41,7 @@ export async function getAllExamples(): Promise<ExampleConfig[]> {
 }
 
 export async function readFolderContents(folder: string): Promise<Record<string, { code: string }>> {
-  const filepaths = await globby(`**/*`, {
+  const filepaths = glob.sync(`**/*`, {
     cwd: `./examples/${folder}`,
   });
 
