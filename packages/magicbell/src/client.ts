@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-import { computeUserKey } from './lib/crypto';
+import { createHmac } from './lib/crypto';
 import { getClientUserAgent, getUserAgent } from './lib/env';
 import { createError } from './lib/error';
 import { normalizeHeaders } from './lib/headers';
@@ -133,6 +133,11 @@ export class Client {
   }
 
   #getHeaders(options: ClientOptions, method: RequestMethod) {
+    let userHmac = options.userHmac;
+    if (!userHmac && options.apiSecret && (options.userExternalId || options.userEmail)) {
+      userHmac = createHmac(options.apiSecret, options.userExternalId || options.userEmail);
+    }
+
     return compact(
       normalizeHeaders({
         'User-Agent': this.#userAgent,
@@ -143,8 +148,7 @@ export class Client {
         'X-MAGICBELL-CLIENT-USER-AGENT': this.#clientUserAgent,
         'X-MAGICBELL-USER-EMAIL': options.userEmail,
         'X-MAGICBELL-USER-EXTERNAL-ID': options.userExternalId,
-        'X-MAGICBELL-USER-HMAC':
-          options.userHmac || computeUserKey(options.apiSecret, options.userExternalId || options.userEmail),
+        'X-MAGICBELL-USER-HMAC': userHmac,
       }),
       true,
     );
