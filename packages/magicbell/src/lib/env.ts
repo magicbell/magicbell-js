@@ -1,11 +1,19 @@
 import { ClientOptions } from '../types';
 
 export function getEnvInfo() {
-  return {
+  const common = {
     binding: __PACKAGE_NAME__,
     binding_version: __PACKAGE_VERSION__,
     publisher: 'magicbell',
-    runtime: process.release?.name || 'node',
+  };
+
+  if (typeof process === 'undefined') {
+    return common;
+  }
+
+  return {
+    ...common,
+    runtime: process?.release?.name || 'node',
     runtime_version: process.version,
     platform: process.platform,
     arch: process.arch,
@@ -23,7 +31,11 @@ function getAppInfoAsString(appInfo?: ClientOptions['appInfo']) {
 export function getUserAgent(appInfo?: ClientOptions['appInfo']) {
   const env = getEnvInfo();
 
-  return [`${env.binding}/${env.binding_version}`, `${env.runtime}/${env.runtime_version}`, getAppInfoAsString(appInfo)]
+  return [
+    `${env.binding}/${env.binding_version}`,
+    'runtime' in env && `${env.runtime}/${env.runtime_version}`,
+    getAppInfoAsString(appInfo),
+  ]
     .filter(Boolean)
     .join(' ');
 }

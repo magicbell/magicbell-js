@@ -138,9 +138,12 @@ export class Client {
       userHmac = createHmac(options.apiSecret, options.userExternalId || options.userEmail);
     }
 
+    const isBrowser = typeof document !== 'undefined';
+
     return compact(
       normalizeHeaders({
-        'User-Agent': this.#userAgent,
+        // can't set user-agent in the browser, see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
+        'User-Agent': isBrowser ? null : this.#userAgent,
         'Idempotency-Key': options.idempotencyKey || this.#getDefaultIdempotencyKey(method, options.maxRetries),
         'Accept-Version': 'v2',
         'X-MAGICBELL-API-KEY': options.apiKey,
