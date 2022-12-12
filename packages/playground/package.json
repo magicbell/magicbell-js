@@ -13,7 +13,7 @@
     "@radix-ui/react-icons": "^1.0.3",
     "@twind/next": "^1.0.9",
     "clsx": "^1.1.1",
-    "globby": "^12.0.2",
+    "glob": "^8.0.3",
     "next": "12.3.4",
     "next-runtime": "^2.3.2",
     "react": "^17.0.2",
