@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { computeUserKey } from './lib/crypto';
-import { getClientId, getClientUserAgent, getUserAgent } from './lib/env';
+import { getClientUserAgent, getUserAgent } from './lib/env';
 import { createError } from './lib/error';
 import { normalizeHeaders } from './lib/headers';
 import { Logger, toCurl } from './lib/log';
@@ -33,7 +33,6 @@ type Telemetry = { id: string; runtime: number; duration: number; status: number
 
 export class Client {
   #userAgent: string;
-  #clientId: string;
   #clientUserAgent: string;
   #options: ClientOptions;
   #logger = new Logger();
@@ -64,7 +63,6 @@ export class Client {
     this.#logger.active = Boolean(this.#options.debug);
     this.#clientUserAgent = getClientUserAgent(options.appInfo);
     this.#userAgent = getUserAgent(options.appInfo);
-    this.#clientId = getClientId();
     this.#features = options.features || {};
   }
 
@@ -142,7 +140,6 @@ export class Client {
         'Accept-Version': 'v2',
         'X-MAGICBELL-API-KEY': options.apiKey,
         'X-MAGICBELL-API-SECRET': options.apiSecret,
-        'X-MAGICBELL-CLIENT-ID': this.#clientId,
         'X-MAGICBELL-CLIENT-USER-AGENT': this.#clientUserAgent,
         'X-MAGICBELL-USER-EMAIL': options.userEmail,
         'X-MAGICBELL-USER-EXTERNAL-ID': options.userExternalId,
