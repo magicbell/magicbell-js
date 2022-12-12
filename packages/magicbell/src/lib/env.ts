@@ -1,6 +1,4 @@
 import { ClientOptions } from '../types';
-import { config } from './config';
-import { uuid4 } from './utils';
 
 export function getEnvInfo() {
   return {
@@ -32,8 +30,4 @@ export function getUserAgent(appInfo?: ClientOptions['appInfo']) {
 
 export function getClientUserAgent(appInfo?: ClientOptions['appInfo']) {
   return JSON.stringify({ ...getEnvInfo(), application: appInfo });
-}
-
-export function getClientId() {
-  return config.get('client-id', `client_${uuid4()}`);
 }
