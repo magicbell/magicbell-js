@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import clientSettings, { ClientSettings } from '../../stores/clientSettings';
 import useConfig from '../../stores/config';
@@ -70,8 +70,12 @@ export default function MagicBellProvider({
   disableRealtime,
   ...clientSettings
 }: MagicBellProviderProps) {
-  useState(() => setupXHR(clientSettings));
-  useState(() => setupStores(stores));
+  useEffect(() => {
+    setupXHR(clientSettings);
+  }, []);
+  useEffect(() => {
+    setupStores(stores);
+  }, []);
 
   const config = useConfig();
 
