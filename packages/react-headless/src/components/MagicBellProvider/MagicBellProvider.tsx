@@ -71,7 +71,9 @@ export default function MagicBellProvider({
   ...clientSettings
 }: MagicBellProviderProps) {
   useState(() => setupXHR(clientSettings));
-  useState(() => setupStores(stores));
+  useEffect(() => {
+    setupStores(stores);
+  }, []);
 
   const config = useConfig();
 
