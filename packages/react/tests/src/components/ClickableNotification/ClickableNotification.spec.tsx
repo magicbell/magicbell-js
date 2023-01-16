@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -132,8 +132,9 @@ test('opens the action url in the same tab', async () => {
 
   await userEvent.click(notification);
 
-  expect(global.open).toHaveBeenCalledTimes(1);
-  expect(global.open).toHaveBeenCalledWith('https://example.com', '_self');
+  await waitFor(() => {
+    expect(global.open).toHaveBeenCalledWith('https://example.com', '_self');
+  });
 });
 
 test('does not invoke the click handler when clicking on a link in the notification', async () => {

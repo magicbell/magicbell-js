@@ -33,7 +33,7 @@ export default function ClickableNotification({ notification: rawNotification, o
   const handleClick = (event) => {
     // ignore event when user clicks inside the menu
     if (event.isDefaultPrevented()) return;
-    notification.markAsRead();
+    const markAsReadPromise = notification.markAsRead();
 
     // We don't want to invoke the action url when the user clicks a link or button inside the notification.
     // Notification content should take precedence.
@@ -41,7 +41,12 @@ export default function ClickableNotification({ notification: rawNotification, o
 
     if (isActionableElement) return;
     if (onClick) onClick(notification);
-    if (notification.actionUrl) openActionUrl(notification);
+    if (notification.actionUrl) {
+      // We wait for the markAsRead before navigating to the new url, to prevent race conditions
+      // between mark and read, and fetching new data on page reload. But let's not wait forever.
+      const timeout = new Promise((resolve) => setTimeout(resolve, 1_000));
+      Promise.race([markAsReadPromise, timeout]).then(() => openActionUrl(notification));
+    }
   };
 
   const content = css`

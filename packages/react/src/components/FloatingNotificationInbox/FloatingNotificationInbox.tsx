@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { openActionUrl } from '../ClickableNotification/eventHandlers';
 import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import { PopoverPlacement, PopperOptions } from '../Popover';
@@ -42,8 +41,6 @@ export default function FloatingNotificationInbox({
 }: Props) {
   const handleNotificationClick = (notification) => {
     if (onNotificationClick) onNotificationClick(notification);
-    else openActionUrl(notification);
-
     if (closeOnNotificationClick) toggle?.();
   };
 
