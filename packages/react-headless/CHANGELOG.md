@@ -1,5 +1,13 @@
 # @magicbell/react-headless
 
+## 4.2.4
+
+### Patch Changes
+
+- [#43](https://github.com/magicbell-io/magicbell-js/pull/43) [`d9d2318`](https://github.com/magicbell-io/magicbell-js/commit/d9d23180be66f0487b12c71440eb1cf1bbcb41c9) Thanks [@rollacaster](https://github.com/rollacaster)! - fix: initialize stores in an effect instead of lazy use-state.
+
+  This solves an "cannot update component" warning that was thrown in development mode.
+
 ## 4.2.3
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @magicbell/magicbell-react
 
+## 10.3.5
+
+### Patch Changes
+
+- [#46](https://github.com/magicbell-io/magicbell-js/pull/46) [`017b0cd`](https://github.com/magicbell-io/magicbell-js/commit/017b0cd52ed004de24d98d3a99ac5503031d4e66) Thanks [@smeijer](https://github.com/smeijer)! - fix: wait for `markAsRead` before opening notification `action_url`.
+
+  This fixes a race-condition where the page reload and fetching new notifications is faster than marking the notification as read, which would result in showing the notification as 'unread' upon page (re)load.
+
+- Updated dependencies [[`8d30258`](https://github.com/magicbell-io/magicbell-js/commit/8d302586175a1219c743b0135038538a591e0a0c)]:
+  - @magicbell/react-headless@4.2.4
+
 ## 10.3.4
 
 ### Patch Changes
