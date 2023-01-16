@@ -1,6 +1,9 @@
 import http from 'http';
 import portFinder from 'portfinder';
 
+const TIMEOUT = 30_000;
+const DELAY = 30;
+
 export function eventStream(generatorFn: () => Generator<Record<string, unknown>, void, unknown>) {
   let done = false;
 
@@ -24,19 +27,19 @@ export function eventStream(generatorFn: () => Generator<Record<string, unknown>
         if (next.value) {
           setTimeout(() => {
             res.write('data: ' + JSON.stringify(next.value) + '\n\n');
-          }, msg++ * 5);
+          }, msg++ * DELAY);
         }
 
         if (next.done) {
           setTimeout(() => {
             res.write('data:' + JSON.stringify({ type: 'close' }) + '\n\n');
-          }, msg++ * 5);
+          }, msg++ * DELAY);
 
           break;
         }
       }
 
-      setTimeout(() => (done = true), msg++ * 5);
+      setTimeout(() => (done = true), msg++ * DELAY);
     }
   });
 
@@ -45,9 +48,9 @@ export function eventStream(generatorFn: () => Generator<Record<string, unknown>
     clearInterval(interval);
     clearTimeout(timeout);
     server.close();
-  }, 5);
+  }, DELAY);
 
-  const timeout = setTimeout(() => clearInterval(interval), 30_000);
+  const timeout = setTimeout(() => clearInterval(interval), TIMEOUT);
 
   return new Promise<{ host: string; port: number }>((resolve) => {
     portFinder.getPortPromise().then((port) => {
