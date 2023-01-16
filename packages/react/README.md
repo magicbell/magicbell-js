@@ -94,10 +94,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MagicBell from '@magicbell/magicbell-react';
 
-ReactDOM.render(
-  <MagicBell apiKey={MAGICBELL_API_KEY} userEmail="john@example.com" />,
-  document.body,
-);
+ReactDOM.render(<MagicBell apiKey={MAGICBELL_API_KEY} userEmail="john@example.com" />, document.body);
 ```
 
 Or the standard inbox with basic customizations (see [`NotificationInbox`](#notificationinbox)):
@@ -308,7 +305,7 @@ export default function CustomNotification({ notification: data, onClick }) {
 
 ## NotificationContent
 
-This component compiles the notification's `content` using the [Liquid](https://shopify.github.io/liquid/) template language and renders the result. The output is sanitized to prevent XSS attacks.
+This component renders the notification's content, by injecting the notification content as HTML. As the notification content comes from a safe source - your server - we do not sanitize the content. If you need to sanitize content - because the notification contains user generated info - you'd need to do so when creating the notification on your backend.
 
 These are all the properties accepted by this component.
 
