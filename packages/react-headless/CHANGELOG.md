@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#47](https://github.com/magicbell-io/magicbell-js/pull/47) [`8d30258`](https://github.com/magicbell-io/magicbell-js/commit/8d302586175a1219c743b0135038538a591e0a0c) Thanks [@smeijer](https://github.com/smeijer)! - fix: initialize stores in an effect instead of lazy use-state.
+- [#43](https://github.com/magicbell-io/magicbell-js/pull/43) [`d9d2318`](https://github.com/magicbell-io/magicbell-js/commit/d9d23180be66f0487b12c71440eb1cf1bbcb41c9) Thanks [@rollacaster](https://github.com/rollacaster)! - fix: initialize stores in an effect instead of lazy use-state.
 
   This solves an "cannot update component" warning that was thrown in development mode.
 
