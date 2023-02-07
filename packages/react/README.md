@@ -577,6 +577,34 @@ ReactDOM.render(
 );
 ```
 
+## Custom translations
+
+All elements in the inbox can be translated by providing a `translations` object to the `MagicBell` component. This includes category labels:
+
+```typescript jsx
+const customLocale = {
+  name: 'en',
+  translations: {
+    header: {
+      title: 'Notifications',
+    },
+    preferences: {
+      categories: { // mapping from slug > label
+        billing: 'My Billing',
+      },
+    },
+  },
+};
+
+function MyComponent() {
+  return (
+    <MagicBell locale={customLocale} apiKey={MAGICBELL_API_KEY} userEmail="john@example.com" />
+      {(props) => <FloatingNotificationInbox height={450} {...props} />}
+    </MagicBell>
+  );
+}
+```
+
 ## The notification model
 
 The `Notification` class can be imported from `@magicbell/magicbell-react`. It implements this interface.
