@@ -21,22 +21,33 @@ const magicbell = new MagicBell({
 export const activeNotification = signal<string | null>(null);
 export const notifications = signal<any | null>(null);
 
+async function pullNotifications() {
+  const isFirstPull = !notifications.value;
+
+  const response = await magicbell.notifications.list();
+  const count = response.unseen_count;
+  notifications.value = response;
+
+  // Reschedule pull.
+  setTimeout(pullNotifications, 60000);
+
+  if (!isFirstPull || !count) {
+    return;
+  }
+
+  const action = await vscode.window.showInformationMessage(
+    `You have ${count} ${pluralize('ping', count)} waiting.`,
+    'show',
+    'dismiss',
+  );
+  if (action !== 'show') {
+    return;
+  }
+  commands.showList();
+}
+
 export function init() {
-  magicbell.notifications.list().then(async (response) => {
-    notifications.value = response;
-
-    const count = response.unseen_count;
-    if (!count) return;
-
-    const action = await vscode.window.showInformationMessage(
-      `You have ${count} ${pluralize('ping', count)} waiting.`,
-      'show',
-      'dismiss',
-    );
-
-    if (action !== 'show') return;
-    commands.showList();
-  });
+  pullNotifications();
 }
 
 export function bindSignals(messenger: Messenger) {
