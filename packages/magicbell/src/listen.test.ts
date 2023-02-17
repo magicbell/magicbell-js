@@ -8,6 +8,8 @@ import { createListener } from './listen';
 const server = setupMockServer();
 let listen;
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 beforeEach(async () => {
   server.intercept('all', (req) => {
     if (req.url.pathname === '/config') return { ws: { channel: 'project:1:channel:2' } };
@@ -72,4 +74,20 @@ test('return false in forEach helper closes listener', async () => {
   expect(events).toHaveLength(2);
   expect(events[0].data).toEqual({ id: 1 });
   expect(events[1].data).toEqual({ id: 2 });
+});
+
+test('can close listener', async () => {
+  const events = [];
+
+  const iterator = listen();
+  setTimeout(() => {
+    iterator.close();
+  }, 100);
+
+  for await (const event of iterator) {
+    events.push(event);
+    await sleep(1000);
+  }
+
+  expect(events).toHaveLength(1);
 });
