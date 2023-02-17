@@ -83,7 +83,13 @@
         }
       ]
     },
-    "commands": [],
+    "commands": [
+      {
+        "command": "ping.detail",
+        "title": "Show detail of notification",
+        "category": "Ping Detail"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "MagicBell Ping",

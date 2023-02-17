@@ -20,10 +20,12 @@ export class Messenger {
 
   listen(fn: (message: Message) => void): DisposeFn {
     if ('onDidReceiveMessage' in this.frame) {
+      // WebviewApi is being used as frame, subscribe to messages from VSCode side.
       const dispose = this.frame.onDidReceiveMessage(fn, null, this.disposables);
       return () => dispose.dispose();
     } else {
-      // wrap handler so signatures are the same
+      // Window Api is being used, subscribe to messages from react side and
+      // wrap handler so signatures are the same.
       const handler = (event: MessageEvent) => {
         if (event.origin !== location.origin) return;
         fn(event.data);

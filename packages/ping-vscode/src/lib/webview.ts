@@ -81,7 +81,11 @@ const WebViewSymbol = Symbol.for('webview');
 type BuilderArgs = Pick<WebViewContext, 'extensionUri' | 'extensionMode'>;
 type BuilderOptions = { entryFile?: string; data?: any; title?: string };
 
-function cleanArgs(View: typeof WebView, args: BuilderArgs, options: BuilderOptions = {}) {
+function cleanArgs(
+  View: typeof WebView,
+  args: BuilderArgs,
+  options: BuilderOptions = {},
+): Omit<WebViewContext, 'webview'> {
   if (!View.viewType) {
     throw new Error('You must define a viewType as static prop on your WebView');
   }

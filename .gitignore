@@ -3,6 +3,7 @@
 node_modules
 .cache
 dist
+.vscode
 
 package-lock.json
 packages/react/yarn.lock
