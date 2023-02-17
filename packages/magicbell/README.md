@@ -831,6 +831,21 @@ magicbell.listen().forEach((notification) => {
 });
 ```
 
+**close** - stop listening. This will close the connection and stop the auto-reconnect.
+
+```js
+const listener = magicbell.listen();
+
+listener.forEach((notification) => {
+  console.log(notification.data.id);
+});
+
+// stop listening after 5 seconds
+setTimeout(() => {
+  listener.close();
+}, 5_000);
+```
+
 ### Realtime events
 
 The following events are emitted by the client:
