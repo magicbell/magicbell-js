@@ -1,9 +1,9 @@
 {
-  "name": "ping-vscode",
+  "name": "ping-code",
   "version": "0.0.4",
   "private": true,
   "description": "Ping VSCode extension by Magicbell",
-  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "author": "MagicBell <bot@magicbell.io> (https://www.magicbell.com)",
   "publisher": "magicbell",
   "contributors": [
     "Stephan Meijer <stephan.meijer@gmail.com>"
@@ -12,7 +12,7 @@
   "source": "./src/index.tsx",
   "main": "dist/extension.js",
   "engines": {
-    "vscode": "^1.73.0",
+    "vscode": "1.73.0",
     "node": "^18.9.0"
   },
   "sideEffects": false,
@@ -41,10 +41,12 @@
     "build:ext": "cross-env ENTRY=extension vite build --minify",
     "build:app": "cross-env ENTRY=app vite build --minify",
     "start": "run-p \"build:ext --watch\" \"build:app --watch\"",
+    "dev": "code --extensionDevelopmentPath=${PWD}",
     "vscode:prepublish": "yarn build",
-    "package": "vsce package -o dist/ping.vsix --yarn",
-    "deploy:local": "yarn package && code --install-extension dist/ping.vsix --force",
-    "code:dev": "code --extensionDevelopmentPath=${PWD}"
+    "vscode:package": "yarn vsce package -o dist/ping.vsix --yarn",
+    "vscode:publish": "yarn vsce publish -i dist/ping.vsix --yarn",
+    "vscode:release": "yarn vscode:package && yarn vscode:publish && yarn vscode:release",
+    "vscode:deploy:local": "yarn package && code --install-extension dist/ping.vsix --force"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
@@ -113,6 +115,7 @@
     "pluralize": "^8.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "use-async-effect": "^2.2.7"
+    "use-async-effect": "^2.2.7",
+    "vsce": "^2.15.0"
   }
 }
