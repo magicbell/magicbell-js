@@ -145,12 +145,15 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
 
     const dispose = () => {
       eventSource.close();
+      // push to resolve async iterators, return for sync ones
+      pushMessage({ done: true, value: undefined });
       return { done: true, value: undefined };
     };
 
     const forEach = makeForEach(asyncIteratorNext, dispose);
     const autoPaginationMethods = {
       forEach,
+      close: dispose,
 
       next: asyncIteratorNext,
       return: dispose,

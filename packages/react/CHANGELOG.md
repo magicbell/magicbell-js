@@ -1,5 +1,32 @@
 # @magicbell/magicbell-react
 
+## 10.4.0
+
+### Minor Changes
+
+- [`4347cf3`](https://github.com/magicbell-io/magicbell-js/commit/4347cf322d7b057769771fd3f06dad60b98d18aa) Thanks [@smeijer](https://github.com/smeijer)! - feat: category labels in the preferences pane are now translatable.
+
+  ```typescript jsx
+  const customLocale = {
+    name: 'en',
+    translations: {
+      preferences: {
+        categories: { // mapping from slug > label
+          billing: 'My Billing',
+        },
+      },
+    },
+  };
+
+  function MyComponent() {
+    return (
+      <MagicBell locale={customLocale} apiKey={MAGICBELL_API_KEY} userEmail="john@example.com" />
+        {(props) => <FloatingNotificationInbox height={450} {...props} />}
+      </MagicBell>
+    );
+  }
+  ```
+
 ## 10.3.5
 
 ### Patch Changes
