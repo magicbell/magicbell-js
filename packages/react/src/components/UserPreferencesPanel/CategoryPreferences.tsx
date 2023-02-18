@@ -1,6 +1,7 @@
 import { IRemoteNotificationPreferences, useNotificationPreferences } from '@magicbell/react-headless';
 import React from 'react';
 
+import { useTranslate } from '../../context/TranslationsContext';
 import ToggleInput from './ToggleInput';
 
 type CategoryChannelPreference = IRemoteNotificationPreferences['categories'][number];
@@ -14,6 +15,7 @@ interface CategoryPreferencesProps {
 export default function CategoryPreferences({ category, onChange }: CategoryPreferencesProps) {
   const preferences = useNotificationPreferences();
   const channels = category.channels;
+  const t = useTranslate();
 
   const updatePreferences = async (channel: ChannelPreference, channelEnabled: boolean) => {
     const preference: CategoryChannelPreference = {
@@ -34,7 +36,7 @@ export default function CategoryPreferences({ category, onChange }: CategoryPref
 
   return (
     <>
-      <div>{category.label}</div>
+      <div>{t(`preferences.categories.${category.slug}`, category.label)}</div>
       {channels.map((channel) => (
         <div key={channel.slug}>
           <ToggleInput

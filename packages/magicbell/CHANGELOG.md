@@ -1,5 +1,24 @@
 # magicbell
 
+## 1.2.0
+
+### Minor Changes
+
+- [#56](https://github.com/magicbell-io/magicbell-js/pull/56) [`8139792`](https://github.com/magicbell-io/magicbell-js/commit/81397920b118f4d3dd9bda9153f931516f9f712c) Thanks [@smeijer](https://github.com/smeijer)! - feat: add close method to realtime listener
+
+  ```ts
+  const listener = magicbell.listen();
+
+  listener.forEach((notification) => {
+    console.log(notification.data.id);
+  });
+
+  // stop listening after 5 seconds
+  setTimeout(() => {
+    listener.close();
+  }, 5_000);
+  ```
+
 ## 1.1.0
 
 ### Minor Changes
