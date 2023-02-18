@@ -6,6 +6,7 @@ import * as vscode from 'vscode';
 import { contextKeys, signalKeys } from './constants';
 import { commands } from './lib/commands';
 import { Messenger } from './lib/messenger';
+import { NotificationHandler } from './notification-handler';
 
 const config = vscode.workspace.getConfiguration('ping');
 const magicbell = new MagicBell({
@@ -21,6 +22,8 @@ const magicbell = new MagicBell({
 export const activeNotification = signal<string | null>(null);
 export const notifications = signal<Array<any>>([]);
 
+const notificationHandler = new NotificationHandler(notifications);
+
 async function pullNotifications() {
   const isFirstPull = notifications.value.length === 0;
 
@@ -31,7 +34,7 @@ async function pullNotifications() {
     if (notifications.value.find((n) => n.id === notification.id)) {
       return;
     }
-    notifications.value = [...notifications.value, notification].sort((a, b) => b.sent_at - a.sent_at);
+    notificationHandler.handle(notification);
   });
 
   // Reschedule pull.
@@ -53,6 +56,7 @@ async function pullNotifications() {
 }
 
 export function init() {
+  vscode.window.showInformationMessage('started!');
   pullNotifications();
 }
 
