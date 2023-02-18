@@ -56,7 +56,6 @@ async function pullNotifications() {
 }
 
 export function init() {
-  vscode.window.showInformationMessage('started!');
   pullNotifications();
 }
 
