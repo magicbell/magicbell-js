@@ -23,17 +23,17 @@ yarn start
 ## Testing the extension
 
 1. Build
-  
+
 ```sh
 yarn build
 ```
 
 2. Run
-`cd` into `packages/ping-vscode` and run `yarn code:dev` to start vscode with this extension installed.
+   `cd` into `packages/ping-vscode` and run `yarn dev` to start vscode with this extension installed.
 
 ```sh
 yarn build
-yarn code:dev
+yarn dev
 ```
 
 ## Configuration
@@ -45,3 +45,12 @@ Open Settings in VSCode, and search for "ping". Please enter:
 - Ping: **Username**: Your GitHub username
 
 It might be necessary to reload the window after changing the configuration.
+
+## Installing the extension locally
+
+`cd` into `packages/ping-vscode` and run `yarn build && yarn vscode:deploy:local`.
+
+```sh
+yarn build
+yarn vscode:deploy:local
+```
