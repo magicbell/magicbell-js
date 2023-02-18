@@ -11,7 +11,7 @@ Show GitHub notifications in VSCode.
 - Node 18.9 or higher
 - VSCode 1.73 or higher
 
-## Setup
+## Setup & Development
 
 Run `yarn` in the repo root to install all dependencies, and `yarn start` in to start all package builders in watch mode.
 
@@ -20,9 +20,19 @@ yarn
 yarn start
 ```
 
-Next, `cd` into `packages/ping-vscode` and run `yarn code:dev` to start vscode with this extension installed.
+## Testing the extension
+
+1. Build
+  
+```sh
+yarn build
+```
+
+2. Run
+`cd` into `packages/ping-vscode` and run `yarn code:dev` to start vscode with this extension installed.
 
 ```sh
+yarn build
 yarn code:dev
 ```
 
