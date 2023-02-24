@@ -1,7 +1,8 @@
 import { Signal } from '@preact/signals-core';
+import pluralize from 'pluralize';
 import * as vscode from 'vscode';
 
-import { commands } from './lib/commands';
+import { commands } from '../lib/commands';
 
 // eslint-disable-next-line
 // @ts-ignore
@@ -12,6 +13,8 @@ enum _HandleOption {
   popUpIfRelated = 'popUpIfRelated',
   popUpAlways = 'popUpAlways',
 }
+
+export type HandleNotificationFun = (note: any) => void;
 
 export class NotificationHandler {
   private notifications: Signal<Array<any>>;
@@ -40,5 +43,17 @@ export class NotificationHandler {
     // in _HandleOption.
 
     this.addNotification(note);
+  }
+
+  public async onFirstPull(unreadNotifications: number) {
+    const action = await vscode.window.showInformationMessage(
+      `You have ${unreadNotifications} ${pluralize('ping', unreadNotifications)} waiting.`,
+      'show',
+      'dismiss',
+    );
+    if (action !== 'show') {
+      return;
+    }
+    commands.showList();
   }
 }
