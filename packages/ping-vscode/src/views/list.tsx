@@ -39,7 +39,7 @@ export function List() {
   return (
     <div>
       <VSCodeDataGrid>
-        {notifications?.notifications?.map((notification) => (
+        {notifications?.map((notification) => (
           <VSCodeDataGridRow key={notification.id}>
             <VSCodeDataGridCell gridColumn="1">
               <Notification

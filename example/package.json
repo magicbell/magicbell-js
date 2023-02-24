@@ -21,7 +21,7 @@
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
     "magicbell": "../packages/magicbell",
-    "ping-vscode": "../packages/ping-vscode",
+    "ping-code": "../packages/ping-vscode",
     "playground": "../packages/playground"
   },
   "devDependencies": {

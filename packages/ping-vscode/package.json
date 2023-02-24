@@ -12,7 +12,7 @@
   "source": "./src/index.tsx",
   "main": "dist/extension.js",
   "engines": {
-    "vscode": "1.73.0",
+    "vscode": "^1.73.0",
     "node": "^18.9.0"
   },
   "sideEffects": false,
@@ -85,7 +85,13 @@
         }
       ]
     },
-    "commands": [],
+    "commands": [
+      {
+        "command": "ping.detail",
+        "title": "Show detail of notification",
+        "category": "Ping Detail"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "MagicBell Ping",

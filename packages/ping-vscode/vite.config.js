@@ -19,7 +19,7 @@ const outputs = {
 export default defineConfig(async (configEnv) => {
   const base = await baseConfig(configEnv);
 
-  base.build.sourcemap = false;
+  base.build.sourcemap = true;
   base.build.lib = outputs[process.env.ENTRY] || outputs.index;
   base.build.rollupOptions.external = ['vscode', 'path', 'fs'];
   return base;
