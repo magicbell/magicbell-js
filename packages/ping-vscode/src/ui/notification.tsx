@@ -205,11 +205,11 @@ export function Notification(props: {
           <div className="actions">
             {props.actionUrl ? (
               <VSCodeButton appearance="icon" onClick={handleClickOpen}>
-                <LinkExternalIcon size={12} />
+                <LinkExternalIcon size={12} fill={(props.active && '#fff') || '#777'} />
               </VSCodeButton>
             ) : null}
-            <VSCodeButton appearance="icon" onClick={handleClickArchive}>
-              <ArchiveIcon size={12} />
+            <VSCodeButton appearance="icon" onClick={handleClickArchive} color="red">
+              <ArchiveIcon size={12} fill={(props.active && '#fff') || '#777'} />
             </VSCodeButton>
           </div>
         </div>
