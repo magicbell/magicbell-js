@@ -22,10 +22,10 @@ const magicbell = new MagicBell({
 export const activeNotification = signal<string | null>(null);
 export const notifications = signal<Array<any>>([]);
 
-const notificationHandler = new NotificationHandler(notifications);
-const sync = new NotificationSync(notificationHandler, notifications, magicbell);
-
 export function init() {
+  const notificationHandler = new NotificationHandler(notifications);
+  const sync = new NotificationSync(notificationHandler, notifications, magicbell);
+
   sync.pull();
 }
 
