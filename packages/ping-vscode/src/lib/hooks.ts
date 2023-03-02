@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { signalKeys } from '../constants';
 import { code } from './code';
@@ -49,24 +49,38 @@ export function useWebView() {
 }
 
 type EventListener = (ev: KeyboardEvent) => any;
-export function useKeydown(handler: EventListener) {
-  const savedHandler = useRef<EventListener>();
 
-  useEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
+export function useKeydown(): [Array<string>, () => void] {
+  const [activeKeys, setActiveKeys] = React.useState<Array<string>>([]);
 
   useEffect(() => {
     if (!window || !window.addEventListener) {
       return;
     }
 
-    const eventListener = (event: KeyboardEvent) => savedHandler.current(event);
-    window.addEventListener('keydown', eventListener);
+    const handleKeyDown: EventListener = ({ key }) => {
+      if (!activeKeys.includes(key)) {
+        setActiveKeys([key, ...activeKeys]);
+      }
+    };
+    const handleKeyUp: EventListener = () => {
+      // Clear all active keys on any key up.
+      setActiveKeys([]);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     // Remove event listener on cleanup
     return () => {
-      window.removeEventListener('keydown', eventListener);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
     };
+  }, [activeKeys]);
+
+  const resetKeys = useCallback(() => {
+    setActiveKeys([]);
   }, []);
+
+  return [activeKeys, resetKeys];
 }
