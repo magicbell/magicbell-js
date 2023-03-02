@@ -1,12 +1,12 @@
 import { effect, signal } from '@preact/signals-core';
 import MagicBell from 'magicbell';
-import pluralize from 'pluralize';
 import * as vscode from 'vscode';
 
 import { contextKeys, signalKeys } from './constants';
 import { commands } from './lib/commands';
 import { Messenger } from './lib/messenger';
-import { NotificationHandler } from './notification-handler';
+import { NotificationHandler } from './notifications/notification-handler';
+import { NotificationSync } from './notifications/notification-sync';
 
 const config = vscode.workspace.getConfiguration('ping');
 const magicbell = new MagicBell({
@@ -22,41 +22,11 @@ const magicbell = new MagicBell({
 export const activeNotification = signal<string | null>(null);
 export const notifications = signal<Array<any>>([]);
 
-const notificationHandler = new NotificationHandler(notifications);
-
-async function pullNotifications() {
-  const isFirstPull = notifications.value.length === 0;
-
-  const response = await magicbell.notifications.list();
-  const count = response.unseen_count;
-
-  await magicbell.notifications.list().forEach((notification) => {
-    if (notifications.value.find((n) => n.id === notification.id)) {
-      return;
-    }
-    notificationHandler.handle(notification);
-  });
-
-  // Reschedule pull.
-  setTimeout(pullNotifications, 6000);
-
-  if (!isFirstPull || !count) {
-    return;
-  }
-
-  const action = await vscode.window.showInformationMessage(
-    `You have ${count} ${pluralize('ping', count)} waiting.`,
-    'show',
-    'dismiss',
-  );
-  if (action !== 'show') {
-    return;
-  }
-  commands.showList();
-}
-
 export function init() {
-  pullNotifications();
+  const notificationHandler = new NotificationHandler(notifications);
+  const sync = new NotificationSync(notificationHandler, notifications, magicbell);
+
+  sync.pull();
 }
 
 export function bindSignals(messenger: Messenger) {

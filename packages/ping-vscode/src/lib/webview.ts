@@ -132,7 +132,11 @@ export class WebView implements vscode.WebviewViewProvider {
   static title = 'unnamed';
   static viewType = 'webview';
 
-  readonly panel: vscode.WebviewPanel | vscode.WebviewView;
+  get panel(): vscode.WebviewPanel | vscode.WebviewView {
+    return this.#panel;
+  }
+
+  #panel: vscode.WebviewPanel | vscode.WebviewView;
   readonly context: Omit<WebViewContext, 'webview'>;
 
   private webview: vscode.Webview;
@@ -148,13 +152,13 @@ export class WebView implements vscode.WebviewViewProvider {
 
     if (symbol !== WebViewSymbol) throw new Error('Cannot create panel directly, use createOrShow');
 
-    this.panel = vscode.window.createWebviewPanel(args.viewType, args.title, column, {
+    this.#panel = vscode.window.createWebviewPanel(args.viewType, args.title, column, {
       enableScripts: true,
       localResourceRoots: [args.extensionUri],
     });
 
-    this.resolveWebviewView(this.panel);
-    this.panel.onDidDispose(() => this.dispose(), null, this.disposables);
+    this.resolveWebviewView(this.#panel);
+    this.#panel.onDidDispose(() => this.dispose(), null, this.disposables);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -164,6 +168,7 @@ export class WebView implements vscode.WebviewViewProvider {
 
   resolveWebviewView(view: vscode.WebviewView | vscode.WebviewPanel): void {
     this.webview = view.webview;
+    this.#panel = this.#panel ?? view;
 
     this.webview.options = {
       enableScripts: true,
@@ -183,8 +188,8 @@ export class WebView implements vscode.WebviewViewProvider {
     const constructor = this.constructor as typeof WebView;
     if ('currentPanel' in constructor) constructor.currentPanel = undefined;
 
-    if (this.panel && 'dispose' in this.panel) {
-      this.panel.dispose();
+    if (this.#panel && 'dispose' in this.#panel) {
+      this.#panel.dispose();
     }
 
     while (this.disposables.length) {
@@ -196,8 +201,8 @@ export class WebView implements vscode.WebviewViewProvider {
   }
 
   public setBadge(value: number, tooltip?: string) {
-    if (this.panel && 'badge' in this.panel) {
-      this.panel.badge = { value, tooltip };
+    if (this.#panel && 'badge' in this.#panel) {
+      this.#panel.badge = { value, tooltip };
     }
   }
 }
