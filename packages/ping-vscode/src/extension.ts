@@ -10,6 +10,12 @@ export function activate(ctx: vscode.ExtensionContext) {
   const listView = register(ListView, ctx);
 
   ctx.subscriptions.push(commands.register(commandKeys.DETAIL_PANE, (data) => createOrShow(DetailView, ctx, { data })));
+  ctx.subscriptions.push(
+    commands.register(commandKeys.SHOW_LIST, () => {
+      commands.showList();
+    }),
+  );
+
   ctx.subscriptions.push(listView);
   ctx.subscriptions.push(register(ListDetailView, ctx));
 

@@ -7,6 +7,7 @@ export const signalKeys = {
 
 export const commandKeys = {
   DETAIL_PANE: 'ping.detail',
+  SHOW_LIST: 'ping.reveal.list',
 } as const;
 
 export const contextKeys = {
