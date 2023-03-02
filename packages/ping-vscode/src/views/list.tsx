@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { signalKeys } from '../constants';
 import { useKeydown, useMessenger, useRemoteSignal } from '../lib/hooks';
-import { NotesSelection } from '../lib/ui-models';
 import { Notification } from '../ui/notification';
 
 function getSentDate(notification) {
@@ -35,11 +34,7 @@ function getOwnerAvatarUrl(notification) {
 export function List() {
   const messenger = useMessenger();
 
-  const [selectionRange, setSelection] = React.useState<NotesSelection>({
-    from: -1,
-    to: -1,
-  });
-  // const [selectedNoteIds, updateSelection] = React.useState<Array<string>>([]);
+  const [selectedNoteIds, updateSelectedIds] = React.useState<Array<string>>([]);
   const [notifications] = useRemoteSignal<Array<any>>(signalKeys.NOTIFICATIONS);
   const [active, setActive] = useRemoteSignal(signalKeys.ACTIVE_NOTIFICATION);
   const handleClick = (idx: number) => {
@@ -49,7 +44,7 @@ export function List() {
     }
     const notification = notifications[idx];
     setActive(notification);
-    setSelection({ from: idx, to: idx });
+    updateSelectedIds([notification.id]);
   };
 
   function limMin(idx: number) {
@@ -59,47 +54,78 @@ export function List() {
     return Math.min(idx, notifications.length - 1);
   }
 
+  function getNotificationById(id: string): any | null {
+    return notifications.find((n) => n.id === id) ?? null;
+  }
+
+  function getFirstCurrentlySelectedIdx(): number | null {
+    if (selectedNoteIds.length === 0) return null;
+    return notifications.findIndex((n) => n.id === selectedNoteIds[0]);
+  }
+
+  function getLastCurrentlySelectedIdx(): number | null {
+    if (selectedNoteIds.length === 0) return null;
+    return notifications.findIndex((n) => n.id === selectedNoteIds.slice(-1).pop());
+  }
+
   function handleKeyDown({ key }) {
     // console.log('key: ', key, active);
+    const firstSelectedNoteIdx = getFirstCurrentlySelectedIdx();
+    const lastSelectedNoteIdx = getLastCurrentlySelectedIdx();
     switch (String(key)) {
       case 'Escape':
         setActive(null);
-        setSelection({ from: -1, to: -1 });
+        updateSelectedIds([]);
         break;
       case 'ArrowUp':
-        // Select the next single note, starting from the top most one.
-        handleClick(limMin(selectionRange.from - 1));
-        // setSelection({ from: limMin(selectionRange.from - 1), to: limMin(selectionRange.from - 1) });
+        // Select the previouis single note, starting from the first one from the current selection, or select the last one.
+        if (firstSelectedNoteIdx === null) {
+          handleClick(limMin(notifications.length - 1));
+          return;
+        }
+        handleClick(limMin(firstSelectedNoteIdx - 1));
         break;
       case 'ArrowDown':
-        // Select the next single note, starting from the top most one.
-        handleClick(limMax(selectionRange.from + 1));
-        // setSelection({ from: limMax(selectionRange.from + 1), to: limMax(selectionRange.from + 1) });
+        // Select the next single note, starting from the first one from the collection, or select the first one.
+        if (firstSelectedNoteIdx === null) {
+          handleClick(0);
+          return;
+        }
+        handleClick(limMax(firstSelectedNoteIdx + 1));
         break;
       case 'Backspace':
-        const archivable = [];
-        for (let i = selectionRange.from; i <= selectionRange.to; i++) {
-          archivable.push(notifications[i]);
+        const archivableIds = [...selectedNoteIds];
+
+        // Try to select the next element already before archiving the old ones.
+        let nextId = lastSelectedNoteIdx + 1;
+        if (nextId >= notifications.length - 1) {
+          // We archived the last element, try select the element right before the selection.
+          nextId = firstSelectedNoteIdx - 1;
+        }
+        if (nextId < 0) {
+          // We have no more notifications, clear selection.
+          setActive(null);
+          updateSelectedIds([]);
+        } else {
+          handleClick(nextId);
         }
 
-        // Select the next element already before archiving the old ones.
-        handleClick(limMax(selectionRange.to + 1));
-
-        for (const n of archivable) {
-          messenger.post('archive', n.id);
+        for (const nId of archivableIds) {
+          messenger.post('archive', nId);
         }
         break;
       case 'Enter':
-        if (selectionRange.from >= 0) {
-          const url = notifications[selectionRange.from].action_url;
-          messenger.post('open-url', url);
+        if (selectedNoteIds.length === 0) {
+          return;
         }
+        const note = getNotificationById(selectedNoteIds[0]);
+        messenger.post('open-url', note.action_url);
         break;
       case 'a':
         // Show the first note.
         handleClick(0);
         // Select all notes.
-        setSelection({ from: 0, to: notifications.length });
+        updateSelectedIds(notifications.map((n) => n.id));
         break;
     }
   }
@@ -115,7 +141,7 @@ export function List() {
                 id={notification.id}
                 actionUrl={notification.action_url}
                 avatarUrl={getOwnerAvatarUrl(notification)}
-                active={active?.id === notification.id || (idx >= selectionRange.from && idx <= selectionRange.to)}
+                active={active?.id === notification.id || selectedNoteIds.includes(notification.id)}
                 title={getTitle(notification)}
                 sent_at={getSentDate(notification)}
                 content={notification.title}
