@@ -54,5 +54,6 @@ export class NotificationHandler {
     if (action !== 'show') {
       return;
     }
+    commands.showList();
   }
 }

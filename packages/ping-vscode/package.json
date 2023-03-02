@@ -112,7 +112,7 @@
     },
     "keybindings": [
       {
-        "command": "ping.reveal.list",
+        "command": "ping.list.focus",
         "key": "ctrl+alt+p",
         "mac": "ctrl+alt+p"
       }

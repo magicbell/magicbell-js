@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { signalKeys } from '../constants';
 import { code } from './code';
@@ -46,4 +46,27 @@ export function useWebView() {
     }),
     [],
   );
+}
+
+type EventListener = (ev: KeyboardEvent) => any;
+export function useKeydown(handler: EventListener) {
+  const savedHandler = useRef<EventListener>();
+
+  useEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
+
+  useEffect(() => {
+    if (!window || !window.addEventListener) {
+      return;
+    }
+
+    const eventListener = (event: KeyboardEvent) => savedHandler.current(event);
+    window.addEventListener('keydown', eventListener);
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('keydown', eventListener);
+    };
+  }, []);
 }
