@@ -2,7 +2,8 @@ import { VSCodeDataGrid, VSCodeDataGridCell, VSCodeDataGridRow } from '@vscode/w
 import * as React from 'react';
 
 import { signalKeys } from '../constants';
-import { useRemoteSignal } from '../lib/hooks';
+import { useKeydown as useKeylogger, useRemoteSignal } from '../lib/hooks';
+import { useShortcuts } from '../lib/shortcut-hooks';
 import { Notification } from '../ui/notification';
 
 function getSentDate(notification) {
@@ -32,25 +33,48 @@ function getOwnerAvatarUrl(notification) {
 }
 
 export function List() {
-  const [notifications] = useRemoteSignal(signalKeys.NOTIFICATIONS);
+  const [activeKeys, resetActiveKeys] = useKeylogger();
   const [active, setActive] = useRemoteSignal(signalKeys.ACTIVE_NOTIFICATION);
-  const handleClick = (notification) => setActive(notification);
+  const [selectedNoteIds, updateSelectedIds] = React.useState<Array<string>>([]);
+  const [notifications] = useRemoteSignal<Array<any>>(signalKeys.NOTIFICATIONS);
 
+  const getNoteById = (id: string) => notifications.find((n) => n.id === id);
+
+  const select = (ids: Array<string>) => {
+    resetActiveKeys();
+    if (ids.length === 0) {
+      setActive(null);
+      updateSelectedIds([]);
+      return;
+    }
+
+    const newIds = ids.filter((id) => !selectedNoteIds.includes(id));
+    if (newIds.length === 0) {
+      return;
+    }
+
+    // Always show the first note of the selection.
+    setActive(getNoteById(ids[0]));
+    // Add the whole range to the selection.
+    updateSelectedIds(ids);
+  };
+
+  useShortcuts(activeKeys, selectedNoteIds, select);
   return (
     <div>
       <VSCodeDataGrid>
-        {notifications?.map((notification) => (
+        {notifications?.map((notification, idx) => (
           <VSCodeDataGridRow key={notification.id}>
             <VSCodeDataGridCell gridColumn="1">
               <Notification
                 id={notification.id}
                 actionUrl={notification.action_url}
                 avatarUrl={getOwnerAvatarUrl(notification)}
-                active={active?.id === notification.id}
+                active={active?.id === notification.id || selectedNoteIds.includes(notification.id)}
                 title={getTitle(notification)}
                 sent_at={getSentDate(notification)}
                 content={notification.title}
-                onClick={() => handleClick(notification)}
+                onClick={() => select([notifications[idx].id])}
                 category={notification.category}
               />
             </VSCodeDataGridCell>

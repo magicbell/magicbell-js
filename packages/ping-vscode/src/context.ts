@@ -51,4 +51,5 @@ effect(() => {
   if (!activeNotification.value) return;
   commands.showDetailPane();
   commands.setContext(contextKeys.ACTIVE_NOTIFICATION, activeNotification.value);
+  commands.showList();
 });

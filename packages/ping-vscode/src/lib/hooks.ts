@@ -47,3 +47,40 @@ export function useWebView() {
     [],
   );
 }
+
+type EventListener = (ev: KeyboardEvent) => any;
+
+export function useKeydown(): [Array<string>, () => void] {
+  const [activeKeys, setActiveKeys] = React.useState<Array<string>>([]);
+
+  useEffect(() => {
+    if (!window || !window.addEventListener) {
+      return;
+    }
+
+    const handleKeyDown: EventListener = ({ key }) => {
+      if (!activeKeys.includes(key)) {
+        setActiveKeys([key, ...activeKeys]);
+      }
+    };
+    const handleKeyUp: EventListener = () => {
+      // Clear all active keys on any key up.
+      setActiveKeys([]);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [activeKeys]);
+
+  const resetKeys = useCallback(() => {
+    setActiveKeys([]);
+  }, []);
+
+  return [activeKeys, resetKeys];
+}

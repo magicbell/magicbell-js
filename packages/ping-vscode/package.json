@@ -109,7 +109,14 @@
           "description": "Your github username."
         }
       }
-    }
+    },
+    "keybindings": [
+      {
+        "command": "ping.list.focus",
+        "key": "ctrl+alt+p",
+        "mac": "ctrl+alt+p"
+      }
+    ]
   },
   "dependencies": {
     "@preact/signals-core": "^1.2.2",
