@@ -12,6 +12,8 @@ For SDK documentation see [magicbell.com/docs](https://magicbell.com/docs), or t
 
 The development environment for this repo supports `node:v18` and up. We use `yarn` as package manager.
 
+You'll need TypeScript 4.5 or higher for our bundled type definitions.
+
 ## Setup
 
 Run the following commands in your terminal to get a copy of this repo, and install required dependencies.
