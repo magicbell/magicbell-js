@@ -40,12 +40,12 @@ export default function ClickableNotification({ notification: rawNotification, o
     const isActionableElement = /^(a|button|input)$/i.test(event.target.tagName);
 
     if (isActionableElement) return;
-    if (onClick) onClick(notification);
+    const onClickResult = onClick?.(notification) || true;
     if (notification.actionUrl) {
       // We wait for the markAsRead before navigating to the new url, to prevent race conditions
       // between mark and read, and fetching new data on page reload. But let's not wait forever.
       const timeout = new Promise((resolve) => setTimeout(resolve, 1_000));
-      Promise.race([markAsReadPromise, timeout]).then(() => openActionUrl(notification));
+      Promise.race([markAsReadPromise, timeout]).then(() => onClickResult && openActionUrl(notification));
     }
   };
 
