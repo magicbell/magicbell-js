@@ -27,7 +27,7 @@ export type NotificationsViewProps = {
   onAllRead?: () => void;
   NotificationItem?: (props: ListItemProps) => ReactElement;
   EmptyInboxPlaceholder?: () => ReactElement;
-  onNotificationClick?: (notification: INotification) => void;
+  onNotificationClick?: (notification: INotification) => void | boolean;
   tabs?: HeaderTabsProps['tabsConfig'];
 };
 
