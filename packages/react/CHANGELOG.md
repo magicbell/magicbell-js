@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 10.5.0
+
+### Minor Changes
+
+- [#62](https://github.com/magicbell-io/magicbell-js/pull/62) [`2d96a3d`](https://github.com/magicbell-io/magicbell-js/commit/2d96a3d5426f62dd3a89c286f0c6c2d7195de612) Thanks [@pianomansam](https://github.com/pianomansam)! - feat: don't open action-url when notification click handler returns false
+
 ## 10.4.0
 
 ### Minor Changes
