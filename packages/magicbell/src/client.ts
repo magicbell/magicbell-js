@@ -142,10 +142,15 @@ export class Client {
 
     return compact(
       normalizeHeaders({
+        // overridable default headers
+        'Accept-Version': 'v2',
+        'Idempotency-Key': options.idempotencyKey || this.#getDefaultIdempotencyKey(method, options.maxRetries),
+
+        // user-provided headers
+        ...this.#options.headers,
+
         // can't set user-agent in the browser, see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
         'User-Agent': isBrowser ? null : this.#userAgent,
-        'Idempotency-Key': options.idempotencyKey || this.#getDefaultIdempotencyKey(method, options.maxRetries),
-        'Accept-Version': 'v2',
         'X-MAGICBELL-API-KEY': options.apiKey,
         'X-MAGICBELL-API-SECRET': options.apiSecret,
         'X-MAGICBELL-CLIENT-USER-AGENT': this.#clientUserAgent,

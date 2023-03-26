@@ -127,3 +127,39 @@ test('requests are not retried in case of unrecoverable errors', async () => {
 
   expect(status.handledRequests).toEqual(1);
 });
+
+test('client accepts custom headers', async () => {
+  const status = server.intercept('all', () => ({ id: 1 }));
+
+  const client = new Client({
+    host: 'https://example.com',
+    apiKey: 'my-api-key',
+    maxRetryDelay: 0,
+    headers: {
+      'X-Custom-Header': 'foo',
+      host: 'api.magicbell.com',
+    },
+  });
+
+  // verify that this request is done using 3 identical idempotencyKeys
+  await client.request({ method: 'POST', path: '/me' });
+  expect(status.lastRequest.url.toString()).toEqual('https://example.com/me');
+  expect(status.lastRequest.headers.get('x-custom-header')).toEqual('foo');
+  expect(status.lastRequest.headers.get('host')).toEqual('api.magicbell.com');
+});
+
+test("custom headers don't override controlled ones", async () => {
+  const status = server.intercept('all', () => ({ id: 1 }));
+
+  const client = new Client({
+    apiKey: 'my-api-key',
+    maxRetryDelay: 0,
+    headers: {
+      'x-magicbell-api-key': 'bar',
+    },
+  });
+
+  // verify that this request is done using 3 identical idempotencyKeys
+  await client.request({ method: 'POST', path: '/me' });
+  expect(status.lastRequest.headers.get('x-magicbell-api-key')).toEqual('my-api-key');
+});
