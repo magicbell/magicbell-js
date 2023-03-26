@@ -17,6 +17,7 @@ export type ClientOptions = {
   telemetry?: boolean;
   debug?: boolean;
   features?: Record<string, boolean>;
+  headers?: Record<string, string>;
 };
 
 export type RequestOptions = {

@@ -210,6 +210,10 @@ const magicbell = new MagicBell({
 
   A map of feature flags to get access to beta features. See [Feature Flags](#feature-flags) for more information.
 
+- **headers** _Record<string, string>_
+
+  Custom headers you wish to include on the request, for example to instruct your proxy servers or to decorate your logs.
+
 ### Configuring Timeout
 
 Timeout can be set globally via the config object:
