@@ -10,7 +10,7 @@ import Loader from './Loader';
 type NotificationStore = ReturnType<typeof useNotifications>;
 
 export type NotificationListItem = (props: ListItemProps) => React.ReactElement;
-export type ClickCallbackFn = (notification: INotification) => void;
+export type ClickCallbackFn = (notification: INotification) => void | boolean;
 
 export interface ListItemProps {
   notification: IRemoteNotification;

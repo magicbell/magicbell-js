@@ -201,17 +201,17 @@ The `NotificationInbox` component renders a header, a footer and an infinite scr
 
 These are all the properties accepted by this component.
 
-| Property                         | Type                                             | Description                                                                                                                       |
-| -------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| `height`                         | `number`                                         | Optional height (in pixels) of the infinite scroll list                                                                           |
-| `onAllRead`                      | `() => void`                                     | An optional callback function invoked when the "Mark All Read" button is clicked                                                  |
-| `onNotificationClick`            | `(notification) => void`                         | An optional callback function invoked when a notification is clicked                                                              |
-| `storeId`                        | `string`                                         | ID of the store to render (optional)                                                                                              |
-| `EmptyInboxPlaceholder`          | `() => JSX.Element`                              | An optional custom component to use as placeholder when there are no notifications                                                |
-| `NotificationItem`               | `({ notification, onItemClick }) => JSX.Element` | An optional custom component to use for rendering each notification. Defaults to [ClickableNotification](#clickablenotification). |
-| `NotificationPreferences`        | `() => JSX.Element`                              | An optional custom component to use for rendering preferences. Shown when the user clicks the settings button`                    |
-| `notificationPreferencesEnabled` | `boolean`                                        | Optional, and defaults to `true`. Set to `false` to hide the settings button.                                                     |
-| `tabs`                           | `{ storeId: string, label: string }[]`           | Optional, a map to render inbox tabs, where each tab is connected to a defined store.                                             |
+| Property                         | Type                                             | Description                                                                                                                                        |
+| -------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `height`                         | `number`                                         | Optional height (in pixels) of the infinite scroll list                                                                                            |
+| `onAllRead`                      | `() => void`                                     | An optional callback function invoked when the "Mark All Read" button is clicked                                                                   |
+| `onNotificationClick`            | `(notification) => boolean \| void`              | An optional callback function invoked when a notification is clicked. Return `false` when you wish to prevent opening the notification action url. |
+| `storeId`                        | `string`                                         | ID of the store to render (optional)                                                                                                               |
+| `EmptyInboxPlaceholder`          | `() => JSX.Element`                              | An optional custom component to use as placeholder when there are no notifications                                                                 |
+| `NotificationItem`               | `({ notification, onItemClick }) => JSX.Element` | An optional custom component to use for rendering each notification. Defaults to [ClickableNotification](#clickablenotification).                  |
+| `NotificationPreferences`        | `() => JSX.Element`                              | An optional custom component to use for rendering preferences. Shown when the user clicks the settings button`                                     |
+| `notificationPreferencesEnabled` | `boolean`                                        | Optional, and defaults to `true`. Set to `false` to hide the settings button.                                                                      |
+| `tabs`                           | `{ storeId: string, label: string }[]`           | Optional, a map to render inbox tabs, where each tab is connected to a defined store.                                                              |
 
 If the store wasn't fetched previously, this component will fetch the first page on first render.
 
@@ -251,7 +251,7 @@ These are all the properties accepted by this component.
 | `width`                    | `number`                                         | Optional width (in pixels) of the list of notifications. Defaults to 500.                                                                                                                                                                                            |
 | `height`                   | `number`                                         | Optional height (in pixels) of the list of notifications. Defaults to the window height.                                                                                                                                                                             |
 | `onAllRead`                | `() => void`                                     | An optional callback function invoked when the "Mark All Read" button is clicked                                                                                                                                                                                     |
-| `onNotificationClick`      | `(notification) => void`                         | An optional callback function invoked when a notification is clicked                                                                                                                                                                                                 |
+| `onNotificationClick`      | `(notification) => boolean \| void`              | An optional callback function invoked when a notification is clicked. Return `false` when you wish to prevent opening the notification action url.                                                                                                                   |
 | `closeOnClickOutside`      | `boolean`                                        | Whether to close the inbox when the user clicks outside of it or not. Defaults to true.                                                                                                                                                                              |
 | `closeOnNotificationClick` | `boolean`                                        | Whether to close the inbox when the user clicks on a notification or not. Defaults to true.                                                                                                                                                                          |
 | `hideArrow`                | `boolean`                                        | Whether to hide the pointing arrow or not. Defaults to false.                                                                                                                                                                                                        |
@@ -281,10 +281,10 @@ This component renders the title and content of a notification.
 
 These are all the properties accepted by this component.
 
-| Property       | Type                     | Description                                                         |
-| -------------- | ------------------------ | ------------------------------------------------------------------- |
-| `notification` | `Notification`           | The [notification](#the-notification-model) object                  |
-| `onClick`      | `(notification) => void` | An optional callback function invoked when the component is clicked |
+| Property       | Type                                | Description                                                                                                                                       |
+| -------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `notification` | `Notification`                      | The [notification](#the-notification-model) object                                                                                                |
+| `onClick`      | `(notification) => boolean \| void` | An optional callback function invoked when the component is clicked. Return `false` when you wish to prevent opening the notification action url. |
 
 **IMPORTANT:** When a notification is clicked, the notification is marked as read. If you implement your own component, you might also want to mark the notification as read manually. E.g.:
 

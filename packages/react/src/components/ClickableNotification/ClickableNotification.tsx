@@ -13,7 +13,7 @@ import StyledContainer from './StyledContainer';
 
 export interface Props {
   notification: IRemoteNotification;
-  onClick?: (notification: INotification) => void;
+  onClick?: (notification: INotification) => void | boolean;
   prose?: boolean;
 }
 
@@ -40,7 +40,9 @@ export default function ClickableNotification({ notification: rawNotification, o
     const isActionableElement = /^(a|button|input)$/i.test(event.target.tagName);
 
     if (isActionableElement) return;
-    if (onClick) onClick(notification);
+    const onClickResult = onClick?.(notification);
+    if (onClickResult === false) return;
+
     if (notification.actionUrl) {
       // We wait for the markAsRead before navigating to the new url, to prevent race conditions
       // between mark and read, and fetching new data on page reload. But let's not wait forever.

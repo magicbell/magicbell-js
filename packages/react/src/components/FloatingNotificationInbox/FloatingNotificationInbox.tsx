@@ -40,8 +40,8 @@ export default function FloatingNotificationInbox({
   ...inboxProps
 }: Props) {
   const handleNotificationClick = (notification) => {
-    if (onNotificationClick) onNotificationClick(notification);
     if (closeOnNotificationClick) toggle?.();
+    return onNotificationClick?.(notification);
   };
 
   return (

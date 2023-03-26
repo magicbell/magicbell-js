@@ -10,7 +10,7 @@ import StyledContainer from './StyledContainer';
 export type NotificationInboxProps = {
   height?: number;
   onAllRead?: () => void;
-  onNotificationClick?: (notification: INotification) => void;
+  onNotificationClick?: (notification: INotification) => void | boolean;
   storeId?: string;
   EmptyInboxPlaceholder?: () => React.ReactElement;
   NotificationItem?: NotificationListItem;
