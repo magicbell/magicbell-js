@@ -1,5 +1,24 @@
 # magicbell
 
+## 1.3.0
+
+### Minor Changes
+
+- [#64](https://github.com/magicbell-io/magicbell-js/pull/64) [`1676fd3`](https://github.com/magicbell-io/magicbell-js/commit/1676fd3f5a93a8a5f8dd3319f84173e6d0b9df95) Thanks [@smeijer](https://github.com/smeijer)! - feat: support custom request headers
+
+  Custom request headers can be used to decorate requests for logs and metrics or for example to instruct proxy servers.
+
+  ```ts
+  import MagicBell from 'magicbell';
+
+  const magicbell = new MagicBell({
+    apiKey: 'my-api-key',
+    headers: {
+      'X-Custom-Header': 'foo',
+    },
+  });
+  ```
+
 ## 1.2.0
 
 ### Minor Changes
