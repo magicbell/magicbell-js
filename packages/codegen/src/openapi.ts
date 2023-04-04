@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 import { OpenAPI } from 'openapi-types';
 
 import { getByRef, getRequestBody, getResponseBody, isEmptySchema, ReferenceObject, SchemaObject } from './schema';
-import { camelCase, pascalCase } from './text';
+import { camelCase, pascalCase, snakeCase } from './text';
 
 export async function getOpenAPIDocument(file: string, options = { dereference: true }) {
   const parse = options.dereference ? parser.dereference.bind(parser) : parser.parse.bind(parser);
@@ -27,6 +27,7 @@ export type Method = {
   path: string;
   method: string;
   name: string;
+  group?: string;
   type?: string;
   beta: boolean;
   private: boolean;
@@ -51,15 +52,22 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
   const entity = Object.keys(body.schema['properties'])[0];
 
   for (const apiPath of apiPaths) {
-    const rootPath = apiPath.split('/').filter(Boolean)[0];
+    const [rootPath, subPath] = apiPath
+      .replaceAll('_', '-')
+      .split('/')
+      .filter((x) => x && !x.includes('{'));
 
     for (const method of Object.keys(document.paths[apiPath])) {
       const operation = document.paths[apiPath][method];
       const resource = operation.operationId.slice(0, rootPath.length);
-      const name = camelCase(operation.operationId.slice(rootPath.length + 1));
+      // compute namespace
+      const group = operation.operationId.startsWith(`${rootPath}-${subPath}-`) ? subPath : undefined;
+      const name = camelCase(operation.operationId.slice(rootPath.length + 1 + (group ? subPath.length + 1 : 0)));
       const type = name === 'list' ? 'list' : null;
 
-      // url params, are applied like notifications.get('id')
+      const methodEntity = group ? snakeCase(group) : entity;
+      const methodPath = apiPath.replace(`/${path}`, '').replace(/^\//, '');
+
       const urlParams = (apiPath.match(/{\w+}/g) || []).map((param) => param.replace(/[{}]/g, ''));
       const params = urlParams.map((param) => {
         const source = operation.parameters.find((x) => x.in === 'path' && x.name === param);
@@ -81,7 +89,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
         }));
 
       // const requestOptions = operation.parameters?.filter((x) => x.in === 'header').map((x) => x.name) ?? [];
-      const TypePrefix = pascalCase(name) + pascalCase(resource);
+      const TypePrefix = [name, resource, group].filter(Boolean).map(pascalCase).join('');
 
       const requestBody = getRequestBody(operation)?.schema;
       const data = query.length
@@ -109,9 +117,10 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
 
       methods.push({
         name,
-        entity,
+        entity: methodEntity,
         type,
-        path: apiPath.replace(`/${path}`, '').replace(/^\//, ''),
+        group,
+        path: methodPath,
         method,
         private: Boolean(operation['x-private']),
         beta: Boolean(operation['x-beta']),
