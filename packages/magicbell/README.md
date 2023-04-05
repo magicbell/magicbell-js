@@ -314,10 +314,12 @@ Below is a list of features that are currently behind feature flags.
 
 <!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
 
-| Feature Flag                | Description                                              |
-| --------------------------- | -------------------------------------------------------- |
-| `push-subscriptions-create` | Register a device ([docs](#push-subscriptions-create))   |
-| `push-subscriptions-delete` | Unregister a device ([docs](#push-subscriptions-delete)) |
+| Feature Flag                      | Description                                                                |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))   |
+| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
+| `imports-create`                  | Create a import ([docs](#imports-create))                                  |
+| `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
@@ -397,7 +399,7 @@ await magicbell.notifications.list(
 );
 ```
 
-#### Fetch a notification
+#### Fetch notification by ID
 
 Fetch a user's notification by its ID.
 
@@ -520,6 +522,30 @@ await magicbell.users.create({
 });
 ```
 
+#### Fetch users
+
+Fetches users for the project identified by the auth keys. Supports filtering, ordering, and pagination.
+
+```js
+await magicbell.users.list({
+  page: 1,
+  per_page: 1,
+  'last_seen_at:before': '…',
+  'last_seen_at:after': '…',
+  'last_notified_at:before': '…',
+  'last_notified_at:after': '…',
+  order_by: '…',
+});
+```
+
+#### Fetch user by ID
+
+Fetch a user by id, for the project identified by the auth keys.
+
+```js
+await magicbell.users.fetch('{user_id}');
+```
+
 #### Update a user
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
@@ -538,7 +564,7 @@ Immediately deletes a user.
 await magicbell.users.delete('{user_id}');
 ```
 
-#### Update a user by email
+#### Update a user identified by email
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
 
@@ -557,7 +583,7 @@ await magicbell.users.updateByEmail('{user_email}', {
 });
 ```
 
-#### Delete a user by email
+#### Delete a user identified by email
 
 Immediately deletes a user.
 
@@ -565,7 +591,7 @@ Immediately deletes a user.
 await magicbell.users.deleteByEmail('{user_email}');
 ```
 
-#### Update a user by external ID
+#### Update a user identified by external ID
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
 
@@ -584,12 +610,71 @@ await magicbell.users.updateByExternalId('{external_id}', {
 });
 ```
 
-#### Delete a user by external ID
+#### Delete a user identified by external ID
 
 Immediately deletes a user.
 
 ```js
 await magicbell.users.deleteByExternalId('{external_id}');
+```
+
+### Users Push Subscriptions
+
+#### Fetch user's push subscriptions
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `users-push-subscriptions-list` [feature flag](#feature-flags).
+
+Fetch a user's push subscriptions. Returns a paginated list of web and mobile push subscriptions for all platforms.
+
+```js
+await magicbell.users.pushSubscriptions.list('{user_id}', {
+  page: 1,
+  per_page: 1,
+});
+```
+
+#### Delete user's push subscription
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `users-push-subscriptions-delete` [feature flag](#feature-flags).
+
+Delete a user's push subscriptions. Identifies the user by the user's ID and the push subscription by the subscription's ID.
+
+```js
+await magicbell.users.pushSubscriptions.delete('{user_id}', '{subscription_id}');
+```
+
+### Push Subscriptions
+
+#### Register a device token for a user
+
+Register a device token for push notifications.
+
+Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
+
+```js
+await magicbell.pushSubscriptions.create(
+  {
+    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
+    platform: 'ios',
+  },
+  {
+    userEmail: 'person@example.com',
+  },
+);
+```
+
+#### Delete user's device token
+
+Deletes the registered device token to remove the mobile push subscription.
+
+```js
+await magicbell.pushSubscriptions.delete('{device_token}', {
+  userEmail: 'person@example.com',
+});
 ```
 
 ### Notification Preferences
@@ -633,49 +718,11 @@ await magicbell.notificationPreferences.update(
 );
 ```
 
-### Push Subscriptions
-
-#### Register a device
-
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `push-subscriptions-create` [feature flag](#feature-flags).
-
-Register a device token for push notifications.
-
-Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
-
-```js
-await magicbell.pushSubscriptions.create(
-  {
-    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
-    platform: 'ios',
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Unregister a device
-
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `push-subscriptions-delete` [feature flag](#feature-flags).
-
-Remove the subscription of a device to mobile push notifications. The device will be discarded immediately.
-
-```js
-await magicbell.pushSubscriptions.delete('{device_token}', {
-  userEmail: 'person@example.com',
-});
-```
-
 ### Subscriptions
 
-#### List subscriptions
+#### Fetch user's topic subscriptions
 
-List a user's subscriptions status for all topics and categories.
+Fetch a user's topic subscriptions.
 
 ```js
 await magicbell.subscriptions.list({
@@ -754,9 +801,13 @@ await magicbell.subscriptions.delete(
 
 ### Imports
 
-#### Create a user import
+#### Create a import
 
-Send a request to start the import of a list of users. The import allows the creation of slack connections as well.
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `imports-create` [feature flag](#feature-flags).
+
+Enqueues an import - currently only supported for users. Amongst other things, the users import allows associating slack channels (if you have already setup the oauth apps).
 
 ```js
 await magicbell.imports.create({
@@ -790,9 +841,13 @@ await magicbell.imports.create({
 });
 ```
 
-#### Get a user import
+#### Get the status of an import
 
-Send a request to query the status & errors of the import.
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `imports-get` [feature flag](#feature-flags).
+
+Query the status of the import for a summary of imported records and failures for each record that could not be imported successfully.
 
 ```js
 await magicbell.imports.get('{import_id}');

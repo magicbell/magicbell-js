@@ -20,7 +20,7 @@ export class Subscriptions extends Resource {
   entity = 'subscription';
 
   /**
-   * List a user's subscriptions status for all topics and categories.
+   * Fetch a user's topic subscriptions.
    *
    * @param options - override client request options.
    * @returns

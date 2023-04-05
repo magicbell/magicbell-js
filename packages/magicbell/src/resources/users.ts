@@ -2,12 +2,17 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
+import { type IterablePromise } from '../method';
 import { Resource } from '../resource';
 import * as schemas from '../schemas/users';
 import { type RequestOptions } from '../types';
+import { UsersPushSubscriptions } from './users/push-subscriptions';
 
 type CreateUsersResponse = FromSchema<typeof schemas.CreateUsersResponseSchema>;
 type CreateUsersPayload = FromSchema<typeof schemas.CreateUsersPayloadSchema>;
+type ListUsersResponse = FromSchema<typeof schemas.ListUsersResponseSchema>;
+type ListUsersPayload = FromSchema<typeof schemas.ListUsersPayloadSchema>;
+type FetchUsersResponse = FromSchema<typeof schemas.FetchUsersResponseSchema>;
 type UpdateUsersResponse = FromSchema<typeof schemas.UpdateUsersResponseSchema>;
 type UpdateUsersPayload = FromSchema<typeof schemas.UpdateUsersPayloadSchema>;
 type UpdateByEmailUsersResponse = FromSchema<typeof schemas.UpdateByEmailUsersResponseSchema>;
@@ -18,6 +23,7 @@ type UpdateByExternalIdUsersPayload = FromSchema<typeof schemas.UpdateByExternal
 export class Users extends Resource {
   path = 'users';
   entity = 'user';
+  pushSubscriptions = new UsersPushSubscriptions(this.client);
 
   /**
    * Create a user. Please note that you must provide the user's email or the
@@ -48,6 +54,54 @@ export class Users extends Resource {
         method: 'POST',
       },
       dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Fetches users for the project identified by the auth keys. Supports filtering,
+   * ordering, and pagination.
+   *
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(options?: RequestOptions): IterablePromise<ListUsersResponse>;
+
+  /**
+   * Fetches users for the project identified by the auth keys. Supports filtering,
+   * ordering, and pagination.
+   *
+   * @param data
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(data: ListUsersPayload, options?: RequestOptions): IterablePromise<ListUsersResponse>;
+
+  list(dataOrOptions: ListUsersPayload | RequestOptions, options?: RequestOptions): IterablePromise<ListUsersResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        paged: true,
+      },
+      dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Fetch a user by id, for the project identified by the auth keys.
+   *
+   * @param userId - The user id is the MagicBell user id. Accepts a UUID
+   * @param options - override client request options.
+   * @returns
+   **/
+  fetch(userId: string, options?: RequestOptions): Promise<FetchUsersResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        path: '{user_id}',
+      },
+      userId,
       options,
     );
   }
