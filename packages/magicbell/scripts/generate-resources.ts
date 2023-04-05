@@ -236,7 +236,7 @@ function createDocs(resource: Resource) {
   const lines: Array<string> = [];
   const startLevel = 3;
 
-  lines.push(`${'#'.repeat(startLevel)} ${capitalize(resource.path)}\n`);
+  lines.push(`${'#'.repeat(startLevel)} ${capitalize(resource.path.replaceAll('/', ' '))}\n`);
 
   for (const method of resource.methods) {
     // don't document private methods
