@@ -34,6 +34,8 @@ export const CreateImportsResponseSchema = {
 
     errors: {
       type: 'array',
+      description: 'A list of errors (deprecated - please use failures instead)',
+      deprecated: true,
 
       items: {
         type: 'object',
@@ -55,6 +57,37 @@ export const CreateImportsResponseSchema = {
           message: {
             type: 'string',
             description: 'The error message indicating why importing the user failed',
+          },
+        },
+      },
+    },
+
+    failures: {
+      type: 'object',
+      description: 'Contains the entities that could not be imported successfully',
+      additionalProperties: false,
+
+      properties: {
+        users: {
+          type: 'array',
+          description: 'User objects that could not be imported successfully',
+          additionalProperties: false,
+
+          properties: {
+            email: {
+              type: 'string',
+              description: 'The identifying email of the user if supplied in the import request.',
+            },
+
+            external_id: {
+              type: 'string',
+              description: 'The identifying external_id of the user if supplied in the import request.',
+            },
+
+            errors: {
+              type: 'object',
+              description: 'The errors object reflecting the structure of the user oject',
+            },
           },
         },
       },
@@ -167,6 +200,8 @@ export const GetImportsResponseSchema = {
 
     errors: {
       type: 'array',
+      description: 'A list of errors (deprecated - please use failures instead)',
+      deprecated: true,
 
       items: {
         type: 'object',
@@ -188,6 +223,37 @@ export const GetImportsResponseSchema = {
           message: {
             type: 'string',
             description: 'The error message indicating why importing the user failed',
+          },
+        },
+      },
+    },
+
+    failures: {
+      type: 'object',
+      description: 'Contains the entities that could not be imported successfully',
+      additionalProperties: false,
+
+      properties: {
+        users: {
+          type: 'array',
+          description: 'User objects that could not be imported successfully',
+          additionalProperties: false,
+
+          properties: {
+            email: {
+              type: 'string',
+              description: 'The identifying email of the user if supplied in the import request.',
+            },
+
+            external_id: {
+              type: 'string',
+              description: 'The identifying external_id of the user if supplied in the import request.',
+            },
+
+            errors: {
+              type: 'object',
+              description: 'The errors object reflecting the structure of the user oject',
+            },
           },
         },
       },

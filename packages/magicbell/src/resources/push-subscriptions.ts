@@ -22,12 +22,8 @@ export class PushSubscriptions extends Resource {
    * @param data
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   create(data: CreatePushSubscriptionsPayload, options?: RequestOptions): Promise<CreatePushSubscriptionsResponse> {
-    this.assertFeatureFlag('push-subscriptions-create');
-
     return this.request(
       {
         method: 'POST',
@@ -38,17 +34,12 @@ export class PushSubscriptions extends Resource {
   }
 
   /**
-   * Remove the subscription of a device to mobile push notifications. The device
-   * will be discarded immediately.
+   * Deletes the registered device token to remove the mobile push subscription.
    *
    * @param deviceToken - Token of the device you want to remove
    * @param options - override client request options.
-   *
-   * @beta
    **/
   delete(deviceToken: string, options?: RequestOptions): Promise<void> {
-    this.assertFeatureFlag('push-subscriptions-delete');
-
     return this.request(
       {
         method: 'DELETE',

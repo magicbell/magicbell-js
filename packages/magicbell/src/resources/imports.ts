@@ -15,21 +15,27 @@ export class Imports extends Resource {
   entity = 'import';
 
   /**
-   * Send a request to start the import of a list of users. The import allows the
-   * creation of slack connections as well.
+   * Enqueues an import - currently only supported for users. Amongst other things,
+   * the users import allows associating slack channels (if you have already setup
+   * the oauth apps).
    *
    * @param options - override client request options.
    * @returns
+   *
+   * @beta
    **/
   create(options?: RequestOptions): Promise<CreateImportsResponse>;
 
   /**
-   * Send a request to start the import of a list of users. The import allows the
-   * creation of slack connections as well.
+   * Enqueues an import - currently only supported for users. Amongst other things,
+   * the users import allows associating slack channels (if you have already setup
+   * the oauth apps).
    *
    * @param data
    * @param options - override client request options.
    * @returns
+   *
+   * @beta
    **/
   create(data: CreateImportsPayload, options?: RequestOptions): Promise<CreateImportsResponse>;
 
@@ -37,6 +43,8 @@ export class Imports extends Resource {
     dataOrOptions: CreateImportsPayload | RequestOptions,
     options?: RequestOptions,
   ): Promise<CreateImportsResponse> {
+    this.assertFeatureFlag('imports-create');
+
     return this.request(
       {
         method: 'POST',
@@ -47,14 +55,19 @@ export class Imports extends Resource {
   }
 
   /**
-   * Send a request to query the status & errors of the import.
+   * Query the status of the import for a summary of imported records and failures
+   * for each record that could not be imported successfully.
    *
    * @param importId - ID of the import.
    *   The ID of the import is returned when the import is created.
    * @param options - override client request options.
    * @returns
+   *
+   * @beta
    **/
   get(importId: string, options?: RequestOptions): Promise<GetImportsResponse> {
+    this.assertFeatureFlag('imports-get');
+
     return this.request(
       {
         method: 'GET',

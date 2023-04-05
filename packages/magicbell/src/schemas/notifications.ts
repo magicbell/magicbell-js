@@ -95,7 +95,7 @@ export const CreateNotificationsPayloadSchema = {
 
     recipients: {
       description:
-        'Users to send the notification to. You can specify up to 1000 users at once. Use matches to send a notification to everyone.',
+        'Users to send the notification to. You can specify up to 1000 users in the request body or use [matches](https://www.magicbell.com/docs/segments#how-to-create-segments-using-the-api) to send a notification to any number of users.',
       nullable: false,
       minItems: 1,
       maxItems: 1000,
