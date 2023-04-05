@@ -4,7 +4,8 @@
 
 ### Minor Changes
 
-- [#59](https://github.com/magicbell-io/magicbell-js/pull/59) [`6d7e434`](https://github.com/magicbell-io/magicbell-js/commit/6d7e4343d997ee845ad54b41cb9ca1171019764b) Thanks [@unamashana](https://github.com/unamashana)! - - remove beta flag from `pushSubscriptions`
+- [#59](https://github.com/magicbell-io/magicbell-js/pull/59) [`6d7e434`](https://github.com/magicbell-io/magicbell-js/commit/6d7e4343d997ee845ad54b41cb9ca1171019764b) Thanks [@unamashana](https://github.com/unamashana)!
+  - remove beta flag from `pushSubscriptions`
   - move `imports` method behind feature flag
   - add `users.list` method to list all users
   - add `users.fetch` method to fetch a single user
