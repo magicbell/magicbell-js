@@ -1,5 +1,18 @@
 # magicbell
 
+## 1.4.0
+
+### Minor Changes
+
+- [#59](https://github.com/magicbell-io/magicbell-js/pull/59) [`6d7e434`](https://github.com/magicbell-io/magicbell-js/commit/6d7e4343d997ee845ad54b41cb9ca1171019764b) Thanks [@unamashana](https://github.com/unamashana)!
+  - remove beta flag from `pushSubscriptions`
+  - move `imports` method behind feature flag
+  - add `users.list` method to list all users
+  - add `users.fetch` method to fetch a single user
+  - add `users.pushSubscriptions` resource to manage users push subscriptions
+  - add `users.pushSubscriptions.list` method to list all push subscriptions for a user
+  - add `users.pushSubscriptions.delete` method to delete a single push subscription for a user
+
 ## 1.3.0
 
 ### Minor Changes
