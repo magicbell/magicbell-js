@@ -39,6 +39,7 @@ type Event = {
 type IterableEventSource<TNode> = {
   [Symbol.asyncIterator](): Iterator<TNode>;
   forEach(cb: (node: TNode, index: number) => void | boolean | Promise<void | boolean>): Promise<void>;
+  close(): void;
 };
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
@@ -153,7 +154,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     const forEach = makeForEach(asyncIteratorNext, dispose);
     const autoPaginationMethods = {
       forEach,
-      close: dispose,
+      close: () => void dispose(),
 
       next: asyncIteratorNext,
       return: dispose,
