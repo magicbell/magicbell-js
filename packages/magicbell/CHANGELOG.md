@@ -1,5 +1,11 @@
 # magicbell
 
+## 1.4.2
+
+### Patch Changes
+
+- [#70](https://github.com/magicbell-io/magicbell-js/pull/70) [`3590285`](https://github.com/magicbell-io/magicbell-js/commit/3590285471b80559f20308e2bbccfd244f6682fa) Thanks [@smeijer](https://github.com/smeijer)! - fix: add types for listener close method
+
 ## 1.4.1
 
 ### Patch Changes
