@@ -72,7 +72,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
       const params = urlParams.map((param) => {
         const source = operation.parameters.find((x) => x.in === 'path' && x.name === param);
         return {
-          title: camelCase(param),
+          title: param,
           description: source?.description,
           type: 'string',
           ...source?.schema,
@@ -83,7 +83,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
       const query = (operation.parameters || [])
         .filter((x) => x.in === 'query')
         .map((x) => ({
-          title: camelCase(x.name),
+          title: x.name,
           description: x.description,
           ...x.schema,
         }));

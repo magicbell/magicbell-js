@@ -213,40 +213,40 @@ export const ListUsersPayloadSchema = {
       type: 'integer',
     },
 
-    perPage: {
-      title: 'perPage',
+    per_page: {
+      title: 'per_page',
       description: 'The number of items per page. Defaults to 20.',
       type: 'integer',
     },
 
-    'lastSeenAt:before': {
-      title: 'lastSeenAt:before',
+    'last_seen_at:before': {
+      title: 'last_seen_at:before',
       description: 'Fetch users seen before the specified `last_seen_at` timestamp. Please send it in RFC3339 format',
       type: 'string',
     },
 
-    'lastSeenAt:after': {
-      title: 'lastSeenAt:after',
+    'last_seen_at:after': {
+      title: 'last_seen_at:after',
       description: 'Fetch users seen after the specified `last_seen_at` timestamp. Please send it in RFC3339 format',
       type: 'string',
     },
 
-    'lastNotifiedAt:before': {
-      title: 'lastNotifiedAt:before',
+    'last_notified_at:before': {
+      title: 'last_notified_at:before',
       description:
         'Fetch users last notified before the specified `last_notified_at` timestamp. Please send it in RFC3339 format',
       type: 'string',
     },
 
-    'lastNotifiedAt:after': {
-      title: 'lastNotifiedAt:after',
+    'last_notified_at:after': {
+      title: 'last_notified_at:after',
       description:
         'Fetch users last notified after the specified `last_notified_at` timestamp. Please send it in RFC3339 format',
       type: 'string',
     },
 
-    orderBy: {
-      title: 'orderBy',
+    order_by: {
+      title: 'order_by',
       description: 'Use it to order the returned list of users. Defaults to `created_at,DESC`',
       type: 'string',
 

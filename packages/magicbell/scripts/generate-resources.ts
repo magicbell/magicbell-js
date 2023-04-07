@@ -50,11 +50,13 @@ function createMethod(method: Method) {
   const payloadType = method.data?.title.replace(/Schema$/, '');
   const payloadOrOptionsType = `${payloadType} | RequestOptions`;
 
-  const pathParams = method.params.map((param) => b.param(param.title, 'string'));
+  const pathParams = method.params.map((param) => b.param(camelCase(param.title), 'string'));
   const dataParam = b.param('data', payloadType);
   const optionsParam = b.param('options', 'RequestOptions', true);
 
-  const paramsDocs = method.params.map((x) => `@param ${x.title} ${x.description ? `- ${x.description}` : ''}`);
+  const paramsDocs = method.params.map(
+    (x) => `@param ${camelCase(x.title)} ${x.description ? `- ${x.description}` : ''}`,
+  );
 
   const fullSignatureComment = b.commentBlock(
     method.description || method.summary,
@@ -124,7 +126,7 @@ function createMethod(method: Method) {
                 method.path && b.objectProperty('path', method.path),
                 paged && b.objectProperty('paged', true),
               ),
-              ...method.params.map((param) => 'title' in param && builders.identifier(param.title)),
+              ...method.params.map((param) => 'title' in param && builders.identifier(camelCase(param.title))),
               method.data && builders.identifier(hasOverloads ? 'dataOrOptions' : 'data'),
               builders.identifier('options'),
             ),
