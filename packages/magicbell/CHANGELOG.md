@@ -1,5 +1,11 @@
 # magicbell
 
+## 1.4.1
+
+### Patch Changes
+
+- [#68](https://github.com/magicbell-io/magicbell-js/pull/68) [`8ae8b38`](https://github.com/magicbell-io/magicbell-js/commit/8ae8b38189171188f78b767f63f4e34583abd6fb) Thanks [@smeijer](https://github.com/smeijer)! - fix typescript issue that showed arguments in camelCase vs snake_case.
+
 ## 1.4.0
 
 ### Minor Changes
