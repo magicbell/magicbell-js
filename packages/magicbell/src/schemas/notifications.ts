@@ -489,8 +489,8 @@ export const ListNotificationsPayloadSchema = {
   type: 'object',
 
   properties: {
-    perPage: {
-      title: 'perPage',
+    per_page: {
+      title: 'per_page',
       description:
         'A limit on the number of notifications to be returned. It can range between 1 and 100, and the default is 15.',
       type: 'integer',

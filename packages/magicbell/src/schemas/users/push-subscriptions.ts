@@ -73,8 +73,8 @@ export const ListUsersPushSubscriptionsPayloadSchema = {
       type: 'integer',
     },
 
-    perPage: {
-      title: 'perPage',
+    per_page: {
+      title: 'per_page',
       description: 'The number of items per page. Defaults to 20.',
       type: 'integer',
     },
