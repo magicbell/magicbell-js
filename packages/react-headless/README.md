@@ -168,7 +168,7 @@ store you want to fetch notifications from:
 import { useBell } from '@magicbell/react-headless';
 
 function NotificationsList() {
-  const { unreadCount, markAllAsSeen } = useBell('unread');
+  const { unreadCount, markAllAsSeen } = useBell({ storeId: 'unread' });
 
   return (
     <button onClick={() => markAllAsSeen()}>
