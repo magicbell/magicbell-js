@@ -2,4 +2,4 @@
 '@magicbell/react-headless': patch
 ---
 
-Fix type annotation for `useBell` arguments to accept an object instead of string.
+Fix example of in docs for `useBell`, to provide `storeId` via an options object.
