@@ -1,5 +1,11 @@
 # @magicbell/react-headless
 
+## 4.2.5
+
+### Patch Changes
+
+- [#73](https://github.com/magicbell-io/magicbell-js/pull/73) [`6eb5705`](https://github.com/magicbell-io/magicbell-js/commit/6eb5705c502ab64caa32ce1d5ffa79d1fd671b06) Thanks [@SuzukiRyuichiro](https://github.com/SuzukiRyuichiro)! - Fix example in docs for `useBell`, to provide `storeId` via an options object.
+
 ## 4.2.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # magicbell
 
+## 1.4.3
+
+### Patch Changes
+
+- [#75](https://github.com/magicbell-io/magicbell-js/pull/75) [`14c30fe`](https://github.com/magicbell-io/magicbell-js/commit/14c30fe7855adf55096f4a9f8a63f1f4240f6dac) Thanks [@smeijer](https://github.com/smeijer)! - fix: handle network level request errors
+
 ## 1.4.2
 
 ### Patch Changes
