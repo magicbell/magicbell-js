@@ -112,18 +112,19 @@ export class Client {
       this.#logLastRequest(response, { startTime });
 
       if (this.#shouldRetry(response, attempt, maxRetries)) {
-        const retryAfter = Number(response.headers['retry-after']);
+        const retryAfter = Number(response?.headers?.['retry-after']);
         await sleep(this.#getSleepTimeInMS(attempt, retryAfter, requestOptions.maxRetryDelay));
         continue;
       }
 
       if (error) {
         throw createError({
+          code: error.code,
           name: error.name,
           message: error.message,
           type: error['type'],
-          status: response.status,
-          statusText: response.statusText,
+          status: response?.status,
+          statusText: response?.statusText,
           ...(response?.data as any)?.errors?.[0],
         });
       }
