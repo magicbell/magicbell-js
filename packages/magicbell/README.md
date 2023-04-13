@@ -74,10 +74,10 @@ const magicbell = new MagicBell({
   userEmail: 'you@example.com',
 });
 
-const notification = await magicbell.notifications.list();
+const notifications = await magicbell.notifications.list();
 
 // alternatively, provide the userEmail via request option instead
-const notification = await magicbell.notifications.list({
+const notifications = await magicbell.notifications.list({
   userEmail: 'someone@example.com',
 });
 ```
