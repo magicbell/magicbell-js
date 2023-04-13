@@ -316,10 +316,10 @@ Below is a list of features that are currently behind feature flags.
 
 | Feature Flag                      | Description                                                                |
 | --------------------------------- | -------------------------------------------------------------------------- |
-| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))   |
-| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
 | `imports-create`                  | Create a import ([docs](#imports-create))                                  |
 | `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
+| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
+| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))   |
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 

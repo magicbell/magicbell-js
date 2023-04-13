@@ -306,6 +306,37 @@ function createFeatureFlagTable(methods: Method[]) {
   return lines.join('\n');
 }
 
+async function updateTypes(filePath: string, betaMethods: Method[]) {
+  const source = await fs.readFile(filePath, 'utf-8');
+  const ast = recast.parse(source);
+  const program = ast.program;
+
+  const clientOptions = program.body.find(
+    (x) => x.type === 'ExportNamedDeclaration' && x.declaration.id.name === 'ClientOptions',
+  );
+
+  const features = clientOptions.declaration.typeAnnotation.members.find((x) => x.key.name === 'features');
+
+  features.typeAnnotation = builders.tsTypeAnnotation.from({
+    typeAnnotation: builders.tsTypeLiteral.from({
+      members: betaMethods.map((method) =>
+        builders.tsPropertySignature.from({
+          optional: true,
+          key: builders.stringLiteral(method.operationId),
+          typeAnnotation: builders.tsTypeAnnotation.from({
+            typeAnnotation: builders.tsLiteralType.from({
+              literal: builders.booleanLiteral(true),
+            }),
+          }),
+        }),
+      ),
+    }),
+  });
+
+  const output = await recast.print(ast, false);
+  if (!output) return;
+  await fs.writeFile(filePath, output, 'utf-8');
+}
 async function updateClient(filePath: string, files: File[]) {
   const resources = files
     .filter((x) => x.type === 'resources' && x.name.endsWith('.ts'))
@@ -366,7 +397,10 @@ async function main() {
   const resources = await getResources(argv.spec || SPEC_URL);
 
   const files: Array<File> = [];
-  const betaMethods = resources.flatMap((x) => x.methods).filter((x) => x.beta);
+  const betaMethods = resources
+    .flatMap((x) => x.methods)
+    .filter((x) => x.beta)
+    .sort((a, b) => a.operationId.localeCompare(b.operationId));
 
   // generate ast for new resource files
   for (const rootResource of resources) {
@@ -430,6 +464,7 @@ async function main() {
   await updateReadme(README_MD, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
   console.log(`updated README.md`);
 
+  await updateTypes(path.join(process.cwd(), 'src', 'types.ts'), betaMethods);
   await updateClient(path.join(process.cwd(), 'src', 'client.ts'), files);
   console.log(`updated ${path.relative(process.cwd(), path.join('src', 'client.ts'))}`);
 }

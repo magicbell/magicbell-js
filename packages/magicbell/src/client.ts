@@ -14,7 +14,7 @@ import { Notifications } from './resources/notifications';
 import { PushSubscriptions } from './resources/push-subscriptions';
 import { Subscriptions } from './resources/subscriptions';
 import { Users } from './resources/users';
-import { ClientOptions, RequestArgs, RequestMethod, RequestOptions } from './types';
+import { ClientOptions, FeatureFlag, RequestArgs, RequestMethod, RequestOptions } from './types';
 
 // some environments, like vscode extensions, don't have the XMLHttpRequest object defined.
 if (typeof XMLHttpRequest !== 'function') {
@@ -36,7 +36,7 @@ export class Client {
   #clientUserAgent: string;
   #options: ClientOptions;
   #logger = new Logger();
-  #features: Record<string, boolean> = {};
+  #features: ClientOptions['features'] = {};
   #lastRequest: Telemetry[] = [];
   listen = createListener(this);
 
@@ -66,7 +66,7 @@ export class Client {
     this.#features = options.features || {};
   }
 
-  hasFlag(flag: string) {
+  hasFlag(flag: FeatureFlag) {
     return this.#features[flag] || false;
   }
 
