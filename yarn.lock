@@ -4844,13 +4844,13 @@ abbrev@1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
-ably@^1.2.14:
-  version "1.2.29"
-  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.29.tgz#fa6d5cd2cfa693feb627b26c67d5b24a1e9535f6"
-  integrity sha512-bgacOwmDBpHACysn1o0ZoScJsaiOeJoZXhIEUw9aMrqd91B3JBrtJwU80XJjPAw02lE7mxeGCWh85SDNNUN+hg==
+ably@^1.2.39:
+  version "1.2.39"
+  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.39.tgz#a5877e8394228a2747236265aa2f36773e73ccc5"
+  integrity sha512-xL57mIHGZsdJlgQv2DqZUFxgvh3QmUZOOZioP4dBbzCu6hgnoTlWHiZT40uwr0D8/OpAyvhidjhoVcqMk3TIAQ==
   dependencies:
     "@ably/msgpack-js" "^0.4.0"
-    got "^11.8.2"
+    got "^11.8.5"
     ws "^5.1"
 
 accepts@^1.3.7, accepts@~1.3.5, accepts@~1.3.8:
@@ -9621,10 +9621,10 @@ gopd@^1.0.1:
   dependencies:
     get-intrinsic "^1.1.3"
 
-got@^11.8.2:
-  version "11.8.5"
-  resolved "https://registry.yarnpkg.com/got/-/got-11.8.5.tgz#ce77d045136de56e8f024bebb82ea349bc730046"
-  integrity sha512-o0Je4NvQObAuZPHLFoRSkdG2lTgtcynqymzg2Vupdx6PorhaT5MCbIyXG6d4D94kk8ZG57QeosgdiqfJWhEhlQ==
+got@^11.8.5:
+  version "11.8.6"
+  resolved "https://registry.yarnpkg.com/got/-/got-11.8.6.tgz#276e827ead8772eddbcfc97170590b841823233a"
+  integrity sha512-6tfZ91bOr7bOXnK7PRDCGBLa1H4U080YHNaAQ2KsMGlLEzRbk44nsZF2E1IeRc3vtJHPVbKCYgdFbaGO2ljd8g==
   dependencies:
     "@sindresorhus/is" "^4.0.0"
     "@szmarczak/http-timer" "^4.0.5"

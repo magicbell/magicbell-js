@@ -83,8 +83,8 @@ export default class MagicBellClient {
     ablyChannel.subscribe(handleAblyEvent);
 
     return () => {
-      ablyClient.connection.off('disconnected');
-      ablyClient.connection.off('suspended');
+      ablyClient.connection.off('disconnected', emitWakeup);
+      ablyClient.connection.off('suspended', emitWakeup);
       ablyChannel.unsubscribe(handleAblyEvent);
       ablyChannel.detach();
       ablyClient.close();
