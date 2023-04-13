@@ -65,7 +65,7 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
       const name = camelCase(operation.operationId.slice(rootPath.length + 1 + (group ? subPath.length + 1 : 0)));
       const type = name === 'list' ? 'list' : null;
 
-      const methodEntity = group ? snakeCase(group) : entity;
+      const methodEntity = group ? snakeCase(group.replace(/s$/, '')) : entity;
       const methodPath = apiPath.replace(`/${path}`, '').replace(/^\//, '');
 
       const urlParams = (apiPath.match(/{\w+}/g) || []).map((param) => param.replace(/[{}]/g, ''));
