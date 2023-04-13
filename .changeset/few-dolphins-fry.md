@@ -2,4 +2,4 @@
 'magicbell': patch
 ---
 
-type feature flags
+Feature flags are now typed, making it easier to enable beta features, and harder to forget removing flags when beta features turned stable.
