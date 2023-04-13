@@ -1,5 +1,13 @@
 # magicbell
 
+## 1.4.4
+
+### Patch Changes
+
+- [#76](https://github.com/magicbell-io/magicbell-js/pull/76) [`fe450c8`](https://github.com/magicbell-io/magicbell-js/commit/fe450c884900e1d42b8ae868710742c2fea61256) Thanks [@smeijer](https://github.com/smeijer)! - Feature flags are now typed, making it easier to enable beta features, and harder to forget removing flags when beta features turned stable.
+
+- [#77](https://github.com/magicbell-io/magicbell-js/pull/77) [`9f4be9a`](https://github.com/magicbell-io/magicbell-js/commit/9f4be9ace0123ce8de710b8af4683d5a3c0b27fe) Thanks [@smeijer](https://github.com/smeijer)! - return the full response data from users.push_subscriptions.list()
+
 ## 1.4.3
 
 ### Patch Changes
