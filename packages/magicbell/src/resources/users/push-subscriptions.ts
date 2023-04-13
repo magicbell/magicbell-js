@@ -12,7 +12,7 @@ type ListUsersPushSubscriptionsPayload = FromSchema<typeof schemas.ListUsersPush
 
 export class UsersPushSubscriptions extends Resource {
   path = 'users';
-  entity = 'push_subscriptions';
+  entity = 'push_subscription';
 
   /**
    * Fetch a user's push subscriptions. Returns a paginated list of web and mobile
