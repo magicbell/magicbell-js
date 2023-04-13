@@ -16,9 +16,16 @@ export type ClientOptions = {
   idempotencyKey?: string;
   telemetry?: boolean;
   debug?: boolean;
-  features?: Record<string, boolean>;
+  features?: {
+    'imports-create'?: true;
+    'imports-get'?: true;
+    'users-push-subscriptions-delete'?: true;
+    'users-push-subscriptions-list'?: true;
+  };
   headers?: Record<string, string>;
 };
+
+export type FeatureFlag = keyof ClientOptions['features'];
 
 export type RequestOptions = {
   userEmail?: string;

@@ -2,6 +2,7 @@ import { Client } from './client';
 import { joinUrlSegments } from './lib/utils';
 import { IterablePromise, normalizeArgs } from './method';
 import { autoPaginate } from './paginate';
+import { FeatureFlag } from './types';
 
 type ResourceRequestOptions = {
   method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'PATCH';
@@ -66,7 +67,7 @@ export class Resource {
     return makeRequest({ data, params });
   }
 
-  protected assertFeatureFlag(flag: string) {
+  protected assertFeatureFlag(flag: FeatureFlag) {
     if (!this.client.hasFlag(flag)) {
       throw new Error(`This is a beta feature, please enable it by providing the "${flag}" feature flag.`);
     }
