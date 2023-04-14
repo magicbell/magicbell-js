@@ -6,6 +6,7 @@ import { type IterablePromise } from '../method';
 import { Resource } from '../resource';
 import * as schemas from '../schemas/broadcasts';
 import { type RequestOptions } from '../types';
+import { BroadcastsNotifications } from './broadcasts/notifications';
 
 type ListBroadcastsResponse = FromSchema<typeof schemas.ListBroadcastsResponseSchema>;
 type ListBroadcastsPayload = FromSchema<typeof schemas.ListBroadcastsPayloadSchema>;
@@ -14,6 +15,7 @@ type GetBroadcastsResponse = FromSchema<typeof schemas.GetBroadcastsResponseSche
 export class Broadcasts extends Resource {
   path = 'broadcasts';
   entity = 'broadcast';
+  notifications = new BroadcastsNotifications(this.client);
 
   /**
    * List all notification broadcasts. Broadcasts are sorted in descending order by
