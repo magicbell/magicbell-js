@@ -316,6 +316,7 @@ Below is a list of features that are currently behind feature flags.
 
 | Feature Flag                      | Description                                                                |
 | --------------------------------- | -------------------------------------------------------------------------- |
+| `broadcasts-list`                 | List notification broadcasts ([docs](#broadcasts-list))                    |
 | `imports-create`                  | Create a import ([docs](#imports-create))                                  |
 | `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
 | `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
@@ -330,6 +331,23 @@ Below you'll find the all supported resource methods, with their signatures. The
 Apart from the removal of the wrappers, returned entities and provided parameters are identical between our REST API and this SDK.
 
 <!-- AUTO-GENERATED-CONTENT:START (RESOURCE_METHODS) -->
+
+### Broadcasts
+
+#### List notification broadcasts
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `broadcasts-list` [feature flag](#feature-flags).
+
+List all notification broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
+
+```js
+await magicbell.broadcasts.list({
+  page: 1,
+  per_page: 1,
+});
+```
 
 ### Notifications
 

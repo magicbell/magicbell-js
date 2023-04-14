@@ -53,7 +53,12 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
   // level decide for the method.
   const body = getRequestBody(document.paths[`/${path}`].post) || getResponseBody(document.paths[`/${path}`].get);
   const schema = mergeAllOf(body.schema as any);
-  const entity = Object.keys(schema.properties).find((x) => !paginationProps.includes(x));
+  let entity = Object.keys(schema.properties).find((x) => !paginationProps.includes(x));
+
+  // this ain't nice, see comment above
+  if (entity !== 'notification_preferences') {
+    entity = entity.replace(/s$/, '');
+  }
 
   for (const apiPath of apiPaths) {
     const [rootPath, subPath] = apiPath

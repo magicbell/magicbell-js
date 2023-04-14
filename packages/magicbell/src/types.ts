@@ -17,6 +17,7 @@ export type ClientOptions = {
   telemetry?: boolean;
   debug?: boolean;
   features?: {
+    'broadcasts-list'?: true;
     'imports-create'?: true;
     'imports-get'?: true;
     'users-push-subscriptions-delete'?: true;
