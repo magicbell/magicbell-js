@@ -27,6 +27,7 @@ export const CreatePushSubscriptionsResponseSchema = {
 export const CreatePushSubscriptionsPayloadSchema = {
   title: 'CreatePushSubscriptionsPayloadSchema',
   type: 'object',
+  required: ['device_token', 'platform'],
   additionalProperties: false,
 
   properties: {
@@ -51,6 +52,4 @@ export const CreatePushSubscriptionsPayloadSchema = {
       maxLength: 155,
     },
   },
-
-  required: ['device_token', 'platform'],
 } as const;

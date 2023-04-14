@@ -147,12 +147,11 @@ export const CreateImportsPayloadSchema = {
           phone_numbers: {
             type: 'array',
             description: 'An array of phone numbers to use for sending SMS notifications.',
+            maxItems: 50,
 
             items: {
               type: 'string',
             },
-
-            maxItems: 50,
           },
 
           channels: {

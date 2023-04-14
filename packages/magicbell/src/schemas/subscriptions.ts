@@ -95,6 +95,7 @@ export const CreateSubscriptionsResponseSchema = {
 export const CreateSubscriptionsPayloadSchema = {
   title: 'CreateSubscriptionsPayloadSchema',
   type: 'object',
+  required: ['categories', 'topic'],
   additionalProperties: false,
 
   properties: {
@@ -126,8 +127,6 @@ export const CreateSubscriptionsPayloadSchema = {
       description: 'The topic the user should be subscribed to. If the topic does not exist it will be created.',
     },
   },
-
-  required: ['categories', 'topic'],
 } as const;
 
 export const UnsubscribeSubscriptionsResponseSchema = {
@@ -175,6 +174,7 @@ export const UnsubscribeSubscriptionsResponseSchema = {
 export const UnsubscribeSubscriptionsPayloadSchema = {
   title: 'UnsubscribeSubscriptionsPayloadSchema',
   type: 'object',
+  required: ['categories'],
   additionalProperties: false,
 
   properties: {
@@ -201,8 +201,6 @@ export const UnsubscribeSubscriptionsPayloadSchema = {
       },
     },
   },
-
-  required: ['categories'],
 } as const;
 
 export const GetSubscriptionsResponseSchema = {

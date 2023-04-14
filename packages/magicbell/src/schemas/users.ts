@@ -50,12 +50,11 @@ export const CreateUsersResponseSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -105,12 +104,11 @@ export const CreateUsersPayloadSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -189,12 +187,11 @@ export const ListUsersResponseSchema = {
           phone_numbers: {
             type: 'array',
             description: 'An array of phone numbers to use for sending SMS notifications.',
+            maxItems: 50,
 
             items: {
               type: 'string',
             },
-
-            maxItems: 50,
           },
         },
       },
@@ -316,12 +313,11 @@ export const FetchUsersResponseSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -377,12 +373,11 @@ export const UpdateUsersResponseSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -432,12 +427,11 @@ export const UpdateUsersPayloadSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -493,12 +487,11 @@ export const UpdateByEmailUsersResponseSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -548,12 +541,11 @@ export const UpdateByEmailUsersPayloadSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -609,12 +601,11 @@ export const UpdateByExternalIdUsersResponseSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
@@ -664,12 +655,11 @@ export const UpdateByExternalIdUsersPayloadSchema = {
     phone_numbers: {
       type: 'array',
       description: 'An array of phone numbers to use for sending SMS notifications.',
+      maxItems: 50,
 
       items: {
         type: 'string',
       },
-
-      maxItems: 50,
     },
   },
 } as const;
