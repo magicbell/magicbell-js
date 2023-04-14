@@ -316,6 +316,7 @@ Below is a list of features that are currently behind feature flags.
 
 | Feature Flag                      | Description                                                                |
 | --------------------------------- | -------------------------------------------------------------------------- |
+| `broadcasts-get`                  | Fetch a notification broadcast by its ID ([docs](#broadcasts-get))         |
 | `broadcasts-list`                 | List notification broadcasts ([docs](#broadcasts-list))                    |
 | `imports-create`                  | Create a import ([docs](#imports-create))                                  |
 | `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
@@ -347,6 +348,18 @@ await magicbell.broadcasts.list({
   page: 1,
   per_page: 1,
 });
+```
+
+#### Fetch a notification broadcast by its ID
+
+> **Warning**
+>
+> This method is in preview and is subject to change. It needs to be enabled via the `broadcasts-get` [feature flag](#feature-flags).
+
+Fetch a notification broadcast by its ID.
+
+```js
+await magicbell.broadcasts.get('{broadcast_id}');
 ```
 
 ### Notifications

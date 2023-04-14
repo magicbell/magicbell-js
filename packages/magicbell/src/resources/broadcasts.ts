@@ -9,6 +9,7 @@ import { type RequestOptions } from '../types';
 
 type ListBroadcastsResponse = FromSchema<typeof schemas.ListBroadcastsResponseSchema>;
 type ListBroadcastsPayload = FromSchema<typeof schemas.ListBroadcastsPayloadSchema>;
+type GetBroadcastsResponse = FromSchema<typeof schemas.GetBroadcastsResponseSchema>;
 
 export class Broadcasts extends Resource {
   path = 'broadcasts';
@@ -49,6 +50,28 @@ export class Broadcasts extends Resource {
         paged: true,
       },
       dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Fetch a notification broadcast by its ID.
+   *
+   * @param broadcastId - ID of the notification broadcast.
+   * @param options - override client request options.
+   * @returns
+   *
+   * @beta
+   **/
+  get(broadcastId: string, options?: RequestOptions): Promise<GetBroadcastsResponse> {
+    this.assertFeatureFlag('broadcasts-get');
+
+    return this.request(
+      {
+        method: 'GET',
+        path: '{broadcast_id}',
+      },
+      broadcastId,
       options,
     );
   }
