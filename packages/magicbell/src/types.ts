@@ -19,6 +19,7 @@ export type ClientOptions = {
   features?: {
     'broadcasts-get'?: true;
     'broadcasts-list'?: true;
+    'broadcasts-notifications-list'?: true;
     'imports-create'?: true;
     'imports-get'?: true;
     'users-push-subscriptions-delete'?: true;
