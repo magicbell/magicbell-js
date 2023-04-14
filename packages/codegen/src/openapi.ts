@@ -1,6 +1,7 @@
 import parser from '@apidevtools/swagger-parser';
 import axios from 'axios';
 import fs from 'fs/promises';
+import mergeAllOf from 'json-schema-merge-allof';
 import { OpenAPI } from 'openapi-types';
 
 import { getByRef, getRequestBody, getResponseBody, isEmptySchema, ReferenceObject, SchemaObject } from './schema';
@@ -42,6 +43,8 @@ export type Resource = {
 };
 
 export function getRootPathMethods(document: OpenAPI.Document, path: string) {
+  const paginationProps = Object.keys((document as any).components.schemas.PaginationProps?.properties);
+
   const methods: Array<Method> = [];
   const apiPaths = Object.keys(document.paths).filter((x) => x.startsWith(`/${path}`));
 
@@ -49,7 +52,8 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
   // decide whether and how to wrap/unwrap on the method level, instead of making the resource
   // level decide for the method.
   const body = getRequestBody(document.paths[`/${path}`].post) || getResponseBody(document.paths[`/${path}`].get);
-  const entity = Object.keys(body.schema['properties'])[0];
+  const schema = mergeAllOf(body.schema as any);
+  const entity = Object.keys(schema.properties).find((x) => !paginationProps.includes(x));
 
   for (const apiPath of apiPaths) {
     const [rootPath, subPath] = apiPath
@@ -144,9 +148,12 @@ function getSchema(
   if (!schema) return null;
   const maybeWrapped = '$ref' in schema ? getByRef(doc, schema.$ref) : schema;
   const unwrapped = maybeWrapped.properties?.[options.entity] || maybeWrapped;
-  const objectSchema = '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
+  const unreffed = '$ref' in unwrapped ? getByRef(doc, unwrapped.$ref) : unwrapped;
+  const objectSchema = mergeAllOf(unreffed);
 
-  if (!options.excludeReadOnly || !objectSchema.properties) return objectSchema;
+  if (!options.excludeReadOnly || !objectSchema.properties) {
+    return objectSchema;
+  }
 
   const copy = { ...objectSchema, properties: {} };
   for (const [key, value] of Object.entries(objectSchema.properties || {})) {

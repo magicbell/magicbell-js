@@ -1,4 +1,4 @@
-import { IJsonSchema, OpenAPI, OpenAPIV3, OpenAPIV3_1 } from 'openapi-types';
+import { OpenAPI, OpenAPIV3, OpenAPIV3_1 } from 'openapi-types';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
 export type SchemaObject = OpenAPIV3.SchemaObject | OpenAPIV3_1.SchemaObject;
@@ -43,12 +43,13 @@ export function schemaToObject(schema: SchemaObject | ReferenceObject) {
   return schema;
 }
 
-export function isEmptySchema(schema: IJsonSchema) {
+export function isEmptySchema(schema: unknown) {
   return (
-    !schema ||
-    !schema.type ||
-    (schema.type === 'object' && !schema.properties) ||
-    (schema.type === 'array' && !schema.items)
+    typeof schema !== 'object' ||
+    schema == null ||
+    !('type' in schema) ||
+    ((schema as any).type === 'object' && !(schema as any).properties) ||
+    ((schema as any).type === 'array' && !(schema as any).items)
   );
 }
 

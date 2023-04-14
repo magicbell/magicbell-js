@@ -2,6 +2,7 @@
 export const CreateNotificationsResponseSchema = {
   title: 'CreateNotificationsResponseSchema',
   type: 'object',
+  required: ['id', 'title', 'sent_at'],
   additionalProperties: false,
 
   properties: {
@@ -61,13 +62,12 @@ export const CreateNotificationsResponseSchema = {
       readOnly: true,
     },
   },
-
-  required: ['id', 'title', 'sent_at'],
 } as const;
 
 export const CreateNotificationsPayloadSchema = {
   title: 'CreateNotificationsPayloadSchema',
   type: 'object',
+  required: ['title', 'recipients'],
   additionalProperties: false,
 
   properties: {
@@ -286,8 +286,6 @@ export const CreateNotificationsPayloadSchema = {
       },
     },
   },
-
-  required: ['title', 'recipients'],
 } as const;
 
 export const ListNotificationsResponseSchema = {
@@ -344,6 +342,7 @@ export const ListNotificationsResponseSchema = {
 
       items: {
         type: 'object',
+        required: ['title', 'recipient'],
         additionalProperties: false,
 
         properties: {
@@ -467,18 +466,15 @@ export const ListNotificationsResponseSchema = {
               phone_numbers: {
                 type: 'array',
                 description: 'An array of phone numbers to use for sending SMS notifications.',
+                maxItems: 50,
 
                 items: {
                   type: 'string',
                 },
-
-                maxItems: 50,
               },
             },
           },
         },
-
-        required: ['title', 'recipient'],
       },
     },
   },
@@ -552,6 +548,7 @@ export const ListNotificationsPayloadSchema = {
 export const GetNotificationsResponseSchema = {
   title: 'GetNotificationsResponseSchema',
   type: 'object',
+  required: ['title', 'recipient'],
   additionalProperties: false,
 
   properties: {
@@ -674,18 +671,15 @@ export const GetNotificationsResponseSchema = {
         phone_numbers: {
           type: 'array',
           description: 'An array of phone numbers to use for sending SMS notifications.',
+          maxItems: 50,
 
           items: {
             type: 'string',
           },
-
-          maxItems: 50,
         },
       },
     },
   },
-
-  required: ['title', 'recipient'],
 } as const;
 
 export const MarkAllReadNotificationsPayloadSchema = {
