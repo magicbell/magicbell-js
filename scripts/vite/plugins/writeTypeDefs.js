@@ -16,7 +16,15 @@ export async function writeTypeDefs() {
         this.warn(`package ${pkg.name} does not export any types. Set package.json#typings if this is a mistake.`);
         return;
       }
-      execSync(`tsc --emitDeclarationOnly --declaration --noEmit false --project tsconfig.build.json --outDir dist`);
+
+      try {
+        execSync(`tsc --emitDeclarationOnly --declaration --noEmit false --project tsconfig.build.json --outDir dist`, {
+          stdio: 'inherit',
+          stderr: 'inherit',
+        });
+      } catch (error) {
+        this.error(`Failed to generate types for ${pkg.name}`);
+      }
     },
   };
 }
