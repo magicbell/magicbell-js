@@ -1,6 +1,6 @@
 {
   "name": "ping-vscode",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": true,
   "description": "Ping VSCode extension by Magicbell",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
@@ -109,7 +109,7 @@
     "@primer/octicons-react": "^17.9.0",
     "@stitches/react": "^1.2.8",
     "@vscode/webview-ui-toolkit": "^1.1.0",
-    "magicbell": "1.4.4",
+    "magicbell": "1.5.0",
     "pluralize": "^8.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
