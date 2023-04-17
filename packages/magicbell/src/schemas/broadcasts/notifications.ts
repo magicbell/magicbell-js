@@ -58,65 +58,69 @@ export const ListBroadcastsNotificationsResponseSchema = {
           },
 
           sent_at: {
-            type: 'number',
-            description: 'The timestamp when the notification was sent to its recipients.',
-            readOnly: true,
+            type: 'string',
           },
 
-          user: {
+          recipient: {
             type: 'object',
-            additionalProperties: false,
 
             properties: {
-              id: {
-                type: 'string',
-                description: 'The unique id for this user.',
-                readOnly: true,
-              },
-
-              external_id: {
-                type: 'string',
-                description:
-                  "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
-                maxLength: 255,
-                nullable: true,
-              },
-
-              email: {
-                type: 'string',
-                description: "The user's email.",
-                maxLength: 255,
-                nullable: true,
-              },
-
-              first_name: {
-                type: 'string',
-                description: "The user's first name.",
-                maxLength: 50,
-                nullable: true,
-              },
-
-              last_name: {
-                type: 'string',
-                description: "The user's last name.",
-                maxLength: 50,
-                nullable: true,
-              },
-
-              custom_attributes: {
+              user: {
                 type: 'object',
-                description:
-                  "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
-                additionalProperties: true,
-              },
+                additionalProperties: false,
 
-              phone_numbers: {
-                type: 'array',
-                description: 'An array of phone numbers to use for sending SMS notifications.',
-                maxItems: 50,
+                properties: {
+                  id: {
+                    type: 'string',
+                    description: 'The unique id for this user.',
+                    readOnly: true,
+                  },
 
-                items: {
-                  type: 'string',
+                  external_id: {
+                    type: 'string',
+                    description:
+                      "A unique string that MagicBell can utilize to identify the user uniquely. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
+                    maxLength: 255,
+                    nullable: true,
+                  },
+
+                  email: {
+                    type: 'string',
+                    description: "The user's email.",
+                    maxLength: 255,
+                    nullable: true,
+                  },
+
+                  first_name: {
+                    type: 'string',
+                    description: "The user's first name.",
+                    maxLength: 50,
+                    nullable: true,
+                  },
+
+                  last_name: {
+                    type: 'string',
+                    description: "The user's last name.",
+                    maxLength: 50,
+                    nullable: true,
+                  },
+
+                  custom_attributes: {
+                    type: 'object',
+                    description:
+                      "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
+                    additionalProperties: true,
+                  },
+
+                  phone_numbers: {
+                    type: 'array',
+                    description: 'An array of phone numbers to use for sending SMS notifications.',
+                    maxItems: 50,
+
+                    items: {
+                      type: 'string',
+                    },
+                  },
                 },
               },
             },
@@ -127,16 +131,23 @@ export const ListBroadcastsNotificationsResponseSchema = {
 
             items: {
               type: 'object',
-              required: ['id', 'channel', 'scheduled_at', 'status'],
+              required: ['id', 'title', 'channel', 'scheduled_at', 'status'],
               additionalProperties: false,
 
               properties: {
                 id: {
                   type: 'string',
+                  nullable: false,
+                },
+
+                title: {
+                  type: 'string',
+                  nullable: false,
                 },
 
                 channel: {
                   type: 'string',
+                  nullable: false,
                 },
 
                 scheduled_at: {
@@ -145,8 +156,10 @@ export const ListBroadcastsNotificationsResponseSchema = {
                 },
 
                 status: {
-                  type: 'integer',
+                  type: 'string',
                   description: '0: unseen, 5: unread, 10: read, 20: archived',
+                  enum: ['processing', 'scheduled', 'sent', 'invalid'],
+                  nullable: false,
                 },
               },
             },

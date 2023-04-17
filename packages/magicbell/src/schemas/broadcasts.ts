@@ -34,7 +34,7 @@ export const ListBroadcastsResponseSchema = {
 
       items: {
         type: 'object',
-        required: ['id', 'title', 'sent_at'],
+        required: ['id', 'title', 'created_at', 'recipients', 'status'],
         additionalProperties: false,
 
         properties: {
@@ -90,8 +90,17 @@ export const ListBroadcastsResponseSchema = {
           },
 
           sent_at: {
-            type: 'number',
+            type: 'string',
+            format: 'date-time',
             description: 'The timestamp when the notification was sent to its recipients.',
+            readOnly: true,
+            nullable: true,
+          },
+
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+            description: 'The timestamp when the notification was created.',
             readOnly: true,
           },
 
@@ -139,7 +148,6 @@ export const ListBroadcastsResponseSchema = {
                   properties: {
                     external_id: {
                       type: 'string',
-                      format: 'email',
                       description: 'The identifying external_id of the recipient.',
                       nullable: false,
                     },
@@ -149,32 +157,51 @@ export const ListBroadcastsResponseSchema = {
             },
           },
 
-          recipients_count: {
-            type: 'integer',
-            description: 'The number of recipients that the broadcast was sent to.',
-            readOnly: true,
-            nullable: false,
-          },
-
           overrides: {
             type: 'object',
             additionalProperties: true,
           },
 
-          processing_status: {
-            status: 'string',
+          status: {
+            type: 'object',
+            required: ['status', 'summary', 'errors'],
+            additionalProperties: true,
 
-            summary: {
-              type: 'object',
-              additionalProperties: false,
+            properties: {
+              status: {
+                type: 'string',
+                readOnly: true,
+                nullable: false,
+              },
 
-              properties: {
-                total: {
-                  type: 'integer',
+              summary: {
+                type: 'object',
+                required: ['total', 'failures'],
+                additionalProperties: false,
+
+                properties: {
+                  total: {
+                    type: 'integer',
+                    description: 'The number of recipients that the broadcast was sent to.',
+                    readOnly: true,
+                    nullable: false,
+                  },
+
+                  failures: {
+                    type: 'integer',
+                    description: 'The number of failures while processing the broadcast.',
+                    readOnly: true,
+                    nullable: false,
+                  },
                 },
+              },
 
-                failures: {
-                  type: 'integer',
+              errors: {
+                type: 'array',
+
+                items: {
+                  type: 'object',
+                  additionalProperties: true,
                 },
               },
             },
@@ -210,7 +237,7 @@ export const ListBroadcastsPayloadSchema = {
 export const GetBroadcastsResponseSchema = {
   title: 'GetBroadcastsResponseSchema',
   type: 'object',
-  required: ['id', 'title', 'sent_at'],
+  required: ['id', 'title', 'created_at', 'recipients', 'status'],
   additionalProperties: false,
 
   properties: {
@@ -265,8 +292,17 @@ export const GetBroadcastsResponseSchema = {
     },
 
     sent_at: {
-      type: 'number',
+      type: 'string',
+      format: 'date-time',
       description: 'The timestamp when the notification was sent to its recipients.',
+      readOnly: true,
+      nullable: true,
+    },
+
+    created_at: {
+      type: 'string',
+      format: 'date-time',
+      description: 'The timestamp when the notification was created.',
       readOnly: true,
     },
 
@@ -314,7 +350,6 @@ export const GetBroadcastsResponseSchema = {
             properties: {
               external_id: {
                 type: 'string',
-                format: 'email',
                 description: 'The identifying external_id of the recipient.',
                 nullable: false,
               },
@@ -324,32 +359,51 @@ export const GetBroadcastsResponseSchema = {
       },
     },
 
-    recipients_count: {
-      type: 'integer',
-      description: 'The number of recipients that the broadcast was sent to.',
-      readOnly: true,
-      nullable: false,
-    },
-
     overrides: {
       type: 'object',
       additionalProperties: true,
     },
 
-    processing_status: {
-      status: 'string',
+    status: {
+      type: 'object',
+      required: ['status', 'summary', 'errors'],
+      additionalProperties: true,
 
-      summary: {
-        type: 'object',
-        additionalProperties: false,
+      properties: {
+        status: {
+          type: 'string',
+          readOnly: true,
+          nullable: false,
+        },
 
-        properties: {
-          total: {
-            type: 'integer',
+        summary: {
+          type: 'object',
+          required: ['total', 'failures'],
+          additionalProperties: false,
+
+          properties: {
+            total: {
+              type: 'integer',
+              description: 'The number of recipients that the broadcast was sent to.',
+              readOnly: true,
+              nullable: false,
+            },
+
+            failures: {
+              type: 'integer',
+              description: 'The number of failures while processing the broadcast.',
+              readOnly: true,
+              nullable: false,
+            },
           },
+        },
 
-          failures: {
-            type: 'integer',
+        errors: {
+          type: 'array',
+
+          items: {
+            type: 'object',
+            additionalProperties: true,
           },
         },
       },
