@@ -1,5 +1,44 @@
 # magicbell
 
+## 1.5.0
+
+### Minor Changes
+
+- [#83](https://github.com/magicbell-io/magicbell-js/pull/83) [`94cbb92`](https://github.com/magicbell-io/magicbell-js/commit/94cbb927bbc88791100dbb10c5be519d1f598a72) Thanks [@smeijer](https://github.com/smeijer)! - feat: add broadcasts.list method to the client.
+
+  ```ts
+  const broadcasts = magicbell.broadcasts.list({ per_page: 10 });
+
+  await broadcasts.forEach((broadcast) => {
+    console.log(broadcast.id);
+  });
+  ```
+
+- [#84](https://github.com/magicbell-io/magicbell-js/pull/84) [`b0a809d`](https://github.com/magicbell-io/magicbell-js/commit/b0a809db0fbc074a5a10b011bc84561285def6c4) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.get` method to the client.
+
+  ```ts
+  const broadcasts = await magicbell.broadcasts.get(broadcastId);
+  console.log(broadcast.id);
+  ```
+
+- [#86](https://github.com/magicbell-io/magicbell-js/pull/86) [`073e3f8`](https://github.com/magicbell-io/magicbell-js/commit/073e3f840932ccad8a63ba390c1ebaf59e95903e) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.notifications.list` method to the client.
+
+  ```ts
+  const notifications = magicbell.broadcasts.notifications.list(broadcastId, { per_page: 10 });
+
+  await notifications.forEach((notification) => {
+    console.log(notification.id);
+  });
+  ```
+
+- [#87](https://github.com/magicbell-io/magicbell-js/pull/87) [`f0ec9a5`](https://github.com/magicbell-io/magicbell-js/commit/f0ec9a5258d2053a0f9d87108308808b6f1f1411) Thanks [@smeijer](https://github.com/smeijer)! - Update schemas for broadcast methods.
+
+  - dropped `broadcast.recipients_count`, use `broadcast.status.summary.total` instead.
+  - broadcast notification `status` is now an enum string.
+  - changed `sent_at` timestamps to be iso-strings.
+  - added `created_at` to broadcast.
+  - added `title` to broadcast notification
+
 ## 1.4.4
 
 ### Patch Changes
