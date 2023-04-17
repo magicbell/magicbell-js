@@ -14,6 +14,13 @@
   });
   ```
 
+- [#84](https://github.com/magicbell-io/magicbell-js/pull/84) [`b0a809d`](https://github.com/magicbell-io/magicbell-js/commit/b0a809db0fbc074a5a10b011bc84561285def6c4) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.get` method to the client.
+
+  ```ts
+  const broadcasts = await magicbell.broadcasts.get(broadcastId);
+  console.log(broadcast.id);
+  ```
+
 - [#86](https://github.com/magicbell-io/magicbell-js/pull/86) [`073e3f8`](https://github.com/magicbell-io/magicbell-js/commit/073e3f840932ccad8a63ba390c1ebaf59e95903e) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.notifications.list` method to the client.
 
   ```ts
@@ -31,13 +38,6 @@
   - changed `sent_at` timestamps to be iso-strings.
   - added `created_at` to broadcast.
   - added `title` to broadcast notification
-
-- [#84](https://github.com/magicbell-io/magicbell-js/pull/84) [`b0a809d`](https://github.com/magicbell-io/magicbell-js/commit/b0a809db0fbc074a5a10b011bc84561285def6c4) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.get` method to the client.
-
-  ```ts
-  const broadcasts = await magicbell.broadcasts.get(broadcastId);
-  console.log(broadcast.id);
-  ```
 
 ## 1.4.4
 
