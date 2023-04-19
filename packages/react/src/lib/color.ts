@@ -7,6 +7,8 @@ import tinycolor from 'tinycolor2';
  * @param alpha Alpha for this color
  */
 export function toRGBA(baseColor: string, alpha: number) {
+  // tinycolor doesn't support css variables, so assume the variable is correct as is
+  if (baseColor.startsWith('var(')) return baseColor; 
   const color = tinycolor(baseColor);
   color.setAlpha(alpha);
 
