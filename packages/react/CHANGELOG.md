@@ -1,5 +1,25 @@
 # @magicbell/magicbell-react
 
+## 10.6.0
+
+### Minor Changes
+
+- [#88](https://github.com/magicbell-io/magicbell-js/pull/88) [`7f9ecbc`](https://github.com/magicbell-io/magicbell-js/commit/7f9ecbc3594af2035b4fa063adc593a7fe4c722c) Thanks [@TD-4242](https://github.com/TD-4242)! - feat: support css variables as theme color value
+
+  ```tsx
+  import MagicBell, { NotificationInbox } from '@magicbell/magicbell-react';
+
+  const customTheme = {
+    icon: {
+      borderColor: 'var(--magicbell-icon-border-color)',
+    },
+  };
+
+  <MagicBell theme={customTheme} apiKey={...} userEmail={...}>
+      {() => <NotificationInbox height={500} />}
+  </MagicBell>
+  ```
+
 ## 10.5.2
 
 ### Patch Changes
