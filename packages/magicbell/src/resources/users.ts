@@ -12,7 +12,7 @@ type CreateUsersResponse = FromSchema<typeof schemas.CreateUsersResponseSchema>;
 type CreateUsersPayload = FromSchema<typeof schemas.CreateUsersPayloadSchema>;
 type ListUsersResponse = FromSchema<typeof schemas.ListUsersResponseSchema>;
 type ListUsersPayload = FromSchema<typeof schemas.ListUsersPayloadSchema>;
-type FetchUsersResponse = FromSchema<typeof schemas.FetchUsersResponseSchema>;
+type GetUsersResponse = FromSchema<typeof schemas.GetUsersResponseSchema>;
 type UpdateUsersResponse = FromSchema<typeof schemas.UpdateUsersResponseSchema>;
 type UpdateUsersPayload = FromSchema<typeof schemas.UpdateUsersPayloadSchema>;
 type UpdateByEmailUsersResponse = FromSchema<typeof schemas.UpdateByEmailUsersResponseSchema>;
@@ -95,7 +95,7 @@ export class Users extends Resource {
    * @param options - override client request options.
    * @returns
    **/
-  fetch(userId: string, options?: RequestOptions): Promise<FetchUsersResponse> {
+  get(userId: string, options?: RequestOptions): Promise<GetUsersResponse> {
     return this.request(
       {
         method: 'GET',
