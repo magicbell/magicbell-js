@@ -262,8 +262,8 @@ export const ListUsersPayloadSchema = {
   required: [],
 } as const;
 
-export const FetchUsersResponseSchema = {
-  title: 'FetchUsersResponseSchema',
+export const GetUsersResponseSchema = {
+  title: 'GetUsersResponseSchema',
   type: 'object',
   additionalProperties: false,
 

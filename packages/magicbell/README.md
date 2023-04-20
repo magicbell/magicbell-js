@@ -587,12 +587,12 @@ await magicbell.users.list({
 });
 ```
 
-#### Fetch user by ID
+#### Get user by ID
 
 Fetch a user by id, for the project identified by the auth keys.
 
 ```js
-await magicbell.users.fetch('{user_id}');
+await magicbell.users.get('{user_id}');
 ```
 
 #### Update a user
