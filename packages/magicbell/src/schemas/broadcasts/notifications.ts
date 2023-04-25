@@ -34,6 +34,7 @@ export const ListBroadcastsNotificationsResponseSchema = {
 
       items: {
         type: 'object',
+        required: ['id', 'created_at', 'updated_at', 'status', 'recipient', 'deliveries'],
 
         properties: {
           id: {
@@ -57,15 +58,48 @@ export const ListBroadcastsNotificationsResponseSchema = {
             maxLength: 100,
           },
 
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+            nullable: false,
+          },
+
+          updated_at: {
+            type: 'string',
+            format: 'date-time',
+            nullable: false,
+          },
+
           sent_at: {
             type: 'string',
+            format: 'date-time',
+            nullable: true,
+          },
+
+          read_at: {
+            type: 'string',
+            format: 'date-time',
+            nullable: true,
+          },
+
+          seen_at: {
+            type: 'string',
+            format: 'date-time',
+            nullable: true,
+          },
+
+          status: {
+            type: 'string',
+            enum: ['unseen', 'unread', 'read', 'archived'],
           },
 
           recipient: {
             type: 'object',
+            nullable: false,
 
             properties: {
               user: {
+                nullable: false,
                 type: 'object',
                 additionalProperties: false,
 
@@ -128,6 +162,7 @@ export const ListBroadcastsNotificationsResponseSchema = {
 
           deliveries: {
             type: 'array',
+            nullable: false,
 
             items: {
               type: 'object',
@@ -142,7 +177,7 @@ export const ListBroadcastsNotificationsResponseSchema = {
 
                 title: {
                   type: 'string',
-                  nullable: false,
+                  nullable: true,
                 },
 
                 channel: {
@@ -157,7 +192,7 @@ export const ListBroadcastsNotificationsResponseSchema = {
 
                 status: {
                   type: 'string',
-                  description: '0: unseen, 5: unread, 10: read, 20: archived',
+                  description: 'The status of the notification delivery.',
                   enum: ['processing', 'scheduled', 'sent', 'invalid'],
                   nullable: false,
                 },

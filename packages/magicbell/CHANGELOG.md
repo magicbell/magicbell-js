@@ -1,5 +1,24 @@
 # magicbell
 
+## 1.6.0
+
+### Minor Changes
+
+- [#90](https://github.com/magicbell-io/magicbell-js/pull/90) [`ea0a9ca`](https://github.com/magicbell-io/magicbell-js/commit/ea0a9ca456cb9c82f6e6d4b9d0add512bce22a0e) Thanks [@smeijer](https://github.com/smeijer)! - update broadcast > notification response schema to include the fields:
+
+  - `created_at`; datetime when notification was created
+  - `updated_at`; datetime when notification was last updated
+  - `seen_at`; datetime when notification was first seen
+  - `read_at`; datetime when notification was first read
+  - `status`; enum showing current state, current values: `unseen`, `unread`, `read`, `archived`
+
+  Further changes are:
+
+  - `recipient`; is marked as non-nullable
+  - `deliveries`; is marked as non-nullable
+
+- [#92](https://github.com/magicbell-io/magicbell-js/pull/92) [`530476e`](https://github.com/magicbell-io/magicbell-js/commit/530476e3d8f79c8c5176661316d2cdb46e424236) Thanks [@smeijer](https://github.com/smeijer)! - Rename `users.fetch` to `users.get`. Tho it's in theory a breaking change, the users api is relatively new, and the convention in this sdk is to use `get` for single entity retrieval, and not `fetch`. So we're going with a `minor` instead to get this fixed.
+
 ## 1.5.0
 
 ### Minor Changes
