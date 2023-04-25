@@ -1,5 +1,5 @@
 ---
-'@magicbell/webpush': major
+'@magicbell/webpush': minor
 ---
 
 Publish `@magicbell/webpush`, this package provides a convenient interface to subscribe to browser/web push notifications using [MagicBell](https://magicbell.com).
