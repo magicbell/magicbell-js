@@ -1,0 +1,42 @@
+{
+  "name": "@magicbell/webpush",
+  "version": "0.0.0",
+  "description": "MagicBell WebPush SDK",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/magicbell-webpush.esm.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "notifications",
+    "notification center",
+    "notification inbox",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/magicbell-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magicbell-io/magicbell-js/issues"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean build:*",
+    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
+    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "start": "yarn build:dev --watch",
+    "size": "size-limit"
+  }
+}
