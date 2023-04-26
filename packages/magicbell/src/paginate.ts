@@ -3,12 +3,16 @@ import { hasOwn } from './lib/utils';
 export const ASYNC_ITERATOR_SYMBOL =
   typeof Symbol !== 'undefined' && Symbol.asyncIterator ? Symbol.asyncIterator : '@@asyncIterator';
 
-function hasMore(pageResult) {
-  return (
-    hasOwn(pageResult, 'current_page') &&
-    hasOwn(pageResult, 'total_pages') &&
-    pageResult.current_page < pageResult.total_pages
-  );
+function hasMore(pageResult, nodeCount: number) {
+  if (!hasOwn(pageResult, 'current_page') || !hasOwn(pageResult, 'per_page')) {
+    return false;
+  }
+
+  if (hasOwn(pageResult, 'total_pages')) {
+    return pageResult.current_page < pageResult.total_pages;
+  }
+
+  return nodeCount === pageResult.per_page;
 }
 
 export function autoPaginate(makeRequest, { data, params }) {
@@ -39,7 +43,7 @@ export function autoPaginate(makeRequest, { data, params }) {
       return { value, done: false };
     }
 
-    if (hasMore(pageResult)) {
+    if (hasMore(pageResult, data.length)) {
       // Reset counter, request next page, and recurse.
       i = 0;
       request = getNextPage(pageResult);

@@ -2,24 +2,12 @@
 export const ListBroadcastsResponseSchema = {
   title: 'ListBroadcastsResponseSchema',
   type: 'object',
-  required: ['broadcasts', 'current_page', 'per_page', 'total', 'total_pages'],
+  required: ['broadcasts', 'current_page', 'per_page'],
 
   properties: {
-    total: {
-      type: 'integer',
-      description: 'Total number of entities for this query.',
-      readOnly: true,
-    },
-
     per_page: {
       type: 'integer',
       description: 'Number of entities per page.',
-      readOnly: true,
-    },
-
-    total_pages: {
-      type: 'integer',
-      description: 'Total number of pages.',
       readOnly: true,
     },
 
