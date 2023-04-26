@@ -22,7 +22,7 @@ type Config = {
 
 const api = {
   async getConfig({ token, project, baseURL }: { token: string; project: string; baseURL: string }) {
-    return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&${project}`, {
+    return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&project=${project}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
