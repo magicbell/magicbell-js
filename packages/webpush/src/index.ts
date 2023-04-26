@@ -12,6 +12,12 @@ function stringToUint8Array(plainString: string) {
   return outputArray;
 }
 
+type RequestOptions = {
+  token: string;
+  project: string;
+  baseURL: string;
+};
+
 type Config = {
   user: { id: string; email?: string | null; external_id?: string | null; hmac?: string | null };
   project: { id: number; subdomain: string; api_key: string; vapid_public_key: string };
@@ -21,7 +27,7 @@ type Config = {
 };
 
 const api = {
-  async getConfig({ token, project, baseURL }: { token: string; project: string; baseURL: string }) {
+  async getConfig({ token, project, baseURL }: RequestOptions) {
     return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&project=${project}`, {
       method: 'GET',
       headers: {
@@ -33,19 +39,12 @@ const api = {
       .then((x) => ({ ...x.push_subscription, baseURL, safariPushURL: `${baseURL}/safari/push` }));
   },
 
-  async updateSubscription({ user, project, baseURL }: Config, subscription: PushSubscriptionJSON) {
-    const headers: Record<string, string> = {};
-    if (user.email) headers['x-magicbell-user-email'] = user.email;
-    if (user.external_id) headers['x-magicbell-user-external-id'] = user.external_id;
-    if (user.hmac) headers['x-magicbell-user-hmac'] = user.hmac;
-
-    return fetch(`${baseURL}/web_push_subscriptions`, {
+  async updateSubscription({ token, project, baseURL }: RequestOptions, subscription: PushSubscriptionJSON) {
+    return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&project=${project}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
-        'x-magicbell-api-key': project.api_key,
-        ...headers,
       },
       body: JSON.stringify({
         web_push_subscription: {
@@ -62,7 +61,8 @@ const api = {
  * Request permission to send push notifications and post the subscription to the MagicBell API.
  */
 export async function subscribe(options: { token: string; project: string; host?: string }) {
-  const config = await api.getConfig({ ...options, baseURL: options.host || location.origin });
+  const requestOptions = { ...options, baseURL: options.host || location.origin };
+  const config = await api.getConfig(requestOptions);
 
   if (!('PushManager' in window) && !('safari' in window)) {
     throw new Error('Push notifications are not supported in this browser');
@@ -73,7 +73,7 @@ export async function subscribe(options: { token: string; project: string; host?
     : await createPushSubscription(config);
 
   if (!('endpoint' in subscription)) return;
-  await api.updateSubscription(config, subscription);
+  await api.updateSubscription(requestOptions, subscription);
 }
 
 async function createPushSubscription(config: Config): Promise<PushSubscriptionJSON> {
