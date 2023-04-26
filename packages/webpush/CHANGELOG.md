@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 0.1.2
+
+### Patch Changes
+
+- [`2dbd982`](https://github.com/magicbell-io/magicbell-js/commit/2dbd982b750736809525a00d083f06b5fe9cb9e2) Thanks [@smeijer](https://github.com/smeijer)! - fix: correct project param
+
 ## 0.1.1
 
 ### Patch Changes
