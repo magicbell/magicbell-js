@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 0.1.3
+
+### Patch Changes
+
+- [#104](https://github.com/magicbell-io/magicbell-js/pull/104) [`6454a1b`](https://github.com/magicbell-io/magicbell-js/commit/6454a1b0cb1de65e700bc065ab89c41f0e5c549a) Thanks [@smeijer](https://github.com/smeijer)! - fix: use jwt token for post request
+
 ## 0.1.2
 
 ### Patch Changes
