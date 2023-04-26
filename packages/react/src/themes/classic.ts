@@ -66,6 +66,11 @@ export const classicTheme: DeepPartial<IMagicBellTheme> = {
     fontSize: '12px',
     boxShadow: 'none',
   },
+  dialog: {
+    backgroundColor: colors.bg,
+    textColor: colors.text,
+    accentColor: colors.accent,
+  },
   unseenBadge: {
     backgroundColor: colors.badge,
     backgroundOpacity: 1,

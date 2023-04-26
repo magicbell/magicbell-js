@@ -83,6 +83,11 @@ export interface IMagicBellTheme {
     unread: NotificationTheme;
     unseen: NotificationTheme;
   };
+  dialog: {
+    backgroundColor: string;
+    textColor: string;
+    accentColor: string;
+  };
 }
 
 export const defaultTheme: IMagicBellTheme = lightTheme;
