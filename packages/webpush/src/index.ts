@@ -21,8 +21,8 @@ type Config = {
 };
 
 const api = {
-  async getConfig({ token, baseURL }: { token: string; baseURL: string }) {
-    return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}`, {
+  async getConfig({ token, project, baseURL }: { token: string; project: string; baseURL: string }) {
+    return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&${project}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const api = {
 /**
  * Request permission to send push notifications and post the subscription to the MagicBell API.
  */
-export async function subscribe(options: { token: string; host?: string }) {
+export async function subscribe(options: { token: string; project: string; host?: string }) {
   const config = await api.getConfig({ ...options, baseURL: options.host || location.origin });
 
   if (!('PushManager' in window) && !('safari' in window)) {
