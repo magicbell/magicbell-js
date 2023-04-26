@@ -1,5 +1,17 @@
 # magicbell
 
+## 1.7.0
+
+### Minor Changes
+
+- [#95](https://github.com/magicbell-io/magicbell-js/pull/95) [`87b781b`](https://github.com/magicbell-io/magicbell-js/commit/87b781be77fd66d89ae46567d0f8a5788acd588e) Thanks [@smeijer](https://github.com/smeijer)! - The `total` and `total_pages` props are removed from the following method return types:
+
+  - `magicbell.broadcasts.list()`
+  - `magicbell.broadcasts.notifications.list()`
+  - `magicbell.users.list()`
+
+  The [auto pagination](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#using-promises) methods are updated to support the paginated responses that do not have those fields. Thereby, pagination helpers like `.list().forEach()`, `.list().toArray()` and the iterator in `for await (const node of method.list())` keep working as before.
+
 ## 1.6.0
 
 ### Minor Changes
