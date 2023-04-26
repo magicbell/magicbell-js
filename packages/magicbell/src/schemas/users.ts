@@ -116,25 +116,22 @@ export const CreateUsersPayloadSchema = {
 export const ListUsersResponseSchema = {
   title: 'ListUsersResponseSchema',
   type: 'object',
+  required: ['current_page', 'per_page', 'user'],
 
   properties: {
     per_page: {
       type: 'integer',
+      description: 'Number of entities per page.',
+      readOnly: true,
     },
 
     current_page: {
       type: 'integer',
+      description: 'Number of the page returned.',
+      readOnly: true,
     },
 
-    total_pages: {
-      type: 'integer',
-    },
-
-    total: {
-      type: 'integer',
-    },
-
-    users: {
+    user: {
       type: 'array',
 
       items: {

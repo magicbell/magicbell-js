@@ -2,24 +2,12 @@
 export const ListBroadcastsNotificationsResponseSchema = {
   title: 'ListBroadcastsNotificationsResponseSchema',
   type: 'object',
-  required: ['current_page', 'notifications', 'per_page', 'total', 'total_pages'],
+  required: ['current_page', 'notifications', 'per_page'],
 
   properties: {
-    total: {
-      type: 'integer',
-      description: 'Total number of entities for this query.',
-      readOnly: true,
-    },
-
     per_page: {
       type: 'integer',
       description: 'Number of entities per page.',
-      readOnly: true,
-    },
-
-    total_pages: {
-      type: 'integer',
-      description: 'Total number of pages.',
       readOnly: true,
     },
 
