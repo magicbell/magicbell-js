@@ -116,7 +116,7 @@ export const CreateUsersPayloadSchema = {
 export const ListUsersResponseSchema = {
   title: 'ListUsersResponseSchema',
   type: 'object',
-  required: ['current_page', 'per_page', 'user'],
+  required: ['current_page', 'per_page', 'users'],
 
   properties: {
     per_page: {
@@ -131,7 +131,7 @@ export const ListUsersResponseSchema = {
       readOnly: true,
     },
 
-    user: {
+    users: {
       type: 'array',
 
       items: {
