@@ -41,7 +41,7 @@ export default function EnablePushNotificationsBanner() {
     if (accentColor && backgroundColor && textColor) {
       url.searchParams.set('background_color', backgroundColor);
       url.searchParams.set('text_color', textColor);
-      url.searchParams.set('accent_color', textColor);
+      url.searchParams.set('accent_color', accentColor);
     }
 
     setRequestedAt(Date.now());
