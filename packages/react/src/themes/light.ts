@@ -147,6 +147,12 @@ const unreadNotification: IMagicBellTheme['notification']['unread'] = {
   },
 };
 
+const dialog: IMagicBellTheme['dialog'] = {
+  backgroundColor: colors.bg,
+  textColor: colors.text,
+  accentColor: colors.accent,
+};
+
 export const lightTheme: IMagicBellTheme = {
   prose,
   icon,
@@ -154,6 +160,7 @@ export const lightTheme: IMagicBellTheme = {
   header,
   footer,
   banner,
+  dialog,
   unseenBadge,
   container,
   notification: {

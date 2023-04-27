@@ -18,12 +18,10 @@ import EnablePushNotificationsButton from './EnablePushNotificationsButton';
  * <EnablePushNotificationsBanner />
  */
 export default function EnablePushNotificationsBanner() {
-  const config = useConfig();
-  const { channels } = config;
+  const { channels } = useConfig();
   const isWebPushEnabled = pathOr(false, ['webPush', 'enabled'], channels);
 
-  const { getState } = clientSettings;
-  const { apiKey, userEmail, userExternalId } = getState();
+  const { apiKey, userEmail, userExternalId } = clientSettings.getState();
 
   const theme = useTheme();
 
@@ -34,14 +32,17 @@ export default function EnablePushNotificationsBanner() {
 
   const enablePushNotifications = () => {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
-
-    const { backgroundColor, textColor } = theme.header;
+    const { accentColor, backgroundColor, textColor } = theme.dialog;
 
     const url = new URL(subscribeUrl);
-    if (userEmail) url.searchParams.append('user_email', userEmail);
-    if (userExternalId) url.searchParams.append('user_external_id', userExternalId);
-    if (backgroundColor) url.searchParams.append('background_color', backgroundColor);
-    if (textColor) url.searchParams.append('text_color', textColor);
+    if (userEmail) url.searchParams.set('user_email', userEmail);
+    if (userExternalId) url.searchParams.set('user_external_id', userExternalId);
+
+    if (accentColor && backgroundColor && textColor) {
+      url.searchParams.set('background_color', backgroundColor);
+      url.searchParams.set('text_color', textColor);
+      url.searchParams.set('accent_color', textColor);
+    }
 
     setRequestedAt(Date.now());
     openWindow(url.toString());
