@@ -1,5 +1,25 @@
 # @magicbell/magicbell-react
 
+## 10.7.0
+
+### Minor Changes
+
+- [#103](https://github.com/magicbell-io/magicbell-js/pull/103) [`e83a694`](https://github.com/magicbell-io/magicbell-js/commit/e83a694e3f681e3edd6aeb7708e430811e14bc15) Thanks [@smeijer](https://github.com/smeijer)! - feat: Add support for theming the enable-push-subscriptions dialog.
+
+  ```typescript jsx
+  const theme = {
+    dialog: {
+      backgroundColor: '#FFFFFF',
+      textColor: '#3A424D',
+      accentColor: '#5225C1',
+    }
+  }
+
+  <MagicBell theme={theme} apiKey={...} userEmail={...}>
+      {() => <NotificationInbox height={500} />}
+  </MagicBell>
+  ```
+
 ## 10.6.0
 
 ### Minor Changes
