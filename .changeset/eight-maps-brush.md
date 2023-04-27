@@ -3,7 +3,6 @@
 ---
 
 feat: Add support for theming the enable-push-subscriptions dialog.
-.
 
 ```typescript jsx
 const theme = {
