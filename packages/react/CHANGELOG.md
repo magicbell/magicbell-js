@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 10.7.1
+
+### Patch Changes
+
+- [#107](https://github.com/magicbell-io/magicbell-js/pull/107) [`eb256a1`](https://github.com/magicbell-io/magicbell-js/commit/eb256a1d0bc11f628975d5ce1e40e20c97fc0d47) Thanks [@smeijer](https://github.com/smeijer)! - fix: use accent color for dialog buttons
+
 ## 10.7.0
 
 ### Minor Changes
