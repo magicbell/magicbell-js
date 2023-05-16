@@ -11,6 +11,7 @@
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
+      "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
       "ping-vscode": ["packages/ping-vscode/src"],
       "playground": ["packages/playground/src"]

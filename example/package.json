@@ -20,6 +20,7 @@
     "@magicbell/embeddable": "../packages/embeddable",
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
+    "@magicbell/webpush": "../packages/webpush",
     "magicbell": "../packages/magicbell",
     "ping-vscode": "../packages/ping-vscode",
     "playground": "../packages/playground"
