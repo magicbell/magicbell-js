@@ -1,0 +1,53 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:base', ':disableDependencyDashboard'],
+  schedule: ['before 5am every weekday'],
+  prHourlyLimit: 2,
+  prConcurrentLimit: 4,
+  postUpdateOptions: ['yarnDedupeHighest'],
+  rangeStrategy: 'bump',
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true
+  },
+  packageRules: [
+    {
+      matchPackagePatterns: ['*'],
+      automerge: false
+    },
+    {
+      matchDepTypes: ['devDependencies'],
+      automerge: true,
+      automergeType: 'branch',
+      matchUpdateTypes: ['minor', 'patch'],
+      matchCurrentVersion: ',!/^0/',
+    },
+    {
+      matchPaths: ['package.json'],
+      automerge: true,
+      automergeType: 'branch',
+      matchUpdateTypes: ['minor', 'patch'],
+      matchCurrentVersion: ',!/^0/',
+    },
+    {
+      matchPackagePatterns: ['eslint'],
+      groupName: 'eslint packages',
+    },
+    {
+      matchPackagePatterns: ['prettier'],
+      groupName: 'prettier packages',
+    },
+    {
+      matchPackagePatterns: ['vite'],
+      groupName: 'vite packages',
+    },
+    {
+      matchPackagePatterns: ['@testing-library'],
+      groupName: 'testing-library packages',
+    },
+    {
+      matchPackagePatterns: ['@preact'],
+      groupName: 'preact packages',
+    }
+  ]
+}
