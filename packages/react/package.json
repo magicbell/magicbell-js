@@ -62,7 +62,7 @@
     "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.184",
     "@types/rosie": "^0.0.40",
-    "@types/sinon": "^10.0.6",
+    "@types/sinon": "^10.0.15",
     "@types/tinycolor2": "^1.4.2",
     "codecov": "^3.8.3",
     "faker": "^5.5.3",
