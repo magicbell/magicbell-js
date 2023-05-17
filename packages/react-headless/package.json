@@ -61,7 +61,7 @@
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/lodash": "^4.14.184",
     "@types/ramda": "^0.28.0",
-    "@types/rosie": "^0.0.40",
+    "@types/rosie": "^0.0.42",
     "babel-loader": "^8.2.2",
     "miragejs": "^0.1.42",
     "react": "^17.0.2",

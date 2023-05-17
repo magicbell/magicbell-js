@@ -4179,10 +4179,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rosie@^0.0.40":
-  version "0.0.40"
-  resolved "https://registry.yarnpkg.com/@types/rosie/-/rosie-0.0.40.tgz#3fe51a3ac08d2f1a335999e74ee7b8743610ab11"
-  integrity sha512-Snog8oO88AXDhFG1BHPkKSg2urcGhyA+/fqQUuc4Abejt+HHrc2VszujyJGVBlN6DD8Gnp3PV5rogs3uYt/ZOA==
+"@types/rosie@^0.0.42":
+  version "0.0.42"
+  resolved "https://registry.yarnpkg.com/@types/rosie/-/rosie-0.0.42.tgz#c75c5e32d792433fb4a41b181b7cf70ce50adbce"
+  integrity sha512-E2SDCwF2s42y9871tiHBZmOoa7DjoUeELr36iGSSojobmHlFd8Tob3EtNsLAmQ/G+TZfc8Ycww8EEdRmQIr7Wg==
 
 "@types/scheduler@*":
   version "0.16.2"
