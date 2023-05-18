@@ -8,6 +8,7 @@ on:
       - 'next'
       - 'alpha'
       - 'beta'
+      - 'renovate/**'
       - '!all-contributors/**'
   pull_request:
     types: [opened, synchronize, reopened]
