@@ -12,22 +12,18 @@
   },
   packageRules: [
     {
-      matchPackagePatterns: ['*'],
-      automerge: false
-    },
-    {
       matchDepTypes: ['devDependencies'],
       automerge: true,
       automergeType: 'branch',
       matchUpdateTypes: ['minor', 'patch'],
-      matchCurrentVersion: ',!/^0/',
+      matchCurrentVersion: '!/^0/'
     },
     {
-      matchPaths: ['package.json'],
+      matchFiles: ['package.json', 'yarn.lock'],
       automerge: true,
       automergeType: 'branch',
       matchUpdateTypes: ['minor', 'patch'],
-      matchCurrentVersion: ',!/^0/',
+      matchCurrentVersion: '!/^0/'
     },
     {
       matchPackagePatterns: ['eslint'],
