@@ -54,7 +54,7 @@
     "@magicbell/codegen": "^0.0.1",
     "@size-limit/preset-small-lib": "^8.0.1",
     "ast-types": "^0.14.2",
-    "json5": "^2.2.1",
+    "json5": "^2.2.3",
     "openapi-types": "^12.0.2",
     "portfinder": "^1.0.32",
     "recast": "^0.21.5",
