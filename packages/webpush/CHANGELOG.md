@@ -1,5 +1,28 @@
 # @magicbell/webpush
 
+## 1.0.0
+
+### Major Changes
+
+- [#119](https://github.com/magicbell-io/magicbell-js/pull/119) [`549c8a9`](https://github.com/magicbell-io/magicbell-js/commit/549c8a911bdb8bb4467c90398de6d130451be818) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `registerServiceWorker` method that can be used to register a service
+  worker, prior to calling `subscribe`. This preflight allows for a faster
+  subscription process.
+
+  Registration will be skipped if a service worker is already registered. In which
+  case, the active registration will be returned.
+
+  The returned promise resolves when the registration is ready.
+
+  ```js
+  import { registerServiceWorker } from '@magicbell/webpush';
+  registerServiceWorker({ path: '/sw.js' });
+  ```
+
+  **NOTE:**
+
+  This milestone also marks the `@magicbell/webpush` as stable. We will be following
+  [semantic versioning](https://semver.org/) going forward.
+
 ## 0.1.3
 
 ### Patch Changes

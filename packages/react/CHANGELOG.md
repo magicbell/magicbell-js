@@ -1,5 +1,36 @@
 # @magicbell/magicbell-react
 
+## 10.7.2
+
+### Patch Changes
+
+- [#113](https://github.com/magicbell-io/magicbell-js/pull/113) [`6e5297e`](https://github.com/magicbell-io/magicbell-js/commit/6e5297e06b70df0c66af346953ca2bfd56aadc80) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/sinon` to `^10.0.15`.
+
+- [#111](https://github.com/magicbell-io/magicbell-js/pull/111) [`8987a92`](https://github.com/magicbell-io/magicbell-js/commit/8987a92fe0d48999514228d09a2c89cfcc6e4716) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.194`.
+
+- [#120](https://github.com/magicbell-io/magicbell-js/pull/120) [`9e98288`](https://github.com/magicbell-io/magicbell-js/commit/9e982889f37e70702f24dcc87296406d25623a8c) Thanks [@smeijer](https://github.com/smeijer)! - Updates the `PushNotificationsSubscriber` component to use our `@magicbell/webpush`
+  SDK. This change makes it compatible with the latest browsers and our updated API.
+
+  ```jsx
+  import { PushNotificationsSubscriber } from '@magicbell/magicbell-react';
+
+  function MyComponent() {
+    return (
+      <PushNotificationsSubscriber serviceWorkerPath="/service-worker.js">
+        {({ createSubscription }) => <button onClick={createSubscription}>Enable push notifications</button>}
+      </PushNotificationsSubscriber>
+    );
+  }
+  ```
+
+- Updated dependencies [[`c030ce4`](https://github.com/magicbell-io/magicbell-js/commit/c030ce41e094c19b62cbabbbe62f8e3b0ceeb31f), [`8987a92`](https://github.com/magicbell-io/magicbell-js/commit/8987a92fe0d48999514228d09a2c89cfcc6e4716), [`5bd3ac7`](https://github.com/magicbell-io/magicbell-js/commit/5bd3ac767602d06409dafcd9a144e5c18fbfd55c), [`549c8a9`](https://github.com/magicbell-io/magicbell-js/commit/549c8a911bdb8bb4467c90398de6d130451be818)]:
+  - @magicbell/react-headless@4.2.7
+  - @magicbell/webpush@1.0.0
+
 ## 10.7.1
 
 ### Patch Changes

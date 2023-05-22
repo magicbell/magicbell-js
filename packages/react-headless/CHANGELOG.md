@@ -1,5 +1,21 @@
 # @magicbell/react-headless
 
+## 4.2.7
+
+### Patch Changes
+
+- [#110](https://github.com/magicbell-io/magicbell-js/pull/110) [`c030ce4`](https://github.com/magicbell-io/magicbell-js/commit/c030ce41e094c19b62cbabbbe62f8e3b0ceeb31f) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@faker-js/faker` to `^6.3.1`.
+
+- [#111](https://github.com/magicbell-io/magicbell-js/pull/111) [`8987a92`](https://github.com/magicbell-io/magicbell-js/commit/8987a92fe0d48999514228d09a2c89cfcc6e4716) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.194`.
+
+- [#117](https://github.com/magicbell-io/magicbell-js/pull/117) [`5bd3ac7`](https://github.com/magicbell-io/magicbell-js/commit/5bd3ac767602d06409dafcd9a144e5c18fbfd55c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `twind` to `^0.16.19`.
+
 ## 4.2.6
 
 ### Patch Changes
