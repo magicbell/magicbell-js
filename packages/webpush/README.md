@@ -67,7 +67,7 @@ registerServiceWorker({
 });
 ```
 
-### Options
+#### Options
 
 **path** _String_
 
