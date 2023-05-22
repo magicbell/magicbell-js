@@ -1,8 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
-import { path } from 'ramda';
+import { registerServiceWorker, subscribe } from '@magicbell/webpush';
 import { useEffect } from 'react';
-
-import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
 
 export interface Props {
   children: (params: { createSubscription: () => Promise<any>; isPushAPISupported: boolean }) => JSX.Element;
@@ -16,8 +14,9 @@ export interface Props {
  *
  * @example
  * <PushNotificationsSubscriber>
- *   {({ createSubscription }) =>
- *     <button onClick={createSubscription}>Subscribe</button>}
+ *   {({ createSubscription }) => (
+ *     <button onClick={createSubscription}>Subscribe</button>
+ *   )}
  * <PushNotificationsSubscriber>
  */
 export default function PushNotificationsSubscriber({
@@ -26,33 +25,28 @@ export default function PushNotificationsSubscriber({
   skipServiceWorkerRegistration = false,
 }: Props) {
   const config = useConfig();
-  const isSafari = 'safari' in window;
   const isPushAPISupported = 'PushManager' in window;
 
   useEffect(() => {
-    if (!skipServiceWorkerRegistration) {
-      navigator.serviceWorker.register(serviceWorkerPath);
-    }
+    if (skipServiceWorkerRegistration) return;
+    registerServiceWorker({ path: serviceWorkerPath }).catch((error) => {
+      console.error(`Error registering service worker: ${error}`);
+    });
   }, [serviceWorkerPath, skipServiceWorkerRegistration]);
 
   const createSubscription = async () => {
-    if (!config) {
-      return Promise.reject(new Error('Context for MagicBell was not found'));
+    if (!config || !config.channels) {
+      new Error('MagicBell Context was not found, did you wrap this in a MagicBellProvider?');
     }
 
-    if (isSafari) {
-      const authenticationToken = path<string>(['safari', 'authenticationToken'], config.channels?.webPush.config);
-      const websitePushID = path<string>(['safari', 'websitePushId'], config.channels?.webPush.config);
-      const webServiceUrl = path<string>(['safari', 'webServiceUrl'], config.channels?.webPush.config);
+    const url = new URL(config.channels.webPush.config.subscribeUrl || '');
 
-      return createSafariPushSubscription(authenticationToken, webServiceUrl, websitePushID);
-    }
-
-    if (isPushAPISupported) {
-      return navigator.serviceWorker.ready.then(async (registration) => {
-        await createPushSubscription(registration.pushManager, config);
-      });
-    }
+    return subscribe({
+      host: 'https://api.magicbell.com',
+      project: String(url.searchParams.get('project')),
+      token: String(url.searchParams.get('access_token')),
+      serviceWorkerPath,
+    });
   };
 
   return children({ createSubscription, isPushAPISupported });
