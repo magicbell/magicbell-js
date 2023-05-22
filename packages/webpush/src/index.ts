@@ -24,6 +24,7 @@ type Config = {
   website_push_id: string;
   baseURL: string;
   safariPushURL: string;
+  serviceWorkerPath?: string;
 };
 
 const api = {
@@ -57,10 +58,22 @@ const api = {
   },
 };
 
+export async function registerServiceWorker({ path = '/sw.js' }: { path: string }) {
+  // don't register a service-worker if there's already one
+  if (navigator.serviceWorker.controller) return navigator.serviceWorker.ready;
+  await navigator.serviceWorker.register(path);
+  return navigator.serviceWorker.ready;
+}
+
 /**
  * Request permission to send push notifications and post the subscription to the MagicBell API.
  */
-export async function subscribe(options: { token: string; project: string; host?: string }) {
+export async function subscribe(options: {
+  token: string;
+  project: string;
+  host?: string;
+  serviceWorkerPath?: string;
+}) {
   const requestOptions = { ...options, baseURL: options.host || location.origin };
   const config = await api.getConfig(requestOptions);
 
@@ -70,16 +83,14 @@ export async function subscribe(options: { token: string; project: string; host?
 
   const subscription = !('PushManager' in window)
     ? await createSafariPushSubscription(config)
-    : await createPushSubscription(config);
+    : await createPushSubscription({ ...options, ...config });
 
   if (!('endpoint' in subscription)) return;
   await api.updateSubscription(requestOptions, subscription);
 }
 
 async function createPushSubscription(config: Config): Promise<PushSubscriptionJSON> {
-  await navigator.serviceWorker.register('/sw.js');
-  const registration = await navigator.serviceWorker.ready;
-
+  const registration = await registerServiceWorker({ path: config.serviceWorkerPath });
   const applicationServerKey = stringToUint8Array(config.project.vapid_public_key);
   const subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey });
   return subscription.toJSON();
