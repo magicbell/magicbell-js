@@ -1,5 +1,13 @@
 # magicbell
 
+## 1.7.2
+
+### Patch Changes
+
+- [`e78af04`](https://github.com/magicbell-io/magicbell-js/commit/e78af04eb97aebffe8fa41e088890364cb5367ad) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `json5` to `^2.2.3`.
+
 ## 1.7.1
 
 ### Patch Changes
