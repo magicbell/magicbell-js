@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 1.1.0
+
+### Minor Changes
+
+- [#121](https://github.com/magicbell-io/magicbell-js/pull/121) [`4e567b9`](https://github.com/magicbell-io/magicbell-js/commit/4e567b93c231975caf941c8daf5d64ea92db5aff) Thanks [@smeijer](https://github.com/smeijer)! - Remove support for Safari's proprietary push notification protocol.
+
 ## 1.0.0
 
 ### Major Changes
