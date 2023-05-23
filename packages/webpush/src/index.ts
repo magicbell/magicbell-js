@@ -1,17 +1,3 @@
-function stringToUint8Array(plainString: string) {
-  const padding = '='.repeat((4 - (plainString.length % 4)) % 4);
-  const base64 = (plainString + padding).replace(/-/g, '+').replace(/_/g, '/');
-
-  const rawData = atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-
-  return outputArray;
-}
-
 type RequestOptions = {
   token: string;
   project: string;
@@ -22,9 +8,6 @@ type Config = {
   user: { id: string; email?: string | null; external_id?: string | null; hmac?: string | null };
   project: { id: number; subdomain: string; api_key: string; vapid_public_key: string };
   website_push_id: string;
-  baseURL: string;
-  safariPushURL: string;
-  serviceWorkerPath?: string;
 };
 
 const api = {
@@ -36,8 +19,8 @@ const api = {
         Accept: 'application/json',
       },
     })
-      .then((x) => x.json() as Promise<{ push_subscription: Omit<Config, 'baseURL' | 'safariPushURL'> }>)
-      .then((x) => ({ ...x.push_subscription, baseURL, safariPushURL: `${baseURL}/safari/push` }));
+      .then((x) => x.json() as Promise<{ push_subscription: Config }>)
+      .then((x) => ({ ...x.push_subscription, baseURL }));
   },
 
   async updateSubscription({ token, project, baseURL }: RequestOptions, subscription: PushSubscriptionJSON) {
@@ -58,7 +41,7 @@ const api = {
   },
 };
 
-export async function registerServiceWorker({ path = '/sw.js' }: { path: string }) {
+export async function registerServiceWorker({ path = '/sw.js' }: { path?: string } = {}) {
   // don't register a service-worker if there's already one
   if (navigator.serviceWorker.controller) return navigator.serviceWorker.ready;
   await navigator.serviceWorker.register(path);
@@ -74,50 +57,30 @@ export async function subscribe(options: {
   host?: string;
   serviceWorkerPath?: string;
 }) {
-  const requestOptions = { ...options, baseURL: options.host || location.origin };
-  const config = await api.getConfig(requestOptions);
-
-  if (!('PushManager' in window) && !('safari' in window)) {
+  if (!('PushManager' in window)) {
     throw new Error('Push notifications are not supported in this browser');
   }
 
-  const subscription = !('PushManager' in window)
-    ? await createSafariPushSubscription(config)
-    : await createPushSubscription({ ...options, ...config });
+  const baseURL = options.host || location.origin;
+  const config = await api.getConfig({ ...options, baseURL });
+  const registration = await registerServiceWorker({ path: options.serviceWorkerPath });
 
-  if (!('endpoint' in subscription)) return;
-  await api.updateSubscription(requestOptions, subscription);
-}
+  // remove active subscription if there's any
+  const activeSubscription = await registration.pushManager.getSubscription();
+  if (activeSubscription) {
+    await activeSubscription.unsubscribe().catch(() => void 0);
+  }
 
-async function createPushSubscription(config: Config): Promise<PushSubscriptionJSON> {
-  const registration = await registerServiceWorker({ path: config.serviceWorkerPath });
-  const applicationServerKey = stringToUint8Array(config.project.vapid_public_key);
-  const subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey });
-  return subscription.toJSON();
-}
+  // strip the base64 padding, it's either that or convert to uint8array
+  const applicationServerKey = config.project.vapid_public_key.replace(/=/g, '');
 
-async function createSafariPushSubscription(config: Config): Promise<PushSubscriptionJSON> {
-  const safari = 'safari' in window ? (window['safari'] as any) : undefined;
-  if (!safari) throw new Error('This is not Safari');
+  const subscription = await registration.pushManager
+    .subscribe({ userVisibleOnly: true, applicationServerKey })
+    .then((x) => x.toJSON());
 
-  const permissionData = safari.pushNotification.permission(config.website_push_id);
-  if (permissionData.permission === 'granted') return permissionData;
-  if (permissionData.permission === 'denied') throw new Error('permission denied');
+  if (!('endpoint' in subscription)) {
+    throw new Error('Failed to subscribe to push notifications, browser did not return an subscription endpoint.');
+  }
 
-  return new Promise<PushSubscriptionJSON & { platform: string }>(function (resolve, reject) {
-    safari.pushNotification.requestPermission(
-      config.safariPushURL,
-      config.website_push_id,
-      { authenticationToken: config.user.id },
-      (permissionData: { deviceToken: string }) => {
-        if (!permissionData.deviceToken) return reject(new Error('permission denied'));
-
-        resolve({
-          endpoint: permissionData.deviceToken,
-          keys: { websitePushID: config.website_push_id },
-          platform: 'safari',
-        });
-      },
-    );
-  });
+  await api.updateSubscription({ ...options, baseURL }, subscription);
 }
