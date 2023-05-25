@@ -1,5 +1,5 @@
 import { useConfig } from '@magicbell/react-headless';
-import { registerServiceWorker, subscribe } from '@magicbell/webpush';
+import { isSupported, registerServiceWorker, subscribe } from '@magicbell/webpush';
 import { useEffect } from 'react';
 
 export interface Props {
@@ -25,7 +25,7 @@ export default function PushNotificationsSubscriber({
   skipServiceWorkerRegistration = false,
 }: Props) {
   const config = useConfig();
-  const isPushAPISupported = 'PushManager' in window;
+  const isPushAPISupported = isSupported();
 
   useEffect(() => {
     if (skipServiceWorkerRegistration) return;
