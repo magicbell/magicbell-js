@@ -10,8 +10,14 @@ type Config = {
   website_push_id: string;
 };
 
+let _config: Config | null = null;
+let _cacheKey = '';
+
 const api = {
   async getConfig({ token, project, baseURL }: RequestOptions) {
+    const cacheKey = [token, project, baseURL].join('-');
+    if (_config && _cacheKey === cacheKey) return _config;
+
     return fetch(`${baseURL}/web_push_subscriptions?access_token=${token}&project=${project}`, {
       method: 'GET',
       headers: {
@@ -20,7 +26,11 @@ const api = {
       },
     })
       .then((x) => x.json() as Promise<{ push_subscription: Config }>)
-      .then((x) => ({ ...x.push_subscription, baseURL }));
+      .then((x) => {
+        _config = x.push_subscription;
+        _cacheKey = cacheKey;
+        return _config;
+      });
   },
 
   async updateSubscription({ token, project, baseURL }: RequestOptions, subscription: PushSubscriptionJSON) {
@@ -41,6 +51,15 @@ const api = {
   },
 };
 
+export function isSupported() {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+  return 'PushManager' in window && 'serviceWorker' in navigator;
+}
+
+export async function prefetchConfig(options: SubscribeOptions) {
+  await api.getConfig({ ...options, baseURL: options.host || location.origin });
+}
+
 export async function registerServiceWorker({ path = '/sw.js' }: { path?: string } = {}) {
   // don't register a service-worker if there's already one
   if (navigator.serviceWorker.controller) return navigator.serviceWorker.ready;
@@ -48,16 +67,18 @@ export async function registerServiceWorker({ path = '/sw.js' }: { path?: string
   return navigator.serviceWorker.ready;
 }
 
-/**
- * Request permission to send push notifications and post the subscription to the MagicBell API.
- */
-export async function subscribe(options: {
+type SubscribeOptions = {
   token: string;
   project: string;
   host?: string;
   serviceWorkerPath?: string;
-}) {
-  if (!('PushManager' in window)) {
+};
+
+/**
+ * Request permission to send push notifications and post the subscription to the MagicBell API.
+ */
+export async function subscribe(options: SubscribeOptions) {
+  if (!isSupported()) {
     throw new Error('Push notifications are not supported in this browser');
   }
 
