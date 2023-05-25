@@ -51,7 +51,7 @@
     "@types/vscode": "^1.73.0",
     "@types/vscode-webview": "^1.57.1",
     "@vscode/test-electron": "^2.2.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   },
   "activationEvents": [
     "onStartupFinished"
