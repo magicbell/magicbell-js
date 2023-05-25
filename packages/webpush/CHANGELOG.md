@@ -1,5 +1,22 @@
 # @magicbell/webpush
 
+## 1.2.0
+
+### Minor Changes
+
+- [#126](https://github.com/magicbell-io/magicbell-js/pull/126) [`03f2d30`](https://github.com/magicbell-io/magicbell-js/commit/03f2d3077a8e2affd02c8f2eb9e67253e793bb63) Thanks [@smeijer](https://github.com/smeijer)! - Added warmup method to speedup subscription process. By prefetching config, you'll separate the subscription from config fetching, and thereby reduce the time to subscribe, which improves the user experience.
+
+  ```js
+  import { prefetchConfig } from '@magicbell/webpush';
+
+  prefetchConfig({
+    token: 'jwt-token',
+    host: 'https://api.magicbell.com',
+    project: 'string',
+    serviceWorkerPath: '/sw.js',
+  });
+  ```
+
 ## 1.1.0
 
 ### Minor Changes
