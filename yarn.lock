@@ -3739,10 +3739,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
 
-"@tsconfig/create-react-app@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@tsconfig/create-react-app/-/create-react-app-1.0.2.tgz#e05e2d209b98e21665ed4097fe2d37f638447b0e"
-  integrity sha512-Vg+pErSM6hTcSzxPqNwFg0dk+y0R1Obp8uLV1MDdfd7j98FyOFqtqkdxb9wqIx9vtDW5GCH7zg6DyoHJzMT12g==
+"@tsconfig/create-react-app@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@tsconfig/create-react-app/-/create-react-app-1.0.3.tgz#2dd6ef3adb18a551b3e13aee5d18efe517069d4b"
+  integrity sha512-sAsKAmKzWJlLWpCTyaUHUhqkQEAGAIaNs90sVbZsBhqBTNTnLkcZUr7U5HLI9EUN8QppfkxfGjvaATSgZQhiGQ==
 
 "@twind/next@^1.0.9":
   version "1.0.10"
