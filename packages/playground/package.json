@@ -11,7 +11,7 @@
     "@codesandbox/sandpack-react": "^0.10.11",
     "@popperjs/core": "^2.11.7",
     "@radix-ui/react-icons": "^1.0.3",
-    "@twind/next": "^1.0.9",
+    "@twind/next": "^1.0.10",
     "clsx": "^1.1.1",
     "glob": "^8.0.3",
     "next": "12.3.4",
