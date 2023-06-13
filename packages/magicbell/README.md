@@ -667,6 +667,19 @@ Immediately deletes a user.
 await magicbell.users.deleteByExternalId('{external_id}');
 ```
 
+### Users Notifications
+
+#### Fetch notifications by user id.
+
+Fetch the notifications and deliveries for a user.
+
+```js
+await magicbell.users.notifications.list('{user_id}', {
+  page: 1,
+  per_page: 1,
+});
+```
+
 ### Users Push Subscriptions
 
 #### Fetch user's push subscriptions

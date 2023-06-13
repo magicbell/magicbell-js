@@ -6,6 +6,7 @@ import { type IterablePromise } from '../method';
 import { Resource } from '../resource';
 import * as schemas from '../schemas/users';
 import { type RequestOptions } from '../types';
+import { UsersNotifications } from './users/notifications';
 import { UsersPushSubscriptions } from './users/push-subscriptions';
 
 type CreateUsersResponse = FromSchema<typeof schemas.CreateUsersResponseSchema>;
@@ -23,6 +24,7 @@ type UpdateByExternalIdUsersPayload = FromSchema<typeof schemas.UpdateByExternal
 export class Users extends Resource {
   path = 'users';
   entity = 'user';
+  notifications = new UsersNotifications(this.client);
   pushSubscriptions = new UsersPushSubscriptions(this.client);
 
   /**
