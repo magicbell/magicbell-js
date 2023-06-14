@@ -72,8 +72,11 @@ export class Client {
     return this.#features[flag] || false;
   }
 
-  async request<TResponse = any>({ method, path, data, params }: RequestArgs, options?: RequestOptions) {
-    const requestOptions = { ...this.#options, ...options };
+  async request<TResponse = any>(
+    { method, path: url, data, params, headers: reqHeaders }: RequestArgs,
+    options?: RequestOptions,
+  ) {
+    const requestOptions = { ...this.#options, ...options, headers: { ...this.#options.headers, ...reqHeaders } };
 
     // compute headers out of the retry-loop, only append the telemetry later
     const headers = this.#getHeaders(requestOptions, method);
@@ -84,10 +87,10 @@ export class Client {
       let error: AxiosError | null;
       const startTime = Date.now();
 
-      this.#logger.debug(`${method} ${path}`);
+      this.#logger.debug(`${method} ${url}`);
       await axios({
         method,
-        url: path,
+        url,
         baseURL: requestOptions.host,
         headers: {
           ...headers,
@@ -104,9 +107,8 @@ export class Client {
           response = res;
         })
         .catch((e) => {
-          const curl = toCurl({ method, baseURL: requestOptions.host, url: path, data, params, headers });
+          const curl = toCurl({ method, baseURL: requestOptions.host, url, data, params, headers });
           this.#logger.error(`${e.message}: ${curl}`);
-
           error = e;
           response = e.response;
         });
@@ -150,7 +152,7 @@ export class Client {
         'Idempotency-Key': options.idempotencyKey || this.#getDefaultIdempotencyKey(method, options.maxRetries),
 
         // user-provided headers
-        ...this.#options.headers,
+        ...options.headers,
 
         // can't set user-agent in the browser, see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
         'User-Agent': isBrowser ? null : this.#userAgent,
