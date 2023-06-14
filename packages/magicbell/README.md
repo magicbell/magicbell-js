@@ -314,12 +314,10 @@ Below is a list of features that are currently behind feature flags.
 
 <!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
 
-| Feature Flag                      | Description                                                                |
-| --------------------------------- | -------------------------------------------------------------------------- |
-| `imports-create`                  | Create a import ([docs](#imports-create))                                  |
-| `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
-| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
-| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))   |
+| Feature Flag     | Description                                        |
+| ---------------- | -------------------------------------------------- |
+| `imports-create` | Create a import ([docs](#imports-create))          |
+| `imports-get`    | Get the status of an import ([docs](#imports-get)) |
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
@@ -669,10 +667,6 @@ await magicbell.users.notifications.list('{user_id}', {
 
 #### Fetch user's push subscriptions
 
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `users-push-subscriptions-list` [feature flag](#feature-flags).
-
 Fetch a user's push subscriptions. Returns a paginated list of web and mobile push subscriptions for all platforms.
 
 ```js
@@ -683,10 +677,6 @@ await magicbell.users.pushSubscriptions.list('{user_id}', {
 ```
 
 #### Delete user's push subscription
-
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `users-push-subscriptions-delete` [feature flag](#feature-flags).
 
 Delete a user's push subscriptions. Identifies the user by the user's ID and the push subscription by the subscription's ID.
 

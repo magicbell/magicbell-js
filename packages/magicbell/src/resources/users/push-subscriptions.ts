@@ -21,8 +21,6 @@ export class UsersPushSubscriptions extends Resource {
    * @param userId - The user id is the MagicBell user id. Accepts a UUID
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(userId: string, options?: RequestOptions): IterablePromise<ListUsersPushSubscriptionsResponse>;
 
@@ -34,8 +32,6 @@ export class UsersPushSubscriptions extends Resource {
    * @param data
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(
     userId: string,
@@ -48,8 +44,6 @@ export class UsersPushSubscriptions extends Resource {
     dataOrOptions: ListUsersPushSubscriptionsPayload | RequestOptions,
     options?: RequestOptions,
   ): IterablePromise<ListUsersPushSubscriptionsResponse> {
-    this.assertFeatureFlag('users-push-subscriptions-list');
-
     return this.request(
       {
         method: 'GET',
@@ -72,12 +66,8 @@ export class UsersPushSubscriptions extends Resource {
    *   endpoint or from push events sent to the MagicBell React library.
    *
    * @param options - override client request options.
-   *
-   * @beta
    **/
   delete(userId: string, subscriptionId: string, options?: RequestOptions): Promise<void> {
-    this.assertFeatureFlag('users-push-subscriptions-delete');
-
     return this.request(
       {
         method: 'DELETE',
