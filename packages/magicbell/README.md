@@ -314,15 +314,12 @@ Below is a list of features that are currently behind feature flags.
 
 <!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
 
-| Feature Flag                      | Description                                                                   |
-| --------------------------------- | ----------------------------------------------------------------------------- |
-| `broadcasts-get`                  | Fetch a notification broadcast by its ID ([docs](#broadcasts-get))            |
-| `broadcasts-list`                 | List notification broadcasts ([docs](#broadcasts-list))                       |
-| `broadcasts-notifications-list`   | Fetch notifications by broadcast id. ([docs](#broadcasts-notifications-list)) |
-| `imports-create`                  | Create a import ([docs](#imports-create))                                     |
-| `imports-get`                     | Get the status of an import ([docs](#imports-get))                            |
-| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete))    |
-| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))      |
+| Feature Flag                      | Description                                                                |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `imports-create`                  | Create a import ([docs](#imports-create))                                  |
+| `imports-get`                     | Get the status of an import ([docs](#imports-get))                         |
+| `users-push-subscriptions-delete` | Delete user's push subscription ([docs](#users-push-subscriptions-delete)) |
+| `users-push-subscriptions-list`   | Fetch user's push subscriptions ([docs](#users-push-subscriptions-list))   |
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
@@ -338,10 +335,6 @@ Apart from the removal of the wrappers, returned entities and provided parameter
 
 #### List notification broadcasts
 
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `broadcasts-list` [feature flag](#feature-flags).
-
 List all notification broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
 
 ```js
@@ -353,10 +346,6 @@ await magicbell.broadcasts.list({
 
 #### Fetch a notification broadcast by its ID
 
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `broadcasts-get` [feature flag](#feature-flags).
-
 Fetch a notification broadcast by its ID.
 
 ```js
@@ -366,10 +355,6 @@ await magicbell.broadcasts.get('{broadcast_id}');
 ### Broadcasts Notifications
 
 #### Fetch notifications by broadcast id.
-
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `broadcasts-notifications-list` [feature flag](#feature-flags).
 
 Fetch the notifications on a notification broadcast.
 

@@ -23,8 +23,6 @@ export class Broadcasts extends Resource {
    *
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
 
@@ -35,8 +33,6 @@ export class Broadcasts extends Resource {
    * @param data
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(data: ListBroadcastsPayload, options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
 
@@ -44,8 +40,6 @@ export class Broadcasts extends Resource {
     dataOrOptions: ListBroadcastsPayload | RequestOptions,
     options?: RequestOptions,
   ): IterablePromise<ListBroadcastsResponse> {
-    this.assertFeatureFlag('broadcasts-list');
-
     return this.request(
       {
         method: 'GET',
@@ -62,12 +56,8 @@ export class Broadcasts extends Resource {
    * @param broadcastId - ID of the notification broadcast.
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   get(broadcastId: string, options?: RequestOptions): Promise<GetBroadcastsResponse> {
-    this.assertFeatureFlag('broadcasts-get');
-
     return this.request(
       {
         method: 'GET',
