@@ -314,10 +314,7 @@ Below is a list of features that are currently behind feature flags.
 
 <!-- AUTO-GENERATED-CONTENT:START (FEATURE_FLAGS) -->
 
-| Feature Flag     | Description                                        |
-| ---------------- | -------------------------------------------------- |
-| `imports-create` | Create a import ([docs](#imports-create))          |
-| `imports-get`    | Get the status of an import ([docs](#imports-get)) |
+_There are no features in beta at this time._
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
@@ -840,10 +837,6 @@ await magicbell.subscriptions.delete(
 
 #### Create a import
 
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `imports-create` [feature flag](#feature-flags).
-
 Enqueues an import - currently only supported for users. Amongst other things, the users import allows associating slack channels (if you have already setup the oauth apps).
 
 ```js
@@ -879,10 +872,6 @@ await magicbell.imports.create({
 ```
 
 #### Get the status of an import
-
-> **Warning**
->
-> This method is in preview and is subject to change. It needs to be enabled via the `imports-get` [feature flag](#feature-flags).
 
 Query the status of the import for a summary of imported records and failures for each record that could not be imported successfully.
 

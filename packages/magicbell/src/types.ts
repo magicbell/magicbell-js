@@ -16,10 +16,7 @@ export type ClientOptions = {
   idempotencyKey?: string;
   telemetry?: boolean;
   debug?: boolean;
-  features?: {
-    'imports-create'?: true;
-    'imports-get'?: true;
-  };
+  features?: Record<string, never>;
   headers?: Record<string, string>;
 };
 
