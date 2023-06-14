@@ -20,8 +20,6 @@ export class BroadcastsNotifications extends Resource {
    * @param broadcastId - ID of the notification broadcast.
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(broadcastId: string, options?: RequestOptions): IterablePromise<ListBroadcastsNotificationsResponse>;
 
@@ -32,8 +30,6 @@ export class BroadcastsNotifications extends Resource {
    * @param data
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   list(
     broadcastId: string,
@@ -46,8 +42,6 @@ export class BroadcastsNotifications extends Resource {
     dataOrOptions: ListBroadcastsNotificationsPayload | RequestOptions,
     options?: RequestOptions,
   ): IterablePromise<ListBroadcastsNotificationsResponse> {
-    this.assertFeatureFlag('broadcasts-notifications-list');
-
     return this.request(
       {
         method: 'GET',
