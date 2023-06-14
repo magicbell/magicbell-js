@@ -21,8 +21,6 @@ export class Imports extends Resource {
    *
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   create(options?: RequestOptions): Promise<CreateImportsResponse>;
 
@@ -34,8 +32,6 @@ export class Imports extends Resource {
    * @param data
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   create(data: CreateImportsPayload, options?: RequestOptions): Promise<CreateImportsResponse>;
 
@@ -43,8 +39,6 @@ export class Imports extends Resource {
     dataOrOptions: CreateImportsPayload | RequestOptions,
     options?: RequestOptions,
   ): Promise<CreateImportsResponse> {
-    this.assertFeatureFlag('imports-create');
-
     return this.request(
       {
         method: 'POST',
@@ -62,12 +56,8 @@ export class Imports extends Resource {
    *   The ID of the import is returned when the import is created.
    * @param options - override client request options.
    * @returns
-   *
-   * @beta
    **/
   get(importId: string, options?: RequestOptions): Promise<GetImportsResponse> {
-    this.assertFeatureFlag('imports-get');
-
     return this.request(
       {
         method: 'GET',
