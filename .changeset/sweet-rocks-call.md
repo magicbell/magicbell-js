@@ -2,7 +2,7 @@
 'magicbell': minor
 ---
 
-Release [broadcasts resource](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#broadcasts) as stable. This includes the following apis:
+Release [broadcasts resource](https://www.magicbell.com/docs/rest-api/reference#list-notification-broadcasts) as stable. This includes the following apis:
 
 **List notification broadcasts**
 
