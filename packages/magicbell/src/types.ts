@@ -19,8 +19,6 @@ export type ClientOptions = {
   features?: {
     'imports-create'?: true;
     'imports-get'?: true;
-    'users-push-subscriptions-delete'?: true;
-    'users-push-subscriptions-list'?: true;
   };
   headers?: Record<string, string>;
 };
