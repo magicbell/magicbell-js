@@ -1,5 +1,11 @@
 # @magicbell/codegen
 
+## 0.1.0
+
+### Minor Changes
+
+- [#137](https://github.com/magicbell-io/magicbell-js/pull/137) [`8818e8b`](https://github.com/magicbell-io/magicbell-js/commit/8818e8bcefa06081d9a082387f6f18cbc2500dd6) Thanks [@smeijer](https://github.com/smeijer)! - support scenarios where we don't have beta methods
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,5 +1,128 @@
 # magicbell
 
+## 1.8.0
+
+### Minor Changes
+
+- [#131](https://github.com/magicbell-io/magicbell-js/pull/131) [`ac58966`](https://github.com/magicbell-io/magicbell-js/commit/ac589661e0035aca4345c7d10dfed9f53028188a) Thanks [@smeijer](https://github.com/smeijer)! - Added a `users.notifications` resource which can be used to iterate notifications for a given user.
+
+  ```ts
+  const notifications = magicbell.users.notifications.list(userId, { per_page: 10 });
+
+  for await (const notification of notifications) {
+    console.log(notification.title);
+  }
+  ```
+
+- [#134](https://github.com/magicbell-io/magicbell-js/pull/134) [`66dae2e`](https://github.com/magicbell-io/magicbell-js/commit/66dae2ee1fb2a6cb043b8160f918dc1be1c0e0b7) Thanks [@smeijer](https://github.com/smeijer)! - Added the `metrics` resource. The metrics resource contains a collection of endpoints that return metrics about the sent Notifications. All metrics are for the last 30 days. The following endpoints are available:
+
+  ```ts
+  const notificationCounts = await magicbell.metrics.get();
+
+  const countsPerCategory = await magicbell.metrics.categories.get();
+
+  const countsPerTopic = await magicbell.metrics.topics.get();
+  ```
+
+- [#136](https://github.com/magicbell-io/magicbell-js/pull/136) [`0e08df7`](https://github.com/magicbell-io/magicbell-js/commit/0e08df7a8fc7c36f44aa7f83101673c72f6d12f6) Thanks [@smeijer](https://github.com/smeijer)! - Release the [users.pushSubscriptions resource](https://www.magicbell.com/docs/rest-api/reference#fetch-user's-push-subscriptions) as stable. This includes the following apis:
+
+  **Fetch user's push subscriptions**
+
+  Fetch a user's push subscriptions. Returns a paginated list of web and mobile push subscriptions for all platforms.
+
+  ```js
+  await magicbell.users.pushSubscriptions.list('{user_id}', {
+    page: 1,
+    per_page: 1,
+  });
+  ```
+
+  **Delete user's push subscription**
+
+  Delete a user's push subscriptions. Identifies the user by the user's ID and the push subscription by the subscription's ID.
+
+  ```js
+  await magicbell.users.pushSubscriptions.delete('{user_id}', '{subscription_id}');
+  ```
+
+- [#138](https://github.com/magicbell-io/magicbell-js/pull/138) [`18e0e49`](https://github.com/magicbell-io/magicbell-js/commit/18e0e497d52f8a70b474983b1d7d330e2400aa16) Thanks [@smeijer](https://github.com/smeijer)! - Release the [imports resource](https://www.magicbell.com/docs/rest-api/reference#imports-create) as stable. This includes the following apis:
+
+  **Create a import**
+
+  Enqueues an import - currently only supported for users.
+
+  ```js
+  await magicbell.imports.create({
+    users: [
+      {
+        external_id: 'ugiabqertz',
+        email: 'johndoe@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        custom_attributes: {
+          age: 32,
+          country: 'Spain',
+        },
+      },
+    ],
+  });
+  ```
+
+  **Get the status of an import**
+
+  Query the status of the import for a summary of imported records and failures for each record that could not be imported successfully.
+
+  ```js
+  await magicbell.imports.get('{import_id}');
+  ```
+
+- [#130](https://github.com/magicbell-io/magicbell-js/pull/130) [`0491ba2`](https://github.com/magicbell-io/magicbell-js/commit/0491ba255b4010f91944cecde639fb14c100a6b7) Thanks [@smeijer](https://github.com/smeijer)! - Added support for per-request header overrides
+
+  ```js
+  const magicbell = new Client({
+    headers: {
+      'x-custom-header-one': 'one',
+    },
+  });
+
+  await client.request({
+    path: '/me',
+    headers: {
+      'x-custom-header-two': 'two',
+    },
+  });
+
+  // request is made using the following headers:
+  //   x-custom-header-one: one
+  //   x-custom-header-two: two
+  ```
+
+- [#135](https://github.com/magicbell-io/magicbell-js/pull/135) [`7038d80`](https://github.com/magicbell-io/magicbell-js/commit/7038d80e619cfd8a9c7b06bcc5a111452a0dc203) Thanks [@smeijer](https://github.com/smeijer)! - Release [broadcasts resource](https://www.magicbell.com/docs/rest-api/reference#list-notification-broadcasts) as stable. This includes the following apis:
+
+  **List notification broadcasts**
+
+  ```js
+  await magicbell.broadcasts.list({
+    page: 1,
+    per_page: 1,
+  });
+  ```
+
+  **Fetch a notification broadcast by its ID**
+
+  ```js
+  await magicbell.broadcasts.get('{broadcast_id}');
+  ```
+
+  **Fetch notifications by broadcast id.**
+
+  ```js
+  await magicbell.broadcasts.notifications.list('{broadcast_id}', {
+    page: 1,
+    per_page: 1,
+  });
+  ```
+
 ## 1.7.2
 
 ### Patch Changes
