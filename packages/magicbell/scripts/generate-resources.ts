@@ -317,21 +317,27 @@ async function updateTypes(filePath: string, betaMethods: Method[]) {
 
   const features = clientOptions.declaration.typeAnnotation.members.find((x) => x.key.name === 'features');
 
-  features.typeAnnotation = builders.tsTypeAnnotation.from({
-    typeAnnotation: builders.tsTypeLiteral.from({
-      members: betaMethods.map((method) =>
-        builders.tsPropertySignature.from({
-          optional: true,
-          key: builders.stringLiteral(method.operationId),
-          typeAnnotation: builders.tsTypeAnnotation.from({
-            typeAnnotation: builders.tsLiteralType.from({
-              literal: builders.booleanLiteral(true),
-            }),
+  const featureFlagObject = builders.tsTypeLiteral.from({
+    members: betaMethods.map((method) =>
+      builders.tsPropertySignature.from({
+        optional: true,
+        key: builders.stringLiteral(method.operationId),
+        typeAnnotation: builders.tsTypeAnnotation.from({
+          typeAnnotation: builders.tsLiteralType.from({
+            literal: builders.booleanLiteral(true),
           }),
         }),
-      ),
-    }),
+      }),
+    ),
   });
+
+  // Use a Record<string, never> so that folks can keep `features: {}` in their options
+  const emptyObject = builders.tsTypeReference(
+    builders.identifier('Record'),
+    builders.tsTypeParameterInstantiation([builders.tsStringKeyword(), builders.tsNeverKeyword()]),
+  );
+
+  features.typeAnnotation = builders.tsTypeAnnotation(betaMethods.length ? featureFlagObject : emptyObject);
 
   const output = await recast.print(ast, false);
   if (!output) return;
