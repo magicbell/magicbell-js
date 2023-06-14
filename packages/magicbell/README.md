@@ -915,6 +915,36 @@ Query the status of the import for a summary of imported records and failures fo
 await magicbell.imports.get('{import_id}');
 ```
 
+### Metrics
+
+#### Get notification metrics
+
+Query the metrics of notification broadcasts and their recipients.
+
+```js
+await magicbell.metrics.get();
+```
+
+### Metrics Categories
+
+#### Get notification metrics grouped by category
+
+Query the metrics of notification broadcasts and their recipients, grouped by category.
+
+```js
+await magicbell.metrics.categories.get();
+```
+
+### Metrics Topics
+
+#### Get notification metrics grouped by topic
+
+Query the metrics of notification broadcasts and their recipients, grouped by topic.
+
+```js
+await magicbell.metrics.topics.get();
+```
+
 <!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
 
 ## Realtime
