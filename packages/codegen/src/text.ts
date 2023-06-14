@@ -44,7 +44,8 @@ export async function formatCode(code: string) {
         { depth: null },
       );
     }
-    return x[0].output;
+
+    return x[0].output || code;
   });
 }
 
