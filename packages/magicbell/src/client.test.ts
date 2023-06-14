@@ -163,3 +163,26 @@ test("custom headers don't override controlled ones", async () => {
   await client.request({ method: 'POST', path: '/me' });
   expect(status.lastRequest.headers.get('x-magicbell-api-key')).toEqual('my-api-key');
 });
+
+test('custom headers can be provided per request basis', async () => {
+  const status = server.intercept('all', () => ({ id: 1 }));
+
+  const client = new Client({
+    apiKey: 'my-api-key',
+    maxRetryDelay: 0,
+    headers: {
+      'x-custom-header-one': 'one',
+    },
+  });
+
+  await client.request({
+    method: 'POST',
+    path: '/me',
+    headers: {
+      'x-custom-header-two': 'two',
+    },
+  });
+
+  expect(status.lastRequest.headers.get('x-custom-header-one')).toEqual('one');
+  expect(status.lastRequest.headers.get('x-custom-header-two')).toEqual('two');
+});

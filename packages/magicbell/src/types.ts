@@ -47,4 +47,5 @@ export type RequestArgs = {
   path: string;
   data?: Record<string, unknown>;
   params?: Record<string, string>;
+  headers?: Record<string, string>;
 };
