@@ -303,7 +303,7 @@ function createFeatureFlagTable(methods: Method[]) {
     lines.push(`| \`${method.operationId}\` | ${method.summary} ([docs](#${method.operationId})) |`);
   }
 
-  return lines.join('\n');
+  return formatMarkdown(lines.join('\n'));
 }
 
 async function updateTypes(filePath: string, betaMethods: Method[]) {
