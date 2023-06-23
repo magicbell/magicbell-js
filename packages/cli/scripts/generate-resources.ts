@@ -63,6 +63,14 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
     ),
   );
 
+  body.push(
+    builders.expressionStatement(
+      builders.callExpression(builders.memberExpression(b.id(exportName), b.id('configureHelp')), [
+        builders.objectExpression([builders.objectProperty(b.id('sortSubcommands'), builders.booleanLiteral(true))]),
+      ]),
+    ),
+  );
+
   // subcommands
   // add `users.addCommand(usersNotifications);`
   for (const child of children) {

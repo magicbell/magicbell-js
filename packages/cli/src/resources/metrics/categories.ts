@@ -8,6 +8,10 @@ import { parseOptions } from '../../options';
 
 export const metricsCategories = new Command('categories').description('Manage metrics categories');
 
+metricsCategories.configureHelp({
+  sortSubcommands: true,
+});
+
 metricsCategories
   .command('get')
   .description('Get notification metrics grouped by category')

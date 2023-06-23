@@ -16,3 +16,7 @@ export const whoami = new Command('whoami')
       printError('Not logged in. Please run `magicbell config set` to provide credentials.');
     }
   });
+
+whoami.configureHelp({
+  sortSubcommands: true,
+});

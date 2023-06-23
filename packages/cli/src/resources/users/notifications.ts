@@ -8,6 +8,10 @@ import { parseOptions } from '../../options';
 
 export const usersNotifications = new Command('notifications').description('Manage users notifications');
 
+usersNotifications.configureHelp({
+  sortSubcommands: true,
+});
+
 usersNotifications
   .command('list')
   .description('Fetch notifications by user id.')

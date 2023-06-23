@@ -20,6 +20,10 @@ program.addCommand(whoami);
 
 program.showHelpAfterError();
 
+program.configureHelp({
+  sortSubcommands: true,
+});
+
 for (const resource of Object.values(resources)) {
   program.addCommand(resource);
 }

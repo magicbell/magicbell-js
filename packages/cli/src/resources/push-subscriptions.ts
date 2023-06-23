@@ -8,6 +8,10 @@ import { parseOptions } from '../options';
 
 export const pushSubscriptions = new Command('push-subscriptions').description('Manage push subscriptions');
 
+pushSubscriptions.configureHelp({
+  sortSubcommands: true,
+});
+
 pushSubscriptions
   .command('create')
   .description('Register a device token for a user')

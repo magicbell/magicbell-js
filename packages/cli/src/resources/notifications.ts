@@ -8,6 +8,10 @@ import { parseOptions } from '../options';
 
 export const notifications = new Command('notifications').description('Send and retrieve notifications');
 
+notifications.configureHelp({
+  sortSubcommands: true,
+});
+
 notifications
   .command('create')
   .description('Create notifications')

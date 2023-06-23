@@ -8,6 +8,11 @@ import { parseOptions } from '../options';
 import { broadcastsNotifications } from './broadcasts/notifications';
 
 export const broadcasts = new Command('broadcasts').description('Manage broadcasts');
+
+broadcasts.configureHelp({
+  sortSubcommands: true,
+});
+
 broadcasts.addCommand(broadcastsNotifications);
 
 broadcasts

@@ -8,6 +8,10 @@ import { parseOptions } from '../../options';
 
 export const broadcastsNotifications = new Command('notifications').description('Manage broadcasts notifications');
 
+broadcastsNotifications.configureHelp({
+  sortSubcommands: true,
+});
+
 broadcastsNotifications
   .command('list')
   .description('Fetch notifications by broadcast id.')

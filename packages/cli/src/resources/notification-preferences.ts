@@ -10,6 +10,10 @@ export const notificationPreferences = new Command('notification-preferences').d
   'Manage notification preferences',
 );
 
+notificationPreferences.configureHelp({
+  sortSubcommands: true,
+});
+
 notificationPreferences
   .command('get')
   .description('Fetch user notification preferences')

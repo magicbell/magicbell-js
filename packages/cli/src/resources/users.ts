@@ -9,6 +9,11 @@ import { usersNotifications } from './users/notifications';
 import { usersPushSubscriptions } from './users/push-subscriptions';
 
 export const users = new Command('users').description('Manage all known users');
+
+users.configureHelp({
+  sortSubcommands: true,
+});
+
 users.addCommand(usersNotifications);
 users.addCommand(usersPushSubscriptions);
 

@@ -8,6 +8,10 @@ import { parseOptions } from '../../options';
 
 export const usersPushSubscriptions = new Command('push-subscriptions').description('Manage users push-subscriptions');
 
+usersPushSubscriptions.configureHelp({
+  sortSubcommands: true,
+});
+
 usersPushSubscriptions
   .command('list')
   .description("Fetch user's push subscriptions")

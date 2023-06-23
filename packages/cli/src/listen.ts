@@ -24,3 +24,7 @@ export const listen = new Command('listen')
       });
     });
   });
+
+listen.configureHelp({
+  sortSubcommands: true,
+});

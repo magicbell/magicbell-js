@@ -8,6 +8,10 @@ import { parseOptions } from '../options';
 
 export const imports = new Command('imports').description('Manage imports');
 
+imports.configureHelp({
+  sortSubcommands: true,
+});
+
 imports
   .command('create')
   .description('Create a import')

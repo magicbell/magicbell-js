@@ -8,6 +8,10 @@ import { parseOptions } from '../../options';
 
 export const metricsTopics = new Command('topics').description('Manage metrics topics');
 
+metricsTopics.configureHelp({
+  sortSubcommands: true,
+});
+
 metricsTopics
   .command('get')
   .description('Get notification metrics grouped by topic')

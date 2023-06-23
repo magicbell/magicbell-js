@@ -8,6 +8,10 @@ import { parseOptions } from '../options';
 
 export const subscriptions = new Command('subscriptions').description('Manage subscriptions');
 
+subscriptions.configureHelp({
+  sortSubcommands: true,
+});
+
 subscriptions
   .command('list')
   .description("Fetch user's topic subscriptions")
