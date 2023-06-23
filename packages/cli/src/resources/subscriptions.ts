@@ -10,7 +10,7 @@ export const subscriptions = new Command('subscriptions').description('Manage su
 
 subscriptions
   .command('list')
-  .description('List subscriptions')
+  .description("Fetch user's topic subscriptions")
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .action(async ({ paginate, ...opts }) => {
     const { options } = parseOptions(opts);

@@ -10,7 +10,7 @@ export const imports = new Command('imports').description('Manage imports');
 
 imports
   .command('create')
-  .description('Create a user import')
+  .description('Create a import')
   .option('--users <string...>', '')
   .action(async (opts) => {
     const { data, options } = parseOptions(opts);
@@ -21,7 +21,7 @@ imports
 
 imports
   .command('get')
-  .description('Get a user import')
+  .description('Get the status of an import')
   .argument('<import-id>', 'ID of the import.')
   .action(async (importId, opts) => {
     const { options } = parseOptions(opts);

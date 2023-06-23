@@ -22,7 +22,7 @@ notifications
   )
   .option(
     '--recipients <string...>',
-    'Users to send the notification to. You can specify up to 1000 users at once. Use matches to send a notification to everyone.',
+    'Users to send the notification to. You can specify up to 1000 users in the request body or use [matches](https://www.magicbell.com/docs/segments#how-to-create-segments-using-the-api) to send a notification to any number of users.',
   )
   .option(
     '--custom-attributes <json>',
@@ -81,7 +81,7 @@ notifications
 
 notifications
   .command('get')
-  .description('Fetch a notification')
+  .description('Fetch notification by ID')
   .argument('<notification-id>', 'ID of the user notification.')
   .action(async (notificationId, opts) => {
     const { options } = parseOptions(opts);

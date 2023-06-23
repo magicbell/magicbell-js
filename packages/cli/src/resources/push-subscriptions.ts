@@ -1,7 +1,6 @@
 // This file is generated. Do not update manually!
 
 import { Command } from 'commander';
-import kleur from 'kleur';
 
 import { getClient } from '../client';
 import { printJson } from '../lib/printer';
@@ -11,7 +10,7 @@ export const pushSubscriptions = new Command('push-subscriptions').description('
 
 pushSubscriptions
   .command('create')
-  .description(kleur.red('[BETA] ') + 'Register a device')
+  .description('Register a device token for a user')
   .option(
     '--device-token <string>',
     'Token that identifies the device. This is usually generated automatically by your app once installed.',
@@ -33,7 +32,7 @@ pushSubscriptions
 
 pushSubscriptions
   .command('delete')
-  .description(kleur.red('[BETA] ') + 'Unregister a device')
+  .description("Delete user's device token")
   .argument('<device-token>', 'Token of the device you want to remove')
   .action(async (deviceToken, opts) => {
     const { options } = parseOptions(opts);

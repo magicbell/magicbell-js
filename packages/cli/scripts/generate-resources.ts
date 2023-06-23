@@ -1,4 +1,5 @@
 #!/usr/bin/env zx
+/* eslint-disable no-console */
 import 'zx/globals';
 
 import {
@@ -14,7 +15,6 @@ import {
   schemaToObject,
   snakeCase,
 } from '@magicbell/codegen';
-/* eslint-disable no-console */
 import { builders } from 'ast-types';
 import * as K from 'ast-types/gen/kinds';
 import fs from 'fs/promises';
@@ -25,22 +25,28 @@ import path from 'path';
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
 const OUT_DIR = path.join(process.cwd(), 'src');
 const META_FILE = path.join(__dirname, 'meta.json');
-const README_MD = path.join(process.cwd(), 'README.md');
+// const README_MD = path.join(process.cwd(), 'README.md');
+
+function countChar(char: string, string: string): number {
+  return string.split(char).length - 1;
+}
 
 type ResourceMeta = { description: string };
 type Meta = {
   resources: Record<string, ResourceMeta>;
 };
 
-function createResource(resource: Resource, meta: ResourceMeta) {
+function createResource(resource: Resource, children: Resource[], meta: ResourceMeta) {
   const hasBetaMethod = resource.methods.some((x) => x.beta);
 
-  const exportName = camelCase(resource.path);
+  const exportName = camelCase((resource as any).name || resource.path);
+  const commandName = hyphenCase(resource.path.split('/').pop());
+
+  // child resource imports
+  const imports = children?.map((x) => b.importDeclaration([camelCase((x as any).name)], `./${x.path}`)) || [];
 
   // new Command()
-  let command: K.ExpressionKind = builders.newExpression(b.id('Command'), [
-    builders.stringLiteral(hyphenCase(resource.path)),
-  ]);
+  let command: K.ExpressionKind = builders.newExpression(b.id('Command'), [builders.stringLiteral(commandName)]);
   // command.description(...)
   command = builders.callExpression(builders.memberExpression(command, b.id('description')), [
     builders.stringLiteral(meta.description),
@@ -53,6 +59,18 @@ function createResource(resource: Resource, meta: ResourceMeta) {
       builders.variableDeclaration('const', [builders.variableDeclarator(b.id(exportName), command)]),
     ),
   );
+
+  // subcommands
+  // add `users.addCommand(usersNotifications);`
+  for (const child of children) {
+    body.push(
+      builders.expressionStatement(
+        builders.callExpression(builders.memberExpression(b.id(exportName), b.id('addCommand')), [
+          b.id(camelCase((child as any).name)),
+        ]),
+      ),
+    );
+  }
 
   for (const method of resource.methods) {
     let expression: K.ExpressionKind = b.id(exportName);
@@ -109,6 +127,11 @@ function createResource(resource: Resource, meta: ResourceMeta) {
       ]);
     }
 
+    const methodNamespace = resource.path
+      .split('/')
+      .map((x) => camelCase(x))
+      .join('.');
+
     // add action
     expression = builders.callExpression(builders.memberExpression(expression, b.id('action')), [
       builders.arrowFunctionExpression.from({
@@ -136,7 +159,10 @@ function createResource(resource: Resource, meta: ResourceMeta) {
                     b.id('response'),
                     builders.callExpression(
                       builders.memberExpression(
-                        builders.memberExpression(builders.callExpression(b.id('getClient'), []), b.id(exportName)),
+                        builders.memberExpression(
+                          builders.callExpression(b.id('getClient'), []),
+                          b.id(methodNamespace),
+                        ),
                         b.id(camelCase(method.name)),
                       ),
                       [
@@ -185,7 +211,10 @@ function createResource(resource: Resource, meta: ResourceMeta) {
                     builders.awaitExpression(
                       builders.callExpression(
                         builders.memberExpression(
-                          builders.memberExpression(builders.callExpression(b.id('getClient'), []), b.id(exportName)),
+                          builders.memberExpression(
+                            builders.callExpression(b.id('getClient'), []),
+                            b.id(methodNamespace),
+                          ),
                           b.id(camelCase(method.name)),
                         ),
                         [
@@ -207,6 +236,8 @@ function createResource(resource: Resource, meta: ResourceMeta) {
     body.push(builders.expressionStatement(expression));
   }
 
+  const dots = '../'.repeat(countChar('/', resource.path) + 1).replace(/\/$/, '');
+
   return builders.program.from({
     comments: [
       builders.commentLine.from({
@@ -216,10 +247,10 @@ function createResource(resource: Resource, meta: ResourceMeta) {
     body: [
       b.importDeclaration(['Command'], 'commander'),
       hasBetaMethod && b.importDeclaration('kleur', 'kleur'),
-      b.importDeclaration(['getClient'], '../client'),
-      b.importDeclaration(['printJson'], '../lib/printer'),
-      b.importDeclaration(['parseOptions'], '../options'),
-
+      b.importDeclaration(['getClient'], `${dots}/client`),
+      b.importDeclaration(['printJson'], `${dots}/lib/printer`),
+      b.importDeclaration(['parseOptions'], `${dots}/options`),
+      ...imports,
       ...body,
     ].filter(Boolean),
   });
@@ -289,31 +320,50 @@ function createResourceIndex(resources: Resource[]) {
   ]);
 }
 
-type File = { type: string; name: string; source: string; docs?: string };
+type File = { type: string; name: string; source: string; docs?: string; nested?: boolean };
 
 async function main() {
-  const resources = await getResources(SPEC_URL);
-
+  const resources = await getResources(argv.spec || SPEC_URL);
   const files: Array<File> = [];
 
   const meta = JSON.parse(await fs.readFile(META_FILE, 'utf8')) as Meta;
   meta.resources = meta.resources || {};
-  for (const resource of resources) {
-    meta.resources[resource.path] = meta.resources[resource.path] || {
-      description: `Manage ${resource.path.replace(/_/g, ' ')}`,
-    };
+
+  // generate ast for new resource files
+  for (const rootResource of resources) {
+    const parent = { ...rootResource, methods: rootResource.methods.filter((x) => !x.group) };
+    const childResourceNames = rootResource.methods.reduce((acc, x) => {
+      if (x.group && !acc.includes(x.group)) acc.push(x.group);
+      return acc;
+    }, []);
+
+    const children = childResourceNames.map((name) => ({
+      name: `${rootResource.path}_${name}`,
+      path: `${rootResource.path}/${name}`,
+      methods: rootResource.methods.filter((x) => x.group === name),
+    }));
+
+    for (const resource of [parent, ...children]) {
+      const isParent = resource === parent;
+
+      meta.resources[resource.path] = meta.resources[resource.path] || {
+        description: `Manage ${resource.path.replace(/[_/]/g, ' ')}`,
+      };
+
+      const ast = createResource(resource, isParent ? children : [], meta.resources[resource.path]);
+      const docs = createDocs(resource);
+
+      const source = await recast.print(ast);
+      files.push({
+        type: isParent ? 'resources' : 'sub-resources',
+        name: hyphenCase(resource.path) + '.ts',
+        source,
+        docs,
+      });
+    }
   }
 
   await fs.writeFile(META_FILE, JSON.stringify(meta, null, 2));
-
-  // generate ast for new resource files
-  for (const resource of resources) {
-    const ast = createResource(resource, meta.resources[resource.path]);
-    const docs = createDocs(resource);
-
-    const source = await recast.print(ast);
-    files.push({ type: 'resources', name: hyphenCase(resource.path) + '.ts', source, docs });
-  }
 
   const resourceIndex = await recast.print(createResourceIndex(resources));
   files.push({ type: 'resources', name: 'index.ts', source: resourceIndex });
@@ -332,15 +382,15 @@ async function main() {
   // all files are generated & linted, now it makes sense to flush the old files and write new ones
   for (const dir of outDirs) {
     await fs.rm(path.join(OUT_DIR, dir), { recursive: true }).catch(() => void 0);
-    await fs.mkdir(path.join(OUT_DIR, dir), { recursive: true });
   }
 
   for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.type, file.name);
+    const outFile = path.join(OUT_DIR, file.type.replace('sub-', ''), file.name);
+    await fs.mkdir(path.dirname(outFile), { recursive: true });
     await fs.writeFile(outFile, file.source || '', 'utf-8');
     console.log(`generated ${path.relative(process.cwd(), outFile)}`);
   }
-  //
+
   // // update method docs in readme
   // const docs = files.map((x) => x.docs).filter(Boolean);
   // await updateReadme(README_MD, 'RESOURCE_METHODS', docs);

@@ -17,6 +17,27 @@
     },
     "imports": {
       "description": "Manage imports"
+    },
+    "broadcasts": {
+      "description": "Manage broadcasts"
+    },
+    "metrics": {
+      "description": "Manage metrics"
+    },
+    "broadcasts/notifications": {
+      "description": "Manage broadcasts notifications"
+    },
+    "users/notifications": {
+      "description": "Manage users notifications"
+    },
+    "users/push-subscriptions": {
+      "description": "Manage users push-subscriptions"
+    },
+    "metrics/categories": {
+      "description": "Manage metrics categories"
+    },
+    "metrics/topics": {
+      "description": "Manage metrics topics"
     }
   }
 }
