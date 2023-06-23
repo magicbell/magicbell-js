@@ -258,9 +258,9 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
     body: [
       b.importDeclaration(['Command'], 'commander'),
       hasBetaMethod && b.importDeclaration('kleur', 'kleur'),
-      b.importDeclaration(['getClient'], `${dots}/client`),
+      b.importDeclaration(['getClient'], `${dots}/lib/client`),
+      b.importDeclaration(['parseOptions'], `${dots}/lib/options`),
       b.importDeclaration(['printJson'], `${dots}/lib/printer`),
-      b.importDeclaration(['parseOptions'], `${dots}/options`),
       ...imports,
       ...body,
     ].filter(Boolean),

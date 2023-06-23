@@ -2,9 +2,9 @@
 
 import { Command } from 'commander';
 
-import { getClient } from '../client';
+import { getClient } from '../lib/client';
+import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
-import { parseOptions } from '../options';
 import { metricsCategories } from './metrics/categories';
 import { metricsTopics } from './metrics/topics';
 

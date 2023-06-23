@@ -1,6 +1,6 @@
 import { Client } from 'magicbell';
 
-import { config } from './lib/config';
+import { config } from './config';
 
 export function getClient() {
   const cfg = config.get('config.json');

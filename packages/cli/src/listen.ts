@@ -1,8 +1,8 @@
 import { Command } from 'commander';
 
-import { getClient } from './client';
+import { getClient } from './lib/client';
+import { parseOptions } from './lib/options';
 import { printJson } from './lib/printer';
-import { parseOptions } from './options';
 
 export const listen = new Command('listen')
   .description('Listen to events for a users inbox')

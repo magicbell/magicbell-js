@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 
-import { getClient } from './client';
+import { getClient } from './lib/client';
 import { printError, printJson } from './lib/printer';
 
 export const whoami = new Command('whoami')

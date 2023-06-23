@@ -1,6 +1,6 @@
 import { parse } from 'json5';
 
-import { camelToSnakeCase } from './lib/text';
+import { camelToSnakeCase } from './text';
 
 const optionKeys = new Set(['userEmail', 'userExternalId']);
 

@@ -2,9 +2,9 @@
 
 import { Command } from 'commander';
 
-import { getClient } from '../client';
+import { getClient } from '../lib/client';
+import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
-import { parseOptions } from '../options';
 
 export const pushSubscriptions = new Command('push-subscriptions').description('Manage push subscriptions');
 
