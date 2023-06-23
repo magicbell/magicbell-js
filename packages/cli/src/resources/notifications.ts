@@ -22,7 +22,7 @@ notifications
   )
   .option(
     '--recipients <string...>',
-    'Users to send the notification to. You can specify up to 1000 users in the request body or use [matches](https://www.magicbell.com/docs/segments#how-to-create-segments-using-the-api) to send a notification to any number of users.',
+    'Users to send the notification to. You can specify up to 1000 users in the request body or use matches to send a notification to any number of users.',
   )
   .option(
     '--custom-attributes <json>',

@@ -13,19 +13,22 @@ import {
   recast,
   Resource,
   schemaToObject,
-  snakeCase,
+  updateReadme,
 } from '@magicbell/codegen';
 import { builders } from 'ast-types';
 import * as K from 'ast-types/gen/kinds';
 import fs from 'fs/promises';
-import { stringify } from 'json5';
 import { OpenAPIV3 } from 'openapi-types';
 import path from 'path';
 
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
 const OUT_DIR = path.join(process.cwd(), 'src');
 const META_FILE = path.join(__dirname, 'meta.json');
-// const README_MD = path.join(process.cwd(), 'README.md');
+const README_MD = path.join(process.cwd(), 'README.md');
+
+function cleanMarkdown(markdown = '') {
+  return markdown.replace(/\[(.*)]\(.*\)/g, '$1');
+}
 
 function countChar(char: string, string: string): number {
   return string.split(char).length - 1;
@@ -49,7 +52,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
   let command: K.ExpressionKind = builders.newExpression(b.id('Command'), [builders.stringLiteral(commandName)]);
   // command.description(...)
   command = builders.callExpression(builders.memberExpression(command, b.id('description')), [
-    builders.stringLiteral(meta.description),
+    builders.stringLiteral(cleanMarkdown(meta.description)),
   ]);
 
   const body: K.StatementKind[] = [];
@@ -88,7 +91,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
       builders.stringLiteral('[BETA] '),
     ]);
 
-    const description = builders.stringLiteral(method.summary || method.description);
+    const description = builders.stringLiteral(cleanMarkdown(method.summary || method.description));
 
     expression = builders.callExpression(builders.memberExpression(expression, b.id('description')), [
       method.beta ? builders.binaryExpression('+', betaFlag, description) : description,
@@ -98,7 +101,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
     for (const param of method.params) {
       expression = builders.callExpression(builders.memberExpression(expression, b.id('argument')), [
         builders.stringLiteral(`<${hyphenCase(param.title)}>`),
-        builders.stringLiteral((param.description || '').split('\n')[0]),
+        builders.stringLiteral((cleanMarkdown(param.description) || '').split('\n')[0]),
       ]);
     }
 
@@ -115,7 +118,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
           : schema.type;
       expression = builders.callExpression(builders.memberExpression(expression, b.id('option')), [
         builders.stringLiteral(type ? `${flag} <${type}>` : flag),
-        builders.stringLiteral((schema.description || '').split('\n')[0]),
+        builders.stringLiteral((cleanMarkdown(schema.description) || '').split('\n')[0]),
       ]);
     }
 
@@ -260,7 +263,7 @@ function createDocs(resource: Resource) {
   const lines: Array<string> = [];
   const startLevel = 3;
 
-  lines.push(`${'#'.repeat(startLevel)} ${capitalize(resource.path)}\n`);
+  lines.push(`${'#'.repeat(startLevel)} ${capitalize(resource.path.replaceAll('/', ' '))}\n`);
 
   for (const method of resource.methods) {
     // don't document private methods
@@ -268,31 +271,53 @@ function createDocs(resource: Resource) {
 
     const parameters = method.parameters as OpenAPIV3.ParameterObject[];
     const requiresUserEmail = parameters.some((x) => /x-magicbell-user-email/i.test(x.name));
-    const pathParams = method.params.map((x) => `{${snakeCase(x.title)}}`);
+    const pathParams = method.params.map((x) => `<${hyphenCase(x.title)}>`);
     const requestBody = getRequestBody(method);
 
-    const options = requiresUserEmail ? { userEmail: 'person@example.com' } : null;
+    const options = [];
+    if (requiresUserEmail) {
+      options.push(['user-email', 'person@example.com']);
+    }
 
     const note = method.beta
       ? `
 > **Warning**
 >
-> This method is in preview and is subject to change. It needs to be enabled via the \`${method.operationId}\` [feature flag](#feature-flags).
+> This method is in preview and is subject to change.
 `.trim()
       : '';
 
-    // TODO: validate example based on schema
-    const bodyObj = requestBody?.example || schemaToObject(requestBody?.schema);
-    const body = bodyObj?.[method.entity] || bodyObj;
-    const query =
-      method.data && !body
-        ? Object.fromEntries(Object.entries(schemaToObject(method.data)).map(([k, v]) => [snakeCase(k), v]))
-        : null;
+    function normalizeOption(key, value) {
+      if (key === 'recipients') value = value.map((x) => x.email || x.external_id).filter(Boolean)[0];
+      if (value == null) return;
+      if (Array.isArray(value)) value = value[0];
+      if (typeof value === 'object') value = JSON.stringify(value);
 
-    const args = [...pathParams, body, query, options]
-      .filter((x) => x != null)
-      .map((x) => stringify(x, { space: 2, quote: "'" }))
-      .join(', ');
+      if (typeof value !== 'string') return `--${key} ${value}`;
+
+      // some example objects are compacted using ..., we can't use them here
+      if (value.includes('…') || value.includes('...')) return;
+
+      value = value.replaceAll("'", "\\'");
+      return `--${hyphenCase(key)} '${value}'`;
+    }
+
+    const bodyObject = requestBody?.example || schemaToObject(requestBody?.schema);
+    const bodyFlags = Object.entries(bodyObject?.[method.entity] || bodyObject || {}).map(([key, value]) =>
+      normalizeOption(key, value),
+    );
+
+    const optionsFlags =
+      method.data && !bodyFlags
+        ? Object.entries(schemaToObject(method.data)).map(([key, value]) => normalizeOption(key, value))
+        : [];
+
+    const flags = [...pathParams, ...optionsFlags, ...bodyFlags.map((x) => ` \\\n  ${x}`)].filter(Boolean).join(' ');
+
+    const methodNamespace = resource.path
+      .split('/')
+      .map((x) => hyphenCase(x))
+      .join(' ');
 
     lines.push(
       `
@@ -302,8 +327,8 @@ ${note}
 
 ${method.description || ''}
 
-\`\`\`js
-await magicbell.${camelCase(resource.path)}.${method.name}(${args});
+\`\`\`shell
+magicbell ${methodNamespace} ${hyphenCase(method.name)} ${flags}
 \`\`\`
 `.trim() + '\n',
     );
@@ -392,11 +417,9 @@ async function main() {
   }
 
   // // update method docs in readme
-  // const docs = files.map((x) => x.docs).filter(Boolean);
-  // await updateReadme(README_MD, 'RESOURCE_METHODS', docs);
-  // await updateReadme(README_MD, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
-  // console.log(`updated README.md`);
-  //
+  const docs = files.map((x) => x.docs).filter(Boolean);
+  await updateReadme(README_MD, 'RESOURCE_METHODS', docs);
+  console.log(`updated README.md`);
 }
 
 main();
