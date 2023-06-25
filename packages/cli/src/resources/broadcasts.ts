@@ -1,18 +1,12 @@
 // This file is generated. Do not update manually!
 
-import { Command } from 'commander';
-
 import { getClient } from '../lib/client';
+import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 import { broadcastsNotifications } from './broadcasts/notifications';
 
-export const broadcasts = new Command('broadcasts').description('Manage broadcasts');
-
-broadcasts.configureHelp({
-  sortSubcommands: true,
-});
-
+export const broadcasts = createCommand('broadcasts').description('Manage broadcasts');
 broadcasts.addCommand(broadcastsNotifications);
 
 broadcasts

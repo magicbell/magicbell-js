@@ -1,15 +1,13 @@
-import { Command } from 'commander';
-
 import { config } from './config';
-import { findTopCommand } from './lib/commands';
+import { createCommand, findCommand, findTopCommand } from './lib/commands';
 import { configStore } from './lib/config';
-import { printError } from './lib/printer';
+import { printError, printMessage } from './lib/printer';
 import { listen } from './listen';
 import { login } from './login';
 import { logout } from './logout';
 import * as resources from './resources';
 
-const program = new Command();
+const program = createCommand();
 
 const pubicCommands = ['login', 'logout', 'config'];
 
@@ -35,14 +33,19 @@ program.addCommand(listen);
 program.addCommand(login);
 program.addCommand(logout);
 
-program.showHelpAfterError();
-
-program.configureHelp({
-  sortSubcommands: true,
-});
-
 for (const resource of Object.values(resources)) {
   program.addCommand(resource);
 }
 
 program.parse();
+
+process.on('uncaughtException', function (err) {
+  if (/param.*is missing/i.test(err.message)) {
+    printMessage(`error: invalid arguments provided\n`);
+  } else {
+    printMessage(`error: ${err.message}`);
+  }
+
+  const command = findCommand(program, program.args);
+  command.help({ error: true });
+});

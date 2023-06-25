@@ -36,14 +36,3 @@ export function getClient(options?: Partial<ClientOptions>) {
 
   return client;
 }
-
-process.on('uncaughtException', function (err) {
-  if (__DEV__) {
-    // eslint-disable-next-line no-console
-    console.error(err);
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(`Error: ${err.message}`);
-  process.exit(1);
-});

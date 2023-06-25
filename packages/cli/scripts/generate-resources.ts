@@ -49,8 +49,9 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
   // child resource imports
   const imports = children?.map((x) => b.importDeclaration([camelCase((x as any).name)], `./${x.path}`)) || [];
 
-  // new Command()
-  let command: K.ExpressionKind = builders.newExpression(b.id('Command'), [builders.stringLiteral(commandName)]);
+  // createCommand(commandName);
+  let command = builders.callExpression(b.id('createCommand'), [builders.stringLiteral(commandName)]);
+
   // command.description(...)
   command = builders.callExpression(builders.memberExpression(command, b.id('description')), [
     builders.stringLiteral(cleanMarkdown(meta.description)),
@@ -61,14 +62,6 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
   body.push(
     builders.exportNamedDeclaration(
       builders.variableDeclaration('const', [builders.variableDeclarator(b.id(exportName), command)]),
-    ),
-  );
-
-  body.push(
-    builders.expressionStatement(
-      builders.callExpression(builders.memberExpression(b.id(exportName), b.id('configureHelp')), [
-        builders.objectExpression([builders.objectProperty(b.id('sortSubcommands'), builders.booleanLiteral(true))]),
-      ]),
     ),
   );
 
@@ -257,9 +250,9 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
       }),
     ],
     body: [
-      b.importDeclaration(['Command'], 'commander'),
       hasBetaMethod && b.importDeclaration('kleur', 'kleur'),
       b.importDeclaration(['getClient'], `${dots}/lib/client`),
+      b.importDeclaration(['createCommand'], `${dots}/lib/commands`),
       b.importDeclaration(['parseOptions'], `${dots}/lib/options`),
       b.importDeclaration(['printJson'], `${dots}/lib/printer`),
       ...imports,
@@ -424,7 +417,7 @@ async function main() {
     }
   }
 
-  await fs.writeFile(META_FILE, JSON.stringify(meta, null, 2));
+  await fs.writeFile(META_FILE, JSON.stringify(meta, null, 2) + '\n');
 
   const resourceIndex = await recast.print(createResourceIndex(resources));
   files.push({ type: 'resources', name: 'index.ts', source: resourceIndex });

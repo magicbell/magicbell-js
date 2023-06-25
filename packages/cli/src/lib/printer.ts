@@ -11,6 +11,6 @@ export function printJson(data: any, color = true): void {
 }
 
 export function printError(message: string, fatal = false): void {
-  printJson({ error: message });
+  printMessage(`error: ${message}`);
   if (fatal) process.exit(1);
 }

@@ -1,16 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { Command } from 'commander';
-
 import { getClient } from '../lib/client';
+import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 
-export const imports = new Command('imports').description('Manage imports');
-
-imports.configureHelp({
-  sortSubcommands: true,
-});
+export const imports = createCommand('imports').description('Manage imports');
 
 imports
   .command('create')

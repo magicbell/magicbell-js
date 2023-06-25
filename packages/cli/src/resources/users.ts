@@ -1,19 +1,13 @@
 // This file is generated. Do not update manually!
 
-import { Command } from 'commander';
-
 import { getClient } from '../lib/client';
+import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 import { usersNotifications } from './users/notifications';
 import { usersPushSubscriptions } from './users/push-subscriptions';
 
-export const users = new Command('users').description('Manage all known users');
-
-users.configureHelp({
-  sortSubcommands: true,
-});
-
+export const users = createCommand('users').description('Manage all known users');
 users.addCommand(usersNotifications);
 users.addCommand(usersPushSubscriptions);
 

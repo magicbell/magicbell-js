@@ -1,16 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { Command } from 'commander';
-
 import { getClient } from '../lib/client';
+import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 
-export const pushSubscriptions = new Command('push-subscriptions').description('Manage push subscriptions');
-
-pushSubscriptions.configureHelp({
-  sortSubcommands: true,
-});
+export const pushSubscriptions = createCommand('push-subscriptions').description('Manage push subscriptions');
 
 pushSubscriptions
   .command('create')

@@ -1,16 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { Command } from 'commander';
-
 import { getClient } from '../../lib/client';
+import { createCommand } from '../../lib/commands';
 import { parseOptions } from '../../lib/options';
 import { printJson } from '../../lib/printer';
 
-export const metricsTopics = new Command('topics').description('Manage metrics topics');
-
-metricsTopics.configureHelp({
-  sortSubcommands: true,
-});
+export const metricsTopics = createCommand('topics').description('Manage metrics topics');
 
 metricsTopics
   .command('get')

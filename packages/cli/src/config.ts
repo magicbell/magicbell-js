@@ -1,10 +1,9 @@
-import { Command } from 'commander';
-
+import { createCommand } from './lib/commands';
 import { configStore } from './lib/config';
 import { printJson, printMessage } from './lib/printer';
 import { mask } from './lib/text';
 
-export const config = new Command('config')
+export const config = createCommand('config')
   .description('Display or change config values for magicbell')
   .action(() => config.help());
 

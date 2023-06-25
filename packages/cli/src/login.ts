@@ -1,12 +1,12 @@
-import { Command } from 'commander';
 import kleur from 'kleur';
 import readline from 'readline-sync';
 
 import { getClient } from './lib/client';
+import { createCommand } from './lib/commands';
 import { configStore } from './lib/config';
 import { printError, printMessage } from './lib/printer';
 
-export const login = new Command('login')
+export const login = createCommand('login')
   .description('Login to your MagicBell project using the CLI')
   // TODO: we only support interactive at the moment, upgrade to support non-interactive
   // .option('-i, --interactive', 'Run interactive if you cannot open a browser')
@@ -47,7 +47,3 @@ export const login = new Command('login')
       );
     }
   });
-
-login.configureHelp({
-  sortSubcommands: true,
-});
