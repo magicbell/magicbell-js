@@ -2201,20 +2201,6 @@
   dependencies:
     "@lezer/common" "^0.15.0"
 
-"@magicbell/codegen@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@magicbell/codegen/-/codegen-0.0.1.tgz#2e809f381c8680c35999ab19285d16d01c7e7734"
-  integrity sha512-Er64eW4GkobBOmg8/ig0qZA1Jv5wjOrFWyC0z74oNCNqv9hsgPf1HrYMJL4tlp+Ss24XHPr5z2Ruds+MwJ9JVA==
-  dependencies:
-    "@apidevtools/swagger-parser" "^10.1.0"
-    ast-types "^0.14.2"
-    axios "^0.27.2"
-    eslint "^8.23.1"
-    json5 "^2.2.1"
-    openapi-types "^12.0.2"
-    prettier "^2.7.1"
-    recast "^0.21.5"
-
 "@manypkg/cli@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.19.1.tgz#2dec45d340e1265276625c4b6c9b284d3376bd10"
@@ -3817,10 +3803,10 @@
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.3.3.tgz#3c90752792660c4b562ad73b3fbd68bf3bc7ae07"
   integrity sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==
 
-"@types/configstore@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@types/configstore/-/configstore-6.0.0.tgz#a49bb7d86a6cd1b0bb486fb336eec6966530aa13"
-  integrity sha512-GUvNiia85zTDDIx0iPrtF3pI8dwrQkfuokEqxqPDE55qxH0U5SZz4awVZjiJLWN2ZZRkXCUqgsMUbygXY+kytA==
+"@types/configstore@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/configstore/-/configstore-5.0.1.tgz#7be34d28ce29a408c98e717ada0488664eaf6173"
+  integrity sha512-c/QCznvk7bLKGhHETj29rqKufui3jaAxjBhK4R2zUrMG5UG0qTwfWYxBoUbH8JCyDjdCWMIxPJ7/Fdz1UcAnWg==
 
 "@types/connect@*":
   version "3.4.35"

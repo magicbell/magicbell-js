@@ -51,8 +51,8 @@
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "@magicbell/codegen": "^0.0.1",
-    "@types/configstore": "^6.0.0",
+    "@magicbell/codegen": "0.1.0",
+    "@types/configstore": "^5.0.1",
     "tsx": "^3.9.0"
   }
 }
