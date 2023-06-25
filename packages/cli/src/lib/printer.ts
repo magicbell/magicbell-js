@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import { colorize } from './colorize';
 
-export function printMessage(message: string): void {
+export function printMessage(message = ''): void {
   console.log(message);
 }
 
