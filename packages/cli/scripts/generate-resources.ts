@@ -10,6 +10,7 @@ import {
   getRequestBody,
   getResources,
   hyphenCase,
+  Method,
   recast,
   Resource,
   schemaToObject,
@@ -345,6 +346,29 @@ magicbell ${methodNamespace} ${hyphenCase(method.name)} ${flags}
   return formatMarkdown(lines.join('\n'));
 }
 
+async function updateFeatureFlags(filePath: string, betaMethods: Method[]) {
+  const source = await fs.readFile(filePath, 'utf-8');
+  const ast = recast.parse(source);
+  const program = ast.program;
+
+  // find `const features: ClientOptions['features'] = {};`
+  const features = program.body.find(
+    (x) => x.type === 'VariableDeclaration' && x.declarations[0].id.name === 'features',
+  );
+
+  // update features to be an object with the beta methods
+  features.declarations[0].init = builders.objectExpression(
+    betaMethods.map((method) =>
+      builders.property('init', builders.stringLiteral(method.operationId), builders.booleanLiteral(true)),
+    ),
+  );
+
+  const output = await recast.print(ast, false);
+
+  if (!output) return;
+  await fs.writeFile(filePath, output, 'utf-8');
+}
+
 function createResourceIndex(resources: Resource[]) {
   return builders.program([
     ...resources.map((resource) =>
@@ -358,6 +382,10 @@ type File = { type: string; name: string; source: string; docs?: string; nested?
 async function main() {
   const resources = await getResources(argv.spec || SPEC_URL);
   const files: Array<File> = [];
+  const betaMethods = resources
+    .flatMap((x) => x.methods)
+    .filter((x) => x.beta)
+    .sort((a, b) => a.operationId.localeCompare(b.operationId));
 
   const meta = JSON.parse(await fs.readFile(META_FILE, 'utf8')) as Meta;
   meta.resources = meta.resources || {};
@@ -426,6 +454,7 @@ async function main() {
 
   // // update method docs in readme
   const docs = files.map((x) => x.docs).filter(Boolean);
+  await updateFeatureFlags(path.join(process.cwd(), 'src/lib/client.ts'), betaMethods);
   await updateReadme(README_MD, 'RESOURCE_METHODS', docs);
   console.log(`updated README.md`);
 }

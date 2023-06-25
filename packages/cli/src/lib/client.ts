@@ -4,13 +4,14 @@ import { configStore } from './config';
 
 type ExtendedClient = InstanceType<typeof Client> & { getProject: () => Promise<{ id: string; name: string }> };
 
+const features: ClientOptions['features'] = {};
+
 export function getClient(options?: Partial<ClientOptions>) {
   const apiKey = configStore.get('apiKey') || '';
   const apiSecret = configStore.get('apiSecret') || '';
   const userEmail = configStore.get('userEmail') || '';
   const userExternalId = configStore.get('userExternalId') || '';
 
-  // TODO: enable all beta features
   const client = new Client({
     apiKey,
     apiSecret,
@@ -18,6 +19,7 @@ export function getClient(options?: Partial<ClientOptions>) {
     userExternalId,
     ...options,
     appInfo: { name: __PACKAGE_NAME__, version: __PACKAGE_VERSION__ },
+    features,
   }) as ExtendedClient;
 
   client.getProject = async function getProject() {
