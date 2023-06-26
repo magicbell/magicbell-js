@@ -7,10 +7,12 @@ type ExtendedClient = InstanceType<typeof Client> & { getProject: () => Promise<
 const features: ClientOptions['features'] = {};
 
 export function getClient(options?: Partial<ClientOptions>) {
-  const apiKey = configStore.get('apiKey') || '';
-  const apiSecret = configStore.get('apiSecret') || '';
-  const userEmail = configStore.get('userEmail') || '';
-  const userExternalId = configStore.get('userExternalId') || '';
+  const project = configStore.getProject();
+
+  const apiKey = project?.apiKey || '';
+  const apiSecret = project?.apiSecret || '';
+  const userEmail = project?.userEmail || '';
+  const userExternalId = project?.userExternalId || '';
 
   const client = new Client({
     apiKey,
@@ -23,7 +25,7 @@ export function getClient(options?: Partial<ClientOptions>) {
   }) as ExtendedClient;
 
   client.getProject = async function getProject() {
-    return client
+    const project = await client
       .request({
         method: 'POST',
         path: '/graphql',
@@ -32,6 +34,12 @@ export function getClient(options?: Partial<ClientOptions>) {
         },
       })
       .then((x) => x.data.currentProject);
+
+    if (!project) {
+      throw Error('Could not find project');
+    }
+
+    return project;
   };
 
   return client;

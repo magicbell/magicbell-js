@@ -7,12 +7,7 @@ import { login } from './login';
 import { logout } from './logout';
 import * as resources from './resources';
 
-const publicCommands = ['login', 'logout', 'config', 'help'];
-
-function runCommand(name: string, ...args: any) {
-  // events is there, Commander extends EventEmitter
-  (program as any)._events[`command:${name}`](args);
-}
+const publicCommands = ['login', 'logout', 'config'];
 
 const program = createCommand()
   .name('magicbell')
@@ -20,14 +15,25 @@ const program = createCommand()
   .version(__PACKAGE_VERSION__, '-v, --version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default');
 
-program.hook('preAction', (thisCommand, actionCommand) => {
+// configure configstore
+program.hook('preAction', function (thisCommand) {
+  const options = thisCommand.opts();
+  configStore.setProfile(options.profile);
+});
+
+// check auth on authenticated routes, and redirect to login if not authenticated
+program.hook('preAction', function (thisCommand, actionCommand) {
   const command = findTopCommand(actionCommand);
   if (publicCommands.includes(command.name()) || actionCommand.name() === 'help') return;
 
-  if (configStore.get('apiKey') && configStore.get('apiSecret')) return;
-
-  printError("You haven't set the API keys yet. Running `magicbell login`");
-  runCommand('login');
+  const project = configStore.getProject();
+  if (!project?.apiKey || !project?.apiSecret) {
+    const profile = configStore.getProfile();
+    printError(
+      `You've provided the profile "${profile}" via the --profile flag or the MAGICBELL_PROFILE environment variable, but you haven't logged in on that profile. Please run \`magicbell login -p ${profile}\`.`,
+      true,
+    );
+  }
 });
 
 const commands = Object.values(resources).concat([listen]);

@@ -18,9 +18,12 @@ config
   .command('list')
   .description('Print a list of configuration keys and values')
   .action(() => {
+    const project = configStore.getProject();
+    if (!project) return;
+
     printJson({
-      ...configStore.all,
-      apiSecret: mask(configStore.all.apiSecret),
+      ...project,
+      apiSecret: mask(project.apiSecret),
     });
   });
 
@@ -29,7 +32,8 @@ config
   .description('Print the value of a given configuration key.')
   .argument('<key>', 'The configuration key to print.')
   .action((key) => {
-    printMessage(configStore.get(key));
+    const ns = `projects.${configStore.getProfile()}`;
+    printMessage(configStore.get(`${ns}.${key}`));
   });
 
 config
@@ -38,7 +42,8 @@ config
   .argument('<key>', 'The configuration key to update.')
   .argument('<value>', 'The value to set.')
   .action((key, value) => {
-    configStore.set(key, value);
+    const ns = `projects.${configStore.getProfile()}`;
+    configStore.set(`${ns}.${key}`, value);
   });
 
 config
@@ -46,5 +51,6 @@ config
   .description('Remove the given key from the configuration.')
   .argument('<key>', 'The configuration key to remove.')
   .action((key) => {
-    configStore.delete(key);
+    const ns = `projects.${configStore.getProfile()}`;
+    configStore.delete(`${ns}.${key}`);
   });
