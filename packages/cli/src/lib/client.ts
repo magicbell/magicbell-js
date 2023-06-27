@@ -1,5 +1,6 @@
 import { Client, ClientOptions } from 'magicbell';
 
+import pkg from '../../package.json';
 import { configStore } from './config';
 
 type ExtendedClient = InstanceType<typeof Client> & { getProject: () => Promise<{ id: string; name: string }> };
@@ -20,7 +21,7 @@ export function getClient(options?: Partial<ClientOptions>) {
     userEmail,
     userExternalId,
     ...options,
-    appInfo: { name: __PACKAGE_NAME__, version: __PACKAGE_VERSION__ },
+    appInfo: { name: pkg.name, version: pkg.version },
     features,
   }) as ExtendedClient;
 

@@ -1,3 +1,4 @@
+import pkg from '../package.json';
 import { config } from './config';
 import { createCommand, findCommand, findTopCommand } from './lib/commands';
 import { configStore } from './lib/config';
@@ -12,7 +13,7 @@ const publicCommands = ['login', 'logout', 'config'];
 const program = createCommand()
   .name('magicbell')
   .description('Work with MagicBell from the command line')
-  .version(__PACKAGE_VERSION__, '-v, --version', 'Show magicbell version')
+  .version(pkg.version, '-v, --version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default')
   .option('--no-color', 'Color output', true);
 

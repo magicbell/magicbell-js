@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
+    "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
       "@magicbell/cli": ["packages/cli/src"],

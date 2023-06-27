@@ -8,16 +8,13 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell.esm.js",
   "bin": {
     "magicbell": "bin/magicbell.js"
   },
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
-    "/dist",
-    "/src"
+    "/bin/magicbell.js",
+    "/dist/index.cjs"
   ],
   "homepage": "https://magicbell.com",
   "keywords": [
@@ -27,19 +24,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:magicbell-io/magicbell-js.git"
+    "url": "git@github.com:magicbell-io/magicbell-js.git",
+    "directory": "packages/cli"
   },
   "bugs": {
     "url": "https://github.com/magicbell-io/magicbell-js/issues"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "build": "run-s clean build:prod build:bin",
+    "build:prod": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --format=cjs --platform=node",
+    "build:bin": "pkg dist/index.cjs --public --public-packages '*' --no-bytecode -o 'dist/bin/magicbell' --targets node18-linux-x64,node18-linux-arm64,node18-macos-x64,node18-macos-arm64,node18-win-x64,node18-win-arm64",
     "generate:resources": "tsx scripts/generate-resources.ts",
-    "dev": "yarn build:dev && node dist/index.js",
-    "start": "yarn build:dev --watch",
+    "start": "yarn build:prod --watch",
     "size": "size-limit"
   },
   "dependencies": {
@@ -53,6 +50,8 @@
   "devDependencies": {
     "@magicbell/codegen": "0.1.0",
     "@types/configstore": "^5.0.1",
+    "esbuild": "^0.18.10",
+    "pkg": "^5.8.1",
     "tsx": "^3.9.0"
   }
 }
