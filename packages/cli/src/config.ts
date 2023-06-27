@@ -4,7 +4,7 @@ import { printJson, printMessage } from './lib/printer';
 import { mask } from './lib/text';
 
 export const config = createCommand('config')
-  .description('Display or change config values for magicbell')
+  .description('Manage configuration for magicbell')
   .action(() => config.help());
 
 config

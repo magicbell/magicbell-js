@@ -7,20 +7,22 @@ import { login } from './login';
 import { logout } from './logout';
 import * as resources from './resources';
 
-const program = createCommand();
-
-const pubicCommands = ['login', 'logout', 'config'];
+const publicCommands = ['login', 'logout', 'config', 'help'];
 
 function runCommand(name: string, ...args: any) {
   // events is there, Commander extends EventEmitter
   (program as any)._events[`command:${name}`](args);
 }
 
-program.name(__PACKAGE_NAME__).description('CLI access to the MagicBell REST api').version(__PACKAGE_VERSION__);
+const program = createCommand()
+  .name('magicbell')
+  .description('Work with MagicBell from the command line')
+  .version(__PACKAGE_VERSION__, '-v, --version', 'Show magicbell version')
+  .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default');
 
 program.hook('preAction', (thisCommand, actionCommand) => {
   const command = findTopCommand(actionCommand);
-  if (pubicCommands.includes(command.name())) return;
+  if (publicCommands.includes(command.name()) || actionCommand.name() === 'help') return;
 
   if (configStore.get('apiKey') && configStore.get('apiSecret')) return;
 
@@ -28,13 +30,15 @@ program.hook('preAction', (thisCommand, actionCommand) => {
   runCommand('login');
 });
 
-program.addCommand(config);
-program.addCommand(listen);
-program.addCommand(login);
-program.addCommand(logout);
+const commands = Object.values(resources).concat([listen]);
+const otherCommands = [config, login, logout];
 
-for (const resource of Object.values(resources)) {
-  program.addCommand(resource);
+for (const command of commands) {
+  program.addCommand(command.group('Resource commands'));
+}
+
+for (const command of otherCommands) {
+  program.addCommand(command.group('Other commands'));
 }
 
 program.parse();
