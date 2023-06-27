@@ -18,7 +18,7 @@ const program = createCommand()
 // configure configstore
 program.hook('preAction', function (thisCommand) {
   const options = thisCommand.opts();
-  configStore.setProfile(options.profile);
+  configStore.profile = options.profile;
 });
 
 // check auth on authenticated routes, and redirect to login if not authenticated
@@ -28,7 +28,7 @@ program.hook('preAction', function (thisCommand, actionCommand) {
 
   const project = configStore.getProject();
   if (!project?.apiKey || !project?.apiSecret) {
-    const profile = configStore.getProfile();
+    const profile = configStore.profile;
     printError(
       `You've provided the profile "${profile}" via the --profile flag or the MAGICBELL_PROFILE environment variable, but you haven't logged in on that profile. Please run \`magicbell login -p ${profile}\`.`,
       true,

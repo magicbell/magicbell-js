@@ -10,8 +10,7 @@ type Project = {
 };
 
 type Store = InstanceType<typeof ConfigStore> & {
-  getProfile: () => string;
-  setProfile: (profile: string) => void;
+  profile: string;
   getProject: () => Project;
   setProject: (project: Project) => void;
   unsetProject: () => void;
@@ -36,22 +35,27 @@ configStore.getProfile = function getProfile() {
   return _state.profile;
 };
 
-configStore.setProfile = function setProfile(profile) {
-  _state.profile = profile;
-};
+Object.defineProperty(configStore, 'profile', {
+  get() {
+    return _state.profile;
+  },
+  set(value) {
+    _state.profile = value;
+  },
+});
 
 configStore.getProject = function getProject() {
-  const alias = configStore.getProfile();
+  const alias = configStore.profile;
   return configStore.get(`projects.${alias}`);
 };
 
 configStore.setProject = function setProject(project: Project) {
-  const alias = configStore.getProfile();
+  const alias = configStore.profile;
   configStore.set(`projects.${alias}`, project);
 };
 
 configStore.unsetProject = function unsetProject() {
-  const alias = configStore.getProfile();
+  const alias = configStore.profile;
   configStore.delete(`projects.${alias}`);
 };
 

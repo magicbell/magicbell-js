@@ -32,7 +32,7 @@ config
   .description('Print the value of a given configuration key.')
   .argument('<key>', 'The configuration key to print.')
   .action((key) => {
-    const ns = `projects.${configStore.getProfile()}`;
+    const ns = `projects.${configStore.profile}`;
     printMessage(configStore.get(`${ns}.${key}`));
   });
 
@@ -42,7 +42,7 @@ config
   .argument('<key>', 'The configuration key to update.')
   .argument('<value>', 'The value to set.')
   .action((key, value) => {
-    const ns = `projects.${configStore.getProfile()}`;
+    const ns = `projects.${configStore.profile}`;
     configStore.set(`${ns}.${key}`, value);
   });
 
@@ -51,6 +51,6 @@ config
   .description('Remove the given key from the configuration.')
   .argument('<key>', 'The configuration key to remove.')
   .action((key) => {
-    const ns = `projects.${configStore.getProfile()}`;
+    const ns = `projects.${configStore.profile}`;
     configStore.delete(`${ns}.${key}`);
   });
