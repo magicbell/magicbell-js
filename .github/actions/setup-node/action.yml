@@ -16,14 +16,5 @@ runs:
       with:
         node-version: ${{ inputs.node-version }}
 
-    - name: Cache node modules
-      id: cache
-      uses: actions/cache@v2
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock') }}
-
-    - name: Install Dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      shell: bash
-      run: yarn --frozen-lockfile
+    - name: Download deps
+      uses: u0reo/npm-install@fix/restore-failure
