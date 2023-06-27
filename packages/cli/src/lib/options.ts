@@ -28,15 +28,18 @@ export function parseOptions(obj: Record<string, unknown>) {
   const data: any = {};
 
   for (let [key, value] of Object.entries(obj)) {
+    if (optionKeys.has(key)) {
+      options[key] = value;
+      continue;
+    }
+
     // parse json-like values, as attributes like custom_attributes, and subscription categories take objects
     value = parseJsonLikes(value);
 
-    if (optionKeys.has(key)) {
-      options[key] = value;
-    } else if (key === 'recipients') {
+    if (key === 'recipients') {
       // special magic for recipients, so it's easier to send notifications from the CLI
       const recipients = Array.isArray(value) ? value : [value];
-      value = recipients.map((r) => {
+      data[key] = recipients.map((r) => {
         // possibly a json string that was already parsed by parseJsonLikes
         if (typeof r !== 'string') return r;
         if (r.includes('*') || r.includes(' ')) return { matches: r };
