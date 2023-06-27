@@ -1,5 +1,16 @@
 # @magicbell/codegen
 
+## 0.2.0
+
+### Minor Changes
+
+- [#139](https://github.com/magicbell-io/magicbell-js/pull/139) [`22f7267`](https://github.com/magicbell-io/magicbell-js/commit/22f72679b65405e79a5a4a80d112678c3080ddc5) Thanks [@smeijer](https://github.com/smeijer)! - Small changes to the (internal) codegen package.
+
+  - Fix hyphen-case
+  - Don't crash on missing `pagination` properties
+  - Support shorthand object properties
+  - Add id helper
+
 ## 0.1.0
 
 ### Minor Changes
