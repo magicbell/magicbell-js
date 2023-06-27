@@ -11,6 +11,7 @@ type Project = {
 
 type Store = InstanceType<typeof ConfigStore> & {
   profile: string;
+  color: boolean;
   getProject: () => Project;
   setProject: (project: Project) => void;
   unsetProject: () => void;
@@ -29,11 +30,17 @@ export const configStore = new ConfigStore(
 
 const _state = {
   profile: 'default',
+  color: true,
 };
 
-configStore.getProfile = function getProfile() {
-  return _state.profile;
-};
+Object.defineProperty(configStore, 'color', {
+  get() {
+    return _state.color;
+  },
+  set(value) {
+    _state.color = value;
+  },
+});
 
 Object.defineProperty(configStore, 'profile', {
   get() {
