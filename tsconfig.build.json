@@ -23,6 +23,7 @@
     "skipLibCheck": true,
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
-    "allowJs": false
+    "allowJs": false,
+    "resolveJsonModule": true
   }
 }

@@ -15,6 +15,7 @@
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling",
+    "@magicbell/cli": "../packages/cli",
     "@magicbell/codegen": "../packages/codegen",
     "@magicbell/core": "../packages/core",
     "@magicbell/embeddable": "../packages/embeddable",

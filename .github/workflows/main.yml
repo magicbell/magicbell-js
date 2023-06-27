@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Lint
-        run: yarn lint:typescript
+        run: tsc -v && yarn lint:typescript
 
   test:
     name: Test

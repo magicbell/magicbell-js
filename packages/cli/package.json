@@ -1,0 +1,55 @@
+{
+  "name": "@magicbell/cli",
+  "version": "0.6.0",
+  "description": "Work with MagicBell from the command line",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.ts",
+  "bin": {
+    "magicbell": "bin/magicbell.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "/bin/magicbell.js",
+    "/dist/index.cjs"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "notifications",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/magicbell-js.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/magicbell-io/magicbell-js/issues"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean build:prod build:bin",
+    "build:prod": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --format=cjs --platform=node --tsconfig=tsconfig.build.json",
+    "build:bin": "pkg dist/index.cjs --public --public-packages '*' --no-bytecode -o 'dist/bin/magicbell' --targets node18-linux-x64,node18-linux-arm64,node18-macos-x64,node18-macos-arm64,node18-win-x64,node18-win-arm64",
+    "generate:resources": "tsx scripts/generate-resources.ts",
+    "start": "yarn build:prod --watch",
+    "size": "size-limit"
+  },
+  "devDependencies": {
+    "@magicbell/codegen": "0.1.0",
+    "@types/configstore": "^5.0.1",
+    "commander": "^9.4.1",
+    "configstore": "^5.0.1",
+    "esbuild": "^0.18.10",
+    "json5": "^2.2.3",
+    "kleur": "^4.1.5",
+    "magicbell": "^1.4.4",
+    "pkg": "^5.8.1",
+    "readline-sync": "^1.4.10",
+    "tsx": "^3.9.0"
+  }
+}

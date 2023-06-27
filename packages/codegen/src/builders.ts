@@ -13,6 +13,8 @@ export function importDeclaration(specifiers: string | string[], source: string)
     specifiers: specifierArray.map((x) =>
       x.startsWith('* as ')
         ? builders.importNamespaceSpecifier(builders.identifier(x.replace('* as ', '')))
+        : typeof specifiers === 'string'
+        ? builders.importDefaultSpecifier(builders.identifier(x))
         : builders.importSpecifier(builders.identifier(x)),
     ),
     source: builders.literal(source),
@@ -37,15 +39,20 @@ export function commentBlock(...lines: (string | undefined | null)[]) {
   );
 }
 
-export function objectProperty(name: string, value: any) {
+export function objectProperty(name: string, value?: any) {
   return builders.objectProperty.from({
     key: builders.identifier(name),
     value:
-      typeof value === 'boolean'
+      typeof value === 'object'
+        ? value
+        : typeof value === 'undefined'
+        ? builders.identifier(name)
+        : typeof value === 'boolean'
         ? builders.booleanLiteral(value)
         : typeof value === 'number'
         ? builders.numericLiteral(value)
         : builders.stringLiteral(value),
+    shorthand: typeof value === 'undefined',
   });
 }
 
@@ -120,4 +127,8 @@ export function callExpression(callee: string, ...args: (K.ExpressionKind | K.Sp
 
 export function objectExpression(...properties: Parameters<ObjectExpressionBuilder>[0]) {
   return builders.objectExpression(properties.filter(Boolean));
+}
+
+export function id(name: string) {
+  return builders.identifier(name);
 }

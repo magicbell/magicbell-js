@@ -43,7 +43,7 @@ export type Resource = {
 };
 
 export function getRootPathMethods(document: OpenAPI.Document, path: string) {
-  const paginationProps = Object.keys((document as any).components.schemas.PaginationProps?.properties);
+  const paginationProps = Object.keys((document as any).components.schemas.PaginationProps?.properties || {});
 
   const methods: Array<Method> = [];
   const apiPaths = Object.keys(document.paths).filter((x) => x.startsWith(`/${path}`));

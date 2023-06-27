@@ -4,8 +4,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "typeRoots": ["./node_modules/@types", "./types"],
+    "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
+      "@magicbell/cli": ["packages/cli/src"],
       "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],

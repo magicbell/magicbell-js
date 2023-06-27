@@ -22,7 +22,7 @@ function getRelatedBundles(file) {
   }
 }
 
-export async function writeIndexFile() {
+export function writeIndexFile() {
   return {
     name: 'create index file',
     async generateBundle(options, bundle) {

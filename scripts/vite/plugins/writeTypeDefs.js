@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 
 import { pkg } from '../settings.js';
 
-export async function writeTypeDefs() {
+export function writeTypeDefs() {
   let watch = false;
 
   return {

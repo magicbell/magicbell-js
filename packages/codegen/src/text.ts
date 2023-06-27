@@ -73,7 +73,13 @@ export function pascalCase(str: string) {
 }
 
 export function hyphenCase(str: string) {
-  return str.replace(/_/g, '-');
+  return (
+    str[0].toLowerCase() +
+    str
+      .replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+      .replace(/_/g, '-')
+      .slice(1)
+  );
 }
 
 export function snakeCase(str: string) {
