@@ -111,6 +111,3 @@ export function formatHelp(cmd: Command, helper: Help) {
 
   return output.join('\n');
 }
-
-// TODO: command groups work,
-//  see if we can also "move" help & --help ?
