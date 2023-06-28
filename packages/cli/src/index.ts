@@ -30,12 +30,15 @@ program.hook('preAction', function (thisCommand, actionCommand) {
   if (publicCommands.includes(command.name()) || actionCommand.name() === 'help') return;
 
   const project = configStore.getProject();
+
   if (!project?.apiKey || !project?.apiSecret) {
     const profile = configStore.profile;
-    printError(
-      `You've provided the profile "${profile}" via the --profile flag or the MAGICBELL_PROFILE environment variable, but you haven't logged in on that profile. Please run \`magicbell login -p ${profile}\`.`,
-      true,
-    );
+    const error =
+      profile === 'default'
+        ? 'You are not logged in. Please run `magicbell login` to connect to your MagicBell account.'
+        : `You've provided the profile "${profile}" via the --profile flag or the MAGICBELL_PROFILE environment variable, but you haven't logged in on that profile. Please run \`magicbell login -p ${profile}\`.`;
+
+    printError(error, true);
   }
 });
 
