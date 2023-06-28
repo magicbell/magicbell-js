@@ -1,5 +1,16 @@
 # @magicbell/cli
 
+## 1.1.0
+
+### Minor Changes
+
+- [`963fcc1`](https://github.com/magicbell-io/magicbell-js/commit/963fcc1030f1cbcb621a19dc0b446558fedee790) Thanks [@smeijer](https://github.com/smeijer)! - feat: add user options to listen
+
+  ```shell
+  magicbell listen --user-email person@example.com
+  magicbell listen --user-external-id usr_123
+  ```
+
 ## 1.0.0
 
 ### Major Changes
