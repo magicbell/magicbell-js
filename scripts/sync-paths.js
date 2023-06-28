@@ -41,7 +41,18 @@ function writeAliasToExamplePackageJson(pkgs) {
   writeJson('./example/package.json', pkgJson);
 }
 
+function distributeFiles(pkgs, files) {
+  for (const [_name, dir] of pkgs) {
+    for (const file of files) {
+      const src = path.resolve(process.cwd(), file);
+      const dest = path.resolve(process.cwd(), dir, file);
+      fs.copyFileSync(src, dest);
+    }
+  }
+}
+
 getPackages().then((pkgs) => {
   writePathsToTsConfig(pkgs);
   writeAliasToExamplePackageJson(pkgs);
+  distributeFiles(pkgs, ['LICENSE']);
 });

@@ -14,7 +14,8 @@
   "sideEffects": false,
   "files": [
     "/bin/magicbell.js",
-    "/dist/index.cjs"
+    "/dist/index.cjs",
+    "LICENSE"
   ],
   "homepage": "https://magicbell.com",
   "keywords": [
