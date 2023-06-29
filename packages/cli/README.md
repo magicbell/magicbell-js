@@ -20,6 +20,13 @@ or yarn:
 yarn global add @magicbell/cli
 ```
 
+or brew:
+
+```shell
+brew tap magicbell-io/magicbell
+brew install magicbell-cli
+```
+
 ## Usage
 
 The app needs to be configured with your project's secret key & api key, which are
