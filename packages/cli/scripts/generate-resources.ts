@@ -126,9 +126,17 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
 
     // list methods get additional options
     if (isListMethod) {
+      // .option('--paginate', '{description}')
       expression = builders.callExpression(builders.memberExpression(expression, b.id('option')), [
         builders.stringLiteral('--paginate'),
         builders.stringLiteral('Make additional HTTP requests to fetch all pages of results'),
+      ]);
+
+      // .option('--max-items <integer>', '{description}', Number)
+      expression = builders.callExpression(builders.memberExpression(expression, b.id('option')), [
+        builders.stringLiteral('--max-items <number>'),
+        builders.stringLiteral('Maximum number of items to fetch'),
+        builders.identifier('Number'),
       ]);
     }
 
@@ -144,7 +152,11 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
         params: [
           ...method.params.map((x) => b.id(camelCase(x.title))),
           isListMethod
-            ? builders.objectPattern([b.objectProperty('paginate'), builders.restProperty(b.id('opts'))])
+            ? builders.objectPattern([
+                b.objectProperty('paginate'),
+                b.objectProperty('maxItems'),
+                builders.restProperty(b.id('opts')),
+              ])
             : b.id('opts'),
         ],
         body: builders.blockStatement([
@@ -186,8 +198,28 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
                       builders.awaitExpression(
                         builders.callExpression(builders.memberExpression(b.id('response'), b.id('forEach')), [
                           builders.arrowFunctionExpression(
-                            [b.id('notification')],
-                            builders.callExpression(b.id('printJson'), [b.id('notification')]),
+                            [b.id('notification'), b.id('idx')],
+                            builders.blockStatement([
+                              // printJSON(notification);
+                              builders.expressionStatement(
+                                builders.callExpression(b.id('printJson'), [b.id('notification')]),
+                              ),
+                              // return !(maxItems && idx + 1 >= maxItems)
+                              builders.returnStatement(
+                                builders.unaryExpression(
+                                  '!',
+                                  builders.logicalExpression(
+                                    '&&',
+                                    b.id('maxItems'),
+                                    builders.binaryExpression(
+                                      '>=',
+                                      builders.binaryExpression('+', b.id('idx'), builders.numericLiteral(1)),
+                                      b.id('maxItems'),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
                           ),
                         ]),
                       ),

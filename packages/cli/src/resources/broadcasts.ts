@@ -15,13 +15,17 @@ broadcasts
   .option('--page <integer>', 'The page number of the paginated response. Defaults to 1.')
   .option('--per-page <integer>', 'The number of items per page. Defaults to 20.')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
-  .action(async ({ paginate, ...opts }) => {
+  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
+  .action(async ({ paginate, maxItems, ...opts }) => {
     const { data, options } = parseOptions(opts);
 
     const response = getClient().broadcasts.list(data, options);
 
     if (paginate) {
-      await response.forEach((notification) => printJson(notification));
+      await response.forEach((notification, idx) => {
+        printJson(notification);
+        return !(maxItems && idx + 1 >= maxItems);
+      });
     } else {
       await response.then((result) => printJson(result));
     }

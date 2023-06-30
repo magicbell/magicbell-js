@@ -56,13 +56,17 @@ users
   )
   .option('--order-by <string>', 'Use it to order the returned list of users. Defaults to `created_at,DESC`')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
-  .action(async ({ paginate, ...opts }) => {
+  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
+  .action(async ({ paginate, maxItems, ...opts }) => {
     const { data, options } = parseOptions(opts);
 
     const response = getClient().users.list(data, options);
 
     if (paginate) {
-      await response.forEach((notification) => printJson(notification));
+      await response.forEach((notification, idx) => {
+        printJson(notification);
+        return !(maxItems && idx + 1 >= maxItems);
+      });
     } else {
       await response.then((result) => printJson(result));
     }
