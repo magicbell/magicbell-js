@@ -74,7 +74,7 @@
     "utility-types": "^3.10.0"
   },
   "dependencies": {
-    "ably": "^1.2.39",
+    "ably": "^1.2.41",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
     "humps": "^2.0.1",

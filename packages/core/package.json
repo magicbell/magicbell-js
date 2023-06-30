@@ -38,7 +38,7 @@
     "sinon": "^13.0.1"
   },
   "dependencies": {
-    "ably": "^1.2.39",
+    "ably": "^1.2.41",
     "axios": "^0.27.2",
     "dayjs": "^1.11.5",
     "dompurify": "^2.3.3",

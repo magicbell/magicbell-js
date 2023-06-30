@@ -4938,10 +4938,10 @@ abbrev@1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
-ably@^1.2.39:
-  version "1.2.39"
-  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.39.tgz#a5877e8394228a2747236265aa2f36773e73ccc5"
-  integrity sha512-xL57mIHGZsdJlgQv2DqZUFxgvh3QmUZOOZioP4dBbzCu6hgnoTlWHiZT40uwr0D8/OpAyvhidjhoVcqMk3TIAQ==
+ably@^1.2.41:
+  version "1.2.41"
+  resolved "https://registry.yarnpkg.com/ably/-/ably-1.2.41.tgz#e5ac4f89c705d53af3597346635a8d4e2e2086d5"
+  integrity sha512-TE3PjtrclXFjfIALQhuTd1bEL7EAlS28AGFLaILeXmecXnBQE37WoC2EKZJIX7jRX31bwTHxUouje3WBEnhNKQ==
   dependencies:
     "@ably/msgpack-js" "^0.4.0"
     got "^11.8.5"
