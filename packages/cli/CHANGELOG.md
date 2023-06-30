@@ -1,5 +1,15 @@
 # @magicbell/cli
 
+## 1.2.0
+
+### Minor Changes
+
+- [#143](https://github.com/magicbell-io/magicbell-js/pull/143) [`26e9e1a`](https://github.com/magicbell-io/magicbell-js/commit/26e9e1a737d946d4fc42b81a126f9b2c794cb8f4) Thanks [@smeijer](https://github.com/smeijer)! - Add `--max-items` to methods supporting `--paginate`. This way it's trivial to auto paginate over records at MagicBell, till a certain reasonable limit is reached. By default, `--paginate` iterates over every single record potentially hitting, but respecting, API rate limits.
+
+  ```shell
+  $ magicbell broadcasts list --paginate --max-items 1000
+  ```
+
 ## 1.1.0
 
 ### Minor Changes
