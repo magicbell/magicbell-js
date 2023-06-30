@@ -11,13 +11,17 @@ subscriptions
   .command('list')
   .description("Fetch user's topic subscriptions")
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
-  .action(async ({ paginate, ...opts }) => {
+  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
+  .action(async ({ paginate, maxItems, ...opts }) => {
     const { options } = parseOptions(opts);
 
     const response = getClient().subscriptions.list(options);
 
     if (paginate) {
-      await response.forEach((notification) => printJson(notification));
+      await response.forEach((notification, idx) => {
+        printJson(notification);
+        return !(maxItems && idx + 1 >= maxItems);
+      });
     } else {
       await response.then((result) => printJson(result));
     }

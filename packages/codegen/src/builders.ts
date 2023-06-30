@@ -10,13 +10,15 @@ export function importDeclaration(specifiers: string | string[], source: string)
   const specifierArray = Array.isArray(specifiers) ? specifiers : [specifiers];
 
   return builders.importDeclaration.from({
-    specifiers: specifierArray.map((x) =>
-      x.startsWith('* as ')
-        ? builders.importNamespaceSpecifier(builders.identifier(x.replace('* as ', '')))
-        : typeof specifiers === 'string'
-        ? builders.importDefaultSpecifier(builders.identifier(x))
-        : builders.importSpecifier(builders.identifier(x)),
-    ),
+    specifiers: specifierArray
+      .filter(Boolean)
+      .map((x) =>
+        x.startsWith('* as ')
+          ? builders.importNamespaceSpecifier(builders.identifier(x.replace('* as ', '')))
+          : typeof specifiers === 'string'
+          ? builders.importDefaultSpecifier(builders.identifier(x))
+          : builders.importSpecifier(builders.identifier(x)),
+      ),
     source: builders.literal(source),
   });
 }
