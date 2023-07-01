@@ -9,7 +9,7 @@ type ExtendedCommand = Command & {
 export function createCommand(name?: string): ExtendedCommand {
   const command = new Command(name) as ExtendedCommand;
 
-  command.helpOption('-h, --help', 'Show help for command');
+  command.helpOption('--help', 'Show help for command');
   command.showHelpAfterError(true);
   command.addHelpCommand(false);
 
