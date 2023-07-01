@@ -13,7 +13,7 @@ const publicCommands = ['login', 'logout', 'config'];
 const program = createCommand()
   .name('magicbell')
   .description('Work with MagicBell from the command line')
-  .version(pkg.version, '-v, --version', 'Show magicbell version')
+  .version(pkg.version, '--version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default')
   .option('--no-color', 'Color output', true);
 
