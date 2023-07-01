@@ -1,6 +1,19 @@
 import { Command, Help } from 'commander';
 import kleur from 'kleur';
 
+function sortOptions(a, b) {
+  // shorts before longs
+  if (a.short && !b.short) return -1;
+  if (!a.short && b.short) return 1;
+  // move --version to the end
+  if (a.long === '--version') return 1;
+  if (b.long === '--version') return -1;
+  // move ----help to the end
+  if (a.long === '--help') return 1;
+  if (b.long === '--help') return -1;
+  return a.flags > b.flags ? 1 : -1;
+}
+
 export function formatHelp(cmd: Command, helper: Help) {
   const termWidth = helper.padWidth(cmd, helper);
   const helpWidth = helper.helpWidth || 80;
@@ -52,6 +65,7 @@ export function formatHelp(cmd: Command, helper: Help) {
 
         return true;
       })
+      .sort(sortOptions)
       .map((option) => {
         return formatItem(helper.optionTerm(option), helper.optionDescription(option));
       }),
@@ -78,6 +92,7 @@ export function formatHelp(cmd: Command, helper: Help) {
             // don't return --version on sub commands
             return option.long !== '--version';
           })
+          .sort(sortOptions)
           .map((option) => {
             return formatItem(helper.optionTerm(option), helper.optionDescription(option));
           }),
