@@ -7,11 +7,13 @@ type Project = {
   apiSecret: string;
   userEmail?: string;
   userExternalId?: string;
+  host?: string;
 };
 
 type Store = InstanceType<typeof ConfigStore> & {
   profile: string;
   color: boolean;
+  host?: string;
   getProject: () => Project;
   setProject: (project: Project) => void;
   unsetProject: () => void;
@@ -28,28 +30,9 @@ export const configStore = new ConfigStore(
   },
 ) as Store;
 
-const _state = {
-  profile: 'default',
-  color: true,
-};
-
-Object.defineProperty(configStore, 'color', {
-  get() {
-    return _state.color;
-  },
-  set(value) {
-    _state.color = value;
-  },
-});
-
-Object.defineProperty(configStore, 'profile', {
-  get() {
-    return _state.profile;
-  },
-  set(value) {
-    _state.profile = value;
-  },
-});
+configStore.profile = 'default';
+configStore.color = true;
+configStore.host = undefined;
 
 configStore.getProject = function getProject() {
   const alias = configStore.profile;
@@ -58,6 +41,10 @@ configStore.getProject = function getProject() {
 
 configStore.setProject = function setProject(project: Project) {
   const alias = configStore.profile;
+  if (configStore.host) {
+    project.host = project.host || configStore.host;
+  }
+
   configStore.set(`projects.${alias}`, project);
 };
 

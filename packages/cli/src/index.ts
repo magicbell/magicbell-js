@@ -2,6 +2,7 @@ import pkg from '../package.json';
 import { config } from './config';
 import { createCommand, findCommand, findTopCommand } from './lib/commands';
 import { configStore } from './lib/config';
+import { parseHost } from './lib/options';
 import { printError, printMessage } from './lib/printer';
 import { listen } from './listen';
 import { login } from './login';
@@ -15,6 +16,7 @@ const program = createCommand()
   .description('Work with MagicBell from the command line')
   .version(pkg.version, '--version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default')
+  .option('-h, --host <string>', 'MagicBell API host', parseHost)
   .option('--no-color', 'Color output', true);
 
 // configure configstore
@@ -22,6 +24,7 @@ program.hook('preAction', function (thisCommand) {
   const options = thisCommand.opts();
   configStore.profile = options.profile;
   configStore.color = options.color;
+  configStore.host = options.host;
 });
 
 // check auth on authenticated routes, and redirect to login if not authenticated
