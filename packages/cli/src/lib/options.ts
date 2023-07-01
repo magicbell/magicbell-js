@@ -1,5 +1,6 @@
 import { parse } from 'json5';
 
+import { printError } from './printer';
 import { camelToSnakeCase } from './text';
 
 const optionKeys = new Set(['userEmail', 'userExternalId']);
@@ -52,4 +53,20 @@ export function parseOptions(obj: Record<string, unknown>) {
   }
 
   return { options, data: Object.keys(data).length ? data : undefined };
+}
+
+export function parseHost(host: string) {
+  if (!host) return;
+
+  if (host.startsWith('localhost')) host = `http://${host}`;
+  else if (host.startsWith('127.0.0.1')) host = `http://${host}`;
+  else if (!host.includes('://')) host = `https://${host}`;
+
+  try {
+    const url = new URL(host);
+    // support paths like http://localhost:3000/api/v1, but drop trailing slashes
+    return `${url.origin}${url.pathname}`.replace(/\/$/, '');
+  } catch (error) {
+    printError(`invalid host argument provided: ${host}`, true);
+  }
 }

@@ -10,16 +10,22 @@ const features: ClientOptions['features'] = {};
 export function getClient(options?: Partial<ClientOptions>) {
   const project = configStore.getProject();
 
-  const apiKey = project?.apiKey || '';
-  const apiSecret = project?.apiSecret || '';
-  const userEmail = project?.userEmail || '';
-  const userExternalId = project?.userExternalId || '';
+  const defaultOptions = {
+    apiKey: project?.apiKey,
+    apiSecret: project?.apiSecret,
+    userEmail: project?.userEmail,
+    userExternalId: project?.userExternalId,
+    host: configStore.host || project?.host,
+  };
+
+  for (const key in defaultOptions) {
+    if (defaultOptions[key] == null || defaultOptions[key] === '') {
+      delete defaultOptions[key];
+    }
+  }
 
   const client = new Client({
-    apiKey,
-    apiSecret,
-    userEmail,
-    userExternalId,
+    ...defaultOptions,
     ...options,
     appInfo: { name: pkg.name, version: pkg.version },
     features,
