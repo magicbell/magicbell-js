@@ -1,3 +1,5 @@
+import { Option } from 'commander';
+
 import pkg from '../package.json';
 import { config } from './config';
 import { createCommand, findCommand, findTopCommand } from './lib/commands';
@@ -17,7 +19,10 @@ const program = createCommand()
   .version(pkg.version, '--version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default')
   .option('-h, --host <string>', 'MagicBell API host', parseHost)
-  .option('--no-color', 'Color output', true);
+  .option('--no-color', 'Color output', true)
+  .addOption(
+    new Option('-r, --print-request <string>', 'Print the request command, without sending').choices(['curl']),
+  );
 
 // configure configstore
 program.hook('preAction', function (thisCommand) {

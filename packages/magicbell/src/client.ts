@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { createHmac } from './lib/crypto';
 import { getClientUserAgent, getUserAgent } from './lib/env';
@@ -40,6 +40,9 @@ export class Client {
   #logger = new Logger();
   #features: ClientOptions['features'] = {};
   #lastRequest: Telemetry[] = [];
+  #onRequest: ((config: AxiosRequestConfig) => void | boolean)[] = [];
+  #onResponse: ((data: unknown) => any)[] = [];
+
   listen = createListener(this);
 
   broadcasts = new Broadcasts(this);
@@ -74,6 +77,14 @@ export class Client {
     return this.#features[flag] || false;
   }
 
+  onRequest(callback: (config: AxiosRequestConfig) => void) {
+    this.#onRequest.push(callback);
+  }
+
+  onResponse(callback: (data: unknown) => void) {
+    this.#onResponse.push(callback);
+  }
+
   async request<TResponse = any>(
     { method, path: url, data, params, headers: reqHeaders }: RequestArgs,
     options?: RequestOptions,
@@ -84,13 +95,14 @@ export class Client {
     const headers = this.#getHeaders(requestOptions, method);
 
     const maxRetries = Math.max(0, requestOptions.maxRetries);
+
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       let response: AxiosResponse<TResponse, any>;
       let error: AxiosError | null;
       const startTime = Date.now();
 
       this.#logger.debug(`${method} ${url}`);
-      await axios({
+      const config: AxiosRequestConfig = {
         method,
         url,
         baseURL: requestOptions.host,
@@ -104,12 +116,19 @@ export class Client {
         // TODO: verify arrays are serialized in a way we support
         params,
         timeout: requestOptions.timeout,
-      })
+      };
+
+      for (const cb of this.#onRequest) {
+        const result = cb(config);
+        if (result === false) return;
+      }
+
+      await axios(config)
         .then((res) => {
           response = res;
         })
         .catch((e) => {
-          const curl = toCurl({ method, baseURL: requestOptions.host, url, data, params, headers });
+          const curl = toCurl(config);
           this.#logger.error(`${e.message}: ${curl}`);
           error = e;
           response = e.response;
@@ -133,6 +152,12 @@ export class Client {
           statusText: response?.statusText,
           ...(response?.data as any)?.errors?.[0],
         });
+      }
+
+      for (const cb of this.#onResponse) {
+        const result = cb(config);
+        if (result == null) continue;
+        response.data = result;
       }
 
       return response.data;
