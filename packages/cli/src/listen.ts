@@ -8,7 +8,7 @@ export const listen = createCommand('listen')
   .option('--user-email <string>', 'Email of the user to listen as')
   .option('--user-external-id <string>', 'External ID of the user to listen as')
   .option('--expand', 'Fetch additional notification details for incoming events.')
-  .action(({ expand, ...opts }) => {
+  .action(({ expand, ...opts }, cmd) => {
     const { options } = parseOptions(opts);
 
     if (!options.userEmail && !options.userExternalId) {
@@ -19,7 +19,7 @@ export const listen = createCommand('listen')
       printError('You can only specify one of --user-email or --user-external-id', true);
     }
 
-    const client = getClient();
+    const client = getClient(cmd);
     client.listen(options).forEach(async (event) => {
       let notification;
 

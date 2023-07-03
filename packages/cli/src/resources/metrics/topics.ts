@@ -10,9 +10,9 @@ export const metricsTopics = createCommand('topics').description('Manage metrics
 metricsTopics
   .command('get')
   .description('Get notification metrics grouped by topic')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().metrics.topics.get(options);
+    const response = await getClient(cmd).metrics.topics.get(options);
     printJson(response);
   });

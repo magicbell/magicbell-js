@@ -14,9 +14,9 @@ type Store = InstanceType<typeof ConfigStore> & {
   profile: string;
   color: boolean;
   host?: string;
-  getProject: () => Project;
-  setProject: (project: Project) => void;
-  unsetProject: () => void;
+  getProject: (profile: string) => Project;
+  setProject: (profile: string, project: Project) => void;
+  unsetProject: (profile: string) => void;
   clearProjects: () => void;
 };
 
@@ -30,27 +30,24 @@ export const configStore = new ConfigStore(
   },
 ) as Store;
 
-configStore.profile = 'default';
 configStore.color = true;
-configStore.host = undefined;
 
-configStore.getProject = function getProject() {
-  const alias = configStore.profile;
-  return configStore.get(`projects.${alias}`);
+configStore.getProject = function getProject(profile: string) {
+  return configStore.get(`projects.${profile}`);
 };
 
-configStore.setProject = function setProject(project: Project) {
-  const alias = configStore.profile;
-  if (configStore.host) {
-    project.host = project.host || configStore.host;
+configStore.setProject = function setProject(profile: string, project: Project) {
+  for (const key of Object.keys(project)) {
+    if (project[key] === undefined) {
+      delete project[key];
+    }
   }
 
-  configStore.set(`projects.${alias}`, project);
+  configStore.set(`projects.${profile}`, project);
 };
 
-configStore.unsetProject = function unsetProject() {
-  const alias = configStore.profile;
-  configStore.delete(`projects.${alias}`);
+configStore.unsetProject = function unsetProject(profile: string) {
+  configStore.delete(`projects.${profile}`);
 };
 
 configStore.clearProjects = function clearProjects() {

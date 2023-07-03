@@ -12,10 +12,10 @@ subscriptions
   .description("Fetch user's topic subscriptions")
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async ({ paginate, maxItems, ...opts }) => {
+  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = getClient().subscriptions.list(options);
+    const response = getClient(cmd).subscriptions.list(options);
 
     if (paginate) {
       await response.forEach((notification, idx) => {
@@ -38,10 +38,10 @@ subscriptions
     '--topic <string>',
     'The topic the user should be subscribed to. If the topic does not exist it will be created.',
   )
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().subscriptions.create(data, options);
+    const response = await getClient(cmd).subscriptions.create(data, options);
     printJson(response);
   });
 
@@ -53,10 +53,10 @@ subscriptions
     '--categories <string...>',
     'A list of hashes containing the category slug and the reason for the subscription',
   )
-  .action(async (topic, opts) => {
+  .action(async (topic, opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().subscriptions.unsubscribe(topic, data, options);
+    const response = await getClient(cmd).subscriptions.unsubscribe(topic, data, options);
     printJson(response);
   });
 
@@ -64,10 +64,10 @@ subscriptions
   .command('get')
   .description('Show a topic subscription')
   .argument('<topic>', "The topic for which we'd like to filter topic subscriptions.")
-  .action(async (topic, opts) => {
+  .action(async (topic, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().subscriptions.get(topic, options);
+    const response = await getClient(cmd).subscriptions.get(topic, options);
     printJson(response);
   });
 
@@ -79,9 +79,9 @@ subscriptions
     '--categories <string...>',
     'A list of hashes containing the category slug and the reason for the subscription. Omiting categories deletes all topic subscriptions beloning to the topic.',
   )
-  .action(async (topic, opts) => {
+  .action(async (topic, opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().subscriptions.delete(topic, data, options);
+    const response = await getClient(cmd).subscriptions.delete(topic, data, options);
     printJson(response);
   });

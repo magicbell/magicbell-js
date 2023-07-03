@@ -26,10 +26,10 @@ users
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().users.create(data, options);
+    const response = await getClient(cmd).users.create(data, options);
     printJson(response);
   });
 
@@ -57,10 +57,10 @@ users
   .option('--order-by <string>', 'Use it to order the returned list of users. Defaults to `created_at,DESC`')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async ({ paginate, maxItems, ...opts }) => {
+  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = getClient().users.list(data, options);
+    const response = getClient(cmd).users.list(data, options);
 
     if (paginate) {
       await response.forEach((notification, idx) => {
@@ -76,10 +76,10 @@ users
   .command('get')
   .description('Get user by ID')
   .argument('<user-id>', 'The user id is the MagicBell user id. Accepts a UUID')
-  .action(async (userId, opts) => {
+  .action(async (userId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().users.get(userId, options);
+    const response = await getClient(cmd).users.get(userId, options);
     printJson(response);
   });
 
@@ -102,10 +102,10 @@ users
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
-  .action(async (userId, opts) => {
+  .action(async (userId, opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().users.update(userId, data, options);
+    const response = await getClient(cmd).users.update(userId, data, options);
     printJson(response);
   });
 
@@ -116,10 +116,10 @@ users
     '<user-id>',
     'The user id is the MagicBell user id. Alternatively, provide an id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as the user id.',
   )
-  .action(async (userId, opts) => {
+  .action(async (userId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().users.delete(userId, options);
+    const response = await getClient(cmd).users.delete(userId, options);
     printJson(response);
   });
 
@@ -139,10 +139,10 @@ users
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
-  .action(async (userEmail, opts) => {
+  .action(async (userEmail, opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().users.updateByEmail(userEmail, data, options);
+    const response = await getClient(cmd).users.updateByEmail(userEmail, data, options);
     printJson(response);
   });
 
@@ -150,10 +150,10 @@ users
   .command('delete-by-email')
   .description('Delete a user identified by email')
   .argument('<user-email>', '')
-  .action(async (userEmail, opts) => {
+  .action(async (userEmail, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().users.deleteByEmail(userEmail, options);
+    const response = await getClient(cmd).users.deleteByEmail(userEmail, options);
     printJson(response);
   });
 
@@ -173,10 +173,10 @@ users
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
-  .action(async (externalId, opts) => {
+  .action(async (externalId, opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().users.updateByExternalId(externalId, data, options);
+    const response = await getClient(cmd).users.updateByExternalId(externalId, data, options);
     printJson(response);
   });
 
@@ -184,9 +184,9 @@ users
   .command('delete-by-external-id')
   .description('Delete a user identified by external ID')
   .argument('<external-id>', '')
-  .action(async (externalId, opts) => {
+  .action(async (externalId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().users.deleteByExternalId(externalId, options);
+    const response = await getClient(cmd).users.deleteByExternalId(externalId, options);
     printJson(response);
   });

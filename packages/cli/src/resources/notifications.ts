@@ -33,10 +33,10 @@ notifications
   )
   .option('--topic <string>', 'Topic the notification belongs to. This is useful to create threads.')
   .option('--overrides <json>', 'Optional overrides to configure notifications per target destination.')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().notifications.create(data, options);
+    const response = await getClient(cmd).notifications.create(data, options);
     printJson(response);
   });
 
@@ -67,10 +67,10 @@ notifications
   .option('--topics <string...>', 'A filter on the notifications based on the topic.')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async ({ paginate, maxItems, ...opts }) => {
+  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = getClient().notifications.list(data, options);
+    const response = getClient(cmd).notifications.list(data, options);
 
     if (paginate) {
       await response.forEach((notification, idx) => {
@@ -86,10 +86,10 @@ notifications
   .command('get')
   .description('Fetch notification by ID')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.get(notificationId, options);
+    const response = await getClient(cmd).notifications.get(notificationId, options);
     printJson(response);
   });
 
@@ -97,10 +97,10 @@ notifications
   .command('delete')
   .description('Delete a notification')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.delete(notificationId, options);
+    const response = await getClient(cmd).notifications.delete(notificationId, options);
     printJson(response);
   });
 
@@ -108,10 +108,10 @@ notifications
   .command('mark-as-read')
   .description('Mark a notification as read')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.markAsRead(notificationId, options);
+    const response = await getClient(cmd).notifications.markAsRead(notificationId, options);
     printJson(response);
   });
 
@@ -119,10 +119,10 @@ notifications
   .command('mark-as-unread')
   .description('Mark a notification as unread')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.markAsUnread(notificationId, options);
+    const response = await getClient(cmd).notifications.markAsUnread(notificationId, options);
     printJson(response);
   });
 
@@ -130,10 +130,10 @@ notifications
   .command('archive')
   .description('Archive a notification')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.archive(notificationId, options);
+    const response = await getClient(cmd).notifications.archive(notificationId, options);
     printJson(response);
   });
 
@@ -141,10 +141,10 @@ notifications
   .command('unarchive')
   .description('Unarchive a notification')
   .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts) => {
+  .action(async (notificationId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notifications.unarchive(notificationId, options);
+    const response = await getClient(cmd).notifications.unarchive(notificationId, options);
     printJson(response);
   });
 
@@ -168,10 +168,10 @@ notifications
     'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
   )
   .option('--topics <string...>', 'A filter on the notifications based on the topic.')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().notifications.markAllRead(data, options);
+    const response = await getClient(cmd).notifications.markAllRead(data, options);
     printJson(response);
   });
 
@@ -195,9 +195,9 @@ notifications
     'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
   )
   .option('--topics <string...>', 'A filter on the notifications based on the topic.')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().notifications.markAllSeen(data, options);
+    const response = await getClient(cmd).notifications.markAllSeen(data, options);
     printJson(response);
   });

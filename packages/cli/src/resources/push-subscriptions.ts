@@ -22,10 +22,10 @@ pushSubscriptions
     '--app-bundle-id <string>',
     'The bundle ID of your app. This value is used to determine the delivery mechanism for mobile push notifications based on your workflow so that you can link several mobile applications to one project.',
   )
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().pushSubscriptions.create(data, options);
+    const response = await getClient(cmd).pushSubscriptions.create(data, options);
     printJson(response);
   });
 
@@ -33,9 +33,9 @@ pushSubscriptions
   .command('delete')
   .description("Delete user's device token")
   .argument('<device-token>', 'Token of the device you want to remove')
-  .action(async (deviceToken, opts) => {
+  .action(async (deviceToken, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().pushSubscriptions.delete(deviceToken, options);
+    const response = await getClient(cmd).pushSubscriptions.delete(deviceToken, options);
     printJson(response);
   });

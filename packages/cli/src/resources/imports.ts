@@ -11,10 +11,10 @@ imports
   .command('create')
   .description('Create a import')
   .option('--users <string...>', '')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().imports.create(data, options);
+    const response = await getClient(cmd).imports.create(data, options);
     printJson(response);
   });
 
@@ -22,9 +22,9 @@ imports
   .command('get')
   .description('Get the status of an import')
   .argument('<import-id>', 'ID of the import.')
-  .action(async (importId, opts) => {
+  .action(async (importId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().imports.get(importId, options);
+    const response = await getClient(cmd).imports.get(importId, options);
     printJson(response);
   });

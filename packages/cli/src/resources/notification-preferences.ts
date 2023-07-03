@@ -12,10 +12,10 @@ export const notificationPreferences = createCommand('notification-preferences')
 notificationPreferences
   .command('get')
   .description('Fetch user notification preferences')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().notificationPreferences.get(options);
+    const response = await getClient(cmd).notificationPreferences.get(options);
     printJson(response);
   });
 
@@ -23,9 +23,9 @@ notificationPreferences
   .command('update')
   .description('Update user notification preferences')
   .option('--categories <string...>', '')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = await getClient().notificationPreferences.update(data, options);
+    const response = await getClient(cmd).notificationPreferences.update(data, options);
     printJson(response);
   });

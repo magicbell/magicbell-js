@@ -14,9 +14,9 @@ metrics.addCommand(metricsTopics);
 metrics
   .command('get')
   .description('Get notification metrics')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().metrics.get(options);
+    const response = await getClient(cmd).metrics.get(options);
     printJson(response);
   });
