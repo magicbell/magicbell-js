@@ -1,34 +1,56 @@
-/**
- * Normalize standard HTTP Headers:
- * {'foo-bar': 'hi'}
- * becomes
- * {'Foo-Bar': 'hi'}
- */
-export function normalizeHeaders(headers: Record<string, string>) {
-  if (!headers || typeof headers !== 'object') {
-    return headers;
-  }
+import { deleteEmptyHeaders } from 'fetch-addons';
+import type { Hooks } from 'ky';
 
-  const normalized = {};
-  for (const header of Object.keys(headers)) {
-    normalized[normalizeHeader(header)] = headers[header];
-  }
+import { ClientOptions } from '../types';
+import { createHmac } from './crypto';
+import { getClientUserAgent, getUserAgent } from './env';
+import { uuid4 } from './utils';
 
-  return normalized;
+function getDefaultIdempotencyKey(method: string, maxRetries: number) {
+  if (method.toUpperCase() !== 'POST' || maxRetries === 0) return;
+  return `magicbell-retry-${uuid4()}`;
 }
 
-/**
- * Stolen from https://github.com/marten-de-vries/header-case-normalizer/blob/master/index.js#L36-L41
- * without the exceptions which are irrelevant to us.
- */
-function normalizeHeader(header) {
-  const exceptions = {
-    etag: 'ETag',
-    magicbell: 'MagicBell',
-  };
+function setRequestHeaders(options: ClientOptions, request: Request) {
+  let userHmac = options.userHmac;
 
-  return header
-    .split('-')
-    .map((text) => exceptions[text.toLowerCase()] || text.charAt(0).toUpperCase() + text.slice(1).toLowerCase())
-    .join('-');
+  if (!userHmac && options.apiSecret && (options.userExternalId || options.userEmail)) {
+    userHmac = createHmac(options.apiSecret, options.userExternalId || options.userEmail);
+  }
+
+  const idempotencyKey =
+    request.headers.get('idempotency-key') ||
+    options.idempotencyKey ||
+    getDefaultIdempotencyKey(request.method, options.maxRetries);
+
+  // default headers
+  request.headers.set('accept-version', 'v2');
+  request.headers.set('content-type', 'application/json');
+  request.headers.set('accept', 'application/json');
+  request.headers.set('idempotency-key', idempotencyKey);
+
+  // user provided headers
+  for (const [key, value] of Object.entries(options.headers || {})) {
+    request.headers.set(key, value);
+  }
+
+  // can't set user-agent in the browser, see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
+  request.headers.set('user-agent', typeof document !== 'undefined' ? '' : getUserAgent(options.appInfo));
+
+  // magicbell headers
+  request.headers.set('x-magicbell-api-key', options.apiKey);
+  request.headers.set('x-magicbell-api-secret', options.apiSecret);
+  request.headers.set('x-magicbell-client-user-agent', getClientUserAgent(options.appInfo));
+  request.headers.set('x-magicbell-user-email', options.userEmail);
+  request.headers.set('x-magicbell-user-external-id', options.userExternalId);
+  request.headers.set('x-magicbell-user-hmac', userHmac);
+
+  // remove empty headers, they can cause unexpected behavior
+  deleteEmptyHeaders(request.headers);
+}
+
+export function withRequestHeaders(options: ClientOptions): Hooks {
+  return {
+    beforeRequest: [(request) => setRequestHeaders(options, request)],
+  };
 }

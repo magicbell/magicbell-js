@@ -1,26 +1,18 @@
-import { AxiosRequestConfig } from 'axios';
+import { toCurl } from 'fetch-addons';
 
 import { printError } from './printer';
 
 // we don't want to print these headers, as we don't want to have people copy/paste them
 // into other requests, and thereby mess up our telemetry / request logs
-const excludeHeaders = /user-agent|x-magicbell-client-user-agent|x-magicbell-client-telemetry/i;
+const excludeHeaders = ['user-agent', 'x-magicbell-client-user-agent', 'x-magicbell-client-telemetry'];
 
-export function toCurl({ method, baseURL, url, data, headers }: AxiosRequestConfig) {
-  return [
-    `curl --request ${method.toUpperCase()}`,
-    `--url ${baseURL}/${url.replace(/^\//, '')}`,
-    ...Object.entries(headers)
-      .map(([key, value]) => [key.toLowerCase(), value] as [string, string])
-      .filter(([key]) => !excludeHeaders.test(key))
-      .map(([key, value]) => `--header '${key}: ${value}'`),
-    data && `--data '${JSON.stringify(data)}'`,
-  ]
-    .filter(Boolean)
-    .join(' \\\n  ');
-}
+export async function serialize(request: Request, method: 'curl') {
+  const clone = request.clone();
+  excludeHeaders.forEach((header) => clone.headers.delete(header));
 
-export const serialize = (config: AxiosRequestConfig, method: 'curl') => {
-  if (method === 'curl') return toCurl(config);
+  if (method === 'curl') {
+    return toCurl(clone);
+  }
+
   printError(`Unknown serialization method: ${method}`, true);
-};
+}

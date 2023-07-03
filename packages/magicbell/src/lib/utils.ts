@@ -1,3 +1,5 @@
+import type { Hooks } from 'ky';
+
 export const hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
 
 export const compose = <R>(fn1: (a: R) => R, ...fns: Array<(a: R) => R>) =>
@@ -73,4 +75,25 @@ export function joinOr(...parts) {
 
 export function joinUrlSegments(...segments) {
   return ['/', ...segments].join('/').replace(/\/+/g, '/').replace(/\/$/, '');
+}
+
+export function mergeHooks(...hooks: Hooks[]): Hooks {
+  const result = {} as Hooks;
+
+  for (const hook of hooks) {
+    for (const key of Object.keys(hook || {})) {
+      result[key] ??= [];
+      result[key].push(...hook[key]);
+    }
+  }
+
+  return result;
+}
+
+export function tryParse(obj: unknown) {
+  try {
+    return JSON.parse(String(obj));
+  } catch {
+    return obj;
+  }
 }

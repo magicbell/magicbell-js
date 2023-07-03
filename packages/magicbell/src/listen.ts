@@ -1,5 +1,5 @@
-import axios from 'axios';
 import EventSource from 'eventsource';
+import ky from 'ky';
 
 import { Client } from './client';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from './paginate';
@@ -74,9 +74,9 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     const auth = await client.request<AuthResponse>({ method: 'POST', path: '/ws/auth' }, options);
 
     // authenticate against ably
-    const { token } = await axios
-      .post<TokenResponse>(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, auth)
-      .then((x) => x.data);
+    const { token } = await ky
+      .post(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, { json: auth })
+      .json<TokenResponse>();
 
     // make sure that the optional config request has finished
     await configPromise;

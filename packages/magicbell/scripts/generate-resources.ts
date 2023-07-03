@@ -378,8 +378,7 @@ async function updateClient(filePath: string, files: File[]) {
   const classBody = classDeclaration.body;
   classBody.body = classBody.body.filter((x) => !(x.type === 'ClassProperty' && x.value.type === 'NewExpression'));
 
-  const constructor = classBody.body.find((x) => x.type === 'ClassMethod' && x.kind === 'constructor');
-  const firstIdx = classBody.body.indexOf(constructor);
+  const firstIdx = classBody.body.findIndex((x) => x.type === 'ClassMethod');
 
   const properties = resources.map((x) =>
     builders.classProperty.from({
@@ -391,7 +390,9 @@ async function updateClient(filePath: string, files: File[]) {
     }),
   );
 
-  classBody.body.splice(firstIdx, 0, ...properties);
+  if (firstIdx === -1) classBody.body.push(...properties);
+  else classBody.body.splice(firstIdx, 0, ...properties);
+
   const output = await recast.print(ast, false);
   if (!output) return;
   await fs.writeFile(filePath, output, 'utf-8');

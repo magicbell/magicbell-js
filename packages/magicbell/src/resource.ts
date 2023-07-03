@@ -54,7 +54,7 @@ export class Resource {
 
       return this.client
         .request({ method, path, data, params }, options)
-        .then((response) => response[entity] || response);
+        .then((response) => response?.[entity] || response);
     };
 
     if (paged) {
