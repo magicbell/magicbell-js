@@ -33,7 +33,7 @@
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.1",
     "@magicbell/magicbell-react": "10.7.3",
-    "@tippyjs/react": "^4.2.5",
+    "@tippyjs/react": "^4.2.6",
     "error-stack-parser": "^2.0.7",
     "idb": "^6.1.5",
     "preact": "^10.6.6",
