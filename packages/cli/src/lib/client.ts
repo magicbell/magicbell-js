@@ -1,3 +1,4 @@
+import { Command } from 'commander';
 import { Client, ClientOptions } from 'magicbell';
 
 import pkg from '../../package.json';
@@ -7,15 +8,16 @@ type ExtendedClient = InstanceType<typeof Client> & { getProject: () => Promise<
 
 const features: ClientOptions['features'] = {};
 
-export function getClient(options?: Partial<ClientOptions>) {
-  const project = configStore.getProject();
+export function getClient(cmd: Command, options?: Partial<ClientOptions>) {
+  const { profile, host } = cmd.optsWithGlobals();
+  const project = configStore.getProject(profile);
 
   const defaultOptions = {
     apiKey: project?.apiKey,
     apiSecret: project?.apiSecret,
     userEmail: project?.userEmail,
     userExternalId: project?.userExternalId,
-    host: configStore.host || project?.host,
+    host: host || project?.host,
   };
 
   for (const key in defaultOptions) {

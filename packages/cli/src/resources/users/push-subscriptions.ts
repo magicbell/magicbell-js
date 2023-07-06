@@ -17,10 +17,10 @@ usersPushSubscriptions
   .option('--per-page <integer>', 'The number of items per page. Defaults to 20.')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async (userId, { paginate, maxItems, ...opts }) => {
+  .action(async (userId, { paginate, maxItems, ...opts }, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = getClient().users.pushSubscriptions.list(userId, data, options);
+    const response = getClient(cmd).users.pushSubscriptions.list(userId, data, options);
 
     if (paginate) {
       await response.forEach((notification, idx) => {
@@ -37,9 +37,9 @@ usersPushSubscriptions
   .description("Delete user's push subscription")
   .argument('<user-id>', 'The user id is the MagicBell user id. Accepts a UUID')
   .argument('<subscription-id>', 'ID of the subscription.')
-  .action(async (userId, subscriptionId, opts) => {
+  .action(async (userId, subscriptionId, opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().users.pushSubscriptions.delete(userId, subscriptionId, options);
+    const response = await getClient(cmd).users.pushSubscriptions.delete(userId, subscriptionId, options);
     printJson(response);
   });

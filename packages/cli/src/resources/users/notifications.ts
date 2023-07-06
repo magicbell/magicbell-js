@@ -15,10 +15,10 @@ usersNotifications
   .option('--per-page <integer>', 'The number of items per page. Defaults to 20.')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
   .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async (userId, { paginate, maxItems, ...opts }) => {
+  .action(async (userId, { paginate, maxItems, ...opts }, cmd) => {
     const { data, options } = parseOptions(opts);
 
-    const response = getClient().users.notifications.list(userId, data, options);
+    const response = getClient(cmd).users.notifications.list(userId, data, options);
 
     if (paginate) {
       await response.forEach((notification, idx) => {

@@ -22,20 +22,18 @@ const program = createCommand()
 // configure configstore
 program.hook('preAction', function (thisCommand) {
   const options = thisCommand.opts();
-  configStore.profile = options.profile;
   configStore.color = options.color;
-  configStore.host = options.host;
 });
 
 // check auth on authenticated routes, and redirect to login if not authenticated
 program.hook('preAction', function (thisCommand, actionCommand) {
+  const { profile } = thisCommand.opts();
   const command = findTopCommand(actionCommand);
   if (publicCommands.includes(command.name()) || actionCommand.name() === 'help') return;
 
-  const project = configStore.getProject();
+  const project = configStore.getProject(profile);
 
   if (!project?.apiKey || !project?.apiSecret) {
-    const profile = configStore.profile;
     const error =
       profile === 'default'
         ? 'You are not logged in. Please run `magicbell login` to connect to your MagicBell account.'

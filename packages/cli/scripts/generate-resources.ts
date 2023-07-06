@@ -158,6 +158,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
                 builders.restProperty(b.id('opts')),
               ])
             : b.id('opts'),
+          b.id('cmd'),
         ],
         body: builders.blockStatement([
           builders.variableDeclaration('const', [
@@ -177,7 +178,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
                     builders.callExpression(
                       builders.memberExpression(
                         builders.memberExpression(
-                          builders.callExpression(b.id('getClient'), []),
+                          builders.callExpression(b.id('getClient'), [b.id('cmd')]),
                           b.id(methodNamespace),
                         ),
                         b.id(camelCase(method.name)),
@@ -249,7 +250,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
                       builders.callExpression(
                         builders.memberExpression(
                           builders.memberExpression(
-                            builders.callExpression(b.id('getClient'), []),
+                            builders.callExpression(b.id('getClient'), [b.id('cmd')]),
                             b.id(methodNamespace),
                           ),
                           b.id(camelCase(method.name)),

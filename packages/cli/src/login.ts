@@ -8,7 +8,7 @@ import { printError, printMessage } from './lib/printer';
 
 export const login = createCommand('login')
   .description('Login to your MagicBell account')
-  .action(async () => {
+  .action(async (opts, cmd) => {
     try {
       printMessage('Please enter your MagicBell API credentials.');
       printMessage(kleur.dim('You can find these at https://app.magicbell.com > Settings > API Keys.'));
@@ -19,18 +19,20 @@ export const login = createCommand('login')
         hideEchoBack: true,
       });
 
-      const client = getClient({
+      const client = getClient(cmd, {
         apiKey,
         apiSecret,
       });
 
+      const { profile, host } = cmd.optsWithGlobals();
       const project = await client.getProject();
 
-      configStore.setProject({
+      configStore.setProject(profile, {
         id: project.id,
         name: project.name,
         apiKey,
         apiSecret,
+        host,
       });
 
       printMessage(`\nYou are now logged in to project ${kleur.bold(project.name)}`);

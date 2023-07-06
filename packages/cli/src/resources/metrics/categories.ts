@@ -10,9 +10,9 @@ export const metricsCategories = createCommand('categories').description('Manage
 metricsCategories
   .command('get')
   .description('Get notification metrics grouped by category')
-  .action(async (opts) => {
+  .action(async (opts, cmd) => {
     const { options } = parseOptions(opts);
 
-    const response = await getClient().metrics.categories.get(options);
+    const response = await getClient(cmd).metrics.categories.get(options);
     printJson(response);
   });
