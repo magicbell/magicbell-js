@@ -62,8 +62,10 @@
     "tsx": "^3.9.0"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "debug": "^4.3.4",
     "eventsource": "^2.0.2",
-    "json-schema-to-ts": "2.6.0"
+    "fetch-addons": "^1.0.2",
+    "json-schema-to-ts": "2.6.0",
+    "ky": "^0.33.3"
   }
 }

@@ -28,19 +28,24 @@ export function getClient(cmd: Command, options?: Partial<ClientOptions>) {
     }
   }
 
+  const hooks: ClientOptions['hooks'] = {};
+
+  if (printRequest) {
+    hooks.beforeRequest = [
+      async (request) => {
+        printMessage(await serialize(request, printRequest));
+        process.exit(0);
+      },
+    ];
+  }
+
   const client = new Client({
     ...defaultOptions,
     ...options,
     appInfo: { name: pkg.name, version: pkg.version },
     features,
+    hooks,
   }) as ExtendedClient;
-
-  if (printRequest) {
-    client.onRequest((request) => {
-      printMessage(serialize(request, printRequest));
-      process.exit(0);
-    });
-  }
 
   client.getProject = async function getProject() {
     const project = await client

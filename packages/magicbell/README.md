@@ -4,7 +4,9 @@ This package provides a convenient interface to query the [MagicBell](https://ma
 
 ## Requirements
 
-Node 14 or higher.
+Node 18.13 or higher.
+
+When using older versions, you might need to polyfill `fetch`. See [isomorphic-fetch](https://npmjs.com/isomorphic-fetch) for more information.
 
 ## Installation
 

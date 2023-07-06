@@ -1,8 +1,8 @@
 import { basename } from 'path';
 
-import { setupMockServer } from '../test/mock-server';
-import { Client } from './client';
-import { Resource } from './resource';
+import { setupMockServer } from '../../test/mock-server';
+import { Resource } from '../resource';
+import { RequestClient as Client } from './request-client';
 
 // @ts-expect-error import.meta.glob does exist in vite!
 const resources: [string, Resource][] = Object.entries(import.meta.glob('./resources/*.ts', { eager: true })).map(
@@ -86,6 +86,7 @@ test('retried requests get an idempotency-key header', async () => {
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    maxRetries: 3,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys

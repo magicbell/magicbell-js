@@ -122,20 +122,20 @@ test('methods dont put categories and topics in query params if they hold object
 
   await fakeResource.post({ categories: [{ slug: 'comments' }] });
   expect(await spy.lastRequest.json()).toEqual({ fake: { categories: [{ slug: 'comments' }] } });
-  expect(spy.lastRequest.url.searchParams.get('categories[]')).toEqual(null);
+  expect(spy.lastRequest.url.search).toEqual('');
 
   await fakeResource.post({ topics: [{ slug: 'issue.3' }] });
   expect(await spy.lastRequest.json()).toEqual({ fake: { topics: [{ slug: 'issue.3' }] } });
-  expect(spy.lastRequest.url.searchParams.get('topics[]')).toEqual(null);
+  expect(spy.lastRequest.url.search).toEqual('');
 
   await fakeResource.post({ categories: ['comments'] });
 
   expect(await spy.lastRequest.text()).toEqual('');
-  expect(spy.lastRequest.url.searchParams.get('categories[]')).toEqual('comments');
+  expect(spy.lastRequest.url.search).toEqual('?categories=comments');
 
-  await fakeResource.post({ topics: ['issue.3'] });
+  await fakeResource.post({ topics: ['issue.3', 'issue.4'] });
   expect(await spy.lastRequest.text()).toEqual('');
-  expect(spy.lastRequest.url.searchParams.get('topics[]')).toEqual('issue.3');
+  expect(spy.lastRequest.url.search).toEqual('?topics=issue.3%2Cissue.4');
 });
 
 test('single resource methods are not iterable', async () => {
@@ -237,6 +237,7 @@ test('beta method throws when used with wrong feature flag', async () => {
     host: 'https://example.com',
     apiKey: 'my-api-key',
     features: {
+      // @ts-expect-error this flag doesn't exist
       'fake-beta-method-does-not-exist': true,
     },
   });
@@ -254,6 +255,7 @@ test('beta method can be enabled via feature flags', async () => {
     host: 'https://example.com',
     apiKey: 'my-api-key',
     features: {
+      // @ts-expect-error this flag doesn't exist
       'fake-beta-method': true,
     },
   });

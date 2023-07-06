@@ -65,7 +65,7 @@ process.on('uncaughtException', function (err) {
   if (/param.*is missing/i.test(err.message)) {
     printMessage(`error: invalid arguments provided\n`);
   } else {
-    printMessage(`error: ${err.message}`);
+    printMessage(`error: ${err.message}\n`);
   }
 
   const command = findCommand(program, program.args);

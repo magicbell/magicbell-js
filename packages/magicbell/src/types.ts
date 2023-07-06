@@ -1,3 +1,5 @@
+import type { Hooks } from 'ky';
+
 export type ClientOptions = {
   host?: string;
   apiKey: string;
@@ -15,9 +17,9 @@ export type ClientOptions = {
   maxRetryDelay?: number;
   idempotencyKey?: string;
   telemetry?: boolean;
-  debug?: boolean;
   features?: Record<string, never>;
   headers?: Record<string, string>;
+  hooks?: Hooks;
 };
 
 export type FeatureFlag = keyof ClientOptions['features'];
