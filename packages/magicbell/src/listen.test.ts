@@ -2,7 +2,7 @@ import { beforeEach } from 'vitest';
 
 import { setupMockServer } from '../test/mock-server';
 import { eventStream } from '../test/mock-sse';
-import { Client } from './client';
+import { RequestClient } from './lib/request-client';
 import { createListener } from './listen';
 
 const server = setupMockServer();
@@ -24,7 +24,7 @@ beforeEach(async () => {
     yield { type: 'notifications/new', data: { id: 3 } };
   });
 
-  const client = new Client({ apiKey: 'my-api-key' });
+  const client = new RequestClient({ apiKey: 'my-api-key' });
   listen = createListener(client, { sseHost: host });
 });
 

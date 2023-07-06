@@ -1,4 +1,4 @@
-import { Client } from './client';
+import { RequestClient } from './lib/request-client';
 import { joinUrlSegments } from './lib/utils';
 import { IterablePromise, normalizeArgs } from './method';
 import { autoPaginate } from './paginate';
@@ -21,9 +21,9 @@ export class Resource {
   path: string;
   entity: string;
 
-  protected client: InstanceType<typeof Client>;
+  protected client: InstanceType<typeof RequestClient>;
 
-  constructor(client: InstanceType<typeof Client>) {
+  constructor(client: InstanceType<typeof RequestClient>) {
     this.client = client;
   }
 
