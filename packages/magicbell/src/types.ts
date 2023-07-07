@@ -1,5 +1,7 @@
 import type { Hooks } from 'ky';
 
+export type WithRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
+
 export type ClientOptions = {
   host?: string;
   apiKey: string;

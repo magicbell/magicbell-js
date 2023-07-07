@@ -2,7 +2,6 @@ import { deleteEmptyHeaders } from 'fetch-addons';
 import type { Hooks } from 'ky';
 
 import { ClientOptions } from '../types';
-import { createHmac } from './crypto';
 import { getClientUserAgent, getUserAgent } from './env';
 import { uuid4 } from './utils';
 
@@ -12,12 +11,6 @@ function getDefaultIdempotencyKey(method: string, maxRetries: number) {
 }
 
 function setRequestHeaders(options: ClientOptions, request: Request) {
-  let userHmac = options.userHmac;
-
-  if (!userHmac && options.apiSecret && (options.userExternalId || options.userEmail)) {
-    userHmac = createHmac(options.apiSecret, options.userExternalId || options.userEmail);
-  }
-
   const idempotencyKey =
     request.headers.get('idempotency-key') ||
     options.idempotencyKey ||
@@ -43,7 +36,7 @@ function setRequestHeaders(options: ClientOptions, request: Request) {
   request.headers.set('x-magicbell-client-user-agent', getClientUserAgent(options.appInfo));
   request.headers.set('x-magicbell-user-email', options.userEmail);
   request.headers.set('x-magicbell-user-external-id', options.userExternalId);
-  request.headers.set('x-magicbell-user-hmac', userHmac);
+  request.headers.set('x-magicbell-user-hmac', options.userHmac);
 
   // remove empty headers, they can cause unexpected behavior
   deleteEmptyHeaders(request.headers);

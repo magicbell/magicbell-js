@@ -22,7 +22,6 @@ import {
 import { builders } from 'ast-types';
 import fs from 'fs/promises';
 import { stringify } from 'json5';
-import { OpenAPIV3 } from 'openapi-types';
 import path from 'path';
 
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
@@ -244,13 +243,10 @@ function createDocs(resource: Resource) {
     // don't document private methods
     if (method.private) continue;
 
-    const parameters = method.parameters as OpenAPIV3.ParameterObject[];
-    const requiresUserEmail = parameters.some((x) => /x-magicbell-user-email/i.test(x.name));
     const pathParams = method.params.map((x) => `{${snakeCase(x.title)}}`);
     const requestBody = getRequestBody(method);
 
-    const options = requiresUserEmail ? { userEmail: 'person@example.com' } : null;
-
+    const options = null;
     const note = method.beta
       ? `
 > **Warning**
@@ -344,11 +340,13 @@ async function updateTypes(filePath: string, betaMethods: Method[]) {
   await fs.writeFile(filePath, output, 'utf-8');
 }
 async function updateClient(filePath: string, files: File[]) {
+  const baseDir = path.dirname(files.map((x) => x.name).sort((a, b) => a.length - b.length)[0]);
   const resources = files
-    .filter((x) => x.type === 'resources' && x.name.endsWith('.ts'))
-    .map((x) => x.name.replace(/\.ts$/, '').replace(/\//g, '-'))
-    .map((name) => ({
-      file: `./resources/${name}`,
+    .filter((file) => path.extname(file.name) === '.ts' && path.dirname(path.relative(baseDir, file.name)) === '.')
+    .map((x) => x.name.replace(/\.ts$/, ''))
+    .map((filepath) => [filepath, path.relative(baseDir, filepath).replace(/\//g, '-')] as const)
+    .map(([filepath, name]) => ({
+      file: `./${filepath}`,
       class: pascalCase(name),
       property: camelCase(name),
     }))
@@ -360,7 +358,7 @@ async function updateClient(filePath: string, files: File[]) {
 
   // update import statements
   program.body = program.body.filter(
-    (x) => !(x.type === 'ImportDeclaration' && x.source.value.startsWith('./resources/')),
+    (x) => !(x.type === 'ImportDeclaration' && x.source.value.startsWith(`./${baseDir}`)),
   );
   const imports = resources.map((resource) =>
     builders.importDeclaration.from({
@@ -400,54 +398,107 @@ async function updateClient(filePath: string, files: File[]) {
 
 type File = { type: string; name: string; source: string; docs?: string; nested?: boolean };
 
+function filterResourcesMethods(resources: Resource[], cb: (method: Method) => boolean) {
+  return resources
+    .map((resource) => ({
+      ...resource,
+      methods: resource.methods.filter((method) => cb(method)),
+    }))
+    .filter((x) => x.methods.length);
+}
+
+function hasHeader(method: Method, header: { name: string; required?: boolean }) {
+  return method.parameters.some(
+    (x) => x.in === 'header' && x.name.toLowerCase() === header.name.toLowerCase() && x.required === header.required,
+  );
+}
+
+function flattenResourceMethods(resource: Resource) {
+  const parent = { ...resource, methods: resource.methods.filter((x) => !x.group) };
+  const children = resource.methods
+    .reduce((acc, x) => {
+      if (x.group && !acc.includes(x.group)) acc.push(x.group);
+      return acc;
+    }, [])
+    .map((name) => ({
+      name: `${resource.path}_${name}`,
+      path: `${resource.path}/${name}`,
+      methods: resource.methods.filter((x) => x.group === name),
+    }));
+
+  return [parent, ...children];
+}
+
+async function generateResourceFiles(resources: Resource[], destDir: string): Promise<File[]> {
+  const files: File[] = [];
+
+  for (const rootResource of resources) {
+    const [parent, ...children] = flattenResourceMethods(rootResource);
+
+    for (const resource of [parent, ...children]) {
+      const isParent = resource === parent;
+      const ast = createResource(resource, isParent ? children : []);
+
+      files.push({
+        type: 'resource',
+        name: path.join(destDir, hyphenCase(resource.path) + '.ts'),
+        source: await recast.print(ast),
+        docs: createDocs(resource),
+      });
+    }
+  }
+
+  return files;
+}
+
+async function generateSchemaFiles(resources: Resource[], destDir: string): Promise<File[]> {
+  const files: File[] = [];
+
+  for (const rootResource of resources) {
+    const [parent, ...children] = flattenResourceMethods(rootResource);
+
+    for (const resource of [parent, ...children]) {
+      files.push({
+        type: 'schemas',
+        name: path.join(destDir, hyphenCase(resource.path) + '.ts'),
+        source: await recast.print(createResourceTypes(resource)),
+      });
+    }
+  }
+
+  return files;
+}
+
 async function main() {
   const resources = await getResources(argv.spec || SPEC_URL);
 
-  const files: Array<File> = [];
+  const projectResources = filterResourcesMethods(resources, (method) =>
+    hasHeader(method, { name: 'x-magicbell-api-secret', required: true }),
+  );
+
+  const userResources = filterResourcesMethods(
+    resources,
+    (method) => !hasHeader(method, { name: 'x-magicbell-api-secret', required: true }),
+  );
+
   const betaMethods = resources
     .flatMap((x) => x.methods)
     .filter((x) => x.beta)
     .sort((a, b) => a.operationId.localeCompare(b.operationId));
 
+  const files: Array<File> = [];
   // generate ast for new resource files
-  for (const rootResource of resources) {
-    const parent = { ...rootResource, methods: rootResource.methods.filter((x) => !x.group) };
-    const childResourceNames = rootResource.methods.reduce((acc, x) => {
-      if (x.group && !acc.includes(x.group)) acc.push(x.group);
-      return acc;
-    }, []);
+  files.push(...(await generateResourceFiles(projectResources, 'project-resources')));
+  files.push(...(await generateResourceFiles(userResources, 'user-resources')));
+  files.push(...(await generateSchemaFiles(resources, 'schemas')));
 
-    const children = childResourceNames.map((name) => ({
-      name: `${rootResource.path}_${name}`,
-      path: `${rootResource.path}/${name}`,
-      methods: rootResource.methods.filter((x) => x.group === name),
-    }));
-
-    for (const resource of [parent, ...children]) {
-      const isParent = resource === parent;
-      const ast = createResource(resource, isParent ? children : []);
-      const docs = createDocs(resource);
-
-      const source = await recast.print(ast);
-      files.push({
-        type: isParent ? 'resources' : 'sub-resources',
-        name: hyphenCase(resource.path) + '.ts',
-        source,
-        docs,
-      });
-
-      const types = await recast.print(createResourceTypes(resource));
-      files.push({ type: 'schemas', name: hyphenCase(resource.path) + '.ts', source: types });
-    }
-  }
-
-  const outDirs = Array.from(new Set(files.map((x) => x.type)));
+  const outDirs = Array.from(new Set(files.map((x) => path.dirname(x.name))));
 
   // add readme - this should not go through eslint
   outDirs.forEach((dir) => {
     files.push({
-      type: dir,
-      name: 'README.md',
+      type: 'docs',
+      name: path.join(dir, 'README.md'),
       source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
     });
   });
@@ -459,21 +510,29 @@ async function main() {
   }
 
   for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.type.replace('sub-', ''), file.name);
+    const outFile = path.join(OUT_DIR, file.name);
     await fs.mkdir(path.dirname(outFile), { recursive: true });
     await fs.writeFile(outFile, file.source || '', 'utf-8');
     console.log(`generated ${path.relative(process.cwd(), outFile)}`);
   }
 
+  const projectResourceFiles = files.filter((x) => x.name.startsWith('project-resources'));
+  const userResourceFiles = files.filter((x) => x.name.startsWith('user-resources'));
+
   // update method docs in readme
-  const docs = files.map((x) => x.docs).filter(Boolean);
-  await updateReadme(README_MD, 'RESOURCE_METHODS', docs);
+  await updateReadme(README_MD, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
+  await updateReadme(README_MD, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
   await updateReadme(README_MD, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
   console.log(`updated README.md`);
 
   await updateTypes(path.join(process.cwd(), 'src', 'types.ts'), betaMethods);
-  await updateClient(path.join(process.cwd(), 'src', 'client.ts'), files);
-  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'client.ts'))}`);
+  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'types.ts'))}`);
+
+  // update resource clients
+  await updateClient(path.join(process.cwd(), 'src', 'project-client.ts'), projectResourceFiles);
+  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'project-client.ts'))}`);
+  await updateClient(path.join(process.cwd(), 'src', 'user-client.ts'), userResourceFiles);
+  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'user-client.ts'))}`);
 }
 
 main();

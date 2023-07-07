@@ -1,12 +1,12 @@
 import ky from 'ky';
 
-import { isOptionsHash } from '../options';
+import { assertHasRequiredOptions, assertHasValidOptions } from '../options';
 import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from '../types';
 import { createError } from './error';
 import { withRequestHeaders } from './headers';
 import { withRequestLogging } from './log';
 import { withRequestTelemetry } from './telemetry';
-import { hasOwn, joinAnd, mergeHooks, tryParse } from './utils';
+import { mergeHooks, tryParse } from './utils';
 
 export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   host: 'https://api.magicbell.com',
@@ -20,19 +20,8 @@ export class RequestClient {
   #options: ClientOptions;
 
   constructor(options: ClientOptions) {
-    const missingOptions = ['apiKey'].filter((x) => !hasOwn(options, x));
-
-    if (missingOptions.length) {
-      throw new Error(
-        `You haven't provided all required options, please provide ${joinAnd(...missingOptions)} to Client(options)`,
-      );
-    }
-
-    const invalidOptions = Object.keys(options).filter((x) => !isOptionsHash({ [x]: options[x] }));
-    if (invalidOptions.length) {
-      throw new Error(`You have provided invalid options. Please check the options ${joinAnd(...invalidOptions)}.`);
-    }
-
+    assertHasValidOptions(options);
+    assertHasRequiredOptions(options, ['apiKey']);
     this.#options = { ...DEFAULT_OPTIONS, ...options };
   }
 

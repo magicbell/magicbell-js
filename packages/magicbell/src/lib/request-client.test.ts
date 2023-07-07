@@ -28,11 +28,15 @@ test('client instance provides access to known resources', () => {
 });
 
 test('initialization throws an error if required props are not provided', () => {
-  expect(() => new Client({} as any)).toThrow(/You haven't provided all required options, please provide apiKey/i);
+  expect(() => new Client({} as any)).toThrow(
+    'You have not provided all required client options. Please provide apiKey.',
+  );
 });
 
 test('initialization validates known options', () => {
-  expect(() => new Client({ apiKey: 4 } as any)).toThrow(/you have provided invalid options/i);
+  expect(() => new Client({ apiKey: 4 } as any)).toThrow(
+    'You have provided invalid client options. Please check the options apiKey.',
+  );
 });
 
 test('requests are made against the configured host', async () => {

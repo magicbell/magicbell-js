@@ -1,11 +1,16 @@
 import crypto from 'crypto';
 
-export function createHmac(secret: string, data: string) {
-  if (!secret || !data) return '';
+type UserData = { userExternalId?: string; userEmail: string } | { userExternalId: string; userEmail?: string };
 
-  if (!crypto || !crypto.createHmac) {
-    throw new Error('This method is not available in the browser. Please provide a userHmac.');
-  }
+export function createHmac(secret: string, data: UserData): string;
+export function createHmac(secret: string, data: string): string;
+
+export function createHmac(secret: string, data: UserData | string) {
+  if (!crypto?.createHmac) throw new Error('Your environment does not support crypto.createHmac');
+  if (!secret) throw new Error(`You'll need to provide a secret to create an HMAC.`);
+
+  data = typeof data === 'string' ? data : data.userExternalId || data.userEmail;
+  if (!data) throw new Error(`You'll need to provide data to create an HMAC.`);
 
   return crypto.createHmac('sha256', secret).update(data).digest('base64');
 }

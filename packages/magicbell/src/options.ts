@@ -1,4 +1,4 @@
-import { isBoolean, isNumber, isObject, isString } from './lib/utils';
+import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from './lib/utils';
 import { ClientOptions } from './types';
 
 const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean> = {
@@ -27,4 +27,30 @@ export function isOptionsHash(object) {
   }
 
   return true;
+}
+
+export function assertHasValidOptions<T extends ClientOptions>(options: T) {
+  const invalidOptions = Object.keys(options).filter((x) => !optionValidators[x]?.(options[x]));
+  if (invalidOptions.length) {
+    throw new Error(
+      `You have provided invalid client options. Please check the options ${joinAnd(...invalidOptions)}.`,
+    );
+  }
+}
+
+export function assertHasRequiredOptions<T extends ClientOptions, K extends keyof ClientOptions>(
+  options: T,
+  required: K[],
+) {
+  const missingOptions = required.filter((x) => !hasOwn(options, x) || options[x] == null || options[x] === '');
+  if (missingOptions.length) {
+    throw new Error(`You have not provided all required client options. Please provide ${joinAnd(...missingOptions)}.`);
+  }
+}
+
+export function assertHasSomeOptions<T extends ClientOptions, K extends keyof ClientOptions>(options: T, keys: K[]) {
+  const missingOptions = keys.filter((x) => !hasOwn(options, x) || options[x] == null || options[x] === '');
+  if (missingOptions.length === keys.length) {
+    throw new Error(`You have not provided any of the required client options. Please provide ${joinOr(...keys)}.`);
+  }
 }

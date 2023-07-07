@@ -1,8 +1,8 @@
 import { MockedRequest } from 'msw';
 
 import { setupMockServer } from '../test/mock-server';
+import { ASYNC_ITERATOR_SYMBOL } from './lib/paginate';
 import { RequestClient } from './lib/request-client';
-import { ASYNC_ITERATOR_SYMBOL } from './paginate';
 import { Resource } from './resource';
 import { RequestOptions } from './types';
 
