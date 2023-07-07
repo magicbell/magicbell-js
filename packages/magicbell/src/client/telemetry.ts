@@ -1,6 +1,6 @@
 import type { Hooks, NormalizedOptions } from 'ky';
 
-import { ClientOptions } from '../types';
+import { ClientOptions } from './types';
 
 type Telemetry = { id: string; runtime: number; duration: number; status: number };
 

@@ -1,4 +1,6 @@
-import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from './lib/utils';
+import { Hooks } from 'ky';
+
+import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from '../lib/utils';
 import { ClientOptions } from './types';
 
 const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean> = {
@@ -53,4 +55,17 @@ export function assertHasSomeOptions<T extends ClientOptions, K extends keyof Cl
   if (missingOptions.length === keys.length) {
     throw new Error(`You have not provided any of the required client options. Please provide ${joinOr(...keys)}.`);
   }
+}
+
+export function mergeHooks(...hooks: Hooks[]): Hooks {
+  const result = {} as Hooks;
+
+  for (const hook of hooks) {
+    for (const key of Object.keys(hook || {})) {
+      result[key] ??= [];
+      result[key].push(...hook[key]);
+    }
+  }
+
+  return result;
 }

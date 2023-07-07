@@ -1,17 +1,17 @@
-import { RequestClient } from './lib/request-client';
-import { createListener } from './listen';
-import { assertHasRequiredOptions } from './options';
-import { ClientOptions as RequestClientOptions, WithRequired } from './types';
+import { Client } from './client/client';
+import { assertHasRequiredOptions } from './client/options';
+import { ClientOptions as RequestClientOptions, WithRequired } from './client/types';
+import { createListener } from './resources/listen';
 import { NotificationPreferences } from './user-resources/notification-preferences';
 import { Notifications } from './user-resources/notifications';
 import { PushSubscriptions } from './user-resources/push-subscriptions';
 import { Subscriptions } from './user-resources/subscriptions';
 
-export type ClientOptions =
+export type UserClientOptions =
   | WithRequired<RequestClientOptions, 'apiKey' | 'userEmail'>
   | WithRequired<RequestClientOptions, 'apiKey' | 'userExternalId'>;
 
-export class Client extends RequestClient {
+export class UserClient extends Client {
   listen = createListener(this);
 
   notificationPreferences = new NotificationPreferences(this);
@@ -19,7 +19,7 @@ export class Client extends RequestClient {
   pushSubscriptions = new PushSubscriptions(this);
   subscriptions = new Subscriptions(this);
 
-  constructor(options: ClientOptions) {
+  constructor(options: UserClientOptions) {
     assertHasRequiredOptions(options, ['apiKey']);
     if (options.apiSecret && typeof document !== 'undefined') {
       throw new Error('The API secret should NOT be used on the user client.');

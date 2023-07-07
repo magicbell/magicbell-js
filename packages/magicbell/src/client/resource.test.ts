@@ -1,8 +1,8 @@
 import { MockedRequest } from 'msw';
 
-import { setupMockServer } from '../test/mock-server';
-import { ASYNC_ITERATOR_SYMBOL } from './lib/paginate';
-import { RequestClient } from './lib/request-client';
+import { setupMockServer } from '../../test/mock-server';
+import { Client } from './client';
+import { ASYNC_ITERATOR_SYMBOL } from './paginate';
 import { Resource } from './resource';
 import { RequestOptions } from './types';
 
@@ -47,7 +47,7 @@ class FakeResource extends Resource {
   }
 }
 
-const client = new RequestClient({
+const client = new Client({
   host: 'https://example.com',
   apiKey: 'my-api-key',
 });
@@ -233,7 +233,7 @@ test('beta method throws when used without feature flag', () => {
 });
 
 test('beta method throws when used with wrong feature flag', async () => {
-  const betaClient = new RequestClient({
+  const betaClient = new Client({
     host: 'https://example.com',
     apiKey: 'my-api-key',
     features: {
@@ -251,7 +251,7 @@ test('beta method throws when used with wrong feature flag', async () => {
 test('beta method can be enabled via feature flags', async () => {
   const spy = server.intercept('all');
 
-  const betaClient = new RequestClient({
+  const betaClient = new Client({
     host: 'https://example.com',
     apiKey: 'my-api-key',
     features: {

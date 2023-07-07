@@ -1,9 +1,9 @@
 import EventSource from 'eventsource';
 import ky from 'ky';
 
-import { RequestClient } from './lib/request-client';
-import { ASYNC_ITERATOR_SYMBOL, makeForEach } from './paginate';
-import { RequestOptions } from './types';
+import { Client } from '../client/client';
+import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
+import { RequestOptions } from '../client/types';
 
 type AuthResponse = {
   keyName: string;
@@ -44,7 +44,7 @@ type IterableEventSource<TNode> = {
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
-export function createListener(client: InstanceType<typeof RequestClient>, args: { sseHost?: string } = {}): Listener {
+export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}): Listener {
   let eventSource: EventSource;
   let channels: string;
   let lastEvent: string;

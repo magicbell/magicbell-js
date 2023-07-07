@@ -1,4 +1,4 @@
-import { isArray, isBoolean, isObject, isString, isStringArray } from './lib/utils';
+import { isArray, isBoolean, isObject, isString, isStringArray } from '../lib/utils';
 import { isOptionsHash } from './options';
 import { ClientOptions, RequestMethod } from './types';
 

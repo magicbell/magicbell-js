@@ -2,9 +2,9 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { Resource } from '../resource';
+import { Resource } from '../client/resource';
+import { type RequestOptions } from '../client/types';
 import * as schemas from '../schemas/notifications';
-import { type RequestOptions } from '../types';
 
 type CreateNotificationsResponse = FromSchema<typeof schemas.CreateNotificationsResponseSchema>;
 type CreateNotificationsPayload = FromSchema<typeof schemas.CreateNotificationsPayloadSchema>;

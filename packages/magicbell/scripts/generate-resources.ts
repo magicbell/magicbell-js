@@ -189,10 +189,10 @@ function createResource(resource: Resource, children?: Resource[]) {
     ],
     body: [
       b.importDeclaration(['type FromSchema'], 'json-schema-to-ts'),
-      b.importDeclaration(['Resource'], `${dots}/resource`),
+      hasListMethod && b.importDeclaration(['type IterablePromise'], `${dots}/client/method`),
+      b.importDeclaration(['Resource'], `${dots}/client/resource`),
+      b.importDeclaration(['type RequestOptions'], `${dots}/client/types`),
       b.importDeclaration('* as schemas', `${dots}/schemas/${hyphenCase(resource.path)}`),
-      b.importDeclaration(['type RequestOptions'], `${dots}/types`),
-      hasListMethod && b.importDeclaration(['type IterablePromise'], `${dots}/method`),
       ...imports,
       ...types,
       builders.exportNamedDeclaration.from({
@@ -525,8 +525,8 @@ async function main() {
   await updateReadme(README_MD, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
   console.log(`updated README.md`);
 
-  await updateTypes(path.join(process.cwd(), 'src', 'types.ts'), betaMethods);
-  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'types.ts'))}`);
+  await updateTypes(path.join(process.cwd(), 'src', 'client', 'types.ts'), betaMethods);
+  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'client', 'types.ts'))}`);
 
   // update resource clients
   await updateClient(path.join(process.cwd(), 'src', 'project-client.ts'), projectResourceFiles);

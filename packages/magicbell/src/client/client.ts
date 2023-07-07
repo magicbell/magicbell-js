@@ -1,12 +1,12 @@
 import ky from 'ky';
 
-import { assertHasRequiredOptions, assertHasValidOptions } from '../options';
-import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from '../types';
+import { tryParse } from '../lib/utils';
 import { createError } from './error';
 import { withRequestHeaders } from './headers';
 import { withRequestLogging } from './log';
+import { assertHasRequiredOptions, assertHasValidOptions, mergeHooks } from './options';
 import { withRequestTelemetry } from './telemetry';
-import { mergeHooks, tryParse } from './utils';
+import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from './types';
 
 export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   host: 'https://api.magicbell.com',
@@ -16,7 +16,7 @@ export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   telemetry: true,
 };
 
-export class RequestClient {
+export class Client {
   #options: ClientOptions;
 
   constructor(options: ClientOptions) {

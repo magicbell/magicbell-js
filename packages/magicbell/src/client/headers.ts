@@ -1,9 +1,8 @@
 import { deleteEmptyHeaders } from 'fetch-addons';
 import type { Hooks } from 'ky';
 
-import { ClientOptions } from '../types';
-import { getClientUserAgent, getUserAgent } from './env';
-import { uuid4 } from './utils';
+import { uuid4 } from '../crypto';
+import { ClientOptions } from './types';
 
 function getDefaultIdempotencyKey(method: string, maxRetries: number) {
   if (method.toUpperCase() !== 'POST' || maxRetries === 0) return;
@@ -46,4 +45,48 @@ export function withRequestHeaders(options: ClientOptions): Hooks {
   return {
     beforeRequest: [(request) => setRequestHeaders(options, request)],
   };
+}
+
+function getEnvInfo() {
+  const common = {
+    binding: __PACKAGE_NAME__,
+    binding_version: __PACKAGE_VERSION__,
+    publisher: 'magicbell',
+  };
+
+  if (typeof process === 'undefined') {
+    return common;
+  }
+
+  return {
+    ...common,
+    runtime: process?.release?.name || 'node',
+    runtime_version: process.version,
+    platform: process.platform,
+    arch: process.arch,
+  };
+}
+
+function getAppInfoAsString(appInfo?: ClientOptions['appInfo']) {
+  if (!appInfo?.name) return '';
+
+  return [appInfo?.name, appInfo.version && `/${appInfo.version}`, appInfo.url && ` (${appInfo.url})`]
+    .filter(Boolean)
+    .join('');
+}
+
+function getUserAgent(appInfo?: ClientOptions['appInfo']) {
+  const env = getEnvInfo();
+
+  return [
+    `${env.binding}/${env.binding_version}`,
+    'runtime' in env && `${env.runtime}/${env.runtime_version}`,
+    getAppInfoAsString(appInfo),
+  ]
+    .filter(Boolean)
+    .join(' ');
+}
+
+function getClientUserAgent(appInfo?: ClientOptions['appInfo']) {
+  return JSON.stringify({ ...getEnvInfo(), application: appInfo });
 }
