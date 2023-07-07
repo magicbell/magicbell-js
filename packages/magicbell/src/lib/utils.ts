@@ -1,4 +1,4 @@
-export const hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+export const hasOwn = (obj, prop) => obj && Object.prototype.hasOwnProperty.call(obj, prop);
 
 export function isString(value) {
   return typeof value === 'string';

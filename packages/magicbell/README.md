@@ -28,9 +28,9 @@ The package needs to be configured with your project's secret key & api key, whi
 available in the [MagicBell Dashboard][dashboard].
 
 ```js
-import MagicBell from 'magicbell';
+import { ProjectClient } from 'magicbell/project-client';
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -50,9 +50,9 @@ try {
 or go old-school with require and promises:
 
 ```js
-const MagicBell = require('magicbell').default;
+const { ProjectClient } = require('magicbell/project-client');
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -70,9 +70,9 @@ magicbell.notifications
 Some endpoints, like `notifications.list` are user oriented, and can be consumed via a user specific client, authenticated using `apiKey` and `userEmail` or `apiKey` and `userExternalId` option.
 
 ```js
-import MagicBell from 'magicbell/browser';
+import { UserClient } from 'magicbell/user-client';
 
-const magicbell = new MagicBell({
+const magicbell = new UserClient({
   apiKey: 'your-api-key',
   userEmail: 'you@example.com',
 });
@@ -149,9 +149,9 @@ The package can be initialized with several options, and in two scopes. There's 
 The project client is used to make requests on behalf of the project, and requires the `apiKey` and `apiSecret` options to be set.
 
 ```js
-import MagicBell from 'magicbell/project-client';
+import { ProjectClient } from 'magicbell/project-client';
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   // auth
   apiKey: 'your-api-key', // required
   apiSecret: 'your-secret-key', // required
@@ -169,9 +169,9 @@ const magicbell = new MagicBell({
 The user client is used to make requests on behalf of a user, and requires the `apiKey` and one of `userEmail` or `userExternalId` options to be set. If your project has HMAC enabled, the `userHmac` option is also required. As no `apiSecret` is needed, this client is suitable for client side usage and safe to be used in the browser.
 
 ```js
-import MagicBell from 'magicbell/user-client';
+import { UserClient } from 'magicbell/user-client';
 
-const magicbell = new MagicBell({
+const magicbell = new UserClient({
   // auth
   apiKey: 'your-api-key', // required
   userEmail: 'you@example.com', // required if userExternalId is not set
@@ -344,9 +344,9 @@ Apart from the removal of the wrappers, returned entities and provided parameter
 The project scope contains everything you need to manage your project and send notifications. You'll need to be authenticated using `apiKey` and `apiSecret` to use these methods.
 
 ```js
-import MagicBell from 'magicbell/project-client';
+import { ProjectClient } from 'magicbell/project-client';
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   apiKey: 'your-api-key', // required
   apiSecret: 'your-secret-key', // required
 });
@@ -673,9 +673,9 @@ The user scope contains everything a specific user needs to display their notifi
 As you don't need to authenticate using the `apiSecret`, this scope is safe to use in the browser.
 
 ```js
-import MagicBell from 'magicbell/user-client';
+import { UserClient } from 'magicbell/user-client';
 
-const magicbell = new MagicBell({
+const magicbell = new UserClient({
   apiKey: 'your-api-key', // required
   userEmail: 'you@example.com', // required if userExternalId is not set
   userExternalId: 'your-external-id', // required if userEmail is not set

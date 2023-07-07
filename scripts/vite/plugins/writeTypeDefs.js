@@ -12,7 +12,7 @@ export function writeTypeDefs() {
     },
     async buildEnd(errors) {
       if (watch || errors) return;
-      if (!pkg.typings) {
+      if (!pkg.typings && !pkg.types && !pkg.exports) {
         this.warn(`package ${pkg.name} does not export any types. Set package.json#typings if this is a mistake.`);
         return;
       }
