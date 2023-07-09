@@ -1,9 +1,9 @@
 import EventSource from 'eventsource';
-import ky from 'ky';
 
 import { Client } from '../client/client';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
 import { RequestOptions } from '../client/types';
+import { ky } from '../lib/ky';
 
 type AuthResponse = {
   keyName: string;
@@ -74,9 +74,10 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     const auth = await client.request<AuthResponse>({ method: 'POST', path: '/ws/auth' }, options);
 
     // authenticate against ably
-    const { token } = await ky
-      .post(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, { json: auth })
-      .json<TokenResponse>();
+    const { token } = await ky(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, {
+      method: 'POST',
+      json: auth,
+    }).json<TokenResponse>();
 
     // make sure that the optional config request has finished
     await configPromise;

@@ -1,5 +1,4 @@
-import ky from 'ky';
-
+import { ky } from '../lib/ky';
 import { tryParse } from '../lib/utils';
 import { createError } from './error';
 import { withRequestHeaders } from './headers';
@@ -61,7 +60,7 @@ export class Client {
       },
       hooks,
     })
-      .then((x) => x.json<TResponse>())
+      .json<TResponse>()
       .catch(async (error) => {
         const body = tryParse(await error?.response?.text());
 

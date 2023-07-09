@@ -1,4 +1,4 @@
-import { Hooks } from 'ky';
+import type { Hooks } from 'ky';
 
 import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from '../lib/utils';
 import { ClientOptions } from './types';

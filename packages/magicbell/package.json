@@ -8,24 +8,12 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
-    },
-    "./project-client": {
-      "types": "./dist/project-client.d.ts",
-      "default": "./dist/project-client.mjs"
-    },
-    "./user-client": {
-      "types": "./dist/user-client.d.ts",
-      "default": "./dist/user-client.mjs"
-    },
-    "./crypto": {
-      "types": "./dist/crypto.d.ts",
-      "default": "./dist/crypto.mjs"
-    }
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "typings": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "directory": "./dist"
   },
   "sideEffects": false,
   "files": [
@@ -81,7 +69,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "eventsource": "^2.0.2",
-    "fetch-addons": "^1.0.2",
+    "fetch-addons": "^1.1.0",
     "json-schema-to-ts": "2.6.0",
     "ky": "^0.33.3"
   }
