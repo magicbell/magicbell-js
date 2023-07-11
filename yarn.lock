@@ -11372,10 +11372,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-link-workspaces@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/link-workspaces/-/link-workspaces-1.0.0.tgz#e3205bdec8bd711119af2758f943b50174a347a6"
-  integrity sha512-3x3WZhZk0GbX2+pD9QS9wo/KoLNJxQBy2iEZ9Td07QGbXqrAXr0kfqaaKC9/3eOvRnTy/XmF5m2luAF3uT0kcA==
+link-workspaces@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/link-workspaces/-/link-workspaces-1.1.0.tgz#3874bf260c6308128899772d023a5db2842e2ebf"
+  integrity sha512-n/VBiygv2NFEeeC9Hkp9ZYwl8XXsby670IiWCR9J2TwpMGphKGpXAUHwxXDSl+9sBzRV73GVqrlu9LdlDh1tpQ==
   dependencies:
     debug "^4.3.4"
     find-up "^6.3.0"

@@ -22,7 +22,7 @@ export function copyStatics() {
         }
 
         // delete redundant properties
-        for (const key of ['files', 'devDependencies', 'size-limit', 'scripts', 'publishConfig', 'exports']) {
+        for (const key of ['files', 'devDependencies', 'size-limit', 'scripts', 'publishConfig', 'exports', 'source']) {
           delete pkgJson[key];
         }
 
