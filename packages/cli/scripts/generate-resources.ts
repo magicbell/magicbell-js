@@ -6,9 +6,13 @@ import {
   builders as b,
   camelCase,
   capitalize,
+  File,
+  filterResourcesMethods,
   formatMarkdown,
+  generateResourceFiles,
   getRequestBody,
   getResources,
+  hasHeader,
   hyphenCase,
   Method,
   recast,
@@ -16,6 +20,7 @@ import {
   schemaToObject,
   updateReadme,
 } from '@magicbell/codegen';
+import { getBetaMethods } from '@magicbell/codegen/src';
 import { builders } from 'ast-types';
 import * as K from 'ast-types/gen/kinds';
 import fs from 'fs/promises';
@@ -24,7 +29,6 @@ import path from 'path';
 
 const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
 const OUT_DIR = path.join(process.cwd(), 'src');
-const META_FILE = path.join(__dirname, 'meta.json');
 const README_MD = path.join(process.cwd(), 'README.md');
 
 function cleanMarkdown(markdown = '') {
@@ -35,12 +39,8 @@ function countChar(char: string, string: string): number {
   return string.split(char).length - 1;
 }
 
-type ResourceMeta = { description: string };
-type Meta = {
-  resources: Record<string, ResourceMeta>;
-};
-
-function createResource(resource: Resource, children: Resource[], meta: ResourceMeta) {
+function createResource(scope: 'user' | 'project', resource: Resource, children: Resource[]) {
+  const clientFn = `get${capitalize(scope)}Client`;
   const hasBetaMethod = resource.methods.some((x) => x.beta);
 
   const exportName = camelCase((resource as any).name || resource.path);
@@ -54,7 +54,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
 
   // command.description(...)
   command = builders.callExpression(builders.memberExpression(command, b.id('description')), [
-    builders.stringLiteral(cleanMarkdown(meta.description)),
+    builders.stringLiteral(cleanMarkdown(resource.summary)),
   ]);
 
   const body: K.StatementKind[] = [];
@@ -276,7 +276,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
 
   const dots = '../'.repeat(countChar('/', resource.path) + 1).replace(/\/$/, '');
 
-  return builders.program.from({
+  const ast = builders.program.from({
     comments: [
       builders.commentLine.from({
         value: ' This file is generated. Do not update manually!\n',
@@ -284,7 +284,7 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
     ],
     body: [
       hasBetaMethod && b.importDeclaration('kleur', 'kleur'),
-      b.importDeclaration(['getClient'], `${dots}/lib/client`),
+      b.importDeclaration([`${clientFn} as getClient`], `${dots}/lib/client`),
       b.importDeclaration(['createCommand'], `${dots}/lib/commands`),
       b.importDeclaration(['parseOptions'], `${dots}/lib/options`),
       b.importDeclaration(['printJson'], `${dots}/lib/printer`),
@@ -292,6 +292,8 @@ function createResource(resource: Resource, children: Resource[], meta: Resource
       ...body,
     ].filter(Boolean),
   });
+
+  return recast.print(ast);
 }
 
 function createDocs(resource: Resource) {
@@ -395,72 +397,57 @@ async function updateFeatureFlags(filePath: string, betaMethods: Method[]) {
   await fs.writeFile(filePath, output, 'utf-8');
 }
 
-function createResourceIndex(resources: Resource[]) {
-  return builders.program([
+async function createResourceIndex(resources: Resource[]) {
+  const ast = builders.program([
     ...resources.map((resource) =>
       builders.exportAllDeclaration(builders.stringLiteral(`./${hyphenCase(resource.path)}`), null),
     ),
   ]);
-}
 
-type File = { type: string; name: string; source: string; docs?: string; nested?: boolean };
+  return recast.print(ast);
+}
 
 async function main() {
   const resources = await getResources(argv.spec || SPEC_URL);
-  const files: Array<File> = [];
-  const betaMethods = resources
-    .flatMap((x) => x.methods)
-    .filter((x) => x.beta)
-    .sort((a, b) => a.operationId.localeCompare(b.operationId));
 
-  const meta = JSON.parse(await fs.readFile(META_FILE, 'utf8')) as Meta;
-  meta.resources = meta.resources || {};
+  const projectResources = filterResourcesMethods(resources, (method) =>
+    hasHeader(method, { name: 'x-magicbell-api-secret', required: true }),
+  );
+
+  const userResources = filterResourcesMethods(
+    resources,
+    (method) => !hasHeader(method, { name: 'x-magicbell-api-secret', required: true }),
+  );
+
+  const betaMethods = getBetaMethods(resources);
+
+  const files: Array<File> = [];
 
   // generate ast for new resource files
-  for (const rootResource of resources) {
-    const parent = { ...rootResource, methods: rootResource.methods.filter((x) => !x.group) };
-    const childResourceNames = rootResource.methods.reduce((acc, x) => {
-      if (x.group && !acc.includes(x.group)) acc.push(x.group);
-      return acc;
-    }, []);
+  const [projectResourceFiles, userResourceFiles] = await Promise.all([
+    generateResourceFiles(
+      projectResources,
+      'project-resources',
+      (r, c) => createResource('project', r, c),
+      (r) => createDocs(r),
+    ),
+    generateResourceFiles(
+      userResources,
+      'user-resources',
+      (r, c) => createResource('user', r, c),
+      (r) => createDocs({ ...r, path: `user/${r.path}` }),
+    ),
+  ]);
 
-    const children = childResourceNames.map((name) => ({
-      name: `${rootResource.path}_${name}`,
-      path: `${rootResource.path}/${name}`,
-      methods: rootResource.methods.filter((x) => x.group === name),
-    }));
+  files.push(...projectResourceFiles, ...userResourceFiles);
+  files.push({ name: 'project-resources/index.ts', source: await createResourceIndex(projectResources) });
+  files.push({ name: 'user-resources/index.ts', source: await createResourceIndex(userResources) });
 
-    for (const resource of [parent, ...children]) {
-      const isParent = resource === parent;
-
-      meta.resources[resource.path] = meta.resources[resource.path] || {
-        description: `Manage ${resource.path.replace(/[_/]/g, ' ')}`,
-      };
-
-      const ast = createResource(resource, isParent ? children : [], meta.resources[resource.path]);
-      const docs = createDocs(resource);
-
-      const source = await recast.print(ast);
-      files.push({
-        type: isParent ? 'resources' : 'sub-resources',
-        name: hyphenCase(resource.path) + '.ts',
-        source,
-        docs,
-      });
-    }
-  }
-
-  await fs.writeFile(META_FILE, JSON.stringify(meta, null, 2) + '\n');
-
-  const resourceIndex = await recast.print(createResourceIndex(resources));
-  files.push({ type: 'resources', name: 'index.ts', source: resourceIndex });
-
-  const outDirs = Array.from(new Set(files.map((x) => x.type)));
+  const outDirs = Array.from(new Set(files.map((x) => path.dirname(x.name))));
 
   // add readme - this should not go through eslint
-  outDirs.forEach((dir) => {
+  outDirs.forEach(() => {
     files.push({
-      type: dir,
       name: 'README.md',
       source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
     });
@@ -469,19 +456,20 @@ async function main() {
   // all files are generated & linted, now it makes sense to flush the old files and write new ones
   for (const dir of outDirs) {
     await fs.rm(path.join(OUT_DIR, dir), { recursive: true }).catch(() => void 0);
+    await fs.mkdir(path.join(OUT_DIR, dir), { recursive: true });
   }
 
   for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.type.replace('sub-', ''), file.name);
+    const outFile = path.join(OUT_DIR, file.name);
     await fs.mkdir(path.dirname(outFile), { recursive: true });
     await fs.writeFile(outFile, file.source || '', 'utf-8');
     console.log(`generated ${path.relative(process.cwd(), outFile)}`);
   }
 
-  // // update method docs in readme
-  const docs = files.map((x) => x.docs).filter(Boolean);
+  // update method docs in readme
   await updateFeatureFlags(path.join(process.cwd(), 'src/lib/client.ts'), betaMethods);
-  await updateReadme(README_MD, 'RESOURCE_METHODS', docs);
+  await updateReadme(README_MD, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
+  await updateReadme(README_MD, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
   console.log(`updated README.md`);
 }
 

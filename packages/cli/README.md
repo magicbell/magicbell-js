@@ -46,7 +46,13 @@ magicbell config set --user-email {your-email-key}
 
 Below you'll find the all supported commands with their arguments. Note that you can also run `magicbell --help` at any time to get a list of options in your console.
 
-<!-- AUTO-GENERATED-CONTENT:START (RESOURCE_METHODS) -->
+All user scoped commands have been placed under the `user` namespace. For example, the `/notifications` endpoint becomes `magicbell user notifications`. This to make a clear separation between project and user scoped commands. None of the commands under `user` depend on the api secret key, but they do need a user-email and/or user-external-id. When the api secret is available, the user hmac is calculated automatically.
+
+## Project scoped commands
+
+All project scoped commands require an active session authenticated by the api secret. Please run `magicbell login` prior to running any of these commands.
+
+<!-- AUTO-GENERATED-CONTENT:START (PROJECT_RESOURCE_METHODS) -->
 
 ### Broadcasts
 
@@ -96,80 +102,6 @@ magicbell notifications create  \
   --topic 'order:33098'  \
   --recipients 'dan@example.com'  \
   --overrides '{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}'
-```
-
-#### Fetch notifications
-
-Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
-
-```shell
-magicbell notifications list
-```
-
-#### Fetch notification by ID
-
-Fetch a user's notification by its ID.
-
-```shell
-magicbell notifications get <notification-id>
-```
-
-#### Delete a notification
-
-Delete a user's notification by its ID. The notification is deleted immediately and removed from the user's notification inbox in real-time.
-
-```shell
-magicbell notifications delete <notification-id>
-```
-
-#### Mark a notification as read
-
-Mark a user notification as read. The notification will be automatically marked as seen, too.
-
-The new state will be reflected in the user's notification inbox in real-time.
-
-```shell
-magicbell notifications mark-as-read <notification-id>
-```
-
-#### Mark a notification as unread
-
-Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
-
-```shell
-magicbell notifications mark-as-unread <notification-id>
-```
-
-#### Archive a notification
-
-Mark a user notification as archived.
-
-```shell
-magicbell notifications archive <notification-id>
-```
-
-#### Unarchive a notification
-
-Mark a user notification as unarchived.
-
-```shell
-magicbell notifications unarchive <notification-id>
-```
-
-#### Mark all notifications as read
-
-Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```shell
-magicbell notifications mark-all-read
-```
-
-#### Mark all notifications as seen
-
-Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```shell
-magicbell notifications mark-all-seen
 ```
 
 ### Users
@@ -295,90 +227,6 @@ Delete a user's push subscriptions. Identifies the user by the user's ID and the
 magicbell users push-subscriptions delete <user-id> <subscription-id>
 ```
 
-### Push Subscriptions
-
-#### Register a device token for a user
-
-Register a device token for push notifications.
-
-Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
-
-```shell
-magicbell push-subscriptions create  \
-  --device-token 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV'  \
-  --platform 'ios'
-```
-
-#### Delete user's device token
-
-Deletes the registered device token to remove the mobile push subscription.
-
-```shell
-magicbell push-subscriptions delete <device-token>
-```
-
-### Notification Preferences
-
-#### Fetch user notification preferences
-
-Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
-
-```shell
-magicbell notification-preferences get
-```
-
-#### Update user notification preferences
-
-Update a user's notification preferences. These preferences will be applied only to channels you enabled for your project.
-
-```shell
-magicbell notification-preferences update  \
-  --categories '{"slug":"billing","channels":[{"slug":"email","enabled":false},{"slug":"web_push","enabled":false}]}'
-```
-
-### Subscriptions
-
-#### Fetch user's topic subscriptions
-
-Fetch a user's topic subscriptions.
-
-```shell
-magicbell subscriptions list
-```
-
-#### Create a topic subscription
-
-Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
-
-```shell
-magicbell subscriptions create  \
-  --categories '{"slug":"comments","reason":"watching-the-repo"}'  \
-  --topic 'acme-inc.orders.1234'
-```
-
-#### Unsubscribe from a topic
-
-Unusbscribe a user from a particular topic (and optional categories).
-
-```shell
-magicbell subscriptions unsubscribe <topic>  \
-  --categories '{"slug":"comments"}'
-```
-
-#### Show a topic subscription
-
-Show a user's subscription status for a particular topic and categories.
-
-```shell
-magicbell subscriptions get <topic>
-```
-
-#### Delete topic subscription(s)
-
-```shell
-magicbell subscriptions delete <topic>
-```
-
 ### Imports
 
 #### Create a import
@@ -428,7 +276,175 @@ Query the metrics of notification broadcasts and their recipients, grouped by to
 magicbell metrics topics get
 ```
 
-<!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
+<!-- AUTO-GENERATED-CONTENT:END (PROJECT_RESOURCE_METHODS) -->
+
+## User scoped commands
+
+User scoped commands require a user email or external id to be provided. The api secret is not required, but the api key is. When the api secret key is available, the user hmac is calculated automatically. Otherwise, the hmac needs to be provided as an option. See `magicbell user --help` for more information.
+
+<!-- AUTO-GENERATED-CONTENT:START (USER_RESOURCE_METHODS) -->
+
+### User Notifications
+
+#### Fetch notifications
+
+Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
+
+```shell
+magicbell user notifications list
+```
+
+#### Fetch notification by ID
+
+Fetch a user's notification by its ID.
+
+```shell
+magicbell user notifications get <notification-id>
+```
+
+#### Delete a notification
+
+Delete a user's notification by its ID. The notification is deleted immediately and removed from the user's notification inbox in real-time.
+
+```shell
+magicbell user notifications delete <notification-id>
+```
+
+#### Mark a notification as read
+
+Mark a user notification as read. The notification will be automatically marked as seen, too.
+
+The new state will be reflected in the user's notification inbox in real-time.
+
+```shell
+magicbell user notifications mark-as-read <notification-id>
+```
+
+#### Mark a notification as unread
+
+Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
+
+```shell
+magicbell user notifications mark-as-unread <notification-id>
+```
+
+#### Archive a notification
+
+Mark a user notification as archived.
+
+```shell
+magicbell user notifications archive <notification-id>
+```
+
+#### Unarchive a notification
+
+Mark a user notification as unarchived.
+
+```shell
+magicbell user notifications unarchive <notification-id>
+```
+
+#### Mark all notifications as read
+
+Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```shell
+magicbell user notifications mark-all-read
+```
+
+#### Mark all notifications as seen
+
+Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```shell
+magicbell user notifications mark-all-seen
+```
+
+### User Push Subscriptions
+
+#### Register a device token for a user
+
+Register a device token for push notifications.
+
+Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
+
+```shell
+magicbell user push-subscriptions create  \
+  --device-token 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV'  \
+  --platform 'ios'
+```
+
+#### Delete user's device token
+
+Deletes the registered device token to remove the mobile push subscription.
+
+```shell
+magicbell user push-subscriptions delete <device-token>
+```
+
+### User Notification Preferences
+
+#### Fetch user notification preferences
+
+Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
+
+```shell
+magicbell user notification-preferences get
+```
+
+#### Update user notification preferences
+
+Update a user's notification preferences. These preferences will be applied only to channels you enabled for your project.
+
+```shell
+magicbell user notification-preferences update  \
+  --categories '{"slug":"billing","channels":[{"slug":"email","enabled":false},{"slug":"web_push","enabled":false}]}'
+```
+
+### User Subscriptions
+
+#### Fetch user's topic subscriptions
+
+Fetch a user's topic subscriptions.
+
+```shell
+magicbell user subscriptions list
+```
+
+#### Create a topic subscription
+
+Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
+
+```shell
+magicbell user subscriptions create  \
+  --categories '{"slug":"comments","reason":"watching-the-repo"}'  \
+  --topic 'acme-inc.orders.1234'
+```
+
+#### Unsubscribe from a topic
+
+Unusbscribe a user from a particular topic (and optional categories).
+
+```shell
+magicbell user subscriptions unsubscribe <topic>  \
+  --categories '{"slug":"comments"}'
+```
+
+#### Show a topic subscription
+
+Show a user's subscription status for a particular topic and categories.
+
+```shell
+magicbell user subscriptions get <topic>
+```
+
+#### Delete topic subscription(s)
+
+```shell
+magicbell user subscriptions delete <topic>
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (USER_RESOURCE_METHODS) -->
 
 ## Support
 

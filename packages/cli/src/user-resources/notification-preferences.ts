@@ -1,12 +1,12 @@
 // This file is generated. Do not update manually!
 
-import { getClient } from '../lib/client';
+import { getUserClient as getClient } from '../lib/client';
 import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 
 export const notificationPreferences = createCommand('notification-preferences').description(
-  'Manage notification preferences',
+  'Manage user notification preferences',
 );
 
 notificationPreferences

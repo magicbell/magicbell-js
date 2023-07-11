@@ -60,7 +60,7 @@ export class Client {
       },
       hooks,
     })
-      .json<TResponse>()
+      .then((x) => x.json<TResponse>())
       .catch(async (error) => {
         const body = tryParse(await error?.response?.text());
 

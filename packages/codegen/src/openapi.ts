@@ -37,11 +37,6 @@ export type Method = {
   returns?: SchemaObject;
 } & OpenAPI.Operation;
 
-export type Resource = {
-  path: string;
-  methods: Method[];
-};
-
 export function getRootPathMethods(document: OpenAPI.Document, path: string) {
   const paginationProps = Object.keys((document as any).components.schemas.PaginationProps?.properties || {});
 
@@ -68,7 +63,11 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
 
     for (const method of Object.keys(document.paths[apiPath])) {
       const operation = document.paths[apiPath][method];
+      // ignore anything that's not an Operation Objects
+      if (!operation.operationId) continue;
+
       const resource = operation.operationId.slice(0, rootPath.length);
+
       // compute namespace
       const group = operation.operationId.startsWith(`${rootPath}-${subPath}-`) ? subPath : undefined;
       const name = camelCase(operation.operationId.slice(rootPath.length + 1 + (group ? subPath.length + 1 : 0)));

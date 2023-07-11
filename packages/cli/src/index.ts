@@ -6,10 +6,10 @@ import { createCommand, findCommand, findTopCommand } from './lib/commands';
 import { configStore } from './lib/config';
 import { parseHost } from './lib/options';
 import { printError, printMessage } from './lib/printer';
-import { listen } from './listen';
 import { login } from './login';
 import { logout } from './logout';
-import * as resources from './resources';
+import * as projectResources from './project-resources';
+import { user } from './user';
 
 const publicCommands = ['login', 'logout', 'config'];
 
@@ -38,7 +38,7 @@ program.hook('preAction', function (thisCommand, actionCommand) {
 
   const project = configStore.getProject(profile);
 
-  if (!project?.apiKey || !project?.apiSecret) {
+  if (!project?.apiKey || (command.name() !== 'user' && !project?.apiSecret)) {
     const error =
       profile === 'default'
         ? 'You are not logged in. Please run `magicbell login` to connect to your MagicBell account.'
@@ -48,13 +48,12 @@ program.hook('preAction', function (thisCommand, actionCommand) {
   }
 });
 
-const commands = Object.values(resources).concat([listen]);
-const otherCommands = [config, login, logout];
-
-for (const command of commands) {
+const commands = Object.values(projectResources);
+for (const command of [...commands, user]) {
   program.addCommand(command.group('Resource commands'));
 }
 
+const otherCommands = [config, login, logout];
 for (const command of otherCommands) {
   program.addCommand(command.group('Other commands'));
 }

@@ -1,11 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { getClient } from '../lib/client';
+import { getUserClient as getClient } from '../lib/client';
 import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 
-export const pushSubscriptions = createCommand('push-subscriptions').description('Manage push subscriptions');
+export const pushSubscriptions = createCommand('push-subscriptions').description('Manage user push subscriptions');
 
 pushSubscriptions
   .command('create')

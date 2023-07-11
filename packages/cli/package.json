@@ -49,7 +49,7 @@
     "fetch-addons": "^1.1.0",
     "json5": "^2.2.3",
     "kleur": "^4.1.5",
-    "magicbell": "^1.4.4",
+    "magicbell": "1.8.0",
     "pkg": "^5.8.1",
     "readline-sync": "^1.4.10",
     "tsx": "^3.9.0"

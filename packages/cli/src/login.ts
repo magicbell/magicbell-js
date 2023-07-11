@@ -1,7 +1,7 @@
 import kleur from 'kleur';
 import readline from 'readline-sync';
 
-import { getClient } from './lib/client';
+import { getProjectClient as getClient } from './lib/client';
 import { createCommand } from './lib/commands';
 import { configStore } from './lib/config';
 import { printError, printMessage } from './lib/printer';

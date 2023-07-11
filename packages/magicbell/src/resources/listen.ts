@@ -77,7 +77,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     const { token } = await ky(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, {
       method: 'POST',
       json: auth,
-    }).json<TokenResponse>();
+    }).then((x) => x.json<TokenResponse>());
 
     // make sure that the optional config request has finished
     await configPromise;

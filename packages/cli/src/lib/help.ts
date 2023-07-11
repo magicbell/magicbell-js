@@ -40,9 +40,9 @@ export function formatHelp(cmd: Command, helper: Help) {
     description: '',
     usage: '',
     arguments: '',
-    options: '',
+    options: [] as { title: string; list: string }[],
     commands: [] as { title: string; list: string }[],
-    globalOptions: '',
+    globalOptions: [] as { title: string; list: string }[],
   };
 
   sections.description = helper.commandDescription(cmd);
@@ -53,23 +53,28 @@ export function formatHelp(cmd: Command, helper: Help) {
     }),
   );
 
-  sections.options = formatList(
-    helper
-      .visibleOptions(cmd)
-      .filter((option) => {
-        // move --help to global options
-        if (cmd.parent && option.long === '--help') {
-          cmd.parent.addOption(option);
-          return false;
-        }
+  const options = helper
+    .visibleOptions(cmd)
+    .filter((option) => {
+      // move --help to global options
+      if (cmd.parent && option.long === '--help') {
+        cmd.parent.addOption(option);
+        return false;
+      }
 
-        return true;
-      })
-      .sort(sortOptions)
-      .map((option) => {
-        return formatItem(helper.optionTerm(option), helper.optionDescription(option));
-      }),
-  );
+      return true;
+    })
+    .sort(sortOptions)
+    .map((option) => {
+      return formatItem(helper.optionTerm(option), helper.optionDescription(option));
+    });
+
+  if (options.length) {
+    sections.options.push({
+      title: 'Options',
+      list: formatList(options),
+    });
+  }
 
   // Commands
   const commands: Record<string, Command[]> = {};
@@ -84,20 +89,40 @@ export function formatHelp(cmd: Command, helper: Help) {
     list: formatList(commands.map((cmd) => formatItem(helper.subcommandTerm(cmd), helper.subcommandDescription(cmd)))),
   }));
 
-  sections.globalOptions = this.showGlobalOptions
-    ? formatList(
-        helper
-          .visibleGlobalOptions(cmd)
-          .filter((option) => {
-            // don't return --version on sub commands
-            return option.long !== '--version';
-          })
-          .sort(sortOptions)
-          .map((option) => {
-            return formatItem(helper.optionTerm(option), helper.optionDescription(option));
-          }),
-      )
-    : '';
+  let parent = cmd.parent;
+
+  while (parent) {
+    const name = parent.parent
+      ? parent
+          .name()
+          .split('-')
+          .map((x) => x[0].toUpperCase() + x.slice(1))
+          .join(' ')
+      : 'Global';
+
+    const options = helper
+      .visibleOptions(parent)
+      .filter((option) => {
+        // don't return --version on sub commands
+        if (option.long === '--version') return false;
+        // don't return --help on parent
+        if (option.long === '--help' && parent.parent) return false;
+        return true;
+      })
+      .sort(sortOptions)
+      .map((option) => {
+        return formatItem(helper.optionTerm(option), helper.optionDescription(option));
+      });
+
+    if (options.length) {
+      sections.globalOptions.push({
+        title: `${name} Options`,
+        list: formatList(options),
+      });
+    }
+
+    parent = parent.parent;
+  }
 
   const output = [];
   output.push(kleur.bold('Usage'), indent + sections.usage, '');
@@ -106,8 +131,10 @@ export function formatHelp(cmd: Command, helper: Help) {
     output.push(kleur.bold('Arguments'), sections.arguments, '');
   }
 
-  if (sections.options && !moveOptions) {
-    output.push(kleur.bold('Options'), sections.options, '');
+  if (sections.options.length && !moveOptions) {
+    sections.options.forEach((section) => {
+      output.push(kleur.bold(section.title), section.list, '');
+    });
   }
 
   if (sections.commands.length) {
@@ -116,12 +143,16 @@ export function formatHelp(cmd: Command, helper: Help) {
     });
   }
 
-  if (sections.options && moveOptions) {
-    output.push(kleur.bold('Options'), sections.options, '');
+  if (sections.options.length && moveOptions) {
+    sections.options.forEach((section) => {
+      output.push(kleur.bold(section.title), section.list, '');
+    });
   }
 
-  if (sections.globalOptions) {
-    output.push(kleur.bold('Global Options'), sections.globalOptions, '');
+  if (sections.globalOptions.length) {
+    sections.globalOptions.forEach((section) => {
+      output.push(kleur.bold(section.title), section.list, '');
+    });
   }
 
   return output.join('\n');

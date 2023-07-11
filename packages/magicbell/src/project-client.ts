@@ -7,7 +7,10 @@ import { Metrics } from './project-resources/metrics';
 import { Notifications } from './project-resources/notifications';
 import { Users } from './project-resources/users';
 
-export type ProjectClientOptions = WithRequired<ClientOptions, 'apiKey' | 'apiSecret'>;
+export type ProjectClientOptions = WithRequired<
+  Omit<ClientOptions, 'userEmail' | 'userExternalId'>,
+  'apiKey' | 'apiSecret'
+>;
 
 export class ProjectClient extends Client {
   broadcasts = new Broadcasts(this);

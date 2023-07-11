@@ -1,11 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { getClient } from '../../lib/client';
+import { getProjectClient as getClient } from '../../lib/client';
 import { createCommand } from '../../lib/commands';
 import { parseOptions } from '../../lib/options';
 import { printJson } from '../../lib/printer';
 
-export const broadcastsNotifications = createCommand('notifications').description('Manage broadcasts notifications');
+export const broadcastsNotifications = createCommand('notifications').description('');
 
 broadcastsNotifications
   .command('list')

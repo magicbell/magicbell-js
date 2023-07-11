@@ -1,13 +1,13 @@
 // This file is generated. Do not update manually!
 
-import { getClient } from '../lib/client';
+import { getProjectClient as getClient } from '../lib/client';
 import { createCommand } from '../lib/commands';
 import { parseOptions } from '../lib/options';
 import { printJson } from '../lib/printer';
 import { usersNotifications } from './users/notifications';
 import { usersPushSubscriptions } from './users/push-subscriptions';
 
-export const users = createCommand('users').description('Manage all known users');
+export const users = createCommand('users').description('Manage users');
 users.addCommand(usersNotifications);
 users.addCommand(usersPushSubscriptions);
 

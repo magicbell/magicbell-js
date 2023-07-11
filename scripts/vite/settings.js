@@ -72,5 +72,6 @@ export function getPackageAliases(useSourceAsRoot) {
     readJSON(file).name,
     path.join(path.dirname(file), useSourceAsRoot ? 'src' : ''),
   ]);
+
   return Object.fromEntries(entries);
 }

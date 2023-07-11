@@ -5,9 +5,15 @@ import {
   builders as b,
   camelCase,
   capitalize,
+  File,
+  filterResourcesMethods,
+  flattenResourceMethods,
   formatMarkdown,
+  generateResourceFiles,
+  getBetaMethods,
   getRequestBody,
   getResources,
+  hasHeader,
   hyphenCase,
   isSchemaObject,
   Method,
@@ -136,7 +142,7 @@ function createMethod(method: Method) {
   ].filter(Boolean);
 }
 
-function createResource(resource: Resource, children?: Resource[]) {
+async function createResource(resource: Resource, children?: Resource[]) {
   const hasListMethod = resource.methods.some((x) => x.name === 'list');
   const resourceName = pascalCase((resource as any).name || resource.path);
 
@@ -181,7 +187,7 @@ function createResource(resource: Resource, children?: Resource[]) {
 
   const dots = '../'.repeat(countChar('/', resource.path) + 1).replace(/\/$/, '');
 
-  return builders.program.from({
+  const ast = builders.program.from({
     comments: [
       builders.commentLine.from({
         value: ' This file is generated. Do not update manually!\n\n',
@@ -211,6 +217,8 @@ function createResource(resource: Resource, children?: Resource[]) {
       }),
     ].filter(Boolean),
   });
+
+  return recast.print(ast);
 }
 
 function createResourceTypes({ methods }: Resource) {
@@ -283,7 +291,7 @@ await magicbell.${camelCase(resource.path.replaceAll('/', '.'))}.${method.name}(
     );
   }
 
-  return formatMarkdown(lines.join('\n'));
+  return String(formatMarkdown(lines.join('\n')));
 }
 
 function createFeatureFlagTable(methods: Method[]) {
@@ -396,61 +404,6 @@ async function updateClient(filePath: string, files: File[]) {
   await fs.writeFile(filePath, output, 'utf-8');
 }
 
-type File = { type: string; name: string; source: string; docs?: string; nested?: boolean };
-
-function filterResourcesMethods(resources: Resource[], cb: (method: Method) => boolean) {
-  return resources
-    .map((resource) => ({
-      ...resource,
-      methods: resource.methods.filter((method) => cb(method)),
-    }))
-    .filter((x) => x.methods.length);
-}
-
-function hasHeader(method: Method, header: { name: string; required?: boolean }) {
-  return method.parameters.some(
-    (x) => x.in === 'header' && x.name.toLowerCase() === header.name.toLowerCase() && x.required === header.required,
-  );
-}
-
-function flattenResourceMethods(resource: Resource) {
-  const parent = { ...resource, methods: resource.methods.filter((x) => !x.group) };
-  const children = resource.methods
-    .reduce((acc, x) => {
-      if (x.group && !acc.includes(x.group)) acc.push(x.group);
-      return acc;
-    }, [])
-    .map((name) => ({
-      name: `${resource.path}_${name}`,
-      path: `${resource.path}/${name}`,
-      methods: resource.methods.filter((x) => x.group === name),
-    }));
-
-  return [parent, ...children];
-}
-
-async function generateResourceFiles(resources: Resource[], destDir: string): Promise<File[]> {
-  const files: File[] = [];
-
-  for (const rootResource of resources) {
-    const [parent, ...children] = flattenResourceMethods(rootResource);
-
-    for (const resource of [parent, ...children]) {
-      const isParent = resource === parent;
-      const ast = createResource(resource, isParent ? children : []);
-
-      files.push({
-        type: 'resource',
-        name: path.join(destDir, hyphenCase(resource.path) + '.ts'),
-        source: await recast.print(ast),
-        docs: createDocs(resource),
-      });
-    }
-  }
-
-  return files;
-}
-
 async function generateSchemaFiles(resources: Resource[], destDir: string): Promise<File[]> {
   const files: File[] = [];
 
@@ -459,7 +412,6 @@ async function generateSchemaFiles(resources: Resource[], destDir: string): Prom
 
     for (const resource of [parent, ...children]) {
       files.push({
-        type: 'schemas',
         name: path.join(destDir, hyphenCase(resource.path) + '.ts'),
         source: await recast.print(createResourceTypes(resource)),
       });
@@ -481,15 +433,13 @@ async function main() {
     (method) => !hasHeader(method, { name: 'x-magicbell-api-secret', required: true }),
   );
 
-  const betaMethods = resources
-    .flatMap((x) => x.methods)
-    .filter((x) => x.beta)
-    .sort((a, b) => a.operationId.localeCompare(b.operationId));
+  const betaMethods = getBetaMethods(resources);
 
   const files: Array<File> = [];
+
   // generate ast for new resource files
-  files.push(...(await generateResourceFiles(projectResources, 'project-resources')));
-  files.push(...(await generateResourceFiles(userResources, 'user-resources')));
+  files.push(...(await generateResourceFiles(projectResources, 'project-resources', createResource, createDocs)));
+  files.push(...(await generateResourceFiles(userResources, 'user-resources', createResource, createDocs)));
   files.push(...(await generateSchemaFiles(resources, 'schemas')));
 
   const outDirs = Array.from(new Set(files.map((x) => path.dirname(x.name))));
@@ -497,7 +447,6 @@ async function main() {
   // add readme - this should not go through eslint
   outDirs.forEach((dir) => {
     files.push({
-      type: 'docs',
       name: path.join(dir, 'README.md'),
       source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
     });
