@@ -42,7 +42,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
-      - name: Lint
+        # we need to upgrade to Node16 module resolution so TSC can use package.json#exports
+      - name: Build
+        run: yarn build
+      - name: TypeScript
         run: tsc -v && yarn lint:typescript
 
   test:
@@ -54,13 +57,3 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - run: yarn test:ci
-
-  build:
-    name: Build
-    needs: [setup]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - run: yarn build
