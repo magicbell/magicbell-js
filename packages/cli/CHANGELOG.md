@@ -1,5 +1,63 @@
 # @magicbell/cli
 
+## 2.0.0
+
+### Major Changes
+
+- [#154](https://github.com/magicbell-io/magicbell-js/pull/154) [`da22233`](https://github.com/magicbell-io/magicbell-js/commit/da22233fca83398cc33e4732172eebde96ad1140) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Changes** - please read carefully.
+
+  We've separated the project from user resources. All user resources have been moved under the `user` namespace. This is a virtual path, that does not translate one-on-one to the REST api. All user resources require a `--user-email` or `--user-external-id` option to be provided.
+
+  **Project Resources**
+
+  The project resources have been left untouched, and work as before. This includes the commands as below. Note that `magicbell notifications` was a mixture of project and user scoped resources, and has been split into `magicbell notifications` and `magicbell user notifications`. On the project scope, only `magicbell notifications create` remains.
+
+  ```shell
+  magicbell broadcasts
+  magicbell imports
+  magicbell metrics
+  magicbell notifications
+  magicbell users
+  ```
+
+  **User Resources**
+
+  User resources include all API endpoints that do not require the api secret key, but use the api key and user email or user external id to authenticate the user. This includes the resources as below. Please note that all user scoped commands require a `--user-email` or `--user-external-id` option to be provided. If you're authenticated with `api-secret` we'll compute the `--user-hmac` for you. Otherwise, you'll have to provide it manually with the `--user-hmac` option if HMAC is enabled for your project.
+
+  ```shell
+  magicbell user listen
+  magicbell user notification-preferences
+  magicbell user notifications
+  magicbell user push-subscriptions
+  magicbell user subscriptions
+  ```
+
+### Minor Changes
+
+- [#149](https://github.com/magicbell-io/magicbell-js/pull/149) [`3cd329b`](https://github.com/magicbell-io/magicbell-js/commit/3cd329bd76377d144dd8dd79a66f8b909591533c) Thanks [@smeijer](https://github.com/smeijer)! - The CLI now accepts the global `--print-request curl` option that prints the request object to the console. When that option is provided, the request will be printed in the requested format, and no network requests will be made. We'll add more formats in the future.
+
+  ```shell
+  magicbell notifications list --print-request curl
+  magicbell notifications create --title hi --print-request curl
+  ```
+
+- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We now use [debug] for logging, and have dropped support for the `debug` property that could be provided to `Client`. Debugging can be enabled via the `DEBUG` environment variable.
+
+  We're using the namespaces `magicbell:debug`, `magicbell:log` and `magicbell:error`.
+
+  ```shell
+  DEBUG=magicbell:* node my-app.js
+  DEBUG=magicbell:debug node my-app.js
+  ```
+
+  [debug]: https://npmjs.com/debug
+
+### Patch Changes
+
+- [#148](https://github.com/magicbell-io/magicbell-js/pull/148) [`f6558fb`](https://github.com/magicbell-io/magicbell-js/commit/f6558fb04fbcfbdea14839f9c6e3972eed60a65e) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `esbuild` to `^0.18.11`.
+
 ## 1.3.0
 
 ### Minor Changes

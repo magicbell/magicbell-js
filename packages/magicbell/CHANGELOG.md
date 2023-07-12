@@ -1,5 +1,116 @@
 # magicbell
 
+## 2.0.0
+
+### Major Changes
+
+- [#154](https://github.com/magicbell-io/magicbell-js/pull/154) [`da22233`](https://github.com/magicbell-io/magicbell-js/commit/da22233fca83398cc33e4732172eebde96ad1140) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Changes** - please read carefully.
+
+  We've separated the project from user resources. There are now two API clients exposed that can be used independently. A `ProjectClient` and a `UserClient`.
+
+  **Project Client**
+
+  The `ProjectClient` provides access to all our API endpoints that require the api secret key. It's the same client as in v1, but with all user scoped endpoints removed.
+
+  In most cases, you'll only have to change the import statements to use the new client.
+
+  ```diff
+  - import { Client } from 'magicbell';
+  + import { ProjectClient } from 'magicbell/project-client';
+
+  - const magicbell = new Client({
+  + const magicbell = new ProjectClient({
+    apiKey: 'your-api-key', // required
+    apiSecret: 'your-secret-key', // required
+  });
+
+  magicbell.users.list();
+  ```
+
+  **User Client**
+
+  The `UserClient` provides access to all our API endpoints that require the user email or user external id. As the user client only supports user scoped APIs and does not require or accept the api secret key, it's safe to use in the browser.
+
+  If you've used the client scoped resources before, you'll have to migrate those calls to the user client. Note that if you provided the `apiSecret` to the old client, you'll have to remove it from the new one. User credentials are now provided in the constructor, and no longer overridable on a per request basis.
+
+  ```diff
+  - import { Client } from 'magicbell';
+  + import { UserClient } from 'magicbell/user-client';
+
+  - const magicbell = new Client({
+  + const magicbell = new UserClient({
+    apiKey: 'your-api-key', // required
+  - apiSecret: 'your-secret-key',
+  + userEmail: 'you@example.com', // required if userExternalId is not set
+  + userExternalId: 'your-external-id', // required if userEmail is not set
+  + userHmac: 'your-user-hmac', // required if HMAC is enabled
+  });
+
+  magicbell.notifications.list();
+  ```
+
+  **User HMAC**
+
+  As the `UserClient` does not have access to your api secret key, `userHmac` keys are no longer automatically generated. You'll have to generate them yourself and provide them to the client. This is a necessary change to make the client safe to use in the browser without exposing your api secret key.
+
+  We've exported a `createHmac` util for you to generate the HMAC keys. You can use it in your backend to generate the HMAC keys.
+
+  ```js
+  import { createHmac } from 'magicbell/crypto';
+
+  const userHmac = createHmac(process.env.MAGICBELL_API_KEY, user);
+  ```
+
+  We've made the `createHmac` util as flexible as possible. It accepts MagicBell user objects with properties as `userEmail` and/or `userExternalId`, as well as objects with `id`, `_id`, or `email` properties. When providing the `id`, we assume that it maps to our `userExternalId`. If none of those properties work for you, it's possible to provide a string as second argument.
+
+  ```js
+  // these are all supported and the same
+  const userHmac = createHmac('secret-key', 'value');
+  const userHmac = createHmac('secret-key', { userExternalId: 'value' });
+  const userHmac = createHmac('secret-key', { userEmail: 'value' });
+  const userHmac = createHmac('secret-key', { id: 'value' });
+  const userHmac = createHmac('secret-key', { _id: 'value' });
+  const userHmac = createHmac('secret-key', { email: 'value' });
+  ```
+
+- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We're now using [ky] instead of [axios] for making HTTP requests. This is a breaking change, as ky is build around the fetch module. Fetch is natively supported in all modern browsers, and is also available in Node.js since version 18.13.0.
+
+  If you're using an older version of node, we recommend you to upgrade to the latest LTS version. Alternatively, include a fetch polyfill such as [isomorphic-fetch].
+
+  [axios]: https://npmjs.com/axios
+  [ky]: https://npmjs.com/ky
+  [isomorphic-fetch]: https://npmjs.com/isomorphic-fetch
+
+### Minor Changes
+
+- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - The magicbell client now supports lifecycle hooks. This way you can add custom logic to the client when certain events occur. For example to add logging, or to wrap requests with timing information.
+
+  Your hooks will be passed directly to ky, so please see [ky/hooks] for more information.
+
+  ```js
+  const magicbell = new Client({
+    hooks: {
+      beforeRequest: [(request) => {}],
+      beforeRetry: [(request, options, error, retryCount) => {}],
+      beforeError: [(error) => error],
+      afterResponse: [(request, options, response) => response],
+    },
+  });
+  ```
+
+  [ky/hooks]: https://github.com/sindresorhus/ky#hooks
+
+- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We now use [debug] for logging, and have dropped support for the `debug` property that could be provided to `Client`. Debugging can be enabled via the `DEBUG` environment variable.
+
+  We're using the namespaces `magicbell:debug`, `magicbell:log` and `magicbell:error`.
+
+  ```shell
+  DEBUG=magicbell:* node my-app.js
+  DEBUG=magicbell:debug node my-app.js
+  ```
+
+  [debug]: https://npmjs.com/debug
+
 ## 1.8.0
 
 ### Minor Changes
