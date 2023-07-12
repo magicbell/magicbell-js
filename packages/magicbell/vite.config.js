@@ -21,8 +21,14 @@ export function copyStatics() {
           pkgJson[key] = pkgJson[key].replace(pkgJson.publishConfig.directory, '.');
         }
 
+        for (const key of Object.keys(pkgJson.exports)) {
+          for (const [format, file] of Object.entries(pkgJson.exports[key])) {
+            pkgJson.exports[key][format] = file.replace(pkgJson.publishConfig.directory, '.');
+          }
+        }
+
         // delete redundant properties
-        for (const key of ['files', 'devDependencies', 'size-limit', 'scripts', 'publishConfig', 'exports', 'source']) {
+        for (const key of ['files', 'devDependencies', 'size-limit', 'scripts', 'publishConfig', 'source']) {
           delete pkgJson[key];
         }
 
