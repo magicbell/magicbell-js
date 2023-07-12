@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 2.0.1
+
+### Patch Changes
+
+- [`125c9d2`](https://github.com/magicbell-io/magicbell-js/commit/125c9d238dfb088b5482fd5fa8447b8a0c990da8) Thanks [@smeijer](https://github.com/smeijer)! - - updated `magicbell` to `2.0.1`
+
 ## 2.0.0
 
 ### Major Changes

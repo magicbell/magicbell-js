@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.0.1
+
+### Patch Changes
+
+- [#156](https://github.com/magicbell-io/magicbell-js/pull/156) [`16016dc`](https://github.com/magicbell-io/magicbell-js/commit/16016dc5d3cd69d86c28e3e9920fe8e41e123406) Thanks [@smeijer](https://github.com/smeijer)! - declare exports in package.json
+
 ## 2.0.0
 
 ### Major Changes
