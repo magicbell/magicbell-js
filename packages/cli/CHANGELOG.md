@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 2.0.2
+
+### Patch Changes
+
+- [#158](https://github.com/magicbell-io/magicbell-js/pull/158) [`d0121d9`](https://github.com/magicbell-io/magicbell-js/commit/d0121d9eb85528604e6765b679a896570eaee3ee) Thanks [@smeijer](https://github.com/smeijer)! - inject ky during build for a dep free install
+
 ## 2.0.1
 
 ### Patch Changes
