@@ -120,7 +120,3 @@ Credit where credits due, this package is inspired by and based on the [Stripe N
 [idempotent-requests]: https://www.magicbell.com/docs/rest-api/idempotent-requests
 [hmac-authentication]: https://www.magicbell.com/docs/hmac-authentication
 [api-reference]: https://www.magicbell.com/docs/rest-api/reference
-
-```
-
-```
