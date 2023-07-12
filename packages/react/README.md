@@ -68,20 +68,20 @@ The `MagicBell` component is the default export of this package and is the root 
 
 These are all the properties accepted by this component.
 
-| Property            | Type                                               | Description                                                                                                                                                                  |
-| ------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiKey`            | `string`                                           | The API key of your magicbell.io project                                                                                                                                     |
-| `userEmail`         | `string`                                           | The email of the user you want to show notifications for                                                                                                                     |
+| Property            | Type                                               | Description                                                                                                                                                       |
+| ------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiKey`            | `string`                                           | The API key of your magicbell.io project                                                                                                                          |
+| `userEmail`         | `string`                                           | The email of the user you want to show notifications for                                                                                                          |
 | `userExternalId`    | `string`                                           | The external ID of the user you want to show notifications for. See [the Users documentation](https://www.magicbell.com/docs/glossary#user) for more information. |
-| `userKey`           | `string`                                           | The HMAC for the user. It is recommended to enable HMAC authentication but not required                                                                                      |
-| `children`          | `({ isOpen, toggle, launcherRef }) => JSX.Element` | The children function to render a list of notifications for the user                                                                                                         |
-| `theme`             | `IMagicBellTheme`                                  | An optional object containing custom color values for the widget, see [Custom Themes](#custom-themes)                                                                        |
-| `BellIcon`          | `JSX.Element`                                      | An optional react element to be displayed instead of the default bell icon                                                                                                   |
-| `Badge`             | `({ count: number }) => JSX.Element`               | An optional custom component to use as notification badge                                                                                                                    |
-| `defaultIsOpen`     | `boolean`                                          | An optional flag to set the default visibility state of the element returned by the children function. It is `false` by default.                                             |
-| `onNewNotification` | `(notification) => void`                           | An optional function called when a new notification arrives.                                                                                                                 |
-| `onToggle`          | `(isOpen) => void`                                 | An optional function called when the bell is clicked.                                                                                                                        |
-| `bellCounter`       | `string`                                           | Counter to show in the bell. If set to 'unread' it will show the number of unread notifications. It is set to 'unseen' by default.                                           |
+| `userKey`           | `string`                                           | The HMAC for the user. It is recommended to enable HMAC authentication but not required                                                                           |
+| `children`          | `({ isOpen, toggle, launcherRef }) => JSX.Element` | The children function to render a list of notifications for the user                                                                                              |
+| `theme`             | `IMagicBellTheme`                                  | An optional object containing custom color values for the widget, see [Custom Themes](#custom-themes)                                                             |
+| `BellIcon`          | `JSX.Element`                                      | An optional react element to be displayed instead of the default bell icon                                                                                        |
+| `Badge`             | `({ count: number }) => JSX.Element`               | An optional custom component to use as notification badge                                                                                                         |
+| `defaultIsOpen`     | `boolean`                                          | An optional flag to set the default visibility state of the element returned by the children function. It is `false` by default.                                  |
+| `onNewNotification` | `(notification) => void`                           | An optional function called when a new notification arrives.                                                                                                      |
+| `onToggle`          | `(isOpen) => void`                                 | An optional function called when the bell is clicked.                                                                                                             |
+| `bellCounter`       | `string`                                           | Counter to show in the bell. If set to 'unread' it will show the number of unread notifications. It is set to 'unseen' by default.                                |
 
 ### Children function
 
@@ -185,15 +185,15 @@ ReactDOM.render(
 
 These are all the properties accepted by this component.
 
-| Property         | Type              | Description                                                                                                                                                                  |
-| ---------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiKey`         | `string`          | The API key of your magicbell.io project                                                                                                                                     |
-| `userEmail`      | `string`          | The email of the user you want to show notifications for                                                                                                                     |
+| Property         | Type              | Description                                                                                                                                                       |
+| ---------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiKey`         | `string`          | The API key of your magicbell.io project                                                                                                                          |
+| `userEmail`      | `string`          | The email of the user you want to show notifications for                                                                                                          |
 | `userExternalId` | `string`          | The external ID of the user you want to show notifications for. See [the Users documentation](https://www.magicbell.com/docs/glossary#user) for more information. |
-| `userKey`        | `string`          | The HMAC for the user. It is recommended to enable HMAC authentication but not required                                                                                      |
-| `children`       | `JSX.Element`     | The children to be wrapped in a `MagicBellContext.Provider`                                                                                                                  |
-| `theme`          | `IMagicBellTheme` | An optional object containing custom color values for the widget, see [Custom Themes](#custom-themes)                                                                        |
-| `stores`         | `object[]`        | An optional object containing the definitions of the notification stores to create.                                                                                          |
+| `userKey`        | `string`          | The HMAC for the user. It is recommended to enable HMAC authentication but not required                                                                           |
+| `children`       | `JSX.Element`     | The children to be wrapped in a `MagicBellContext.Provider`                                                                                                       |
+| `theme`          | `IMagicBellTheme` | An optional object containing custom color values for the widget, see [Custom Themes](#custom-themes)                                                             |
+| `stores`         | `object[]`        | An optional object containing the definitions of the notification stores to create.                                                                               |
 
 ## NotificationInbox
 
@@ -403,8 +403,8 @@ function NotificationsList() {
 
   return (
     <ul>
-      {store.notifications.map((notification) => (
-        <li>{notification.title}</li>
+      {store?.notifications.map((notification) => (
+        <li key={notification.id}>{notification.title}</li>
       ))}
     </ul>
   );
