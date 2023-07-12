@@ -1,18 +1,14 @@
 import { Command } from 'commander';
-import {
-  ClientOptions,
-  createHmac,
-  ProjectClient,
-  ProjectClientOptions,
-  UserClient,
-  UserClientOptions,
-} from 'magicbell';
+import { createHmac } from 'magicbell/crypto';
+import { ProjectClient, ProjectClientOptions } from 'magicbell/project-client';
+import { UserClient, UserClientOptions } from 'magicbell/user-client';
 
 import pkg from '../../package.json';
 import { configStore } from './config';
 import { printMessage } from './printer';
 import { serialize } from './serializers';
 
+type Hooks = ProjectClientOptions['hooks'];
 const features: ProjectClientOptions['features'] = {};
 
 class ExtendedProjectClient extends ProjectClient {
@@ -53,7 +49,7 @@ function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserCl
     }
   }
 
-  const hooks: ClientOptions['hooks'] = {};
+  const hooks: Hooks = {};
 
   if (printRequest) {
     hooks.beforeRequest = [
