@@ -10,6 +10,15 @@ type Config = {
   website_push_id: string;
 };
 
+type Subscription = {
+  created_at: string;
+  device_token: string;
+  discarded_at: string | null;
+  id: string;
+  platform: string;
+  user_id: string;
+};
+
 let _config: Config | null = null;
 let _cacheKey = '';
 
@@ -31,6 +40,30 @@ const api = {
         _cacheKey = cacheKey;
         return _config;
       });
+  },
+
+  async getSubscriptions({ token, project, baseURL }: RequestOptions) {
+    const config = await this.getConfig({ token, project, baseURL });
+    if (!config.project.api_key) throw new Error('Missing API key');
+    const headers: Record<string, string> = {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'x-magicbell-api-key': config.project.api_key,
+    };
+    if (config.user.email) {
+      headers['x-magicbell-user-email'] = config.user.email;
+    } else if (config.user.external_id) {
+      headers['x-magicbell-user-external-id'] = config.user.external_id;
+    }
+    if (config.user.hmac) {
+      headers['x-magicbell-user-hmac'] = config.user.hmac;
+    }
+    return fetch(`${baseURL}/push_subscriptions`, {
+      method: 'GET',
+      headers,
+    })
+      .then((result) => result.json())
+      .then((result) => result?.push_subscriptions || []);
   },
 
   async updateSubscription({ token, project, baseURL }: RequestOptions, subscription: PushSubscriptionJSON) {
@@ -65,6 +98,21 @@ export async function registerServiceWorker({ path = '/sw.js' }: { path?: string
   if (navigator.serviceWorker.controller) return navigator.serviceWorker.ready;
   await navigator.serviceWorker.register(path);
   return navigator.serviceWorker.ready;
+}
+
+/**
+ * Checks if the current user has an active push subscription that is registered by MagicBell.
+ */
+export async function isSubscribed(options: SubscribeOptions) {
+  const baseURL = options.host || location.origin;
+  const subscriptions = await api.getSubscriptions({ ...options, baseURL });
+  const currentPushSubscriptionEndpoint = await navigator.serviceWorker?.ready
+    .then((sw) => sw.pushManager.getSubscription())
+    .then((x) => x?.endpoint);
+  return (
+    Boolean(currentPushSubscriptionEndpoint) &&
+    subscriptions.some((subscription: Subscription) => subscription.device_token === currentPushSubscriptionEndpoint)
+  );
 }
 
 type SubscribeOptions = {

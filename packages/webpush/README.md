@@ -88,6 +88,26 @@ prefetchConfig({
 });
 ```
 
+### isSubscribed
+
+Check if the user is subscribed to push notifications in the current browser.
+
+```js
+import { isSubscribed } from '@magicbell/webpush';
+
+const subscribed = await isSubscribed({
+  token: 'jwt-token',
+  host: 'https://api.magicbell.com',
+  project: 'string',
+});
+
+if (subscribed) {
+  // Do something
+} else {
+  // Do something else
+}
+```
+
 ## Support
 
 New features and bug fixes are released on the latest major version of the `magicbell` package. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.
