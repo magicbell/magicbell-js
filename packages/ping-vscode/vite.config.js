@@ -19,11 +19,6 @@ const outputs = {
 export default defineConfig(async (configEnv) => {
   const base = await baseConfig(configEnv);
 
-  // TODO: I think this app doesn't build because the /node_modules/magicbell folder
-  //   doesn't have a package.json. Add aliases here that point to the /dist folder?
-  //   by the time we're building, we should have a /dist folder. Turbo will make sure
-  //   that packages are build in order.
-  // TODO: it seems to work. Find a way to make this more generic in the main vite config.
   base.resolve.alias = {
     magicbell: resolve(__dirname, '../../packages/magicbell/dist'),
   };
