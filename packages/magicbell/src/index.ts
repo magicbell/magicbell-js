@@ -1,3 +1,4 @@
-export { Client, Client as default } from './client';
-export { createHmac } from './lib/crypto';
-export type { ClientOptions, RequestOptions } from './types';
+export type { RequestOptions } from './client/types';
+export { createHmac } from './crypto';
+export { type ProjectClientOptions, ProjectClient } from './project-client';
+export { type UserClientOptions, UserClient } from './user-client';

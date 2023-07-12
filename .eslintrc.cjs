@@ -51,5 +51,11 @@ module.exports = {
         'vue/singleline-html-element-content-newline': 'off',
       }
     },
+    {
+      files: ['scripts/**/*'],
+      rules: {
+        'no-console': 'off',
+      }
+    }
   ],
 };

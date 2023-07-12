@@ -8,13 +8,16 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell.esm.js",
-  "typings": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "typings": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "directory": "./dist"
+  },
   "sideEffects": false,
   "files": [
     "/dist",
-    "/src",
     "LICENSE"
   ],
   "homepage": "https://magicbell.com",
@@ -34,9 +37,11 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "build": "run-s clean 'build:entry:*'",
+    "build:entry:index": "cross-env ENTRY=src/index.ts vite build",
+    "build:entry:project-client": "cross-env ENTRY=src/project-client.ts vite build",
+    "build:entry:user-client": "cross-env ENTRY=src/user-client.ts vite build",
+    "build:entry:crypto": "cross-env ENTRY=src/crypto.ts vite build",
     "generate:resources": "tsx scripts/generate-resources.ts",
     "start": "yarn build:dev --watch",
     "size": "size-limit"
@@ -64,7 +69,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "eventsource": "^2.0.2",
-    "fetch-addons": "^1.0.2",
+    "fetch-addons": "^1.1.0",
     "json-schema-to-ts": "2.6.0",
     "ky": "^0.33.3"
   }

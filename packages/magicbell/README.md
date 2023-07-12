@@ -1,6 +1,6 @@
 # MagicBell Node.js Library
 
-This package provides a convenient interface to query the [MagicBell](https://magicbell.com) API. Note that as some methods depend on your secret key, this SDK is not to be used in browsers.
+This package provides a convenient interface to query the [MagicBell](https://magicbell.com) API. Note that some methods depend on your secret key, those methods are not to be used in browsers, as your secret key must be kept secret.
 
 ## Requirements
 
@@ -28,9 +28,9 @@ The package needs to be configured with your project's secret key & api key, whi
 available in the [MagicBell Dashboard][dashboard].
 
 ```js
-import MagicBell from 'magicbell';
+import { ProjectClient } from 'magicbell/project-client';
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -50,9 +50,9 @@ try {
 or go old-school with require and promises:
 
 ```js
-const MagicBell = require('magicbell').default;
+const { ProjectClient } = require('magicbell/project-client');
 
-const magicbell = new MagicBell({
+const magicbell = new ProjectClient({
   apiKey: 'your-api-key',
   apiSecret: 'your-api-secret',
 });
@@ -67,34 +67,26 @@ magicbell.notifications
   .catch((error) => console.error(error));
 ```
 
-Some endpoints, like `notifications.list` are user oriented, and require the `userEmail` option to be set. This can be done via the client options, or on a per-request basis:
+Some endpoints, like `notifications.list` are user oriented, and can be consumed via a user specific client, authenticated using `apiKey` and `userEmail` or `apiKey` and `userExternalId` option.
 
 ```js
-const magicbell = new MagicBell({
+import { UserClient } from 'magicbell/user-client';
+
+const magicbell = new UserClient({
   apiKey: 'your-api-key',
-  apiSecret: 'your-api-secret',
   userEmail: 'you@example.com',
 });
 
 const notifications = await magicbell.notifications.list();
-
-// alternatively, provide the userEmail via request option instead
-const notifications = await magicbell.notifications.list({
-  userEmail: 'someone@example.com',
-});
 ```
 
 Note that every resource method accepts an optional `options` object, which can be used to override client defaults and pass additional options to the request.
 
-This can for example be used to fetch notification preferences for specific users:
+This can for example be used to increase the network timeout.
 
 ```js
 const johnsPreferences = await magicbell.notificationPreferences.list({
-  userEmail: 'john@example.com',
-});
-
-const janesPreferences = await magicbell.notificationPreferences.list({
-  userEmail: 'jane@example.com',
+  timeout: 30_000,
 });
 ```
 
@@ -150,27 +142,47 @@ const notifications = await magicbell.notifications.list().toArray({ limit: 1000
 
 ### Initialize with config object
 
-The package can be initialized with several options:
+The package can be initialized with several options, and in two scopes. There's an project client, and a user client.
+
+#### Project Scope
+
+The project client is used to make requests on behalf of the project, and requires the `apiKey` and `apiSecret` options to be set.
 
 ```js
-import MagicBell from 'magicbell';
+import { ProjectClient } from 'magicbell/project-client';
 
-const magicbell = new MagicBell({
-  host: 'https://api.magicbell.com',
-
+const magicbell = new ProjectClient({
   // auth
   apiKey: 'your-api-key', // required
-  apiSecret: 'your-secret-key', // required for project oriented endpoints
-  userEmail: 'you@example.com', // required for user oriented endpoints
+  apiSecret: 'your-secret-key', // required
 
   // network
   timeout: 30_000,
   maxRetries: 3,
   maxRetryDelay: 60,
   telemetry: true,
+});
+```
 
-  // logging
-  debug: false,
+#### User Scope
+
+The user client is used to make requests on behalf of a user, and requires the `apiKey` and one of `userEmail` or `userExternalId` options to be set. If your project has HMAC enabled, the `userHmac` option is also required. As no `apiSecret` is needed, this client is suitable for client side usage and safe to be used in the browser.
+
+```js
+import { UserClient } from 'magicbell/user-client';
+
+const magicbell = new UserClient({
+  // auth
+  apiKey: 'your-api-key', // required
+  userEmail: 'you@example.com', // required if userExternalId is not set
+  userExternalId: 'your-external-id', // required if userEmail is not set
+  userHmac: 'your-user-hmac', // required if HMAC is enabled
+
+  // network
+  timeout: 30_000,
+  maxRetries: 3,
+  maxRetryDelay: 60,
+  telemetry: true,
 });
 ```
 
@@ -184,13 +196,21 @@ const magicbell = new MagicBell({
 
   Your project api key which can be found on the [MagicBell Dashboard][dashboard]. This key is required for all calls.
 
-- **apiSecret** _String_
+- **apiSecret** _String_ [project client only]
 
-  Your project api secret which can be found on the [MagicBell Dashboard][dashboard]. This key is required for project oriented endpoints.
+  Your project api secret which can be found on the [MagicBell Dashboard][dashboard]. This key is required for admin oriented endpoints.
 
-- **userEmail** _String_
+- **userEmail** _String_ [user client only]
 
-  The email of the user you want to make requests for. This key is required for user oriented endpoints, but can also be provided on a per request basis. You only want to provide it to the client, if you're using the SDK for a single user/inbox.
+  The email of the user you want to make requests for. This key is required for user oriented endpoints when no `userExternalId` is set.
+
+- **userExternalId** _String_ [user client only]
+
+  The external-id of the user you want to make requests for. This key is required for user oriented endpoints when no `userEmail` is set.
+
+- **userHmac** _String_ [user client only]
+
+  The HMAC of the user you want to make requests for. This key is required for user oriented endpoints when HMAC is enabled.
 
 - **timeout** _Number_
 
@@ -236,20 +256,13 @@ magicbell.notifications.create(
 );
 ```
 
-### Configuring for users
-
-A per-request `userEmail` header can be added to any method. Note that we'll automatically add a `userKey` containing [the HMAC][hmac-authentication], if you've provided the `apiSecret` option.
-
-```js
-// List the notifications for a specific account
-magicbell.notifications.list({ page: 1 }, { userEmail: 'person@example.com' });
-```
-
 ### Network retries
 
 Automatic network retries can be configured with the `maxRetries` option. This will retry network requests - with an exponential backoff - when it makes sense to retry them. For example, a request that failed due to a network error will be retried, but a request that failed due to an invalid API key or incorrect data will not.
 
-> note: automatic retries are meant to handle short network disturbances. They're handled in-process, and don't use a persistent job queue. They won't survive process restarts. You might need to implement your own persistent workers with retry logic if delivery is crucial to your business.
+> **Note**
+>
+> Automatic retries are meant to handle short network disturbances. They're handled in-process, and don't use a persistent job queue. They won't survive process restarts. You might need to implement your own persistent workers with retry logic if delivery is crucial to your business.
 
 We'll automatically add [idempotency keys][idempotent-requests] if you haven't provided on, to prevent duplication.
 
@@ -320,13 +333,26 @@ _There are no features in beta at this time._
 
 <!-- AUTO-GENERATED-CONTENT:END (FEATURE_FLAGS) -->
 
-## Resource methods
+## Resource Methods
 
-Below you'll find the all supported resource methods, with their signatures. The full documentation can be found in our [api-reference][api-reference]. When comparing the api-reference with these methods, you'll notice that the SDK removes any wrapping entities for your convenience. Meaning, instead of posting `{ notification: { title: 'hi' } }`, you'll call `create({ title: 'hi' })`.
+The SDK is divided in two scopes. [Project Resources](#project-resource-methods), and [User Resources](#user-resource-methods). Below you'll find the all supported resource methods, with their signatures. The full documentation can be found in our [api-reference][api-reference]. When comparing the api-reference with these methods, you'll notice that the SDK removes any wrapping entities for your convenience. Meaning, instead of posting `{ notification: { title: 'hi' } }`, you'll call `create({ title: 'hi' })`.
 
 Apart from the removal of the wrappers, returned entities and provided parameters are identical between our REST API and this SDK.
 
-<!-- AUTO-GENERATED-CONTENT:START (RESOURCE_METHODS) -->
+## Project Resource Methods
+
+The project scope contains everything you need to manage your project and send notifications. You'll need to be authenticated using `apiKey` and `apiSecret` to use these methods.
+
+```js
+import { ProjectClient } from 'magicbell/project-client';
+
+const magicbell = new ProjectClient({
+  apiKey: 'your-api-key', // required
+  apiSecret: 'your-secret-key', // required
+});
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (PROJECT_RESOURCE_METHODS) -->
 
 ### Broadcasts
 
@@ -407,127 +433,6 @@ await magicbell.notifications.create({
     },
   },
 });
-```
-
-#### Fetch notifications
-
-Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
-
-```js
-await magicbell.notifications.list(
-  {
-    per_page: 1,
-    page: 1,
-    read: true,
-    seen: true,
-    archived: true,
-    categories: ['…'],
-    topics: ['…'],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Fetch notification by ID
-
-Fetch a user's notification by its ID.
-
-```js
-await magicbell.notifications.get('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Delete a notification
-
-Delete a user's notification by its ID. The notification is deleted immediately and removed from the user's notification inbox in real-time.
-
-```js
-await magicbell.notifications.delete('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Mark a notification as read
-
-Mark a user notification as read. The notification will be automatically marked as seen, too.
-
-The new state will be reflected in the user's notification inbox in real-time.
-
-```js
-await magicbell.notifications.markAsRead('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Mark a notification as unread
-
-Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
-
-```js
-await magicbell.notifications.markAsUnread('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Archive a notification
-
-Mark a user notification as archived.
-
-```js
-await magicbell.notifications.archive('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Unarchive a notification
-
-Mark a user notification as unarchived.
-
-```js
-await magicbell.notifications.unarchive('{notification_id}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Mark all notifications as read
-
-Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```js
-await magicbell.notifications.markAllRead(
-  {
-    archived: true,
-    read: true,
-    seen: true,
-    categories: ['…'],
-    topics: ['…'],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Mark all notifications as seen
-
-Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```js
-await magicbell.notifications.markAllSeen(
-  {
-    archived: true,
-    read: true,
-    seen: true,
-    categories: ['…'],
-    topics: ['…'],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
 ```
 
 ### Users
@@ -683,158 +588,6 @@ Delete a user's push subscriptions. Identifies the user by the user's ID and the
 await magicbell.users.pushSubscriptions.delete('{user_id}', '{subscription_id}');
 ```
 
-### Push Subscriptions
-
-#### Register a device token for a user
-
-Register a device token for push notifications.
-
-Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
-
-```js
-await magicbell.pushSubscriptions.create(
-  {
-    device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
-    platform: 'ios',
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Delete user's device token
-
-Deletes the registered device token to remove the mobile push subscription.
-
-```js
-await magicbell.pushSubscriptions.delete('{device_token}', {
-  userEmail: 'person@example.com',
-});
-```
-
-### Notification Preferences
-
-#### Fetch user notification preferences
-
-Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
-
-```js
-await magicbell.notificationPreferences.get({
-  userEmail: 'person@example.com',
-});
-```
-
-#### Update user notification preferences
-
-Update a user's notification preferences. These preferences will be applied only to channels you enabled for your project.
-
-```js
-await magicbell.notificationPreferences.update(
-  {
-    categories: [
-      {
-        slug: 'billing',
-        channels: [
-          {
-            slug: 'email',
-            enabled: false,
-          },
-          {
-            slug: 'web_push',
-            enabled: false,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-### Subscriptions
-
-#### Fetch user's topic subscriptions
-
-Fetch a user's topic subscriptions.
-
-```js
-await magicbell.subscriptions.list({
-  userEmail: 'person@example.com',
-});
-```
-
-#### Create a topic subscription
-
-Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
-
-```js
-await magicbell.subscriptions.create(
-  {
-    categories: [
-      {
-        slug: 'comments',
-        reason: 'watching-the-repo',
-      },
-    ],
-    topic: 'acme-inc.orders.1234',
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Unsubscribe from a topic
-
-Unusbscribe a user from a particular topic (and optional categories).
-
-```js
-await magicbell.subscriptions.unsubscribe(
-  '{topic}',
-  {
-    categories: [
-      {
-        slug: 'comments',
-      },
-    ],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
-#### Show a topic subscription
-
-Show a user's subscription status for a particular topic and categories.
-
-```js
-await magicbell.subscriptions.get('{topic}', {
-  userEmail: 'person@example.com',
-});
-```
-
-#### Delete topic subscription(s)
-
-```js
-await magicbell.subscriptions.delete(
-  '{topic}',
-  {
-    categories: [
-      {
-        slug: '…',
-      },
-    ],
-  },
-  {
-    userEmail: 'person@example.com',
-  },
-);
-```
-
 ### Imports
 
 #### Create a import
@@ -911,7 +664,241 @@ Query the metrics of notification broadcasts and their recipients, grouped by to
 await magicbell.metrics.topics.get();
 ```
 
-<!-- AUTO-GENERATED-CONTENT:END (RESOURCE_METHODS) -->
+<!-- AUTO-GENERATED-CONTENT:END (PROJECT_RESOURCE_METHODS) -->
+
+## User Resource Methods
+
+The user scope contains everything a specific user needs to display their notifications and manage their settings. They'll need to be authenticated using `apiKey`, either `userEmail` or `userExternalId`, and `userHmac` when HMAC is enabled on your project.
+
+As you don't need to authenticate using the `apiSecret`, this scope is safe to use in the browser.
+
+```js
+import { UserClient } from 'magicbell/user-client';
+
+const magicbell = new UserClient({
+  apiKey: 'your-api-key', // required
+  userEmail: 'you@example.com', // required if userExternalId is not set
+  userExternalId: 'your-external-id', // required if userEmail is not set
+  userHmac: 'your-user-hmac', // required if HMAC is enabled
+});
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (USER_RESOURCE_METHODS) -->
+
+### Notifications
+
+#### Fetch notifications
+
+Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
+
+```js
+await magicbell.notifications.list({
+  per_page: 1,
+  page: 1,
+  read: true,
+  seen: true,
+  archived: true,
+  categories: ['…'],
+  topics: ['…'],
+});
+```
+
+#### Fetch notification by ID
+
+Fetch a user's notification by its ID.
+
+```js
+await magicbell.notifications.get('{notification_id}');
+```
+
+#### Delete a notification
+
+Delete a user's notification by its ID. The notification is deleted immediately and removed from the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.delete('{notification_id}');
+```
+
+#### Mark a notification as read
+
+Mark a user notification as read. The notification will be automatically marked as seen, too.
+
+The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsRead('{notification_id}');
+```
+
+#### Mark a notification as unread
+
+Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsUnread('{notification_id}');
+```
+
+#### Archive a notification
+
+Mark a user notification as archived.
+
+```js
+await magicbell.notifications.archive('{notification_id}');
+```
+
+#### Unarchive a notification
+
+Mark a user notification as unarchived.
+
+```js
+await magicbell.notifications.unarchive('{notification_id}');
+```
+
+#### Mark all notifications as read
+
+Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllRead({
+  archived: true,
+  read: true,
+  seen: true,
+  categories: ['…'],
+  topics: ['…'],
+});
+```
+
+#### Mark all notifications as seen
+
+Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllSeen({
+  archived: true,
+  read: true,
+  seen: true,
+  categories: ['…'],
+  topics: ['…'],
+});
+```
+
+### Push Subscriptions
+
+#### Register a device token for a user
+
+Register a device token for push notifications.
+
+Please keep in mind that mobile push notifications will be delivered to this device only if the channel is configured and enabled.
+
+```js
+await magicbell.pushSubscriptions.create({
+  device_token: 'x4doKe98yEZ21Kum2Qq39M3b8jkhonuIupobyFnL0wJMSWAZ8zoTp2dyHgV',
+  platform: 'ios',
+});
+```
+
+#### Delete user's device token
+
+Deletes the registered device token to remove the mobile push subscription.
+
+```js
+await magicbell.pushSubscriptions.delete('{device_token}');
+```
+
+### Notification Preferences
+
+#### Fetch user notification preferences
+
+Fetch a user's notification preferences. If a user does not disable a channel explicitly, we would send notifications through that channel as long as your project is enabled.
+
+```js
+await magicbell.notificationPreferences.get();
+```
+
+#### Update user notification preferences
+
+Update a user's notification preferences. These preferences will be applied only to channels you enabled for your project.
+
+```js
+await magicbell.notificationPreferences.update({
+  categories: [
+    {
+      slug: 'billing',
+      channels: [
+        {
+          slug: 'email',
+          enabled: false,
+        },
+        {
+          slug: 'web_push',
+          enabled: false,
+        },
+      ],
+    },
+  ],
+});
+```
+
+### Subscriptions
+
+#### Fetch user's topic subscriptions
+
+Fetch a user's topic subscriptions.
+
+```js
+await magicbell.subscriptions.list();
+```
+
+#### Create a topic subscription
+
+Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
+
+```js
+await magicbell.subscriptions.create({
+  categories: [
+    {
+      slug: 'comments',
+      reason: 'watching-the-repo',
+    },
+  ],
+  topic: 'acme-inc.orders.1234',
+});
+```
+
+#### Unsubscribe from a topic
+
+Unusbscribe a user from a particular topic (and optional categories).
+
+```js
+await magicbell.subscriptions.unsubscribe('{topic}', {
+  categories: [
+    {
+      slug: 'comments',
+    },
+  ],
+});
+```
+
+#### Show a topic subscription
+
+Show a user's subscription status for a particular topic and categories.
+
+```js
+await magicbell.subscriptions.get('{topic}');
+```
+
+#### Delete topic subscription(s)
+
+```js
+await magicbell.subscriptions.delete('{topic}', {
+  categories: [
+    {
+      slug: '…',
+    },
+  ],
+});
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (USER_RESOURCE_METHODS) -->
 
 ## Realtime
 
@@ -925,7 +912,7 @@ const magicbell = new MagicBell({
   userEmail: 'someone@example.com',
 });
 
-magicbell.listen({ userEmail: 'someone@example.com' });
+magicbell.listen();
 ```
 
 **async iterator** - this iterates over all events. Call `break` when you wish to step out of the iteration and stop listening.

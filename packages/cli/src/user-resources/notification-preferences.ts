@@ -1,0 +1,31 @@
+// This file is generated. Do not update manually!
+
+import { getUserClient as getClient } from '../lib/client';
+import { createCommand } from '../lib/commands';
+import { parseOptions } from '../lib/options';
+import { printJson } from '../lib/printer';
+
+export const notificationPreferences = createCommand('notification-preferences').description(
+  'Manage user notification preferences',
+);
+
+notificationPreferences
+  .command('get')
+  .description('Fetch user notification preferences')
+  .action(async (opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notificationPreferences.get(options);
+    printJson(response);
+  });
+
+notificationPreferences
+  .command('update')
+  .description('Update user notification preferences')
+  .option('--categories <string...>', '')
+  .action(async (opts, cmd) => {
+    const { data, options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notificationPreferences.update(data, options);
+    printJson(response);
+  });

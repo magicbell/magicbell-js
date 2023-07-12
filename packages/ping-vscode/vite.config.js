@@ -19,6 +19,10 @@ const outputs = {
 export default defineConfig(async (configEnv) => {
   const base = await baseConfig(configEnv);
 
+  base.resolve.alias = {
+    magicbell: resolve(__dirname, '../../packages/magicbell/dist'),
+  };
+
   base.build.sourcemap = false;
   base.build.lib = outputs[process.env.ENTRY] || outputs.index;
   base.build.rollupOptions.external = ['vscode', 'path', 'fs'];

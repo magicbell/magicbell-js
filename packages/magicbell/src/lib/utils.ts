@@ -1,9 +1,4 @@
-import type { Hooks } from 'ky';
-
-export const hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
-
-export const compose = <R>(fn1: (a: R) => R, ...fns: Array<(a: R) => R>) =>
-  fns.reduce((prevFn, nextFn) => (value) => prevFn(nextFn(value)), fn1);
+export const hasOwn = (obj, prop) => obj && Object.prototype.hasOwnProperty.call(obj, prop);
 
 export function isString(value) {
   return typeof value === 'string';
@@ -44,15 +39,6 @@ export function compact(obj: Record<string, unknown>, dropEmptyString = false) {
   return result;
 }
 
-export function uuid4() {
-  // TODO: should be upgradable to crypto.randomUUID(), introduced by node v14
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -75,19 +61,6 @@ export function joinOr(...parts) {
 
 export function joinUrlSegments(...segments) {
   return ['/', ...segments].join('/').replace(/\/+/g, '/').replace(/\/$/, '');
-}
-
-export function mergeHooks(...hooks: Hooks[]): Hooks {
-  const result = {} as Hooks;
-
-  for (const hook of hooks) {
-    for (const key of Object.keys(hook || {})) {
-      result[key] ??= [];
-      result[key].push(...hook[key]);
-    }
-  }
-
-  return result;
 }
 
 export function tryParse(obj: unknown) {

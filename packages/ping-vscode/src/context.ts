@@ -1,5 +1,5 @@
 import { effect, signal } from '@preact/signals-core';
-import MagicBell from 'magicbell';
+import { UserClient } from 'magicbell/user-client';
 import pluralize from 'pluralize';
 import * as vscode from 'vscode';
 
@@ -8,7 +8,7 @@ import { commands } from './lib/commands';
 import { Messenger } from './lib/messenger';
 
 const config = vscode.workspace.getConfiguration('ping');
-const magicbell = new MagicBell({
+const magicbell = new UserClient({
   apiKey: config.get('apiKey'),
   userExternalId: config.get('username'),
   userHmac: config.get('userHmac'),

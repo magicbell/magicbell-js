@@ -1,54 +1,19 @@
 import { Command } from 'commander';
-import { Client, ClientOptions } from 'magicbell';
+import { createHmac } from 'magicbell/crypto';
+import { ProjectClient, ProjectClientOptions } from 'magicbell/project-client';
+import { UserClient, UserClientOptions } from 'magicbell/user-client';
 
 import pkg from '../../package.json';
 import { configStore } from './config';
 import { printMessage } from './printer';
 import { serialize } from './serializers';
 
-type ExtendedClient = InstanceType<typeof Client> & { getProject: () => Promise<{ id: string; name: string }> };
+type Hooks = ProjectClientOptions['hooks'];
+const features: ProjectClientOptions['features'] = {};
 
-const features: ClientOptions['features'] = {};
-
-export function getClient(cmd: Command, options?: Partial<ClientOptions>) {
-  const { profile, host, printRequest } = cmd.optsWithGlobals();
-  const project = configStore.getProject(profile);
-
-  const defaultOptions = {
-    apiKey: project?.apiKey,
-    apiSecret: project?.apiSecret,
-    userEmail: project?.userEmail,
-    userExternalId: project?.userExternalId,
-    host: host || project?.host,
-  };
-
-  for (const key in defaultOptions) {
-    if (defaultOptions[key] == null || defaultOptions[key] === '') {
-      delete defaultOptions[key];
-    }
-  }
-
-  const hooks: ClientOptions['hooks'] = {};
-
-  if (printRequest) {
-    hooks.beforeRequest = [
-      async (request) => {
-        printMessage(await serialize(request, printRequest));
-        process.exit(0);
-      },
-    ];
-  }
-
-  const client = new Client({
-    ...defaultOptions,
-    ...options,
-    appInfo: { name: pkg.name, version: pkg.version },
-    features,
-    hooks,
-  }) as ExtendedClient;
-
-  client.getProject = async function getProject() {
-    const project = await client
+class ExtendedProjectClient extends ProjectClient {
+  async getProject() {
+    const project = await super
       .request({
         method: 'POST',
         path: '/graphql',
@@ -63,7 +28,54 @@ export function getClient(cmd: Command, options?: Partial<ClientOptions>) {
     }
 
     return project;
+  }
+}
+
+function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserClientOptions>) {
+  const { profile, host, printRequest, userEmail, userExternalId } = cmd.optsWithGlobals();
+  const project = configStore.getProject(profile);
+
+  const defaultOptions = {
+    apiKey: project?.apiKey,
+    apiSecret: project?.apiSecret,
+    userEmail: userEmail || project?.userEmail,
+    userExternalId: userExternalId || project?.userExternalId,
+    host: host || project?.host,
   };
 
-  return client;
+  for (const key in defaultOptions) {
+    if (defaultOptions[key] == null || defaultOptions[key] === '') {
+      delete defaultOptions[key];
+    }
+  }
+
+  const hooks: Hooks = {};
+
+  if (printRequest) {
+    hooks.beforeRequest = [
+      async (request) => {
+        printMessage(await serialize(request, printRequest));
+        process.exit(0);
+      },
+    ];
+  }
+
+  return {
+    ...defaultOptions,
+    ...options,
+    appInfo: { name: pkg.name, version: pkg.version },
+    features,
+    hooks,
+  };
+}
+
+export function getUserClient(cmd: Command, options?: Partial<UserClientOptions>) {
+  const { apiSecret, ...config } = getConfig(cmd, options);
+  const userHmac = apiSecret ? createHmac(apiSecret, config) : '';
+  return new UserClient({ ...config, userHmac });
+}
+
+export function getProjectClient(cmd: Command, options?: Partial<ProjectClientOptions>) {
+  const config = getConfig(cmd, options);
+  return new ExtendedProjectClient(config);
 }
