@@ -8,6 +8,7 @@ on:
       - 'next'
       - 'alpha'
       - 'beta'
+      - 'changeset-release/**'
       - 'renovate/**'
       - '!all-contributors/**'
   pull_request:
