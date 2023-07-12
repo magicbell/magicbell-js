@@ -34,7 +34,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "run-s clean build:prod",
-    "build:prod": "esbuild src/index.ts --bundle --outfile=dist/index.cjs --format=cjs --platform=node --tsconfig=tsconfig.build.json",
+    "build:prod": "esbuild src/index.ts --bundle --inject:ky --outfile=dist/index.cjs --format=cjs --platform=node --tsconfig=tsconfig.build.json",
     "build:bin": "pkg dist/index.cjs --public --public-packages '*' --no-bytecode -o 'dist/bin/magicbell' --targets node18-linux-x64,node18-linux-arm64,node18-macos-x64,node18-macos-arm64,node18-win-x64,node18-win-arm64",
     "generate:resources": "tsx scripts/generate-resources.ts",
     "start": "yarn build:prod --watch",
