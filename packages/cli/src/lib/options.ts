@@ -1,4 +1,4 @@
-import { parse } from 'json5';
+import json from 'json5';
 
 import { printError } from './printer';
 import { camelToSnakeCase } from './text';
@@ -14,10 +14,10 @@ function parseJsonLikes(obj: unknown) {
   const lastChar = str[str.length - 1];
 
   try {
-    if (firstChar === '{' && lastChar === '}') return parse(str);
-    if (firstChar === '[' && lastChar === ']') return parse(str);
-    if (firstChar === '"' && lastChar === '"') return parse(str);
-    if (firstChar === "'" && lastChar === "'") return parse(str);
+    if (firstChar === '{' && lastChar === '}') return json.parse(str);
+    if (firstChar === '[' && lastChar === ']') return json.parse(str);
+    if (firstChar === '"' && lastChar === '"') return json.parse(str);
+    if (firstChar === "'" && lastChar === "'") return json.parse(str);
     return obj;
   } catch {
     return obj;

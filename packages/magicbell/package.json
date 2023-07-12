@@ -11,6 +11,28 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./project-client": {
+      "types": "./dist/project-client.d.ts",
+      "import": "./dist/project-client.mjs",
+      "require": "./dist/project-client.cjs"
+    },
+    "./user-client": {
+      "types": "./dist/user-client.d.ts",
+      "import": "./dist/user-client.mjs",
+      "require": "./dist/user-client.cjs"
+    },
+    "./crypto": {
+      "types": "./dist/crypto.d.ts",
+      "import": "./dist/crypto.mjs",
+      "require": "./dist/crypto.cjs"
+    }
+  },
   "publishConfig": {
     "access": "public",
     "directory": "./dist"
