@@ -1,5 +1,13 @@
 # @magicbell/react-headless
 
+## 4.2.8
+
+### Patch Changes
+
+- [#153](https://github.com/magicbell-io/magicbell-js/pull/153) [`6aa5cee`](https://github.com/magicbell-io/magicbell-js/commit/6aa5cee31e0a413207007803e7ad6a109a664cd8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.195`.
+
 ## 4.2.7
 
 ### Patch Changes

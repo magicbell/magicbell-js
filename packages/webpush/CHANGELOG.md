@@ -1,5 +1,27 @@
 # @magicbell/webpush
 
+## 1.3.0
+
+### Minor Changes
+
+- [#155](https://github.com/magicbell-io/magicbell-js/pull/155) [`2c7ba0c`](https://github.com/magicbell-io/magicbell-js/commit/2c7ba0c652317b626708561c1436f0439efe22fd) Thanks [@moxley01](https://github.com/moxley01)! - Adds an 'isSubscribed' method that checks if the user is subscribed to push notifications in the current browser, e.g.
+
+  ```js
+  import { isSubscribed } from '@magicbell/webpush';
+
+  const subscribed = await isSubscribed({
+    token: 'jwt-token',
+    host: 'https://api.magicbell.com',
+    project: 'string',
+  });
+
+  if (subscribed) {
+    // Do something
+  } else {
+    // Do something else
+  }
+  ```
+
 ## 1.2.0
 
 ### Minor Changes
