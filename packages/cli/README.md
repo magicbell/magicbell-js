@@ -29,17 +29,63 @@ brew install magicbell-cli
 
 ## Usage
 
-The app needs to be configured with your project's secret key & api key, which are
-available in the [MagicBell Dashboard][dashboard].
+The cli needs to be configured with your project's api key and api secret key, which are available in the [MagicBell Dashboard][dashboard]. Please run `magicbell login` to set up your credentials.
 
 ```shell
-magicbell config set --api-key {your-api-key} --secret-key {your-secret-key}
+magicbell login
 ```
 
-Some commands, like `notifications list` are user oriented, and require the `user-email` option to be set.
+## Profiles
+
+The cli supports multiple active profiles. You can switch between profiles with the `--profile` option. Profiles are created during login. For example, to create a `staging` profile:
 
 ```shell
-magicbell config set --user-email {your-email-key}
+magicbell login --profile staging
+```
+
+All commands are executed against the `default` profile by default. To run commands against a different profile, you can use the `--profile` option or set the `MAGICBELL_PROFILE` environment variable.
+
+```shell
+magicbell users list --profile staging
+
+# or
+export MAGICBELL_PROFILE=staging
+magicbell users list
+```
+
+To see what profile is currently the default, run `magicbell --help`. You'll see the current profile in the output behind the `--profile` option:
+
+```shell
+magicbell --help
+
+# ...
+#   -p, --profile <string>        Profile to use (default: "staging")
+```
+
+To see what project your current profile is associated with, run
+
+```shell
+magicbell config list
+```
+
+## Logout
+
+To logout from your current active profile, run:
+
+```shell
+magicbell logout
+```
+
+Logout from all profiles with the `--all` option:
+
+```shell
+magicbell logout --all
+```
+
+Or a specific profile with `--profile`:
+
+```shell
+magicbell logout --profile staging
 ```
 
 ## Commands
