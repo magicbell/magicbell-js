@@ -93,6 +93,6 @@
     "eventsource": "^2.0.2",
     "fetch-addons": "^1.1.0",
     "json-schema-to-ts": "2.6.0",
-    "ky": "^0.33.3"
+    "ky": "npm:@smeijer/ky@^0.33.3"
   }
 }

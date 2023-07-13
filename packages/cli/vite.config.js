@@ -7,5 +7,7 @@ export default defineConfig(async (configEnv) => {
   base.build.lib.formats = ['cjs'];
   base.build.lib.fileName = () => 'index.cjs';
   base.build.sourcemap = false;
+
+  base.build.rollupOptions.external = ['fs', 'path', 'url', 'os', 'crypto', 'readline', 'process'];
   return base;
 });

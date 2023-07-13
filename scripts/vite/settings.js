@@ -68,16 +68,8 @@ export function createLibName(name) {
 
 export function getPackageAliases(useSourceAsRoot) {
   const files = glob(`./packages/*/package.json`, { absolute: true });
-  const entries = files.map((file) => ({
+  return files.map((file) => ({
     find: readJSON(file).name,
     replacement: path.join(path.dirname(file), useSourceAsRoot ? 'src' : ''),
   }));
-
-  // rewrite ky to a direct import, as vitest doesn't support the dynamic one
-  entries.push({
-    find: /.*lib\/ky/,
-    replacement: new URL('../../packages/magicbell/test/ky', import.meta.url),
-  });
-
-  return entries;
 }

@@ -1,4 +1,5 @@
-import { ky } from '../lib/ky';
+import ky from 'ky';
+
 import { tryParse } from '../lib/utils';
 import { createError } from './error';
 import { withRequestHeaders } from './headers';

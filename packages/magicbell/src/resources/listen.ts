@@ -1,9 +1,9 @@
 import EventSource from 'eventsource';
+import ky from 'ky';
 
 import { Client } from '../client/client';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
 import { RequestOptions } from '../client/types';
-import { ky } from '../lib/ky';
 
 type AuthResponse = {
   keyName: string;
