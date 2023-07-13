@@ -93,9 +93,13 @@ When contributing changes, make sure to document them in a changeset. You'll usu
 yarn changeset
 ```
 
-`Changeset` will ask you for a change description, and how different packages are affected. Your answers help us determine if packages should be bumped in version, and if it should be a `patch`, `minor`, or `major` version bump. The description you provide may end up in our changelogs.
+`Changeset` will ask you for a change description, and how different packages are affected. Your answers help us determine if packages should be bumped in version, and if it should be a `patch`, `minor`, or `major` version bump. The description you provide may end up in our changelogs, please write it in a way that makes sense to our users.
 
 Please review, polish, and commit the files after completing the steps.
+
+Please use a descriptive title for pull-request. The title should be in semantic commit format, so we can use it as (squash merge) commit message and automate the release process.
+
+Please add a description that explains the change. The changeset is likely to form a solid basis for your description, tho the pull-request description is written for our maintainers and thereby may be more technical and explain why certain decisions were made.
 
 ## Publish
 
