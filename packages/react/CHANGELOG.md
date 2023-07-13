@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 10.7.5
+
+### Patch Changes
+
+- [#160](https://github.com/magicbell-io/magicbell-js/pull/160) [`cb7c02a`](https://github.com/magicbell-io/magicbell-js/commit/cb7c02aaf3f1f22e43367b3a10e29393a36827a6) Thanks [@moxley01](https://github.com/moxley01)! - Updates React package README with minor fixes
+
 ## 10.7.4
 
 ### Patch Changes

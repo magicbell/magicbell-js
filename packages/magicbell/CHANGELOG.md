@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.0.2
+
+### Patch Changes
+
+- [#161](https://github.com/magicbell-io/magicbell-js/pull/161) [`4ef2b07`](https://github.com/magicbell-io/magicbell-js/commit/4ef2b07e31922ebe83a443b1732390b79b7af141) Thanks [@smeijer](https://github.com/smeijer)! - Use a fork of ky that includes commonjs support
+
 ## 2.0.1
 
 ### Patch Changes
