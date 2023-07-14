@@ -24,14 +24,13 @@ type AxiosMethod =
   | 'PATCH';
 
 export function buildAPIHeaders() {
-  const { apiKey, apiSecret, clientId, userEmail, userExternalId, userKey } = clientSettings.getState();
+  const { apiKey, clientId, userEmail, userExternalId, userKey } = clientSettings.getState();
   const headers = {
     'X-MAGICBELL-CLIENT-ID': clientId,
     'X-MAGICBELL-API-KEY': apiKey,
     'X-MagicBell-Client': 'ReactHeadless/4.0.0', // @todo: Get value from package.json
   };
 
-  if (apiSecret) headers['X-MAGICBELL-API-SECRET'] = apiSecret;
   if (userEmail) headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
   if (userKey) headers['X-MAGICBELL-USER-HMAC'] = userKey;
   if (userExternalId) headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;
