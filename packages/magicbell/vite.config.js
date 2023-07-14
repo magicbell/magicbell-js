@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
 
-import { pkg } from '../../scripts/vite/settings';
 import baseConfig from '../../scripts/vite/vite.config.js';
 
 const extensions = {
@@ -32,13 +31,14 @@ export function copyStatics() {
           delete pkgJson[key];
         }
 
+        fs.mkdirSync('dist', { recursive: true });
         fs.writeFileSync('dist/package.json', JSON.stringify(pkgJson, null, 2));
 
         for (const file of ['LICENSE', 'CHANGELOG.md', 'README.md']) {
           fs.copyFileSync(file, path.join('dist', file));
         }
       } catch (error) {
-        this.error(`Failed to generate types for ${pkg.name}`);
+        this.error(`Failed to copy statics: ${error.message}`);
       }
     },
   };

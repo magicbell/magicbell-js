@@ -32,7 +32,7 @@ export function isOptionsHash(object) {
 }
 
 export function assertHasValidOptions<T extends ClientOptions>(options: T) {
-  const invalidOptions = Object.keys(options).filter((x) => !optionValidators[x]?.(options[x]));
+  const invalidOptions = Object.keys(options).filter((x) => options[x] != null && !optionValidators[x]?.(options[x]));
   if (invalidOptions.length) {
     throw new Error(
       `You have provided invalid client options. Please check the options ${joinAnd(...invalidOptions)}.`,

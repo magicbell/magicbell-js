@@ -65,7 +65,7 @@
     "build:entry:user-client": "cross-env ENTRY=src/user-client.ts vite build",
     "build:entry:crypto": "cross-env ENTRY=src/crypto.ts vite build",
     "generate:resources": "tsx scripts/generate-resources.ts",
-    "start": "yarn build:dev --watch",
+    "start": "npm run clean && run-p 'build:entry:* --watch'",
     "size": "size-limit"
   },
   "size-limit": [
