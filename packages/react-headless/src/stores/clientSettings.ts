@@ -2,7 +2,6 @@ import create from 'zustand/vanilla';
 
 export interface ClientSettings {
   apiKey: string;
-  apiSecret?: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -19,7 +18,6 @@ export interface ClientSettings {
  */
 const clientSettings = create<ClientSettings>(() => ({
   apiKey: '',
-  apiSecret: undefined,
   userEmail: undefined,
   userExternalId: undefined,
   userKey: undefined,

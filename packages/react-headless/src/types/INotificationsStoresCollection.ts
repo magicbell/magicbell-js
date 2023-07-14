@@ -32,9 +32,6 @@ export type QueryParams = {
    * The page number to be returned.
    */
   page?: number;
-
-  // accept any other key supported by the backend, but not yet typed in this SDK
-  [key: string]: unknown;
 };
 
 export default interface INotificationsStoresCollection {

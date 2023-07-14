@@ -102,21 +102,6 @@ describe('lib', () => {
           });
         });
 
-        describe('the api secret is set', () => {
-          it('sends the X-MAGICBELL-API-SECRET header', async () => {
-            const apiSecret = faker.random.alphaNumeric();
-            const { setState } = clientSettings;
-            setState({ apiSecret });
-
-            await fetchAPI('/notifications');
-
-            const requests = server.pretender.handledRequests;
-            expect(requests[0].requestHeaders).toMatchObject({
-              'X-MAGICBELL-API-SECRET': apiSecret,
-            });
-          });
-        });
-
         describe('the user key is set', () => {
           it('sends the X-MAGICBELL-USER-HMAC header', async () => {
             const userKey = faker.random.alphaNumeric();
