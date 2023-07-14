@@ -10,7 +10,8 @@ import { CustomLocale, useLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 import { Props as MagicBellProps } from '../MagicBell/MagicBell';
 
-export interface OptionalProps {
+export type MagicBellProviderProps = {
+  apiKey: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -23,11 +24,7 @@ export interface OptionalProps {
   }>;
   serverURL?: string;
   disableRealtime?: boolean;
-}
-
-export interface Props extends OptionalProps {
-  apiKey: string;
-}
+} & ({ userExternalId: string } | { userEmail: string });
 
 /**
  * Provider component for Magicbell.
@@ -48,7 +45,13 @@ export interface Props extends OptionalProps {
  * </MagicBellProvider>
  * ```
  */
-export default function MagicBellProvider({ children, theme = {}, images, locale = 'en', ...settings }: Props) {
+export default function MagicBellProvider({
+  children,
+  theme = {},
+  images,
+  locale = 'en',
+  ...settings
+}: MagicBellProviderProps) {
   const textTranslations = useLocale(locale);
 
   return (

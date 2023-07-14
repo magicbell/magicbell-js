@@ -1,7 +1,5 @@
-import isEmpty from 'lodash/isEmpty';
 import { path } from 'ramda';
 
-import clientSettings from '../stores/clientSettings';
 import { IRemoteConfig } from '../types';
 import { postAPI } from './ajax';
 
@@ -25,20 +23,13 @@ function stringToUint8Array(plainString: string) {
  * @param subscription The push subscription
  */
 function storeSubscription(subscription) {
-  const { userEmail, userExternalId, userKey, apiKey } = clientSettings.getState();
-
-  const headers = { 'X-MAGICBELL-API-KEY': apiKey };
-  if (!isEmpty(userEmail)) headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
-  if (!isEmpty(userExternalId)) headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;
-  if (!isEmpty(userKey)) headers['X-MAGICBELL-USER-HMAC'] = userKey;
-
   const data = {
     web_push_subscription: {
       data: subscription,
     },
   };
 
-  return postAPI('/web_push_subscriptions', data, { headers });
+  return postAPI('/web_push_subscriptions', data);
 }
 
 /**

@@ -1,11 +1,22 @@
+import faker from '@faker-js/faker';
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
-import humps from 'humps';
+import * as humps from 'humps';
 import { Server } from 'miragejs';
 import { useEffect } from 'react';
+import { beforeAll } from 'vitest';
 
+import clientSettings from '../../../../src/stores/clientSettings';
 import useConfig from '../../../../src/stores/config';
 import { sampleConfig } from '../../../factories/ConfigFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('hooks', () => {
   describe('useConfig', () => {

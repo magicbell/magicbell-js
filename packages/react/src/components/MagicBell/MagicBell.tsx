@@ -22,8 +22,8 @@ type StoreConfig = {
   defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 
-export interface Props {
-  apiKey?: string;
+export type Props = {
+  apiKey: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -42,7 +42,7 @@ export interface Props {
   onNewNotification?: (notification: IRemoteNotification) => void;
   onToggle?: (isOpen: boolean) => void;
   bellCounter?: 'unread' | 'unseen';
-}
+} & ({ userExternalId: string } | { userEmail: string });
 
 const defaultInbox = (props) => <FloatingNotificationInbox height={500} {...props} />;
 

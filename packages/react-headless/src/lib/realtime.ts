@@ -4,7 +4,21 @@ import mitt from 'mitt';
 import clientSettings from '../stores/clientSettings';
 import NotificationRepository from '../stores/notifications/NotificationRepository';
 import { WebSocketConfig } from '../types/IRemoteConfig';
-import { buildAPIHeaders } from './ajax';
+
+export function getAuthHeaders() {
+  const { apiKey, userEmail, userExternalId, userKey } = clientSettings.getState();
+
+  const headers = {
+    'x-magicbell-api-key': apiKey,
+    'x-magicbell-client-user-agent': `${__PACKAGE_NAME__}/${__PACKAGE_VERSION__}`,
+  };
+
+  if (userEmail) headers['x-magicbell-user-email'] = userEmail;
+  if (userKey) headers['x-magicbell-user-hmac'] = userKey;
+  if (userExternalId) headers['x-magicbell-user-external-id'] = userExternalId;
+
+  return headers;
+}
 
 // Note that we have two event emitters. An internal emitter which is used to
 // keep the store in sync with remote events. For example to mark a notification
@@ -31,7 +45,7 @@ export type EventSource = 'local' | 'remote';
 export function connectToAbly(config: WebSocketConfig) {
   const { serverURL } = clientSettings.getState();
   const authUrl = `${serverURL}/${config.authUrl}`;
-  const authHeaders = buildAPIHeaders();
+  const authHeaders = getAuthHeaders();
 
   const client = new Ably.Realtime({
     authUrl,

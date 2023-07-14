@@ -1,6 +1,7 @@
 import faker from '@faker-js/faker';
 import * as Ably from 'ably';
 import { Server } from 'miragejs';
+import { beforeAll } from 'vitest';
 
 import * as ajax from '../../../src/lib/ajax';
 import {
@@ -12,6 +13,14 @@ import {
 } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { sampleNotification } from '../../factories/NotificationFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('lib', () => {
   describe('realtime', () => {

@@ -1,8 +1,17 @@
 import faker from '@faker-js/faker';
 import { Response, Server } from 'miragejs';
+import { beforeAll } from 'vitest';
 
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('lib', () => {
   describe('ajax', () => {
@@ -40,7 +49,7 @@ describe('lib', () => {
           try {
             await deleteAPI('/notifications/1');
           } catch (error) {
-            expect(error.response).toMatchObject({ status: 404, statusText: 'Not Found' });
+            expect(error).toMatchObject({ status: 404, statusText: 'Not Found' });
           }
         });
       });
@@ -58,8 +67,7 @@ describe('lib', () => {
 
       describe('headers', () => {
         it('sends the api key and client ID headers', async () => {
-          const { setState, getState } = clientSettings;
-          const { clientId } = getState();
+          const { setState } = clientSettings;
           const apiKey = faker.random.alphaNumeric(40);
           setState({ apiKey });
 
@@ -67,8 +75,7 @@ describe('lib', () => {
 
           const requests = server.pretender.handledRequests;
           expect(requests[0].requestHeaders).toMatchObject({
-            'X-MAGICBELL-API-KEY': apiKey,
-            'X-MAGICBELL-CLIENT-ID': clientId,
+            'x-magicbell-api-key': apiKey,
           });
         });
 
@@ -82,7 +89,7 @@ describe('lib', () => {
 
             const requests = server.pretender.handledRequests;
             expect(requests[0].requestHeaders).toMatchObject({
-              'X-MAGICBELL-USER-EMAIL': userEmail,
+              'x-magicbell-user-email': userEmail,
             });
           });
         });
@@ -97,7 +104,7 @@ describe('lib', () => {
 
             const requests = server.pretender.handledRequests;
             expect(requests[0].requestHeaders).toMatchObject({
-              'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
+              'x-magicbell-user-external-id': userExternalId,
             });
           });
         });
@@ -112,7 +119,7 @@ describe('lib', () => {
 
             const requests = server.pretender.handledRequests;
             expect(requests[0].requestHeaders).toMatchObject({
-              'X-MAGICBELL-USER-HMAC': userKey,
+              'x-magicbell-user-hmac': userKey,
             });
           });
         });
@@ -127,7 +134,7 @@ describe('lib', () => {
           try {
             await fetchAPI('/notifications');
           } catch (error) {
-            expect(error.response).toMatchObject({ status: 403, statusText: 'Forbidden' });
+            expect(error).toMatchObject({ status: 403, statusText: 'Forbidden' });
           }
         });
       });
@@ -164,7 +171,7 @@ describe('lib', () => {
           try {
             await postAPI('/notifications', data);
           } catch (error) {
-            expect(error.response).toMatchObject({ status: 400, statusText: 'Bad Request' });
+            expect(error).toMatchObject({ status: 400, statusText: 'Bad Request' });
           }
         });
       });
@@ -201,7 +208,7 @@ describe('lib', () => {
           try {
             await putAPI('/notifications/1', data);
           } catch (error) {
-            expect(error.response).toMatchObject({ status: 400, statusText: 'Bad Request' });
+            expect(error).toMatchObject({ status: 400, statusText: 'Bad Request' });
           }
         });
       });

@@ -1,17 +1,13 @@
 import React, { useContext } from 'react';
 
 import CurrentProviderContext, { NO_PROVIDER } from '../../context/CurrentProviderContext';
-import MagicBellProvider, { OptionalProps as MagicBellProviderProps } from './MagicBellProvider';
-
-interface Props extends MagicBellProviderProps {
-  apiKey?: string;
-}
+import MagicBellProvider, { MagicBellProviderProps } from './MagicBellProvider';
 
 /**
  * Component that conditionally wraps the children with a MagicBellProvider
  * unless one is defined already.
  */
-export default function MagicBellChildrenWrapper({ children, apiKey, ...settings }: Props) {
+export default function MagicBellChildrenWrapper({ children, apiKey, ...settings }: MagicBellProviderProps) {
   const currentContext = useContext(CurrentProviderContext);
 
   if (currentContext === NO_PROVIDER) {

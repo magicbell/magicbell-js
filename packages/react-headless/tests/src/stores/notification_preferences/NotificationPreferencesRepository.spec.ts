@@ -1,10 +1,21 @@
-import humps from 'humps';
+import faker from '@faker-js/faker';
+import * as humps from 'humps';
 import { Response, Server } from 'miragejs';
+import { beforeAll } from 'vitest';
 
+import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository';
 import NotificationPreferencesFactory, {
   sampleNotificationPreferences,
 } from '../../../factories/NotificationPreferencesFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('stores', () => {
   describe('notification_preferences', () => {
@@ -36,7 +47,7 @@ describe('stores', () => {
           await repo.get();
 
           const requests = server.pretender.handledRequests;
-          expect(requests[0].requestHeaders).toMatchObject({ 'Accept-Version': 'v2' });
+          expect(requests[0].requestHeaders).toMatchObject({ 'accept-version': 'v2' });
         });
 
         describe('successful response', () => {

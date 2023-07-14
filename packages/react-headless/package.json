@@ -60,6 +60,7 @@
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
     "@size-limit/preset-small-lib": "^8.0.1",
+    "@types/humps": "^2.0.3",
     "@types/lodash": "^4.14.195",
     "@types/ramda": "^0.28.0",
     "@types/rosie": "^0.0.42",
@@ -75,12 +76,12 @@
   },
   "dependencies": {
     "ably": "^1.2.41",
-    "axios": "^0.27.2",
     "dayjs": "^1.11.5",
     "humps": "^2.0.1",
     "immer": "^9.0.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "magicbell": "2.0.2",
     "mitt": "^3.0.0",
     "ramda": "^0.28.0",
     "tiny-invariant": "^1.2.0",

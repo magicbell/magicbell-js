@@ -47,7 +47,6 @@ export {
   type Notification,
   clientSettings,
   eventAggregator,
-  registry,
   useMagicBellEvent,
   useNotification,
   useNotificationPreferences,

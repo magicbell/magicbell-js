@@ -1,12 +1,23 @@
+import faker from '@faker-js/faker';
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import React, { useEffect } from 'react';
+import { beforeAll } from 'vitest';
 
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
 import { emitEvent } from '../../../src/lib/realtime';
+import clientSettings from '../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('components', () => {
   describe('RealtimeListener', () => {

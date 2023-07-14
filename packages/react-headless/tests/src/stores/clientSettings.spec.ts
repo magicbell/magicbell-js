@@ -4,10 +4,9 @@ describe('stores', () => {
   describe('clientSettings', () => {
     describe('defaults', () => {
       it('does not have default values for the authentication values', () => {
-        const { apiKey, apiSecret, userEmail, userExternalId, userKey } = clientSettings.getState();
+        const { apiKey, userEmail, userExternalId, userKey } = clientSettings.getState();
 
         expect(apiKey).toEqual('');
-        expect(apiSecret).toBeUndefined();
         expect(userEmail).toBeUndefined();
         expect(userExternalId).toBeUndefined();
         expect(userKey).toBeUndefined();

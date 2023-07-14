@@ -1,8 +1,18 @@
 import faker from '@faker-js/faker';
 import { act, renderHook } from '@testing-library/react-hooks';
+import { beforeAll } from 'vitest';
 
 import useMagicBellEvent from '../../../src/hooks/useMagicBellEvent';
 import { eventAggregator } from '../../../src/lib/realtime';
+import clientSettings from '../../../src/stores/clientSettings';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('hooks', () => {
   describe('useMagicBellEvent', () => {
