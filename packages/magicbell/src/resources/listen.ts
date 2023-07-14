@@ -56,6 +56,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
 
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
+  let disposed = false;
 
   const pushMessage = (p) => {
     messages.push(p);
@@ -104,6 +105,8 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
       eventSource.close();
     }
 
+    // dispose could've been called while we were waiting for the config request to finish
+    if (disposed) return;
     eventSource = new EventSource(url.toString());
 
     // handle incoming messages
@@ -150,7 +153,8 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     };
 
     const dispose = () => {
-      eventSource.close();
+      disposed = true;
+      eventSource?.close();
       // push to resolve async iterators, return for sync ones
       pushMessage({ done: true, value: undefined });
       return { done: true, value: undefined };
