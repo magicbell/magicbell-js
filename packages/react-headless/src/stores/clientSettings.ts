@@ -9,6 +9,7 @@ export type ClientSettings = {
   clientId: string;
   serverURL: string;
   getClient(): InstanceType<typeof UserClient>;
+  appInfo?: { name: string; version: string };
 } & ({ userEmail: string } | { userExternalId: string });
 
 /**
@@ -25,6 +26,7 @@ const clientSettings = create<ClientSettings>((set, get) => ({
   userKey: undefined,
   clientId: Math.random().toString(36).substring(2) + Date.now(),
   serverURL: 'https://api.magicbell.com',
+  appInfo: undefined,
 
   getClient() {
     const state = get();
@@ -35,7 +37,7 @@ const clientSettings = create<ClientSettings>((set, get) => ({
       userHmac: state.userKey,
       apiKey: state.apiKey,
       host: state.serverURL,
-      appInfo: {
+      appInfo: state.appInfo || {
         name: __PACKAGE_NAME__,
         version: __PACKAGE_VERSION__,
       },

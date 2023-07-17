@@ -26,6 +26,13 @@ export type MagicBellProviderProps = {
   disableRealtime?: boolean;
 } & ({ userExternalId: string } | { userEmail: string });
 
+const internals = {
+  appInfo: {
+    name: __PACKAGE_NAME__,
+    version: __PACKAGE_VERSION__,
+  },
+};
+
 /**
  * Provider component for Magicbell.
  *
@@ -59,7 +66,13 @@ export default function MagicBellProvider({
       <TranslationsProvider value={textTranslations}>
         <MagicBellThemeProvider value={theme}>
           <MagicBellContext.Provider value={{ images }}>
-            <Provider {...settings}>{children}</Provider>
+            {/*
+              provide private props like this, so it's not part of the public api,
+              still can be overridden by the embeddable, and consumed by headless
+             */}
+            <Provider {...internals} {...settings}>
+              {children}
+            </Provider>
           </MagicBellContext.Provider>
         </MagicBellThemeProvider>
       </TranslationsProvider>
