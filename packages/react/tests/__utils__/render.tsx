@@ -20,7 +20,7 @@ type RenderWithProvidersOptions = {
 
 const defaultOptions: RenderWithProvidersOptions = {
   locale: 'en',
-  apiKey: '',
+  apiKey: 'fake-api-key',
   theme: defaultTheme,
 };
 

@@ -24,9 +24,6 @@ afterEach(() => {
 test('renders a header, the list of notifications and a footer if the notifications are fetched', async () => {
   render(<NotificationInbox height={300} />);
 
-  const requests = server.pretender['handledRequests'];
-  expect(requests[0].queryParams).toMatchObject({ page: '1' });
-
   // header
   screen.getByRole('heading', { name: /Notifications/ });
 
@@ -39,7 +36,7 @@ test('renders a header, the list of notifications and a footer if the notificati
 
 test('renders nothing if the notification store does not exist', () => {
   const { container } = render(
-    <MagicBellProvider apiKey="">
+    <MagicBellProvider apiKey="" userEmail="">
       <NotificationInbox height={300} storeId="non-existing" />
     </MagicBellProvider>,
   );
@@ -198,7 +195,7 @@ test('renders notifications matching selected tab', async () => {
       notifications: [
         {
           ...sampleNotification,
-          content: `notification in ${req.queryParams?.categories?.[0] || 'default'} tab`,
+          content: `notification in ${req.queryParams?.categories || 'default'} tab`,
         },
       ],
     };

@@ -176,9 +176,9 @@ test('sets the headers for fetching from the API', async () => {
 
   expect(serverSpy).toHaveBeenCalledWith(
     expect.objectContaining({
-      'X-MAGICBELL-API-KEY': apiKey,
-      'X-MAGICBELL-USER-EMAIL': userEmail,
-      'X-MAGICBELL-USER-HMAC': userKey,
+      'x-magicbell-api-key': apiKey,
+      'x-magicbell-user-email': userEmail,
+      'x-magicbell-user-hmac': userKey,
     }),
   );
 });
@@ -202,9 +202,9 @@ test('sets the external id header for fetching from the API', async () => {
 
   expect(serverSpy).toHaveBeenCalledWith(
     expect.objectContaining({
-      'X-MAGICBELL-API-KEY': apiKey,
-      'X-MAGICBELL-USER-EXTERNAL-ID': userExternalId,
-      'X-MAGICBELL-USER-HMAC': userKey,
+      'x-magicbell-api-key': apiKey,
+      'x-magicbell-user-external-id': userExternalId,
+      'x-magicbell-user-hmac': userKey,
     }),
   );
 });
