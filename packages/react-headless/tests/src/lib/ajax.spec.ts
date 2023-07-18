@@ -1,11 +1,11 @@
 import faker from '@faker-js/faker';
-import { Response, Server } from 'miragejs';
-import { beforeAll } from 'vitest';
+import { setupMockServer } from '@magicbell/utils';
+import { beforeEach } from 'vitest';
 
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
 
-beforeAll(() => {
+beforeEach(() => {
   clientSettings.setState({
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
@@ -13,205 +13,123 @@ beforeAll(() => {
   });
 });
 
-describe('lib', () => {
-  describe('ajax', () => {
-    let server;
+const server = setupMockServer();
 
-    beforeEach(() => {
-      server = new Server({
-        environment: 'test',
-        trackRequests: true,
-        urlPrefix: 'https://api.magicbell.com',
-        timing: 50,
-      });
+describe('.deleteAPI', () => {
+  it('deleteAPI sends a DELETE request', async () => {
+    const status = server.intercept('all');
+    await deleteAPI('/notifications/1');
+    expect(status.lastRequest.method).toEqual('DELETE');
+  });
+
+  it('server throws the original error', async () => {
+    server.intercept('delete', '/notifications/1', { status: 404, statusText: 'Not Found' });
+    try {
+      await deleteAPI('/notifications/1');
+    } catch (error) {
+      expect(error).toMatchObject({ status: 404, statusText: 'Not Found' });
+    }
+  });
+});
+
+describe('.fetchAPI', () => {
+  it('sends a GET request', async () => {
+    const status = server.intercept('all');
+    await fetchAPI('/notifications');
+    expect(status.lastRequest.method).toEqual('GET');
+  });
+
+  it('sets the x-magicbell-api-key request header', async () => {
+    const status = server.intercept('get', '/notifications');
+    clientSettings.setState({ apiKey: 'fake-api-key' });
+
+    await fetchAPI('/notifications');
+    expect(status.lastRequest.headers.get('x-magicbell-api-key')).toEqual('fake-api-key');
+  });
+
+  it('sets the x-magicbell-user-email request header when user email is provided', async () => {
+    const status = server.intercept('get', '/notifications');
+    clientSettings.setState({ userExternalId: undefined, userEmail: 'person@example.com' });
+
+    await fetchAPI('/notifications');
+
+    expect(status.lastRequest.headers.get('x-magicbell-user-email')).toEqual('person@example.com');
+    expect(status.lastRequest.headers.get('x-magicbell-user-external-id')).toBeNull();
+  });
+
+  it('sets the x-magicbell-user-external-id request header when external id is provided', async () => {
+    const status = server.intercept('get', '/notifications');
+    clientSettings.setState({ userEmail: undefined, userExternalId: 'person@example.com' });
+
+    await fetchAPI('/notifications');
+
+    expect(status.lastRequest.headers.get('x-magicbell-user-external-id')).toEqual('person@example.com');
+    expect(status.lastRequest.headers.get('x-magicbell-user-email')).toBeNull();
+  });
+
+  it('sets the x-magicbell-user-hmac request header when user key is provided', async () => {
+    const status = server.intercept('get', '/notifications');
+    clientSettings.setState({ userKey: 'fake-hash' });
+
+    await fetchAPI('/notifications');
+
+    expect(status.lastRequest.headers.get('x-magicbell-user-hmac')).toEqual('fake-hash');
+  });
+
+  it('throws the original error', async () => {
+    server.intercept('get', '/notifications', { status: 404, statusText: 'Not Found' });
+    const request = fetchAPI('/notifications');
+    await expect(request).rejects.toMatchObject({ status: 404, statusText: 'Not Found' });
+  });
+});
+
+describe('.postAPI', () => {
+  it('sends a POST request', async () => {
+    server.intercept('post', '/notifications', { notification: { id: 1 } });
+
+    const response = await postAPI('/notifications', { title: 'Another notification' });
+    expect(response).toEqual({ notification: { id: 1 } });
+  });
+
+  it('includes the data in the request', async () => {
+    const status = server.intercept('post', '/notifications', { notification: { id: 1 } });
+    await postAPI('/notifications', { title: 'Another notification' });
+
+    expect(status.lastRequest.body).toEqual({ title: 'Another notification' });
+  });
+
+  it('throws the original error', async () => {
+    server.intercept('post', '/notifications', { status: 400, statusText: 'Bad Request' });
+
+    const request = postAPI('/notifications', { title: 'Another notification' });
+    await expect(request).rejects.toMatchObject({
+      status: 400,
+      statusText: 'Bad Request',
     });
+  });
+});
 
-    afterEach(() => {
-      server.shutdown();
-    });
+describe('.putAPI', () => {
+  it('sends a PUT request', async () => {
+    server.intercept('put', '/notifications/1', { notification: { id: 1, title: 'A title' } });
 
-    describe('.deleteAPI', () => {
-      beforeEach(() => {
-        server.delete('/notifications/1', {});
-      });
+    const response = await putAPI('/notifications/1', { title: 'A title' });
+    expect(response).toEqual({ notification: { id: 1, title: 'A title' } });
+  });
 
-      it('sends a DELETE request', async () => {
-        const response = await deleteAPI('/notifications/1');
-        expect(response).toEqual({});
-      });
+  it('includes the data in the request', async () => {
+    const status = server.intercept('put', '/notifications/1');
 
-      describe('the server responds with an error', () => {
-        beforeEach(() => {
-          server.delete('/notifications/1', new Response(404, {}, {}));
-        });
+    await putAPI('/notifications/1', { title: 'A title' });
+    expect(status.lastRequest.body).toEqual({ title: 'A title' });
+  });
 
-        it('throws the original error', async () => {
-          try {
-            await deleteAPI('/notifications/1');
-          } catch (error) {
-            expect(error).toMatchObject({ status: 404, statusText: 'Not Found' });
-          }
-        });
-      });
-    });
+  it('throws the original error', async () => {
+    server.intercept('put', '/notifications/1', { status: 400, statusText: 'Bad Request' });
 
-    describe('.fetchAPI', () => {
-      beforeEach(() => {
-        server.get('/notifications', { notifications: [] });
-      });
-
-      it('sends a GET request', async () => {
-        const response = await fetchAPI('/notifications');
-        expect(response).toEqual({ notifications: [] });
-      });
-
-      describe('headers', () => {
-        it('sends the api key and client ID headers', async () => {
-          const { setState } = clientSettings;
-          const apiKey = faker.random.alphaNumeric(40);
-          setState({ apiKey });
-
-          await fetchAPI('/notifications');
-
-          const requests = server.pretender.handledRequests;
-          expect(requests[0].requestHeaders).toMatchObject({
-            'x-magicbell-api-key': apiKey,
-          });
-        });
-
-        describe('the user email is set', () => {
-          it('sends the X-MAGICBELL-USER-EMAIL header', async () => {
-            const userEmail = faker.internet.email();
-            const { setState } = clientSettings;
-            setState({ userEmail });
-
-            await fetchAPI('/notifications');
-
-            const requests = server.pretender.handledRequests;
-            expect(requests[0].requestHeaders).toMatchObject({
-              'x-magicbell-user-email': userEmail,
-            });
-          });
-        });
-
-        describe('the user external ID is set', () => {
-          it('sends the X-MAGICBELL-USER-EXTERNAL-ID header', async () => {
-            const userExternalId = faker.internet.email();
-            const { setState } = clientSettings;
-            setState({ userExternalId });
-
-            await fetchAPI('/notifications');
-
-            const requests = server.pretender.handledRequests;
-            expect(requests[0].requestHeaders).toMatchObject({
-              'x-magicbell-user-external-id': userExternalId,
-            });
-          });
-        });
-
-        describe('the user key is set', () => {
-          it('sends the X-MAGICBELL-USER-HMAC header', async () => {
-            const userKey = faker.random.alphaNumeric();
-            const { setState } = clientSettings;
-            setState({ userKey });
-
-            await fetchAPI('/notifications');
-
-            const requests = server.pretender.handledRequests;
-            expect(requests[0].requestHeaders).toMatchObject({
-              'x-magicbell-user-hmac': userKey,
-            });
-          });
-        });
-      });
-
-      describe('the server responds with an error', () => {
-        beforeEach(() => {
-          server.get('/notifications', new Response(403, {}, {}));
-        });
-
-        it('throws the original error', async () => {
-          try {
-            await fetchAPI('/notifications');
-          } catch (error) {
-            expect(error).toMatchObject({ status: 403, statusText: 'Forbidden' });
-          }
-        });
-      });
-    });
-
-    describe('.postAPI', () => {
-      beforeEach(() => {
-        server.post('/notifications', { notification: { id: 1 } });
-      });
-
-      it('sends a POST request', async () => {
-        const data = { title: 'Another notification' };
-        const response = await postAPI('/notifications', data);
-
-        expect(response).toEqual({ notification: { id: 1 } });
-      });
-
-      it('includes the data in the request', async () => {
-        const data = { title: 'Another notification' };
-        await postAPI('/notifications', data);
-
-        const requests = server.pretender.handledRequests;
-        expect(requests[0].requestBody).toEqual(JSON.stringify(data));
-      });
-
-      describe('the server responds with an error', () => {
-        beforeEach(() => {
-          server.post('/notifications', new Response(400, {}, {}));
-        });
-
-        it('throws the original error', async () => {
-          const data = { title: 'Another notification' };
-
-          try {
-            await postAPI('/notifications', data);
-          } catch (error) {
-            expect(error).toMatchObject({ status: 400, statusText: 'Bad Request' });
-          }
-        });
-      });
-    });
-
-    describe('.putAPI', () => {
-      beforeEach(() => {
-        server.put('/notifications/1', { notification: { id: 1, title: 'A title' } });
-      });
-
-      it('sends a PUT request', async () => {
-        const data = { title: 'A title' };
-        const response = await putAPI('/notifications/1', data);
-
-        expect(response).toEqual({ notification: { id: 1, title: 'A title' } });
-      });
-
-      it('includes the data in the request', async () => {
-        const data = { title: 'A title' };
-        await putAPI('/notifications/1', data);
-
-        const requests = server.pretender.handledRequests;
-        expect(requests[0].requestBody).toEqual(JSON.stringify(data));
-      });
-
-      describe('the server responds with an error', () => {
-        beforeEach(() => {
-          server.put('/notifications/1', new Response(400, {}, {}));
-        });
-
-        it('throws the original error', async () => {
-          const data = { name: 'Another name' };
-
-          try {
-            await putAPI('/notifications/1', data);
-          } catch (error) {
-            expect(error).toMatchObject({ status: 400, statusText: 'Bad Request' });
-          }
-        });
-      });
+    await expect(putAPI('/notifications/1', { title: 'Another name' })).rejects.toMatchObject({
+      status: 400,
+      statusText: 'Bad Request',
     });
   });
 });

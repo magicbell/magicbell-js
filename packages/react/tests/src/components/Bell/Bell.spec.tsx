@@ -7,18 +7,7 @@ import React from 'react';
 import Bell from '../../../../src/components/Bell';
 import { defaultTheme } from '../../../../src/context/Theme';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { createServer } from '../../../__utils__/server';
 import { sampleNotification } from '../../../factories/NotificationFactory';
-
-let server: ReturnType<typeof createServer>;
-
-beforeEach(() => {
-  server = createServer();
-});
-
-afterEach(() => {
-  server.shutdown();
-});
 
 test('renders the notification button', () => {
   render(<Bell onClick={vi.fn()} />);

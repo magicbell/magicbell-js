@@ -84,7 +84,6 @@
     "immer": "^9.0.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "miragejs": "^0.1.42",
     "ramda": "^0.28.0",
     "react-infinite-scroll-component": "^6.0.0",
     "react-use": "^17.3.2",

@@ -1,7 +1,6 @@
+import { eventStream, setupMockServer } from '@magicbell/utils';
 import { beforeEach } from 'vitest';
 
-import { setupMockServer } from '../../test/mock-server';
-import { eventStream } from '../../test/mock-sse';
 import { Client } from '../client/client';
 import { createListener } from './listen';
 

@@ -22,7 +22,8 @@ export default function setStoreProps(
   props: Props,
   options: Partial<Options> = { reset: false },
 ): INotificationStore {
-  const { notifications, ...meta } = props;
+  const { notifications = [], ...meta } = props;
+
   const allNotifications = options.reset
     ? notifications
     : uniqBy(

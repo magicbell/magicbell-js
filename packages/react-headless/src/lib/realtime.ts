@@ -44,7 +44,7 @@ export type EventSource = 'local' | 'remote';
  */
 export function connectToAbly(config: WebSocketConfig) {
   const { serverURL } = clientSettings.getState();
-  const authUrl = `${serverURL}/${config.authUrl}`;
+  const authUrl = `${serverURL}/${config.authUrl?.replace(/^\//, '')}`;
   const authHeaders = getAuthHeaders();
 
   const client = new Ably.Realtime({

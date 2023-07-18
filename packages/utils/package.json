@@ -1,0 +1,44 @@
+{
+  "name": "@magicbell/utils",
+  "version": "0.2.0",
+  "private": true,
+  "description": "MagicBell utils",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.ts",
+  "main": "src/index.ts",
+  "module": "dist/magicbell-utils.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src",
+    "LICENSE"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "codegen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/magicbell-js.git",
+    "directory": "packages/utils"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean build:*",
+    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
+    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "generate:resources": "tsx scripts/generate-resources.ts",
+    "dev": "yarn build:dev && node dist/index.js",
+    "start": "yarn build:dev --watch",
+    "size": "size-limit"
+  },
+  "dependencies": {
+    "msw": "^1.2.2"
+  }
+}

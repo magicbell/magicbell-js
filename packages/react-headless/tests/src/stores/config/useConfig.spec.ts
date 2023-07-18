@@ -1,16 +1,17 @@
 import faker from '@faker-js/faker';
+import { fake, setupMockServer } from '@magicbell/utils';
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import * as humps from 'humps';
-import { Server } from 'miragejs';
 import { useEffect } from 'react';
-import { beforeAll } from 'vitest';
+import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import useConfig from '../../../../src/stores/config';
-import { sampleConfig } from '../../../factories/ConfigFactory';
 
-beforeAll(() => {
+const server = setupMockServer();
+
+beforeEach(() => {
   clientSettings.setState({
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
@@ -18,34 +19,17 @@ beforeAll(() => {
   });
 });
 
-describe('hooks', () => {
-  describe('useConfig', () => {
-    describe('.fetch', () => {
-      let server;
+test('fetches from the MagicBell API config endpoint', async () => {
+  server.intercept('get', '/config', fake.config);
 
-      beforeEach(() => {
-        const configResponse = humps.decamelizeKeys(sampleConfig);
+  const useFetchConfig = () => {
+    const config = useConfig();
+    useEffect(() => void config.fetch(), []);
 
-        server = new Server({ timing: 50, environment: 'test', urlPrefix: 'https://api.magicbell.com' });
-        server.get('/config', configResponse);
-      });
+    return config;
+  };
 
-      afterEach(() => {
-        server.shutdown();
-      });
+  const { result } = renderHook(() => useFetchConfig());
 
-      it('fetches from the MagicBell API config endpoint', async () => {
-        const useFetchConfig = () => {
-          const config = useConfig();
-          useEffect(() => void config.fetch(), [config]);
-
-          return config;
-        };
-
-        const { result } = renderHook(() => useFetchConfig());
-
-        await waitFor(() => expect(result.current).toMatchObject(sampleConfig));
-      });
-    });
-  });
+  await waitFor(() => expect(result.current).toMatchObject(humps.camelizeKeys(fake.config)));
 });

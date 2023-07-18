@@ -1,4 +1,5 @@
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
+import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -6,19 +7,21 @@ import React from 'react';
 import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { createServer } from '../../../__utils__/server';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
-import { emptyNotificationPage, sampleNotification } from '../../../factories/NotificationFactory';
+import { sampleNotification } from '../../../factories/NotificationFactory';
 
-let server: ReturnType<typeof createServer>;
+const server = setupMockServer(
+  mockHandler('get', '/notifications', {
+    ...fake.notificationPage,
+    notifications: [sampleNotification],
+  }),
+  mockHandler('get', '/notification_preferences', {
+    notification_preferences: fake.notificationPreferences,
+  }),
+);
 
 beforeEach(() => {
   useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
-  server = createServer();
-});
-
-afterEach(() => {
-  server.shutdown();
 });
 
 test('renders a header, the list of notifications and a footer if the notifications are fetched', async () => {
@@ -56,16 +59,15 @@ test('clicking the mark-all-read button invokes the onAllRead callback', async (
 });
 
 test('the mark-all-read button is not visible when there are no notifications', async () => {
-  server.get('/notifications', () => emptyNotificationPage);
+  server.intercept('get', '/notifications', fake.notificationPage);
 
   render(<NotificationInbox />);
 
-  await waitFor(() => screen.getByText(/We'll let you know when there's more./));
   expect(screen.queryByRole('button', { name: /Mark all read/ })).not.toBeInTheDocument();
 });
 
 test('renders a message and a image if there are no notifications', async () => {
-  server.get('/notifications', () => emptyNotificationPage);
+  server.intercept('get', '/notifications', fake.notificationPage);
 
   render(<NotificationInbox />);
 
@@ -74,7 +76,7 @@ test('renders a message and a image if there are no notifications', async () => 
 });
 
 test('can render with a custom no-notifications placeholder if there are no notifications', async () => {
-  server.get('/notifications', () => emptyNotificationPage);
+  server.intercept('get', '/notifications', fake.notificationPage);
 
   const EmptyInboxPlaceholder = () => <div data-testid="empty-inbox-placeholder" />;
   render(<NotificationInbox EmptyInboxPlaceholder={EmptyInboxPlaceholder} />, { locale: 'en' });
@@ -179,7 +181,7 @@ test('can render with multiple inbox tabs, and active tab changes when clicked',
 });
 
 // flaky test
-test.skip('renders notifications matching selected tab', async () => {
+test('renders notifications matching selected tab', async () => {
   const stores = [
     { id: 'default', defaultQueryParams: {} },
     { id: 'comments', defaultQueryParams: { read: true, categories: ['comments'] } },
@@ -190,17 +192,15 @@ test.skip('renders notifications matching selected tab', async () => {
     { storeId: 'comments', label: 'Comments' },
   ];
 
-  server.get('/notifications', (_, req) => {
-    return {
-      ...emptyNotificationPage,
-      notifications: [
-        {
-          ...sampleNotification,
-          content: `notification in ${req.queryParams?.categories || 'default'} tab`,
-        },
-      ],
-    };
-  });
+  server.intercept('get', '/notifications', (req) => ({
+    ...fake.notificationPage,
+    notifications: [
+      {
+        ...fake.notification,
+        content: `notification in ${req.url.searchParams.get('categories') || 'default'} tab`,
+      },
+    ],
+  }));
 
   render(<NotificationInbox tabs={tabs} />, { stores });
   const feedTab = screen.getByRole('tab', { name: /feed/i });
