@@ -1,6 +1,6 @@
+import { setupMockServer } from '@magicbell/utils';
 import { basename } from 'path';
 
-import { setupMockServer } from '../../test/mock-server';
 import { Client as Client } from './client';
 import { Resource } from './resource';
 

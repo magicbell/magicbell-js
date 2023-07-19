@@ -1,22 +1,14 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
+import { setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import PreferencesCategories from '../../../../src/components/UserPreferencesPanel/PreferencesCategories';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { createServer } from '../../../__utils__/server';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 
-let server: ReturnType<typeof createServer>;
-
-beforeEach(() => {
-  server = createServer();
-});
-
-afterEach(() => {
-  server.shutdown();
-});
+setupMockServer();
 
 describe('PreferencesCategories component', () => {
   describe('no categories', () => {

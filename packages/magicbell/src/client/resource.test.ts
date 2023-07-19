@@ -1,6 +1,6 @@
+import { setupMockServer } from '@magicbell/utils';
 import { MockedRequest } from 'msw';
 
-import { setupMockServer } from '../../test/mock-server';
 import { Client } from './client';
 import { ASYNC_ITERATOR_SYMBOL } from './paginate';
 import { Resource } from './resource';

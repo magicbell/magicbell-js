@@ -1,4 +1,5 @@
 import { eventAggregator } from '@magicbell/react-headless';
+import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
@@ -7,33 +8,18 @@ import React from 'react';
 import MagicBell from '../../../../src';
 import Text from '../../../../src/components/Text';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
-import { createServer } from '../../../__utils__/server';
 
 const apiKey = faker.random.alphaNumeric(10);
 const userEmail = faker.internet.email();
+const userExternalId = faker.random.alphaNumeric(15);
 const userKey = faker.random.alphaNumeric(10);
 
-let server: ReturnType<typeof createServer>;
-
-const sampleNotifications = {
-  total: 5,
-  current_page: 1,
-  per_page: 15,
-  total_pages: 1,
-  project_id: 7,
-  unseen_count: 0,
-  unread_count: 4,
-  notifications: NotificationFactory.buildList(5),
-};
-
-beforeEach(() => {
-  server = createServer();
-  server.get('/notifications', () => sampleNotifications);
-});
-
-afterEach(() => {
-  server.shutdown();
-});
+const server = setupMockServer(
+  mockHandler('get', '/notifications', {
+    ...fake.notificationPage,
+    notifications: [fake.notification],
+  }),
+);
 
 test("renders the notification bell, but not it's default children", async () => {
   render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
@@ -118,6 +104,12 @@ test('supports custom translations', async () => {
 });
 
 test('shows the number of unread notifications', async () => {
+  server.intercept('get', '/notifications', {
+    ...fake.notificationPage,
+    unread_count: 4,
+    notifications: [fake.notification],
+  });
+
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} bellCounter="unread">
       {() => <div data-testid="children" />}
@@ -129,6 +121,7 @@ test('shows the number of unread notifications', async () => {
       name: '4 unread items',
     }),
   );
+
   expect(counter).toBeInTheDocument();
 });
 
@@ -160,11 +153,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
 });
 
 test('sets the headers for fetching from the API', async () => {
-  const serverSpy = vi.fn();
-  server.get('/notifications', (_, req) => {
-    serverSpy(req.requestHeaders);
-    return sampleNotifications;
-  });
+  const status = server.intercept('all', '/notifications', fake.notificationsPage);
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
@@ -172,25 +161,14 @@ test('sets the headers for fetching from the API', async () => {
     </MagicBell>,
   );
 
-  await waitFor(() => expect(serverSpy).toHaveBeenCalled());
-
-  expect(serverSpy).toHaveBeenCalledWith(
-    expect.objectContaining({
-      'x-magicbell-api-key': apiKey,
-      'x-magicbell-user-email': userEmail,
-      'x-magicbell-user-hmac': userKey,
-    }),
-  );
+  await waitFor(() => expect(status.handledRequests).toBeGreaterThan(0));
+  expect(status.lastRequest.headers.get('x-magicbell-api-key')).toEqual(apiKey);
+  expect(status.lastRequest.headers.get('x-magicbell-user-email')).toEqual(userEmail);
+  expect(status.lastRequest.headers.get('x-magicbell-user-hmac')).toEqual(userKey);
 });
 
 test('sets the external id header for fetching from the API', async () => {
-  const userExternalId = faker.random.alphaNumeric(15);
-
-  const serverSpy = vi.fn();
-  server.get('/notifications', (_, req) => {
-    serverSpy(req.requestHeaders);
-    return sampleNotifications;
-  });
+  const status = server.intercept('all', '/notifications', fake.notificationsPage);
 
   render(
     <MagicBell apiKey={apiKey} userExternalId={userExternalId} userKey={userKey}>
@@ -198,15 +176,10 @@ test('sets the external id header for fetching from the API', async () => {
     </MagicBell>,
   );
 
-  await waitFor(() => expect(serverSpy).toHaveBeenCalled());
-
-  expect(serverSpy).toHaveBeenCalledWith(
-    expect.objectContaining({
-      'x-magicbell-api-key': apiKey,
-      'x-magicbell-user-external-id': userExternalId,
-      'x-magicbell-user-hmac': userKey,
-    }),
-  );
+  await waitFor(() => expect(status.handledRequests).toBeGreaterThan(0));
+  expect(status.lastRequest.headers.get('x-magicbell-api-key')).toEqual(apiKey);
+  expect(status.lastRequest.headers.get('x-magicbell-user-external-id')).toEqual(userExternalId);
+  expect(status.lastRequest.headers.get('x-magicbell-user-hmac')).toEqual(userKey);
 });
 
 test('calls the onNewNotification callback when a new notification is received', () => {
@@ -226,7 +199,12 @@ test('calls the onNewNotification callback when a new notification is received',
 });
 
 test('supports a custom notification Badge', async () => {
-  server.get('/notifications', () => sampleNotifications);
+  server.intercept('get', '/notifications', {
+    ...fake.notificationPage,
+    unread_count: 4,
+    notifications: [fake.notification],
+  });
+
   const Badge = ({ count }) => <div data-testid="custom-badge">{count}</div>;
 
   render(

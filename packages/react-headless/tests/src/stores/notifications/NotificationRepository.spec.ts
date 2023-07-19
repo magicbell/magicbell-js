@@ -1,196 +1,113 @@
-import faker from '@faker-js/faker';
-import * as humps from 'humps';
-import { Response, Server } from 'miragejs';
-import { beforeAll, beforeEach } from 'vitest';
+import { setupMockServer } from '@magicbell/utils';
+import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';
-import NotificationFactory from '../../../factories/NotificationFactory';
 
-beforeAll(() => {
+beforeEach(() => {
   clientSettings.setState({
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
-    userEmail: faker.internet.email(),
+    userEmail: 'person@example.com',
   });
 });
 
-describe('stores', () => {
-  describe('notifications', () => {
-    describe('NotificationRepository', () => {
-      let repo: NotificationRepository;
-      let server;
+const server = setupMockServer();
 
-      beforeEach(() => {
-        repo = new NotificationRepository();
-        server = new Server({ environment: 'test', urlPrefix: 'https://api.magicbell.com', timing: 50 });
-      });
+test('get returns the result in camel case', async () => {
+  server.intercept('get', '/notifications/1', { status: 200, json: { notification: { category_slug: 'email' } } });
 
-      afterEach(() => {
-        server.shutdown();
-      });
+  const notification = new NotificationRepository().get('1');
+  await expect(notification).resolves.toEqual({ notification: { categorySlug: 'email' } });
+});
 
-      describe('.get', () => {
-        describe('successful response', () => {
-          it('returns the response in camel case', async () => {
-            const notification = NotificationFactory.build();
-            server.get(`/notifications/${notification.id}`, {
-              notification: humps.decamelizeKeys(notification),
-            });
+test('get throws an error on failure', async () => {
+  server.intercept('get', '/notifications/1', { status: 403 });
 
-            const response = await repo.get(notification.id);
+  const notification = new NotificationRepository().get('1');
+  await expect(notification).rejects.toThrow('Request failed with status code 403');
+});
 
-            expect(response).toEqual({ notification });
-          });
-        });
+test('findBy returns the result in camel case', async () => {
+  server.intercept('get', '/notifications', { status: 200, json: { notification: { category_slug: 'email' } } });
 
-        describe('error handling', () => {
-          it('throws an error', async () => {
-            const notification = NotificationFactory.build();
-            server.get(`/notifications/${notification.id}`, new Response(403, {}, {}));
-            expect.hasAssertions();
+  const notification = new NotificationRepository().findBy({ read: false });
+  await expect(notification).resolves.toEqual({ notification: { categorySlug: 'email' } });
+});
 
-            await expect(() => repo.get(notification.id)).rejects.toThrow('Request failed with status code 403');
-          });
-        });
-      });
+test('findBy throws an error on failure', async () => {
+  server.intercept('get', '/notifications', { status: 403 });
 
-      describe('.findBy', () => {
-        describe('successful response', () => {
-          it('returns the response in camel case', async () => {
-            const response = {
-              total: 5,
-              currentPage: 1,
-              perPage: 15,
-              totalPages: 1,
-              projectId: 7,
-              unseenCount: 3,
-              unreadCount: 2,
-              notifications: NotificationFactory.buildList(5),
-            };
-            server.get('/notifications', humps.decamelizeKeys(response));
+  const notification = new NotificationRepository().findBy({ read: false });
+  await expect(notification).rejects.toThrow('Request failed with status code 403');
+});
 
-            const json = await repo.findBy({});
+test('delete returns true on success', async () => {
+  server.intercept('delete', '/notifications/1', { status: 204 });
 
-            expect(json).toEqual(response);
-          });
-        });
+  const action = new NotificationRepository().delete('1');
+  await expect(action).resolves.toEqual(true);
+});
 
-        describe('error handling', () => {
-          it('throws an error', async () => {
-            server.get('/notifications', new Response(403, {}, {}));
-            expect.hasAssertions();
+test('delete returns false on failure', async () => {
+  server.intercept('delete', '/notifications/1', { status: 500 });
 
-            await expect(() => repo.findBy({ read: false })).rejects.toThrow('Request failed with status code 403');
-          });
-        });
-      });
+  const action = new NotificationRepository().delete('1');
+  await expect(action).resolves.toEqual(false);
+});
 
-      describe('.delete', () => {
-        describe('successful response', () => {
-          it('returns true', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.delete(`/notifications/${notificationId}`, new Response(204, {}, ''));
-            const response = await repo.delete(notificationId);
+test('markAsRead returns true on success', async () => {
+  server.intercept('post', '/notifications/:id/read', { status: 204 });
 
-            expect(response).toBe(true);
-          });
-        });
+  const action = new NotificationRepository().markAsRead('1');
+  await expect(action).resolves.toEqual(true);
+});
 
-        describe('error handling', () => {
-          it('returns false', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.delete(`/notifications/${notificationId}`, new Response(500, {}, ''));
-            const response = await repo.delete(notificationId);
+test('markAsRead returns false on failure', async () => {
+  server.intercept('post', '/notifications/:id/read', { status: 500 });
 
-            expect(response).toBe(false);
-          });
-        });
-      });
+  const action = new NotificationRepository().markAsRead('1');
+  await expect(action).resolves.toEqual(false);
+});
 
-      describe('.markAsRead', () => {
-        describe('successful response', () => {
-          it('returns true', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.post(`/notifications/${notificationId}/read`, new Response(204, {}, ''));
-            const response = await repo.markAsRead(notificationId);
+test('markAsUnread returns true on success', async () => {
+  server.intercept('post', '/notifications/:id/unread', { status: 204 });
 
-            expect(response).toBe(true);
-          });
-        });
+  const action = new NotificationRepository().markAsUnread('1');
+  await expect(action).resolves.toEqual(true);
+});
 
-        describe('error handling', () => {
-          it('returns false', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.post(`/notifications/${notificationId}/read`, new Response(500, {}, ''));
-            const response = await repo.markAsRead(notificationId);
+test('markAsUnread returns false on failure', async () => {
+  server.intercept('post', '/notifications/:id/unread', { status: 500 });
 
-            expect(response).toBe(false);
-          });
-        });
-      });
+  const action = new NotificationRepository().markAsUnread('1');
+  await expect(action).resolves.toEqual(false);
+});
 
-      describe('.markAsUnread', () => {
-        describe('successful response', () => {
-          it('returns true', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.post(`/notifications/${notificationId}/unread`, new Response(204, {}, ''));
-            const response = await repo.markAsUnread(notificationId);
+test('markAllAsSeen returns true on success', async () => {
+  server.intercept('post', '/notifications/seen', { status: 204 });
 
-            expect(response).toBe(true);
-          });
-        });
+  const action = new NotificationRepository().markAllAsSeen();
+  await expect(action).resolves.toEqual(true);
+});
 
-        describe('error handling', () => {
-          it('returns false', async () => {
-            const notificationId = faker.datatype.uuid();
-            server.post(`/notifications/${notificationId}/unread`, new Response(500, {}, {}));
-            const response = await repo.markAsUnread(notificationId);
+test('markAllAsSeen returns false on failure', async () => {
+  server.intercept('post', '/notifications/seen', { status: 500 });
 
-            expect(response).toBe(false);
-          });
-        });
-      });
+  const action = new NotificationRepository().markAllAsSeen();
+  await expect(action).resolves.toEqual(false);
+});
 
-      describe('.markAllAsSeen', () => {
-        describe('successful response', () => {
-          it('returns true', async () => {
-            server.post('/notifications/seen', new Response(204, {}, ''));
-            const response = await repo.markAllAsSeen();
+test('markAllAsRead returns true on success', async () => {
+  server.intercept('post', '/notifications/read', { status: 204 });
 
-            expect(response).toBe(true);
-          });
-        });
+  const action = new NotificationRepository().markAllAsRead();
+  await expect(action).resolves.toEqual(true);
+});
 
-        describe('error handling', () => {
-          it('returns false', async () => {
-            server.post('/notifications/seen', new Response(500, {}, {}));
-            const response = await repo.markAllAsSeen();
+test('markAllAsRead returns false on failure', async () => {
+  server.intercept('post', '/notifications/read', { status: 500 });
 
-            expect(response).toBe(false);
-          });
-        });
-      });
-
-      describe('.markAllAsRead', () => {
-        describe('successful response', () => {
-          it('returns true', async () => {
-            server.post('/notifications/read', new Response(204, {}, ''));
-            const response = await repo.markAllAsRead();
-
-            expect(response).toBe(true);
-          });
-        });
-
-        describe('error handling', () => {
-          it('returns false', async () => {
-            server.post('/notifications/read', new Response(500, {}, {}));
-            const response = await repo.markAllAsRead();
-
-            expect(response).toBe(false);
-          });
-        });
-      });
-    });
-  });
+  const action = new NotificationRepository().markAllAsRead();
+  await expect(action).resolves.toEqual(false);
 });

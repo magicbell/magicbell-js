@@ -1,11 +1,11 @@
 import { useConfig } from '@magicbell/react-headless';
-import { act, screen } from '@testing-library/react';
+import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
-import { createServer } from '../../../__utils__/server';
 import { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
@@ -17,18 +17,18 @@ const stores = [
   },
 ];
 
-let server: ReturnType<typeof createServer>;
+setupMockServer(
+  mockHandler('get', '/notifications', () => ({
+    status: 200,
+    json: {
+      ...fake.notificationPage,
+      notifications: [fake.notification],
+    },
+  })),
+);
 
-beforeEach(async () => {
-  server = createServer();
-
-  act(() => {
-    useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
-  });
-});
-
-afterEach(() => {
-  server.shutdown();
+beforeEach(() => {
+  useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
 });
 
 test('does not render the inbox on load', () => {
@@ -131,6 +131,7 @@ test('calls the onNotificationClick callback', async () => {
 
 test('opens the action url in the same window', async () => {
   const ref = React.createRef<any>();
+
   const onClick = vi.fn();
   global.open = vi.fn();
 
