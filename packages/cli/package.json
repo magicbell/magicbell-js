@@ -40,6 +40,9 @@
     "start": "yarn build:prod --watch",
     "size": "size-limit"
   },
+  "dependencies": {
+    "magicbell": "2.0.2"
+  },
   "devDependencies": {
     "@magicbell/codegen": "0.2.0",
     "@types/configstore": "^5.0.1",
@@ -48,7 +51,6 @@
     "fetch-addons": "^1.1.0",
     "json5": "^2.2.3",
     "kleur": "^4.1.5",
-    "magicbell": "2.0.2",
     "pkg": "^5.8.1",
     "readline-sync": "^1.4.10",
     "tsx": "^3.9.0"
