@@ -1,9 +1,19 @@
 import faker from '@faker-js/faker';
-import humps from 'humps';
+import * as humps from 'humps';
 import { Response, Server } from 'miragejs';
+import { beforeAll, beforeEach } from 'vitest';
 
+import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';
 import NotificationFactory from '../../../factories/NotificationFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('stores', () => {
   describe('notifications', () => {

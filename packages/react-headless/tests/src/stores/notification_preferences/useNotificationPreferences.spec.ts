@@ -1,13 +1,24 @@
-import humps from 'humps';
+import faker from '@faker-js/faker';
+import * as humps from 'humps';
 import { Response, Server } from 'miragejs';
 import { AnyRegistry } from 'miragejs/-types';
+import { beforeAll } from 'vitest';
 
+import clientSettings from '../../../../src/stores/clientSettings';
 import useNotificationPreferences from '../../../../src/stores/notification_preferences';
 import { CategoryChannelPreference } from '../../../../src/types/IRemoteNotificationPreferences';
 import {
   sampleNotificationPreferences,
   sampleNotificationSaveResponse,
 } from '../../../factories/NotificationPreferencesFactory';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('useNotificationPreferences', () => {
   let server: Server<AnyRegistry>;

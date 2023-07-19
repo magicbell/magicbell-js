@@ -2,6 +2,6 @@
   "name": "magicbell-project",
   "description": "Standard MagicBell integration for plain JavaScript",
   "dependencies": {
-    "@magicbell/embeddable": "latest"
+    "@magicbell/embeddable": "3.2.18"
   }
 }

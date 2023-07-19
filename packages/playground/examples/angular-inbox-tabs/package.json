@@ -1,9 +1,8 @@
 {
   "name": "magicbell-project",
   "description": "Using multiple stores and tabs in the inbox.",
-
   "template": "angular",
   "dependencies": {
-    "@magicbell/embeddable": "latest"
+    "@magicbell/embeddable": "3.2.18"
   }
 }

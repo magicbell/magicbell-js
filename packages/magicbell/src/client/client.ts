@@ -61,7 +61,13 @@ export class Client {
       },
       hooks,
     })
-      .then((x) => x.json<TResponse>())
+      .then((response) =>
+        response
+          .text()
+          // handle cases where the response is empty
+          .then((text) => JSON.parse(text) as TResponse)
+          .catch(() => undefined as TResponse),
+      )
       .catch(async (error) => {
         const body = tryParse(await error?.response?.text());
 

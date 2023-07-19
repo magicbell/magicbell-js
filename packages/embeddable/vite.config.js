@@ -32,7 +32,6 @@ export default defineConfig(async (configEnv) => {
     alias: {
       react: 'preact/compat',
       'react-dom': 'preact/compat',
-      axios: 'redaxios',
     },
   };
 

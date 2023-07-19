@@ -1,17 +1,27 @@
 import faker from '@faker-js/faker';
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
-import humps from 'humps';
+import * as humps from 'humps';
 import { Response, Server } from 'miragejs';
+import { beforeAll } from 'vitest';
 
 import { useNotification } from '../../../../src';
 import useNotifications from '../../../../src/hooks/useNotifications';
 import * as ajax from '../../../../src/lib/ajax';
 import { eventAggregator } from '../../../../src/lib/realtime';
+import clientSettings from '../../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
 import NotificationFactory from '../../../factories/NotificationFactory';
 
 const fiveSecondsAgo = () => Math.floor(Date.now() / 1_000) - 5_000;
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('stores', () => {
   describe('notifications', () => {

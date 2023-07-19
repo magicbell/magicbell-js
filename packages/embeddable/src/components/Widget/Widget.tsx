@@ -32,6 +32,13 @@ export interface WidgetProps extends FrameContentProps {
   stores?: MagicBellProps['stores'];
 }
 
+const internals = {
+  appInfo: {
+    name: __PACKAGE_NAME__,
+    version: __PACKAGE_VERSION__,
+  },
+};
+
 /**
  * Component to render MagicBell within an iframe.
  *
@@ -81,6 +88,8 @@ export default class Widget extends Component<WidgetProps> {
           defaultIsOpen={defaultIsOpen}
           stores={stores}
           onNewNotification={onNewNotification}
+          // provide private props like this, so it's not part of the public api
+          {...internals}
         >
           {(props) => <FloatingFrame {...inboxProps} {...props} />}
         </MagicBell>

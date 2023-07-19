@@ -3,6 +3,6 @@
   "description": "Standard MagicBell integration in Vue.",
   "template": "vue3",
   "dependencies": {
-    "@magicbell/embeddable": "latest"
+    "@magicbell/embeddable": "3.2.18"
   }
 }

@@ -10,7 +10,8 @@ import { CustomLocale, useLocale } from '../../lib/i18n';
 import { DeepPartial } from '../../lib/types';
 import { Props as MagicBellProps } from '../MagicBell/MagicBell';
 
-export interface OptionalProps {
+export type MagicBellProviderProps = {
+  apiKey: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -23,11 +24,14 @@ export interface OptionalProps {
   }>;
   serverURL?: string;
   disableRealtime?: boolean;
-}
+} & ({ userExternalId: string } | { userEmail: string });
 
-export interface Props extends OptionalProps {
-  apiKey: string;
-}
+const internals = {
+  appInfo: {
+    name: __PACKAGE_NAME__,
+    version: __PACKAGE_VERSION__,
+  },
+};
 
 /**
  * Provider component for Magicbell.
@@ -48,7 +52,13 @@ export interface Props extends OptionalProps {
  * </MagicBellProvider>
  * ```
  */
-export default function MagicBellProvider({ children, theme = {}, images, locale = 'en', ...settings }: Props) {
+export default function MagicBellProvider({
+  children,
+  theme = {},
+  images,
+  locale = 'en',
+  ...settings
+}: MagicBellProviderProps) {
   const textTranslations = useLocale(locale);
 
   return (
@@ -56,7 +66,13 @@ export default function MagicBellProvider({ children, theme = {}, images, locale
       <TranslationsProvider value={textTranslations}>
         <MagicBellThemeProvider value={theme}>
           <MagicBellContext.Provider value={{ images }}>
-            <Provider {...settings}>{children}</Provider>
+            {/*
+              provide private props like this, so it's not part of the public api,
+              still can be overridden by the embeddable, and consumed by headless
+             */}
+            <Provider {...internals} {...settings}>
+              {children}
+            </Provider>
           </MagicBellContext.Provider>
         </MagicBellThemeProvider>
       </TranslationsProvider>

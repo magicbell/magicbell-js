@@ -1,9 +1,20 @@
+import faker from '@faker-js/faker';
 import { act, renderHook } from '@testing-library/react-hooks';
+import { beforeAll } from 'vitest';
 
 import useNotifications from '../../../src/hooks/useNotifications';
 import * as ajax from '../../../src/lib/ajax';
+import clientSettings from '../../../src/stores/clientSettings';
 import useConfig from '../../../src/stores/config';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
+
+beforeAll(() => {
+  clientSettings.setState({
+    serverURL: 'https://api.magicbell.com',
+    apiKey: 'fake-key',
+    userEmail: faker.internet.email(),
+  });
+});
 
 describe('hooks', () => {
   describe('useNotifications', () => {

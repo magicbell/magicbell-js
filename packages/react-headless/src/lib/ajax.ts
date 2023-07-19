@@ -1,78 +1,31 @@
-import axios from 'axios';
-
 import clientSettings from '../stores/clientSettings';
-import { registry } from './registry';
-
-interface ServerResponse {
-  data: unknown;
-}
-
-type AxiosMethod =
-  | 'get'
-  | 'GET'
-  | 'delete'
-  | 'DELETE'
-  | 'head'
-  | 'HEAD'
-  | 'options'
-  | 'OPTIONS'
-  | 'post'
-  | 'POST'
-  | 'put'
-  | 'PUT'
-  | 'patch'
-  | 'PATCH';
-
-export function buildAPIHeaders() {
-  const { apiKey, clientId, userEmail, userExternalId, userKey } = clientSettings.getState();
-  const headers = {
-    'X-MAGICBELL-CLIENT-ID': clientId,
-    'X-MAGICBELL-API-KEY': apiKey,
-    'X-MagicBell-Client': 'ReactHeadless/4.0.0', // @todo: Get value from package.json
-  };
-
-  if (userEmail) headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
-  if (userKey) headers['X-MAGICBELL-USER-HMAC'] = userKey;
-  if (userExternalId) headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;
-
-  return headers;
-}
 
 /**
  * Performs an ajax request to the MagicBell API server.
  *
  * @param method - the request method to be used when making the request
- * @param url - the server URL that will be used for the request
+ * @param path - the server URL that will be used for the request
  * @param data - the data to be sent as the request body
  * @param params - the URL parameters to be sent with the request
- * @param headers - the custom headers to be sent with the request
  */
 function sendAPIRequest(
-  method: AxiosMethod,
-  url: string,
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
+  path: string,
   data?: Record<string, unknown>,
   params?: Record<string, unknown>,
-  headers: Record<string, string> = {},
 ): Promise<unknown> {
-  const { serverURL } = clientSettings.getState();
-  const requestHeaders = { ...buildAPIHeaders(), ...headers };
+  const client = clientSettings.getState().getClient();
 
-  // get axios from the registry, to allow for mocking and use of interceptors
-  const client = registry.get('axios', axios);
+  const stringParams = params
+    ? Object.fromEntries<string>(Object.entries(params).map(([key, value]) => [key, String(value)]))
+    : undefined;
 
-  return client({
+  return client.request({
     method,
-    url,
+    path,
     data,
-    params,
-    headers: requestHeaders,
-    baseURL: serverURL,
-  }).then(
-    (response: ServerResponse) => response.data,
-    (error: Error) => {
-      throw error;
-    },
-  );
+    params: stringParams,
+  });
 }
 
 /**
@@ -81,8 +34,8 @@ function sendAPIRequest(
  * @param url - the server URL that will be used for the request
  * @param params - the URL parameters to be sent with the request
  */
-export function fetchAPI(url: string, params: Record<string, unknown> = {}, headers?: Record<string, string>) {
-  return sendAPIRequest('get', url, undefined, params, headers);
+export function fetchAPI(url: string, params?: Record<string, unknown>) {
+  return sendAPIRequest('GET', url, undefined, params);
 }
 
 /**
@@ -92,13 +45,8 @@ export function fetchAPI(url: string, params: Record<string, unknown> = {}, head
  * @param data - the data to be sent as the request body
  * @param params - the URL parameters to be sent with the request
  */
-export function postAPI(
-  url: string,
-  data: Record<string, unknown> = {},
-  params: Record<string, unknown> = {},
-  headers?: Record<string, string>,
-) {
-  return sendAPIRequest('post', url, data, params, headers);
+export function postAPI(url: string, data?: Record<string, unknown>, params?: Record<string, unknown>) {
+  return sendAPIRequest('POST', url, data, params);
 }
 
 /**
@@ -107,8 +55,8 @@ export function postAPI(
  * @param url - the server URL that will be used for the request
  * @param params - the URL parameters to be sent with the request
  */
-export function deleteAPI(url: string, params: Record<string, unknown> = {}, headers?: Record<string, string>) {
-  return sendAPIRequest('delete', url, undefined, params, headers);
+export function deleteAPI(url: string, params?: Record<string, unknown>) {
+  return sendAPIRequest('DELETE', url, undefined, params);
 }
 
 /**
@@ -117,8 +65,8 @@ export function deleteAPI(url: string, params: Record<string, unknown> = {}, hea
  * @param url - the server URL that will be used for the request
  * @param data - the data to be sent as the request body
  * @param params - the URL parameters to be sent with the request
- * * @returns - A promise.
+ * @returns - A promise.
  */
-export function putAPI(url: string, data: Record<string, unknown>, params = {}, headers?: Record<string, string>) {
-  return sendAPIRequest('put', url, data, params, headers);
+export function putAPI(url: string, data: Record<string, unknown>) {
+  return sendAPIRequest('PUT', url, data);
 }

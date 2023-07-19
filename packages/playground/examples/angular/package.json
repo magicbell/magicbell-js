@@ -3,6 +3,6 @@
   "description": "Standard MagicBell integration in Angular.",
   "template": "angular",
   "dependencies": {
-    "@magicbell/embeddable": "latest"
+    "@magicbell/embeddable": "3.2.18"
   }
 }

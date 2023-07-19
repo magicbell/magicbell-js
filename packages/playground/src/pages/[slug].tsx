@@ -25,6 +25,10 @@ export async function getStaticProps({ params: { slug } }): Promise<GetStaticPro
 
   const { template, dependencies } = examples.find((x) => x.slug === slug) || {};
 
+  if (!template) {
+    return { notFound: true };
+  }
+
   const files = (await reshapeForSandpack(example, template)) || null;
 
   const props = {

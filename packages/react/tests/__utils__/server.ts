@@ -14,6 +14,7 @@ export function createServer(config?: ServerConfig<any, any>) {
     ...config,
   });
 
+  server.get('/ws/auth', () => ({ keyName: 'key', mac: 'random' }));
   server.get('/config', () => sampleConfig);
   server.post('/notifications/seen', () => new Response(204, {}, ''));
   server.get('/notifications', () => ({

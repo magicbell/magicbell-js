@@ -20,7 +20,7 @@ type RenderWithProvidersOptions = {
 
 const defaultOptions: RenderWithProvidersOptions = {
   locale: 'en',
-  apiKey: '',
+  apiKey: 'fake-api-key',
   theme: defaultTheme,
 };
 
@@ -28,7 +28,7 @@ export function renderWithProviders(node: ReactNode, options?: Partial<RenderWit
   const { apiKey, locale, theme, stores } = Object.assign(defaultOptions, options);
 
   return TLRender(
-    <MagicBellProvider apiKey={apiKey} stores={stores}>
+    <MagicBellProvider apiKey={apiKey} userEmail="" stores={stores}>
       <TranslationsProvider value={locales[locale]}>
         <MagicBellThemeProvider value={theme}>{node}</MagicBellThemeProvider>
       </TranslationsProvider>

@@ -2,6 +2,6 @@
   "name": "magicbell-project",
   "description": "Render the MagicBell in a navbar",
   "dependencies": {
-    "@magicbell/magicbell-react": "latest"
+    "@magicbell/magicbell-react": "10.7.5"
   }
 }
