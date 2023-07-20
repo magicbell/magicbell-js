@@ -30,6 +30,26 @@ pushSubscriptions
   });
 
 pushSubscriptions
+  .command('list')
+  .description("List user's device tokens")
+  .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
+  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
+  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = getClient(cmd).pushSubscriptions.list(options);
+
+    if (paginate) {
+      await response.forEach((notification, idx) => {
+        printJson(notification);
+        return !(maxItems && idx + 1 >= maxItems);
+      });
+    } else {
+      await response.then((result) => printJson(result));
+    }
+  });
+
+pushSubscriptions
   .command('delete')
   .description("Delete user's device token")
   .argument('<device-token>', 'Token of the device you want to remove')

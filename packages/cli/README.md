@@ -420,6 +420,14 @@ magicbell user push-subscriptions create  \
   --platform 'ios'
 ```
 
+#### List user's device tokens
+
+Returns the list of device tokens registered for push notifications.
+
+```shell
+magicbell user push-subscriptions list
+```
+
 #### Delete user's device token
 
 Deletes the registered device token to remove the mobile push subscription.
