@@ -495,7 +495,8 @@ magicbell user subscriptions get <topic>
 #### Delete topic subscription(s)
 
 ```shell
-magicbell user subscriptions delete <topic>
+magicbell user subscriptions delete <topic>  \
+  --categories '{"slug":"comments"}'
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (USER_RESOURCE_METHODS) -->

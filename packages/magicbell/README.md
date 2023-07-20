@@ -900,7 +900,7 @@ await magicbell.subscriptions.get('{topic}');
 await magicbell.subscriptions.delete('{topic}', {
   categories: [
     {
-      slug: '…',
+      slug: 'comments',
     },
   ],
 });

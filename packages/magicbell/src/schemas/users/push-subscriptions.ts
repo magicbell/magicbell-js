@@ -5,15 +5,7 @@ export const ListUsersPushSubscriptionsResponseSchema = {
   additionalProperties: false,
 
   properties: {
-    total: {
-      type: 'integer',
-    },
-
     per_page: {
-      type: 'integer',
-    },
-
-    total_pages: {
       type: 'integer',
     },
 
