@@ -1,5 +1,25 @@
 # @magicbell/cli
 
+## 2.1.0
+
+### Minor Changes
+
+- [#171](https://github.com/magicbell-io/magicbell-js/pull/171) [`666d2bb`](https://github.com/magicbell-io/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248) Thanks [@smeijer](https://github.com/smeijer)! - We've added a method to list the registered push subscriptions for a given user using user credentials.
+
+  ```shell
+  magicbell user push-subscriptions list \
+    --user-email person@example.com
+  ```
+
+  Note that this method returns the same data as the project scoped `magicbell users push-subscriptions <user-id>`.
+
+### Patch Changes
+
+- [#170](https://github.com/magicbell-io/magicbell-js/pull/170) [`87d84e8`](https://github.com/magicbell-io/magicbell-js/commit/87d84e8bf934bcf3a176f08a3129ce91e18d3da3) Thanks [@smeijer](https://github.com/smeijer)! - Improve `--help` by being more specific about the json type some arguments expect. For example, we used to show `--overrides <json>`, but json can also be an array, while we do expect an object. Now, those arguments are shown as `<object>`.
+
+- Updated dependencies [[`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`24c00f4`](https://github.com/magicbell-io/magicbell-js/commit/24c00f400f571ab0518f3ece7601f99360f85f68), [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5), [`666d2bb`](https://github.com/magicbell-io/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248)]:
+  - magicbell@2.1.0
+
 ## 2.0.3
 
 ### Patch Changes

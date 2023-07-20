@@ -1,5 +1,16 @@
 # @magicbell/embeddable
 
+## 3.3.0
+
+### Minor Changes
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - Use `magicbell` client for api requests. This change includes the addition of automatic retry of failed requests. Requests are retried up to 3 times with exponential backoff.
+
+### Patch Changes
+
+- Updated dependencies [[`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5), [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5)]:
+  - @magicbell/magicbell-react@10.8.0
+
 ## 3.2.18
 
 ### Patch Changes
