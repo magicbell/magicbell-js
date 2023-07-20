@@ -53,3 +53,58 @@ export const CreatePushSubscriptionsPayloadSchema = {
     },
   },
 } as const;
+
+export const ListPushSubscriptionsResponseSchema = {
+  title: 'ListPushSubscriptionsResponseSchema',
+  type: 'object',
+  additionalProperties: false,
+
+  properties: {
+    per_page: {
+      type: 'integer',
+    },
+
+    current_page: {
+      type: 'integer',
+    },
+
+    push_subscriptions: {
+      type: 'array',
+
+      items: {
+        type: 'object',
+        additionalProperties: false,
+
+        properties: {
+          id: {
+            type: 'string',
+          },
+
+          user_id: {
+            type: 'string',
+            format: 'uuid',
+          },
+
+          device_token: {
+            type: 'string',
+          },
+
+          platform: {
+            type: 'string',
+          },
+
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+          },
+
+          discarded_at: {
+            type: 'string',
+            format: 'date-time',
+            nullable: true,
+          },
+        },
+      },
+    },
+  },
+} as const;

@@ -2,12 +2,14 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
+import { type IterablePromise } from '../client/method';
 import { Resource } from '../client/resource';
 import { type RequestOptions } from '../client/types';
 import * as schemas from '../schemas/push-subscriptions';
 
 type CreatePushSubscriptionsResponse = FromSchema<typeof schemas.CreatePushSubscriptionsResponseSchema>;
 type CreatePushSubscriptionsPayload = FromSchema<typeof schemas.CreatePushSubscriptionsPayloadSchema>;
+type ListPushSubscriptionsResponse = FromSchema<typeof schemas.ListPushSubscriptionsResponseSchema>;
 
 export class PushSubscriptions extends Resource {
   path = 'push_subscriptions';
@@ -29,6 +31,22 @@ export class PushSubscriptions extends Resource {
         method: 'POST',
       },
       data,
+      options,
+    );
+  }
+
+  /**
+   * Returns the list of device tokens registered for push notifications.
+   *
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(options?: RequestOptions): IterablePromise<ListPushSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        paged: true,
+      },
       options,
     );
   }

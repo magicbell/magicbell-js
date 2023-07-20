@@ -796,6 +796,14 @@ await magicbell.pushSubscriptions.create({
 });
 ```
 
+#### List user's device tokens
+
+Returns the list of device tokens registered for push notifications.
+
+```js
+await magicbell.pushSubscriptions.list();
+```
+
 #### Delete user's device token
 
 Deletes the registered device token to remove the mobile push subscription.
