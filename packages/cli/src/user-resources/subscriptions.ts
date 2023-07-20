@@ -31,7 +31,7 @@ subscriptions
   .command('create')
   .description('Create a topic subscription')
   .option(
-    '--categories <string...>',
+    '--categories <object...>',
     'A list of hashes containing the category slug and the reason for the subscription',
   )
   .option(
@@ -50,7 +50,7 @@ subscriptions
   .description('Unsubscribe from a topic')
   .argument('<topic>', "The topic for which we'd like to filter topic subscriptions.")
   .option(
-    '--categories <string...>',
+    '--categories <object...>',
     'A list of hashes containing the category slug and the reason for the subscription',
   )
   .action(async (topic, opts, cmd) => {
@@ -76,7 +76,7 @@ subscriptions
   .description('Delete topic subscription(s)')
   .argument('<topic>', "The topic for which we'd like to filter topic subscriptions.")
   .option(
-    '--categories <string...>',
+    '--categories <object...>',
     'A list of hashes containing the category slug and the reason for the subscription. Omiting categories deletes all topic subscriptions beloning to the topic.',
   )
   .action(async (topic, opts, cmd) => {
