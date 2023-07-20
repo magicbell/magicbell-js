@@ -1,5 +1,22 @@
 # @magicbell/react-headless
 
+## 4.3.0
+
+### Minor Changes
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - Use `magicbell` client for api requests. This change includes the addition of automatic retry of failed requests. Requests are retried up to 3 times with exponential backoff.
+
+### Patch Changes
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - Mark `apiKey` and either `userEmail` or `userExternalId` as required. Note that this is an update in type definitions only, the implementation is not changed.
+
+- [#166](https://github.com/magicbell-io/magicbell-js/pull/166) [`b835ff3`](https://github.com/magicbell-io/magicbell-js/commit/b835ff33aa3f19d1855d69235db70ff4774c2770) Thanks [@smeijer](https://github.com/smeijer)! - Removed `apiSecret` from `ClientSettings`.
+
+- [#166](https://github.com/magicbell-io/magicbell-js/pull/166) [`b835ff3`](https://github.com/magicbell-io/magicbell-js/commit/b835ff33aa3f19d1855d69235db70ff4774c2770) Thanks [@smeijer](https://github.com/smeijer)! - Removed index signature from `QueryParams`, so TypeScript will properly warn about misspelled options.
+
+- Updated dependencies [[`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`24c00f4`](https://github.com/magicbell-io/magicbell-js/commit/24c00f400f571ab0518f3ece7601f99360f85f68), [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa), [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5), [`666d2bb`](https://github.com/magicbell-io/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248)]:
+  - magicbell@2.1.0
+
 ## 4.2.8
 
 ### Patch Changes

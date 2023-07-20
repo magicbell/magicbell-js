@@ -1,5 +1,18 @@
 # @magicbell/magicbell-react
 
+## 10.8.0
+
+### Minor Changes
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - Use `magicbell` client for api requests. This change includes the addition of automatic retry of failed requests. Requests are retried up to 3 times with exponential backoff.
+
+### Patch Changes
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - Mark `apiKey` and either `userEmail` or `userExternalId` as required. Note that this is an update in type definitions only, the implementation is not changed.
+
+- Updated dependencies [[`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5), [`b835ff3`](https://github.com/magicbell-io/magicbell-js/commit/b835ff33aa3f19d1855d69235db70ff4774c2770), [`b835ff3`](https://github.com/magicbell-io/magicbell-js/commit/b835ff33aa3f19d1855d69235db70ff4774c2770), [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5)]:
+  - @magicbell/react-headless@4.3.0
+
 ## 10.7.5
 
 ### Patch Changes

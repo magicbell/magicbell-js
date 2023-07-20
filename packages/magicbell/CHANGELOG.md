@@ -1,5 +1,42 @@
 # magicbell
 
+## 2.1.0
+
+### Minor Changes
+
+- [#171](https://github.com/magicbell-io/magicbell-js/pull/171) [`666d2bb`](https://github.com/magicbell-io/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248) Thanks [@smeijer](https://github.com/smeijer)! - We've added a method to the `UserClient` to list the registered push notifications for the authenticated user.
+
+  ```js
+  const magicbell = new UserClient({ ... });
+  await magicbell.pushSubscriptions.list();
+  ```
+
+  This method returns the same data as `users.pushSubscriptions.list` on the `Projectclient`, but using user credentials instead of the secret key. Thereby, it's safe to use this method on the frontend to offer a way to the user to manage their push subscriptions.
+
+### Patch Changes
+
+- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - Optional client options can now be `undefined` or `null`, rather than enforced to be absent. This eases initialization where options come from other configuration sources.
+
+  ```ts
+  const client = new UserClient({
+    apiKey: '...',
+    userEmail: 'person@example.com',
+    userExternalId: undefined, // no longer throws
+  });
+  ```
+
+- [#172](https://github.com/magicbell-io/magicbell-js/pull/172) [`24c00f4`](https://github.com/magicbell-io/magicbell-js/commit/24c00f400f571ab0518f3ece7601f99360f85f68) Thanks [@smeijer](https://github.com/smeijer)! - Fixed a few misconfigured types:
+
+  - import `status` is now an enum with the values `enqueued | processing | processed`
+  - import `failures` now has the users array items typed as `object` with the properties `email` and `external_id` and `errors`
+  - the `total` and `total_pages` props are removed from the `users.pushSubscriptions.list` response.
+
+- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - The EventSource polyfill is now only applied when the `EventSource` is not supported in your environment.
+
+- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - A bug where the eventsource was closed before opened is now fixed. This race condition occurred when closing the stream while the token request was still pending.
+
+- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - don't throw on empty response
+
 ## 2.0.2
 
 ### Patch Changes
