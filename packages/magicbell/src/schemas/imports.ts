@@ -12,7 +12,7 @@ export const CreateImportsResponseSchema = {
 
     status: {
       type: 'string',
-      enum: ['processing'],
+      enum: ['enqueued', 'processing', 'processed'],
     },
 
     summary: {
@@ -70,23 +70,29 @@ export const CreateImportsResponseSchema = {
       properties: {
         users: {
           type: 'array',
-          description: 'User objects that could not be imported successfully',
-          additionalProperties: false,
 
-          properties: {
-            email: {
-              type: 'string',
-              description: 'The identifying email of the user if supplied in the import request.',
-            },
+          items: {
+            type: 'object',
+            description: 'User objects that could not be imported successfully',
+            additionalProperties: false,
 
-            external_id: {
-              type: 'string',
-              description: 'The identifying external_id of the user if supplied in the import request.',
-            },
+            properties: {
+              email: {
+                nullable: true,
+                type: 'string',
+                description: 'The identifying email of the user if supplied in the import request.',
+              },
 
-            errors: {
-              type: 'object',
-              description: 'The errors object reflecting the structure of the user oject',
+              external_id: {
+                nullable: true,
+                type: 'string',
+                description: 'The identifying external_id of the user if supplied in the import request.',
+              },
+
+              errors: {
+                type: 'object',
+                description: 'The errors object reflecting the structure of the user oject',
+              },
             },
           },
         },
@@ -177,7 +183,7 @@ export const GetImportsResponseSchema = {
 
     status: {
       type: 'string',
-      enum: ['processing'],
+      enum: ['enqueued', 'processing', 'processed'],
     },
 
     summary: {
@@ -235,23 +241,29 @@ export const GetImportsResponseSchema = {
       properties: {
         users: {
           type: 'array',
-          description: 'User objects that could not be imported successfully',
-          additionalProperties: false,
 
-          properties: {
-            email: {
-              type: 'string',
-              description: 'The identifying email of the user if supplied in the import request.',
-            },
+          items: {
+            type: 'object',
+            description: 'User objects that could not be imported successfully',
+            additionalProperties: false,
 
-            external_id: {
-              type: 'string',
-              description: 'The identifying external_id of the user if supplied in the import request.',
-            },
+            properties: {
+              email: {
+                nullable: true,
+                type: 'string',
+                description: 'The identifying email of the user if supplied in the import request.',
+              },
 
-            errors: {
-              type: 'object',
-              description: 'The errors object reflecting the structure of the user oject',
+              external_id: {
+                nullable: true,
+                type: 'string',
+                description: 'The identifying external_id of the user if supplied in the import request.',
+              },
+
+              errors: {
+                type: 'object',
+                description: 'The errors object reflecting the structure of the user oject',
+              },
             },
           },
         },

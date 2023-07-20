@@ -14,6 +14,7 @@
     "start:example": "yarn --cwd example && yarn --cwd example start",
     "start:storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "start:playground": "yarn --cwd packages/playground start",
+    "generate:resources": "yarn --cwd packages/magicbell generate:resources && yarn --cwd packages/cli generate:resources",
     "build": "turbo run build",
     "build:example": "yarn --cwd example && yarn --cwd example build",
     "build:storybook": "build-storybook",
