@@ -22,7 +22,7 @@ notificationPreferences
 notificationPreferences
   .command('update')
   .description('Update user notification preferences')
-  .option('--categories <string...>', '')
+  .option('--categories <object...>', '')
   .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 

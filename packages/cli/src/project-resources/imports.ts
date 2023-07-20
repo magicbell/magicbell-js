@@ -10,7 +10,7 @@ export const imports = createCommand('imports').description('Manage imports');
 imports
   .command('create')
   .description('Create a import')
-  .option('--users <string...>', '')
+  .option('--users <object...>', '')
   .action(async (opts, cmd) => {
     const { data, options } = parseOptions(opts);
 

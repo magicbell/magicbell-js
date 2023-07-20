@@ -110,14 +110,8 @@ function createResource(scope: 'user' | 'project', resource: Resource, children:
     // add options
     for (const [option, schema] of Object.entries(method.data?.properties || {})) {
       const flag = `--${hyphenCase(option)}`;
-      const type =
-        schema.type === 'boolean'
-          ? null
-          : schema.type === 'array'
-          ? 'string...'
-          : schema.type === 'object'
-          ? 'json'
-          : schema.type;
+      const type = schema.type === 'boolean' ? null : schema.type === 'array' ? `${schema.items.type}...` : schema.type;
+
       expression = builders.callExpression(builders.memberExpression(expression, b.id('option')), [
         builders.stringLiteral(type ? `${flag} <${type}>` : flag),
         builders.stringLiteral((cleanMarkdown(schema.description) || '').split('\n')[0]),

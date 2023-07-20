@@ -22,7 +22,7 @@ users
   .option('--first-name <string>', "The user's first name.")
   .option('--last-name <string>', "The user's last name.")
   .option(
-    '--custom-attributes <json>',
+    '--custom-attributes <object>',
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
@@ -98,7 +98,7 @@ users
   .option('--first-name <string>', "The user's first name.")
   .option('--last-name <string>', "The user's last name.")
   .option(
-    '--custom-attributes <json>',
+    '--custom-attributes <object>',
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
@@ -135,7 +135,7 @@ users
   .option('--first-name <string>', "The user's first name.")
   .option('--last-name <string>', "The user's last name.")
   .option(
-    '--custom-attributes <json>',
+    '--custom-attributes <object>',
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
@@ -169,7 +169,7 @@ users
   .option('--first-name <string>', "The user's first name.")
   .option('--last-name <string>', "The user's last name.")
   .option(
-    '--custom-attributes <json>',
+    '--custom-attributes <object>',
     "Any customer attributes that you'd like to associate with the user. You may want to use these attributes later when writing email templates, for example.",
   )
   .option('--phone-numbers <string...>', 'An array of phone numbers to use for sending SMS notifications.')
