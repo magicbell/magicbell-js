@@ -1,7 +1,13 @@
+import EventSource from 'eventsource';
+
 import { getUserClient as getClient } from './lib/client';
 import { createCommand } from './lib/commands';
 import { parseOptions } from './lib/options';
 import { printJson } from './lib/printer';
+
+if (!globalThis.EventSource) {
+  globalThis.EventSource = EventSource;
+}
 
 export const listen = createCommand('listen')
   .description('Listen to events for a users inbox')

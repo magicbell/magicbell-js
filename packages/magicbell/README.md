@@ -8,6 +8,8 @@ Node 18.13 or higher.
 
 When using older versions, you might need to polyfill `fetch`. See [isomorphic-fetch](https://npmjs.com/isomorphic-fetch) for more information.
 
+You also might need to polyfill `eventsource` when using the `listen` method in an environment that doesn't support it. See [eventsource](https://npmjs.com/eventsource) for more information.
+
 ## Installation
 
 Install the package with npm:

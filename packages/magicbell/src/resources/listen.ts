@@ -1,13 +1,8 @@
-import EventSourcePolyFill from 'eventsource';
 import ky from 'ky';
 
 import { Client } from '../client/client';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
 import { RequestOptions } from '../client/types';
-
-if (!globalThis.EventSource) {
-  globalThis.EventSource = EventSourcePolyFill;
-}
 
 type AuthResponse = {
   keyName: string;

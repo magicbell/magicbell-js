@@ -48,6 +48,7 @@
     "@types/configstore": "^5.0.1",
     "commander": "^9.4.1",
     "configstore": "^5.0.1",
+    "eventsource": "^2.0.2",
     "fetch-addons": "^1.1.0",
     "json5": "^2.2.3",
     "kleur": "^4.1.5",
