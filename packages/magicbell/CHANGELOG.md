@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.2.0
+
+### Minor Changes
+
+- [#173](https://github.com/magicbell-io/magicbell-js/pull/173) [`1f40263`](https://github.com/magicbell-io/magicbell-js/commit/1f40263c112dcf5a05cac3d59661c7b8ddc41858) Thanks [@smeijer](https://github.com/smeijer)! - Remove [EventSource](https://www.npmjs.com/package/eventsource) polyfill to avoid bundling it in the browser SDKs. If you're using the `listen` methods in an environment that does not support `eventsource`, you'll need to include the polyfill yourself.
+
 ## 2.1.0
 
 ### Minor Changes
