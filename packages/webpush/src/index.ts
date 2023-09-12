@@ -107,7 +107,7 @@ export async function isSubscribed(options: SubscribeOptions) {
   const baseURL = options.host || location.origin;
   const subscriptions = await api.getSubscriptions({ ...options, baseURL });
   const currentPushSubscriptionEndpoint = await navigator.serviceWorker?.ready
-    .then((sw) => sw.pushManager.getSubscription())
+    .then((sw) => sw.pushManager?.getSubscription())
     .then((x) => x?.endpoint);
   return (
     Boolean(currentPushSubscriptionEndpoint) &&
