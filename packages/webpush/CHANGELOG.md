@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 1.3.1
+
+### Patch Changes
+
+- [#175](https://github.com/magicbell-io/magicbell-js/pull/175) [`4b458f8`](https://github.com/magicbell-io/magicbell-js/commit/4b458f85ae019acb57dd3b82539f32f89a4a96e7) Thanks [@moxley01](https://github.com/moxley01)! - Fixes an issue where webpush 'isSubscribed' method throws an error in some mobile browsers.
+
 ## 1.3.0
 
 ### Minor Changes
