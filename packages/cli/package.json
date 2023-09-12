@@ -46,7 +46,7 @@
   "devDependencies": {
     "@magicbell/codegen": "0.2.0",
     "@types/configstore": "^5.0.1",
-    "commander": "^9.4.1",
+    "commander": "^9.5.0",
     "configstore": "^5.0.1",
     "eventsource": "^2.0.2",
     "fetch-addons": "^1.1.0",
