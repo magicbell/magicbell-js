@@ -75,7 +75,7 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
-    "husky": "^7.0.2",
+    "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^20.0.0",
     "link-workspaces": "^1.1.0",
