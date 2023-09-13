@@ -4320,10 +4320,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
-"@types/vscode-webview@^1.57.1":
-  version "1.57.1"
-  resolved "https://registry.yarnpkg.com/@types/vscode-webview/-/vscode-webview-1.57.1.tgz#0bf2c9d57698b99be2bb2813272169f7f62eb714"
-  integrity sha512-ghW5SfuDmsGDS2A4xkvGsLwDRNc3Vj5rS6rPOyPm/IryZuf3wceZKxgYaUoW+k9f0f/CB7y2c1rRsdOWZWn0PQ==
+"@types/vscode-webview@^1.57.2":
+  version "1.57.2"
+  resolved "https://registry.yarnpkg.com/@types/vscode-webview/-/vscode-webview-1.57.2.tgz#aa6a8cf02c23ef7ce4e5f2d257f52b15ddd8ec78"
+  integrity sha512-RpkIso3+FVoi9hFwHj9uBFO+9p8PGym0LnLJ9Yabo9mUJaV39CzOxz6EVtHg8AidA9hAf4cVmG0c+l9pvw6Lbw==
 
 "@types/vscode@^1.73.0":
   version "1.73.1"
