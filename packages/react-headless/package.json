@@ -81,7 +81,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "magicbell": "2.2.0",
-    "mitt": "^3.0.0",
+    "mitt": "^3.0.1",
     "ramda": "^0.28.0",
     "tiny-invariant": "^1.2.0",
     "tiny-warning": "^1.0.3",
