@@ -12299,7 +12299,7 @@ next-remote-watch@^1.0.0:
     commander "^5.0.0"
     express "^4.17.1"
 
-next-runtime@^2.3.2:
+next-runtime@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/next-runtime/-/next-runtime-2.4.1.tgz#23606c92d363b7baa9c30bfb168318e5f4ac1a95"
   integrity sha512-1p+WcIkFepV22Xm+Z517HMnphxN3NwHO2fcBOOSCLLVCOqc3qYboaT8KLeGTkspUX2IGC93jODWPrXPXMjS3qw==
