@@ -1,5 +1,12 @@
 # ping-vscode
 
+## 0.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`3f7ab5a`](https://github.com/magicbell-io/magicbell-js/commit/3f7ab5a532ec5c02e7f8ff41261548c0accd78ca)]:
+  - magicbell@2.3.0
+
 ## 0.0.21
 
 ### Patch Changes

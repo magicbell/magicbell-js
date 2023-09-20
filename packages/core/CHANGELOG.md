@@ -1,5 +1,37 @@
 # @magicbell/core
 
+## 5.0.7
+
+### Patch Changes
+
+- [`0a40f2d`](https://github.com/magicbell-io/magicbell-js/commit/0a40f2d5f4eded31784caf7476771b90694684f2) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.198`.
+
+- [`ffb1b21`](https://github.com/magicbell-io/magicbell-js/commit/ffb1b213607f1ba5ff0d86c9478d758f89924a68) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `sinon` to `^13.0.2`.
+
+- [#183](https://github.com/magicbell-io/magicbell-js/pull/183) [`e1e7518`](https://github.com/magicbell-io/magicbell-js/commit/e1e7518564378b39a5bc2848d329f7f4236b2ea3) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `miragejs` to `^0.1.47`.
+
+- [`f83b52c`](https://github.com/magicbell-io/magicbell-js/commit/f83b52ccec1bf7479709252ccdda83522e736840) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `mitt` to `^3.0.1`.
+
+- [#179](https://github.com/magicbell-io/magicbell-js/pull/179) [`cda7f21`](https://github.com/magicbell-io/magicbell-js/commit/cda7f215d8d5cc71faf150ebc6843805a1572fb5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `ably` to `^1.2.44`.
+
+- [`0b63278`](https://github.com/magicbell-io/magicbell-js/commit/0b6327842b529efcd7de89825f9a51015d34dcd3) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/sinon` to `^10.0.16`.
+
+- [`5088009`](https://github.com/magicbell-io/magicbell-js/commit/50880093f31b88e34a74d2f75b7860de1ac4b88d) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `dayjs` to `^1.11.9`.
+
 ## 5.0.6
 
 ### Patch Changes

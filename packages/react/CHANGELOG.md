@@ -1,5 +1,36 @@
 # @magicbell/magicbell-react
 
+## 10.8.3
+
+### Patch Changes
+
+- [`79d3019`](https://github.com/magicbell-io/magicbell-js/commit/79d3019482c53644e44b016b41bad723ddd1bd49) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `immer` to `^9.0.21`.
+
+- [`0a40f2d`](https://github.com/magicbell-io/magicbell-js/commit/0a40f2d5f4eded31784caf7476771b90694684f2) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.198`.
+
+- [`ffb1b21`](https://github.com/magicbell-io/magicbell-js/commit/ffb1b213607f1ba5ff0d86c9478d758f89924a68) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `sinon` to `^13.0.2`.
+
+- [`39ad36e`](https://github.com/magicbell-io/magicbell-js/commit/39ad36ed59f0949f7b06810534560a61e27f3d25) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-infinite-scroll-component` to `^6.1.0`.
+
+- [`0b63278`](https://github.com/magicbell-io/magicbell-js/commit/0b6327842b529efcd7de89825f9a51015d34dcd3) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/sinon` to `^10.0.16`.
+
+- [`5088009`](https://github.com/magicbell-io/magicbell-js/commit/50880093f31b88e34a74d2f75b7860de1ac4b88d) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `dayjs` to `^1.11.9`.
+
+- Updated dependencies [[`79d3019`](https://github.com/magicbell-io/magicbell-js/commit/79d3019482c53644e44b016b41bad723ddd1bd49), [`0a40f2d`](https://github.com/magicbell-io/magicbell-js/commit/0a40f2d5f4eded31784caf7476771b90694684f2), [`6159725`](https://github.com/magicbell-io/magicbell-js/commit/6159725eddf22be5787ae1441131ef7aad97632e), [`ffb1b21`](https://github.com/magicbell-io/magicbell-js/commit/ffb1b213607f1ba5ff0d86c9478d758f89924a68), [`f83b52c`](https://github.com/magicbell-io/magicbell-js/commit/f83b52ccec1bf7479709252ccdda83522e736840), [`cda7f21`](https://github.com/magicbell-io/magicbell-js/commit/cda7f215d8d5cc71faf150ebc6843805a1572fb5), [`5088009`](https://github.com/magicbell-io/magicbell-js/commit/50880093f31b88e34a74d2f75b7860de1ac4b88d)]:
+  - @magicbell/react-headless@4.3.2
+
 ## 10.8.2
 
 ### Patch Changes
