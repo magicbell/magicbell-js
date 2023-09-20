@@ -1,5 +1,20 @@
 # @magicbell/embeddable
 
+## 3.3.3
+
+### Patch Changes
+
+- [`a6d54b5`](https://github.com/magicbell-io/magicbell-js/commit/a6d54b5e47fea0b41e3ee1a02926bc7e15849ec1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-frame-component` to `^5.2.6`.
+
+- [`47b6dde`](https://github.com/magicbell-io/magicbell-js/commit/47b6ddeafe6b77a4457a17aecffa963b9c127b47) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `error-stack-parser` to `^2.1.4`.
+
+- Updated dependencies [[`79d3019`](https://github.com/magicbell-io/magicbell-js/commit/79d3019482c53644e44b016b41bad723ddd1bd49), [`0a40f2d`](https://github.com/magicbell-io/magicbell-js/commit/0a40f2d5f4eded31784caf7476771b90694684f2), [`ffb1b21`](https://github.com/magicbell-io/magicbell-js/commit/ffb1b213607f1ba5ff0d86c9478d758f89924a68), [`39ad36e`](https://github.com/magicbell-io/magicbell-js/commit/39ad36ed59f0949f7b06810534560a61e27f3d25), [`0b63278`](https://github.com/magicbell-io/magicbell-js/commit/0b6327842b529efcd7de89825f9a51015d34dcd3), [`5088009`](https://github.com/magicbell-io/magicbell-js/commit/50880093f31b88e34a74d2f75b7860de1ac4b88d)]:
+  - @magicbell/magicbell-react@10.8.3
+
 ## 3.3.2
 
 ### Patch Changes

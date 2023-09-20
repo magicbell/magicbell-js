@@ -1,5 +1,16 @@
 # @magicbell/cli
 
+## 2.2.1
+
+### Patch Changes
+
+- [`b29dc74`](https://github.com/magicbell-io/magicbell-js/commit/b29dc7480f855913060257f692f786c563d4598e) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `commander` to `^9.5.0`.
+
+- Updated dependencies [[`3f7ab5a`](https://github.com/magicbell-io/magicbell-js/commit/3f7ab5a532ec5c02e7f8ff41261548c0accd78ca)]:
+  - magicbell@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes

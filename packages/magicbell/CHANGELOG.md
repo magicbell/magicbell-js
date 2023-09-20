@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.3.0
+
+### Minor Changes
+
+- [#182](https://github.com/magicbell-io/magicbell-js/pull/182) [`3f7ab5a`](https://github.com/magicbell-io/magicbell-js/commit/3f7ab5a532ec5c02e7f8ff41261548c0accd78ca) Thanks [@smeijer](https://github.com/smeijer)! - move uuidv4 helper function to different file for better tree shaking
+
 ## 2.2.0
 
 ### Minor Changes

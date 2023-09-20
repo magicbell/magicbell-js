@@ -1,5 +1,13 @@
 # @magicbell/codegen
 
+## 0.2.1
+
+### Patch Changes
+
+- [#181](https://github.com/magicbell-io/magicbell-js/pull/181) [`4bae82e`](https://github.com/magicbell-io/magicbell-js/commit/4bae82e676f88b049243017b9e470cfbeddfb6ad) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/json-schema-merge-allof` to `^0.6.2`.
+
 ## 0.2.0
 
 ### Minor Changes
