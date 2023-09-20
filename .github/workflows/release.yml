@@ -11,15 +11,17 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BELLA_ACTION_TOKEN }}
+      - uses: bahmutov/npm-install@v1
 
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         with:
           publish: yarn changeset:release
           commit: 'chore: version packages'
-          title: 'chore: version packages'
+          title: 'next release'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
