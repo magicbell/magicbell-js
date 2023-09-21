@@ -1,16 +1,9 @@
 import faker from '@faker-js/faker';
 import { mockHandler, setupMockServer } from '@magicbell/utils';
-import * as Ably from 'ably';
-import { beforeEach } from 'vitest';
+import { beforeEach, vi } from 'vitest';
 
 import * as ajax from '../../../src/lib/ajax';
-import {
-  connectToAbly,
-  emitEvent,
-  eventAggregator,
-  handleAblyEvent,
-  pushEventAggregator,
-} from '../../../src/lib/realtime';
+import { emitEvent, eventAggregator, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { sampleNotification } from '../../factories/NotificationFactory';
 
@@ -71,24 +64,13 @@ describe('eventAggregator', () => {
   });
 });
 
-describe('.connectToAbly', () => {
-  it('returns an ably client', (done) => {
-    const client = connectToAbly({ authUrl: '/ably/auth', region: 'eu-1', channel: '' });
-
-    expect(client).toBeInstanceOf(Ably.Realtime);
-
-    // @TODO: wait for the ably client to connect
-    setTimeout(() => done(), 3000);
-  });
-});
-
 describe('.handleAblyEvent', () => {
   it('emits the event to the pushEventAggregator', () => {
     const spy = vi.spyOn(pushEventAggregator, 'emit');
     const event = {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
-    } as Ably.Types.Message;
+    };
     handleAblyEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -101,7 +83,7 @@ describe('.handleAblyEvent', () => {
     const event = {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
-    } as Ably.Types.Message;
+    };
     handleAblyEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -113,7 +95,7 @@ describe('.handleAblyEvent', () => {
     server.intercept('get', '/notifications/:id', { notification: sampleNotification });
 
     const spy = vi.spyOn(pushEventAggregator, 'emit');
-    const event = { name: 'notification/new', data: { id: 'uuid' } } as Ably.Types.Message;
+    const event = { name: 'notification/new', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -123,7 +105,7 @@ describe('.handleAblyEvent', () => {
 
   it('does not fetch from the server for delete events', async () => {
     const spy = vi.spyOn(ajax, 'fetchAPI');
-    const event = { name: 'notifications/delete', data: { id: 'uuid' } } as Ably.Types.Message;
+    const event = { name: 'notifications/delete', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
     expect(spy).not.toHaveBeenCalled();
@@ -132,7 +114,7 @@ describe('.handleAblyEvent', () => {
 
   it('emits the event with the notification', async () => {
     const spy = vi.spyOn(pushEventAggregator, 'emit');
-    const event = { name: 'notifications/delete', data: { id: 'uuid' } } as Ably.Types.Message;
+    const event = { name: 'notifications/delete', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -146,7 +128,7 @@ describe('.handleAblyEvent', () => {
     const event = {
       name: 'notification/new',
       data: { id: 'uuid', client_id: getState().clientId },
-    } as Ably.Types.Message;
+    };
     await handleAblyEvent(event);
 
     expect(spy).not.toHaveBeenCalled();
@@ -158,7 +140,7 @@ describe('.handleAblyEvent', () => {
     const event = {
       name: 'notification/seen/all',
       data: { client_id: faker.random.alphaNumeric(10) },
-    } as Ably.Types.Message;
+    };
     await handleAblyEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -188,7 +170,7 @@ describe('.handleAblyEvent', () => {
     await handleAblyEvent({
       name: 'notifications/seen/all',
       data: { client_id: clientId },
-    } as Ably.Types.Message);
+    });
 
     expect(localEmitter).toHaveBeenCalledTimes(1);
     expect(localEmitter).toHaveBeenCalledWith('notifications.seen.all', {

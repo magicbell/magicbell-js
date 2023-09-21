@@ -19,30 +19,41 @@ export type ClientSettings = {
  * @example
  * const { apiKey } = clientSettings.getState()
  */
-const clientSettings = create<ClientSettings>((set, get) => ({
-  apiKey: '',
-  userEmail: undefined,
-  userExternalId: undefined,
-  userKey: undefined,
-  clientId: Math.random().toString(36).substring(2) + Date.now(),
-  serverURL: 'https://api.magicbell.com',
-  appInfo: undefined,
+const clientSettings = create<ClientSettings>((set, get) => {
+  let _client: InstanceType<typeof UserClient> | null = null;
+  let _key = '';
 
-  getClient() {
-    const state = get();
+  return {
+    apiKey: '',
+    userEmail: undefined,
+    userExternalId: undefined,
+    userKey: undefined,
+    clientId: Math.random().toString(36).substring(2) + Date.now(),
+    serverURL: 'https://api.magicbell.com',
+    appInfo: undefined,
 
-    return new UserClient({
-      userExternalId: state.userExternalId,
-      userEmail: state.userEmail,
-      userHmac: state.userKey,
-      apiKey: state.apiKey,
-      host: state.serverURL,
-      appInfo: state.appInfo || {
-        name: __PACKAGE_NAME__,
-        version: __PACKAGE_VERSION__,
-      },
-    });
-  },
-}));
+    getClient() {
+      const state = get();
+      const key = JSON.stringify([state.apiKey, state.userEmail, state.userExternalId, state.userKey]);
+
+      if (key !== _key) {
+        _key = key;
+        _client = new UserClient({
+          userExternalId: state.userExternalId,
+          userEmail: state.userEmail,
+          userHmac: state.userKey,
+          apiKey: state.apiKey,
+          host: state.serverURL,
+          appInfo: state.appInfo || {
+            name: __PACKAGE_NAME__,
+            version: __PACKAGE_VERSION__,
+          },
+        });
+      }
+
+      return _client;
+    },
+  };
+});
 
 export default clientSettings;

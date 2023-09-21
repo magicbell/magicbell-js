@@ -1,10 +1,14 @@
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
+import { vi } from 'vitest';
 
 import ClickableNotification from '../../../../src/components/ClickableNotification';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+
+const server = setupMockServer(mockHandlers.getConfig);
 
 test('renders the title and content of the notification', () => {
   render(
@@ -118,6 +122,8 @@ test('passes the notification object to the onClick callback', async () => {
 test('opens the action url in the same tab', async () => {
   global.open = vi.fn();
 
+  server.intercept('post', '/notifications/:id/read', { status: 204 });
+
   render(
     <ClickableNotification
       notification={{
@@ -153,7 +159,7 @@ test('does not invoke the click handler when clicking on a link in the notificat
 });
 
 // the click handler is called async, and depends on a global. The "success-test" currently infers with this one
-test.skip('does not invoke the action url when clicking on a link in the notification', async () => {
+test('does not invoke the action url when clicking on a link in the notification', async () => {
   global.open = vi.fn();
 
   const onClick = vi.fn();

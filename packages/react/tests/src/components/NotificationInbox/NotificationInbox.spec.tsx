@@ -1,8 +1,9 @@
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
-import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
+import { vi } from 'vitest';
 
 import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
@@ -18,6 +19,9 @@ const server = setupMockServer(
   mockHandler('get', '/notification_preferences', {
     notification_preferences: fake.notificationPreferences,
   }),
+  mockHandlers.getConfig,
+  mockHandlers.ablyAuth,
+  mockHandlers.ablyRequestToken,
 );
 
 beforeEach(() => {
@@ -39,7 +43,7 @@ test('renders a header, the list of notifications and a footer if the notificati
 
 test('renders nothing if the notification store does not exist', () => {
   const { container } = render(
-    <MagicBellProvider apiKey="" userEmail="">
+    <MagicBellProvider apiKey="-" userEmail="-">
       <NotificationInbox height={300} storeId="non-existing" />
     </MagicBellProvider>,
   );

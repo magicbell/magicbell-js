@@ -63,7 +63,7 @@
     "@types/react-dom": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",
-    "@vitest/coverage-c8": "^0.23.2",
+    "@vitest/coverage-v8": "^0.34.4",
     "cross-env": "^7.0.3",
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
@@ -95,8 +95,8 @@
     "typescript": "^4.4.4",
     "vite": "^3.1.0",
     "vite-plugin-banner": "^0.5.0",
-    "vitest": "^0.23.1",
-    "vitest-github-actions-reporter": "^0.8.3",
+    "vitest": "^0.34.4",
+    "vitest-github-actions-reporter": "^0.10.0",
     "zx": "^7.1.1"
   }
 }

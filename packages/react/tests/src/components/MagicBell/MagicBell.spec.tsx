@@ -1,9 +1,10 @@
 import { eventAggregator } from '@magicbell/react-headless';
-import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
-import React from 'react';
+import * as React from 'react';
+import { vi } from 'vitest';
 
 import MagicBell from '../../../../src';
 import Text from '../../../../src/components/Text';
@@ -19,6 +20,9 @@ const server = setupMockServer(
     ...fake.notificationPage,
     notifications: [fake.notification],
   }),
+  mockHandlers.getConfig,
+  mockHandlers.ablyAuth,
+  mockHandlers.ablyRequestToken,
 );
 
 test("renders the notification bell, but not it's default children", async () => {
@@ -153,7 +157,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
 });
 
 test('sets the headers for fetching from the API', async () => {
-  const status = server.intercept('all', '/notifications', fake.notificationsPage);
+  const status = server.intercept('all', '/notifications', fake.notificationPage);
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey}>
@@ -168,7 +172,7 @@ test('sets the headers for fetching from the API', async () => {
 });
 
 test('sets the external id header for fetching from the API', async () => {
-  const status = server.intercept('all', '/notifications', fake.notificationsPage);
+  const status = server.intercept('all', '/notifications', fake.notificationPage);
 
   render(
     <MagicBell apiKey={apiKey} userExternalId={userExternalId} userKey={userKey}>

@@ -1,8 +1,9 @@
 import { useConfig } from '@magicbell/react-headless';
-import { fake, mockHandler, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
+import { vi } from 'vitest';
 
 import FloatingNotificationInbox from '../../../../src/components/FloatingNotificationInbox';
 import { renderWithProviders as render } from '../../../__utils__/render';
@@ -25,6 +26,9 @@ setupMockServer(
       notifications: [fake.notification],
     },
   })),
+  mockHandlers.getConfig,
+  mockHandlers.ablyAuth,
+  mockHandlers.ablyRequestToken,
 );
 
 beforeEach(() => {
