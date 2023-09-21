@@ -1,3 +1,13 @@
+const tsconf = require('./tsconfig.json');
+
+// convert tsconfig paths to jest moduleNameMapper
+//  { '@magicbell/core': [ 'packages/core/src' ] } > { '@magicbell/core': '<rootDir>/packages/core/src' }
+const moduleNameMapper = Object.fromEntries(
+  Object.entries(tsconf.compilerOptions.paths)
+    .filter(x => x[1][0].startsWith('packages'))
+    .map(x => [x[0], x[1][0].replace(/^packages/, '<rootDir>/packages')])
+  );
+
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
@@ -17,4 +27,5 @@ module.exports = {
   ],
   clearMocks: true,
   resetMocks: true,
+  moduleNameMapper,
 };
