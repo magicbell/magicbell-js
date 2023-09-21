@@ -1,4 +1,5 @@
 import faker from '@faker-js/faker';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { beforeAll } from 'vitest';
 
@@ -6,6 +7,8 @@ import useNotification from '../../../src/hooks/useNotification';
 import clientSettings from '../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
+
+setupMockServer(...mockHandlers);
 
 beforeAll(() => {
   clientSettings.setState({

@@ -8,7 +8,7 @@ import PreferencesCategories from '../../../../src/components/UserPreferencesPan
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 
-setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
+setupMockServer(...mockHandlers);
 
 describe('PreferencesCategories component', () => {
   describe('no categories', () => {

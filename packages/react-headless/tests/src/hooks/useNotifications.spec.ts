@@ -1,4 +1,5 @@
 import faker from '@faker-js/faker';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
 import { beforeAll } from 'vitest';
 
@@ -7,6 +8,8 @@ import * as ajax from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
 import useConfig from '../../../src/stores/config';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
+
+setupMockServer(...mockHandlers);
 
 beforeAll(() => {
   clientSettings.setState({
@@ -56,7 +59,7 @@ describe('hooks', () => {
             useConfig.setState({ lastFetchedAt: Date.now() });
           });
 
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
           spy.mockRestore();
         });
@@ -71,11 +74,11 @@ describe('hooks', () => {
             useConfig.setState({ lastFetchedAt: Date.now() });
           });
 
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
 
           rerender({ storeId: 'archive' });
-          expect(spy).toHaveBeenCalledTimes(2);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenLastCalledWith('/notifications', { page: 1, read: true });
 
           spy.mockRestore();

@@ -23,7 +23,7 @@ export default function RealtimeListener() {
   const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data, { persist: false });
 
   useEffect(() => {
-    // MSW doesn't seem to catch the requests made by Ably, so we skip this
+    // MSW doesn't seem to catch the requests made to Ably, so we skip this
     // for the time being.
     if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'test') return;
 

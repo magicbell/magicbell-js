@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { fake, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { waitFor } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
@@ -15,7 +15,7 @@ import NotificationFactory from '../../../factories/NotificationFactory';
 
 const fiveSecondsAgo = () => Math.floor(Date.now() / 1_000) - 5_000;
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   clientSettings.setState({

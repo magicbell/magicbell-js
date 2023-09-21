@@ -19,6 +19,7 @@ const stores = [
 ];
 
 setupMockServer(
+  ...mockHandlers,
   mockHandler('get', '/notifications', () => ({
     status: 200,
     json: {
@@ -26,9 +27,6 @@ setupMockServer(
       notifications: [fake.notification],
     },
   })),
-  mockHandlers.getConfig,
-  mockHandlers.ablyAuth,
-  mockHandlers.ablyRequestToken,
 );
 
 beforeEach(() => {

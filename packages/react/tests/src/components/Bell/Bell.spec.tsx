@@ -10,7 +10,7 @@ import { defaultTheme } from '../../../../src/context/Theme';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
-setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
+setupMockServer(...mockHandlers);
 
 test('renders the notification button', () => {
   render(<Bell onClick={vi.fn()} />);

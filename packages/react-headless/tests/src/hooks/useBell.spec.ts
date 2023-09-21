@@ -1,5 +1,5 @@
 import faker from '@faker-js/faker';
-import { setupMockServer } from '@magicbell/utils';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
 
 import useBell from '../../../src/hooks/useBell';
@@ -7,7 +7,7 @@ import clientSettings from '../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   clientSettings.setState({

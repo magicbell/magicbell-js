@@ -16,13 +16,11 @@ const userExternalId = faker.random.alphaNumeric(15);
 const userKey = faker.random.alphaNumeric(10);
 
 const server = setupMockServer(
+  ...mockHandlers,
   mockHandler('get', '/notifications', {
     ...fake.notificationPage,
     notifications: [fake.notification],
   }),
-  mockHandlers.getConfig,
-  mockHandlers.ablyAuth,
-  mockHandlers.ablyRequestToken,
 );
 
 test("renders the notification bell, but not it's default children", async () => {

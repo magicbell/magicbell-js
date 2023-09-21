@@ -8,7 +8,7 @@ import ClickableNotification from '../../../../src/components/ClickableNotificat
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
-const server = setupMockServer(mockHandlers.getConfig);
+const server = setupMockServer(...mockHandlers);
 
 test('renders the title and content of the notification', () => {
   render(

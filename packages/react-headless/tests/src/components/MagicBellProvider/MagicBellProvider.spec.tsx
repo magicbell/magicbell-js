@@ -7,7 +7,7 @@ import { vi } from 'vitest';
 import { MagicBellProvider, useConfig } from '../../../../src';
 import * as ajax from '../../../../src/lib/ajax';
 
-setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
+setupMockServer(...mockHandlers);
 
 describe('components', () => {
   describe('MagicBellProvider', () => {

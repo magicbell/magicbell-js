@@ -12,6 +12,7 @@ import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
 const server = setupMockServer(
+  ...mockHandlers,
   mockHandler('get', '/notifications', {
     ...fake.notificationPage,
     notifications: [sampleNotification],
@@ -19,9 +20,6 @@ const server = setupMockServer(
   mockHandler('get', '/notification_preferences', {
     notification_preferences: fake.notificationPreferences,
   }),
-  mockHandlers.getConfig,
-  mockHandlers.ablyAuth,
-  mockHandlers.ablyRequestToken,
 );
 
 beforeEach(() => {

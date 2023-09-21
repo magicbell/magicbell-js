@@ -1,4 +1,4 @@
-import { setupMockServer } from '@magicbell/utils';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { basename } from 'path';
 
 import { Client as Client } from './client';
@@ -12,7 +12,7 @@ const resources: [string, Resource][] = Object.entries(import.meta.glob('./resou
   ],
 );
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 test('client instance provides access to known resources', () => {
   const client = new Client({
