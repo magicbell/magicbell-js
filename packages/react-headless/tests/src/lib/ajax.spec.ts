@@ -1,6 +1,5 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
 
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';

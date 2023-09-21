@@ -38,7 +38,7 @@ test('does not render anything if web push channel is disabled', () => {
 });
 
 test('clicking the `enable now` button opens a new window to create the push subscription', async () => {
-  const spy = vi.spyOn(window, 'open');
+  const spy = jest.spyOn(window, 'open');
   render(<EnablePushNotificationsBanner />);
 
   const enableButton = screen.getByRole('button', { name: /enable now/i });

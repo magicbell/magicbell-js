@@ -263,7 +263,7 @@ describe('models', () => {
       });
 
       it('makes a post request to the read endpoint', () => {
-        const spy = vi.spyOn(ajax, 'postAPI');
+        const spy = jest.spyOn(ajax, 'postAPI');
         notification.markAsRead();
 
         expect(spy).toHaveBeenCalledTimes(1);
@@ -272,7 +272,7 @@ describe('models', () => {
       });
 
       it('returns true', async () => {
-        const spy = vi.spyOn(ajax, 'postAPI');
+        const spy = jest.spyOn(ajax, 'postAPI');
         const result = await notification.markAsRead();
 
         expect(result).toBe(true);
@@ -315,7 +315,7 @@ describe('models', () => {
       });
 
       it('makes a post request to the read endpoint', () => {
-        const spy = vi.spyOn(ajax, 'postAPI');
+        const spy = jest.spyOn(ajax, 'postAPI');
         notification.markAsUnread();
 
         expect(spy).toHaveBeenCalledTimes(1);
@@ -324,7 +324,7 @@ describe('models', () => {
       });
 
       it('returns true', async () => {
-        const spy = vi.spyOn(ajax, 'postAPI');
+        const spy = jest.spyOn(ajax, 'postAPI');
         const result = await notification.markAsUnread();
 
         expect(result).toBe(true);
@@ -360,7 +360,7 @@ describe('models', () => {
       });
 
       it('makes a request to the delete endpoint', () => {
-        const spy = vi.spyOn(ajax, 'deleteAPI');
+        const spy = jest.spyOn(ajax, 'deleteAPI');
         notification.delete();
 
         expect(spy).toHaveBeenCalledTimes(1);

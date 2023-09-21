@@ -2,7 +2,6 @@ import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
-import { beforeEach } from 'vitest';
 
 import useNotificationFactory from '../../../src/hooks/useNotificationFactory';
 import * as ajax from '../../../src/lib/ajax';
@@ -55,7 +54,7 @@ describe('useNotificationFactory', () => {
   it('.markAsRead marks the notification as read', async () => {
     server.intercept('post', '/notifications/:id/read', { status: 204 });
 
-    const spy = vi.spyOn(ajax, 'postAPI');
+    const spy = jest.spyOn(ajax, 'postAPI');
     const { result } = renderHook(() => useNotificationFactory(json));
     const { current: notification } = result;
 

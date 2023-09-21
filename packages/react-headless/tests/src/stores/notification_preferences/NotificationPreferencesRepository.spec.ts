@@ -1,6 +1,5 @@
 import faker from '@faker-js/faker';
 import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository';

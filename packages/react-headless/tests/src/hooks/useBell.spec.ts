@@ -18,7 +18,10 @@ beforeEach(() => {
 
   const { result } = renderHook(() => useNotificationStoresCollection());
   const notifications = NotificationFactory.buildList(3, { seenAt: null });
-  result.current?.setStore('default', {}, { notifications });
+
+  act(() => {
+    result.current?.setStore('default', {}, { notifications });
+  });
 });
 
 test('returns the store with props and helper methods', () => {

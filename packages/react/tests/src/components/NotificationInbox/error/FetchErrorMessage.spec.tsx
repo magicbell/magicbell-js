@@ -5,7 +5,7 @@ import FetchErrorMessage from '../../../../../src/components/NotificationInbox/e
 import { renderWithProviders as render } from '../../../../__utils__/render';
 
 test('renders an api error when notifications cannot be retrieved', () => {
-  vi.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true);
+  jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true);
   render(<FetchErrorMessage />);
 
   screen.getByText(/we can’t seem to retrieve your notifications./i);
@@ -13,7 +13,7 @@ test('renders an api error when notifications cannot be retrieved', () => {
 });
 
 test('renders a connection error when there is no internet connection', () => {
-  vi.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false);
+  jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false);
   render(<FetchErrorMessage />);
 
   screen.getByText(/hmm, we’re unable to connect to the internet./i);

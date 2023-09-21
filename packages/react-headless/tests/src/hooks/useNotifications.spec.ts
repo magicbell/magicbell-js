@@ -1,7 +1,6 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { beforeAll } from 'vitest';
 
 import useNotifications from '../../../src/hooks/useNotifications';
 import * as ajax from '../../../src/lib/ajax';
@@ -52,7 +51,7 @@ describe('hooks', () => {
 
       describe('config is fetched', () => {
         it('fetches the store', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           act(() => {
@@ -65,7 +64,7 @@ describe('hooks', () => {
         });
 
         it('fetches the other store when storeId changes', async () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           const { rerender } = renderHook(({ storeId }) => useNotifications(storeId), {
             initialProps: { storeId: 'default' },
           });
@@ -87,7 +86,7 @@ describe('hooks', () => {
 
       describe('config is not fetched', () => {
         it('does not fetch the store', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           expect(spy).not.toHaveBeenCalled();

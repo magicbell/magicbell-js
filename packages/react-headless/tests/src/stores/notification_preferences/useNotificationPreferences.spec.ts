@@ -2,7 +2,6 @@ import faker from '@faker-js/faker';
 import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act } from '@testing-library/react-hooks';
 import * as humps from 'humps';
-import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import useNotificationPreferences from '../../../../src/stores/notification_preferences';

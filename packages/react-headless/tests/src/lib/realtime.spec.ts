@@ -1,6 +1,5 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { beforeEach, vi } from 'vitest';
 
 import * as ajax from '../../../src/lib/ajax';
 import { emitEvent, eventAggregator, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
@@ -19,7 +18,7 @@ beforeEach(() => {
 
 describe('pushEventAggregator', () => {
   it('exposes an API for pubsub', () => {
-    const callback = vi.fn();
+    const callback = jest.fn();
     pushEventAggregator.on('test', callback);
     pushEventAggregator.emit('test');
 
@@ -33,7 +32,7 @@ describe('pushEventAggregator', () => {
 
 describe('eventAggregator', () => {
   it('exposes an API for pubsub', () => {
-    const callback = vi.fn();
+    const callback = jest.fn();
     eventAggregator.on('test', callback);
     eventAggregator.emit('test');
 
@@ -47,7 +46,7 @@ describe('eventAggregator', () => {
 
 describe('.handleAblyEvent', () => {
   it('emits the event to the pushEventAggregator', () => {
-    const spy = vi.spyOn(pushEventAggregator, 'emit');
+    const spy = jest.spyOn(pushEventAggregator, 'emit');
     const event = {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
@@ -60,7 +59,7 @@ describe('.handleAblyEvent', () => {
   });
 
   it('emits the event to the eventAggregator', () => {
-    const spy = vi.spyOn(eventAggregator, 'emit');
+    const spy = jest.spyOn(eventAggregator, 'emit');
     const event = {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
@@ -75,7 +74,7 @@ describe('.handleAblyEvent', () => {
   it('emits the event with the notification when notification contains id', async () => {
     server.intercept('get', '/notifications/:id', { notification: sampleNotification });
 
-    const spy = vi.spyOn(pushEventAggregator, 'emit');
+    const spy = jest.spyOn(pushEventAggregator, 'emit');
     const event = { name: 'notification/new', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
@@ -85,7 +84,7 @@ describe('.handleAblyEvent', () => {
   });
 
   it('does not fetch from the server for delete events', async () => {
-    const spy = vi.spyOn(ajax, 'fetchAPI');
+    const spy = jest.spyOn(ajax, 'fetchAPI');
     const event = { name: 'notifications/delete', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
@@ -94,7 +93,7 @@ describe('.handleAblyEvent', () => {
   });
 
   it('emits the event with the notification', async () => {
-    const spy = vi.spyOn(pushEventAggregator, 'emit');
+    const spy = jest.spyOn(pushEventAggregator, 'emit');
     const event = { name: 'notifications/delete', data: { id: 'uuid' } };
     await handleAblyEvent(event);
 
@@ -105,7 +104,7 @@ describe('.handleAblyEvent', () => {
 
   it('does not emit the event when event originated from this client', async () => {
     const { getState } = clientSettings;
-    const spy = vi.spyOn(pushEventAggregator, 'emit');
+    const spy = jest.spyOn(pushEventAggregator, 'emit');
     const event = {
       name: 'notification/new',
       data: { id: 'uuid', client_id: getState().clientId },
@@ -117,7 +116,7 @@ describe('.handleAblyEvent', () => {
   });
 
   it('emits the event when it originates from someone else', async () => {
-    const spy = vi.spyOn(pushEventAggregator, 'emit');
+    const spy = jest.spyOn(pushEventAggregator, 'emit');
     const event = {
       name: 'notification/seen/all',
       data: { client_id: faker.random.alphaNumeric(10) },
@@ -129,8 +128,8 @@ describe('.handleAblyEvent', () => {
   });
 
   test('local events are only published to public emitter', async () => {
-    const localEmitter = vi.spyOn(pushEventAggregator, 'emit');
-    const publicEmitter = vi.spyOn(eventAggregator, 'emit');
+    const localEmitter = jest.spyOn(pushEventAggregator, 'emit');
+    const publicEmitter = jest.spyOn(eventAggregator, 'emit');
     const clientId = clientSettings.getState().clientId;
 
     emitEvent('notifications.seen.all', { client_id: clientId, notification_id: 'uuid' }, 'local');
@@ -144,8 +143,8 @@ describe('.handleAblyEvent', () => {
   });
 
   test('remote events are published to internal and public emitter', async () => {
-    const localEmitter = vi.spyOn(pushEventAggregator, 'emit');
-    const publicEmitter = vi.spyOn(eventAggregator, 'emit');
+    const localEmitter = jest.spyOn(pushEventAggregator, 'emit');
+    const publicEmitter = jest.spyOn(eventAggregator, 'emit');
     const clientId = faker.random.alphaNumeric(10);
 
     await handleAblyEvent({

@@ -1,5 +1,4 @@
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';

@@ -3,7 +3,7 @@ import { CategoryChannelPreference } from '@magicbell/react-headless/src/types/I
 import { screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
 
 import CategoryPreferences from '../../../../src/components/UserPreferencesPanel/CategoryPreferences';
 import { renderWithProviders as render } from '../../../__utils__/render';
@@ -66,13 +66,13 @@ describe('CategoryPreferences component', () => {
       });
     });
 
-    afterEach(() => vi.clearAllMocks());
+    afterEach(() => jest.clearAllMocks());
 
     test('updates the preferences for the inbox channel of the Comments category', async () => {
       render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
 
       const { result } = renderHook(() => useNotificationPreferences());
-      const spy = vi.spyOn(result.current, 'save');
+      const spy = jest.spyOn(result.current, 'save');
 
       const inAppCheckbox = screen.getAllByRole('checkbox')[0];
       await userEvent.click(inAppCheckbox);

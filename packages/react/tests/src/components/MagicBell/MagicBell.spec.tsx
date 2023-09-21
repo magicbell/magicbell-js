@@ -4,7 +4,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import faker from 'faker';
 import * as React from 'react';
-import { vi } from 'vitest';
 
 import MagicBell from '../../../../src';
 import Text from '../../../../src/components/Text';
@@ -140,7 +139,7 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
 });
 
 test('calls the onToggle callback when the button is clicked', async () => {
-  const onToggle = vi.fn();
+  const onToggle = jest.fn();
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onToggle={onToggle} defaultIsOpen>
@@ -185,7 +184,7 @@ test('sets the external id header for fetching from the API', async () => {
 });
 
 test('calls the onNewNotification callback when a new notification is received', () => {
-  const onNewNotification = vi.fn();
+  const onNewNotification = jest.fn();
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onNewNotification={onNewNotification}>

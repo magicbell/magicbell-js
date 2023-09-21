@@ -266,7 +266,7 @@ describe('stores', () => {
       });
 
       it('resets the collection', async () => {
-        const spy = vi.spyOn(store, 'fetch');
+        const spy = jest.spyOn(store, 'fetch');
         await store.fetchAndReset({ title: 'Lorem ipsum dolor' });
 
         expect(spy).toHaveBeenCalledTimes(1);

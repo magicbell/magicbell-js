@@ -1,7 +1,6 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { beforeAll } from 'vitest';
 
 import useNotification from '../../../src/hooks/useNotification';
 import clientSettings from '../../../src/stores/clientSettings';
@@ -34,7 +33,7 @@ describe('hooks', () => {
       describe('no callback function is provided', () => {
         it('marks the notification as seen', async () => {
           const { result, unmount } = renderHook(() => useNotification(notifications[0]));
-          const spy = vi.spyOn(result.current, 'markAsSeen');
+          const spy = jest.spyOn(result.current, 'markAsSeen');
 
           await act(async () => {
             await unmount();
@@ -47,7 +46,7 @@ describe('hooks', () => {
 
       describe('a callback function is provided', () => {
         it('invockes the callback function', async () => {
-          const unmountCallback = vi.fn();
+          const unmountCallback = jest.fn();
           const { unmount } = renderHook(() => useNotification(notifications[0], unmountCallback));
 
           await act(async () => {
@@ -58,9 +57,9 @@ describe('hooks', () => {
         });
 
         it('does not mark the notification as seen', async () => {
-          const unmountCallback = vi.fn();
+          const unmountCallback = jest.fn();
           const { result, unmount } = renderHook(() => useNotification(notifications[0], unmountCallback));
-          const spy = vi.spyOn(result.current, 'markAsSeen');
+          const spy = jest.spyOn(result.current, 'markAsSeen');
 
           await act(async () => {
             await unmount();

@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
+      - uses: actions/checkout@v4
+      - uses: bahmutov/npm-install@v1
 
   eslint:
     name: ESLint
@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
+      - uses: actions/checkout@v4
+      - uses: bahmutov/npm-install@v1
       - name: Lint
         run: yarn lint:eslint
 
@@ -40,8 +40,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
+      - uses: actions/checkout@v4
+      - uses: bahmutov/npm-install@v1
         # we need to upgrade to Node16 module resolution so TSC can use package.json#exports
       - name: Build
         run: yarn build
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
+      - uses: actions/checkout@v4
+      - uses: bahmutov/npm-install@v1
       - run: yarn test:ci
         timeout-minutes: 10

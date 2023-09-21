@@ -1,31 +1,8 @@
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { basename } from 'path';
 
 import { Client as Client } from './client';
-import { Resource } from './resource';
-
-// @ts-expect-error import.meta.glob does exist in vite!
-const resources: [string, Resource][] = Object.entries(import.meta.glob('./resources/*.ts', { eager: true })).map(
-  ([path, module]) => [
-    basename(path, '.ts').replace(/(-\w)/g, (k) => k[1].toUpperCase()),
-    Object.values(module).find((x) => x.prototype instanceof Resource),
-  ],
-);
 
 const server = setupMockServer(...mockHandlers);
-
-test('client instance provides access to known resources', () => {
-  const client = new Client({
-    apiKey: 'my-api-key',
-  });
-
-  expect(resources.length).toBeGreaterThanOrEqual(0);
-
-  // dynamically verify that all Resources in /resources are added to the client.
-  for (const [name, Class] of resources) {
-    expect(client[name]).toBeInstanceOf(Class);
-  }
-});
 
 test('initialization throws an error if required props are not provided', () => {
   expect(() => new Client({} as any)).toThrow(

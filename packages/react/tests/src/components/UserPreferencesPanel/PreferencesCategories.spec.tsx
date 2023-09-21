@@ -2,7 +2,7 @@ import { useNotificationPreferences } from '@magicbell/react-headless';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { vi } from 'vitest';
+import * as React from 'react';
 
 import PreferencesCategories from '../../../../src/components/UserPreferencesPanel/PreferencesCategories';
 import { renderWithProviders as render } from '../../../__utils__/render';
@@ -26,7 +26,7 @@ describe('PreferencesCategories component', () => {
       });
     });
 
-    afterEach(() => vi.clearAllMocks());
+    afterEach(() => jest.clearAllMocks());
 
     // Note: It is also important that these are physically ordered correctly.
     // How do we check for this using @testing-library/react?
@@ -68,7 +68,7 @@ describe('PreferencesCategories component', () => {
     });
 
     test('it calls the onChange callback when preferences are changed', async () => {
-      const onChangeSpy = vi.fn();
+      const onChangeSpy = jest.fn();
       render(<PreferencesCategories onChange={onChangeSpy} />);
 
       const checkboxes = screen.getAllByRole('checkbox');
