@@ -1,9 +1,11 @@
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
 import FetchErrorMessage from '../../../../../src/components/NotificationInbox/error/FetchErrorMessage';
 import { renderWithProviders as render } from '../../../../__utils__/render';
 
+setupMockServer(...mockHandlers);
 test('renders an api error when notifications cannot be retrieved', () => {
   jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true);
   render(<FetchErrorMessage />);

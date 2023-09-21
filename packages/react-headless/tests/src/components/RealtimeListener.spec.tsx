@@ -2,7 +2,7 @@ import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
-import React, { useEffect } from 'react';
+import * as React from 'react';
 
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
@@ -28,7 +28,7 @@ describe('components', () => {
     beforeEach(() => {
       const RealtimeComponent = () => {
         const collection = useNotificationStoresCollection();
-        useEffect(() => {
+        React.useEffect(() => {
           collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
           // Adding collection to the deps, will cause an infinite loop
           // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -14,7 +14,10 @@ import IRemoteNotification from '../types/IRemoteNotification';
  */
 export default function RealtimeListener() {
   const collection = useNotificationStoresCollection();
-  const client = clientSettings.getState().getClient();
+  const settings = clientSettings.getState();
+  const client = settings.getClient();
+  const apiKey = settings.apiKey;
+  const user = settings.userExternalId || settings.userEmail;
 
   const fetchAndResetAll = () => collection.fetchAllStores({ page: 1 }, { reset: true });
   const fetchAndPrependAll = () => collection.fetchAllStores({ page: 1 }, { prepend: true });
@@ -23,6 +26,7 @@ export default function RealtimeListener() {
   const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data, { persist: false });
 
   useEffect(() => {
+    if (!apiKey || !user) return;
     const listen = client.listen();
 
     listen.forEach((event) => {
@@ -30,7 +34,7 @@ export default function RealtimeListener() {
     });
 
     return () => listen.close();
-  }, [client]);
+  }, [client, apiKey, user]);
 
   useMagicBellEvent('reconnected', fetchAndResetAll);
   useMagicBellEvent('notifications.new', fetchAndPrependAll, { source: 'remote' });

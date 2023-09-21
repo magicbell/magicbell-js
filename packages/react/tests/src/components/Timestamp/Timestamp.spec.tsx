@@ -1,8 +1,11 @@
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import Timestamp from '../../../../src/components/Timestamp';
 import { renderWithProviders } from '../../../__utils__/render';
+
+setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   jest.useFakeTimers();

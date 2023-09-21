@@ -1,9 +1,12 @@
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
 
 import CloseBannerButton from '../../../../src/components/EnablePushNotificationsBanner/CloseBannerButton';
 import { renderWithProviders as render } from '../../../__utils__/render';
+
+setupMockServer(...mockHandlers);
 
 test('renders a close button', async () => {
   const onClick = jest.fn();

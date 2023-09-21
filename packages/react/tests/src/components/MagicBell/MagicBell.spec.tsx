@@ -2,7 +2,7 @@ import { eventAggregator } from '@magicbell/react-headless';
 import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import faker from 'faker';
+import * as faker from 'faker';
 import * as React from 'react';
 
 import MagicBell from '../../../../src';

@@ -1,11 +1,14 @@
 import { useConfig } from '@magicbell/react-headless';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
 
 import EnablePushNotificationsBanner from '../../../../src/components/EnablePushNotificationsBanner/EnablePushNotificationsBanner';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
+
+setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   localStorage.clear();

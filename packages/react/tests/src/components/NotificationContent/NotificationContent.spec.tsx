@@ -1,4 +1,5 @@
 import { useNotificationFactory } from '@magicbell/react-headless';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import * as React from 'react';
@@ -6,6 +7,8 @@ import * as React from 'react';
 import { NotificationContent } from '../../../../src';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+
+setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   jest.useFakeTimers();
