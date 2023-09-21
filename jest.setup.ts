@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -22,3 +23,9 @@ beforeEach(() => {
   useConfig.setState({ lastFetchedAt: Date.now() });
   useNotificationPreferences.setState({ lastFetchedAt: Date.now() });
 });
+
+const _log = console.log;
+console.log = (...args: any[]) => {
+  if (String(args[0]).startsWith('sse error:')) return;
+  _log(...args);
+}
