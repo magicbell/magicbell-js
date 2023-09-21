@@ -92,7 +92,7 @@ export default defineConfig(async ({ mode, command }) => {
     },
     test: {
       globals: true,
-      environment: 'jsdom',
+      environment: 'happy-dom',
       setupFiles: resolve(__dirname, 'test.setup.js'),
       restoreMocks: true,
       mockReset: true,

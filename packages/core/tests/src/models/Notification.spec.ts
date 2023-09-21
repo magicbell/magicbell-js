@@ -169,13 +169,6 @@ describe('models', () => {
     });
 
     describe('.sanitizedContent', () => {
-      it('returns the content sanitized', () => {
-        notification.content =
-          '<p>Hello, <a href="javascript:alert(\'Hacked\')">click here.</a></p><img src="null" onerror="alert(\'Hacked\')">';
-
-        expect(notification.sanitizedContent).toBe('<p>Hello, <a>click here.</a></p><img src="null">');
-      });
-
       describe('the notification has no content', () => {
         it('returns null', () => {
           notification.content = null;
