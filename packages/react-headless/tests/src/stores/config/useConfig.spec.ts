@@ -1,15 +1,14 @@
 import faker from '@faker-js/faker';
-import { fake, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import * as humps from 'humps';
 import { useEffect } from 'react';
-import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import useConfig from '../../../../src/stores/config';
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   clientSettings.setState({

@@ -1,9 +1,10 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { CategoryChannelPreference } from '@magicbell/react-headless/src/types/IRemoteNotificationPreferences';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
 
 import CategoryPreferences from '../../../../src/components/UserPreferencesPanel/CategoryPreferences';
 import { renderWithProviders as render } from '../../../__utils__/render';
@@ -13,6 +14,8 @@ import {
   threeChannelPreference,
   twoChannelPreference,
 } from '../../../factories/NotificationPreferencesFactory';
+
+setupMockServer(...mockHandlers);
 
 // NOTE: The order in the channels array greatly matters. This order defines
 // the order of the columns displayed in the UI. Changing that order may affect
@@ -66,13 +69,13 @@ describe('CategoryPreferences component', () => {
       });
     });
 
-    afterEach(() => vi.clearAllMocks());
+    afterEach(() => jest.clearAllMocks());
 
     test('updates the preferences for the inbox channel of the Comments category', async () => {
       render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
 
       const { result } = renderHook(() => useNotificationPreferences());
-      const spy = vi.spyOn(result.current, 'save');
+      const spy = jest.spyOn(result.current, 'save');
 
       const inAppCheckbox = screen.getAllByRole('checkbox')[0];
       await userEvent.click(inAppCheckbox);

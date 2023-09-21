@@ -1,4 +1,4 @@
-import { setupMockServer } from '@magicbell/utils';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { MockedRequest } from 'msw';
 
 import { Client } from './client';
@@ -6,7 +6,7 @@ import { ASYNC_ITERATOR_SYMBOL } from './paginate';
 import { Resource } from './resource';
 import { RequestOptions } from './types';
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 function pagedResponse({ total_pages, per_page }: { total_pages: number; per_page: number }) {
   return (req: MockedRequest) => {

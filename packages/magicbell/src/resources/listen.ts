@@ -132,7 +132,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
         pushMessage({ value: null, done: true });
       } else {
         // eslint-disable-next-line no-console
-        console.log('err', msg);
+        console.log('sse error:', msg);
       }
     };
   }

@@ -18,8 +18,14 @@ const customLocale = {
 function App() {
   return (
     <div id="target">
-      <MagicBell apiKey="api-key-here" userEmail="stephan@magicbell.io" userKey="..." locale={customLocale}>
-        {(props) => <FloatingNotificationInbox height={450} {...props} />}
+      <MagicBell
+        serverURL="https://api.magicbell.dev"
+        apiKey="024b10085bb148d918afe3d92f42b1eba16ad0bd"
+        userEmail="stephan@magicbell.io"
+        locale={customLocale}
+        defaultIsOpen={true}
+      >
+        {(props) => <FloatingNotificationInbox height={450} {...props} isOpen />}
       </MagicBell>
     </div>
   );

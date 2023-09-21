@@ -1,9 +1,8 @@
 import faker from '@faker-js/faker';
-import { fake, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { waitFor } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
 import dayjs from 'dayjs';
-import { beforeEach, vi } from 'vitest';
 
 import { useNotification } from '../../../../src';
 import useNotifications from '../../../../src/hooks/useNotifications';
@@ -15,13 +14,15 @@ import NotificationFactory from '../../../factories/NotificationFactory';
 
 const fiveSecondsAgo = () => Math.floor(Date.now() / 1_000) - 5_000;
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
-  clientSettings.setState({
-    serverURL: 'https://api.magicbell.com',
-    apiKey: 'fake-key',
-    userEmail: faker.internet.email(),
+  act(() => {
+    clientSettings.setState({
+      serverURL: 'https://api.magicbell.com',
+      apiKey: 'fake-key',
+      userEmail: faker.internet.email(),
+    });
   });
 });
 
@@ -436,7 +437,10 @@ describe('useNotificationStoresCollection', () => {
       server.intercept('get', '/notifications', { status: 403 });
 
       const { result } = renderHook(() => useNotificationStoresCollection());
-      result.current.setStore('default', {});
+
+      act(() => {
+        result.current.setStore('default', {});
+      });
 
       await expect(result.current.fetchStore('default')).rejects.toThrow('Request failed with status code 403');
     });
@@ -469,7 +473,7 @@ describe('useNotificationStoresCollection', () => {
     });
 
     it('emits the "notifications.seen" event', async () => {
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -516,7 +520,7 @@ describe('useNotificationStoresCollection', () => {
     });
 
     it('emits the "notifications.read" event', async () => {
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -562,7 +566,7 @@ describe('useNotificationStoresCollection', () => {
     });
 
     it('emits the "notifications.unread" event', async () => {
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -630,7 +634,7 @@ describe('useNotificationStoresCollection', () => {
     });
 
     it('emits the "notifications.deleted" event', async () => {
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -648,7 +652,7 @@ describe('useNotificationStoresCollection', () => {
     it('makes a request to the server', async () => {
       server.intercept('post', '/notifications/seen', { status: 204 });
 
-      const spy = vi.spyOn(ajax, 'postAPI');
+      const spy = jest.spyOn(ajax, 'postAPI');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -682,7 +686,7 @@ describe('useNotificationStoresCollection', () => {
     it('emits the "notifications.seen.all" event', async () => {
       server.intercept('post', '/notifications/seen', { status: 204 });
 
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -715,7 +719,7 @@ describe('useNotificationStoresCollection', () => {
     it('does not make a request to the server when persist is set to false', async () => {
       server.intercept('post', '/notifications/seen', { status: 204 });
 
-      const spy = vi.spyOn(ajax, 'postAPI');
+      const spy = jest.spyOn(ajax, 'postAPI');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -730,7 +734,7 @@ describe('useNotificationStoresCollection', () => {
     it('does not emit any event', async () => {
       server.intercept('post', '/notifications/seen', { status: 204 });
 
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -747,7 +751,7 @@ describe('useNotificationStoresCollection', () => {
     it('makes a request to the server', async () => {
       server.intercept('post', '/notifications/read', { status: 204 });
 
-      const spy = vi.spyOn(ajax, 'postAPI');
+      const spy = jest.spyOn(ajax, 'postAPI');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -781,7 +785,7 @@ describe('useNotificationStoresCollection', () => {
     it('emits the "notifications.read.all" event', async () => {
       server.intercept('post', '/notifications/read', { status: 204 });
 
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -812,7 +816,7 @@ describe('useNotificationStoresCollection', () => {
     it('does not make a request to the server when persist is false', async () => {
       server.intercept('post', '/notifications/read', { status: 204 });
 
-      const spy = vi.spyOn(ajax, 'postAPI');
+      const spy = jest.spyOn(ajax, 'postAPI');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {
@@ -827,7 +831,7 @@ describe('useNotificationStoresCollection', () => {
     it('does not emit any event', async () => {
       server.intercept('post', '/notifications/read', { status: 204 });
 
-      const spy = vi.spyOn(eventAggregator, 'emit');
+      const spy = jest.spyOn(eventAggregator, 'emit');
       const { result } = renderHook(() => useNotificationStoresCollection());
 
       await act(async () => {

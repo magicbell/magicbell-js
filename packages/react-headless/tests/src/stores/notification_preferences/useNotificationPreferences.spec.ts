@@ -1,15 +1,14 @@
 import faker from '@faker-js/faker';
-import { fake, setupMockServer } from '@magicbell/utils';
+import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act } from '@testing-library/react-hooks';
 import * as humps from 'humps';
-import { beforeEach } from 'vitest';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import useNotificationPreferences from '../../../../src/stores/notification_preferences';
 import { CategoryChannelPreference } from '../../../../src/types/IRemoteNotificationPreferences';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   clientSettings.setState({

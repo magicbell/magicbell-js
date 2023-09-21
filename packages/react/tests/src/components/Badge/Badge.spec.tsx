@@ -1,8 +1,11 @@
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
 import UnseenBadge from '../../../../src/components/Badge';
 import { renderWithProviders as render } from '../../../__utils__/render';
+
+setupMockServer(...mockHandlers);
 
 test('renders the notification count', () => {
   render(<UnseenBadge count={3} />);

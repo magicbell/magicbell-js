@@ -1,8 +1,8 @@
 import faker from '@faker-js/faker';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render, RenderResult } from '@testing-library/react';
 import { act, renderHook } from '@testing-library/react-hooks';
-import React, { useEffect } from 'react';
-import { beforeAll } from 'vitest';
+import * as React from 'react';
 
 import RealtimeListener from '../../../src/components/RealtimeListener';
 import * as ajax from '../../../src/lib/ajax';
@@ -10,6 +10,8 @@ import { emitEvent } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
+
+setupMockServer(...mockHandlers);
 
 beforeAll(() => {
   clientSettings.setState({
@@ -26,7 +28,7 @@ describe('components', () => {
     beforeEach(() => {
       const RealtimeComponent = () => {
         const collection = useNotificationStoresCollection();
-        useEffect(() => {
+        React.useEffect(() => {
           collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
           // Adding collection to the deps, will cause an infinite loop
           // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,7 +47,7 @@ describe('components', () => {
     describe('realtime events', () => {
       describe('reconnected', () => {
         it('fetches notifications', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('reconnected', null, 'local');
@@ -58,7 +60,7 @@ describe('components', () => {
 
       describe('notifications.new', () => {
         it('fetches notifications', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.new', { id: 'uuid' }, 'remote');
@@ -71,7 +73,7 @@ describe('components', () => {
         it('prepends the new notifications', async () => {
           const notification = NotificationFactory.build();
           const { result, waitForNextUpdate } = renderHook(() => useNotificationStoresCollection());
-          const spy = vi.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
+          const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
 
           act(() => {
             emitEvent('notifications.new', notification, 'remote');
@@ -95,7 +97,7 @@ describe('components', () => {
         });
 
         it('does not make a post request to avoid infinite loops', () => {
-          const spy = vi.spyOn(ajax, 'postAPI');
+          const spy = jest.spyOn(ajax, 'postAPI');
 
           act(() => {
             emitEvent('notifications.seen.all', null, 'remote');
@@ -120,7 +122,7 @@ describe('components', () => {
         });
 
         it('does not make a post request to avoid infinite loops', () => {
-          const spy = vi.spyOn(ajax, 'postAPI');
+          const spy = jest.spyOn(ajax, 'postAPI');
 
           act(() => {
             emitEvent('notifications.read.all', null, 'remote');
@@ -133,7 +135,7 @@ describe('components', () => {
 
       describe('notifications.read', () => {
         it('fetches notifications', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.read', { id: 'uuid' }, 'remote');
@@ -146,7 +148,7 @@ describe('components', () => {
 
       describe('notifications.unread', () => {
         it('fetches notifications', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
 
           act(() => {
             emitEvent('notifications.unread', { id: 'uuid' }, 'remote');

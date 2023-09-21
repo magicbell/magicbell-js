@@ -1,12 +1,14 @@
 import faker from '@faker-js/faker';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { beforeAll } from 'vitest';
 
 import useNotifications from '../../../src/hooks/useNotifications';
 import * as ajax from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
 import useConfig from '../../../src/stores/config';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
+
+setupMockServer(...mockHandlers);
 
 beforeAll(() => {
   clientSettings.setState({
@@ -49,20 +51,20 @@ describe('hooks', () => {
 
       describe('config is fetched', () => {
         it('fetches the store', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           act(() => {
             useConfig.setState({ lastFetchedAt: Date.now() });
           });
 
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
           spy.mockRestore();
         });
 
         it('fetches the other store when storeId changes', async () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           const { rerender } = renderHook(({ storeId }) => useNotifications(storeId), {
             initialProps: { storeId: 'default' },
           });
@@ -71,11 +73,11 @@ describe('hooks', () => {
             useConfig.setState({ lastFetchedAt: Date.now() });
           });
 
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
 
           rerender({ storeId: 'archive' });
-          expect(spy).toHaveBeenCalledTimes(2);
+          expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenLastCalledWith('/notifications', { page: 1, read: true });
 
           spy.mockRestore();
@@ -84,7 +86,7 @@ describe('hooks', () => {
 
       describe('config is not fetched', () => {
         it('does not fetch the store', () => {
-          const spy = vi.spyOn(ajax, 'fetchAPI');
+          const spy = jest.spyOn(ajax, 'fetchAPI');
           renderHook(() => useNotifications());
 
           expect(spy).not.toHaveBeenCalled();

@@ -1,5 +1,4 @@
-import { setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';
@@ -12,7 +11,7 @@ beforeEach(() => {
   });
 });
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 test('get returns the result in camel case', async () => {
   server.intercept('get', '/notifications/1', { status: 200, json: { notification: { category_slug: 'email' } } });

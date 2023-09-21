@@ -1,6 +1,5 @@
 import faker from '@faker-js/faker';
-import { setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
 import clientSettings from '../../../src/stores/clientSettings';
@@ -13,7 +12,7 @@ beforeEach(() => {
   });
 });
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 describe('.deleteAPI', () => {
   it('deleteAPI sends a DELETE request', async () => {

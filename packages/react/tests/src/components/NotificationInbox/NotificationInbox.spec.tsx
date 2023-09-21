@@ -3,7 +3,6 @@ import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/uti
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
-import { vi } from 'vitest';
 
 import MagicBellProvider from '../../../../src/components/MagicBellProvider';
 import NotificationInbox from '../../../../src/components/NotificationInbox';
@@ -12,6 +11,7 @@ import ConfigFactory, { sampleConfig } from '../../../factories/ConfigFactory';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
 const server = setupMockServer(
+  ...mockHandlers,
   mockHandler('get', '/notifications', {
     ...fake.notificationPage,
     notifications: [sampleNotification],
@@ -19,9 +19,6 @@ const server = setupMockServer(
   mockHandler('get', '/notification_preferences', {
     notification_preferences: fake.notificationPreferences,
   }),
-  mockHandlers.getConfig,
-  mockHandlers.ablyAuth,
-  mockHandlers.ablyRequestToken,
 );
 
 beforeEach(() => {
@@ -52,7 +49,7 @@ test('renders nothing if the notification store does not exist', () => {
 });
 
 test('clicking the mark-all-read button invokes the onAllRead callback', async () => {
-  const onAllRead = vi.fn();
+  const onAllRead = jest.fn();
 
   render(<NotificationInbox onAllRead={onAllRead} height={300} />);
 
@@ -98,7 +95,7 @@ test('can render the inbox in Spanish', async () => {
 });
 
 test('invokes the onAllRead callback when clicking the `mark all read` button', async () => {
-  const onAllRead = vi.fn();
+  const onAllRead = jest.fn();
   render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
 
   const markAllReadButton = await screen.findByRole('button', { name: /Mark all read/ });

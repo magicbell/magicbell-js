@@ -1,11 +1,10 @@
 import faker from '@faker-js/faker';
-import { fake, setupMockServer } from '@magicbell/utils';
-import { beforeEach } from 'vitest';
+import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import clientSettings from '../../../../src/stores/clientSettings';
 import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository';
 
-const server = setupMockServer();
+const server = setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   clientSettings.setState({
