@@ -1,9 +1,7 @@
-import * as Ably from 'ably';
 import mitt from 'mitt';
 
 import clientSettings from '../stores/clientSettings';
 import NotificationRepository from '../stores/notifications/NotificationRepository';
-import { WebSocketConfig } from '../types/IRemoteConfig';
 
 export function getAuthHeaders() {
   const { apiKey, userEmail, userExternalId, userKey } = clientSettings.getState();
@@ -38,27 +36,6 @@ export const eventAggregator = mitt();
 export type EventSource = 'local' | 'remote';
 
 /**
- * Open an authenticated connection to ably.
- *
- * @param config The configuration used to open the connection.
- */
-export function connectToAbly(config: WebSocketConfig) {
-  const { serverURL } = clientSettings.getState();
-  const authUrl = `${serverURL}/${config.authUrl?.replace(/^\//, '')}`;
-  const authHeaders = getAuthHeaders();
-
-  const client = new Ably.Realtime({
-    authUrl,
-    authHeaders,
-    authMethod: 'POST',
-    log: { level: 0 },
-    transports: ['web_socket'],
-  });
-
-  return client;
-}
-
-/**
  * Publish events to the internal and public event emitter, based on the event source.
  *
  * @param event The name of the event.
@@ -82,7 +59,7 @@ export function emitEvent(event: string, data: unknown, source: EventSource) {
  *
  * @param event The realtime event
  */
-export function handleAblyEvent(event: Ably.Types.Message) {
+export function handleAblyEvent(event: { name: string; data: Record<string, unknown> }) {
   const { clientId } = clientSettings.getState();
   const eventName = event.name.replace(/\//gi, '.');
   const eventData = event.data;
