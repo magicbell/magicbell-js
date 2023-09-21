@@ -5,6 +5,7 @@ export const config = {
   ws: {
     region: 'eu',
     auth_url: '/ws/auth',
+    channel: '',
   },
   channels: [],
 };

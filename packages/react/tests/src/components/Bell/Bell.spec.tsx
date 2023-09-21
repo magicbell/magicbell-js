@@ -1,4 +1,5 @@
 import { buildStore, useConfig, useNotification, useNotificationStoresCollection } from '@magicbell/react-headless';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, screen, waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import userEvent from '@testing-library/user-event';
@@ -8,6 +9,8 @@ import Bell from '../../../../src/components/Bell';
 import { defaultTheme } from '../../../../src/context/Theme';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
+
+setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
 
 test('renders the notification button', () => {
   render(<Bell onClick={vi.fn()} />);

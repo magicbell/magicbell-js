@@ -1,9 +1,13 @@
 import faker from '@faker-js/faker';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
+import { vi } from 'vitest';
 
 import { MagicBellProvider, useConfig } from '../../../../src';
 import * as ajax from '../../../../src/lib/ajax';
+
+setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
 
 describe('components', () => {
   describe('MagicBellProvider', () => {

@@ -1,14 +1,14 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
-import { setupMockServer } from '@magicbell/utils';
+import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import { vi } from 'vitest';
 
 import PreferencesCategories from '../../../../src/components/UserPreferencesPanel/PreferencesCategories';
 import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
 
-setupMockServer();
+setupMockServer(mockHandlers.getConfig, mockHandlers.ablyAuth, mockHandlers.ablyRequestToken);
 
 describe('PreferencesCategories component', () => {
   describe('no categories', () => {
