@@ -56,5 +56,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: bahmutov/npm-install@v1
+      - run: yarn build
       - run: yarn test:ci
         timeout-minutes: 10
