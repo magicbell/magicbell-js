@@ -1,5 +1,20 @@
 # @magicbell/magicbell-react
 
+## 10.9.0
+
+### Minor Changes
+
+- [#185](https://github.com/magicbell-io/magicbell-js/pull/185) [`78b62cb`](https://github.com/magicbell-io/magicbell-js/commit/78b62cb571aba9d5eeb96015491b1cfbbb1c7fb8) Thanks [@smeijer](https://github.com/smeijer)! - Listen to realtime events using SSE, and drop the Ably dependency
+
+### Patch Changes
+
+- [#188](https://github.com/magicbell-io/magicbell-js/pull/188) [`f12d410`](https://github.com/magicbell-io/magicbell-js/commit/f12d4107bca195936832a466ec846fe0b657871a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `dayjs` to `^1.11.10`.
+
+- Updated dependencies [[`78b62cb`](https://github.com/magicbell-io/magicbell-js/commit/78b62cb571aba9d5eeb96015491b1cfbbb1c7fb8), [`f12d410`](https://github.com/magicbell-io/magicbell-js/commit/f12d4107bca195936832a466ec846fe0b657871a)]:
+  - @magicbell/react-headless@4.4.0
+
 ## 10.8.3
 
 ### Patch Changes
