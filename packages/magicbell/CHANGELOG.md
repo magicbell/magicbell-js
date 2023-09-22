@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.3.1
+
+### Patch Changes
+
+- [#189](https://github.com/magicbell-io/magicbell-js/pull/189) [`c6054af`](https://github.com/magicbell-io/magicbell-js/commit/c6054afd4db0879b51ee4142d8295766cf983043) Thanks [@smeijer](https://github.com/smeijer)! - support react strict mode
+
 ## 2.3.0
 
 ### Minor Changes
