@@ -8,8 +8,8 @@ on:
       - 'next'
       - 'alpha'
       - 'beta'
-      - 'changeset-release/**'
       - 'renovate/**'
+      - '!changeset-release/**'
       - '!all-contributors/**'
   pull_request:
     types: [opened, synchronize, reopened]
