@@ -30,6 +30,7 @@ export default function RealtimeListener() {
     const listen = client.listen();
 
     listen.forEach((event) => {
+      if (!event) return;
       void handleAblyEvent(event);
     });
 
