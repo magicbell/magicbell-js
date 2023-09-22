@@ -1,5 +1,13 @@
 # @magicbell/core
 
+## 5.0.8
+
+### Patch Changes
+
+- [#188](https://github.com/magicbell-io/magicbell-js/pull/188) [`f12d410`](https://github.com/magicbell-io/magicbell-js/commit/f12d4107bca195936832a466ec846fe0b657871a) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `dayjs` to `^1.11.10`.
+
 ## 5.0.7
 
 ### Patch Changes
