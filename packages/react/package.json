@@ -92,7 +92,7 @@
     "tiny-warning": "^1.0.3",
     "tinycolor2": "^1.4.2",
     "tslib": "^2.3.1",
-    "zustand": "^3.6.4"
+    "zustand": "^3.7.2"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"
