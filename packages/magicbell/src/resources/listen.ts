@@ -51,7 +51,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
 
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
-  let disposed = false;
+  let activeCount = 0;
 
   const pushMessage = (p) => {
     messages.push(p);
@@ -64,6 +64,8 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
 
   // accept callback or yield
   async function connect(options?: RequestOptions) {
+    activeCount++;
+
     // invoke optional config request in the background, as we only need it after the ably authentication
     if (!channels && !configPromise) {
       configPromise = client
@@ -101,7 +103,11 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     }
 
     // dispose could've been called while we were waiting for the config request to finish
-    if (disposed) return;
+    if (activeCount < 1) return;
+
+    // new eventsource, flush all messages so we don't auto close this immediately
+    // because of stuck { done: true } messages in React.StrictMode
+    messages.length = 0;
     eventSource = new EventSource(url.toString());
 
     // handle incoming messages
@@ -143,12 +149,19 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     const asyncIteratorNext = async () => {
       if (!messages.length) await new Promise((r) => (resolve = r));
       const event = messages.pop();
+      // It's weird that `event` can be undefined? We don't push empty messages
+      // This happens when running in <React.StrictMode />. I guess there are
+      // two instances resolving the promise above, the second resolve results
+      // in no content. See this github pr for more context:
+      // https://github.com/magicbell-io/magicbell-js/pull/189
+
+      if (!event) return { done: false, value: '' };
       if (event.done && eventSource) eventSource.close();
       return event;
     };
 
     const dispose = () => {
-      disposed = true;
+      activeCount--;
       eventSource?.close();
       // push to resolve async iterators, return for sync ones
       pushMessage({ done: true, value: undefined });
