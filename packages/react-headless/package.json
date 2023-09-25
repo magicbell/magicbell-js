@@ -85,7 +85,7 @@
     "tiny-invariant": "^1.2.0",
     "tiny-warning": "^1.0.3",
     "tslib": "^2.3.1",
-    "zustand": "^3.7.2"
+    "zustand": "^3.6.4"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"

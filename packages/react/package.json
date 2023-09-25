@@ -58,7 +58,7 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.23.0",
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.198",
@@ -92,7 +92,7 @@
     "tiny-warning": "^1.0.3",
     "tinycolor2": "^1.4.2",
     "tslib": "^2.3.1",
-    "zustand": "^3.7.2"
+    "zustand": "^3.6.4"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"
