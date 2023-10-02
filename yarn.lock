@@ -4258,7 +4258,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.167", "@types/lodash@^4.14.199":
+"@types/lodash@^4.14.167", "@types/lodash@^4.14.198", "@types/lodash@^4.14.199":
   version "4.14.199"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.199.tgz#c3edb5650149d847a277a8961a7ad360c474e9bf"
   integrity sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==
@@ -4460,10 +4460,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/sinon@^10.0.16":
-  version "10.0.16"
-  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-10.0.16.tgz#4bf10313bd9aa8eef1e50ec9f4decd3dd455b4d3"
-  integrity sha512-j2Du5SYpXZjJVJtXBokASpPRj+e2z+VUhCPHmM6WMfe3dpHu6iVKJMU6AiBcMp/XTAYnEj6Wc1trJUWwZ0QaAQ==
+"@types/sinon@^10.0.18":
+  version "10.0.18"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-10.0.18.tgz#659d2059c2206162e111dfaa2d8e9e9837c68212"
+  integrity sha512-OpQC9ug8BcnNxue2WF5aTruMaDRFn6NyfaE4DmAKOlQMn54b7CnCvDFV3wj5fk/HbSSTYmOYs2bTb5ShANjyQg==
   dependencies:
     "@types/sinonjs__fake-timers" "*"
 
