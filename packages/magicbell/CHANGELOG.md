@@ -1,5 +1,22 @@
 # magicbell
 
+## 2.4.0
+
+### Minor Changes
+
+- [#192](https://github.com/magicbell-io/magicbell-js/pull/192) [`725ab1a`](https://github.com/magicbell-io/magicbell-js/commit/725ab1ad14619341beee9d4422da9ecce27a7e7e) Thanks [@smeijer](https://github.com/smeijer)! - Custom errors now include a `responseBody` property that holds the returned response
+  from the API, when available. Custom errors are now also exported so they can be
+  used with comparisons like `err instanceof MagicBellError`. Note that all errors
+  extend the `MagicBellError` base class.
+
+  They're exported from the root and `/errors`. For the sake of tree shaking, we
+  recommend using the latter.
+
+  ```ts
+  import { MagicBellError, UnauthorizedError } from 'magicbell';
+  import { MagicBellError, UnauthorizedError } from 'magicbell/errors';
+  ```
+
 ## 2.3.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @magicbell/cli
 
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies [[`725ab1a`](https://github.com/magicbell-io/magicbell-js/commit/725ab1ad14619341beee9d4422da9ecce27a7e7e)]:
+  - magicbell@2.4.0
+
 ## 2.2.2
 
 ### Patch Changes

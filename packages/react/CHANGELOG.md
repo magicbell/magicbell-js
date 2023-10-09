@@ -1,5 +1,12 @@
 # @magicbell/magicbell-react
 
+## 10.9.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @magicbell/react-headless@4.4.2
+
 ## 10.9.1
 
 ### Patch Changes
