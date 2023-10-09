@@ -78,6 +78,7 @@ export class Client {
           type: error['type'],
           status: error?.response?.status,
           statusText: error?.response?.statusText,
+          responseBody: body,
           ...body?.errors?.[0],
         });
       });

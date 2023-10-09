@@ -988,6 +988,38 @@ for await (let event of client.listen()) {
 }
 ```
 
+## Errors
+
+Errors returned by the SDK are instances of `MagicBellError`. This is a subclass of the native `Error` class, and contains the properties defined below. Error types can be imported from `magicbell/errors`.
+
+- **message** _String_
+
+  A human-readable message providing more details about the error.
+
+- **code** _String_
+
+  A short machine-readable string identifying the error.
+
+- **status** _Number_
+
+  The HTTP status code returned by the API.
+
+- **statusText** _String_
+
+  The HTTP status text returned by the API.
+
+- **responseBody** _unknown_
+
+  The raw response body returned by the API
+
+- **suggestion** _String_
+
+  A suggestion to resolve the error.
+
+- **docsUrl** _String_
+
+  A link to the documentation for the error.
+
 ## Support
 
 New features and bug fixes are released on the latest major version of the `magicbell` package. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.

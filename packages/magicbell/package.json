@@ -31,6 +31,11 @@
       "types": "./dist/crypto.d.ts",
       "import": "./dist/crypto.mjs",
       "require": "./dist/crypto.cjs"
+    },
+    "./errors": {
+      "types": "./dist/errors.d.ts",
+      "import": "./dist/errors.mjs",
+      "require": "./dist/errors.cjs"
     }
   },
   "publishConfig": {
@@ -64,6 +69,7 @@
     "build:entry:project-client": "cross-env ENTRY=src/project-client.ts vite build",
     "build:entry:user-client": "cross-env ENTRY=src/user-client.ts vite build",
     "build:entry:crypto": "cross-env ENTRY=src/crypto.ts vite build",
+    "build:entry:errors": "cross-env ENTRY=src/errors.ts vite build",
     "generate:resources": "tsx scripts/generate-resources.ts",
     "start": "npm run clean && run-p 'build:entry:* --watch'",
     "size": "size-limit"
