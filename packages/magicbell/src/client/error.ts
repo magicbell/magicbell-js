@@ -1,6 +1,5 @@
 'use strict';
 
-// TODO: sync & cleanup
 export function createError(rawError: ErrorConfig) {
   for (const field of ['code', 'type', 'status']) {
     switch (rawError[field]) {
@@ -34,6 +33,7 @@ type ErrorConfig = {
   help_link?: string;
   status?: number;
   statusText?: string;
+  responseBody?: unknown;
   message: string;
   suggestion?: string;
 };
@@ -42,15 +42,50 @@ type ErrorConfig = {
  * BaseError is the base error from which all other more specific errors derive.
  * Specifically for errors returned from REST API.
  */
-class BaseError extends Error {
+export class MagicBellError extends Error {
+  /**
+   * The name of the error.
+   */
   name: string;
+  /**
+   * The error message returned by the REST API.
+   */
   message: string;
+  /**
+   * The type of the error.
+   */
   type?: string;
-  docs_url?: string;
+  /**
+   * The URL to the documentation for the error.
+   */
+  docsUrl?: string;
+  /**
+   * The error code returned by the REST API.
+   */
   code?: string;
+  /**
+   * The HTTP status code returned by the REST API.
+   */
   status?: number;
+  /**
+   * The HTTP status text returned by the REST API.
+   */
   statusText?: string;
+  /**
+   * A suggestion on how to fix the error.
+   */
   suggestion?: string;
+  /**
+   * The raw response body returned by the REST API.
+   */
+  responseBody?: unknown;
+
+  /**
+   * @deprecated - use docsUrl instead
+   */
+  get docs_url() {
+    return this.docsUrl;
+  }
 
   constructor(raw: ErrorConfig) {
     super(raw.message);
@@ -59,19 +94,20 @@ class BaseError extends Error {
     this.code = raw.code;
     this.status = raw.status;
     this.statusText = raw.statusText;
+    this.responseBody = raw.responseBody;
     this.message = raw.message;
     this.suggestion = raw.suggestion;
-    this.docs_url = raw.docs_url || raw.help_link;
+    this.docsUrl = raw.docs_url || raw.help_link;
   }
 }
 
-export class InvalidRequestError extends BaseError {}
-export class UserInputError extends BaseError {}
-export class APIError extends BaseError {}
-export class AuthenticationError extends BaseError {}
-export class PermissionError extends BaseError {}
-export class RateLimitError extends BaseError {}
-export class ConnectionError extends BaseError {}
-export class IdempotencyError extends BaseError {}
-export class UnknownError extends BaseError {}
-export class NotFoundError extends BaseError {}
+export class InvalidRequestError extends MagicBellError {}
+export class UserInputError extends MagicBellError {}
+export class APIError extends MagicBellError {}
+export class AuthenticationError extends MagicBellError {}
+export class PermissionError extends MagicBellError {}
+export class RateLimitError extends MagicBellError {}
+export class ConnectionError extends MagicBellError {}
+export class IdempotencyError extends MagicBellError {}
+export class UnknownError extends MagicBellError {}
+export class NotFoundError extends MagicBellError {}
