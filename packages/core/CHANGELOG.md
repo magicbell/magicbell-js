@@ -1,5 +1,13 @@
 # @magicbell/core
 
+## 5.0.9
+
+### Patch Changes
+
+- [#191](https://github.com/magicbell-io/magicbell-js/pull/191) [`9c30c22`](https://github.com/magicbell-io/magicbell-js/commit/9c30c22f9f0a7e9facf10e89d8777a1eed4ce03d) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/rosie` to `^0.0.43`.
+
 ## 5.0.8
 
 ### Patch Changes
