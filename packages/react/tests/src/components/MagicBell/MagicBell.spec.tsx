@@ -153,6 +153,52 @@ test('calls the onToggle callback when the button is clicked', async () => {
   expect(onToggle).toHaveBeenCalledTimes(1);
 });
 
+test('supports controlled state', async () => {
+  function App() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const open = () => setIsOpen(true);
+    const close = () => setIsOpen(false);
+    const toggle = () => setIsOpen((open) => !open);
+
+    return (
+      <>
+        <button type="button" onClick={open}>
+          open
+        </button>
+        <button type="button" onClick={close}>
+          close
+        </button>
+        <button type="button" onClick={toggle}>
+          toggle
+        </button>
+
+        <MagicBell apiKey="__API_KEY__" userEmail="__USER_EMAIL__" onToggle={toggle} isOpen={isOpen}>
+          {(props) => <div data-testid="children" {...props} />}
+        </MagicBell>
+      </>
+    );
+  }
+
+  render(<App />);
+
+  expect(screen.queryByTestId('children')).not.toBeInTheDocument();
+
+  const button = screen.getByRole('button', { name: 'open' });
+  await userEvent.click(button);
+  expect(screen.getByTestId('children')).toBeInTheDocument();
+
+  const closeButton = screen.getByRole('button', { name: 'close' });
+  await userEvent.click(closeButton);
+  expect(screen.queryByTestId('children')).not.toBeInTheDocument();
+
+  const toggleButton = screen.getByRole('button', { name: 'toggle' });
+  await userEvent.click(toggleButton);
+  expect(screen.getByTestId('children')).toBeInTheDocument();
+  await userEvent.click(toggleButton);
+  expect(screen.queryByTestId('children')).not.toBeInTheDocument();
+});
+
 test('sets the headers for fetching from the API', async () => {
   const status = server.intercept('all', '/notifications', fake.notificationPage);
 
