@@ -62,7 +62,7 @@
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.198",
-    "@types/rosie": "^0.0.42",
+    "@types/rosie": "^0.0.43",
     "@types/sinon": "^10.0.18",
     "@types/tinycolor2": "^1.4.2",
     "codecov": "^3.8.3",
