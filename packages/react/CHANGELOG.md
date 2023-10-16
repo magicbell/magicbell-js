@@ -1,5 +1,39 @@
 # @magicbell/magicbell-react
 
+## 10.9.3
+
+### Patch Changes
+
+- [#194](https://github.com/magicbell-io/magicbell-js/pull/194) [`12dbaed`](https://github.com/magicbell-io/magicbell-js/commit/12dbaed2ce4d8b19d7090b568a1ce0e9e510b1e6) Thanks [@smeijer](https://github.com/smeijer)! - Add `isOpen` prop to `MagicBell` provider, together with the existing `onToggle` prop, this allows for controlled open/closed states.
+
+  ```tsx
+  function App() {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const open = () => setIsOpen(true);
+    const close = () => setIsOpen(false);
+    const toggle = () => setIsOpen((open) => !open);
+
+    return (
+      <>
+        <button type="button" onClick={open}>
+          open
+        </button>
+        <button type="button" onClick={close}>
+          close
+        </button>
+        <button type="button" onClick={toggle}>
+          toggle
+        </button>
+
+        <MagicBell apiKey="__API_KEY__" userEmail="__USER_EMAIL__" onToggle={toggle} isOpen={isOpen}>
+          {(props) => <FloatingNotificationInbox height={450} {...props} />}
+        </MagicBell>
+      </>
+    );
+  }
+  ```
+
 ## 10.9.2
 
 ### Patch Changes
