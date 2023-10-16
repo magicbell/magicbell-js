@@ -41,6 +41,7 @@ export type Props = {
   disableRealtime?: boolean;
   onNewNotification?: (notification: IRemoteNotification) => void;
   onToggle?: (isOpen: boolean) => void;
+  isOpen?: boolean;
   bellCounter?: 'unread' | 'unseen';
 } & ({ userExternalId: string } | { userEmail: string });
 
@@ -61,6 +62,7 @@ const defaultInbox = (props) => <FloatingNotificationInbox height={500} {...prop
  * @param props.locale Locale to use in the components
  * @param props.onNewNotification Function called when a notification is created.
  * @param props.onToggle Function called when the bell is clicked.
+ * @param props.isOpen Whether the notification inbox is open or not, use to control state.
  * @param props.bellCounter Counter to show in the bell. If set to 'unread' it will show the number of unread notifications.
  *
  * @example
@@ -80,14 +82,21 @@ export default function MagicBell({
   onNewNotification,
   onToggle,
   bellCounter = 'unseen',
+  isOpen: externalIsOpen,
   ...settings
 }: Props) {
   const launcherRef = useRef(null);
-  const [isOpen, toggleChildren] = useToggle(defaultIsOpen);
+  const isControlled = typeof externalIsOpen !== 'undefined';
+
+  const [internalIsOpen, toggleInternal] = useToggle(defaultIsOpen);
+  const isOpen = isControlled ? externalIsOpen : internalIsOpen;
 
   const handleToggle = () => {
-    toggleChildren();
-    onToggle?.(isOpen);
+    if (!isControlled) {
+      toggleInternal();
+    }
+
+    onToggle?.(!isOpen);
   };
 
   const handleNewNotification = (notification: IRemoteNotification) => {

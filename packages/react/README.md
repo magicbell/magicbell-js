@@ -81,6 +81,7 @@ These are all the properties accepted by this component.
 | `defaultIsOpen`     | `boolean`                                          | An optional flag to set the default visibility state of the element returned by the children function. It is `false` by default.                                  |
 | `onNewNotification` | `(notification) => void`                           | An optional function called when a new notification arrives.                                                                                                      |
 | `onToggle`          | `(isOpen) => void`                                 | An optional function called when the bell is clicked.                                                                                                             |
+| `isOpen`            | `boolean`                                          | An optional flag to control the visibility state of the element returned by the children function.                                                                |
 | `bellCounter`       | `string`                                           | Counter to show in the bell. If set to 'unread' it will show the number of unread notifications. It is set to 'unseen' by default.                                |
 
 ### Children function
