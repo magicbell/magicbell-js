@@ -10,6 +10,13 @@ type Config = {
   website_push_id: string;
 };
 
+type SubscribeOptions = {
+  token: string;
+  project: string;
+  serviceWorkerPath?: string;
+  host?: string;
+};
+
 type Subscription = {
   created_at: string;
   device_token: string;
@@ -19,10 +26,52 @@ type Subscription = {
   user_id: string;
 };
 
+type AuthTokenOptions = {
+  host?: string;
+  apiKey: string;
+} & ({ userEmail: string; userHmac?: string } | { userExternalId: string; userHmac?: string });
+
 let _config: Config | null = null;
 let _cacheKey = '';
 
+const DEFAULT_HOST = 'https://api.magicbell.com';
+
 const api = {
+  async getAuthToken(options: AuthTokenOptions): Promise<Pick<SubscribeOptions, 'token' | 'project' | 'host'>> {
+    const headers: Record<string, string> = {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      'x-magicbell-api-key': options.apiKey,
+    };
+
+    if ('userExternalId' in options && options.userExternalId) {
+      headers['x-magicbell-user-external-id'] = options.userExternalId;
+    } else if ('userEmail' in options && options.userEmail) {
+      headers['x-magicbell-user-email'] = options.userEmail;
+    } else {
+      throw new Error('Missing user email or external ID');
+    }
+
+    if (options.userHmac) {
+      headers['x-magicbell-user-hmac'] = options.userHmac;
+    }
+
+    return fetch(`${options.host || DEFAULT_HOST}/config`, {
+      method: 'GET',
+      headers: headers,
+    })
+      .then((x) => x.json())
+      .then((x) => {
+        const url = new URL(x.web_push_notifications.subscribe_url);
+
+        return {
+          host: options.host || DEFAULT_HOST,
+          token: url.searchParams.get('access_token') || null,
+          project: url.searchParams.get('project') || null,
+        };
+      });
+  },
+
   async getConfig({ token, project, baseURL }: RequestOptions) {
     const cacheKey = [token, project, baseURL].join('-');
     if (_config && _cacheKey === cacheKey) return _config;
@@ -90,7 +139,7 @@ export function isSupported() {
 }
 
 export async function prefetchConfig(options: SubscribeOptions) {
-  await api.getConfig({ ...options, baseURL: options.host || location.origin });
+  await api.getConfig({ ...options, baseURL: options.host || DEFAULT_HOST });
 }
 
 export async function registerServiceWorker({ path = '/sw.js' }: { path?: string } = {}) {
@@ -104,7 +153,7 @@ export async function registerServiceWorker({ path = '/sw.js' }: { path?: string
  * Checks if the current user has an active push subscription that is registered by MagicBell.
  */
 export async function isSubscribed(options: SubscribeOptions) {
-  const baseURL = options.host || location.origin;
+  const baseURL = options.host || DEFAULT_HOST;
   const subscriptions = await api.getSubscriptions({ ...options, baseURL });
   const currentPushSubscriptionEndpoint = await navigator.serviceWorker?.ready
     .then((sw) => sw.pushManager?.getSubscription())
@@ -115,13 +164,6 @@ export async function isSubscribed(options: SubscribeOptions) {
   );
 }
 
-type SubscribeOptions = {
-  token: string;
-  project: string;
-  host?: string;
-  serviceWorkerPath?: string;
-};
-
 /**
  * Request permission to send push notifications and post the subscription to the MagicBell API.
  */
@@ -130,7 +172,7 @@ export async function subscribe(options: SubscribeOptions) {
     throw new Error('Push notifications are not supported in this browser');
   }
 
-  const baseURL = options.host || location.origin;
+  const baseURL = options.host || DEFAULT_HOST;
   const config = await api.getConfig({ ...options, baseURL });
   const registration = await registerServiceWorker({ path: options.serviceWorkerPath });
 
@@ -152,4 +194,8 @@ export async function subscribe(options: SubscribeOptions) {
   }
 
   await api.updateSubscription({ ...options, baseURL }, subscription);
+}
+
+export async function getAuthToken(options: AuthTokenOptions) {
+  return api.getAuthToken(options);
 }

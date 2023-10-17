@@ -18,14 +18,59 @@ yarn add @magicbell/webpush
 
 ## Usage
 
+Note that some of our endpoints used for push subscriptions, require a JWT for authentication. This is because we often want to show the "enable push subscriptions" button in a dialog (`window.open`), but we don't want to expose the `userMac` to the client via browser history. Therefore, we need to authenticate the request with a JWT token, which expires and thereby is relatively safe to expose to the client via the address bar.
+
+Use the `getAuthToken` request to exchange the API Key based credentials for a JWT based token. Then use the `subscribe` request to subscribe the user to push notifications.
+
+### Get a JWT token
+
+To get a JWT token, you need to [authenticate][authentication] against the MagicBell API. You can do this by using your API key and user credentials. You only need to provide either `userEmail` or `userExternalId` and optionally - but recommended - `userHmac`. The latter is used for [HMAC authentication][hmac-authentication].
+
+```js
+import { getAuthToken } from '@magicbell/webpush';
+
+// authenticate user by external id
+getAuthToken({
+  apiKey: '024…0bd',
+  userExternalId: 'user_123',
+  userHmac: 'NCI…I6M',
+});
+
+// or based by their email address
+getAuthToken({
+  apiKey: '024…0bd',
+  userEmail: 'person@example.com',
+  userHmac: 'NCI…I6M',
+});
+```
+
+#### Options
+
+**apiKey** _String_
+
+Your MagicBell API key. You can find it in the [MagicBell dashboard][dashboard].
+
+**userEmail** _String_
+
+The email address of the user you want to authenticate. Required if no `userExternalId` is provided.
+
+**userExternalId** _String_
+
+The external ID of the user you want to authenticate. Required if no `userEmail` is provided.
+
+**userHmac** _String_
+
+The HMAC signature of the user you want to authenticate. Required if you want to use [HMAC authentication][hmac-authentication].
+
 ### Subscribe
+
+Subscribe the user to push notifications. This method will register a service worker if it isn't already registered. The service worker will be registered at the path provided in the `serviceWorkerPath` option. If the service worker is already registered, it will be used to subscribe the user.
 
 ```js
 import { subscribe } from '@magicbell/webpush';
 
 subscribe({
   token: 'jwt-token',
-  host: 'https://api.magicbell.com',
   project: 'string',
   serviceWorkerPath: '/sw.js',
 });
@@ -36,10 +81,6 @@ subscribe({
 **token** _String_
 
 The JWT token you received from the MagicBell API. This token is used to authenticate the request.
-
-**host** _String_
-
-Optional. The host of the MagicBell API. Defaults to `https://api.magicbell.com`.
 
 **project** _String_
 
@@ -82,7 +123,6 @@ import { prefetchConfig } from '@magicbell/webpush';
 
 prefetchConfig({
   token: 'jwt-token',
-  host: 'https://api.magicbell.com',
   project: 'string',
   serviceWorkerPath: '/sw.js',
 });
@@ -97,7 +137,6 @@ import { isSubscribed } from '@magicbell/webpush';
 
 const subscribed = await isSubscribed({
   token: 'jwt-token',
-  host: 'https://api.magicbell.com',
   project: 'string',
 });
 
@@ -118,5 +157,6 @@ Credit where credits due, this package is inspired by and based on the [Stripe N
 
 [dashboard]: https://app.magicbell.com
 [idempotent-requests]: https://www.magicbell.com/docs/rest-api/idempotent-requests
+[authentication]: https://www.magicbell.com/docs/api-authentication
 [hmac-authentication]: https://www.magicbell.com/docs/hmac-authentication
 [api-reference]: https://www.magicbell.com/docs/rest-api/reference
