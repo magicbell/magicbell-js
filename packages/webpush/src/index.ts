@@ -91,7 +91,7 @@ const api = {
       });
   },
 
-  async getSubscriptions({ token, project, baseURL }: RequestOptions) {
+  async getSubscriptions({ token, project, baseURL }: RequestOptions): Promise<Array<Subscription>> {
     const config = await this.getConfig({ token, project, baseURL });
     if (!config.project.api_key) throw new Error('Missing API key');
     const headers: Record<string, string> = {
@@ -152,16 +152,14 @@ export async function registerServiceWorker({ path = '/sw.js' }: { path?: string
 /**
  * Checks if the current user has an active push subscription that is registered by MagicBell.
  */
-export async function isSubscribed(options: SubscribeOptions) {
+export async function isSubscribed(options: SubscribeOptions): Promise<boolean> {
   const baseURL = options.host || DEFAULT_HOST;
   const subscriptions = await api.getSubscriptions({ ...options, baseURL });
-  const currentPushSubscriptionEndpoint = await navigator.serviceWorker?.ready
-    .then((sw) => sw.pushManager?.getSubscription())
-    .then((x) => x?.endpoint);
-  return (
-    Boolean(currentPushSubscriptionEndpoint) &&
-    subscriptions.some((subscription: Subscription) => subscription.device_token === currentPushSubscriptionEndpoint)
-  );
+  const registration = await registerServiceWorker({ path: options.serviceWorkerPath });
+  const activeSubscription = await registration.pushManager.getSubscription();
+
+  if (!activeSubscription?.endpoint) return false;
+  return subscriptions.some((subscription) => subscription.device_token === activeSubscription.endpoint);
 }
 
 /**
