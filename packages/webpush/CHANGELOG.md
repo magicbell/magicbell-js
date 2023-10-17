@@ -1,5 +1,33 @@
 # @magicbell/webpush
 
+## 1.4.0
+
+### Minor Changes
+
+- [#197](https://github.com/magicbell-io/magicbell-js/pull/197) [`947f177`](https://github.com/magicbell-io/magicbell-js/commit/947f17789da9508f6ed561e1e6666964068e98ad) Thanks [@smeijer](https://github.com/smeijer)! - Add `getAuthToken` function to exchange API Key based user credentials for jwt token.
+
+  ```js
+  import { getAuthToken } from '@magicbell/webpush';
+
+  // authenticate user by external id
+  getAuthToken({
+    apiKey: '024…0bd',
+    userExternalId: 'user_123',
+    userHmac: 'NCI…I6M',
+  });
+
+  // or based by their email address
+  getAuthToken({
+    apiKey: '024…0bd',
+    userEmail: 'person@example.com',
+    userHmac: 'NCI…I6M',
+  });
+  ```
+
+### Patch Changes
+
+- [#199](https://github.com/magicbell-io/magicbell-js/pull/199) [`669e353`](https://github.com/magicbell-io/magicbell-js/commit/669e353af6facb124e1e608e23c69e46ff56a736) Thanks [@smeijer](https://github.com/smeijer)! - fix issue in `isSubscribed` method that caused it to be stuck waiting for the service worker `ready` event when no service worker was registered.
+
 ## 1.3.1
 
 ### Patch Changes
