@@ -58,10 +58,10 @@
     }
   ],
   "devDependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.0",
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/faker": "^5.5.9",
-    "@types/lodash": "^4.14.198",
+    "@types/lodash": "^4.14.200",
     "@types/rosie": "^0.0.43",
     "@types/sinon": "^10.0.18",
     "@types/tinycolor2": "^1.4.2",

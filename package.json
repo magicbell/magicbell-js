@@ -42,7 +42,7 @@
     "node": ">=12"
   },
   "dependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.0",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.24.4",
     "@manypkg/cli": "^0.19.1",
