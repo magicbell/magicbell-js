@@ -1,5 +1,11 @@
 # magicbell
 
+## 2.4.1
+
+### Patch Changes
+
+- [#201](https://github.com/magicbell-io/magicbell-js/pull/201) [`5c8f4c9`](https://github.com/magicbell-io/magicbell-js/commit/5c8f4c902294c68a002d55c2e3ee340ffb30758c) Thanks [@smeijer](https://github.com/smeijer)! - ensure request uses custom timeout
+
 ## 2.4.0
 
 ### Minor Changes
