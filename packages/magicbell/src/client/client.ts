@@ -59,6 +59,7 @@ export class Client {
         // all methods, as post get idempotency keys
         methods: ['get', 'post', 'put', 'head', 'delete', 'options', 'trace'],
       },
+      timeout: requestOptions.timeout,
       hooks,
     })
       .then((response) =>
