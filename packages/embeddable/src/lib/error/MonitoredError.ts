@@ -4,7 +4,7 @@ export type Person = Partial<{ id: string }>;
 export type Context = Partial<{ apiKey: string; userKey: string; userExternalId: string }>;
 
 export default abstract class MonitoredError {
-  token = '7ebe517baa624c3e9dfdbb3c294698f6';
+  token = '0bf03f4da9d240eeab24c5e1d590b404';
 
   /**
    * Report an error to the error monitoring service.
