@@ -110,6 +110,26 @@ List all notification broadcasts. Broadcasts are sorted in descending order by t
 magicbell broadcasts list
 ```
 
+#### Create broadcasts
+
+Create a broadcast and send a notification to one or multiple users. You can identify users by their email address or by an external_id.
+
+You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
+
+You can send user attributes like first_name, custom_attributes, and more when creating a broadcast.
+
+A new notification will be shown in the inbox of each recipient in real-time. It will also be delivered to each recipient through all channels you have enabled for your project.
+
+```shell
+magicbell broadcasts create  \
+  --title 'We\'re processing your order'  \
+  --content '<p>Thank you for your order. We\'ll notify you when these items are ready.</p>'  \
+  --category 'order_created'  \
+  --topic 'order:33098'  \
+  --recipients 'dan@example.com'  \
+  --overrides '{"channels":{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}}'
+```
+
 #### Fetch a notification broadcast by its ID
 
 Fetch a notification broadcast by its ID.
@@ -147,7 +167,7 @@ magicbell notifications create  \
   --category 'order_created'  \
   --topic 'order:33098'  \
   --recipients 'dan@example.com'  \
-  --overrides '{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}'
+  --overrides '{"channels":{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}}'
 ```
 
 ### Users

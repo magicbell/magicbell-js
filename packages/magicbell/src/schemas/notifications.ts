@@ -103,6 +103,8 @@ export const CreateNotificationsPayloadSchema = {
 
       items: {
         type: 'object',
+        description:
+          'A recipient is a user, a segment (specified by matches), or a topic. For guidance on selecting a primary identifier, see https://www.magicbell.com/docs/choosing-an-identifier',
         additionalProperties: true,
 
         properties: {
@@ -114,8 +116,7 @@ export const CreateNotificationsPayloadSchema = {
 
           external_id: {
             type: 'string',
-            description:
-              "A unique string that MagicBell can utilize to uniquely identify the user. We recommend setting this attribute to the ID of the user in your database. Provide the external id if the user's email is unavailable.",
+            description: 'The unique identifier from your database for the recipient.',
             nullable: true,
           },
 
@@ -123,6 +124,11 @@ export const CreateNotificationsPayloadSchema = {
             type: 'string',
             description:
               'An SQL-like expression to match users by their stored attributes. Set it to "*" to send a notification to all users.',
+          },
+
+          topic: {
+            type: 'object',
+            description: 'The topic to send the notification to. It can be a user, a segment or a group.',
           },
         },
       },

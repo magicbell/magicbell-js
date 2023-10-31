@@ -10,6 +10,8 @@ import { BroadcastsNotifications } from './broadcasts/notifications';
 
 type ListBroadcastsResponse = FromSchema<typeof schemas.ListBroadcastsResponseSchema>;
 type ListBroadcastsPayload = FromSchema<typeof schemas.ListBroadcastsPayloadSchema>;
+type CreateBroadcastsResponse = FromSchema<typeof schemas.CreateBroadcastsResponseSchema>;
+type CreateBroadcastsPayload = FromSchema<typeof schemas.CreateBroadcastsPayloadSchema>;
 type GetBroadcastsResponse = FromSchema<typeof schemas.GetBroadcastsResponseSchema>;
 
 export class Broadcasts extends Resource {
@@ -51,11 +53,43 @@ export class Broadcasts extends Resource {
   }
 
   /**
+   * Create a broadcast and send a notification to one or multiple users. You can
+   * identify users by their email address or by an external_id.
+   *
+   * You don't have to import your users into MagicBell. If a user does not exist
+   * we'll create it automatically.
+   *
+   * You can send user attributes like first_name, custom_attributes, and more when
+   * creating a broadcast.
+   *
+   * A new notification will be shown in the inbox of each recipient in real-time. It
+   * will also be delivered to each recipient through all channels you have enabled
+   * for your project.
+   *
+   * @param data
+   * @param options - override client request options.
+   * @returns A broadcast is a precursor to a notification. When you specify multiple
+   *   recipients, MagicBell creates a notification for each recipient and delivers it
+   *   to them based on their preferences.
+   **/
+  create(data: CreateBroadcastsPayload, options?: RequestOptions): Promise<CreateBroadcastsResponse> {
+    return this.request(
+      {
+        method: 'POST',
+      },
+      data,
+      options,
+    );
+  }
+
+  /**
    * Fetch a notification broadcast by its ID.
    *
    * @param broadcastId - ID of the notification broadcast.
    * @param options - override client request options.
-   * @returns
+   * @returns A broadcast is a precursor to a notification. When you specify multiple
+   *   recipients, MagicBell creates a notification for each recipient and delivers it
+   *   to them based on their preferences.
    **/
   get(broadcastId: string, options?: RequestOptions): Promise<GetBroadcastsResponse> {
     return this.request(
