@@ -358,20 +358,9 @@ const magicbell = new ProjectClient({
 
 ### Broadcasts
 
-#### List notification broadcasts
-
-List all notification broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
-
-```js
-await magicbell.broadcasts.list({
-  page: 1,
-  per_page: 1,
-});
-```
-
 #### Create broadcasts
 
-Create a broadcast and send a notification to one or multiple users. You can identify users by their email address or by an external_id.
+Create a broadcast to send notifications to upto a 1,000 recipients - users or topic subscribers. You can identify users by their email address or by an external_id.
 
 You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
 
@@ -413,9 +402,20 @@ await magicbell.broadcasts.create({
 });
 ```
 
-#### Fetch a notification broadcast by its ID
+#### List broadcasts
 
-Fetch a notification broadcast by its ID.
+List all broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
+
+```js
+await magicbell.broadcasts.list({
+  page: 1,
+  per_page: 1,
+});
+```
+
+#### Fetch a broadcast by its ID
+
+Fetch a broadcast by its ID.
 
 ```js
 await magicbell.broadcasts.get('{broadcast_id}');
@@ -425,61 +425,12 @@ await magicbell.broadcasts.get('{broadcast_id}');
 
 #### Fetch notifications by broadcast id.
 
-Fetch the notifications on a notification broadcast.
+Fetch the notifications for a broadcast.
 
 ```js
 await magicbell.broadcasts.notifications.list('{broadcast_id}', {
   page: 1,
   per_page: 1,
-});
-```
-
-### Notifications
-
-#### Create notifications
-
-Send a notification to one or multiple users. You can identify users by their email address or by an external_id.
-
-You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
-
-You can send user attributes like first_name, custom_attributes, and more when creating a notification.
-
-The new notification will be shown in the notification inbox of each recipient in real-time. It will also be delivered to each recipient through all channels you have enabled for your MagicBell project.
-
-```js
-await magicbell.notifications.create({
-  title: "We're processing your order",
-  content: "<p>Thank you for your order. We'll notify you when these items are ready.</p>",
-  category: 'order_created',
-  topic: 'order:33098',
-  recipients: [
-    {
-      email: 'dan@example.com',
-    },
-    {
-      external_id: '83d987a-83fd034',
-      first_name: 'Hana',
-      last_name: 'Mohan',
-      custom_attributes: {
-        plan: 'enterprise',
-        pricing_version: 'v10',
-        preferred_pronoun: 'She',
-      },
-      phone_numbers: ['+15005550001'],
-    },
-    {
-      matches: 'custom_attributes.order.id = 88492',
-    },
-  ],
-  overrides: {
-    channels: {
-      email: {
-        title: "[MagicBell] We're processing your order",
-        content:
-          "Thank you for your order. If you need help, or have any questions please don't hesitate to reach out to us directly at hello@magicbell.com",
-      },
-    },
-  },
 });
 ```
 
@@ -686,7 +637,7 @@ await magicbell.imports.get('{import_id}');
 
 #### Get notification metrics
 
-Query the metrics of notification broadcasts and their recipients.
+Query the metrics of broadcasts and their recipients.
 
 ```js
 await magicbell.metrics.get();
@@ -696,7 +647,7 @@ await magicbell.metrics.get();
 
 #### Get notification metrics grouped by category
 
-Query the metrics of notification broadcasts and their recipients, grouped by category.
+Query the metrics of broadcasts and their recipients, grouped by category.
 
 ```js
 await magicbell.metrics.categories.get();
@@ -706,7 +657,7 @@ await magicbell.metrics.categories.get();
 
 #### Get notification metrics grouped by topic
 
-Query the metrics of notification broadcasts and their recipients, grouped by topic.
+Query the metrics of broadcasts and their recipients, grouped by topic.
 
 ```js
 await magicbell.metrics.topics.get();
@@ -735,9 +686,9 @@ const magicbell = new UserClient({
 
 ### Notifications
 
-#### Fetch notifications
+#### Fetch notifications for a user
 
-Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
+Fetch a user's notifications. Notifications are sorted in descending order by the sent_at timestamp.
 
 ```js
 await magicbell.notifications.list({

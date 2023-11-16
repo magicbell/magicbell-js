@@ -17,7 +17,7 @@ export class Metrics extends Resource {
   topics = new MetricsTopics(this.client);
 
   /**
-   * Query the metrics of notification broadcasts and their recipients.
+   * Query the metrics of broadcasts and their recipients.
    *
    * @param options - override client request options.
    * @returns

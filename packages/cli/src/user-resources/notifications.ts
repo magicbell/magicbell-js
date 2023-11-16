@@ -9,7 +9,7 @@ export const notifications = createCommand('notifications').description('Manage 
 
 notifications
   .command('list')
-  .description('Fetch notifications')
+  .description('Fetch notifications for a user')
   .option(
     '--per-page <integer>',
     'A limit on the number of notifications to be returned. It can range between 1 and 100, and the default is 15.',

@@ -18,7 +18,7 @@ export class Notifications extends Resource {
   entity = 'notification';
 
   /**
-   * Fetch a user's notifications. Notifications are sorted in descendent order by
+   * Fetch a user's notifications. Notifications are sorted in descending order by
    * the sent_at timestamp.
    *
    * @param options - override client request options.
@@ -27,7 +27,7 @@ export class Notifications extends Resource {
   list(options?: RequestOptions): IterablePromise<ListNotificationsResponse>;
 
   /**
-   * Fetch a user's notifications. Notifications are sorted in descendent order by
+   * Fetch a user's notifications. Notifications are sorted in descending order by
    * the sent_at timestamp.
    *
    * @param data

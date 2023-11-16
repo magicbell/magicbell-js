@@ -102,17 +102,9 @@ All project scoped commands require an active session authenticated by the api s
 
 ### Broadcasts
 
-#### List notification broadcasts
-
-List all notification broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
-
-```shell
-magicbell broadcasts list
-```
-
 #### Create broadcasts
 
-Create a broadcast and send a notification to one or multiple users. You can identify users by their email address or by an external_id.
+Create a broadcast to send notifications to upto a 1,000 recipients - users or topic subscribers. You can identify users by their email address or by an external_id.
 
 You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
 
@@ -130,9 +122,17 @@ magicbell broadcasts create  \
   --overrides '{"channels":{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}}'
 ```
 
-#### Fetch a notification broadcast by its ID
+#### List broadcasts
 
-Fetch a notification broadcast by its ID.
+List all broadcasts. Broadcasts are sorted in descending order by the sent_at timestamp.
+
+```shell
+magicbell broadcasts list
+```
+
+#### Fetch a broadcast by its ID
+
+Fetch a broadcast by its ID.
 
 ```shell
 magicbell broadcasts get <broadcast-id>
@@ -142,32 +142,10 @@ magicbell broadcasts get <broadcast-id>
 
 #### Fetch notifications by broadcast id.
 
-Fetch the notifications on a notification broadcast.
+Fetch the notifications for a broadcast.
 
 ```shell
 magicbell broadcasts notifications list <broadcast-id>
-```
-
-### Notifications
-
-#### Create notifications
-
-Send a notification to one or multiple users. You can identify users by their email address or by an external_id.
-
-You don't have to import your users into MagicBell. If a user does not exist we'll create it automatically.
-
-You can send user attributes like first_name, custom_attributes, and more when creating a notification.
-
-The new notification will be shown in the notification inbox of each recipient in real-time. It will also be delivered to each recipient through all channels you have enabled for your MagicBell project.
-
-```shell
-magicbell notifications create  \
-  --title 'We\'re processing your order'  \
-  --content '<p>Thank you for your order. We\'ll notify you when these items are ready.</p>'  \
-  --category 'order_created'  \
-  --topic 'order:33098'  \
-  --recipients 'dan@example.com'  \
-  --overrides '{"channels":{"email":{"title":"[MagicBell] We\'re processing your order","content":"Thank you for your order. If you need help, or have any questions please don\'t hesitate to reach out to us directly at hello@magicbell.com"}}}'
 ```
 
 ### Users
@@ -316,7 +294,7 @@ magicbell imports get <import-id>
 
 #### Get notification metrics
 
-Query the metrics of notification broadcasts and their recipients.
+Query the metrics of broadcasts and their recipients.
 
 ```shell
 magicbell metrics get
@@ -326,7 +304,7 @@ magicbell metrics get
 
 #### Get notification metrics grouped by category
 
-Query the metrics of notification broadcasts and their recipients, grouped by category.
+Query the metrics of broadcasts and their recipients, grouped by category.
 
 ```shell
 magicbell metrics categories get
@@ -336,7 +314,7 @@ magicbell metrics categories get
 
 #### Get notification metrics grouped by topic
 
-Query the metrics of notification broadcasts and their recipients, grouped by topic.
+Query the metrics of broadcasts and their recipients, grouped by topic.
 
 ```shell
 magicbell metrics topics get
@@ -352,9 +330,9 @@ User scoped commands require a user email or external id to be provided. The api
 
 ### User Notifications
 
-#### Fetch notifications
+#### Fetch notifications for a user
 
-Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
+Fetch a user's notifications. Notifications are sorted in descending order by the sent_at timestamp.
 
 ```shell
 magicbell user notifications list

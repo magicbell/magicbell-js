@@ -1,255 +1,4 @@
 // This file is generated. Do not update manually!
-export const ListBroadcastsResponseSchema = {
-  title: 'ListBroadcastsResponseSchema',
-  type: 'object',
-  required: ['broadcasts', 'current_page', 'per_page'],
-
-  properties: {
-    per_page: {
-      type: 'integer',
-      description: 'Number of entities per page.',
-      readOnly: true,
-    },
-
-    current_page: {
-      type: 'integer',
-      description: 'Number of the page returned.',
-      readOnly: true,
-    },
-
-    broadcasts: {
-      type: 'array',
-
-      items: {
-        type: 'object',
-        description:
-          'A broadcast is a precursor to a notification. When you specify multiple recipients, MagicBell creates a notification for each recipient and delivers it to them based on their preferences.',
-        required: ['id', 'title', 'created_at', 'recipients', 'status'],
-        additionalProperties: false,
-
-        properties: {
-          id: {
-            type: 'string',
-            description: 'The unique id for this broadcast.',
-            readOnly: true,
-          },
-
-          title: {
-            type: 'string',
-            description: 'Title of the broadcast.',
-            nullable: false,
-            maxLength: 255,
-          },
-
-          content: {
-            type: 'string',
-            description: 'Content of the broadcast.',
-            nullable: true,
-            maxLength: 4194304,
-          },
-
-          action_url: {
-            type: 'string',
-            format: 'uri',
-            description: 'A URL to redirect the user to when they click the notification in their notification inbox.',
-            nullable: true,
-            maxLength: 2048,
-          },
-
-          category: {
-            type: 'string',
-            description:
-              'Category the notification belongs to. This is useful to allow users to set their preferences.',
-            nullable: true,
-            maxLength: 100,
-          },
-
-          topic: {
-            type: 'string',
-            description:
-              'Topic the notification belongs to. This is useful for creating threads or offering topic level unsubscriptions.',
-            nullable: true,
-            maxLength: 100,
-          },
-
-          custom_attributes: {
-            type: 'object',
-            description:
-              'Nested key-value attributes that can be used for rendering in templates in MagicBell or third-party providers. Limited to 256KB - please see Overrides for another way to send channel specific data.',
-            nullable: true,
-            additionalProperties: true,
-          },
-
-          sent_at: {
-            type: 'string',
-            format: 'date-time',
-            description: 'The timestamp when the notification was sent to its recipients.',
-            readOnly: true,
-            nullable: true,
-          },
-
-          created_at: {
-            type: 'string',
-            format: 'date-time',
-            description: 'The timestamp when the notification was created.',
-            readOnly: true,
-          },
-
-          recipients: {
-            type: 'array',
-            nullable: false,
-            minItems: 1,
-            maxItems: 1000,
-
-            items: {
-              anyOf: [
-                {
-                  type: 'object',
-                  additionalProperties: false,
-                  required: ['topic'],
-
-                  properties: {
-                    topic: {
-                      type: 'object',
-                      description: 'The topic to deliver to.',
-                      nullable: false,
-                      required: ['subscribers'],
-                      additionalProperties: false,
-
-                      properties: {
-                        subscribers: {
-                          type: 'boolean',
-                          description:
-                            'Setting this property triggers delivery to topic subscribers, respecting their unsubscriptions.',
-                          nullable: false,
-                        },
-                      },
-                    },
-                  },
-                },
-                {
-                  type: 'object',
-                  additionalProperties: false,
-                  required: ['matches'],
-
-                  properties: {
-                    matches: {
-                      type: 'string',
-                      description:
-                        'An expression to match users by their stored attributes. Set it to `*` to match all users.',
-                      nullable: false,
-                    },
-                  },
-                },
-                {
-                  type: 'object',
-                  additionalProperties: true,
-                  required: ['email'],
-
-                  properties: {
-                    email: {
-                      type: 'string',
-                      format: 'email',
-                      description: 'The identifying email of the recipient.',
-                      nullable: false,
-                    },
-                  },
-                },
-                {
-                  type: 'object',
-                  additionalProperties: true,
-                  required: ['external_id'],
-
-                  properties: {
-                    external_id: {
-                      type: 'string',
-                      description: 'The identifying external_id of the recipient.',
-                      nullable: false,
-                    },
-                  },
-                },
-              ],
-            },
-          },
-
-          overrides: {
-            type: 'object',
-            additionalProperties: true,
-          },
-
-          status: {
-            type: 'object',
-            required: ['status', 'summary', 'errors'],
-            additionalProperties: true,
-
-            properties: {
-              status: {
-                type: 'string',
-                enum: ['enqueued', 'processing', 'processed'],
-                readOnly: true,
-                nullable: false,
-              },
-
-              summary: {
-                type: 'object',
-                required: ['total', 'failures'],
-                additionalProperties: false,
-
-                properties: {
-                  total: {
-                    type: 'integer',
-                    description: 'The number of recipients that the broadcast was sent to.',
-                    readOnly: true,
-                    nullable: false,
-                  },
-
-                  failures: {
-                    type: 'integer',
-                    description: 'The number of failures while processing the broadcast.',
-                    readOnly: true,
-                    nullable: false,
-                  },
-                },
-              },
-
-              errors: {
-                type: 'array',
-
-                items: {
-                  type: 'object',
-                  additionalProperties: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-} as const;
-
-export const ListBroadcastsPayloadSchema = {
-  title: 'ListBroadcastsPayloadSchema',
-  type: 'object',
-
-  properties: {
-    page: {
-      title: 'page',
-      description: 'The page number of the paginated response. Defaults to 1.',
-      type: 'integer',
-    },
-
-    per_page: {
-      title: 'per_page',
-      description: 'The number of items per page. Defaults to 20.',
-      type: 'integer',
-    },
-  },
-
-  additionalProperties: false,
-  required: [],
-} as const;
-
 export const CreateBroadcastsResponseSchema = {
   title: 'CreateBroadcastsResponseSchema',
   description:
@@ -684,6 +433,257 @@ export const CreateBroadcastsPayloadSchema = {
       },
     },
   },
+} as const;
+
+export const ListBroadcastsResponseSchema = {
+  title: 'ListBroadcastsResponseSchema',
+  type: 'object',
+  required: ['broadcasts', 'current_page', 'per_page'],
+
+  properties: {
+    per_page: {
+      type: 'integer',
+      description: 'Number of entities per page.',
+      readOnly: true,
+    },
+
+    current_page: {
+      type: 'integer',
+      description: 'Number of the page returned.',
+      readOnly: true,
+    },
+
+    broadcasts: {
+      type: 'array',
+
+      items: {
+        type: 'object',
+        description:
+          'A broadcast is a precursor to a notification. When you specify multiple recipients, MagicBell creates a notification for each recipient and delivers it to them based on their preferences.',
+        required: ['id', 'title', 'created_at', 'recipients', 'status'],
+        additionalProperties: false,
+
+        properties: {
+          id: {
+            type: 'string',
+            description: 'The unique id for this broadcast.',
+            readOnly: true,
+          },
+
+          title: {
+            type: 'string',
+            description: 'Title of the broadcast.',
+            nullable: false,
+            maxLength: 255,
+          },
+
+          content: {
+            type: 'string',
+            description: 'Content of the broadcast.',
+            nullable: true,
+            maxLength: 4194304,
+          },
+
+          action_url: {
+            type: 'string',
+            format: 'uri',
+            description: 'A URL to redirect the user to when they click the notification in their notification inbox.',
+            nullable: true,
+            maxLength: 2048,
+          },
+
+          category: {
+            type: 'string',
+            description:
+              'Category the notification belongs to. This is useful to allow users to set their preferences.',
+            nullable: true,
+            maxLength: 100,
+          },
+
+          topic: {
+            type: 'string',
+            description:
+              'Topic the notification belongs to. This is useful for creating threads or offering topic level unsubscriptions.',
+            nullable: true,
+            maxLength: 100,
+          },
+
+          custom_attributes: {
+            type: 'object',
+            description:
+              'Nested key-value attributes that can be used for rendering in templates in MagicBell or third-party providers. Limited to 256KB - please see Overrides for another way to send channel specific data.',
+            nullable: true,
+            additionalProperties: true,
+          },
+
+          sent_at: {
+            type: 'string',
+            format: 'date-time',
+            description: 'The timestamp when the notification was sent to its recipients.',
+            readOnly: true,
+            nullable: true,
+          },
+
+          created_at: {
+            type: 'string',
+            format: 'date-time',
+            description: 'The timestamp when the notification was created.',
+            readOnly: true,
+          },
+
+          recipients: {
+            type: 'array',
+            nullable: false,
+            minItems: 1,
+            maxItems: 1000,
+
+            items: {
+              anyOf: [
+                {
+                  type: 'object',
+                  additionalProperties: false,
+                  required: ['topic'],
+
+                  properties: {
+                    topic: {
+                      type: 'object',
+                      description: 'The topic to deliver to.',
+                      nullable: false,
+                      required: ['subscribers'],
+                      additionalProperties: false,
+
+                      properties: {
+                        subscribers: {
+                          type: 'boolean',
+                          description:
+                            'Setting this property triggers delivery to topic subscribers, respecting their unsubscriptions.',
+                          nullable: false,
+                        },
+                      },
+                    },
+                  },
+                },
+                {
+                  type: 'object',
+                  additionalProperties: false,
+                  required: ['matches'],
+
+                  properties: {
+                    matches: {
+                      type: 'string',
+                      description:
+                        'An expression to match users by their stored attributes. Set it to `*` to match all users.',
+                      nullable: false,
+                    },
+                  },
+                },
+                {
+                  type: 'object',
+                  additionalProperties: true,
+                  required: ['email'],
+
+                  properties: {
+                    email: {
+                      type: 'string',
+                      format: 'email',
+                      description: 'The identifying email of the recipient.',
+                      nullable: false,
+                    },
+                  },
+                },
+                {
+                  type: 'object',
+                  additionalProperties: true,
+                  required: ['external_id'],
+
+                  properties: {
+                    external_id: {
+                      type: 'string',
+                      description: 'The identifying external_id of the recipient.',
+                      nullable: false,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+
+          overrides: {
+            type: 'object',
+            additionalProperties: true,
+          },
+
+          status: {
+            type: 'object',
+            required: ['status', 'summary', 'errors'],
+            additionalProperties: true,
+
+            properties: {
+              status: {
+                type: 'string',
+                enum: ['enqueued', 'processing', 'processed'],
+                readOnly: true,
+                nullable: false,
+              },
+
+              summary: {
+                type: 'object',
+                required: ['total', 'failures'],
+                additionalProperties: false,
+
+                properties: {
+                  total: {
+                    type: 'integer',
+                    description: 'The number of recipients that the broadcast was sent to.',
+                    readOnly: true,
+                    nullable: false,
+                  },
+
+                  failures: {
+                    type: 'integer',
+                    description: 'The number of failures while processing the broadcast.',
+                    readOnly: true,
+                    nullable: false,
+                  },
+                },
+              },
+
+              errors: {
+                type: 'array',
+
+                items: {
+                  type: 'object',
+                  additionalProperties: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+} as const;
+
+export const ListBroadcastsPayloadSchema = {
+  title: 'ListBroadcastsPayloadSchema',
+  type: 'object',
+
+  properties: {
+    page: {
+      title: 'page',
+      description: 'The page number of the paginated response. Defaults to 1.',
+      type: 'integer',
+    },
+
+    per_page: {
+      title: 'per_page',
+      description: 'The number of items per page. Defaults to 20.',
+      type: 'integer',
+    },
+  },
+
+  additionalProperties: false,
+  required: [],
 } as const;
 
 export const GetBroadcastsResponseSchema = {

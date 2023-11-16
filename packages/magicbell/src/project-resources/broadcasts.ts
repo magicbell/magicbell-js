@@ -8,10 +8,10 @@ import { type RequestOptions } from '../client/types';
 import * as schemas from '../schemas/broadcasts';
 import { BroadcastsNotifications } from './broadcasts/notifications';
 
-type ListBroadcastsResponse = FromSchema<typeof schemas.ListBroadcastsResponseSchema>;
-type ListBroadcastsPayload = FromSchema<typeof schemas.ListBroadcastsPayloadSchema>;
 type CreateBroadcastsResponse = FromSchema<typeof schemas.CreateBroadcastsResponseSchema>;
 type CreateBroadcastsPayload = FromSchema<typeof schemas.CreateBroadcastsPayloadSchema>;
+type ListBroadcastsResponse = FromSchema<typeof schemas.ListBroadcastsResponseSchema>;
+type ListBroadcastsPayload = FromSchema<typeof schemas.ListBroadcastsPayloadSchema>;
 type GetBroadcastsResponse = FromSchema<typeof schemas.GetBroadcastsResponseSchema>;
 
 export class Broadcasts extends Resource {
@@ -20,41 +20,9 @@ export class Broadcasts extends Resource {
   notifications = new BroadcastsNotifications(this.client);
 
   /**
-   * List all notification broadcasts. Broadcasts are sorted in descending order by
-   * the sent_at timestamp.
-   *
-   * @param options - override client request options.
-   * @returns
-   **/
-  list(options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
-
-  /**
-   * List all notification broadcasts. Broadcasts are sorted in descending order by
-   * the sent_at timestamp.
-   *
-   * @param data
-   * @param options - override client request options.
-   * @returns
-   **/
-  list(data: ListBroadcastsPayload, options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
-
-  list(
-    dataOrOptions: ListBroadcastsPayload | RequestOptions,
-    options?: RequestOptions,
-  ): IterablePromise<ListBroadcastsResponse> {
-    return this.request(
-      {
-        method: 'GET',
-        paged: true,
-      },
-      dataOrOptions,
-      options,
-    );
-  }
-
-  /**
-   * Create a broadcast and send a notification to one or multiple users. You can
-   * identify users by their email address or by an external_id.
+   * Create a broadcast to send notifications to upto a 1,000 recipients - users or
+   * topic subscribers. You can identify users by their email address or by an
+   * external_id.
    *
    * You don't have to import your users into MagicBell. If a user does not exist
    * we'll create it automatically.
@@ -83,9 +51,42 @@ export class Broadcasts extends Resource {
   }
 
   /**
-   * Fetch a notification broadcast by its ID.
+   * List all broadcasts. Broadcasts are sorted in descending order by the sent_at
+   * timestamp.
    *
-   * @param broadcastId - ID of the notification broadcast.
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
+
+  /**
+   * List all broadcasts. Broadcasts are sorted in descending order by the sent_at
+   * timestamp.
+   *
+   * @param data
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(data: ListBroadcastsPayload, options?: RequestOptions): IterablePromise<ListBroadcastsResponse>;
+
+  list(
+    dataOrOptions: ListBroadcastsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): IterablePromise<ListBroadcastsResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        paged: true,
+      },
+      dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Fetch a broadcast by its ID.
+   *
+   * @param broadcastId - ID of the broadcast.
    * @param options - override client request options.
    * @returns A broadcast is a precursor to a notification. When you specify multiple
    *   recipients, MagicBell creates a notification for each recipient and delivers it

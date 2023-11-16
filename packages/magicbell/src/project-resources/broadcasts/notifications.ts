@@ -15,18 +15,18 @@ export class BroadcastsNotifications extends Resource {
   entity = 'notification';
 
   /**
-   * Fetch the notifications on a notification broadcast.
+   * Fetch the notifications for a broadcast.
    *
-   * @param broadcastId - ID of the notification broadcast.
+   * @param broadcastId - ID of the broadcast.
    * @param options - override client request options.
    * @returns
    **/
   list(broadcastId: string, options?: RequestOptions): IterablePromise<ListBroadcastsNotificationsResponse>;
 
   /**
-   * Fetch the notifications on a notification broadcast.
+   * Fetch the notifications for a broadcast.
    *
-   * @param broadcastId - ID of the notification broadcast.
+   * @param broadcastId - ID of the broadcast.
    * @param data
    * @param options - override client request options.
    * @returns
