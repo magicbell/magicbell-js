@@ -43,7 +43,6 @@ export function parseOptions(obj: Record<string, unknown>) {
       data[key] = recipients.map((r) => {
         // possibly a json string that was already parsed by parseJsonLikes
         if (typeof r !== 'string') return r;
-        if (r.includes('*') || r.includes(' ')) return { matches: r };
         if (r.includes('@')) return { email: r };
         return { external_id: r };
       });

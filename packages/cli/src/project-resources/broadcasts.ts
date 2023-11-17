@@ -20,7 +20,7 @@ broadcasts
   )
   .option(
     '--recipients <object...>',
-    'Users to send the notification to. You can specify up to 1000 users in the request body or use matches to send a notification to any number of users.',
+    'Users to send the notification to. You can specify up to 1000 users in the request body.',
   )
   .option(
     '--custom-attributes <object>',
