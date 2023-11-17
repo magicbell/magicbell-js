@@ -150,25 +150,6 @@ export class Users extends Resource {
   }
 
   /**
-   * Immediately deletes a user.
-   *
-   * @param userId - The user id is the MagicBell user id. Alternatively, provide an
-   *   id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as
-   *   the user id.
-   * @param options - override client request options.
-   **/
-  delete(userId: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'DELETE',
-        path: '{user_id}',
-      },
-      userId,
-      options,
-    );
-  }
-
-  /**
    * Update a user's data. If you identify users by their email addresses, you need
    * to update the MagicBell data, so this user can still access their notifications.
    *
@@ -210,23 +191,6 @@ export class Users extends Resource {
   }
 
   /**
-   * Immediately deletes a user.
-   *
-   * @param userEmail
-   * @param options - override client request options.
-   **/
-  deleteByEmail(userEmail: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'DELETE',
-        path: 'email:{user_email}',
-      },
-      userEmail,
-      options,
-    );
-  }
-
-  /**
    * Update a user's data. If you identify users by their email addresses, you need
    * to update the MagicBell data, so this user can still access their notifications.
    *
@@ -263,6 +227,42 @@ export class Users extends Resource {
       },
       externalId,
       dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Immediately deletes a user.
+   *
+   * @param userId - The user id is the MagicBell user id. Alternatively, provide an
+   *   id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as
+   *   the user id.
+   * @param options - override client request options.
+   **/
+  delete(userId: string, options?: RequestOptions): Promise<void> {
+    return this.request(
+      {
+        method: 'DELETE',
+        path: '{user_id}',
+      },
+      userId,
+      options,
+    );
+  }
+
+  /**
+   * Immediately deletes a user.
+   *
+   * @param userEmail
+   * @param options - override client request options.
+   **/
+  deleteByEmail(userEmail: string, options?: RequestOptions): Promise<void> {
+    return this.request(
+      {
+        method: 'DELETE',
+        path: 'email:{user_email}',
+      },
+      userEmail,
       options,
     );
   }

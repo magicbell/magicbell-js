@@ -288,6 +288,110 @@ export const CreateNotificationsPayloadSchema = {
   },
 } as const;
 
+export const MarkAllReadNotificationsPayloadSchema = {
+  title: 'MarkAllReadNotificationsPayloadSchema',
+  type: 'object',
+
+  properties: {
+    archived: {
+      title: 'archived',
+      description:
+        'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    read: {
+      title: 'read',
+      description:
+        'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    seen: {
+      title: 'seen',
+      description:
+        'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    categories: {
+      title: 'categories',
+      description:
+        'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.\nThe value can be either an array of strings or a comma-separated string.',
+      type: 'array',
+
+      items: {
+        type: 'string',
+      },
+    },
+
+    topics: {
+      title: 'topics',
+      description: 'A filter on the notifications based on the topic.',
+      type: 'array',
+
+      items: {
+        type: 'string',
+      },
+    },
+  },
+
+  additionalProperties: false,
+  required: [],
+} as const;
+
+export const MarkAllSeenNotificationsPayloadSchema = {
+  title: 'MarkAllSeenNotificationsPayloadSchema',
+  type: 'object',
+
+  properties: {
+    archived: {
+      title: 'archived',
+      description:
+        'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    read: {
+      title: 'read',
+      description:
+        'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    seen: {
+      title: 'seen',
+      description:
+        'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
+      type: 'boolean',
+    },
+
+    categories: {
+      title: 'categories',
+      description:
+        'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.\nThe value can be either an array of strings or a comma-separated string.',
+      type: 'array',
+
+      items: {
+        type: 'string',
+      },
+    },
+
+    topics: {
+      title: 'topics',
+      description: 'A filter on the notifications based on the topic.',
+      type: 'array',
+
+      items: {
+        type: 'string',
+      },
+    },
+  },
+
+  additionalProperties: false,
+  required: [],
+} as const;
+
 export const ListNotificationsResponseSchema = {
   title: 'ListNotificationsResponseSchema',
   type: 'object',
@@ -680,108 +784,4 @@ export const GetNotificationsResponseSchema = {
       },
     },
   },
-} as const;
-
-export const MarkAllReadNotificationsPayloadSchema = {
-  title: 'MarkAllReadNotificationsPayloadSchema',
-  type: 'object',
-
-  properties: {
-    archived: {
-      title: 'archived',
-      description:
-        'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    read: {
-      title: 'read',
-      description:
-        'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    seen: {
-      title: 'seen',
-      description:
-        'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    categories: {
-      title: 'categories',
-      description:
-        'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.\nThe value can be either an array of strings or a comma-separated string.',
-      type: 'array',
-
-      items: {
-        type: 'string',
-      },
-    },
-
-    topics: {
-      title: 'topics',
-      description: 'A filter on the notifications based on the topic.',
-      type: 'array',
-
-      items: {
-        type: 'string',
-      },
-    },
-  },
-
-  additionalProperties: false,
-  required: [],
-} as const;
-
-export const MarkAllSeenNotificationsPayloadSchema = {
-  title: 'MarkAllSeenNotificationsPayloadSchema',
-  type: 'object',
-
-  properties: {
-    archived: {
-      title: 'archived',
-      description:
-        'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    read: {
-      title: 'read',
-      description:
-        'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    seen: {
-      title: 'seen',
-      description:
-        'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
-      type: 'boolean',
-    },
-
-    categories: {
-      title: 'categories',
-      description:
-        'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.\nThe value can be either an array of strings or a comma-separated string.',
-      type: 'array',
-
-      items: {
-        type: 'string',
-      },
-    },
-
-    topics: {
-      title: 'topics',
-      description: 'A filter on the notifications based on the topic.',
-      type: 'array',
-
-      items: {
-        type: 'string',
-      },
-    },
-  },
-
-  additionalProperties: false,
-  required: [],
 } as const;

@@ -110,20 +110,6 @@ users
   });
 
 users
-  .command('delete')
-  .description('Delete a user')
-  .argument(
-    '<user-id>',
-    'The user id is the MagicBell user id. Alternatively, provide an id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as the user id.',
-  )
-  .action(async (userId, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).users.delete(userId, options);
-    printJson(response);
-  });
-
-users
   .command('update-by-email')
   .description('Update a user identified by email')
   .argument('<user-email>', '')
@@ -147,17 +133,6 @@ users
   });
 
 users
-  .command('delete-by-email')
-  .description('Delete a user identified by email')
-  .argument('<user-email>', '')
-  .action(async (userEmail, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).users.deleteByEmail(userEmail, options);
-    printJson(response);
-  });
-
-users
   .command('update-by-external-id')
   .description('Update a user identified by external ID')
   .argument('<external-id>', '')
@@ -177,6 +152,31 @@ users
     const { data, options } = parseOptions(opts);
 
     const response = await getClient(cmd).users.updateByExternalId(externalId, data, options);
+    printJson(response);
+  });
+
+users
+  .command('delete')
+  .description('Delete a user')
+  .argument(
+    '<user-id>',
+    'The user id is the MagicBell user id. Alternatively, provide an id like `email:theusersemail@example.com` or `external_id:theusersexternalid` as the user id.',
+  )
+  .action(async (userId, opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).users.delete(userId, options);
+    printJson(response);
+  });
+
+users
+  .command('delete-by-email')
+  .description('Delete a user identified by email')
+  .argument('<user-email>', '')
+  .action(async (userEmail, opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).users.deleteByEmail(userEmail, options);
     printJson(response);
   });
 

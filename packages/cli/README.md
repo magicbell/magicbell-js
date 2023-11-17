@@ -193,14 +193,6 @@ magicbell users update <user-id>  \
   --email 'hana@magicbell.io'
 ```
 
-#### Delete a user
-
-Immediately deletes a user.
-
-```shell
-magicbell users delete <user-id>
-```
-
 #### Update a user identified by email
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
@@ -215,14 +207,6 @@ magicbell users update-by-email <user-email>  \
   --phone-numbers '+15005550001'
 ```
 
-#### Delete a user identified by email
-
-Immediately deletes a user.
-
-```shell
-magicbell users delete-by-email <user-email>
-```
-
 #### Update a user identified by external ID
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
@@ -235,6 +219,22 @@ magicbell users update-by-external-id <external-id>  \
   --last-name 'Mohan'  \
   --custom-attributes '{"plan":"enterprise","pricing_version":"v10","preferred_pronoun":"She"}'  \
   --phone-numbers '+15005550001'
+```
+
+#### Delete a user
+
+Immediately deletes a user.
+
+```shell
+magicbell users delete <user-id>
+```
+
+#### Delete a user identified by email
+
+Immediately deletes a user.
+
+```shell
+magicbell users delete-by-email <user-email>
 ```
 
 #### Delete a user identified by external ID
@@ -332,6 +332,48 @@ User scoped commands require a user email or external id to be provided. The api
 
 ### User Notifications
 
+#### Archive a notification
+
+Mark a user notification as archived.
+
+```shell
+magicbell user notifications archive <notification-id>
+```
+
+#### Mark all notifications as read
+
+Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```shell
+magicbell user notifications mark-all-read
+```
+
+#### Mark all notifications as seen
+
+Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```shell
+magicbell user notifications mark-all-seen
+```
+
+#### Mark a notification as read
+
+Mark a user notification as read. The notification will be automatically marked as seen, too.
+
+The new state will be reflected in the user's notification inbox in real-time.
+
+```shell
+magicbell user notifications mark-as-read <notification-id>
+```
+
+#### Mark a notification as unread
+
+Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
+
+```shell
+magicbell user notifications mark-as-unread <notification-id>
+```
+
 #### Fetch notifications
 
 Fetch a user's notifications. Notifications are sorted in descendent order by the sent_at timestamp.
@@ -356,54 +398,12 @@ Delete a user's notification by its ID. The notification is deleted immediately 
 magicbell user notifications delete <notification-id>
 ```
 
-#### Mark a notification as read
-
-Mark a user notification as read. The notification will be automatically marked as seen, too.
-
-The new state will be reflected in the user's notification inbox in real-time.
-
-```shell
-magicbell user notifications mark-as-read <notification-id>
-```
-
-#### Mark a notification as unread
-
-Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
-
-```shell
-magicbell user notifications mark-as-unread <notification-id>
-```
-
-#### Archive a notification
-
-Mark a user notification as archived.
-
-```shell
-magicbell user notifications archive <notification-id>
-```
-
 #### Unarchive a notification
 
 Mark a user notification as unarchived.
 
 ```shell
 magicbell user notifications unarchive <notification-id>
-```
-
-#### Mark all notifications as read
-
-Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```shell
-magicbell user notifications mark-all-read
-```
-
-#### Mark all notifications as seen
-
-Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```shell
-magicbell user notifications mark-all-seen
 ```
 
 ### User Push Subscriptions
@@ -457,14 +457,6 @@ magicbell user notification-preferences update  \
 
 ### User Subscriptions
 
-#### Fetch user's topic subscriptions
-
-Fetch a user's topic subscriptions.
-
-```shell
-magicbell user subscriptions list
-```
-
 #### Create a topic subscription
 
 Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
@@ -482,6 +474,14 @@ Unusbscribe a user from a particular topic (and optional categories).
 ```shell
 magicbell user subscriptions unsubscribe <topic>  \
   --categories '{"slug":"comments"}'
+```
+
+#### Fetch user's topic subscriptions
+
+Fetch a user's topic subscriptions.
+
+```shell
+magicbell user subscriptions list
 ```
 
 #### Show a topic subscription
