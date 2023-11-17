@@ -1,5 +1,18 @@
 # @magicbell/embeddable
 
+## 3.3.11
+
+### Patch Changes
+
+- [#203](https://github.com/magicbell-io/magicbell-js/pull/203) [`de1be86`](https://github.com/magicbell-io/magicbell-js/commit/de1be86da8aad45ae4b9689ee9bffb85103f39ec) Thanks [@smeijer](https://github.com/smeijer)! - rotate rollbar token
+
+- [#206](https://github.com/magicbell-io/magicbell-js/pull/206) [`22a17bb`](https://github.com/magicbell-io/magicbell-js/commit/22a17bb0d1ee8fdfb76ab139c4a9f1243a2280b5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.0`.
+
+- Updated dependencies [[`22a17bb`](https://github.com/magicbell-io/magicbell-js/commit/22a17bb0d1ee8fdfb76ab139c4a9f1243a2280b5), [`f694679`](https://github.com/magicbell-io/magicbell-js/commit/f6946794d559d7479288616dd69ae7d20d857ab8), [`430ea0b`](https://github.com/magicbell-io/magicbell-js/commit/430ea0b48adf863a8a1abd19cc5575bb5397624c)]:
+  - @magicbell/magicbell-react@10.9.7
+
 ## 3.3.10
 
 ### Patch Changes

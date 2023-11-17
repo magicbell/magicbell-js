@@ -1,5 +1,20 @@
 # @magicbell/react-headless
 
+## 4.4.5
+
+### Patch Changes
+
+- [#200](https://github.com/magicbell-io/magicbell-js/pull/200) [`ef5248c`](https://github.com/magicbell-io/magicbell-js/commit/ef5248ce58525ac9f7113a5070822945b18a67cc) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/humps` to `^2.0.6`.
+
+- [#207](https://github.com/magicbell-io/magicbell-js/pull/207) [`f694679`](https://github.com/magicbell-io/magicbell-js/commit/f6946794d559d7479288616dd69ae7d20d857ab8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `tiny-invariant` to `^1.3.1`.
+
+- Updated dependencies [[`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722), [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722)]:
+  - magicbell@3.0.0
+
 ## 4.4.4
 
 ### Patch Changes

@@ -1,5 +1,40 @@
 # magicbell
 
+## 3.0.0
+
+### Major Changes
+
+- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - We've removed `magicbell.notifications.create`, please use `magicbell.broadcasts.create` instead.
+
+### Minor Changes
+
+- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - Add `broadcasts.create` method to the project client.
+
+  ```js
+  await magicbell.broadcasts.create({
+    title: "We're processing your order",
+    content: "<p>Thank you for your order. We'll notify you when these items are ready.</p>",
+    category: 'order_created',
+    topic: 'order:33098',
+    recipients: [
+      {
+        email: 'dan@example.com',
+      },
+      {
+        external_id: '83d987a-83fd034',
+        first_name: 'Person',
+        last_name: 'Doe',
+        custom_attributes: {
+          plan: 'enterprise',
+          pricing_version: 'v10',
+          preferred_pronoun: 'They',
+        },
+        phone_numbers: ['+1 5005550001'],
+      },
+    ],
+  });
+  ```
+
 ## 2.4.1
 
 ### Patch Changes

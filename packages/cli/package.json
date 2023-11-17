@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/cli",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "description": "Work with MagicBell from the command line",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
@@ -41,7 +41,7 @@
     "size": "size-limit"
   },
   "dependencies": {
-    "magicbell": "2.4.1"
+    "magicbell": "3.0.0"
   },
   "devDependencies": {
     "@magicbell/codegen": "0.2.1",
