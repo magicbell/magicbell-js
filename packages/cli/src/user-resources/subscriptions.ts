@@ -8,26 +8,6 @@ import { printJson } from '../lib/printer';
 export const subscriptions = createCommand('subscriptions').description('Manage user subscriptions');
 
 subscriptions
-  .command('list')
-  .description("Fetch user's topic subscriptions")
-  .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
-  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
-  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = getClient(cmd).subscriptions.list(options);
-
-    if (paginate) {
-      await response.forEach((notification, idx) => {
-        printJson(notification);
-        return !(maxItems && idx + 1 >= maxItems);
-      });
-    } else {
-      await response.then((result) => printJson(result));
-    }
-  });
-
-subscriptions
   .command('create')
   .description('Create a topic subscription')
   .option(
@@ -58,6 +38,26 @@ subscriptions
 
     const response = await getClient(cmd).subscriptions.unsubscribe(topic, data, options);
     printJson(response);
+  });
+
+subscriptions
+  .command('list')
+  .description("Fetch user's topic subscriptions")
+  .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')
+  .option('--max-items <number>', 'Maximum number of items to fetch', Number)
+  .action(async ({ paginate, maxItems, ...opts }, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = getClient(cmd).subscriptions.list(options);
+
+    if (paginate) {
+      await response.forEach((notification, idx) => {
+        printJson(notification);
+        return !(maxItems && idx + 1 >= maxItems);
+      });
+    } else {
+      await response.then((result) => printJson(result));
+    }
   });
 
 subscriptions

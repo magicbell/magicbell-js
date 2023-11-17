@@ -1,55 +1,4 @@
 // This file is generated. Do not update manually!
-export const ListSubscriptionsResponseSchema = {
-  title: 'ListSubscriptionsResponseSchema',
-  type: 'object',
-  additionalProperties: false,
-
-  properties: {
-    subscriptions: {
-      type: 'array',
-
-      items: {
-        type: 'object',
-        additionalProperties: false,
-
-        properties: {
-          topic: {
-            type: 'string',
-          },
-
-          categories: {
-            type: 'array',
-            description: 'A list of hashes containing the category slug and the reason for the subscription',
-
-            items: {
-              type: 'object',
-              additionalProperties: false,
-
-              properties: {
-                slug: {
-                  type: 'string',
-                  description:
-                    'The slug of the category to be subscribed to. * can also be be specified if the subscription should match all categories',
-                },
-
-                reason: {
-                  type: 'string',
-                  description: 'The reason for the subscription',
-                },
-
-                status: {
-                  type: 'string',
-                  enum: ['subscribed', 'unsubscribed'],
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-} as const;
-
 export const CreateSubscriptionsResponseSchema = {
   title: 'CreateSubscriptionsResponseSchema',
   type: 'object',
@@ -196,6 +145,57 @@ export const UnsubscribeSubscriptionsPayloadSchema = {
           reason: {
             type: 'string',
             description: 'The reason for the subscription',
+          },
+        },
+      },
+    },
+  },
+} as const;
+
+export const ListSubscriptionsResponseSchema = {
+  title: 'ListSubscriptionsResponseSchema',
+  type: 'object',
+  additionalProperties: false,
+
+  properties: {
+    subscriptions: {
+      type: 'array',
+
+      items: {
+        type: 'object',
+        additionalProperties: false,
+
+        properties: {
+          topic: {
+            type: 'string',
+          },
+
+          categories: {
+            type: 'array',
+            description: 'A list of hashes containing the category slug and the reason for the subscription',
+
+            items: {
+              type: 'object',
+              additionalProperties: false,
+
+              properties: {
+                slug: {
+                  type: 'string',
+                  description:
+                    'The slug of the category to be subscribed to. * can also be be specified if the subscription should match all categories',
+                },
+
+                reason: {
+                  type: 'string',
+                  description: 'The reason for the subscription',
+                },
+
+                status: {
+                  type: 'string',
+                  enum: ['subscribed', 'unsubscribed'],
+                },
+              },
+            },
           },
         },
       },

@@ -8,6 +8,93 @@ import { printJson } from '../lib/printer';
 export const notifications = createCommand('notifications').description('Manage user notifications');
 
 notifications
+  .command('archive')
+  .description('Archive a notification')
+  .argument('<notification-id>', 'ID of the user notification.')
+  .action(async (notificationId, opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notifications.archive(notificationId, options);
+    printJson(response);
+  });
+
+notifications
+  .command('mark-all-read')
+  .description('Mark all notifications as read')
+  .option(
+    '--archived',
+    'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
+  )
+  .option(
+    '--read',
+    'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
+  )
+  .option(
+    '--seen',
+    'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
+  )
+  .option(
+    '--categories <string...>',
+    'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
+  )
+  .option('--topics <string...>', 'A filter on the notifications based on the topic.')
+  .action(async (opts, cmd) => {
+    const { data, options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notifications.markAllRead(data, options);
+    printJson(response);
+  });
+
+notifications
+  .command('mark-all-seen')
+  .description('Mark all notifications as seen')
+  .option(
+    '--archived',
+    'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
+  )
+  .option(
+    '--read',
+    'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
+  )
+  .option(
+    '--seen',
+    'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
+  )
+  .option(
+    '--categories <string...>',
+    'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
+  )
+  .option('--topics <string...>', 'A filter on the notifications based on the topic.')
+  .action(async (opts, cmd) => {
+    const { data, options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notifications.markAllSeen(data, options);
+    printJson(response);
+  });
+
+notifications
+  .command('mark-as-read')
+  .description('Mark a notification as read')
+  .argument('<notification-id>', 'ID of the user notification.')
+  .action(async (notificationId, opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notifications.markAsRead(notificationId, options);
+    printJson(response);
+  });
+
+notifications
+  .command('mark-as-unread')
+  .description('Mark a notification as unread')
+  .argument('<notification-id>', 'ID of the user notification.')
+  .action(async (notificationId, opts, cmd) => {
+    const { options } = parseOptions(opts);
+
+    const response = await getClient(cmd).notifications.markAsUnread(notificationId, options);
+    printJson(response);
+  });
+
+notifications
   .command('list')
   .description('Fetch notifications for a user')
   .option(
@@ -72,39 +159,6 @@ notifications
   });
 
 notifications
-  .command('mark-as-read')
-  .description('Mark a notification as read')
-  .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).notifications.markAsRead(notificationId, options);
-    printJson(response);
-  });
-
-notifications
-  .command('mark-as-unread')
-  .description('Mark a notification as unread')
-  .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).notifications.markAsUnread(notificationId, options);
-    printJson(response);
-  });
-
-notifications
-  .command('archive')
-  .description('Archive a notification')
-  .argument('<notification-id>', 'ID of the user notification.')
-  .action(async (notificationId, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).notifications.archive(notificationId, options);
-    printJson(response);
-  });
-
-notifications
   .command('unarchive')
   .description('Unarchive a notification')
   .argument('<notification-id>', 'ID of the user notification.')
@@ -112,59 +166,5 @@ notifications
     const { options } = parseOptions(opts);
 
     const response = await getClient(cmd).notifications.unarchive(notificationId, options);
-    printJson(response);
-  });
-
-notifications
-  .command('mark-all-read')
-  .description('Mark all notifications as read')
-  .option(
-    '--archived',
-    'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
-  )
-  .option(
-    '--read',
-    'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
-  )
-  .option(
-    '--seen',
-    'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
-  )
-  .option(
-    '--categories <string...>',
-    'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
-  )
-  .option('--topics <string...>', 'A filter on the notifications based on the topic.')
-  .action(async (opts, cmd) => {
-    const { data, options } = parseOptions(opts);
-
-    const response = await getClient(cmd).notifications.markAllRead(data, options);
-    printJson(response);
-  });
-
-notifications
-  .command('mark-all-seen')
-  .description('Mark all notifications as seen')
-  .option(
-    '--archived',
-    'A filter on the notifications based on the archived state. Specify false to select unarchived notifications. Defaults to null.',
-  )
-  .option(
-    '--read',
-    'A filter on the notifications based on the read state. Specify false to select unread notifications. Defaults to null.',
-  )
-  .option(
-    '--seen',
-    'A filter on the notifications based on the seen state. Specify false to select unseen notifications. Defaults to null.',
-  )
-  .option(
-    '--categories <string...>',
-    'A filter on the notifications based on the category. If you want to get uncategorized notifications, use the "uncategorized" value.',
-  )
-  .option('--topics <string...>', 'A filter on the notifications based on the topic.')
-  .action(async (opts, cmd) => {
-    const { data, options } = parseOptions(opts);
-
-    const response = await getClient(cmd).notifications.markAllSeen(data, options);
     printJson(response);
   });

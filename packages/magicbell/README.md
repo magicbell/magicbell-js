@@ -491,14 +491,6 @@ await magicbell.users.update('{user_id}', {
 });
 ```
 
-#### Delete a user
-
-Immediately deletes a user.
-
-```js
-await magicbell.users.delete('{user_id}');
-```
-
 #### Update a user identified by email
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
@@ -518,14 +510,6 @@ await magicbell.users.updateByEmail('{user_email}', {
 });
 ```
 
-#### Delete a user identified by email
-
-Immediately deletes a user.
-
-```js
-await magicbell.users.deleteByEmail('{user_email}');
-```
-
 #### Update a user identified by external ID
 
 Update a user's data. If you identify users by their email addresses, you need to update the MagicBell data, so this user can still access their notifications.
@@ -543,6 +527,22 @@ await magicbell.users.updateByExternalId('{external_id}', {
   },
   phone_numbers: ['+15005550001'],
 });
+```
+
+#### Delete a user
+
+Immediately deletes a user.
+
+```js
+await magicbell.users.delete('{user_id}');
+```
+
+#### Delete a user identified by email
+
+Immediately deletes a user.
+
+```js
+await magicbell.users.deleteByEmail('{user_email}');
 ```
 
 #### Delete a user identified by external ID
@@ -686,6 +686,60 @@ const magicbell = new UserClient({
 
 ### Notifications
 
+#### Archive a notification
+
+Mark a user notification as archived.
+
+```js
+await magicbell.notifications.archive('{notification_id}');
+```
+
+#### Mark all notifications as read
+
+Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllRead({
+  archived: true,
+  read: true,
+  seen: true,
+  categories: ['…'],
+  topics: ['…'],
+});
+```
+
+#### Mark all notifications as seen
+
+Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
+
+```js
+await magicbell.notifications.markAllSeen({
+  archived: true,
+  read: true,
+  seen: true,
+  categories: ['…'],
+  topics: ['…'],
+});
+```
+
+#### Mark a notification as read
+
+Mark a user notification as read. The notification will be automatically marked as seen, too.
+
+The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsRead('{notification_id}');
+```
+
+#### Mark a notification as unread
+
+Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
+
+```js
+await magicbell.notifications.markAsUnread('{notification_id}');
+```
+
 #### Fetch notifications for a user
 
 Fetch a user's notifications. Notifications are sorted in descending order by the sent_at timestamp.
@@ -718,66 +772,12 @@ Delete a user's notification by its ID. The notification is deleted immediately 
 await magicbell.notifications.delete('{notification_id}');
 ```
 
-#### Mark a notification as read
-
-Mark a user notification as read. The notification will be automatically marked as seen, too.
-
-The new state will be reflected in the user's notification inbox in real-time.
-
-```js
-await magicbell.notifications.markAsRead('{notification_id}');
-```
-
-#### Mark a notification as unread
-
-Mark a user notification as unread. The new state will be reflected in the user's notification inbox in real-time.
-
-```js
-await magicbell.notifications.markAsUnread('{notification_id}');
-```
-
-#### Archive a notification
-
-Mark a user notification as archived.
-
-```js
-await magicbell.notifications.archive('{notification_id}');
-```
-
 #### Unarchive a notification
 
 Mark a user notification as unarchived.
 
 ```js
 await magicbell.notifications.unarchive('{notification_id}');
-```
-
-#### Mark all notifications as read
-
-Mark all notifications of a user as read. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```js
-await magicbell.notifications.markAllRead({
-  archived: true,
-  read: true,
-  seen: true,
-  categories: ['…'],
-  topics: ['…'],
-});
-```
-
-#### Mark all notifications as seen
-
-Mark all notifications of a user as seen. When you call this endpoint, the notification inboxes of this user will be updated in real-time.
-
-```js
-await magicbell.notifications.markAllSeen({
-  archived: true,
-  read: true,
-  seen: true,
-  categories: ['…'],
-  topics: ['…'],
-});
 ```
 
 ### Push Subscriptions
@@ -847,14 +847,6 @@ await magicbell.notificationPreferences.update({
 
 ### Subscriptions
 
-#### Fetch user's topic subscriptions
-
-Fetch a user's topic subscriptions.
-
-```js
-await magicbell.subscriptions.list();
-```
-
 #### Create a topic subscription
 
 Set a user's subscription status to subscribed for a particular topic (and optional categories). If the user previously unsubscribed, the user will be resubscribed.
@@ -883,6 +875,14 @@ await magicbell.subscriptions.unsubscribe('{topic}', {
     },
   ],
 });
+```
+
+#### Fetch user's topic subscriptions
+
+Fetch a user's topic subscriptions.
+
+```js
+await magicbell.subscriptions.list();
 ```
 
 #### Show a topic subscription

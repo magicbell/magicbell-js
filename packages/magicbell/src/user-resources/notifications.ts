@@ -7,15 +7,144 @@ import { Resource } from '../client/resource';
 import { type RequestOptions } from '../client/types';
 import * as schemas from '../schemas/notifications';
 
+type MarkAllReadNotificationsPayload = FromSchema<typeof schemas.MarkAllReadNotificationsPayloadSchema>;
+type MarkAllSeenNotificationsPayload = FromSchema<typeof schemas.MarkAllSeenNotificationsPayloadSchema>;
 type ListNotificationsResponse = FromSchema<typeof schemas.ListNotificationsResponseSchema>;
 type ListNotificationsPayload = FromSchema<typeof schemas.ListNotificationsPayloadSchema>;
 type GetNotificationsResponse = FromSchema<typeof schemas.GetNotificationsResponseSchema>;
-type MarkAllReadNotificationsPayload = FromSchema<typeof schemas.MarkAllReadNotificationsPayloadSchema>;
-type MarkAllSeenNotificationsPayload = FromSchema<typeof schemas.MarkAllSeenNotificationsPayloadSchema>;
 
 export class Notifications extends Resource {
   path = 'notifications';
   entity = 'notification';
+
+  /**
+   * Mark a user notification as archived.
+   *
+   * @param notificationId - ID of the user notification.
+   *   The ID of a user notification can be obtained from the "Fetch user
+   *   notifications" API endpoint or from push events sent to the MagicBell React
+   *   library.
+   *
+   * @param options - override client request options.
+   **/
+  archive(notificationId: string, options?: RequestOptions): Promise<void> {
+    return this.request(
+      {
+        method: 'POST',
+        path: '{notification_id}/archive',
+      },
+      notificationId,
+      options,
+    );
+  }
+
+  /**
+   * Mark all notifications of a user as read. When you call this endpoint, the
+   * notification inboxes of this user will be updated in real-time.
+   *
+   * @param options - override client request options.
+   **/
+  markAllRead(options?: RequestOptions): Promise<void>;
+
+  /**
+   * Mark all notifications of a user as read. When you call this endpoint, the
+   * notification inboxes of this user will be updated in real-time.
+   *
+   * @param data
+   * @param options - override client request options.
+   **/
+  markAllRead(data: MarkAllReadNotificationsPayload, options?: RequestOptions): Promise<void>;
+
+  markAllRead(
+    dataOrOptions: MarkAllReadNotificationsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return this.request(
+      {
+        method: 'POST',
+        path: 'read',
+      },
+      dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Mark all notifications of a user as seen. When you call this endpoint, the
+   * notification inboxes of this user will be updated in real-time.
+   *
+   * @param options - override client request options.
+   **/
+  markAllSeen(options?: RequestOptions): Promise<void>;
+
+  /**
+   * Mark all notifications of a user as seen. When you call this endpoint, the
+   * notification inboxes of this user will be updated in real-time.
+   *
+   * @param data
+   * @param options - override client request options.
+   **/
+  markAllSeen(data: MarkAllSeenNotificationsPayload, options?: RequestOptions): Promise<void>;
+
+  markAllSeen(
+    dataOrOptions: MarkAllSeenNotificationsPayload | RequestOptions,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return this.request(
+      {
+        method: 'POST',
+        path: 'seen',
+      },
+      dataOrOptions,
+      options,
+    );
+  }
+
+  /**
+   * Mark a user notification as read. The notification will be automatically marked
+   * as seen, too.
+   *
+   * The new state will be reflected in the user's notification inbox in real-time.
+   *
+   * @param notificationId - ID of the user notification.
+   *   The ID of a user notification can be obtained from the "Fetch user
+   *   notifications" API endpoint or from push events sent to the MagicBell React
+   *   library.
+   *
+   * @param options - override client request options.
+   **/
+  markAsRead(notificationId: string, options?: RequestOptions): Promise<void> {
+    return this.request(
+      {
+        method: 'POST',
+        path: '{notification_id}/read',
+      },
+      notificationId,
+      options,
+    );
+  }
+
+  /**
+   * Mark a user notification as unread. The new state will be reflected in the
+   * user's notification inbox in real-time.
+   *
+   * @param notificationId - ID of the user notification.
+   *   The ID of a user notification can be obtained from the "Fetch user
+   *   notifications" API endpoint or from push events sent to the MagicBell React
+   *   library.
+   *
+   * @param options - override client request options.
+   **/
+  markAsUnread(notificationId: string, options?: RequestOptions): Promise<void> {
+    return this.request(
+      {
+        method: 'POST',
+        path: '{notification_id}/unread',
+      },
+      notificationId,
+      options,
+    );
+  }
 
   /**
    * Fetch a user's notifications. Notifications are sorted in descending order by
@@ -95,73 +224,6 @@ export class Notifications extends Resource {
   }
 
   /**
-   * Mark a user notification as read. The notification will be automatically marked
-   * as seen, too.
-   *
-   * The new state will be reflected in the user's notification inbox in real-time.
-   *
-   * @param notificationId - ID of the user notification.
-   *   The ID of a user notification can be obtained from the "Fetch user
-   *   notifications" API endpoint or from push events sent to the MagicBell React
-   *   library.
-   *
-   * @param options - override client request options.
-   **/
-  markAsRead(notificationId: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'POST',
-        path: '{notification_id}/read',
-      },
-      notificationId,
-      options,
-    );
-  }
-
-  /**
-   * Mark a user notification as unread. The new state will be reflected in the
-   * user's notification inbox in real-time.
-   *
-   * @param notificationId - ID of the user notification.
-   *   The ID of a user notification can be obtained from the "Fetch user
-   *   notifications" API endpoint or from push events sent to the MagicBell React
-   *   library.
-   *
-   * @param options - override client request options.
-   **/
-  markAsUnread(notificationId: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'POST',
-        path: '{notification_id}/unread',
-      },
-      notificationId,
-      options,
-    );
-  }
-
-  /**
-   * Mark a user notification as archived.
-   *
-   * @param notificationId - ID of the user notification.
-   *   The ID of a user notification can be obtained from the "Fetch user
-   *   notifications" API endpoint or from push events sent to the MagicBell React
-   *   library.
-   *
-   * @param options - override client request options.
-   **/
-  archive(notificationId: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'POST',
-        path: '{notification_id}/archive',
-      },
-      notificationId,
-      options,
-    );
-  }
-
-  /**
    * Mark a user notification as unarchived.
    *
    * @param notificationId - ID of the user notification.
@@ -178,68 +240,6 @@ export class Notifications extends Resource {
         path: '{notification_id}/archive',
       },
       notificationId,
-      options,
-    );
-  }
-
-  /**
-   * Mark all notifications of a user as read. When you call this endpoint, the
-   * notification inboxes of this user will be updated in real-time.
-   *
-   * @param options - override client request options.
-   **/
-  markAllRead(options?: RequestOptions): Promise<void>;
-
-  /**
-   * Mark all notifications of a user as read. When you call this endpoint, the
-   * notification inboxes of this user will be updated in real-time.
-   *
-   * @param data
-   * @param options - override client request options.
-   **/
-  markAllRead(data: MarkAllReadNotificationsPayload, options?: RequestOptions): Promise<void>;
-
-  markAllRead(
-    dataOrOptions: MarkAllReadNotificationsPayload | RequestOptions,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return this.request(
-      {
-        method: 'POST',
-        path: 'read',
-      },
-      dataOrOptions,
-      options,
-    );
-  }
-
-  /**
-   * Mark all notifications of a user as seen. When you call this endpoint, the
-   * notification inboxes of this user will be updated in real-time.
-   *
-   * @param options - override client request options.
-   **/
-  markAllSeen(options?: RequestOptions): Promise<void>;
-
-  /**
-   * Mark all notifications of a user as seen. When you call this endpoint, the
-   * notification inboxes of this user will be updated in real-time.
-   *
-   * @param data
-   * @param options - override client request options.
-   **/
-  markAllSeen(data: MarkAllSeenNotificationsPayload, options?: RequestOptions): Promise<void>;
-
-  markAllSeen(
-    dataOrOptions: MarkAllSeenNotificationsPayload | RequestOptions,
-    options?: RequestOptions,
-  ): Promise<void> {
-    return this.request(
-      {
-        method: 'POST',
-        path: 'seen',
-      },
-      dataOrOptions,
       options,
     );
   }

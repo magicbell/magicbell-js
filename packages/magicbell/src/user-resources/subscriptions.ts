@@ -7,33 +7,17 @@ import { Resource } from '../client/resource';
 import { type RequestOptions } from '../client/types';
 import * as schemas from '../schemas/subscriptions';
 
-type ListSubscriptionsResponse = FromSchema<typeof schemas.ListSubscriptionsResponseSchema>;
 type CreateSubscriptionsResponse = FromSchema<typeof schemas.CreateSubscriptionsResponseSchema>;
 type CreateSubscriptionsPayload = FromSchema<typeof schemas.CreateSubscriptionsPayloadSchema>;
 type UnsubscribeSubscriptionsResponse = FromSchema<typeof schemas.UnsubscribeSubscriptionsResponseSchema>;
 type UnsubscribeSubscriptionsPayload = FromSchema<typeof schemas.UnsubscribeSubscriptionsPayloadSchema>;
+type ListSubscriptionsResponse = FromSchema<typeof schemas.ListSubscriptionsResponseSchema>;
 type GetSubscriptionsResponse = FromSchema<typeof schemas.GetSubscriptionsResponseSchema>;
 type DeleteSubscriptionsPayload = FromSchema<typeof schemas.DeleteSubscriptionsPayloadSchema>;
 
 export class Subscriptions extends Resource {
   path = 'subscriptions';
   entity = 'subscription';
-
-  /**
-   * Fetch a user's topic subscriptions.
-   *
-   * @param options - override client request options.
-   * @returns
-   **/
-  list(options?: RequestOptions): IterablePromise<ListSubscriptionsResponse> {
-    return this.request(
-      {
-        method: 'GET',
-        paged: true,
-      },
-      options,
-    );
-  }
 
   /**
    * Set a user's subscription status to subscribed for a particular topic (and
@@ -74,6 +58,22 @@ export class Subscriptions extends Resource {
       },
       topic,
       data,
+      options,
+    );
+  }
+
+  /**
+   * Fetch a user's topic subscriptions.
+   *
+   * @param options - override client request options.
+   * @returns
+   **/
+  list(options?: RequestOptions): IterablePromise<ListSubscriptionsResponse> {
+    return this.request(
+      {
+        method: 'GET',
+        paged: true,
+      },
       options,
     );
   }
