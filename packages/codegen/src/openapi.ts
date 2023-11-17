@@ -140,6 +140,25 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
     }
   }
 
+  // sort method.name [get, post, put, patch, delete] and then by operationId.
+  // when method is get, type=list is before type=null
+  const methodOrder = ['post', 'get', 'put', 'patch', 'delete'];
+
+  methods.sort((a, b) => {
+    // First, sort by HTTP method
+    const methodDiff = methodOrder.indexOf(a.method) - methodOrder.indexOf(b.method);
+    if (methodDiff !== 0) return methodDiff;
+
+    // Within the same method, prioritize 'list' type
+    if (a.method === 'get') {
+      if (a.type === 'list' && b.type !== 'list') return -1;
+      if (b.type === 'list' && a.type !== 'list') return 1;
+    }
+
+    // Finally, sort by name if all else is equal
+    return a.name.localeCompare(b.name);
+  });
+
   return methods;
 }
 
