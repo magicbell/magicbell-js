@@ -1,5 +1,29 @@
 # @magicbell/cli
 
+## 3.0.0
+
+### Major Changes
+
+- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - We've removed `magicbell notifications create`, please use `broadcasts create` instead.
+
+### Minor Changes
+
+- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - Add `magicbell broadcasts create` command.
+
+  ```shell
+  magicbell broadcasts create  \
+    --title 'We\'re processing your order'  \
+    --content '<p>Thank you for your order. We\'ll notify you when these items are ready.</p>'  \
+    --category 'order_created'  \
+    --topic 'order:33098'  \
+    --recipients 'dan@example.com'
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722), [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722)]:
+  - magicbell@3.0.0
+
 ## 2.2.4
 
 ### Patch Changes

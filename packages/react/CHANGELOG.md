@@ -1,5 +1,24 @@
 # @magicbell/magicbell-react
 
+## 10.9.7
+
+### Patch Changes
+
+- [#206](https://github.com/magicbell-io/magicbell-js/pull/206) [`22a17bb`](https://github.com/magicbell-io/magicbell-js/commit/22a17bb0d1ee8fdfb76ab139c4a9f1243a2280b5) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.0`.
+
+- [#207](https://github.com/magicbell-io/magicbell-js/pull/207) [`f694679`](https://github.com/magicbell-io/magicbell-js/commit/f6946794d559d7479288616dd69ae7d20d857ab8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `tiny-invariant` to `^1.3.1`.
+
+- [#205](https://github.com/magicbell-io/magicbell-js/pull/205) [`430ea0b`](https://github.com/magicbell-io/magicbell-js/commit/430ea0b48adf863a8a1abd19cc5575bb5397624c) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@babel/core` to `^7.23.3`.
+
+- Updated dependencies [[`ef5248c`](https://github.com/magicbell-io/magicbell-js/commit/ef5248ce58525ac9f7113a5070822945b18a67cc), [`f694679`](https://github.com/magicbell-io/magicbell-js/commit/f6946794d559d7479288616dd69ae7d20d857ab8)]:
+  - @magicbell/react-headless@4.4.5
+
 ## 10.9.6
 
 ### Patch Changes
