@@ -10,7 +10,7 @@ export const broadcastsNotifications = createCommand('notifications').descriptio
 broadcastsNotifications
   .command('list')
   .description('Fetch notifications by broadcast id.')
-  .argument('<broadcast-id>', 'ID of the notification broadcast.')
+  .argument('<broadcast-id>', 'ID of the broadcast.')
   .option('--page <integer>', 'The page number of the paginated response. Defaults to 1.')
   .option('--per-page <integer>', 'The number of items per page. Defaults to 20.')
   .option('--paginate', 'Make additional HTTP requests to fetch all pages of results')

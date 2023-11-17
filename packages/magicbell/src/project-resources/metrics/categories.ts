@@ -13,8 +13,7 @@ export class MetricsCategories extends Resource {
   entity = 'categorie';
 
   /**
-   * Query the metrics of notification broadcasts and their recipients, grouped by
-   * category.
+   * Query the metrics of broadcasts and their recipients, grouped by category.
    *
    * @param options - override client request options.
    * @returns

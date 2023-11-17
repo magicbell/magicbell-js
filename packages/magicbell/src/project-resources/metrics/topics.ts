@@ -13,8 +13,7 @@ export class MetricsTopics extends Resource {
   entity = 'topic';
 
   /**
-   * Query the metrics of notification broadcasts and their recipients, grouped by
-   * topic.
+   * Query the metrics of broadcasts and their recipients, grouped by topic.
    *
    * @param options - override client request options.
    * @returns

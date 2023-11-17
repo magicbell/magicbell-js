@@ -7,6 +7,35 @@ import { OpenAPI } from 'openapi-types';
 import { getByRef, getRequestBody, getResponseBody, isEmptySchema, ReferenceObject, SchemaObject } from './schema';
 import { camelCase, pascalCase, snakeCase } from './text';
 
+function findBestMatch(str: string, keys: string[]) {
+  let bestMatch = '';
+  let bestMatchScore = 0;
+
+  for (const key of keys) {
+    let score = 0;
+    let i = 0;
+    let j = 0;
+
+    // Compare characters of str and key
+    while (i < str.length && j < key.length) {
+      if (str[i] === key[j]) {
+        score++;
+        j++;
+      }
+
+      i++;
+    }
+
+    // Update best match if this key has a higher score
+    if (score > bestMatchScore) {
+      bestMatchScore = score;
+      bestMatch = key;
+    }
+  }
+
+  return bestMatch;
+}
+
 export async function getOpenAPIDocument(file: string, options = { dereference: true }) {
   const parse = options.dereference ? parser.dereference.bind(parser) : parser.parse.bind(parser);
 
@@ -38,8 +67,6 @@ export type Method = {
 } & OpenAPI.Operation;
 
 export function getRootPathMethods(document: OpenAPI.Document, path: string) {
-  const paginationProps = Object.keys((document as any).components.schemas.PaginationProps?.properties || {});
-
   const methods: Array<Method> = [];
   const apiPaths = Object.keys(document.paths).filter((x) => x.startsWith(`/${path}`));
 
@@ -48,7 +75,9 @@ export function getRootPathMethods(document: OpenAPI.Document, path: string) {
   // level decide for the method.
   const body = getRequestBody(document.paths[`/${path}`].post) || getResponseBody(document.paths[`/${path}`].get);
   const schema = mergeAllOf(body.schema as any);
-  let entity = Object.keys(schema.properties).find((x) => !paginationProps.includes(x));
+  const schemaProperties = Object.keys(schema.properties);
+
+  let entity = findBestMatch(path, schemaProperties);
 
   // this ain't nice, see comment above
   if (entity !== 'notification_preferences') {
