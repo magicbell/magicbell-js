@@ -60,7 +60,7 @@
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
     "@size-limit/preset-small-lib": "^8.0.1",
-    "@types/humps": "^2.0.4",
+    "@types/humps": "^2.0.6",
     "@types/lodash": "^4.14.200",
     "@types/ramda": "^0.28.0",
     "@types/rosie": "^0.0.43",

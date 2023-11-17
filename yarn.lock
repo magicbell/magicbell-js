@@ -4166,10 +4166,10 @@
   resolved "https://registry.yarnpkg.com/@types/http-cache-semantics/-/http-cache-semantics-4.0.1.tgz#0ea7b61496902b95890dc4c3a116b60cb8dae812"
   integrity sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==
 
-"@types/humps@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@types/humps/-/humps-2.0.4.tgz#8bf8dc3f248e621d0f0ee6a5fe210582c167e36c"
-  integrity sha512-1Wg0lY4d5cgP5IjTA8jZr94Epxc/abmLO9/LgxPRkoVNRg+eSR6JROXTlfplQOl7jzPM+VpYHmBguN1jdj0Bag==
+"@types/humps@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@types/humps/-/humps-2.0.6.tgz#a358688fe092e40b5f50261e0a55e2fa6d68cabe"
+  integrity sha512-Fagm1/a/1J9gDKzGdtlPmmTN5eSw/aaTzHtj740oSfo+MODsSY2WglxMmhTdOglC8nxqUhGGQ+5HfVtBvxo3Kg==
 
 "@types/is-ci@^3.0.0":
   version "3.0.0"
