@@ -25,18 +25,35 @@ export const login = createCommand('login')
       });
 
       const { profile, host } = cmd.optsWithGlobals();
-      const project = await client.getProject();
 
-      configStore.setProject(profile, {
-        id: project.id,
-        name: project.name,
-        apiKey,
-        apiSecret,
-        host,
+      const project = await client.getProject().catch((e) => {
+        const code = String(e?.code);
+
+        if (e?.status === 401) {
+          if (/api_key/i.test(code)) throw new Error(`Invalid API key`);
+          if (/api_secret/i.test(code)) throw new Error(`Invalid API secret`);
+          throw new Error(`Invalid API credentials`);
+        }
+
+        if (host) throw new Error(`Failed to login while using an alternative host (${host}): ${e.message}`);
+        throw new Error(`Failed to login: ${e.message}`);
       });
+
+      try {
+        configStore.setProject(profile, {
+          id: project.id,
+          name: project.name,
+          apiKey,
+          apiSecret,
+          host,
+        });
+      } catch (e) {
+        throw new Error(`Failed to save project: ${e.message}. Is the config path (${configStore.path}) writable?`);
+      }
 
       printMessage(`\nYou are now logged in to project ${kleur.bold(project.name)}`);
     } catch (e) {
-      printError('Not logged in. Please try again using `magicbell login`');
+      printMessage('');
+      printError(e.message);
     }
   });
