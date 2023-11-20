@@ -156,7 +156,7 @@ export async function isSubscribed(options: SubscribeOptions): Promise<boolean> 
   const baseURL = options.host || DEFAULT_HOST;
   const subscriptions = await api.getSubscriptions({ ...options, baseURL });
   const registration = await registerServiceWorker({ path: options.serviceWorkerPath });
-  const activeSubscription = await registration.pushManager.getSubscription();
+  const activeSubscription = await registration?.pushManager?.getSubscription();
 
   if (!activeSubscription?.endpoint) return false;
   return subscriptions.some((subscription) => subscription.device_token === activeSubscription.endpoint);
@@ -173,6 +173,10 @@ export async function subscribe(options: SubscribeOptions) {
   const baseURL = options.host || DEFAULT_HOST;
   const config = await api.getConfig({ ...options, baseURL });
   const registration = await registerServiceWorker({ path: options.serviceWorkerPath });
+
+  if (!registration?.pushManager) {
+    throw new Error('Push notifications are not supported in this browser');
+  }
 
   // remove active subscription if there's any
   const activeSubscription = await registration.pushManager.getSubscription();
