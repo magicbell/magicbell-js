@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 3.0.1
+
+### Patch Changes
+
+- [#213](https://github.com/magicbell-io/magicbell-js/pull/213) [`0f2ae1a`](https://github.com/magicbell-io/magicbell-js/commit/0f2ae1a71b125d77edf0497e3fd0345902186a3f) Thanks [@smeijer](https://github.com/smeijer)! - Add more info to login error messages, in case login fails.
+
 ## 3.0.0
 
 ### Major Changes
