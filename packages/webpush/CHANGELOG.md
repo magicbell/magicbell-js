@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 1.4.1
+
+### Patch Changes
+
+- [#212](https://github.com/magicbell-io/magicbell-js/pull/212) [`ad7250e`](https://github.com/magicbell-io/magicbell-js/commit/ad7250edf64d2c80b3d80aa352dc9b32c83817b2) Thanks [@smeijer](https://github.com/smeijer)! - fix bug when accessing undefined serviceWorker in Safari for iOS
+
 ## 1.4.0
 
 ### Minor Changes
