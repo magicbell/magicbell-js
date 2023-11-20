@@ -1,5 +1,25 @@
 # @magicbell/magicbell-react
 
+## 10.9.8
+
+### Patch Changes
+
+- [#210](https://github.com/magicbell-io/magicbell-js/pull/210) [`9280ca7`](https://github.com/magicbell-io/magicbell-js/commit/9280ca79f6a51936cccaeb61cb78f0eabfb5c656) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@types/rosie` to `^0.0.45`.
+
+- [`d199c74`](https://github.com/magicbell-io/magicbell-js/commit/d199c74d38c4dfe6e7d0bdcf63a4e8e19da9dda9) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.201`.
+
+- [`8649613`](https://github.com/magicbell-io/magicbell-js/commit/864961352717771f8676c87d793e2ab26720cd5d) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/sinon` to `^10.0.20`.
+
+- Updated dependencies [[`ad7250e`](https://github.com/magicbell-io/magicbell-js/commit/ad7250edf64d2c80b3d80aa352dc9b32c83817b2), [`9280ca7`](https://github.com/magicbell-io/magicbell-js/commit/9280ca79f6a51936cccaeb61cb78f0eabfb5c656), [`d199c74`](https://github.com/magicbell-io/magicbell-js/commit/d199c74d38c4dfe6e7d0bdcf63a4e8e19da9dda9)]:
+  - @magicbell/webpush@1.4.1
+  - @magicbell/react-headless@4.4.6
+
 ## 10.9.7
 
 ### Patch Changes
