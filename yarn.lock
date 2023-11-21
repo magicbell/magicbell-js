@@ -4229,10 +4229,10 @@
     "@types/tough-cookie" "*"
     parse5 "^7.0.0"
 
-"@types/json-schema-merge-allof@^0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@types/json-schema-merge-allof/-/json-schema-merge-allof-0.6.4.tgz#90e54e78121de6b7d40be7d92935941c8b54f9df"
-  integrity sha512-qcAz4Pf5Vf3l1DC0UVvDO5oI6s6qUMmpfiL8a6xRuYbbWdHUd/VkhJ3l69Tzg3BHy8dWEyKOys01Cfw+F4lCug==
+"@types/json-schema-merge-allof@^0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@types/json-schema-merge-allof/-/json-schema-merge-allof-0.6.5.tgz#727eb4e64e5fc64b98bfc955891b257d125f65c1"
+  integrity sha512-5mS11ZUTyFNUVEMpK3uKoPb6BWL/nLgW/ln2VOiI8OOxKEYC4Gl9O3WjS5P49yqVTfkcbCAPKw3T1O4erUah5g==
   dependencies:
     "@types/json-schema" "*"
 
