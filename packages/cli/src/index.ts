@@ -1,6 +1,7 @@
 import { Option } from 'commander';
 
 import pkg from '../package.json';
+import { api } from './api';
 import { config } from './config';
 import { createCommand, findCommand, findTopCommand } from './lib/commands';
 import { configStore } from './lib/config';
@@ -53,7 +54,7 @@ for (const command of [...commands, user]) {
   program.addCommand(command.group('Resource commands'));
 }
 
-const otherCommands = [config, login, logout];
+const otherCommands = [api, config, login, logout];
 for (const command of otherCommands) {
   program.addCommand(command.group('Other commands'));
 }

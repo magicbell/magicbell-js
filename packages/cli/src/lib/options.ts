@@ -5,7 +5,7 @@ import { camelToSnakeCase } from './text';
 
 const optionKeys = new Set(['userEmail', 'userExternalId']);
 
-function parseJsonLikes(obj: unknown) {
+export function parseJsonLikes(obj: unknown) {
   if (Array.isArray(obj)) return obj.map(parseJsonLikes);
   if (typeof obj !== 'string') return obj;
 

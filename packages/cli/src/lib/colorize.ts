@@ -50,7 +50,7 @@ function getTokens(json: string) {
   return tokens;
 }
 
-const defaultColors: Record<TokenType, (str: string | number) => string | number> = {
+export const colors: Record<TokenType, (str: string | number) => string | number> = {
   BRACE: kleur.white,
   BRACKET: kleur.white,
   COLON: kleur.white,
@@ -64,11 +64,9 @@ const defaultColors: Record<TokenType, (str: string | number) => string | number
   WHITESPACE: (i) => i,
 };
 
-type Colors = { colors?: Record<keyof typeof defaultColors, (val: string | number) => string> };
+export type Colors = { colors?: Record<keyof typeof colors, (val: string | number) => string> };
 
-export function colorize(json: string, colors?: Colors) {
-  const colorMap = { ...defaultColors, ...colors };
-
+export function colorize(json: string) {
   const tokens = getTokens(json);
-  return tokens.reduce((acc, token) => acc + colorMap[token.type](token.value), '');
+  return tokens.reduce((acc, token) => acc + colors[token.type](token.value), '');
 }

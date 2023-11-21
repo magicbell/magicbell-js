@@ -1,9 +1,15 @@
 /* eslint-disable no-console */
-import { colorize } from './colorize';
+import { colorize, colors } from './colorize';
 import { configStore } from './config';
 
 export function printMessage(message = ''): void {
   console.log(message);
+}
+
+export function printKeyValue(key: string, value: unknown, color = true) {
+  color = color && configStore.color;
+  if (!color) console.log(`${key}: ${value}`);
+  else console.log(`${colors.STRING_KEY(key)}: ${value}`);
 }
 
 export function printJson(data: any, color = true): void {
