@@ -61,7 +61,7 @@
     "@faker-js/faker": "^6.3.1",
     "@size-limit/preset-small-lib": "^8.0.1",
     "@types/humps": "^2.0.6",
-    "@types/lodash": "^4.14.201",
+    "@types/lodash": "^4.14.202",
     "@types/ramda": "^0.28.0",
     "@types/rosie": "^0.0.45",
     "babel-loader": "^8.2.2",
