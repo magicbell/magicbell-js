@@ -49,7 +49,7 @@ function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserCl
     }
   }
 
-  const hooks: Hooks = options.hooks || {};
+  const hooks: Hooks = options?.hooks || {};
 
   if (printRequest) {
     hooks.beforeRequest = [
