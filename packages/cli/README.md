@@ -499,6 +499,14 @@ magicbell user subscriptions delete <topic>  \
 
 <!-- AUTO-GENERATED-CONTENT:END (USER_RESOURCE_METHODS) -->
 
+### Raw API requests
+
+You can make raw API requests with the `api` command. This command makes an authenticated HTTP request to the MagicBell API and prints the response. Note that this client is authenticated using the project credentials, not the user credentials. You can use the `--profile` option to make requests against a different profile. This command is useful for debugging purposes, but we recommend using the other commands for day-to-day use.
+
+```shell
+magicbell api --help
+```
+
 ## Support
 
 New features and bug fixes are released on the latest major version of the `@magicbell/cli` package. If you are on an older major version, we recommend that you upgrade to the latest in order to use the new features and bug fixes including those for security vulnerabilities. Older major versions of the package will continue to be available for use, but will not be receiving any updates.

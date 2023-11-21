@@ -49,10 +49,11 @@ function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserCl
     }
   }
 
-  const hooks: Hooks = {};
+  const hooks: Hooks = options.hooks || {};
 
   if (printRequest) {
     hooks.beforeRequest = [
+      ...(hooks.beforeRequest || []),
       async (request) => {
         printMessage(await serialize(request, printRequest));
         process.exit(0);
