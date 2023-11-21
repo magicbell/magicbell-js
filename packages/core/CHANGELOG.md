@@ -1,5 +1,21 @@
 # @magicbell/core
 
+## 5.0.11
+
+### Patch Changes
+
+- [#216](https://github.com/magicbell-io/magicbell-js/pull/216) [`6b97a7c`](https://github.com/magicbell-io/magicbell-js/commit/6b97a7c6076185c9e8f995745a69f3c5da5952b1) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `miragejs` to `^0.1.48`.
+
+- [`9be10f5`](https://github.com/magicbell-io/magicbell-js/commit/9be10f5f641888f4431b8c112155c5b9b3f0731b) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/lodash` to `^4.14.202`.
+
+- [`d29b034`](https://github.com/magicbell-io/magicbell-js/commit/d29b034767ba539164b330f0b3fd94822b8817ff) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `rosie` to `^2.1.1`.
+
 ## 5.0.10
 
 ### Patch Changes
