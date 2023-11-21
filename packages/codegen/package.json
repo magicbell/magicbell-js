@@ -48,6 +48,6 @@
     "recast": "^0.21.5"
   },
   "devDependencies": {
-    "@types/json-schema-merge-allof": "^0.6.4"
+    "@types/json-schema-merge-allof": "^0.6.5"
   }
 }
