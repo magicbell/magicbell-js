@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 3.1.1
+
+### Patch Changes
+
+- [`d813bac`](https://github.com/magicbell-io/magicbell-js/commit/d813bac4c050ab5c2540734717394c94fe81cb50) Thanks [@smeijer](https://github.com/smeijer)! - fix issue when no hooks were provided
+
 ## 3.1.0
 
 ### Minor Changes
