@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 3.2.0
+
+### Minor Changes
+
+- [`a044146`](https://github.com/magicbell-io/magicbell-js/commit/a0441465e0dd0faa850dad4aa81df91a48484a17) Thanks [@smeijer](https://github.com/smeijer)! - only show cli help when invalid arguments were provided
+
 ## 3.1.1
 
 ### Patch Changes
