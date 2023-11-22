@@ -1,5 +1,13 @@
 # @magicbell/core
 
+## 5.0.12
+
+### Patch Changes
+
+- [`f3c4ce3`](https://github.com/magicbell-io/magicbell-js/commit/f3c4ce30b65352e3ae312faedf04ad8a05a66c1b) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `ably` to `^1.2.48`.
+
 ## 5.0.11
 
 ### Patch Changes

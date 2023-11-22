@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/core",
-  "version": "5.0.11",
+  "version": "5.0.12",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Official MagicBell API wrapper",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
