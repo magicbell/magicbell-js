@@ -22,7 +22,7 @@
     "twind": "^0.16.19"
   },
   "devDependencies": {
-    "@angular/core": "^13.1.1",
+    "@angular/core": "^13.4.0",
     "@magicbell/embeddable": "3.3.13",
     "@magicbell/magicbell-react": "10.9.9",
     "@magicbell/react-headless": "4.4.7",
