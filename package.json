@@ -46,7 +46,7 @@
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.24.4",
     "@manypkg/cli": "^0.19.1",
-    "@size-limit/preset-small-lib": "^8.0.1",
+    "@size-limit/preset-small-lib": "^8.2.6",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.5.16",
