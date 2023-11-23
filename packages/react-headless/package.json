@@ -69,7 +69,7 @@
     "react-dom": "^17.0.2",
     "rosie": "^2.1.1",
     "sinon": "^13.0.2",
-    "size-limit": "^8.0.1",
+    "size-limit": "^8.2.6",
     "twind": "^0.16.19",
     "utility-types": "^3.10.0"
   },
