@@ -4618,10 +4618,10 @@
   resolved "https://registry.yarnpkg.com/@types/vscode-webview/-/vscode-webview-1.57.4.tgz#12b0dd73afeeaed5a1f48dbdb3824af75773bc8c"
   integrity sha512-RrVw9s6gBJuY1IkUHMNznWgj/ktjwLpATyOTcKxUDIbbp7AQeK7S0E1+P/8Z75OgAW13OMqSAmaiuWw25dh59Q==
 
-"@types/vscode@^1.73.0":
-  version "1.73.1"
-  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.73.1.tgz#f2b198dca65c693c4570475aca04a34ad773609d"
-  integrity sha512-eArfOrAoZVV+Ao9zQOCaFNaeXj4kTCD+bGS2gyNgIFZH9xVMuLMlRrEkhb22NyxycFWKV1UyTh03vhaVHmqVMg==
+"@types/vscode@^1.84.2":
+  version "1.84.2"
+  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.84.2.tgz#77b25d1db71f09e059f178622f831d704ee52b3a"
+  integrity sha512-LCe1FvCDMJKkPdLVGYhP0HRJ1PDop2gRVm/zFHiOKwYLBRS7vEV3uOOUId4HMV+L1IxqyS+IZXMmlSMRbZGIAw==
 
 "@types/webpack-env@^1.16.0":
   version "1.18.0"
