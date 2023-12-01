@@ -5,8 +5,8 @@ on:
     types: [created, edited, deleted]
 
 jobs:
-  create-release:
-    name: Send Release Notes
+  publish-release-notes:
+    name: Publish Release Notes
     runs-on: ubuntu-latest
 
     steps:
