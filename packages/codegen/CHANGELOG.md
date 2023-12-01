@@ -1,5 +1,17 @@
 # @magicbell/codegen
 
+## 0.2.4
+
+### Patch Changes
+
+- [`5a3443f`](https://github.com/magicbell-io/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `openapi-types` to `^12.1.3`.
+
+- [#222](https://github.com/magicbell-io/magicbell-js/pull/222) [`444e653`](https://github.com/magicbell-io/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `recast` to `^0.23.4`.
+
 ## 0.2.3
 
 ### Patch Changes

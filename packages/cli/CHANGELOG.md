@@ -1,5 +1,16 @@
 # @magicbell/cli
 
+## 3.2.1
+
+### Patch Changes
+
+- [`33d2cab`](https://github.com/magicbell-io/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tsx` to `^3.14.0`.
+
+- Updated dependencies [[`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1), [`5a3443f`](https://github.com/magicbell-io/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0), [`33d2cab`](https://github.com/magicbell-io/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6), [`444e653`](https://github.com/magicbell-io/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8)]:
+  - magicbell@3.0.1
+
 ## 3.2.0
 
 ### Minor Changes
