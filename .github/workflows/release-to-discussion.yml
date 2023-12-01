@@ -4,6 +4,8 @@ on:
   release:
     types: [created, edited, deleted]
 
+concurrency: release-discussion-action
+
 jobs:
   publish-release-notes:
     name: Publish Release Notes
