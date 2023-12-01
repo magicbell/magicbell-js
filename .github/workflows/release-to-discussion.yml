@@ -1,0 +1,20 @@
+name: Release To Discussions
+
+on:
+  release:
+    types: [created, edited, deleted]
+
+jobs:
+  create-release:
+    name: Send Release Notes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: publish discussion
+        uses: magicbell-io/release-discussion-action@main
+        with:
+          repo: magicbell-io/community
+          category: product-changelog
+          cycle: week
+        env:
+          GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
