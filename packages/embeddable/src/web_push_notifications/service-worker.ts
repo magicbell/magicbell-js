@@ -55,7 +55,7 @@ self.addEventListener('pushsubscriptionchange', async (event) => {
   const project = await at(0, 'projects');
   if (!project) throw Error('Project not found');
 
-  event.waitUntil(
+  (event as ExtendableEvent).waitUntil(
     subscribeToPushNotifications(self.registration.pushManager, project.vapidPublicKey).then(async (subscription) => {
       // TODO: Get user by ID
       const user = await at(0, 'users');
