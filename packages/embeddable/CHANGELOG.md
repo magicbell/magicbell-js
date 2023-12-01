@@ -1,5 +1,28 @@
 # @magicbell/embeddable
 
+## 3.3.14
+
+### Patch Changes
+
+- [`59f5479`](https://github.com/magicbell-io/magicbell-js/commit/59f5479e029ec8886d42a7554526522f5e54c491) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `start-server-and-test` to `^1.15.4`.
+
+- [`41b577c`](https://github.com/magicbell-io/magicbell-js/commit/41b577c21ce516ad199a27f3fdf290e9f1e52d8c) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `cypress` to `8.7.0`.
+
+- [`ab7782a`](https://github.com/magicbell-io/magicbell-js/commit/ab7782a7373fadd647bca138fa164b2a84d53639) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.1`.
+
+- [`1941a44`](https://github.com/magicbell-io/magicbell-js/commit/1941a443adc84c3286b45f497262729ca6f1dc57) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `node` to `>=12.22.12`.
+
+- Updated dependencies [[`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1), [`aa44b32`](https://github.com/magicbell-io/magicbell-js/commit/aa44b32184e05526a5b0b1af6fa5f580d322aefe), [`ec0fb02`](https://github.com/magicbell-io/magicbell-js/commit/ec0fb023e9c59452f5c05d9c1254b764aef98b21), [`184de06`](https://github.com/magicbell-io/magicbell-js/commit/184de06495eeb2643916246c31ea25250da3fabb), [`7dbb225`](https://github.com/magicbell-io/magicbell-js/commit/7dbb225f654995e04eaacce6d67105f825f53857), [`ab7782a`](https://github.com/magicbell-io/magicbell-js/commit/ab7782a7373fadd647bca138fa164b2a84d53639)]:
+  - @magicbell/magicbell-react@10.9.10
+
 ## 3.3.13
 
 ### Patch Changes

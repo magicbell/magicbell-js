@@ -1,5 +1,30 @@
 # @magicbell/react-headless
 
+## 4.4.8
+
+### Patch Changes
+
+- [`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@size-limit/preset-small-lib` to `^8.2.6`.
+
+- [`aa44b32`](https://github.com/magicbell-io/magicbell-js/commit/aa44b32184e05526a5b0b1af6fa5f580d322aefe) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/react` to `^18.2.39`.
+  - updated `@types/react-dom` to `^18.2.17`.
+  - updated `react` to `>= 16.14.0`.
+
+- [`184de06`](https://github.com/magicbell-io/magicbell-js/commit/184de06495eeb2643916246c31ea25250da3fabb) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `size-limit` to `^8.2.6`.
+
+- [`8649b12`](https://github.com/magicbell-io/magicbell-js/commit/8649b122832af97b250471fc2ee54b0977cf0027) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `babel-loader` to `^8.3.0`.
+
+- Updated dependencies [[`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1), [`5a3443f`](https://github.com/magicbell-io/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0), [`33d2cab`](https://github.com/magicbell-io/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6), [`444e653`](https://github.com/magicbell-io/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8)]:
+  - magicbell@3.0.1
+
 ## 4.4.7
 
 ### Patch Changes

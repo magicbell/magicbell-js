@@ -1,5 +1,38 @@
 # @magicbell/magicbell-react
 
+## 10.9.10
+
+### Patch Changes
+
+- [`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@size-limit/preset-small-lib` to `^8.2.6`.
+
+- [`aa44b32`](https://github.com/magicbell-io/magicbell-js/commit/aa44b32184e05526a5b0b1af6fa5f580d322aefe) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@types/react` to `^18.2.39`.
+  - updated `@types/react-dom` to `^18.2.17`.
+  - updated `react` to `>= 16.14.0`.
+
+- [#223](https://github.com/magicbell-io/magicbell-js/pull/223) [`ec0fb02`](https://github.com/magicbell-io/magicbell-js/commit/ec0fb023e9c59452f5c05d9c1254b764aef98b21) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `typescript` to `^4.9.5`.
+
+- [`184de06`](https://github.com/magicbell-io/magicbell-js/commit/184de06495eeb2643916246c31ea25250da3fabb) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `size-limit` to `^8.2.6`.
+
+- [`7dbb225`](https://github.com/magicbell-io/magicbell-js/commit/7dbb225f654995e04eaacce6d67105f825f53857) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@babel/core` to `^7.23.5`.
+
+- [`ab7782a`](https://github.com/magicbell-io/magicbell-js/commit/ab7782a7373fadd647bca138fa164b2a84d53639) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.1`.
+
+- Updated dependencies [[`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1), [`aa44b32`](https://github.com/magicbell-io/magicbell-js/commit/aa44b32184e05526a5b0b1af6fa5f580d322aefe), [`184de06`](https://github.com/magicbell-io/magicbell-js/commit/184de06495eeb2643916246c31ea25250da3fabb), [`8649b12`](https://github.com/magicbell-io/magicbell-js/commit/8649b122832af97b250471fc2ee54b0977cf0027)]:
+  - @magicbell/react-headless@4.4.8
+
 ## 10.9.9
 
 ### Patch Changes

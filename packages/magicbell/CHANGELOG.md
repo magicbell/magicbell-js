@@ -1,5 +1,25 @@
 # magicbell
 
+## 3.0.1
+
+### Patch Changes
+
+- [`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@size-limit/preset-small-lib` to `^8.2.6`.
+
+- [`5a3443f`](https://github.com/magicbell-io/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `openapi-types` to `^12.1.3`.
+
+- [`33d2cab`](https://github.com/magicbell-io/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tsx` to `^3.14.0`.
+
+- [#222](https://github.com/magicbell-io/magicbell-js/pull/222) [`444e653`](https://github.com/magicbell-io/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `recast` to `^0.23.4`.
+
 ## 3.0.0
 
 ### Major Changes
