@@ -2791,10 +2791,10 @@
     "@preact/signals-core" "^1.2.2"
     use-sync-external-store "^1.2.0"
 
-"@primer/octicons-react@^17.9.0":
-  version "17.9.0"
-  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-17.9.0.tgz#034ad1f377c2834900a2dd6b3c54079628dd73b1"
-  integrity sha512-fx2abdGfzzHqB8DOSq6FqNgusjkeDHfPFTa8DjSaugCFccEO2vIfM2ZY1sg4c5SpOQEQAbOEC4/gqWDulIRHzA==
+"@primer/octicons-react@^17.12.0":
+  version "17.12.0"
+  resolved "https://registry.yarnpkg.com/@primer/octicons-react/-/octicons-react-17.12.0.tgz#d863c32736e138d25b80bef5c2628a29963b7b22"
+  integrity sha512-GUjV6IT1Ck2lu2GVu1loR0e2dcX2e9aIVmX5rBdR7HJnRdYKY7XH+FnYj7y9sEmzUdNEDswxkefiQlfGrBXlzA==
 
 "@radix-ui/react-icons@^1.0.3":
   version "1.1.1"
