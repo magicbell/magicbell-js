@@ -28,7 +28,7 @@
     "playground": "../packages/playground"
   },
   "devDependencies": {
-    "@types/react": "^18.2.41",
+    "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "vite": "latest",
     "vite-preset-react": "latest",

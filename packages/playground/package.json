@@ -26,7 +26,7 @@
     "@magicbell/embeddable": "3.3.14",
     "@magicbell/magicbell-react": "10.9.10",
     "@magicbell/react-headless": "4.4.8",
-    "@types/react": "^18.2.41",
+    "@types/react": "^18.2.42",
     "eslint-config-next": "12.0.7",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-vue": "^8.2.0",
