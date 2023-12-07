@@ -39,6 +39,6 @@
     "size": "size-limit"
   },
   "dependencies": {
-    "msw": "^1.2.2"
+    "msw": "^1.3.2"
   }
 }
