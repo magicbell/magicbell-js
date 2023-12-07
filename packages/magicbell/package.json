@@ -97,7 +97,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "fetch-addons": "^1.1.0",
-    "json-schema-to-ts": "2.6.0",
+    "json-schema-to-ts": "2.9.2",
     "ky": "npm:@smeijer/ky@^0.33.3"
   }
 }
