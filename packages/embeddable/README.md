@@ -31,4 +31,4 @@ npm i @magicbell/embeddable
 
 ## Documentation
 
-Please see the [MagicBell documentation](https://magicbell.com/docs/sdks/embeddable) for more information about this SDK.
+Please see the [MagicBell documentation](https://magicbell.com/docs/libraries/embeddable) for more information about this SDK.

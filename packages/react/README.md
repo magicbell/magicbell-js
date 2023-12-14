@@ -30,4 +30,4 @@ ReactDOM.render(
 
 ## Documentation
 
-Please see the [MagicBell documentation](https://magicbell.com/docs/sdks/react) for more information about this SDK.
+Please see the [MagicBell documentation](https://magicbell.com/docs/libraries/react) for more information about this SDK.

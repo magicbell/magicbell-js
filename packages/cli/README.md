@@ -31,4 +31,4 @@ magicbell --help
 
 ## Documentation
 
-Please see the [MagicBell documentation](https://magicbell.com/docs/developer-tools/cli) for more information about this cli.
+Please see the [MagicBell documentation](https://magicbell.com/docs/developer-tools/magicbell-cli) for more information about this cli.
