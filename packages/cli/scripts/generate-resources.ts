@@ -10,6 +10,7 @@ import {
   filterResourcesMethods,
   formatMarkdown,
   generateResourceFiles,
+  getBetaMethods,
   getRequestBody,
   getResources,
   hasHeader,
@@ -20,16 +21,33 @@ import {
   schemaToObject,
   updateReadme,
 } from '@magicbell/codegen';
-import { getBetaMethods } from '@magicbell/codegen/src';
 import { builders } from 'ast-types';
 import * as K from 'ast-types/gen/kinds';
 import fs from 'fs/promises';
 import { OpenAPIV3 } from 'openapi-types';
 import path from 'path';
 
-const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
-const OUT_DIR = path.join(process.cwd(), 'src');
-const README_MD = path.join(process.cwd(), 'README.md');
+const SPEC_URL = argv.spec || 'https://public.magicbell.com/specs/openapi.json';
+
+const initError = !argv.help && !argv.dest && !argv.docs;
+
+if (initError) {
+  console.error('Either --dest or --docs must be provided');
+  argv.help = true;
+}
+
+if (argv.help) {
+  console.log(`
+Usage: generate-resources [options]
+
+Options:
+  --spec <url>    OpenAPI spec URL (default: https://public.magicbell.com/specs/openapi.json)
+  --dest <dir>    Target directory for generated files
+  --docs <file>   Target file for docs
+`);
+
+  process.exit(initError ? 1 : 0);
+}
 
 function cleanMarkdown(markdown = '') {
   return markdown.replace(/\[(.*)]\(.*\)/g, '$1');
@@ -440,31 +458,37 @@ async function main() {
   const outDirs = Array.from(new Set(files.map((x) => path.dirname(x.name))));
 
   // add readme - this should not go through eslint
-  outDirs.forEach(() => {
+  outDirs.forEach((dir) => {
     files.push({
-      name: 'README.md',
+      name: path.join(dir, 'README.md'),
       source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
     });
   });
 
-  // all files are generated & linted, now it makes sense to flush the old files and write new ones
-  for (const dir of outDirs) {
-    await fs.rm(path.join(OUT_DIR, dir), { recursive: true }).catch(() => void 0);
-    await fs.mkdir(path.join(OUT_DIR, dir), { recursive: true });
+  if (argv.dest) {
+    // all files are generated & linted, now it makes sense to flush the old files and write new ones
+    for (const dir of outDirs) {
+      await fs.rm(path.join(argv.dest, dir), { recursive: true }).catch(() => void 0);
+      await fs.mkdir(path.join(argv.dest, dir), { recursive: true });
+    }
+
+    for (const file of files) {
+      const outFile = path.join(argv.dest, file.name);
+      await fs.mkdir(path.dirname(outFile), { recursive: true });
+      await fs.writeFile(outFile, file.source || '', 'utf-8');
+      console.log(`generated ${path.relative(process.cwd(), outFile)}`);
+    }
+
+    // update feature flags
+    await updateFeatureFlags(path.join(process.cwd(), argv.dest, 'lib/client.ts'), betaMethods);
   }
 
-  for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.name);
-    await fs.mkdir(path.dirname(outFile), { recursive: true });
-    await fs.writeFile(outFile, file.source || '', 'utf-8');
-    console.log(`generated ${path.relative(process.cwd(), outFile)}`);
+  if (argv.docs) {
+    // update method docs in readme
+    await updateReadme(argv.docs, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
+    await updateReadme(argv.docs, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
+    console.log(`updated ${argv.docs}`);
   }
-
-  // update method docs in readme
-  await updateFeatureFlags(path.join(process.cwd(), 'src/lib/client.ts'), betaMethods);
-  await updateReadme(README_MD, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
-  await updateReadme(README_MD, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
-  console.log(`updated README.md`);
 }
 
 main();
