@@ -440,9 +440,9 @@ async function main() {
   const outDirs = Array.from(new Set(files.map((x) => path.dirname(x.name))));
 
   // add readme - this should not go through eslint
-  outDirs.forEach(() => {
+  outDirs.forEach((dir) => {
     files.push({
-      name: 'README.md',
+      name: path.join(dir, 'README.md'),
       source: 'Files in this directory are auto generated. Do not make any manual changes within this directory.\n',
     });
   });
