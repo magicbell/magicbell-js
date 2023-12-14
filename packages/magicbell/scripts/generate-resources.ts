@@ -30,9 +30,27 @@ import fs from 'fs/promises';
 import { stringify } from 'json5';
 import path from 'path';
 
-const SPEC_URL = 'https://raw.githubusercontent.com/magicbell-io/public/main/openapi/spec/openapi.json';
-const OUT_DIR = path.join(process.cwd(), 'src');
-const README_MD = path.join(process.cwd(), 'README.md');
+const SPEC_URL = argv.spec || 'https://public.magicbell.com/specs/openapi.json';
+
+const initError = !argv.help && !argv.dest && !argv.docs;
+
+if (initError) {
+  console.error('Either --dest or --docs must be provided');
+  argv.help = true;
+}
+
+if (argv.help) {
+  console.log(`
+Usage: generate-resources [options]
+
+Options:
+  --spec <url>    OpenAPI spec URL (default: https://public.magicbell.com/specs/openapi.json)
+  --dest <dir>    Target directory for generated files
+  --docs <file>   Target file for docs
+`);
+
+  process.exit(initError ? 1 : 0);
+}
 
 function countChar(char: string, string: string): number {
   return string.split(char).length - 1;
@@ -452,36 +470,40 @@ async function main() {
     });
   });
 
-  // all files are generated & linted, now it makes sense to flush the old files and write new ones
-  for (const dir of outDirs) {
-    await fs.rm(path.join(OUT_DIR, dir), { recursive: true }).catch(() => void 0);
-    await fs.mkdir(path.join(OUT_DIR, dir), { recursive: true });
-  }
-
-  for (const file of files) {
-    const outFile = path.join(OUT_DIR, file.name);
-    await fs.mkdir(path.dirname(outFile), { recursive: true });
-    await fs.writeFile(outFile, file.source || '', 'utf-8');
-    console.log(`generated ${path.relative(process.cwd(), outFile)}`);
-  }
-
   const projectResourceFiles = files.filter((x) => x.name.startsWith('project-resources'));
   const userResourceFiles = files.filter((x) => x.name.startsWith('user-resources'));
 
-  // update method docs in readme
-  await updateReadme(README_MD, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
-  await updateReadme(README_MD, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
-  await updateReadme(README_MD, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
-  console.log(`updated README.md`);
+  if (argv.dest) {
+    // all files are generated & linted, now it makes sense to flush the old files and write new ones
+    for (const dir of outDirs) {
+      await fs.rm(path.join(argv.dest, dir), { recursive: true }).catch(() => void 0);
+      await fs.mkdir(path.join(argv.dest, dir), { recursive: true });
+    }
 
-  await updateTypes(path.join(process.cwd(), 'src', 'client', 'types.ts'), betaMethods);
-  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'client', 'types.ts'))}`);
+    for (const file of files) {
+      const outFile = path.join(argv.dest, file.name);
+      await fs.mkdir(path.dirname(outFile), { recursive: true });
+      await fs.writeFile(outFile, file.source || '', 'utf-8');
+      console.log(`generated ${path.relative(argv.dest, outFile)}`);
+    }
 
-  // update resource clients
-  await updateClient(path.join(process.cwd(), 'src', 'project-client.ts'), projectResourceFiles);
-  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'project-client.ts'))}`);
-  await updateClient(path.join(process.cwd(), 'src', 'user-client.ts'), userResourceFiles);
-  console.log(`updated ${path.relative(process.cwd(), path.join('src', 'user-client.ts'))}`);
+    await updateTypes(path.join(argv.dest, 'client', 'types.ts'), betaMethods);
+    console.log(`updated ${path.relative(process.cwd(), path.join(argv.dest, 'client', 'types.ts'))}`);
+
+    // update resource clients
+    await updateClient(path.join(argv.dest, 'project-client.ts'), projectResourceFiles);
+    console.log(`updated ${path.relative(process.cwd(), path.join(argv.dest, 'project-client.ts'))}`);
+    await updateClient(path.join(argv.dest, 'user-client.ts'), userResourceFiles);
+    console.log(`updated ${path.relative(process.cwd(), path.join(argv.dest, 'user-client.ts'))}`);
+  }
+
+  if (argv.docs) {
+    // update method docs in readme
+    await updateReadme(argv.docs, 'PROJECT_RESOURCE_METHODS', projectResourceFiles.map((x) => x.docs).filter(Boolean));
+    await updateReadme(argv.docs, 'USER_RESOURCE_METHODS', userResourceFiles.map((x) => x.docs).filter(Boolean));
+    await updateReadme(argv.docs, 'FEATURE_FLAGS', createFeatureFlagTable(betaMethods));
+    console.log(`updated ${argv.docs}`);
+  }
 }
 
 main();
