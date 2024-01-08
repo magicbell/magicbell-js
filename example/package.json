@@ -24,7 +24,6 @@
     "@magicbell/utils": "../packages/utils",
     "@magicbell/webpush": "../packages/webpush",
     "magicbell": "../packages/magicbell",
-    "ping-vscode": "../packages/ping-vscode",
     "playground": "../packages/playground"
   },
   "devDependencies": {

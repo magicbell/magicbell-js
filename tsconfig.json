@@ -16,7 +16,6 @@
       "@magicbell/utils": ["packages/utils/src"],
       "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
-      "ping-vscode": ["packages/ping-vscode/src"],
       "playground": ["packages/playground/src"]
     }
   }
