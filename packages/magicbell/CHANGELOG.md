@@ -1,5 +1,27 @@
 # magicbell
 
+## 3.1.0
+
+### Minor Changes
+
+- [#233](https://github.com/magicbell-io/magicbell-js/pull/233) [`8bee76e`](https://github.com/magicbell-io/magicbell-js/commit/8bee76eff4f35a55c5b50e25c0f143bd49c5ae3e) Thanks [@smeijer](https://github.com/smeijer)! - Add support for nested paths in `host` option.
+
+  ```ts
+  import { ProjectClient } from 'magicbell/project-client';
+
+  const magicbell = new ProjectClient({
+    apiKey: 'your-api-key',
+    apiSecret: 'your-api-secret',
+    host: 'https://example.com/api/mocks/magicbell',
+  });
+  ```
+
+### Patch Changes
+
+- [`1041cdf`](https://github.com/magicbell-io/magicbell-js/commit/1041cdf10f7ae87413ca5c00236d8a9ac8d33183) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `json-schema-to-ts` to `2.9.2`.
+
 ## 3.0.1
 
 ### Patch Changes
