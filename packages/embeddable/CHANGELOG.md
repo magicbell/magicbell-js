@@ -1,5 +1,20 @@
 # @magicbell/embeddable
 
+## 3.3.15
+
+### Patch Changes
+
+- [`a344f04`](https://github.com/magicbell-io/magicbell-js/commit/a344f04f859d6054c55888be14477201f3b1fe29) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `preact` to `^10.19.2`.
+
+- [`681ed7b`](https://github.com/magicbell-io/magicbell-js/commit/681ed7b45380812c3627baeb090d4d97b4ab2558) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.2`.
+
+- Updated dependencies [[`681ed7b`](https://github.com/magicbell-io/magicbell-js/commit/681ed7b45380812c3627baeb090d4d97b4ab2558), [`fdb6953`](https://github.com/magicbell-io/magicbell-js/commit/fdb695389abc7c881518ea746ad55e84cc90f83d)]:
+  - @magicbell/magicbell-react@10.9.11
+
 ## 3.3.14
 
 ### Patch Changes

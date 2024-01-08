@@ -1,5 +1,20 @@
 # @magicbell/magicbell-react
 
+## 10.9.11
+
+### Patch Changes
+
+- [`681ed7b`](https://github.com/magicbell-io/magicbell-js/commit/681ed7b45380812c3627baeb090d4d97b4ab2558) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.4.2`.
+
+- [`fdb6953`](https://github.com/magicbell-io/magicbell-js/commit/fdb695389abc7c881518ea746ad55e84cc90f83d) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tinycolor2` to `^1.6.0`.
+
+- Updated dependencies []:
+  - @magicbell/react-headless@4.4.9
+
 ## 10.9.10
 
 ### Patch Changes
