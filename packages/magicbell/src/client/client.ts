@@ -39,7 +39,10 @@ export class Client {
       headers: { ...this.#options.headers, ...reqHeaders },
     };
 
-    const url = new URL(path, requestOptions.host);
+    // don't just use `new URL(path, host)` as that will strip the path from the host
+    const url = new URL(requestOptions.host);
+    url.pathname = url.pathname.replace(/\/$/, '') + path;
+
     for (const [key, value] of Object.entries(params || {})) {
       url.searchParams.append(key, Array.isArray(value) ? value.join(',') : value);
     }
