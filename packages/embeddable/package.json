@@ -30,8 +30,8 @@
     "test:watch": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress:headed'"
   },
   "dependencies": {
-    "@emotion/cache": "^11.4.0",
-    "@emotion/react": "^11.4.1",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.3",
     "@magicbell/magicbell-react": "10.9.11",
     "@tippyjs/react": "^4.2.6",
     "error-stack-parser": "^2.1.4",
