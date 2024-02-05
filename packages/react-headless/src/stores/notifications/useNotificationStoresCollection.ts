@@ -9,6 +9,10 @@ import setStoreProps from './helpers/setStoreProps';
 import { objMatchesContext } from './helpers/strategies';
 import NotificationRepository from './NotificationRepository';
 
+function unix() {
+  return Math.floor(Date.now() / 1000);
+}
+
 /**
  * Collection of notifications store. It contains all stores of notifications
  * and exposes methods to interact with them.
@@ -72,7 +76,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
             if (!notification.seenAt) {
               draft.stores[storeId].unseenCount = Math.max(0, unseenCount - 1);
               draft.stores[storeId].notifications[index] = mergeRight(notifications[index], {
-                seenAt: Date.now() / 1000,
+                seenAt: unix(),
               });
             }
           }
@@ -89,7 +93,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
-        const now = Date.now() / 1000;
+        const now = unix();
         const attrs = { readAt: now, seenAt: now };
 
         for (const storeId in stores) {
@@ -181,7 +185,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
 
     set(
       produce<INotificationsStoresCollection>((draft) => {
-        const now = Date.now() / 1000;
+        const now = unix();
         const attrs = { archivedAt: now };
 
         for (const storeId in stores) {
@@ -318,7 +322,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     set(
       produce<INotificationsStoresCollection>((draft) => {
         const changedNotifications = new Map();
-        const now = Date.now() / 1000;
+        const now = unix();
 
         for (const storeId in stores) {
           const { context } = stores[storeId];
@@ -383,7 +387,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     set(
       produce<INotificationsStoresCollection>((draft) => {
         const changedNotifications = new Map();
-        const now = Date.now() / 1000;
+        const now = unix();
 
         for (const storeId in stores) {
           const { context } = stores[storeId];

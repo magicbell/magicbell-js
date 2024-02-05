@@ -7,9 +7,9 @@ export default new Factory()
   .attr('content', () => faker.lorem.paragraphs())
   .attr('category', () => faker.random.word())
   .attr('actionUrl', () => faker.internet.url())
-  .attr('seenAt', () => faker.date.recent().getTime() / 1000)
-  .attr('sentAt', () => faker.date.recent().getTime() / 1000)
-  .attr('archivedAt', () => faker.date.recent().getTime() / 1000)
+  .attr('seenAt', () => Math.floor(faker.date.recent().getTime() / 1000))
+  .attr('sentAt', () => Math.floor(faker.date.recent().getTime() / 1000))
+  .attr('archivedAt', () => Math.floor(faker.date.recent().getTime() / 1000))
   .attrs({
     customAttributes: '{"accountId": 4}',
     metaData: '{"accountId": 4}',

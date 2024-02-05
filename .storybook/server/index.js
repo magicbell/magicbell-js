@@ -3,6 +3,9 @@ import NotificationFactory from '../../packages/react/tests/factories/Notificati
 import { sampleNotificationPreferences } from "../../packages/react/tests/factories/NotificationPreferencesFactory";
 
 // TODO: move /server to packages/mock-server
+function unix() {
+  return Math.floor(Date.now() / 1000);
+}
 
 const richTextMessages = [
   { title: 'Getting started with MagicBell',
@@ -39,8 +42,8 @@ function buildNotifications({ page, read, seen, archived }) {
   const isFirstPage = page === 1;
 
   const notifications = NotificationFactory.buildList(10, {
-    seenAt: new Date().getTime() / 1000,
-    readAt: new Date().getTime() / 1000,
+    seenAt: unix(),
+    readAt: unix(),
   });
 
   if (isFirstPage && read === undefined) {
@@ -55,19 +58,19 @@ function buildNotifications({ page, read, seen, archived }) {
 
   if (read !== undefined) {
     notifications.forEach(notification => {
-      notification.readAt = read ? new Date().getTime() / 1000 : null;
+      notification.readAt = read ? unix() : null;
     });
   }
 
   if (seen !== undefined) {
     notifications.forEach(notification => {
-      notification.seenAt = seen ? new Date().getTime() / 1000 : null;
+      notification.seenAt = seen ? unix() : null;
     });
   }
 
   if (archived !== undefined) {
     notifications.forEach(notification => {
-      notification.archivedAt = archived ? new Date().getTime() / 1000 : null;
+      notification.archivedAt = archived ? unix() : null;
     });
   }
 
