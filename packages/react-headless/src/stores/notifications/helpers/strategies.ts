@@ -38,6 +38,7 @@ export function objMatchesContext(
     if (
       (attr === 'read' && !comparator(!isNil(notification.readAt), condition)) ||
       (attr === 'seen' && !comparator(!isNil(notification.seenAt), condition)) ||
+      (attr === 'archived' && !comparator(!isNil(notification.archivedAt), condition)) ||
       (attr === 'categories' &&
         ensureArray(condition).every((category) => !comparator(notification.category, category))) ||
       (attr === 'topics' && ensureArray(condition).every((topic) => !comparator(notification.topic, topic))) ||

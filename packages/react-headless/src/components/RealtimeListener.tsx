@@ -24,6 +24,9 @@ export default function RealtimeListener() {
   const markAllAsSeen = () => collection.markAllAsSeen({ persist: false });
   const markAllAsRead = () => collection.markAllAsRead({ persist: false });
   const removeNotification = (data: IRemoteNotification) => collection.deleteNotification(data, { persist: false });
+  const archiveNotification = (data: IRemoteNotification) => collection.archiveNotification(data, { persist: false });
+  const unarchiveNotification = (data: IRemoteNotification) =>
+    collection.unarchiveNotification(data, { persist: false });
 
   useEffect(() => {
     if (!apiKey || !user) return;
@@ -44,6 +47,7 @@ export default function RealtimeListener() {
   useMagicBellEvent('notifications.read', fetchAndResetAll, { source: 'remote' });
   useMagicBellEvent('notifications.unread', fetchAndResetAll, { source: 'remote' });
   useMagicBellEvent('notifications.delete', removeNotification, { source: 'remote' });
-
+  useMagicBellEvent('notifications.archived', archiveNotification, { source: 'remote' });
+  useMagicBellEvent('notifications.unarchived', unarchiveNotification, { source: 'remote' });
   return null;
 }

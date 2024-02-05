@@ -9,6 +9,20 @@ interface IWrappedNotification {
 
 export default interface INotificationRepository extends RemoteRepository<IWrappedNotification, INotificationStore> {
   /**
+   * Mark a notification as archived in the API server.
+   *
+   * @param id ID of the notification
+   */
+  archive(id: string): Promise<boolean>;
+
+  /**
+   * Mark a notification as unarchived in the API server.
+   *
+   * @param id ID of the notification
+   */
+  unarchive(id: string): Promise<boolean>;
+
+  /**
    * Mark a notification as read in the API server.
    *
    * @param id ID of the notification

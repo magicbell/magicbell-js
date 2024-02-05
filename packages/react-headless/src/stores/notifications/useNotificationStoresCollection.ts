@@ -167,6 +167,108 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
     return promise;
   },
 
+  archiveNotification: (notification, options = {}) => {
+    const { stores, _repository } = get();
+    const { id: notificationId } = notification;
+
+    let promise = Promise.resolve(true);
+
+    // Do not persist the state if this op is a consequence of a remote event.
+    if (options.persist !== false) {
+      promise = _repository.archive(notificationId);
+      emitEvent('notifications.archived', notification, 'local');
+    }
+
+    set(
+      produce<INotificationsStoresCollection>((draft) => {
+        const now = Date.now() / 1000;
+        const attrs = { archivedAt: now };
+
+        for (const storeId in stores) {
+          const store = stores[storeId];
+          const index = findIndex(propEq('id', notificationId), store.notifications);
+
+          if (index > -1) {
+            const newNotification = { ...store.notifications[index], ...attrs };
+            if (objMatchesContext(newNotification, store.context).result) {
+              // Update the store
+              draft.stores[storeId].notifications[index] = newNotification;
+            } else {
+              // Decrease the counters if the notification was included in it, and clamp to zero
+              if (!notification.readAt) draft.stores[storeId].unreadCount = Math.max(0, store.unreadCount - 1);
+              if (!notification.seenAt) draft.stores[storeId].unseenCount = Math.max(0, store.unseenCount - 1);
+
+              // Remove notification from the store
+              draft.stores[storeId].total = Math.max(0, store.total - 1);
+              draft.stores[storeId].notifications.splice(index, 1);
+            }
+          } else {
+            const newNotification = { ...notification, ...attrs };
+            if (objMatchesContext(newNotification, store.context).result) {
+              // Add the notification to the store
+              if (!notification.readAt) draft.stores[storeId].unreadCount += 1;
+              if (!notification.seenAt) draft.stores[storeId].unseenCount += 1;
+
+              draft.stores[storeId].total += 1;
+              draft.stores[storeId].notifications.push(newNotification);
+            }
+          }
+        }
+      }),
+    );
+
+    return promise;
+  },
+
+  unarchiveNotification: (notification, options = {}) => {
+    const { stores, _repository } = get();
+    const { id: notificationId } = notification;
+    let promise = Promise.resolve(true);
+
+    // Do not persist the state if this op is a consequence of a remote event.
+    if (options.persist !== false) {
+      promise = _repository.unarchive(notificationId);
+      emitEvent('notifications.unarchived', notification, 'local');
+    }
+
+    set(
+      produce<INotificationsStoresCollection>((draft) => {
+        const attrs = { archivedAt: null };
+
+        for (const storeId in stores) {
+          const store = stores[storeId];
+          const index = findIndex(propEq('id', notificationId), store.notifications);
+
+          if (index > -1) {
+            const newNotification = { ...store.notifications[index], ...attrs };
+            if (objMatchesContext(newNotification, store.context).result) {
+              draft.stores[storeId].notifications[index] = newNotification;
+            } else {
+              // Remove notification from the store
+              if (!notification.readAt) draft.stores[storeId].unreadCount = Math.max(0, store.unreadCount - 1);
+              if (!notification.seenAt) draft.stores[storeId].unseenCount = Math.max(0, store.unseenCount - 1);
+
+              draft.stores[storeId].total = Math.max(0, store.total - 1);
+              draft.stores[storeId].notifications.splice(index, 1);
+            }
+          } else {
+            const newNotification = { ...notification, ...attrs };
+            if (objMatchesContext(newNotification, store.context).result) {
+              // Add the notification to the store
+              if (!notification.readAt) draft.stores[storeId].unreadCount += 1;
+              if (!notification.seenAt) draft.stores[storeId].unseenCount += 1;
+
+              draft.stores[storeId].total += 1;
+              draft.stores[storeId].notifications.push(newNotification);
+            }
+          }
+        }
+      }),
+    );
+
+    return promise;
+  },
+
   deleteNotification: (notification: IRemoteNotification, options = {}) => {
     const { stores, _repository } = get();
     const notificationId = notification.id;

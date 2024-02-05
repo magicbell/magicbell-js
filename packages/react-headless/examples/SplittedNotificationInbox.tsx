@@ -1,3 +1,4 @@
+import cn from 'clsx';
 import React from 'react';
 
 import { useNotifications } from '../src';
@@ -8,17 +9,28 @@ export default function SplittedNotificationInbox() {
     Default: useNotifications('default'),
     Read: useNotifications('read'),
     Unread: useNotifications('unread'),
+    Archived: useNotifications('archived'),
   };
 
   return (
-    <main className="divide-y">
+    <main className="grid grid-cols-4 gap-8 p-4">
       {Object.entries(stores).map(([name, store]) => (
         <div key={name} className="py-4">
-          <header className="mb-4 flex">
-            <div className="mr-8 font-bold">{name}</div>
-            <button onClick={() => store?.markAllAsRead()}>Mark all as read</button>
-            <p className="flex-1 text-right">
+          <header className="mb-4">
+            <div className="flex justify-between">
+              <div
+                className={cn('mr-8 font-bold px-2 rounded', {
+                  'bg-green-500': name === 'Read',
+                  'bg-green-100': name === 'Unread',
+                  'bg-blue-500': name === 'Archived',
+                })}
+              >
+                {name}
+              </div>
               {store?.total} notifications / {store?.unreadCount} unread / {store?.unseenCount} unseen
+            </div>
+            <p className="flex-1 text-right">
+              <button onClick={() => store?.markAllAsRead()}>Mark all as read</button>
             </p>
           </header>
           <section>

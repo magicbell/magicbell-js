@@ -1,6 +1,6 @@
-import {Server} from 'miragejs';
+import { Server } from 'miragejs';
 import NotificationFactory from '../../packages/react/tests/factories/NotificationFactory';
-import {sampleNotificationPreferences} from "../../packages/react/tests/factories/NotificationPreferencesFactory";
+import { sampleNotificationPreferences } from "../../packages/react/tests/factories/NotificationPreferencesFactory";
 
 // TODO: move /server to packages/mock-server
 
@@ -30,9 +30,12 @@ const richTextMessages = [
 ]
 
 // https://www.magicbell.com/docs/rest-api/reference#fetch-notifications
-function buildNotifications({ page, read, ...params }) {
+function buildNotifications({ page, read, seen, archived }) {
   page = Number(page) || 1;
   read = !read ? undefined : read === 'true';
+  seen = !seen ? undefined : seen === 'true';
+  archived = !archived ? undefined : archived === 'true';
+
   const isFirstPage = page === 1;
 
   const notifications = NotificationFactory.buildList(10, {
@@ -50,14 +53,32 @@ function buildNotifications({ page, read, ...params }) {
     );
   }
 
+  if (read !== undefined) {
+    notifications.forEach(notification => {
+      notification.readAt = read ? new Date().getTime() / 1000 : null;
+    });
+  }
+
+  if (seen !== undefined) {
+    notifications.forEach(notification => {
+      notification.seenAt = seen ? new Date().getTime() / 1000 : null;
+    });
+  }
+
+  if (archived !== undefined) {
+    notifications.forEach(notification => {
+      notification.archivedAt = archived ? new Date().getTime() / 1000 : null;
+    });
+  }
+
   return {
-    total: 100,
-    total_pages: 10,
-    per_page: 10,
+    total: notifications.length,
+    total_pages: 1,
+    per_page: notifications.length,
     current_page: page,
     notifications,
-    unseen_count: isFirstPage ? 5 : 0,
-    unread_count: 100,
+    unseen_count: isFirstPage ? notifications.filter(x => !x.seenAt).length : 0,
+    unread_count: isFirstPage ? notifications.filter(x => !x.readAt).length : 0,
   };
 }
 
@@ -128,6 +149,8 @@ function start() {
   server.post('/notifications/read', {});
   server.post('/notifications/seen', {});
   server.post('/notifications/*/read', {});
+  server.post('/notifications/*/archive', {});
+  server.post('/notifications/*/unarchive', {});
   server.delete('/notifications/*', {});
 
   // Realtime
@@ -139,6 +162,7 @@ function start() {
   });
 
   server.post('https://rest.ably.io:443/*', {});
+  server.get('https://realtime.ably.io/sse/*', {});
 }
 
 export default {

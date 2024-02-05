@@ -12,13 +12,21 @@ import IRemoteNotification from '../types/IRemoteNotification';
  * @param data Notification data.
  */
 export default function useNotificationFactory(data: IRemoteNotification): INotification {
-  const { markNotificationAsRead, markNotificationAsSeen, markNotificationAsUnread, deleteNotification } =
-    useNotificationStoresCollection();
+  const {
+    markNotificationAsRead,
+    markNotificationAsSeen,
+    markNotificationAsUnread,
+    deleteNotification,
+    archiveNotification,
+    unarchiveNotification,
+  } = useNotificationStoresCollection();
 
   const markAsSeen = () => markNotificationAsSeen(data);
   const markAsRead = () => markNotificationAsRead(data);
   const markAsUnread = () => markNotificationAsUnread(data);
   const deleteSelf = () => deleteNotification(data);
+  const archive = () => archiveNotification(data);
+  const unarchive = () => unarchiveNotification(data);
 
   return {
     ...data,
@@ -35,5 +43,7 @@ export default function useNotificationFactory(data: IRemoteNotification): INoti
     markAsRead,
     markAsUnread,
     delete: deleteSelf,
+    archive,
+    unarchive,
   };
 }

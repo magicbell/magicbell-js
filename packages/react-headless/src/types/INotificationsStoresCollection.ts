@@ -94,6 +94,24 @@ export default interface INotificationsStoresCollection {
   markNotificationAsUnread: (notification: IRemoteNotification) => Promise<boolean>;
 
   /**
+   * Archives a notification. Makes a request to the MagicBell server and
+   * archives the notification immediately.
+   *
+   * @param notification
+   */
+  archiveNotification: (notification: IRemoteNotification, options?: Partial<{ persist: boolean }>) => Promise<boolean>;
+
+  /**
+   * Unarchives a notification. Makes a request to the MagicBell server and
+   * unarchives the notification immediately.
+   * @param notification
+   */
+  unarchiveNotification: (
+    notification: IRemoteNotification,
+    options?: Partial<{ persist: boolean }>,
+  ) => Promise<boolean>;
+
+  /**
    * Deletes a notification. Makes a request to the MagicBell server and
    * removes the notification immediately.
    *
