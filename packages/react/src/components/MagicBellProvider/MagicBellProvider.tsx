@@ -1,5 +1,5 @@
-import { MagicBellProvider as Provider } from '@magicbell/react-headless';
-import React from 'react';
+import { clientSettings, MagicBellProvider as Provider } from '@magicbell/react-headless';
+import React, { useEffect, useState } from 'react';
 
 import CurrentProviderContext from '../../context/CurrentProviderContext';
 import MagicBellContext from '../../context/MagicBellContext';
@@ -52,27 +52,49 @@ const internals = {
  * </MagicBellProvider>
  * ```
  */
-export default function MagicBellProvider({
-  children,
-  theme = {},
-  images,
-  locale = 'en',
-  ...settings
-}: MagicBellProviderProps) {
-  const textTranslations = useLocale(locale);
+export default function MagicBellProvider({ children, theme, images, locale, ...settings }: MagicBellProviderProps) {
+  return (
+    // provide private props like this, so it's not part of the public api,
+    // still can be overridden by the embeddable, and consumed by headless
+    <Provider {...internals} {...settings}>
+      <SettingsProviders {...settings} theme={theme} images={images} locale={locale}>
+        {children}
+      </SettingsProviders>
+    </Provider>
+  );
+}
+
+function SettingsProviders({ children, theme, locale, images, ...props }: MagicBellProviderProps) {
+  const needsRemoteConfig = !theme || !locale || !images;
+
+  const [config, setConfig] = useState<Pick<MagicBellProviderProps, 'theme' | 'images' | 'locale'>>({});
+  const [isFetchingConfig, setIsFetchingConfig] = useState(needsRemoteConfig);
+
+  useEffect(() => {
+    // Don't fetch remote theme config if all overrides are provided via props
+    if (!needsRemoteConfig) return;
+
+    const client = clientSettings.getState().getClient();
+    client
+      .request({
+        method: 'POST',
+        path: '/integrations/in_app/installations',
+      })
+      .then((response) => setConfig(response))
+      .catch(() => void 0)
+      .finally(() => setIsFetchingConfig(false));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [needsRemoteConfig, props.apiKey, props.userExternalId, props.userExternalId]);
+
+  const textTranslations = useLocale(locale || config.locale || 'en');
 
   return (
     <CurrentProviderContext.Provider value="DEFAULT_MAGICBELL">
       <TranslationsProvider value={textTranslations}>
-        <MagicBellThemeProvider value={theme}>
-          <MagicBellContext.Provider value={{ images }}>
-            {/*
-              provide private props like this, so it's not part of the public api,
-              still can be overridden by the embeddable, and consumed by headless
-             */}
-            <Provider {...internals} {...settings}>
-              {children}
-            </Provider>
+        <MagicBellThemeProvider value={theme || config.theme}>
+          <MagicBellContext.Provider value={{ images: images || config.images, isFetchingConfig }}>
+            {children}
           </MagicBellContext.Provider>
         </MagicBellThemeProvider>
       </TranslationsProvider>

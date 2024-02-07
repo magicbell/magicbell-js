@@ -1,6 +1,7 @@
 import { INotification } from '@magicbell/react-headless';
 import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react';
 
+import { useMagicBellContext } from '../../context/MagicBellContext';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import Layout from './Layout';
 import NotificationsView, { NotificationsViewProps } from './private/NotificationsView';
@@ -38,6 +39,8 @@ export default function NotificationInbox({
   ...props
 }: NotificationInboxProps) {
   const [view, setView] = useState<'inbox' | 'preferences'>('inbox');
+  const { isFetchingConfig } = useMagicBellContext();
+  if (isFetchingConfig) return null;
 
   return (
     <StyledContainer height={height} layout={layout}>

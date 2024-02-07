@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useMagicBellContext } from '../../context/MagicBellContext';
 import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
 import { NotificationListItem } from '../NotificationList/NotificationList';
 import { PopoverPlacement, PopperOptions } from '../Popover';
@@ -43,6 +44,9 @@ export default function FloatingNotificationInbox({
     if (closeOnNotificationClick) toggle?.();
     return onNotificationClick?.(notification);
   };
+
+  const { isFetchingConfig } = useMagicBellContext();
+  if (isFetchingConfig) return null;
 
   return (
     <FloatingInboxContainer

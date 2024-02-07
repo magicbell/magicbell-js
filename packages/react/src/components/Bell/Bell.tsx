@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { useBell } from '@magicbell/react-headless';
 import { isNil } from 'ramda';
 
+import { useMagicBellContext } from '../../context/MagicBellContext';
 import { useTheme } from '../../context/MagicBellThemeContext';
 import { cleanslate } from '../Styled';
 import BellBadge from './BellBadge';
@@ -28,6 +29,7 @@ export interface Props {
 export default function Bell({ Icon, Badge = BellBadge, onClick, storeId, counter }: Props) {
   const notifications = useBell({ storeId });
   const theme = useTheme();
+  const { isFetchingConfig } = useMagicBellContext();
   const { icon: iconTheme } = theme;
 
   const handleClick = () => {
@@ -50,6 +52,10 @@ export default function Bell({ Icon, Badge = BellBadge, onClick, storeId, counte
       width: 100%;
     }
   `;
+
+  if (isFetchingConfig) {
+    return <div css={[cleanslate, containerStyle]} />;
+  }
 
   return (
     <a
