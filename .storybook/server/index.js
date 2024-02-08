@@ -1,6 +1,6 @@
-import {Server} from 'miragejs';
+import { Server } from 'miragejs';
 import NotificationFactory from '../../packages/react/tests/factories/NotificationFactory';
-import {sampleNotificationPreferences} from "../../packages/react/tests/factories/NotificationPreferencesFactory";
+import { sampleNotificationPreferences } from "../../packages/react/tests/factories/NotificationPreferencesFactory";
 
 // TODO: move /server to packages/mock-server
 
@@ -129,6 +129,12 @@ function start() {
   server.post('/notifications/seen', {});
   server.post('/notifications/*/read', {});
   server.delete('/notifications/*', {});
+
+  server.post('/integrations/in_app/installations', {
+    locale: 'en',
+    theme: {},
+    images: {},
+  });
 
   // Realtime
   server.post('/ws/*', {

@@ -86,7 +86,7 @@ test('can render the inbox with a custom layout', async () => {
     { stores },
   );
 
-  screen.getByRole('heading', {
+  await screen.findByRole('heading', {
     name: /notifications/i,
   });
 

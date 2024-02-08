@@ -12,14 +12,14 @@ import { sampleNotification } from '../../../factories/NotificationFactory';
 
 setupMockServer(...mockHandlers);
 
-test('renders the notification button', () => {
+test('renders the notification button', async () => {
   render(<Bell onClick={jest.fn()} />);
-  screen.getByRole('button', { name: /notifications/i });
+  await screen.findByRole('button', { name: /notifications/i });
 });
 
-test('the notification button has a namespaced data attribute', () => {
+test('the notification button has a namespaced data attribute', async () => {
   render(<Bell onClick={jest.fn()} />);
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   expect(button).toHaveAttribute('data-magicbell-bell');
 });
 
@@ -33,17 +33,21 @@ test('does not render the notification count if there are no notifications', () 
 test('renders the number of notifications if there are some', async () => {
   render(<Bell onClick={jest.fn()} />);
 
+  await screen.findByRole('status');
+
   act(() => {
     useNotificationStoresCollection.setState({
       stores: { default: buildStore({ unseenCount: 1 }) },
     });
   });
 
-  await waitFor(() => screen.getByRole('status', { name: /1 unread items/i }));
+  await screen.findByRole('status', { name: /1 unread items/i });
 });
 
 test('shows the number of unread notifications if counter is set to unread', async () => {
   render(<Bell onClick={jest.fn()} counter="unread" />);
+
+  await screen.findByRole('status');
 
   act(() => {
     useNotificationStoresCollection.setState({
@@ -54,10 +58,10 @@ test('shows the number of unread notifications if counter is set to unread', asy
   await waitFor(() => screen.getByRole('status', { name: /2 unread items/i }));
 });
 
-test('can render the bell icon with the custom color and size', () => {
+test('can render the bell icon with the custom color and size', async () => {
   const theme = { ...defaultTheme, icon: { borderColor: 'red', width: '14px' } };
   render(<Bell onClick={jest.fn()} />, { theme });
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   const icon = button.querySelector('path');
   expect(icon).toHaveAttribute('fill', 'red');
 });
@@ -66,7 +70,7 @@ test('calls the onClick callback when the button is clicked', async () => {
   const onClick = jest.fn();
   render(<Bell onClick={onClick} />);
 
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
 
   expect(onClick).toHaveBeenCalledTimes(1);
@@ -77,7 +81,7 @@ test('marks all notifications as seen', async () => {
   const onClick = jest.fn();
   render(<Bell onClick={onClick} />);
 
-  const button = screen.getByRole('button', { name: /notifications/i });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
 
   const { result } = renderHook(() => useNotification({ ...sampleNotification, seenAt: null }));
