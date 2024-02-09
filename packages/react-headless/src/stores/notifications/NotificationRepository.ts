@@ -24,6 +24,22 @@ export default class NotificationRepository
     super(remotePathOrUrl);
   }
 
+  archive(id: string): Promise<boolean> {
+    const url = `${this.remotePathOrUrl}/${id}/archive`;
+
+    return postAPI(url)
+      .then(() => true)
+      .catch(() => false);
+  }
+
+  unarchive(id: string): Promise<boolean> {
+    const url = `${this.remotePathOrUrl}/${id}/unarchive`;
+
+    return postAPI(url)
+      .then(() => true)
+      .catch(() => false);
+  }
+
   markAsRead(id: string): Promise<boolean> {
     const url = `${this.remotePathOrUrl}/${id}/read`;
 

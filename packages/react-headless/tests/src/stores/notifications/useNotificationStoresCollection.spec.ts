@@ -137,8 +137,8 @@ describe('useNotificationStoresCollection', () => {
           read: Array.from({ length: initialReadCount }).map((_, idx) => ({
             ...fake.notification,
             id: `read-${idx}`,
-            readAt: Date.now() / 1000,
-            seenAt: Date.now() / 1000,
+            readAt: Math.floor(Date.now() / 1000),
+            seenAt: Math.floor(Date.now() / 1000),
           })),
           unread: Array.from({ length: initialUnreadCount }).map((_, idx) => ({
             ...fake.notification,
@@ -278,7 +278,7 @@ describe('useNotificationStoresCollection', () => {
         const notifications = Array.from({ length: 4 }).map((_, i) => ({
           ...fake.notification,
           readAt: null,
-          seenAt: Date.now() / 1000,
+          seenAt: Math.floor(Date.now() / 1000),
           id: `${i}`,
         }));
 

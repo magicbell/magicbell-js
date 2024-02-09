@@ -32,12 +32,15 @@ export function objMatchesContext(
 ) {
   const diff: string[] = [];
 
+  // backend defaults to unarchived notifications, so we need to do the same
+  context = { archived: false, ...context };
   Object.keys(context).forEach((attr) => {
     const condition = context[attr];
 
     if (
       (attr === 'read' && !comparator(!isNil(notification.readAt), condition)) ||
       (attr === 'seen' && !comparator(!isNil(notification.seenAt), condition)) ||
+      (attr === 'archived' && !comparator(!isNil(notification.archivedAt), condition)) ||
       (attr === 'categories' &&
         ensureArray(condition).every((category) => !comparator(notification.category, category))) ||
       (attr === 'topics' && ensureArray(condition).every((topic) => !comparator(notification.topic, topic))) ||

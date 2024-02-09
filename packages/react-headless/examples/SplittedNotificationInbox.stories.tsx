@@ -19,6 +19,7 @@ const meta: Meta = {
       { id: 'default', defaultQueryParams: {} },
       { id: 'read', defaultQueryParams: { read: true } },
       { id: 'unread', defaultQueryParams: { read: false } },
+      { id: 'archived', defaultQueryParams: { archived: true } },
     ],
   },
 };

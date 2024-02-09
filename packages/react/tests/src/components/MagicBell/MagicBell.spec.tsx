@@ -174,7 +174,7 @@ test('supports controlled state', async () => {
         </button>
 
         <MagicBell apiKey="__API_KEY__" userEmail="__USER_EMAIL__" onToggle={toggle} isOpen={isOpen}>
-          {(props) => <div data-testid="children" {...props} />}
+          {() => <div data-testid="children" />}
         </MagicBell>
       </>
     );

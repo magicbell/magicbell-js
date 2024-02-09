@@ -33,4 +33,14 @@ export default interface INotification
    * Permanentely delete the notification.
    */
   delete: () => Promise<boolean>;
+
+  /**
+   * Archive the notification.
+   */
+  archive: () => Promise<boolean>;
+
+  /**
+   * Unarchive the notification.
+   */
+  unarchive: () => Promise<boolean>;
 }

@@ -7,8 +7,8 @@ export default new Factory()
   .attr('content', () => faker.lorem.sentences(3) + ' <a target="_blank" href="http://example.com">more</a>')
   .attr('actionUrl', () => faker.internet.url())
   .attr('category', () => faker.random.word())
-  .attr('seenAt', () => faker.date.recent().getTime() / 1000)
-  .attr('sentAt', () => faker.date.recent().getTime() / 1000)
+  .attr('seenAt', () => Math.floor(faker.date.recent().getTime() / 1000))
+  .attr('sentAt', () => Math.floor(faker.date.recent().getTime() / 1000))
   .attrs({
     topic: null,
     customAttributes: { accountId: 4 },
