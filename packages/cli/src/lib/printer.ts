@@ -13,6 +13,9 @@ export function printKeyValue(key: string, value: unknown, color = true) {
 }
 
 export function printJson(data: any, color = true): void {
+  // some commands don't have a return value
+  if (typeof data === 'undefined') return;
+
   const json = JSON.stringify(data, null, 2);
   color = color && configStore.color;
   console.log(color ? colorize(json) : json);
