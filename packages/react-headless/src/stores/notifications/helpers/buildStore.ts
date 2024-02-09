@@ -3,7 +3,7 @@ import INotificationStore from '../../../types/INotificationStore';
 const emptyStore = {
   // the context defaults to unarchived notifications, as that's the behaviour
   // defined in the backend, it's needed here as wel for multi store sync.
-  context: { archived: false },
+  context: {},
   total: 0,
   totalPages: 0,
   perPage: 0,
@@ -12,6 +12,7 @@ const emptyStore = {
   unseenCount: 0,
   notifications: [],
 };
+
 /**
  * Factory of notifications stores.
  *
@@ -20,6 +21,5 @@ const emptyStore = {
  * @returns An empty store of notifications
  */
 export default function buildStore(props: Record<string, unknown>): INotificationStore {
-  const context = 'context' in props && typeof props.context === 'object' ? props.context : {};
-  return { ...emptyStore, context: { ...emptyStore.context, ...context } };
+  return { ...emptyStore, ...props };
 }

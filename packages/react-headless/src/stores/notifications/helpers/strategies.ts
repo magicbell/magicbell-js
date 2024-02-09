@@ -32,6 +32,8 @@ export function objMatchesContext(
 ) {
   const diff: string[] = [];
 
+  // backend defaults to unarchived notifications, so we need to do the same
+  context = { archived: false, ...context };
   Object.keys(context).forEach((attr) => {
     const condition = context[attr];
 
