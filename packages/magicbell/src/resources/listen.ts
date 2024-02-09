@@ -111,8 +111,9 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     eventSource = new EventSource(url.toString());
 
     // handle incoming messages
-    eventSource.onmessage = (event) => {
-      if (event.origin !== sseHost) return;
+    eventSource.addEventListener('message', (event) => {
+      // event.origin can be undefined in react-native (devmode?)
+      if (event.origin && event.origin !== sseHost) return;
 
       lastEvent = event.lastEventId;
       if (!('data' in event)) return;
@@ -124,10 +125,15 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
 
       message.data = message.encoding === 'json' ? JSON.parse(message.data) : message.data;
       pushMessage({ value: message, done: false });
-    };
+    });
+
+    // handle close
+    eventSource.addEventListener('close', () => {
+      return pushMessage({ value: null, done: true });
+    });
 
     // handle connection errors
-    eventSource.onerror = (msg) => {
+    eventSource.addEventListener('error', (msg) => {
       const err = 'data' in msg ? JSON.parse((msg as any).data) : {};
       const isTokenErr = err.code >= 40140 && err.code < 40150;
       if (isTokenErr) {
@@ -140,20 +146,24 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
         // eslint-disable-next-line no-console
         console.log('sse error:', msg);
       }
-    };
+    });
   }
 
   function listen(options?: RequestOptions): IterableEventSource<Event> {
     void connect(options);
 
     const asyncIteratorNext = async () => {
-      if (!messages.length) await new Promise((r) => (resolve = r));
-      const event = messages.pop();
+      let event: typeof messages[number] | null = null;
+
       // It's weird that `event` can be undefined? We don't push empty messages
       // This happens when running in <React.StrictMode />. I guess there are
       // two instances resolving the promise above, the second resolve results
       // in no content. See this github pr for more context:
       // https://github.com/magicbell-io/magicbell-js/pull/189
+      while (!event) {
+        if (!messages.length) await new Promise((r) => (resolve = r));
+        event = messages.pop();
+      }
 
       if (!event) return { done: false, value: '' };
       if (event.done && eventSource) eventSource.close();
