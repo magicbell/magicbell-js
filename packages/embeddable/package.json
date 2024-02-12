@@ -38,7 +38,7 @@
     "idb": "^6.1.5",
     "preact": "^10.19.2",
     "react-frame-component": "^5.2.6",
-    "react-use": "^17.4.2",
+    "react-use": "^17.5.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
