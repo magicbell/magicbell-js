@@ -7,6 +7,7 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/no-unknown-property": ['error', { ignore: ['css'] }],
+    "react/no-deprecated": "off",
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     "@typescript-eslint/no-explicit-any": "off",
     'prefer-const': ['error', { destructuring: 'all' }],
