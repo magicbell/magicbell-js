@@ -14,9 +14,6 @@
     "Eric Hosick <erichosick@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "engines": {
-    "node": ">=20.11.0"
-  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "run-s clean build:*",
