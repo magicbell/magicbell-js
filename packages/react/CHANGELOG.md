@@ -1,5 +1,56 @@
 # @magicbell/magicbell-react
 
+## 10.10.0
+
+### Minor Changes
+
+- [#240](https://github.com/magicbell-io/magicbell-js/pull/240) [`00451d2`](https://github.com/magicbell-io/magicbell-js/commit/00451d2d23cad54480f93ad8e3968921fd491559) Thanks [@smeijer](https://github.com/smeijer)! - Theme, locale, and image settings can now be published from the MagicBell dashboard, and will be automatically used by the inbox. This means you can now change the look and feel of the inbox without needing to change code.
+
+  The behavior is backward compatible. Config is only applied after publishing from the dashboard, and properties provided to the MagicBell provider precede the published settings.
+
+  In other words, to enable this new behavior for a current integration, you'll need to remove the `theme`, `locale`, and/or `images` properties from the `MagicBell` component and publish the settings from the dashboard.
+
+  When all three props are provided, remote settings will not be fetched.
+
+  ```tsx
+  <MagicBell
+    apiKey="..."
+    userEmail="..."
+    locale={customLocale}
+    theme={{
+      header: {
+        backgroundColor: 'lightblue',
+      },
+    }}
+    images={{}}
+  >
+    {(props) => <FloatingNotificationInbox height={450} {...props} isOpen />}
+  </MagicBell>
+  ```
+
+### Patch Changes
+
+- [`772bd16`](https://github.com/magicbell-io/magicbell-js/commit/772bd16862c3ae3202eb66f864cde0a66aee1489) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@emotion/cache` to `^11.11.0`.
+  - updated `@emotion/react` to `^11.11.3`.
+
+- [`805c275`](https://github.com/magicbell-io/magicbell-js/commit/805c275906c17e7f655722f153ccb991b5d594ca) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.5.0`.
+
+- [#246](https://github.com/magicbell-io/magicbell-js/pull/246) [`ce7bc6f`](https://github.com/magicbell-io/magicbell-js/commit/ce7bc6fb02e54f68e2f0dbd1545b53af9354a079) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `react` to `>= 18.2.0`.
+  - updated `react-dom` to `^18.2.0`.
+
+- [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tslib` to `^2.6.2`.
+
+- Updated dependencies [[`ce7bc6f`](https://github.com/magicbell-io/magicbell-js/commit/ce7bc6fb02e54f68e2f0dbd1545b53af9354a079), [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591), [`e6f514e`](https://github.com/magicbell-io/magicbell-js/commit/e6f514e008d5300ce8a7ba192dbb3a9aed137206)]:
+  - @magicbell/react-headless@4.5.0
+
 ## 10.9.11
 
 ### Patch Changes

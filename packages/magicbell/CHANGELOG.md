@@ -1,5 +1,15 @@
 # magicbell
 
+## 3.1.1
+
+### Patch Changes
+
+- [#242](https://github.com/magicbell-io/magicbell-js/pull/242) [`840263b`](https://github.com/magicbell-io/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675) Thanks [@smeijer](https://github.com/smeijer)! - use `eventSource.addEventListener` instead of `eventSource.onmessage` to maximize compatibility with different environments.
+
+- [`aee799d`](https://github.com/magicbell-io/magicbell-js/commit/aee799deebd15f904153cbc4a7c3ff5dca9accc4) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `json-schema-to-ts` to `2.12.0`.
+
 ## 3.1.0
 
 ### Minor Changes

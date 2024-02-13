@@ -1,5 +1,54 @@
 # @magicbell/react-headless
 
+## 4.5.0
+
+### Minor Changes
+
+- [#243](https://github.com/magicbell-io/magicbell-js/pull/243) [`e6f514e`](https://github.com/magicbell-io/magicbell-js/commit/e6f514e008d5300ce8a7ba192dbb3a9aed137206) Thanks [@smeijer](https://github.com/smeijer)! - Add archive and unarchive utilities to the `useNotification` hook.
+
+  ```js
+  const notification = useNotification(data);
+
+  await notification.archive();
+  await notification.unarchive();
+  ```
+
+  Archived notifications are not included in the default notification store. Create a separate store for archived notifications if you want to display them.
+
+  ```tsx
+  const stores = [
+    { id: 'default', defaultQueryParams: {} },
+    { id: 'archived', defaultQueryParams: { archived: true } },
+  ];
+
+  const tabs = [
+    { storeId: 'default', label: 'Latest' },
+    { storeId: 'archived', label: 'Archive' },
+  ];
+
+  export default function Index() {
+    return (
+      <MagicBell apiKey="__MAGICBELL_API_KEY__" userEmail="__MAGICBELL_USER_EMAIL__" stores={stores}>
+        {(props) => <FloatingNotificationInbox height={450} tabs={tabs} {...props} />}
+      </MagicBell>
+    );
+  }
+  ```
+
+### Patch Changes
+
+- [#246](https://github.com/magicbell-io/magicbell-js/pull/246) [`ce7bc6f`](https://github.com/magicbell-io/magicbell-js/commit/ce7bc6fb02e54f68e2f0dbd1545b53af9354a079) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `react` to `>= 18.2.0`.
+  - updated `react-dom` to `^18.2.0`.
+
+- [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tslib` to `^2.6.2`.
+
+- Updated dependencies [[`840263b`](https://github.com/magicbell-io/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675), [`aee799d`](https://github.com/magicbell-io/magicbell-js/commit/aee799deebd15f904153cbc4a7c3ff5dca9accc4)]:
+  - magicbell@3.1.1
+
 ## 4.4.9
 
 ### Patch Changes

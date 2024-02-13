@@ -1,5 +1,16 @@
 # @magicbell/cli
 
+## 3.2.3
+
+### Patch Changes
+
+- [#241](https://github.com/magicbell-io/magicbell-js/pull/241) [`1afb5b1`](https://github.com/magicbell-io/magicbell-js/commit/1afb5b104c518e8927f416af9602a1e2ab6210a6) Thanks [@smeijer](https://github.com/smeijer)! - don't parse response body when it's empty
+
+- [#242](https://github.com/magicbell-io/magicbell-js/pull/242) [`840263b`](https://github.com/magicbell-io/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675) Thanks [@smeijer](https://github.com/smeijer)! - ensure listeners use node native https module
+
+- Updated dependencies [[`840263b`](https://github.com/magicbell-io/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675), [`aee799d`](https://github.com/magicbell-io/magicbell-js/commit/aee799deebd15f904153cbc4a7c3ff5dca9accc4)]:
+  - magicbell@3.1.1
+
 ## 3.2.2
 
 ### Patch Changes
