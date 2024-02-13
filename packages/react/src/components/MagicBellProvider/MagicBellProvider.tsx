@@ -78,9 +78,12 @@ function SettingsProviders({ children, theme, locale, images, ...props }: MagicB
     client
       .request({
         method: 'POST',
-        path: '/integrations/in_app/installations',
+        path: '/integrations/inbox/installations',
       })
-      .then((response) => setConfig(response))
+      .then((response) => {
+        if (!('inbox' in response)) return;
+        setConfig(response.inbox);
+      })
       .catch(() => void 0)
       .finally(() => setIsFetchingConfig(false));
 

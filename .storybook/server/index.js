@@ -130,7 +130,7 @@ function start() {
   server.post('/notifications/*/read', {});
   server.delete('/notifications/*', {});
 
-  server.post('/integrations/in_app/installations', {
+  server.post('/integrations/inbox/installations', {
     locale: 'en',
     theme: {},
     images: {},
