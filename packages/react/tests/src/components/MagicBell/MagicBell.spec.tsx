@@ -4,8 +4,9 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as faker from 'faker';
 import * as React from 'react';
+import { ComponentProps } from 'react';
 
-import MagicBell from '../../../../src';
+import MagicBellProvider from '../../../../src';
 import Text from '../../../../src/components/Text';
 import NotificationFactory from '../../../../tests/factories/NotificationFactory';
 
@@ -22,17 +23,22 @@ const server = setupMockServer(
   }),
 );
 
+function MagicBell(props: ComponentProps<typeof MagicBellProvider>) {
+  // apply defaults to disable theme fetching
+  return <MagicBellProvider theme={{}} locale="en" images={{}} {...props} />;
+}
+
 test("renders the notification bell, but not it's default children", async () => {
   render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
 
-  screen.getByRole('button', { name: 'Notifications' });
+  await screen.findByRole('button', { name: /notifications/i });
   expect(screen.queryByRole('button', { name: /mark all read/i })).not.toBeInTheDocument();
 });
 
 test('clicking the bell opens the default inbox', async () => {
   render(<MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} />);
 
-  const button = screen.getByRole('button');
+  const button = await screen.findByRole('button');
   await userEvent.click(button);
   await screen.findByRole('button', { name: /Mark All Read/i });
 });
@@ -44,7 +50,7 @@ test("renders the notification bell, but not it's custom children", async () => 
     </MagicBell>,
   );
 
-  screen.getByRole('button', { name: 'Notifications' });
+  await screen.findByRole('button', { name: /notifications/i });
   expect(screen.queryByTestId('children')).not.toBeInTheDocument();
 });
 
@@ -55,7 +61,7 @@ test('clicking the bell opens the custom inbox', async () => {
     </MagicBell>,
   );
 
-  const button = screen.getByRole('button');
+  const button = await screen.findByRole('button');
   await userEvent.click(button);
   await waitFor(() => screen.getByTestId('children'));
 });
@@ -69,7 +75,7 @@ test('can render a custom bell icon', async () => {
     </MagicBell>,
   );
 
-  screen.getByTestId('custom-icon');
+  await screen.findByTestId('custom-icon');
 });
 
 test('renders the children when it is mounted with defaultIsOpen', () => {
@@ -133,7 +139,7 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
     </MagicBell>,
   );
 
-  const button = screen.getByRole('button', { name: 'Notifications' });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
   await waitFor(() => expect(screen.queryByTestId('children')).not.toBeInTheDocument());
 });
@@ -147,7 +153,7 @@ test('calls the onToggle callback when the button is clicked', async () => {
     </MagicBell>,
   );
 
-  const button = screen.getByRole('button', { name: 'Notifications' });
+  const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
 
   expect(onToggle).toHaveBeenCalledTimes(1);
@@ -260,6 +266,6 @@ test('supports a custom notification Badge', async () => {
     </MagicBell>,
   );
 
-  const badge = screen.getByTestId('custom-badge');
+  const badge = await screen.findByTestId('custom-badge');
   await waitFor(() => expect(badge).toHaveTextContent('4'));
 });

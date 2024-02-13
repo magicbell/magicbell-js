@@ -156,6 +156,12 @@ function start() {
   server.post('/notifications/*/unarchive', {});
   server.delete('/notifications/*', {});
 
+  server.post('/integrations/inbox/installations', {
+    locale: 'en',
+    theme: {},
+    images: {},
+  });
+
   // Realtime
   server.post('/ws/*', {
     keyName: '0ugvOA.85mHKQ',

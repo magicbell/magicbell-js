@@ -4,6 +4,7 @@ export interface IMagicBellContext {
   images?: Partial<{
     emptyInboxUrl: string;
   }>;
+  isFetchingConfig: boolean;
 }
 
 const MagicBellContext = createContext<IMagicBellContext>({} as IMagicBellContext);

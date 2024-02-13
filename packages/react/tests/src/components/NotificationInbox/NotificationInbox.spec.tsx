@@ -29,7 +29,7 @@ test('renders a header, the list of notifications and a footer if the notificati
   render(<NotificationInbox height={300} />);
 
   // header
-  screen.getByRole('heading', { name: /Notifications/ });
+  await screen.findByRole('heading', { name: /Notifications/ });
 
   // notification
   await waitFor(() => screen.getByText(/This is a good content/));
@@ -40,7 +40,7 @@ test('renders a header, the list of notifications and a footer if the notificati
 
 test('renders nothing if the notification store does not exist', () => {
   const { container } = render(
-    <MagicBellProvider apiKey="-" userEmail="-">
+    <MagicBellProvider theme={{}} locale="en" images={{}} apiKey="-" userEmail="-">
       <NotificationInbox height={300} storeId="non-existing" />
     </MagicBellProvider>,
   );
@@ -89,7 +89,7 @@ test('can render with a custom no-notifications placeholder if there are no noti
 
 test('can render the inbox in Spanish', async () => {
   render(<NotificationInbox />, { locale: 'es' });
-  screen.getByRole('heading', { name: /Notificaciones/ });
+  await screen.findByRole('heading', { name: /Notificaciones/ });
   screen.getByRole('button', { name: /Preferencias/ });
   await screen.findByRole('button', { name: /Marcar todo como leído/ });
 });
@@ -119,7 +119,7 @@ test('shows the user preferences panel when the preferences button is clicked', 
   useNotificationPreferences.setState({ lastFetchedAt: undefined });
 
   render(<NotificationInbox />, { locale: 'en' });
-  const preferencesButton = screen.getByRole('button', { name: /Notification preferences/ });
+  const preferencesButton = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
@@ -134,7 +134,7 @@ test('the notifications panel contains a close button', async () => {
   useNotificationPreferences.setState({ lastFetchedAt: undefined });
 
   render(<NotificationInbox />, { locale: 'en' });
-  const preferencesButton = screen.getByRole('button', { name: /Notification preferences/ });
+  const preferencesButton = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(preferencesButton);
 
   const checkboxes = await waitFor(() => screen.getAllByRole('checkbox'));
@@ -150,7 +150,7 @@ test('can render with a custom notification preferences component', async () => 
   const NotificationPreferences = () => <div data-testid="notification-preferences" />;
 
   render(<NotificationInbox NotificationPreferences={NotificationPreferences} />, { locale: 'en' });
-  const button = screen.getByRole('button', { name: /Notification preferences/ });
+  const button = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(button);
 
   await waitFor(() => screen.getByTestId('notification-preferences'));
@@ -170,7 +170,7 @@ test('can render with multiple inbox tabs, and active tab changes when clicked',
   ];
 
   render(<NotificationInbox tabs={tabs} />, { stores });
-  const feedTab = screen.getByRole('tab', { name: /feed/i });
+  const feedTab = await screen.findByRole('tab', { name: /feed/i });
   const commentsTab = screen.getByRole('tab', { name: /comments/i });
 
   expect(feedTab).toHaveAttribute('aria-selected', 'true');
@@ -204,7 +204,7 @@ test('renders notifications matching selected tab', async () => {
   }));
 
   render(<NotificationInbox tabs={tabs} />, { stores });
-  const feedTab = screen.getByRole('tab', { name: /feed/i });
+  const feedTab = await screen.findByRole('tab', { name: /feed/i });
   const commentsTab = screen.getByRole('tab', { name: /comments/i });
 
   // navigate to feed tab
