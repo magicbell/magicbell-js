@@ -1,5 +1,25 @@
 # @magicbell/embeddable
 
+## 3.3.16
+
+### Patch Changes
+
+- [`772bd16`](https://github.com/magicbell-io/magicbell-js/commit/772bd16862c3ae3202eb66f864cde0a66aee1489) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@emotion/cache` to `^11.11.0`.
+  - updated `@emotion/react` to `^11.11.3`.
+
+- [`805c275`](https://github.com/magicbell-io/magicbell-js/commit/805c275906c17e7f655722f153ccb991b5d594ca) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `react-use` to `^17.5.0`.
+
+- [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tslib` to `^2.6.2`.
+
+- Updated dependencies [[`00451d2`](https://github.com/magicbell-io/magicbell-js/commit/00451d2d23cad54480f93ad8e3968921fd491559), [`772bd16`](https://github.com/magicbell-io/magicbell-js/commit/772bd16862c3ae3202eb66f864cde0a66aee1489), [`805c275`](https://github.com/magicbell-io/magicbell-js/commit/805c275906c17e7f655722f153ccb991b5d594ca), [`ce7bc6f`](https://github.com/magicbell-io/magicbell-js/commit/ce7bc6fb02e54f68e2f0dbd1545b53af9354a079), [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591)]:
+  - @magicbell/magicbell-react@10.10.0
+
 ## 3.3.15
 
 ### Patch Changes

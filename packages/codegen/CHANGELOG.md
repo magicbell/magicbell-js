@@ -1,5 +1,23 @@
 # @magicbell/codegen
 
+## 0.2.5
+
+### Patch Changes
+
+- [`892a8c0`](https://github.com/magicbell-io/magicbell-js/commit/892a8c09607cf84fa62ed6ee89d228e9a259ee6f) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `prettier` to `^2.8.8`.
+
+- [`e76980d`](https://github.com/magicbell-io/magicbell-js/commit/e76980db29934f3983f3143cf55cab01befbce8e) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `eslint` to `^8.56.0`.
+  - updated `eslint-config-next` to `12.3.4`.
+  - updated `eslint-plugin-jsx-a11y` to `^6.8.0`.
+
+- [#247](https://github.com/magicbell-io/magicbell-js/pull/247) [`9e55676`](https://github.com/magicbell-io/magicbell-js/commit/9e55676f6c252728e941c224f4dd3a486bb646cc) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `axios` to `^0.28.0`.
+
 ## 0.2.4
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @magicbell/core
 
+## 5.0.13
+
+### Patch Changes
+
+- [#247](https://github.com/magicbell-io/magicbell-js/pull/247) [`9e55676`](https://github.com/magicbell-io/magicbell-js/commit/9e55676f6c252728e941c224f4dd3a486bb646cc) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `axios` to `^0.28.0`.
+
+- [`464b168`](https://github.com/magicbell-io/magicbell-js/commit/464b168994ab8927f1d79e2c8c75d7c496608591) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `tslib` to `^2.6.2`.
+
 ## 5.0.12
 
 ### Patch Changes
