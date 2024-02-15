@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "ably": "^1.2.48",
-    "axios": "^0.28.0",
+    "axios": "^1.6.7",
     "dayjs": "^1.11.10",
     "dompurify": "^2.4.7",
     "humps": "^2.0.1",
