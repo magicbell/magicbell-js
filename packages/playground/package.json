@@ -8,7 +8,7 @@
     "start": "next-remote-watch ./examples"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^0.19.10",
+    "@codesandbox/sandpack-react": "^2.13.5",
     "@popperjs/core": "^2.11.8",
     "@radix-ui/react-icons": "^1.3.0",
     "@twind/next": "^1.0.10",
