@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 1.4.2
+
+### Patch Changes
+
+- [#252](https://github.com/magicbell-io/magicbell-js/pull/252) [`b37ed53`](https://github.com/magicbell-io/magicbell-js/commit/b37ed530d35dc5060e05d2b588d255f8648cc865) Thanks [@smeijer](https://github.com/smeijer)! - add entry point for unpkg
+
 ## 1.4.1
 
 ### Patch Changes
