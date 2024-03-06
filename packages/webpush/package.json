@@ -10,6 +10,7 @@
   "source": "./src/index.ts",
   "main": "dist/index.js",
   "module": "dist/magicbell-webpush.esm.js",
+  "unpkg": "dist/magicbell-webpush.esm.min.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
