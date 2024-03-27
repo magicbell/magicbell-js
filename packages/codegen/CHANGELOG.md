@@ -1,5 +1,13 @@
 # @magicbell/codegen
 
+## 0.2.6
+
+### Patch Changes
+
+- [`65a386e`](https://github.com/magicbell-io/magicbell-js/commit/65a386e5459e0e66b080d27950f1e7ecb4f3c97d) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `eslint` to `^8.57.0`.
+
 ## 0.2.5
 
 ### Patch Changes

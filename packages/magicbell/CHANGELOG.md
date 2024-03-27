@@ -1,5 +1,11 @@
 # magicbell
 
+## 3.1.2
+
+### Patch Changes
+
+- [#259](https://github.com/magicbell-io/magicbell-js/pull/259) [`30ed933`](https://github.com/magicbell-io/magicbell-js/commit/30ed93388b2b5018bd0224892be69028a7632245) Thanks [@smeijer](https://github.com/smeijer)! - Only include `user-email` header when no `external-id` is provided
+
 ## 3.1.1
 
 ### Patch Changes
