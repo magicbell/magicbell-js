@@ -14158,10 +14158,10 @@ postcss@^8.4.18:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-preact@^10.19.2:
-  version "10.19.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.19.3.tgz#7a7107ed2598a60676c943709ea3efb8aaafa899"
-  integrity sha512-nHHTeFVBTHRGxJXKkKu5hT8C/YWBkPso4/Gad6xuj5dbptt9iF9NZr9pHbPhBrnT2klheu7mHTxTZ/LjwJiEiQ==
+preact@^10.20.1:
+  version "10.20.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.20.1.tgz#1bc598ab630d8612978f7533da45809a8298542b"
+  integrity sha512-JIFjgFg9B2qnOoGiYMVBtrcFxHqn+dNXbq76bVmcaHYJFYR4lW67AOcXgAYQQTDYXDOg/kTZrKPNCdRgJ2UJmw==
 
 prebuild-install@7.1.1:
   version "7.1.1"
