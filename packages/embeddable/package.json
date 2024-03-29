@@ -32,7 +32,7 @@
     "@magicbell/magicbell-react": "10.10.2",
     "@tippyjs/react": "^4.2.6",
     "error-stack-parser": "^2.1.4",
-    "idb": "^6.1.5",
+    "idb": "^8.0.0",
     "preact": "^10.20.1",
     "react-frame-component": "^5.2.6",
     "react-use": "^17.5.0",
