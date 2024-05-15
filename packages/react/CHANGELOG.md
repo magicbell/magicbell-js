@@ -1,5 +1,16 @@
 # @magicbell/magicbell-react
 
+## 10.11.0
+
+### Minor Changes
+
+- [`7e918d9`](https://github.com/magicbell-io/magicbell-js/commit/7e918d9a609c6300425cd87866db31dfe3e4e937) Thanks [@smeijer](https://github.com/smeijer)! - Include MagicBell as named export. These two are now the same:
+
+  ```jsx
+  import MagicBell from '@magicbell/magicbell-react';
+  import { MagicBell } from '@magicbell/magicbell-react';
+  ```
+
 ## 10.10.2
 
 ### Patch Changes
