@@ -1,5 +1,11 @@
 # magicbell
 
+## 3.1.3
+
+### Patch Changes
+
+- [#265](https://github.com/magicbell-io/magicbell-js/pull/265) [`3982658`](https://github.com/magicbell-io/magicbell-js/commit/3982658e38647dccf8e8d1e2c39b44844df74e60) Thanks [@smeijer](https://github.com/smeijer)! - Don't mix headers for different authentication scopes.
+
 ## 3.1.2
 
 ### Patch Changes
