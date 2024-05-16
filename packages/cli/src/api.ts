@@ -1,7 +1,7 @@
 import { Option } from 'commander';
 import fs from 'fs';
 
-import { getProjectClient } from './lib/client';
+import { getProjectClient, getUserClient } from './lib/client';
 import { createCommand } from './lib/commands';
 import { parseJsonLikes } from './lib/options';
 import { printError, printJson, printKeyValue, printMessage } from './lib/printer';
@@ -25,9 +25,14 @@ export const api = createCommand('api')
   .option('-f, --field <string...>', 'Add a field parameter in key=value format')
   .option('-i, --include', 'Include HTTP response status line and headers in the output')
   .option('-s, --silent', 'Do not print the response body')
+  .addOption(
+    new Option('-c, --credentials <scope>', 'Specify the authentication scope')
+      .default('project')
+      .choices(['project', 'user']),
+  )
   .option(
     '-X, --method <string>',
-    'The HTTP method for the request (default "POST" when data is provided, "GET" otherwise)',
+    'The HTTP method for the request (default: "POST" when data is provided, "GET" otherwise)',
   )
   .addOption(new Option('--request <string>', 'Alias for --method for compatibility with curl').hideHelp())
   .hook('preAction', async function (thisCommand) {
@@ -66,7 +71,8 @@ export const api = createCommand('api')
     }
 
     let response: Response | null = null;
-    const client = getProjectClient(cmd, {
+    const getClient = opts.credentials === 'user' ? getUserClient : getProjectClient;
+    const client = getClient(cmd, {
       hooks: {
         afterResponse: [
           (req, opts, res) => {
