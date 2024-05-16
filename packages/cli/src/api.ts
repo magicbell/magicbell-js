@@ -48,7 +48,7 @@ export const api = createCommand('api')
   .action(async (endpoint, opts, cmd) => {
     const path = '/' + (endpoint || '').replace(/^\/+/, '');
     const headers = Object.fromEntries((opts.header || []).map((h) => h.split(':')));
-    const method = opts.method || opts.request || (opts.data || opts.field ? 'POST' : 'GET');
+    const method = opts.method?.toUpperCase() || (opts.data || opts.field ? 'POST' : 'GET');
 
     if (!['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) {
       printError(`Invalid method: ${method}`, true);
