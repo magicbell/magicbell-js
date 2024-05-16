@@ -42,7 +42,7 @@ config
   .description('Update configuration with a value for the given key.')
   .argument('<key>', 'The configuration key to update.')
   .argument('<value>', 'The value to set.')
-  .action((key, value, cmd) => {
+  .action((key, value, opts, cmd) => {
     const { profile } = cmd.optsWithGlobals();
     configStore.set(`projects.${profile}.${key}`, value);
   });
