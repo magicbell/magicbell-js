@@ -37,13 +37,18 @@ function setRequestHeaders(options: ClientOptions, request: Request) {
   request.headers.set('user-agent', typeof document !== 'undefined' ? '' : getUserAgent(options.appInfo));
 
   // magicbell headers
-  request.headers.set('x-magicbell-api-key', options.apiKey);
-  request.headers.set('x-magicbell-api-secret', options.apiSecret);
   request.headers.set('x-magicbell-client-user-agent', getClientUserAgent(options.appInfo));
-  request.headers.set('x-magicbell-user-hmac', options.userHmac);
+  request.headers.set('x-magicbell-api-key', options.apiKey);
 
-  if (options.userExternalId) request.headers.set('x-magicbell-user-external-id', options.userExternalId);
-  else if (options.userEmail) request.headers.set('x-magicbell-user-email', options.userEmail);
+  if (options.apiSecret) {
+    request.headers.set('x-magicbell-api-secret', options.apiSecret);
+  } else if (options.userExternalId) {
+    request.headers.set('x-magicbell-user-hmac', options.userHmac);
+    request.headers.set('x-magicbell-user-external-id', options.userExternalId);
+  } else if (options.userEmail) {
+    request.headers.set('x-magicbell-user-hmac', options.userHmac);
+    request.headers.set('x-magicbell-user-email', options.userEmail);
+  }
 
   // remove empty headers, they can cause unexpected behavior
   deleteEmptyHeaders(request.headers);
