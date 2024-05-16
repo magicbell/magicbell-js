@@ -1,5 +1,37 @@
 # @magicbell/cli
 
+## 3.3.0
+
+### Minor Changes
+
+- [#266](https://github.com/magicbell-io/magicbell-js/pull/266) [`3ba8477`](https://github.com/magicbell-io/magicbell-js/commit/3ba84779599f1c6e10e3e09c0dae634c6187ace2) Thanks [@smeijer](https://github.com/smeijer)! - Add credential option to switch authentication scope for `magicbell api` requests
+
+  ```shell
+  # include user credential headers (x-magicbell-user-email)
+  magicbell api /some-endpoint -r curl -c user
+  magicbell api /some-endpoint -r curl --credentials user
+
+  # include project credential headers (x-magicbell-api-secret)
+  magicbell api /some-endpoint -r curl -c project
+  magicbell api /some-endpoint -r curl --credentials project
+  ```
+
+- [#267](https://github.com/magicbell-io/magicbell-js/pull/267) [`9b41a69`](https://github.com/magicbell-io/magicbell-js/commit/9b41a69a63832f878f266d84768cb806ed9514b5) Thanks [@smeijer](https://github.com/smeijer)! - Also accept lowercase method names in the `magicbell api -X {method}` command.
+
+  These commands are now the same:
+
+  ```shell
+  magicbell api /integrations -X POST -d '{ ... }'
+  magicbell api /integrations -X post -d '{ ... }'
+  ```
+
+### Patch Changes
+
+- [#269](https://github.com/magicbell-io/magicbell-js/pull/269) [`ccc6ee7`](https://github.com/magicbell-io/magicbell-js/commit/ccc6ee7a08195c7f08a473f7d572977e8ffb6491) Thanks [@smeijer](https://github.com/smeijer)! - Restore `magicbell config set {key} {value}`.
+
+- Updated dependencies [[`3982658`](https://github.com/magicbell-io/magicbell-js/commit/3982658e38647dccf8e8d1e2c39b44844df74e60)]:
+  - magicbell@3.1.3
+
 ## 3.2.4
 
 ### Patch Changes
