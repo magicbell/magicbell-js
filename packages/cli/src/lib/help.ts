@@ -31,6 +31,14 @@ export function formatHelp(cmd: Command, helper: Help) {
     return term;
   }
 
+  function formatText(description: string, indent = 0) {
+    return description
+      .split(/\n\s*\n/)
+      .map((line) => line.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim())
+      .map((line) => helper.wrap(' '.repeat(indent) + line, helpWidth - indent, indent))
+      .join('\n\n');
+  }
+
   function formatList(textArray) {
     const list = textArray.join('\n').replace(/^/gm, indent).trim();
     return list ? indent + list : '';
@@ -39,6 +47,7 @@ export function formatHelp(cmd: Command, helper: Help) {
   const sections = {
     description: '',
     usage: '',
+    summary: '',
     arguments: '',
     options: [] as { title: string; list: string }[],
     commands: [] as { title: string; list: string }[],
@@ -47,6 +56,7 @@ export function formatHelp(cmd: Command, helper: Help) {
 
   sections.description = helper.commandDescription(cmd);
   sections.usage = helper.commandUsage(cmd);
+  sections.summary = cmd.summary();
   sections.arguments = formatList(
     helper.visibleArguments(cmd).map((argument) => {
       return formatItem(helper.argumentTerm(argument), helper.argumentDescription(argument));
@@ -125,6 +135,8 @@ export function formatHelp(cmd: Command, helper: Help) {
   }
 
   const output = [];
+  output.push(formatText(sections.description || sections.summary), '');
+
   output.push(kleur.bold('Usage'), indent + sections.usage, '');
 
   if (sections.arguments) {
