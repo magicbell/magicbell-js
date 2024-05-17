@@ -1,5 +1,13 @@
 # @magicbell/core
 
+## 5.0.15
+
+### Patch Changes
+
+- [`40601b6`](https://github.com/magicbell-io/magicbell-js/commit/40601b647b90736f30f6945b5b8c6066f4e26c44) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `dompurify` to `^3.1.3`.
+
 ## 5.0.14
 
 ### Patch Changes
