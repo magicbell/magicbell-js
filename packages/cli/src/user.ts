@@ -1,17 +1,27 @@
 import { createCommand } from './lib/commands';
+import { configStore } from './lib/config';
 import { printError } from './lib/printer';
 import { listen } from './listen';
 import * as userResources from './user-resources';
 
 export const user = createCommand('user')
-  .description("Manage a users' notifications & preferences")
+  .summary("Manage a users' notifications & preferences")
+  .description(
+    `Manage users for user notifications & preferences.
+  
+  If you're primarily using this api with your own account, it's also possible to
+  persist the \`userEmail\` or \`userExternalId\` via \`magicbell config set\`.
+  `,
+  )
   .option('--email, --user-email <string>', 'Email of the user')
   .option('--id, --user-external-id <string>', 'External ID of the user')
   .option('--hmac, --user-hmac <string>', 'User HMAC key')
   .hook('preAction', function (thisCommand) {
     const options = thisCommand.opts();
+    const { profile } = thisCommand.optsWithGlobals();
+    const project = configStore.getProject(profile);
 
-    if (!options.userEmail && !options.userExternalId) {
+    if (!options.userEmail && !options.userExternalId && !project.userEmail && !project.userExternalId) {
       printError('You must specify either --user-email or --user-external-id', true);
     }
 

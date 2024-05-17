@@ -38,10 +38,16 @@ function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserCl
   const defaultOptions = {
     apiKey: project?.apiKey,
     apiSecret: project?.apiSecret,
-    userEmail: userEmail || project?.userEmail,
-    userExternalId: userExternalId || project?.userExternalId,
+    userEmail: userEmail,
+    userExternalId: userExternalId,
     host: host || project?.host,
   };
+
+  // only load userEmail and userExternalId from config when not provided via args
+  if (!defaultOptions.userEmail && !defaultOptions.userExternalId) {
+    defaultOptions.userEmail = project?.userEmail;
+    defaultOptions.userExternalId = project?.userExternalId;
+  }
 
   for (const key in defaultOptions) {
     if (defaultOptions[key] == null || defaultOptions[key] === '') {
