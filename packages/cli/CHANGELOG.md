@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 3.3.1
+
+### Patch Changes
+
+- [#271](https://github.com/magicbell-io/magicbell-js/pull/271) [`f57ed5e`](https://github.com/magicbell-io/magicbell-js/commit/f57ed5e0ddfaa22d60338973843c5a039772ebc0) Thanks [@smeijer](https://github.com/smeijer)! - Restore `magicbell config unset {key}`.
+
 ## 3.3.0
 
 ### Minor Changes
