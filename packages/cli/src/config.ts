@@ -51,7 +51,7 @@ config
   .command('unset')
   .description('Remove the given key from the configuration.')
   .argument('<key>', 'The configuration key to remove.')
-  .action((key, cmd) => {
+  .action((key, opts, cmd) => {
     const { profile } = cmd.optsWithGlobals();
     configStore.delete(`projects.${profile}.${key}`);
   });
