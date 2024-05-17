@@ -1,5 +1,35 @@
 # @magicbell/cli
 
+## 3.4.0
+
+### Minor Changes
+
+- [#276](https://github.com/magicbell-io/magicbell-js/pull/276) [`702ee27`](https://github.com/magicbell-io/magicbell-js/commit/702ee27f7309666c98dc6804e9b152599d357e4c) Thanks [@smeijer](https://github.com/smeijer)! - Support reading email or external id for user commands from profile. With this change, instead of running `magicbell user notifications list --user-email person@example.com`, one can run also run:
+
+  ```shell
+  # magicbell user notifications list --user-email person@example.com
+  magicbell config set userEmail person@example.com
+  magicbell user notifications list
+  ```
+
+  or
+
+  ```shell
+  # magicbell user notifications list --user-external-id abc
+  magicbell config set userExternalId abc
+  magicbell user notifications list
+  ```
+
+  Note that the arguments still take precedence when provided.
+
+- [#277](https://github.com/magicbell-io/magicbell-js/pull/277) [`8f20dec`](https://github.com/magicbell-io/magicbell-js/commit/8f20decaebaf02c426335a8d072cc0e9980ced63) Thanks [@smeijer](https://github.com/smeijer)! - Show command description in the help for that specific command.
+
+### Patch Changes
+
+- [#278](https://github.com/magicbell-io/magicbell-js/pull/278) [`feea558`](https://github.com/magicbell-io/magicbell-js/commit/feea55883db7725ee4f861a4814db21d248aff86) Thanks [@smeijer](https://github.com/smeijer)! - support `api --request GET` for curl compat
+
+- [#274](https://github.com/magicbell-io/magicbell-js/pull/274) [`34a4fd7`](https://github.com/magicbell-io/magicbell-js/commit/34a4fd7655e537857913fe386a76e9012974c340) Thanks [@smeijer](https://github.com/smeijer)! - Restore `magicbell config unset {key}`.
+
 ## 3.3.1
 
 ### Patch Changes
