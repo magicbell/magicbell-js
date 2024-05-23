@@ -2,7 +2,9 @@
 '@magicbell/webpush': major
 ---
 
-BREAKING CHANGE!: This is a complete revamp of how we're registering client push notifications, but given that the API surface is small, migrating should be easy enough.
+**BREAKING CHANGE!**
+
+This is a complete revamp of how we're registering client push notifications, but given that the API surface is small, migrating should be easy enough.
 
 ```ts
 import { WebPushClient } from '@magicbell/webpush';
