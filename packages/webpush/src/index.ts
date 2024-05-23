@@ -1,11 +1,11 @@
 import { ClientOptions, IntegrationClient } from './internal/client';
 
-type Installation = {
+export type Installation = {
   public_key: string;
   auth_token: string;
 };
 
-type Token = {
+export type Token = {
   id: string;
   created_at: string;
   updated_at: string;
@@ -14,10 +14,12 @@ type Token = {
   keys?: Record<string, string>;
 };
 
+export type WebPushClientOptions = ClientOptions & { serviceWorkerPath?: string };
+
 export class WebPushClient extends IntegrationClient<Installation, Token> {
   #serviceWorkerPath: string;
 
-  constructor(options: ClientOptions & { serviceWorkerPath?: string }) {
+  constructor(options: WebPushClientOptions) {
     super('web_push', options);
     this.#serviceWorkerPath = options.serviceWorkerPath || '/sw.js';
   }
