@@ -4,7 +4,7 @@
 
 **BREAKING CHANGE!**
 
-This is a complete revamp of how we're registering client push notifications, but given that the API surface is small, migrating should be easy enough.
+This is a complete revamp of how we're registering client push notification subscriptions, but given that the API surface is small, migrating should be easy enough.
 
 ```ts
 import { WebPushClient } from '@magicbell/webpush';
@@ -45,7 +45,7 @@ Subscribing to push notifications is now a single call on the client, instead of
 
 **Unsubscribe from push notifications.**
 
-This is a new method that didn't exist in previous versions. Unsubscribing and resubscribing is now trivial, giving your users the option to "pause" push notifications.
+This is a new method that didn't exist in previous versions. Unsubscribing and resubscribing is now trivial, giving your users the option to "pause" the push notifications.
 
 ```ts
 import { WebPushClient } from '@magicbell/webpush';
