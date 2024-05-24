@@ -1,7 +1,7 @@
 export type UserCredentials =
   | { apiKey: string; userExternalId?: never; userEmail: string; userHmac?: string; authToken?: never }
   | { apiKey: string; userExternalId: string; userEmail?: never; userHmac?: string; authToken?: never }
-  | { apiKey: string; userExternalId?: never; userEmail?: never; userHmac?: never; authToken: string };
+  | { apiKey?: never; userExternalId?: never; userEmail?: never; userHmac?: never; authToken: string };
 
 export type ClientOptions = {
   host?: string;
