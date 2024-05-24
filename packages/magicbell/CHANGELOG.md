@@ -1,5 +1,13 @@
 # magicbell
 
+## 3.1.4
+
+### Patch Changes
+
+- [#281](https://github.com/magicbell-io/magicbell-js/pull/281) [`c16e604`](https://github.com/magicbell-io/magicbell-js/commit/c16e6040dfe8268f41a592c50a4c1aa2caad7189) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `json-schema-to-ts` to `3.1.0`.
+
 ## 3.1.3
 
 ### Patch Changes

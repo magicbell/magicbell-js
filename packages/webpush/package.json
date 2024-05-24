@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/webpush",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "MagicBell WebPush SDK",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
