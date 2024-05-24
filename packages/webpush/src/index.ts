@@ -1,15 +1,11 @@
-import { ClientOptions, IntegrationClient } from './internal/client';
+import { ChannelToken, ClientOptions, IntegrationClient } from './internal/client';
 
 export type Installation = {
   public_key: string;
   auth_token: string;
 };
 
-export type Token = {
-  id: string;
-  created_at: string;
-  updated_at: string;
-  discarded_at: string | null;
+export type Token = ChannelToken & {
   endpoint?: string;
   keys?: Record<string, string>;
 };

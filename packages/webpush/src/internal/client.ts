@@ -7,14 +7,14 @@ export type ClientOptions = {
   host?: string;
 } & UserCredentials;
 
-export type BaseToken = {
+export type ChannelToken = {
   id: string;
   created_at: string;
   updated_at: string;
   discarded_at: string | null;
 };
 
-export class IntegrationClient<Installation, Token extends BaseToken> {
+export class IntegrationClient<Installation, Token extends ChannelToken> {
   #host: string;
   #credentials: UserCredentials;
   #key: string;
@@ -91,7 +91,7 @@ export class IntegrationClient<Installation, Token extends BaseToken> {
     return this.#fetch<void>('DELETE', `/channels/${this.#key}/tokens/${id}`);
   }
 
-  async createToken(token: Partial<Token>) {
+  async createToken(token: Partial<Omit<Token, keyof ChannelToken>>) {
     return this.#fetch<Token>('POST', `/channels/${this.#key}/tokens`, token);
   }
 }
