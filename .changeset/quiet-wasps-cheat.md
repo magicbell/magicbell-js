@@ -97,5 +97,5 @@ The authentication token is no longer required for basic functionality, but can 
   userHmac: 'NCI…I6M',
 });
 
-+ client.getAuthToken();
++ const token = await client.getAuthToken();
 ```
