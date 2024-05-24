@@ -1,5 +1,13 @@
 # @magicbell/magicbell-react
 
+## 10.11.2
+
+### Patch Changes
+
+- Updated dependencies [[`7bea88f`](https://github.com/magicbell-io/magicbell-js/commit/7bea88f45389329261843d7b2e0fb8d06fe62078)]:
+  - @magicbell/webpush@2.0.0
+  - @magicbell/react-headless@4.5.3
+
 ## 10.11.1
 
 ### Patch Changes

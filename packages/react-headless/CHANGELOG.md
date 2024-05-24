@@ -1,5 +1,12 @@
 # @magicbell/react-headless
 
+## 4.5.3
+
+### Patch Changes
+
+- Updated dependencies [[`c16e604`](https://github.com/magicbell-io/magicbell-js/commit/c16e6040dfe8268f41a592c50a4c1aa2caad7189)]:
+  - magicbell@3.1.4
+
 ## 4.5.2
 
 ### Patch Changes
