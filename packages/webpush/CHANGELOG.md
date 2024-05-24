@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 2.0.1
+
+### Patch Changes
+
+- [#284](https://github.com/magicbell-io/magicbell-js/pull/284) [`2095743`](https://github.com/magicbell-io/magicbell-js/commit/2095743f23e5fe35da335dfaa84e6808616f58f1) Thanks [@smeijer](https://github.com/smeijer)! - chore: type fix, apiKey isn't needed when using authToken
+
 ## 2.0.0
 
 ### Major Changes
