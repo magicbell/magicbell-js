@@ -4,7 +4,11 @@
 
 **BREAKING CHANGE!**
 
-This is a complete revamp of how we're registering client push notification subscriptions, but given that the API surface is small, migrating should be easy enough.
+This is a complete revamp of how we're registering client push notification subscriptions, but given that the v1 API surface is small, migrating should be easy enough. You can find [the migration guide on our site](https://magicbell.com/docs/guides/migrations/upgrade-magicbell-webpush-to-v2).
+
+The methods mentioned here are the breaking ones that you use when interacting with the browser directly. We've also added a bunch of functions to interact with the MagicBell API directly, leaving all browser interaction for you to implement. Think of use cases where you already have a service worker, and just want to push the channel tokens to our backend, or because you need to list all the currently active channel tokens so the user can unsubscribe from a device they no longer control.
+
+Please read more about those methods in [the docs for @magicbell/webpush](https://magicbell.com/docs/libraries/webpush#api-methods)
 
 ```ts
 import { WebPushClient } from '@magicbell/webpush';
@@ -99,3 +103,7 @@ The authentication token is no longer required for basic functionality, but can 
 
 + const token = await client.getAuthToken();
 ```
+
+**API Methods**
+
+We've added a bunch of useful methods to work with our api directly. Please read more about those methods in [the docs for @magicbell/webpush](https://magicbell.com/docs/libraries/webpush#api-methods).
