@@ -85,7 +85,7 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.7",
     "rollup-plugin-analyzer": "^4.0.0",
     "size-limit": "^8.2.6",
     "tiny-glob": "^0.2.9",
