@@ -104,7 +104,6 @@ export const api = createCommand('api')
 
       if (opts.include) printResponse(response);
       if (e.responseBody && !opts.silent) printJson(e.responseBody);
-
-      printError(`${response.statusText} (HTTP ${response.status}) - ${e.message}`, true);
+      else printError(`${response.statusText} (HTTP ${response.status}) - ${e.message}`, true);
     }
   });
