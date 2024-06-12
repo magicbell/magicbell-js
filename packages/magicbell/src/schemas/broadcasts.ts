@@ -76,6 +76,8 @@ export const CreateBroadcastsResponseSchema = {
 
     recipients: {
       type: 'array',
+      description:
+        'Users to send the notification to. You can specify up to 1000 users in the request body. Recipient objects need to have at least one of the following attributes: email, external_id, matches, topic.',
       nullable: false,
       minItems: 1,
       maxItems: 1000,
@@ -532,6 +534,8 @@ export const ListBroadcastsResponseSchema = {
 
           recipients: {
             type: 'array',
+            description:
+              'Users to send the notification to. You can specify up to 1000 users in the request body. Recipient objects need to have at least one of the following attributes: email, external_id, matches, topic.',
             nullable: false,
             minItems: 1,
             maxItems: 1000,
@@ -762,6 +766,8 @@ export const GetBroadcastsResponseSchema = {
 
     recipients: {
       type: 'array',
+      description:
+        'Users to send the notification to. You can specify up to 1000 users in the request body. Recipient objects need to have at least one of the following attributes: email, external_id, matches, topic.',
       nullable: false,
       minItems: 1,
       maxItems: 1000,
