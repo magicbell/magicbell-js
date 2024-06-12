@@ -1,4 +1,5 @@
 import ky from 'ky';
+import urlJoin from 'url-join';
 
 import { tryParse } from '../lib/utils';
 import { createError } from './error';
@@ -40,8 +41,7 @@ export class Client {
     };
 
     // don't just use `new URL(path, host)` as that will strip the path from the host
-    const url = new URL(requestOptions.host);
-    url.pathname = url.pathname.replace(/\/$/, '') + path;
+    const url = new URL(urlJoin(requestOptions.host, path));
 
     for (const [key, value] of Object.entries(params || {})) {
       url.searchParams.append(key, Array.isArray(value) ? value.join(',') : value);
