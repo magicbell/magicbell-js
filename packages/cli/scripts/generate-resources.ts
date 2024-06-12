@@ -27,7 +27,7 @@ import fs from 'fs/promises';
 import { OpenAPIV3 } from 'openapi-types';
 import path from 'path';
 
-const SPEC_URL = argv.spec || 'https://public.magicbell.com/specs/openapi.json';
+const SPEC_URL = argv.spec || process.env.SPEC_URL || 'https://public.magicbell.com/specs/openapi.json';
 
 const initError = !argv.help && !argv.dest && !argv.docs;
 
