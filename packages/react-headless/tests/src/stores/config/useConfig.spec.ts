@@ -1,7 +1,6 @@
 import faker from '@faker-js/faker';
 import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
-import { waitFor } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import * as humps from 'humps';
 import { useEffect } from 'react';
 

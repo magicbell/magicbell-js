@@ -1,7 +1,6 @@
 import { useNotificationFactory } from '@magicbell/react-headless';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { render, renderHook } from '@testing-library/react';
 import * as React from 'react';
 
 import NotificationState from '../../../../src/components/NotificationState';

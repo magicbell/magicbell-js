@@ -1,5 +1,5 @@
 import { UserClient } from 'magicbell/user-client';
-import create from 'zustand/vanilla';
+import { createStore } from 'zustand/vanilla';
 
 export type ClientSettings = {
   apiKey: string;
@@ -19,7 +19,7 @@ export type ClientSettings = {
  * @example
  * const { apiKey } = clientSettings.getState()
  */
-const clientSettings = create<ClientSettings>((set, get) => {
+const clientSettings = createStore<ClientSettings>((set, get) => {
   let _client: InstanceType<typeof UserClient> | null = null;
   let _key = '';
 

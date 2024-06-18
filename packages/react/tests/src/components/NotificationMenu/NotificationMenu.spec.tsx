@@ -1,7 +1,6 @@
 import { useNotificationFactory } from '@magicbell/react-headless';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { render, screen, waitFor } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 

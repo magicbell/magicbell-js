@@ -1,6 +1,6 @@
 import faker from '@faker-js/faker';
 import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
-import { act } from '@testing-library/react-hooks';
+import { act } from '@testing-library/react';
 import * as humps from 'humps';
 
 import clientSettings from '../../../../src/stores/clientSettings';

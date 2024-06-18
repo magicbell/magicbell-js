@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';
 import NotificationPreferencesRepository from './NotificationPreferencesRepository';
