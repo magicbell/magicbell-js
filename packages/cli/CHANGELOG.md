@@ -1,5 +1,30 @@
 # @magicbell/cli
 
+## 3.5.0
+
+### Minor Changes
+
+- [#296](https://github.com/magicbell-io/magicbell-js/pull/296) [`fd91c86`](https://github.com/magicbell-io/magicbell-js/commit/fd91c869495c9672cb4008e00d797f350a62668d) Thanks [@smeijer](https://github.com/smeijer)! - Move `fields` to query params for `api` get requests. This makes it just slightly easier to form urls for GET request when using the `api` escape hatch in our cli.
+
+  ```shell
+  mb api '/notifications' -f seen=false -X get -c user -r curl
+
+  curl --url 'https://api.magicbell.com/notifications?seen=false' \
+    --request 'GET' \
+    --header 'accept: application/json' \
+    --header 'accept-version: v2' \
+    --header 'x-magicbell-api-key: 8cd...c70' \
+    --header 'x-magicbell-user-email: stephan@example.com' \
+    --header 'x-magicbell-user-hmac: uaZ...hU='
+  ```
+
+### Patch Changes
+
+- [#290](https://github.com/magicbell-io/magicbell-js/pull/290) [`d6640b1`](https://github.com/magicbell-io/magicbell-js/commit/d6640b1ecd0a9488904303821472bbe6d0f21517) Thanks [@smeijer](https://github.com/smeijer)! - only print error when no response body was printed
+
+- Updated dependencies [[`feb3dd6`](https://github.com/magicbell-io/magicbell-js/commit/feb3dd69260d58e7ec0afa2c59b9466cfdfa7101)]:
+  - magicbell@3.2.0
+
 ## 3.4.1
 
 ### Patch Changes
