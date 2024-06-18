@@ -1,5 +1,11 @@
 # magicbell
 
+## 3.2.0
+
+### Minor Changes
+
+- [#297](https://github.com/magicbell-io/magicbell-js/pull/297) [`feb3dd6`](https://github.com/magicbell-io/magicbell-js/commit/feb3dd69260d58e7ec0afa2c59b9466cfdfa7101) Thanks [@smeijer](https://github.com/smeijer)! - add description to recipients field
+
 ## 3.1.4
 
 ### Patch Changes

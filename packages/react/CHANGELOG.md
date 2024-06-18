@@ -1,5 +1,16 @@
 # @magicbell/magicbell-react
 
+## 10.11.4
+
+### Patch Changes
+
+- [#292](https://github.com/magicbell-io/magicbell-js/pull/292) [`95a4d26`](https://github.com/magicbell-io/magicbell-js/commit/95a4d26d37f8fe88ebfdaf2f5f28ce77c4f441e7) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `zustand` to `^4.5.2`.
+
+- Updated dependencies [[`95a4d26`](https://github.com/magicbell-io/magicbell-js/commit/95a4d26d37f8fe88ebfdaf2f5f28ce77c4f441e7)]:
+  - @magicbell/react-headless@4.5.4
+
 ## 10.11.3
 
 ### Patch Changes
