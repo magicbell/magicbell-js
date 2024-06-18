@@ -60,10 +60,19 @@ export const api = createCommand('api')
     }
 
     let data = parseJsonLikes(opts.data) || {};
-
     for (const field of opts.field || []) {
       const [key, value] = field.split('=');
-      data[key] = parseJsonLikes(value);
+
+      if (!(key in data)) {
+        data[key] = parseJsonLikes(value);
+        continue;
+      }
+
+      if (!Array.isArray(data[key])) {
+        data[key] = [data[key]];
+      }
+
+      data[key].push(parseJsonLikes(value));
     }
 
     if (!Object.keys(data).length) {
@@ -90,11 +99,12 @@ export const api = createCommand('api')
     });
 
     try {
+      const dataKey = method === 'GET' ? 'params' : 'data';
       const result = await client.request({
         method,
         path,
         headers,
-        data,
+        [dataKey]: data,
       });
 
       if (opts.include) printResponse(response);

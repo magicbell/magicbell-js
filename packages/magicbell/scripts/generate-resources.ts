@@ -30,7 +30,7 @@ import fs from 'fs/promises';
 import { stringify } from 'json5';
 import path from 'path';
 
-const SPEC_URL = argv.spec || 'https://public.magicbell.com/specs/openapi.json';
+const SPEC_URL = argv.spec || process.env.SPEC_URL || 'https://public.magicbell.com/specs/openapi.json';
 
 const initError = !argv.help && !argv.dest && !argv.docs;
 
