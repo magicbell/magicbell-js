@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 import IRemoteConfig from '../../types/IRemoteConfig';
 import ConfigRepository from './ConfigRepository';

@@ -1,5 +1,4 @@
 import { buildStore } from '@magicbell/react-headless';
-import { NotificationStore } from '@magicbell/react-headless/dist/hooks/useNotifications';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { screen } from '@testing-library/react';
 import * as React from 'react';
@@ -11,6 +10,8 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 import { sampleNotification } from '../../../factories/NotificationFactory';
 
 setupMockServer(...mockHandlers);
+
+type NotificationStore = React.ComponentProps<typeof NotificationList>['notifications'];
 
 test('renders an empty list when there are no notifications', () => {
   const store = buildStore({ notifications: [] }) as NotificationStore;

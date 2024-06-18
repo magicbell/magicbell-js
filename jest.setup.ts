@@ -1,6 +1,6 @@
 /* eslint-disable */
 import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/jest-globals';
 
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
 import EventSource from 'eventsource';

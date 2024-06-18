@@ -1,6 +1,6 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 
 import useBell from '../../../src/hooks/useBell';
 import clientSettings from '../../../src/stores/clientSettings';

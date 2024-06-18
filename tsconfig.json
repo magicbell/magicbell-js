@@ -1,9 +1,16 @@
 {
   "extends": "./tsconfig.build.json",
-  "include": ["packages", "scripts", "types", "jest", "@testing-library/jest-dom"],
+  "include": [
+    "packages",
+    "scripts",
+    "types",
+    "jest",
+    "@testing-library/jest-dom",
+    "@testing-library/jest-dom/jest-globals"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types", "./types"],
+    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"],
     "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],

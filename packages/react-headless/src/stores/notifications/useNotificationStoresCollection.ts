@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { findIndex, mergeRight, propEq } from 'ramda';
-import create from 'zustand';
+import { create } from 'zustand';
 
 import { emitEvent } from '../../lib/realtime';
 import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';

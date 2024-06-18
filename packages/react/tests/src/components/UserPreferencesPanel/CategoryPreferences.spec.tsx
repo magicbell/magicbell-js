@@ -1,8 +1,7 @@
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { CategoryChannelPreference } from '@magicbell/react-headless/src/types/IRemoteNotificationPreferences';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { screen } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 

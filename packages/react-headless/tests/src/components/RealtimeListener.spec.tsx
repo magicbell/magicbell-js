@@ -1,7 +1,6 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { render, RenderResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, render, renderHook, RenderResult, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
 import RealtimeListener from '../../../src/components/RealtimeListener';
@@ -72,15 +71,16 @@ describe('components', () => {
 
         it('prepends the new notifications', async () => {
           const notification = NotificationFactory.build();
-          const { result, waitForNextUpdate } = renderHook(() => useNotificationStoresCollection());
+          const { result } = renderHook(() => useNotificationStoresCollection());
           const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
 
           act(() => {
             emitEvent('notifications.new', notification, 'remote');
           });
 
-          await waitForNextUpdate();
-          expect(result.current.stores['default'].notifications[0]).toEqual(notification);
+          await waitFor(() => {
+            expect(result.current.stores['default'].notifications[0]).toEqual(notification);
+          });
           spy.mockRestore();
         });
       });
