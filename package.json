@@ -91,7 +91,7 @@
     "ts-jest": "^29.1.1",
     "tslib": "^2.6.2",
     "tsx": "^4.6.2",
-    "turbo": "^1.13.0",
+    "turbo": "^2.0.4",
     "typescript": "^4.9.5",
     "vite": "^3.2.8",
     "vite-plugin-banner": "^0.7.1",
