@@ -1,9 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "magicbell-io/magicbell-js" }
-  ],
+  "changelog": ["@changesets/changelog-github", { "repo": "magicbell/magicbell-js" }],
   "commit": false,
   "fixed": [],
   "linked": [],

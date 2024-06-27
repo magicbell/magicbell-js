@@ -99,7 +99,7 @@ export function makeForEach(asyncIteratorNext, onDoneCallback?: () => void) {
       function handleIteration(iterResult) {
         // iterResult can be undefined if the iterator is closed and quickly
         // reconnected, this happens when wrapped in <React.StrictMode />.
-        // See github pr for more context: https://github.com/magicbell-io/magicbell-js/pull/189
+        // See github pr for more context: https://github.com/magicbell/magicbell-js/pull/189
         if (iterResult?.done) {
           resolve();
           return;

@@ -4,7 +4,7 @@ This package contains a notification inbox for your site powered by [MagicBell](
 
 > **Note**
 >
-> Don't use this package when you're using React. Use [@magicbell/magicbell-react](https://github.com/magicbell-io/magicbell-js/tree/main/packages/react) or [@magicbell/react-headless](https://github.com/magicbell-io/magicbell-js/tree/main/packages/react-headless) instead.
+> Don't use this package when you're using React. Use [@magicbell/magicbell-react](https://github.com/magicbell/magicbell-js/tree/main/packages/react) or [@magicbell/react-headless](https://github.com/magicbell/magicbell-js/tree/main/packages/react-headless) instead.
 
 ## Quick Start
 

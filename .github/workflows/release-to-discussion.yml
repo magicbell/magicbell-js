@@ -13,9 +13,9 @@ jobs:
 
     steps:
       - name: publish discussion
-        uses: magicbell-io/release-discussion-action@main
+        uses: magicbell/release-discussion-action@main
         with:
-          repo: magicbell-io/community
+          repo: magicbell/community
           category: product-changelog
           cycle: week
         env:
