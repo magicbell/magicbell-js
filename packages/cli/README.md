@@ -17,7 +17,7 @@ npm install -g @magicbell/cli
 or brew:
 
 ```shell
-brew tap magicbell-io/magicbell
+brew tap magicbell/magicbell
 brew install magicbell-cli
 ```
 

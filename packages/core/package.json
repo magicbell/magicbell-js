@@ -51,7 +51,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:magicbell-io/magicbell-js.git"
+    "url": "git@github.com:magicbell/magicbell-js.git"
   },
   "keywords": [
     "bell",
@@ -63,6 +63,6 @@
   ],
   "homepage": "https://magicbell.com",
   "bugs": {
-    "url": "https://github.com/magicbell-io/magicbell-js/issues"
+    "url": "https://github.com/magicbell/magicbell-js/issues"
   }
 }

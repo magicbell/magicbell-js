@@ -10,7 +10,7 @@
 
 ### Patch Changes
 
-- [#281](https://github.com/magicbell-io/magicbell-js/pull/281) [`c16e604`](https://github.com/magicbell-io/magicbell-js/commit/c16e6040dfe8268f41a592c50a4c1aa2caad7189) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+- [#281](https://github.com/magicbell/magicbell-js/pull/281) [`c16e604`](https://github.com/magicbell/magicbell-js/commit/c16e6040dfe8268f41a592c50a4c1aa2caad7189) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
 
   - updated `json-schema-to-ts` to `3.1.0`.
 
@@ -18,21 +18,21 @@
 
 ### Patch Changes
 
-- [#265](https://github.com/magicbell-io/magicbell-js/pull/265) [`3982658`](https://github.com/magicbell-io/magicbell-js/commit/3982658e38647dccf8e8d1e2c39b44844df74e60) Thanks [@smeijer](https://github.com/smeijer)! - Don't mix headers for different authentication scopes.
+- [#265](https://github.com/magicbell/magicbell-js/pull/265) [`3982658`](https://github.com/magicbell/magicbell-js/commit/3982658e38647dccf8e8d1e2c39b44844df74e60) Thanks [@smeijer](https://github.com/smeijer)! - Don't mix headers for different authentication scopes.
 
 ## 3.1.2
 
 ### Patch Changes
 
-- [#259](https://github.com/magicbell-io/magicbell-js/pull/259) [`30ed933`](https://github.com/magicbell-io/magicbell-js/commit/30ed93388b2b5018bd0224892be69028a7632245) Thanks [@smeijer](https://github.com/smeijer)! - Only include `user-email` header when no `external-id` is provided
+- [#259](https://github.com/magicbell/magicbell-js/pull/259) [`30ed933`](https://github.com/magicbell/magicbell-js/commit/30ed93388b2b5018bd0224892be69028a7632245) Thanks [@smeijer](https://github.com/smeijer)! - Only include `user-email` header when no `external-id` is provided
 
 ## 3.1.1
 
 ### Patch Changes
 
-- [#242](https://github.com/magicbell-io/magicbell-js/pull/242) [`840263b`](https://github.com/magicbell-io/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675) Thanks [@smeijer](https://github.com/smeijer)! - use `eventSource.addEventListener` instead of `eventSource.onmessage` to maximize compatibility with different environments.
+- [#242](https://github.com/magicbell/magicbell-js/pull/242) [`840263b`](https://github.com/magicbell/magicbell-js/commit/840263bd2921abc46d62732d5188c71a9fecf675) Thanks [@smeijer](https://github.com/smeijer)! - use `eventSource.addEventListener` instead of `eventSource.onmessage` to maximize compatibility with different environments.
 
-- [`aee799d`](https://github.com/magicbell-io/magicbell-js/commit/aee799deebd15f904153cbc4a7c3ff5dca9accc4) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`aee799d`](https://github.com/magicbell/magicbell-js/commit/aee799deebd15f904153cbc4a7c3ff5dca9accc4) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `json-schema-to-ts` to `2.12.0`.
 
@@ -40,7 +40,7 @@
 
 ### Minor Changes
 
-- [#233](https://github.com/magicbell-io/magicbell-js/pull/233) [`8bee76e`](https://github.com/magicbell-io/magicbell-js/commit/8bee76eff4f35a55c5b50e25c0f143bd49c5ae3e) Thanks [@smeijer](https://github.com/smeijer)! - Add support for nested paths in `host` option.
+- [#233](https://github.com/magicbell/magicbell-js/pull/233) [`8bee76e`](https://github.com/magicbell/magicbell-js/commit/8bee76eff4f35a55c5b50e25c0f143bd49c5ae3e) Thanks [@smeijer](https://github.com/smeijer)! - Add support for nested paths in `host` option.
 
   ```ts
   import { ProjectClient } from 'magicbell/project-client';
@@ -54,7 +54,7 @@
 
 ### Patch Changes
 
-- [`1041cdf`](https://github.com/magicbell-io/magicbell-js/commit/1041cdf10f7ae87413ca5c00236d8a9ac8d33183) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`1041cdf`](https://github.com/magicbell/magicbell-js/commit/1041cdf10f7ae87413ca5c00236d8a9ac8d33183) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `json-schema-to-ts` to `2.9.2`.
 
@@ -62,19 +62,19 @@
 
 ### Patch Changes
 
-- [`1ed7ce5`](https://github.com/magicbell-io/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`1ed7ce5`](https://github.com/magicbell/magicbell-js/commit/1ed7ce52f27569e06878d6fcac42531055b57fc1) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `@size-limit/preset-small-lib` to `^8.2.6`.
 
-- [`5a3443f`](https://github.com/magicbell-io/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`5a3443f`](https://github.com/magicbell/magicbell-js/commit/5a3443f814323352b35eab36d87dbf9e3aa1cba0) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `openapi-types` to `^12.1.3`.
 
-- [`33d2cab`](https://github.com/magicbell-io/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`33d2cab`](https://github.com/magicbell/magicbell-js/commit/33d2cabca427e4ea9bc00b2e6304b57d6b7191f6) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `tsx` to `^3.14.0`.
 
-- [#222](https://github.com/magicbell-io/magicbell-js/pull/222) [`444e653`](https://github.com/magicbell-io/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+- [#222](https://github.com/magicbell/magicbell-js/pull/222) [`444e653`](https://github.com/magicbell/magicbell-js/commit/444e653a435255d5ffcd10257f595cf496e3d1c8) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
 
   - updated `recast` to `^0.23.4`.
 
@@ -82,11 +82,11 @@
 
 ### Major Changes
 
-- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - We've removed `magicbell.notifications.create`, please use `magicbell.broadcasts.create` instead.
+- [#208](https://github.com/magicbell/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - We've removed `magicbell.notifications.create`, please use `magicbell.broadcasts.create` instead.
 
 ### Minor Changes
 
-- [#208](https://github.com/magicbell-io/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell-io/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - Add `broadcasts.create` method to the project client.
+- [#208](https://github.com/magicbell/magicbell-js/pull/208) [`62eae8f`](https://github.com/magicbell/magicbell-js/commit/62eae8f23ac7bbcdc3a600d514969bd7ba459722) Thanks [@smeijer](https://github.com/smeijer)! - Add `broadcasts.create` method to the project client.
 
   ```js
   await magicbell.broadcasts.create({
@@ -117,13 +117,13 @@
 
 ### Patch Changes
 
-- [#201](https://github.com/magicbell-io/magicbell-js/pull/201) [`5c8f4c9`](https://github.com/magicbell-io/magicbell-js/commit/5c8f4c902294c68a002d55c2e3ee340ffb30758c) Thanks [@smeijer](https://github.com/smeijer)! - ensure request uses custom timeout
+- [#201](https://github.com/magicbell/magicbell-js/pull/201) [`5c8f4c9`](https://github.com/magicbell/magicbell-js/commit/5c8f4c902294c68a002d55c2e3ee340ffb30758c) Thanks [@smeijer](https://github.com/smeijer)! - ensure request uses custom timeout
 
 ## 2.4.0
 
 ### Minor Changes
 
-- [#192](https://github.com/magicbell-io/magicbell-js/pull/192) [`725ab1a`](https://github.com/magicbell-io/magicbell-js/commit/725ab1ad14619341beee9d4422da9ecce27a7e7e) Thanks [@smeijer](https://github.com/smeijer)! - Custom errors now include a `responseBody` property that holds the returned response
+- [#192](https://github.com/magicbell/magicbell-js/pull/192) [`725ab1a`](https://github.com/magicbell/magicbell-js/commit/725ab1ad14619341beee9d4422da9ecce27a7e7e) Thanks [@smeijer](https://github.com/smeijer)! - Custom errors now include a `responseBody` property that holds the returned response
   from the API, when available. Custom errors are now also exported so they can be
   used with comparisons like `err instanceof MagicBellError`. Note that all errors
   extend the `MagicBellError` base class.
@@ -140,25 +140,25 @@
 
 ### Patch Changes
 
-- [#189](https://github.com/magicbell-io/magicbell-js/pull/189) [`c6054af`](https://github.com/magicbell-io/magicbell-js/commit/c6054afd4db0879b51ee4142d8295766cf983043) Thanks [@smeijer](https://github.com/smeijer)! - support react strict mode
+- [#189](https://github.com/magicbell/magicbell-js/pull/189) [`c6054af`](https://github.com/magicbell/magicbell-js/commit/c6054afd4db0879b51ee4142d8295766cf983043) Thanks [@smeijer](https://github.com/smeijer)! - support react strict mode
 
 ## 2.3.0
 
 ### Minor Changes
 
-- [#182](https://github.com/magicbell-io/magicbell-js/pull/182) [`3f7ab5a`](https://github.com/magicbell-io/magicbell-js/commit/3f7ab5a532ec5c02e7f8ff41261548c0accd78ca) Thanks [@smeijer](https://github.com/smeijer)! - move uuidv4 helper function to different file for better tree shaking
+- [#182](https://github.com/magicbell/magicbell-js/pull/182) [`3f7ab5a`](https://github.com/magicbell/magicbell-js/commit/3f7ab5a532ec5c02e7f8ff41261548c0accd78ca) Thanks [@smeijer](https://github.com/smeijer)! - move uuidv4 helper function to different file for better tree shaking
 
 ## 2.2.0
 
 ### Minor Changes
 
-- [#173](https://github.com/magicbell-io/magicbell-js/pull/173) [`1f40263`](https://github.com/magicbell-io/magicbell-js/commit/1f40263c112dcf5a05cac3d59661c7b8ddc41858) Thanks [@smeijer](https://github.com/smeijer)! - Remove [EventSource](https://www.npmjs.com/package/eventsource) polyfill to avoid bundling it in the browser SDKs. If you're using the `listen` methods in an environment that does not support `eventsource`, you'll need to include the polyfill yourself.
+- [#173](https://github.com/magicbell/magicbell-js/pull/173) [`1f40263`](https://github.com/magicbell/magicbell-js/commit/1f40263c112dcf5a05cac3d59661c7b8ddc41858) Thanks [@smeijer](https://github.com/smeijer)! - Remove [EventSource](https://www.npmjs.com/package/eventsource) polyfill to avoid bundling it in the browser SDKs. If you're using the `listen` methods in an environment that does not support `eventsource`, you'll need to include the polyfill yourself.
 
 ## 2.1.0
 
 ### Minor Changes
 
-- [#171](https://github.com/magicbell-io/magicbell-js/pull/171) [`666d2bb`](https://github.com/magicbell-io/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248) Thanks [@smeijer](https://github.com/smeijer)! - We've added a method to the `UserClient` to list the registered push notifications for the authenticated user.
+- [#171](https://github.com/magicbell/magicbell-js/pull/171) [`666d2bb`](https://github.com/magicbell/magicbell-js/commit/666d2bbefe2365b6691607a38514d51d302e8248) Thanks [@smeijer](https://github.com/smeijer)! - We've added a method to the `UserClient` to list the registered push notifications for the authenticated user.
 
   ```js
   const magicbell = new UserClient({ ... });
@@ -169,7 +169,7 @@
 
 ### Patch Changes
 
-- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - Optional client options can now be `undefined` or `null`, rather than enforced to be absent. This eases initialization where options come from other configuration sources.
+- [#165](https://github.com/magicbell/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - Optional client options can now be `undefined` or `null`, rather than enforced to be absent. This eases initialization where options come from other configuration sources.
 
   ```ts
   const client = new UserClient({
@@ -179,35 +179,35 @@
   });
   ```
 
-- [#172](https://github.com/magicbell-io/magicbell-js/pull/172) [`24c00f4`](https://github.com/magicbell-io/magicbell-js/commit/24c00f400f571ab0518f3ece7601f99360f85f68) Thanks [@smeijer](https://github.com/smeijer)! - Fixed a few misconfigured types:
+- [#172](https://github.com/magicbell/magicbell-js/pull/172) [`24c00f4`](https://github.com/magicbell/magicbell-js/commit/24c00f400f571ab0518f3ece7601f99360f85f68) Thanks [@smeijer](https://github.com/smeijer)! - Fixed a few misconfigured types:
 
   - import `status` is now an enum with the values `enqueued | processing | processed`
   - import `failures` now has the users array items typed as `object` with the properties `email` and `external_id` and `errors`
   - the `total` and `total_pages` props are removed from the `users.pushSubscriptions.list` response.
 
-- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - The EventSource polyfill is now only applied when the `EventSource` is not supported in your environment.
+- [#165](https://github.com/magicbell/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - The EventSource polyfill is now only applied when the `EventSource` is not supported in your environment.
 
-- [#165](https://github.com/magicbell-io/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell-io/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - A bug where the eventsource was closed before opened is now fixed. This race condition occurred when closing the stream while the token request was still pending.
+- [#165](https://github.com/magicbell/magicbell-js/pull/165) [`998008a`](https://github.com/magicbell/magicbell-js/commit/998008a04f40833954ec9a47bfe447989f7079aa) Thanks [@smeijer](https://github.com/smeijer)! - A bug where the eventsource was closed before opened is now fixed. This race condition occurred when closing the stream while the token request was still pending.
 
-- [#168](https://github.com/magicbell-io/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell-io/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - don't throw on empty response
+- [#168](https://github.com/magicbell/magicbell-js/pull/168) [`ce6ecc2`](https://github.com/magicbell/magicbell-js/commit/ce6ecc2cb207effe9755ea1883f696dcf5d5aad5) Thanks [@smeijer](https://github.com/smeijer)! - don't throw on empty response
 
 ## 2.0.2
 
 ### Patch Changes
 
-- [#161](https://github.com/magicbell-io/magicbell-js/pull/161) [`4ef2b07`](https://github.com/magicbell-io/magicbell-js/commit/4ef2b07e31922ebe83a443b1732390b79b7af141) Thanks [@smeijer](https://github.com/smeijer)! - Use a fork of ky that includes commonjs support
+- [#161](https://github.com/magicbell/magicbell-js/pull/161) [`4ef2b07`](https://github.com/magicbell/magicbell-js/commit/4ef2b07e31922ebe83a443b1732390b79b7af141) Thanks [@smeijer](https://github.com/smeijer)! - Use a fork of ky that includes commonjs support
 
 ## 2.0.1
 
 ### Patch Changes
 
-- [#156](https://github.com/magicbell-io/magicbell-js/pull/156) [`16016dc`](https://github.com/magicbell-io/magicbell-js/commit/16016dc5d3cd69d86c28e3e9920fe8e41e123406) Thanks [@smeijer](https://github.com/smeijer)! - declare exports in package.json
+- [#156](https://github.com/magicbell/magicbell-js/pull/156) [`16016dc`](https://github.com/magicbell/magicbell-js/commit/16016dc5d3cd69d86c28e3e9920fe8e41e123406) Thanks [@smeijer](https://github.com/smeijer)! - declare exports in package.json
 
 ## 2.0.0
 
 ### Major Changes
 
-- [#154](https://github.com/magicbell-io/magicbell-js/pull/154) [`da22233`](https://github.com/magicbell-io/magicbell-js/commit/da22233fca83398cc33e4732172eebde96ad1140) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Changes** - please read carefully.
+- [#154](https://github.com/magicbell/magicbell-js/pull/154) [`da22233`](https://github.com/magicbell/magicbell-js/commit/da22233fca83398cc33e4732172eebde96ad1140) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Changes** - please read carefully.
 
   We've separated the project from user resources. There are now two API clients exposed that can be used independently. A `ProjectClient` and a `UserClient`.
 
@@ -276,7 +276,7 @@
   const userHmac = createHmac('secret-key', { email: 'value' });
   ```
 
-- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We're now using [ky] instead of [axios] for making HTTP requests. This is a breaking change, as ky is build around the fetch module. Fetch is natively supported in all modern browsers, and is also available in Node.js since version 18.13.0.
+- [#152](https://github.com/magicbell/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We're now using [ky] instead of [axios] for making HTTP requests. This is a breaking change, as ky is build around the fetch module. Fetch is natively supported in all modern browsers, and is also available in Node.js since version 18.13.0.
 
   If you're using an older version of node, we recommend you to upgrade to the latest LTS version. Alternatively, include a fetch polyfill such as [isomorphic-fetch].
 
@@ -286,7 +286,7 @@
 
 ### Minor Changes
 
-- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - The magicbell client now supports lifecycle hooks. This way you can add custom logic to the client when certain events occur. For example to add logging, or to wrap requests with timing information.
+- [#152](https://github.com/magicbell/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - The magicbell client now supports lifecycle hooks. This way you can add custom logic to the client when certain events occur. For example to add logging, or to wrap requests with timing information.
 
   Your hooks will be passed directly to ky, so please see [ky/hooks] for more information.
 
@@ -303,7 +303,7 @@
 
   [ky/hooks]: https://github.com/sindresorhus/ky#hooks
 
-- [#152](https://github.com/magicbell-io/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell-io/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We now use [debug] for logging, and have dropped support for the `debug` property that could be provided to `Client`. Debugging can be enabled via the `DEBUG` environment variable.
+- [#152](https://github.com/magicbell/magicbell-js/pull/152) [`035b9e8`](https://github.com/magicbell/magicbell-js/commit/035b9e851951379dbea82dbc2380d6e9d500198a) Thanks [@smeijer](https://github.com/smeijer)! - We now use [debug] for logging, and have dropped support for the `debug` property that could be provided to `Client`. Debugging can be enabled via the `DEBUG` environment variable.
 
   We're using the namespaces `magicbell:debug`, `magicbell:log` and `magicbell:error`.
 
@@ -318,7 +318,7 @@
 
 ### Minor Changes
 
-- [#131](https://github.com/magicbell-io/magicbell-js/pull/131) [`ac58966`](https://github.com/magicbell-io/magicbell-js/commit/ac589661e0035aca4345c7d10dfed9f53028188a) Thanks [@smeijer](https://github.com/smeijer)! - Added a `users.notifications` resource which can be used to iterate notifications for a given user.
+- [#131](https://github.com/magicbell/magicbell-js/pull/131) [`ac58966`](https://github.com/magicbell/magicbell-js/commit/ac589661e0035aca4345c7d10dfed9f53028188a) Thanks [@smeijer](https://github.com/smeijer)! - Added a `users.notifications` resource which can be used to iterate notifications for a given user.
 
   ```ts
   const notifications = magicbell.users.notifications.list(userId, { per_page: 10 });
@@ -328,7 +328,7 @@
   }
   ```
 
-- [#134](https://github.com/magicbell-io/magicbell-js/pull/134) [`66dae2e`](https://github.com/magicbell-io/magicbell-js/commit/66dae2ee1fb2a6cb043b8160f918dc1be1c0e0b7) Thanks [@smeijer](https://github.com/smeijer)! - Added the `metrics` resource. The metrics resource contains a collection of endpoints that return metrics about the sent Notifications. All metrics are for the last 30 days. The following endpoints are available:
+- [#134](https://github.com/magicbell/magicbell-js/pull/134) [`66dae2e`](https://github.com/magicbell/magicbell-js/commit/66dae2ee1fb2a6cb043b8160f918dc1be1c0e0b7) Thanks [@smeijer](https://github.com/smeijer)! - Added the `metrics` resource. The metrics resource contains a collection of endpoints that return metrics about the sent Notifications. All metrics are for the last 30 days. The following endpoints are available:
 
   ```ts
   const notificationCounts = await magicbell.metrics.get();
@@ -338,7 +338,7 @@
   const countsPerTopic = await magicbell.metrics.topics.get();
   ```
 
-- [#136](https://github.com/magicbell-io/magicbell-js/pull/136) [`0e08df7`](https://github.com/magicbell-io/magicbell-js/commit/0e08df7a8fc7c36f44aa7f83101673c72f6d12f6) Thanks [@smeijer](https://github.com/smeijer)! - Release the [users.pushSubscriptions resource](https://www.magicbell.com/docs/rest-api/reference#fetch-user's-push-subscriptions) as stable. This includes the following apis:
+- [#136](https://github.com/magicbell/magicbell-js/pull/136) [`0e08df7`](https://github.com/magicbell/magicbell-js/commit/0e08df7a8fc7c36f44aa7f83101673c72f6d12f6) Thanks [@smeijer](https://github.com/smeijer)! - Release the [users.pushSubscriptions resource](https://www.magicbell.com/docs/rest-api/reference#fetch-user's-push-subscriptions) as stable. This includes the following apis:
 
   **Fetch user's push subscriptions**
 
@@ -359,7 +359,7 @@
   await magicbell.users.pushSubscriptions.delete('{user_id}', '{subscription_id}');
   ```
 
-- [#138](https://github.com/magicbell-io/magicbell-js/pull/138) [`18e0e49`](https://github.com/magicbell-io/magicbell-js/commit/18e0e497d52f8a70b474983b1d7d330e2400aa16) Thanks [@smeijer](https://github.com/smeijer)! - Release the [imports resource](https://www.magicbell.com/docs/rest-api/reference#imports-create) as stable. This includes the following apis:
+- [#138](https://github.com/magicbell/magicbell-js/pull/138) [`18e0e49`](https://github.com/magicbell/magicbell-js/commit/18e0e497d52f8a70b474983b1d7d330e2400aa16) Thanks [@smeijer](https://github.com/smeijer)! - Release the [imports resource](https://www.magicbell.com/docs/rest-api/reference#imports-create) as stable. This includes the following apis:
 
   **Create a import**
 
@@ -390,7 +390,7 @@
   await magicbell.imports.get('{import_id}');
   ```
 
-- [#130](https://github.com/magicbell-io/magicbell-js/pull/130) [`0491ba2`](https://github.com/magicbell-io/magicbell-js/commit/0491ba255b4010f91944cecde639fb14c100a6b7) Thanks [@smeijer](https://github.com/smeijer)! - Added support for per-request header overrides
+- [#130](https://github.com/magicbell/magicbell-js/pull/130) [`0491ba2`](https://github.com/magicbell/magicbell-js/commit/0491ba255b4010f91944cecde639fb14c100a6b7) Thanks [@smeijer](https://github.com/smeijer)! - Added support for per-request header overrides
 
   ```js
   const magicbell = new Client({
@@ -411,7 +411,7 @@
   //   x-custom-header-two: two
   ```
 
-- [#135](https://github.com/magicbell-io/magicbell-js/pull/135) [`7038d80`](https://github.com/magicbell-io/magicbell-js/commit/7038d80e619cfd8a9c7b06bcc5a111452a0dc203) Thanks [@smeijer](https://github.com/smeijer)! - Release [broadcasts resource](https://www.magicbell.com/docs/rest-api/reference#list-notification-broadcasts) as stable. This includes the following apis:
+- [#135](https://github.com/magicbell/magicbell-js/pull/135) [`7038d80`](https://github.com/magicbell/magicbell-js/commit/7038d80e619cfd8a9c7b06bcc5a111452a0dc203) Thanks [@smeijer](https://github.com/smeijer)! - Release [broadcasts resource](https://www.magicbell.com/docs/rest-api/reference#list-notification-broadcasts) as stable. This includes the following apis:
 
   **List notification broadcasts**
 
@@ -441,7 +441,7 @@
 
 ### Patch Changes
 
-- [`e78af04`](https://github.com/magicbell-io/magicbell-js/commit/e78af04eb97aebffe8fa41e088890364cb5367ad) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+- [`e78af04`](https://github.com/magicbell/magicbell-js/commit/e78af04eb97aebffe8fa41e088890364cb5367ad) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
 
   - updated `json5` to `^2.2.3`.
 
@@ -449,25 +449,25 @@
 
 ### Patch Changes
 
-- [#97](https://github.com/magicbell-io/magicbell-js/pull/97) [`9af0890`](https://github.com/magicbell-io/magicbell-js/commit/9af0890bae5668f24e69ef167aea5dfa413cede9) Thanks [@smeijer](https://github.com/smeijer)! - fix: correct response type for `users.list()` by renaming `user` prop to `users`.
+- [#97](https://github.com/magicbell/magicbell-js/pull/97) [`9af0890`](https://github.com/magicbell/magicbell-js/commit/9af0890bae5668f24e69ef167aea5dfa413cede9) Thanks [@smeijer](https://github.com/smeijer)! - fix: correct response type for `users.list()` by renaming `user` prop to `users`.
 
 ## 1.7.0
 
 ### Minor Changes
 
-- [#95](https://github.com/magicbell-io/magicbell-js/pull/95) [`87b781b`](https://github.com/magicbell-io/magicbell-js/commit/87b781be77fd66d89ae46567d0f8a5788acd588e) Thanks [@smeijer](https://github.com/smeijer)! - The `total` and `total_pages` props are removed from the following method return types:
+- [#95](https://github.com/magicbell/magicbell-js/pull/95) [`87b781b`](https://github.com/magicbell/magicbell-js/commit/87b781be77fd66d89ae46567d0f8a5788acd588e) Thanks [@smeijer](https://github.com/smeijer)! - The `total` and `total_pages` props are removed from the following method return types:
 
   - `magicbell.broadcasts.list()`
   - `magicbell.broadcasts.notifications.list()`
   - `magicbell.users.list()`
 
-  The [auto pagination](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#using-promises) methods are updated to support the paginated responses that do not have those fields. Thereby, pagination helpers like `.list().forEach()`, `.list().toArray()` and the iterator in `for await (const node of method.list())` keep working as before.
+  The [auto pagination](https://github.com/magicbell/magicbell-js/tree/main/packages/magicbell#using-promises) methods are updated to support the paginated responses that do not have those fields. Thereby, pagination helpers like `.list().forEach()`, `.list().toArray()` and the iterator in `for await (const node of method.list())` keep working as before.
 
 ## 1.6.0
 
 ### Minor Changes
 
-- [#90](https://github.com/magicbell-io/magicbell-js/pull/90) [`ea0a9ca`](https://github.com/magicbell-io/magicbell-js/commit/ea0a9ca456cb9c82f6e6d4b9d0add512bce22a0e) Thanks [@smeijer](https://github.com/smeijer)! - update broadcast > notification response schema to include the fields:
+- [#90](https://github.com/magicbell/magicbell-js/pull/90) [`ea0a9ca`](https://github.com/magicbell/magicbell-js/commit/ea0a9ca456cb9c82f6e6d4b9d0add512bce22a0e) Thanks [@smeijer](https://github.com/smeijer)! - update broadcast > notification response schema to include the fields:
 
   - `created_at`; datetime when notification was created
   - `updated_at`; datetime when notification was last updated
@@ -480,13 +480,13 @@
   - `recipient`; is marked as non-nullable
   - `deliveries`; is marked as non-nullable
 
-- [#92](https://github.com/magicbell-io/magicbell-js/pull/92) [`530476e`](https://github.com/magicbell-io/magicbell-js/commit/530476e3d8f79c8c5176661316d2cdb46e424236) Thanks [@smeijer](https://github.com/smeijer)! - Rename `users.fetch` to `users.get`. Tho it's in theory a breaking change, the users api is relatively new, and the convention in this sdk is to use `get` for single entity retrieval, and not `fetch`. So we're going with a `minor` instead to get this fixed.
+- [#92](https://github.com/magicbell/magicbell-js/pull/92) [`530476e`](https://github.com/magicbell/magicbell-js/commit/530476e3d8f79c8c5176661316d2cdb46e424236) Thanks [@smeijer](https://github.com/smeijer)! - Rename `users.fetch` to `users.get`. Tho it's in theory a breaking change, the users api is relatively new, and the convention in this sdk is to use `get` for single entity retrieval, and not `fetch`. So we're going with a `minor` instead to get this fixed.
 
 ## 1.5.0
 
 ### Minor Changes
 
-- [#83](https://github.com/magicbell-io/magicbell-js/pull/83) [`94cbb92`](https://github.com/magicbell-io/magicbell-js/commit/94cbb927bbc88791100dbb10c5be519d1f598a72) Thanks [@smeijer](https://github.com/smeijer)! - feat: add broadcasts.list method to the client.
+- [#83](https://github.com/magicbell/magicbell-js/pull/83) [`94cbb92`](https://github.com/magicbell/magicbell-js/commit/94cbb927bbc88791100dbb10c5be519d1f598a72) Thanks [@smeijer](https://github.com/smeijer)! - feat: add broadcasts.list method to the client.
 
   ```ts
   const broadcasts = magicbell.broadcasts.list({ per_page: 10 });
@@ -496,14 +496,14 @@
   });
   ```
 
-- [#84](https://github.com/magicbell-io/magicbell-js/pull/84) [`b0a809d`](https://github.com/magicbell-io/magicbell-js/commit/b0a809db0fbc074a5a10b011bc84561285def6c4) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.get` method to the client.
+- [#84](https://github.com/magicbell/magicbell-js/pull/84) [`b0a809d`](https://github.com/magicbell/magicbell-js/commit/b0a809db0fbc074a5a10b011bc84561285def6c4) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.get` method to the client.
 
   ```ts
   const broadcasts = await magicbell.broadcasts.get(broadcastId);
   console.log(broadcast.id);
   ```
 
-- [#86](https://github.com/magicbell-io/magicbell-js/pull/86) [`073e3f8`](https://github.com/magicbell-io/magicbell-js/commit/073e3f840932ccad8a63ba390c1ebaf59e95903e) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.notifications.list` method to the client.
+- [#86](https://github.com/magicbell/magicbell-js/pull/86) [`073e3f8`](https://github.com/magicbell/magicbell-js/commit/073e3f840932ccad8a63ba390c1ebaf59e95903e) Thanks [@smeijer](https://github.com/smeijer)! - feat: add `broadcasts.notifications.list` method to the client.
 
   ```ts
   const notifications = magicbell.broadcasts.notifications.list(broadcastId, { per_page: 10 });
@@ -513,7 +513,7 @@
   });
   ```
 
-- [#87](https://github.com/magicbell-io/magicbell-js/pull/87) [`f0ec9a5`](https://github.com/magicbell-io/magicbell-js/commit/f0ec9a5258d2053a0f9d87108308808b6f1f1411) Thanks [@smeijer](https://github.com/smeijer)! - Update schemas for broadcast methods.
+- [#87](https://github.com/magicbell/magicbell-js/pull/87) [`f0ec9a5`](https://github.com/magicbell/magicbell-js/commit/f0ec9a5258d2053a0f9d87108308808b6f1f1411) Thanks [@smeijer](https://github.com/smeijer)! - Update schemas for broadcast methods.
 
   - dropped `broadcast.recipients_count`, use `broadcast.status.summary.total` instead.
   - broadcast notification `status` is now an enum string.
@@ -525,33 +525,33 @@
 
 ### Patch Changes
 
-- [#76](https://github.com/magicbell-io/magicbell-js/pull/76) [`fe450c8`](https://github.com/magicbell-io/magicbell-js/commit/fe450c884900e1d42b8ae868710742c2fea61256) Thanks [@smeijer](https://github.com/smeijer)! - Feature flags are now typed, making it easier to enable beta features, and harder to forget removing flags when beta features turned stable.
+- [#76](https://github.com/magicbell/magicbell-js/pull/76) [`fe450c8`](https://github.com/magicbell/magicbell-js/commit/fe450c884900e1d42b8ae868710742c2fea61256) Thanks [@smeijer](https://github.com/smeijer)! - Feature flags are now typed, making it easier to enable beta features, and harder to forget removing flags when beta features turned stable.
 
-- [#77](https://github.com/magicbell-io/magicbell-js/pull/77) [`9f4be9a`](https://github.com/magicbell-io/magicbell-js/commit/9f4be9ace0123ce8de710b8af4683d5a3c0b27fe) Thanks [@smeijer](https://github.com/smeijer)! - return the full response data from users.push_subscriptions.list()
+- [#77](https://github.com/magicbell/magicbell-js/pull/77) [`9f4be9a`](https://github.com/magicbell/magicbell-js/commit/9f4be9ace0123ce8de710b8af4683d5a3c0b27fe) Thanks [@smeijer](https://github.com/smeijer)! - return the full response data from users.push_subscriptions.list()
 
 ## 1.4.3
 
 ### Patch Changes
 
-- [#75](https://github.com/magicbell-io/magicbell-js/pull/75) [`14c30fe`](https://github.com/magicbell-io/magicbell-js/commit/14c30fe7855adf55096f4a9f8a63f1f4240f6dac) Thanks [@smeijer](https://github.com/smeijer)! - fix: handle network level request errors
+- [#75](https://github.com/magicbell/magicbell-js/pull/75) [`14c30fe`](https://github.com/magicbell/magicbell-js/commit/14c30fe7855adf55096f4a9f8a63f1f4240f6dac) Thanks [@smeijer](https://github.com/smeijer)! - fix: handle network level request errors
 
 ## 1.4.2
 
 ### Patch Changes
 
-- [#70](https://github.com/magicbell-io/magicbell-js/pull/70) [`3590285`](https://github.com/magicbell-io/magicbell-js/commit/3590285471b80559f20308e2bbccfd244f6682fa) Thanks [@smeijer](https://github.com/smeijer)! - fix: add types for listener close method
+- [#70](https://github.com/magicbell/magicbell-js/pull/70) [`3590285`](https://github.com/magicbell/magicbell-js/commit/3590285471b80559f20308e2bbccfd244f6682fa) Thanks [@smeijer](https://github.com/smeijer)! - fix: add types for listener close method
 
 ## 1.4.1
 
 ### Patch Changes
 
-- [#68](https://github.com/magicbell-io/magicbell-js/pull/68) [`8ae8b38`](https://github.com/magicbell-io/magicbell-js/commit/8ae8b38189171188f78b767f63f4e34583abd6fb) Thanks [@smeijer](https://github.com/smeijer)! - fix typescript issue that showed arguments in camelCase vs snake_case.
+- [#68](https://github.com/magicbell/magicbell-js/pull/68) [`8ae8b38`](https://github.com/magicbell/magicbell-js/commit/8ae8b38189171188f78b767f63f4e34583abd6fb) Thanks [@smeijer](https://github.com/smeijer)! - fix typescript issue that showed arguments in camelCase vs snake_case.
 
 ## 1.4.0
 
 ### Minor Changes
 
-- [#59](https://github.com/magicbell-io/magicbell-js/pull/59) [`6d7e434`](https://github.com/magicbell-io/magicbell-js/commit/6d7e4343d997ee845ad54b41cb9ca1171019764b) Thanks [@unamashana](https://github.com/unamashana)!
+- [#59](https://github.com/magicbell/magicbell-js/pull/59) [`6d7e434`](https://github.com/magicbell/magicbell-js/commit/6d7e4343d997ee845ad54b41cb9ca1171019764b) Thanks [@unamashana](https://github.com/unamashana)!
   - remove beta flag from `pushSubscriptions`
   - move `imports` method behind feature flag
   - add `users.list` method to list all users
@@ -564,7 +564,7 @@
 
 ### Minor Changes
 
-- [#64](https://github.com/magicbell-io/magicbell-js/pull/64) [`1676fd3`](https://github.com/magicbell-io/magicbell-js/commit/1676fd3f5a93a8a5f8dd3319f84173e6d0b9df95) Thanks [@smeijer](https://github.com/smeijer)! - feat: support custom request headers
+- [#64](https://github.com/magicbell/magicbell-js/pull/64) [`1676fd3`](https://github.com/magicbell/magicbell-js/commit/1676fd3f5a93a8a5f8dd3319f84173e6d0b9df95) Thanks [@smeijer](https://github.com/smeijer)! - feat: support custom request headers
 
   Custom request headers can be used to decorate requests for logs and metrics or for example to instruct proxy servers.
 
@@ -583,7 +583,7 @@
 
 ### Minor Changes
 
-- [#56](https://github.com/magicbell-io/magicbell-js/pull/56) [`8139792`](https://github.com/magicbell-io/magicbell-js/commit/81397920b118f4d3dd9bda9153f931516f9f712c) Thanks [@smeijer](https://github.com/smeijer)! - feat: add close method to realtime listener
+- [#56](https://github.com/magicbell/magicbell-js/pull/56) [`8139792`](https://github.com/magicbell/magicbell-js/commit/81397920b118f4d3dd9bda9153f931516f9f712c) Thanks [@smeijer](https://github.com/smeijer)! - feat: add close method to realtime listener
 
   ```ts
   const listener = magicbell.listen();
@@ -602,7 +602,7 @@
 
 ### Minor Changes
 
-- [#39](https://github.com/magicbell-io/magicbell-js/pull/39) [`68b2fbd`](https://github.com/magicbell-io/magicbell-js/commit/68b2fbd28fc1a0ca2b182611bc62fdc56a2e3f13) Thanks [@smeijer](https://github.com/smeijer)! - Add support for usage in browsers.
+- [#39](https://github.com/magicbell/magicbell-js/pull/39) [`68b2fbd`](https://github.com/magicbell/magicbell-js/commit/68b2fbd28fc1a0ca2b182611bc62fdc56a2e3f13) Thanks [@smeijer](https://github.com/smeijer)! - Add support for usage in browsers.
 
   - Stop tracking `client-id`. Client id was a random token stored on the filesystem, so we could identify origins across session.
   - Don't generate HMAC if no `api-secret` is provided, or if HMAC is already provided via request options.
@@ -617,25 +617,25 @@
 
 ### Patch Changes
 
-- [#29](https://github.com/magicbell-io/magicbell-js/pull/29) [`1640aef`](https://github.com/magicbell-io/magicbell-js/commit/1640aeff3f6158047883c999fa580202651b067b) Thanks [@smeijer](https://github.com/smeijer)! - fix: be forgiving about `undefined` arguments
+- [#29](https://github.com/magicbell/magicbell-js/pull/29) [`1640aef`](https://github.com/magicbell/magicbell-js/commit/1640aeff3f6158047883c999fa580202651b067b) Thanks [@smeijer](https://github.com/smeijer)! - fix: be forgiving about `undefined` arguments
 
 ## 1.0.0
 
 ### Major Changes
 
-- [#27](https://github.com/magicbell-io/magicbell-js/pull/27) [`c698320`](https://github.com/magicbell-io/magicbell-js/commit/c69832021cba9a0686a14be22dd7f46c613b954d) Thanks [@smeijer](https://github.com/smeijer)! - improve types for `notifications`, `push-subscriptions`, `imports` and `users` resources.
+- [#27](https://github.com/magicbell/magicbell-js/pull/27) [`c698320`](https://github.com/magicbell/magicbell-js/commit/c69832021cba9a0686a14be22dd7f46c613b954d) Thanks [@smeijer](https://github.com/smeijer)! - improve types for `notifications`, `push-subscriptions`, `imports` and `users` resources.
 
 ## 0.3.0
 
 ### Minor Changes
 
-- [#22](https://github.com/magicbell-io/magicbell-js/pull/22) [`366adc6`](https://github.com/magicbell-io/magicbell-js/commit/366adc6af3ee2d198f5f9ad3507deee93dd88ebb) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.imports` resource to import users in bulk, and query the status of import jobs. Methods that have been made available are `magicbell.imports.create` and `magicbell.imports.get`.
+- [#22](https://github.com/magicbell/magicbell-js/pull/22) [`366adc6`](https://github.com/magicbell/magicbell-js/commit/366adc6af3ee2d198f5f9ad3507deee93dd88ebb) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.imports` resource to import users in bulk, and query the status of import jobs. Methods that have been made available are `magicbell.imports.create` and `magicbell.imports.get`.
 
-  See [#imports](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#imports) for more information.
+  See [#imports](https://github.com/magicbell/magicbell-js/blob/main/packages/magicbell/README.md#imports) for more information.
 
-- [#24](https://github.com/magicbell-io/magicbell-js/pull/24) [`6cf938c`](https://github.com/magicbell-io/magicbell-js/commit/6cf938c384ea4db6e3260f8c35f9af762edc48a7) Thanks [@smeijer](https://github.com/smeijer)! - Released the `.listen` method. With this method you can listen to server sent events in realtime. For example, to do something when new notifications come in, or to trigger an event when a user marks a notification as read.
+- [#24](https://github.com/magicbell/magicbell-js/pull/24) [`6cf938c`](https://github.com/magicbell/magicbell-js/commit/6cf938c384ea4db6e3260f8c35f9af762edc48a7) Thanks [@smeijer](https://github.com/smeijer)! - Released the `.listen` method. With this method you can listen to server sent events in realtime. For example, to do something when new notifications come in, or to trigger an event when a user marks a notification as read.
 
-  The following events are currently emitted. Please note that all events are bound to a specific user. See [#realtime](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#realtime) for more information.
+  The following events are currently emitted. Please note that all events are bound to a specific user. See [#realtime](https://github.com/magicbell/magicbell-js/blob/main/packages/magicbell/README.md#realtime) for more information.
 
   | event.name               | description                                |
   | ------------------------ | ------------------------------------------ |
@@ -646,13 +646,13 @@
   | `notifications/read/all` | all notifications have been marked as read |
   | `notifications/seen/all` | all notifications have been marked as seen |
 
-- [#16](https://github.com/magicbell-io/magicbell-js/pull/16) [`615b2fa`](https://github.com/magicbell-io/magicbell-js/commit/615b2faa558c19a2a50c0cb2b67b95ad3b5e68e3) Thanks [@smeijer](https://github.com/smeijer)! - Loads the axios http adapter when `XMLHttpRequest` is unsupported. This allows `magicbell` to be used in for example vscode extensions.
+- [#16](https://github.com/magicbell/magicbell-js/pull/16) [`615b2fa`](https://github.com/magicbell/magicbell-js/commit/615b2faa558c19a2a50c0cb2b67b95ad3b5e68e3) Thanks [@smeijer](https://github.com/smeijer)! - Loads the axios http adapter when `XMLHttpRequest` is unsupported. This allows `magicbell` to be used in for example vscode extensions.
 
   - Don't persist config if `os.homedir` is unavailable, which is for example the case in vscode extensions.
   - Add support for authentication using `x-magicbell-user-external-id` header.
   - Allow specifying the `userKey`. This allows users to use `magicbell`, without the need to provide the `apiSecret` key to generate the HMAC at runtime.
 
-- [#25](https://github.com/magicbell-io/magicbell-js/pull/25) [`13ee1d2`](https://github.com/magicbell-io/magicbell-js/commit/13ee1d242baddc97c0eabd3bf49867c3280432c5) Thanks [@smeijer](https://github.com/smeijer)! - Add type coverage to all resource methods.
+- [#25](https://github.com/magicbell/magicbell-js/pull/25) [`13ee1d2`](https://github.com/magicbell/magicbell-js/commit/13ee1d242baddc97c0eabd3bf49867c3280432c5) Thanks [@smeijer](https://github.com/smeijer)! - Add type coverage to all resource methods.
 
   - Payload and Response types are driven by json schemas, which are stored under `/schemas`.
   - Requests now use the `accept-version: v2` header, so we use the latest version of our preferences api.
@@ -660,18 +660,18 @@
   - Requests no longer include empty headers.
   - Requests no longer include empty wrapping entities in the body.
 
-- [#23](https://github.com/magicbell-io/magicbell-js/pull/23) [`bb857a7`](https://github.com/magicbell-io/magicbell-js/commit/bb857a738d5abfda805fecdd1154027a8077d3ed) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.pushSubscriptions` resource to manage mobile devices / push subscriptions. Methods that have been made available are `magicbell.pushSubscriptions.create` and `magicbell.pushSubscriptions.delete`. Note that these methods are currently in beta, and need to be enabled via [feature flags](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell#feature-flags).
+- [#23](https://github.com/magicbell/magicbell-js/pull/23) [`bb857a7`](https://github.com/magicbell/magicbell-js/commit/bb857a738d5abfda805fecdd1154027a8077d3ed) Thanks [@smeijer](https://github.com/smeijer)! - Add the `magicbell.pushSubscriptions` resource to manage mobile devices / push subscriptions. Methods that have been made available are `magicbell.pushSubscriptions.create` and `magicbell.pushSubscriptions.delete`. Note that these methods are currently in beta, and need to be enabled via [feature flags](https://github.com/magicbell/magicbell-js/tree/main/packages/magicbell#feature-flags).
 
-  See [#pushSubscriptions](https://github.com/magicbell-io/magicbell-js/blob/main/packages/magicbell/README.md#pushSubscriptions) for more information.
+  See [#pushSubscriptions](https://github.com/magicbell/magicbell-js/blob/main/packages/magicbell/README.md#pushSubscriptions) for more information.
 
 ## 0.2.0
 
 ### Minor Changes
 
-- [`3c04a70`](https://github.com/magicbell-io/magicbell-js/commit/3c04a70972a4983b5bd07bc62c4aa7ddd2607106) Thanks [@smeijer](https://github.com/smeijer)! - rename `.retrieve()` methods to `.get()` and remove pushSubscriptions for the time being.
+- [`3c04a70`](https://github.com/magicbell/magicbell-js/commit/3c04a70972a4983b5bd07bc62c4aa7ddd2607106) Thanks [@smeijer](https://github.com/smeijer)! - rename `.retrieve()` methods to `.get()` and remove pushSubscriptions for the time being.
 
 ## 0.1.0
 
 ### Minor Changes
 
-- [`29c4bca`](https://github.com/magicbell-io/magicbell-js/commit/29c4bca92847ad5975b03ab006835a2210b2842f) Thanks [@smeijer](https://github.com/smeijer)! - Added the `magicbell` package - an api wrapper for node. Please see the readme at [packages/magicbell](https://github.com/magicbell-io/magicbell-js/tree/main/packages/magicbell) for more.
+- [`29c4bca`](https://github.com/magicbell/magicbell-js/commit/29c4bca92847ad5975b03ab006835a2210b2842f) Thanks [@smeijer](https://github.com/smeijer)! - Added the `magicbell` package - an api wrapper for node. Please see the readme at [packages/magicbell](https://github.com/magicbell/magicbell-js/tree/main/packages/magicbell) for more.

@@ -93,7 +93,7 @@ export default function Example({ files, dependencies, template, examples, slug 
             <FileTextIcon className="mr-2" /> Docs
           </a>
           <a
-            href="https://github.com/orgs/magicbell-io/discussions"
+            href="https://github.com/orgs/magicbell/discussions"
             className="flex-row fg-body"
             target="_blank"
             rel="noopener nofollow noreferrer"

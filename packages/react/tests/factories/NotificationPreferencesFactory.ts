@@ -1,5 +1,5 @@
 // TODO: Consider creating a test library and/or exposing our existing test
-// data: specifically https://github.com/magicbell-io/react-headless/blob/main/tests/factories/NotificationPreferencesFactory.ts
+// data: specifically https://github.com/magicbell/react-headless/blob/main/tests/factories/NotificationPreferencesFactory.ts
 // in this case.
 
 import IRemoteNotificationPreferences from '@magicbell/react-headless/src/types/IRemoteNotificationPreferences';

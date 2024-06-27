@@ -19,7 +19,7 @@ You'll need TypeScript 4.5 or higher for our bundled type definitions.
 Run the following commands in your terminal to get a copy of this repo, and install required dependencies.
 
 ```
-git clone git@github.com:magicbell-io/magicbell-js.git
+git clone git@github.com:magicbell/magicbell-js.git
 cd magicbell-js
 yarn
 ```

@@ -153,13 +153,13 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     void connect(options);
 
     const asyncIteratorNext = async () => {
-      let event: typeof messages[number] | null = null;
+      let event: (typeof messages)[number] | null = null;
 
       // It's weird that `event` can be undefined? We don't push empty messages
       // This happens when running in <React.StrictMode />. I guess there are
       // two instances resolving the promise above, the second resolve results
       // in no content. See this github pr for more context:
-      // https://github.com/magicbell-io/magicbell-js/pull/189
+      // https://github.com/magicbell/magicbell-js/pull/189
       while (!event) {
         if (!messages.length) await new Promise((r) => (resolve = r));
         event = messages.pop();

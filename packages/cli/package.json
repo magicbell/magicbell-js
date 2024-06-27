@@ -25,11 +25,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:magicbell-io/magicbell-js.git",
+    "url": "git@github.com:magicbell/magicbell-js.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/magicbell-io/magicbell-js/issues"
+    "url": "https://github.com/magicbell/magicbell-js/issues"
   },
   "scripts": {
     "clean": "rimraf dist",
