@@ -59,3 +59,15 @@ jobs:
       - run: yarn build
       - run: yarn test:ci
         timeout-minutes: 10
+
+  preview-release:
+    name: Preview Release
+    needs: [eslint, typescript, test]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bahmutov/npm-install@v1
+      - run: yarn build
+      - name: publish preview release
+        run: npx pkg-pr-new publish --compact $(ls -d ./packages/*)

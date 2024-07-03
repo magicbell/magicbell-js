@@ -24,7 +24,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:magicbell/magicbell-js.git"
+    "url": "https://github.com/magicbell/magicbell-js.git",
+    "directory": "packages/codegen"
   },
   "scripts": {
     "clean": "rimraf dist",

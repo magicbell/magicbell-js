@@ -34,7 +34,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:magicbell/magicbell-js.git"
+    "url": "https://github.com/magicbell/magicbell-js.git",
+    "directory": "packages/react-headless"
   },
   "bugs": {
     "url": "https://github.com/magicbell/magicbell-js/issues"
