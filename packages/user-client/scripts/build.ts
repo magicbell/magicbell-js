@@ -107,7 +107,8 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   await rimraf(liblabConfig.specFilePath);
 
   await move('output/typescript/src', './src');
-  await move('output/typescript/test', './test');
+  // tests are currently ignored, as they're not stable between rebuilds, liblab is looking into this
+  // await move('output/typescript/test', './test');
   await move('output/typescript/package.json', './package.json');
   await move('output/typescript/README.md', './README.md');
   await rimraf('output');

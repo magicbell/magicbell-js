@@ -46,7 +46,7 @@
   },
   "name": "@magicbell/user-client",
   "description": "Client - OpenAPI 3.1.0 Specification for MagicBell API.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Client",
   "dependencies": {
     "axios": "^0.28.0"
