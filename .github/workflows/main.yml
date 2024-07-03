@@ -71,4 +71,6 @@ jobs:
       - run: yarn build
       - name: publish preview release
         #       todo: add --compact, once repository urls are updated.
-        run: npx pkg-pr-new publish $(ls -d ./packages/*)
+        run: |
+          echo npx pkg-pr-new publish $(ls -d ./packages/*)
+          npx pkg-pr-new publish $(ls -d ./packages/*)

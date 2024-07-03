@@ -1,5 +1,6 @@
 {
   "name": "@magicbell/codegen",
+  "private": true,
   "version": "0.2.6",
   "description": "MagicBell codegen",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
