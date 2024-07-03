@@ -39,46 +39,46 @@ describe('test Channels', () => {
   describe('test getMobilePushApnsToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/apns/tokens/1628319310')
+        .get('/channels/mobile_push/apns/tokens/3334965325')
         .reply(200, { data: {} });
-      return sdk.channels.getMobilePushApnsToken('1628319310').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.getMobilePushApnsToken('3334965325').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/apns/tokens/2500750429')
+        .get('/channels/mobile_push/apns/tokens/9825421878')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.getMobilePushApnsToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/apns/tokens/2040358893')
+        .get('/channels/mobile_push/apns/tokens/1631739370')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.getMobilePushApnsToken('2040358893')).rejects.toThrow();
+      return expect(async () => await sdk.channels.getMobilePushApnsToken('1631739370')).rejects.toThrow();
     });
   });
 
   describe('test discardMobilePushApnsToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/apns/tokens/7026408082')
+        .delete('/channels/mobile_push/apns/tokens/8536712529')
         .reply(200, { data: {} });
-      return sdk.channels.discardMobilePushApnsToken('7026408082').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.discardMobilePushApnsToken('8536712529').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/apns/tokens/8688898021')
+        .delete('/channels/mobile_push/apns/tokens/3785876860')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.discardMobilePushApnsToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/apns/tokens/9044774512')
+        .delete('/channels/mobile_push/apns/tokens/8642688562')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.discardMobilePushApnsToken('9044774512')).rejects.toThrow();
+      return expect(async () => await sdk.channels.discardMobilePushApnsToken('8642688562')).rejects.toThrow();
     });
   });
 
@@ -103,46 +103,46 @@ describe('test Channels', () => {
   describe('test getMobilePushFcmToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/fcm/tokens/1700442710')
+        .get('/channels/mobile_push/fcm/tokens/8386363421')
         .reply(200, { data: {} });
-      return sdk.channels.getMobilePushFcmToken('1700442710').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.getMobilePushFcmToken('8386363421').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/fcm/tokens/1054116787')
+        .get('/channels/mobile_push/fcm/tokens/1775500707')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.getMobilePushFcmToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/mobile_push/fcm/tokens/6782067040')
+        .get('/channels/mobile_push/fcm/tokens/3103933153')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.getMobilePushFcmToken('6782067040')).rejects.toThrow();
+      return expect(async () => await sdk.channels.getMobilePushFcmToken('3103933153')).rejects.toThrow();
     });
   });
 
   describe('test discardMobilePushFcmToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/fcm/tokens/2118668019')
+        .delete('/channels/mobile_push/fcm/tokens/4345876884')
         .reply(200, { data: {} });
-      return sdk.channels.discardMobilePushFcmToken('2118668019').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.discardMobilePushFcmToken('4345876884').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/fcm/tokens/9973676388')
+        .delete('/channels/mobile_push/fcm/tokens/9406022090')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.discardMobilePushFcmToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/mobile_push/fcm/tokens/6186716538')
+        .delete('/channels/mobile_push/fcm/tokens/9473010380')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.discardMobilePushFcmToken('6186716538')).rejects.toThrow();
+      return expect(async () => await sdk.channels.discardMobilePushFcmToken('9473010380')).rejects.toThrow();
     });
   });
 
@@ -163,46 +163,46 @@ describe('test Channels', () => {
   describe('test getSlackToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/slack/tokens/8430125263')
+        .get('/channels/slack/tokens/4625837068')
         .reply(200, { data: {} });
-      return sdk.channels.getSlackToken('8430125263').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.getSlackToken('4625837068').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/slack/tokens/1112356942')
+        .get('/channels/slack/tokens/5505157870')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.getSlackToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/slack/tokens/6226188385')
+        .get('/channels/slack/tokens/5590926312')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.getSlackToken('6226188385')).rejects.toThrow();
+      return expect(async () => await sdk.channels.getSlackToken('5590926312')).rejects.toThrow();
     });
   });
 
   describe('test discardSlackToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/slack/tokens/5318759040')
+        .delete('/channels/slack/tokens/9214806555')
         .reply(200, { data: {} });
-      return sdk.channels.discardSlackToken('5318759040').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.discardSlackToken('9214806555').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/slack/tokens/3066335373')
+        .delete('/channels/slack/tokens/5956301322')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.discardSlackToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/slack/tokens/1247212860')
+        .delete('/channels/slack/tokens/9369003669')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.discardSlackToken('1247212860')).rejects.toThrow();
+      return expect(async () => await sdk.channels.discardSlackToken('9369003669')).rejects.toThrow();
     });
   });
 
@@ -223,46 +223,46 @@ describe('test Channels', () => {
   describe('test getTeamsToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/teams/tokens/4241096780')
+        .get('/channels/teams/tokens/9545572632')
         .reply(200, { data: {} });
-      return sdk.channels.getTeamsToken('4241096780').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.getTeamsToken('9545572632').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/teams/tokens/8253780575')
+        .get('/channels/teams/tokens/9134567098')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.getTeamsToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/teams/tokens/6908457490')
+        .get('/channels/teams/tokens/8437904347')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.getTeamsToken('6908457490')).rejects.toThrow();
+      return expect(async () => await sdk.channels.getTeamsToken('8437904347')).rejects.toThrow();
     });
   });
 
   describe('test discardTeamsToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/teams/tokens/2453520540')
+        .delete('/channels/teams/tokens/6417458267')
         .reply(200, { data: {} });
-      return sdk.channels.discardTeamsToken('2453520540').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.discardTeamsToken('6417458267').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/teams/tokens/5168857388')
+        .delete('/channels/teams/tokens/6201458976')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.discardTeamsToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/teams/tokens/4516549519')
+        .delete('/channels/teams/tokens/8653626027')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.discardTeamsToken('4516549519')).rejects.toThrow();
+      return expect(async () => await sdk.channels.discardTeamsToken('8653626027')).rejects.toThrow();
     });
   });
 
@@ -283,46 +283,46 @@ describe('test Channels', () => {
   describe('test getWebPushToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/web_push/tokens/9984097578')
+        .get('/channels/web_push/tokens/4063469359')
         .reply(200, { data: {} });
-      return sdk.channels.getWebPushToken('9984097578').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.getWebPushToken('4063469359').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/web_push/tokens/7625743329')
+        .get('/channels/web_push/tokens/7839757355')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.getWebPushToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .get('/channels/web_push/tokens/5591089017')
+        .get('/channels/web_push/tokens/6257413713')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.getWebPushToken('5591089017')).rejects.toThrow();
+      return expect(async () => await sdk.channels.getWebPushToken('6257413713')).rejects.toThrow();
     });
   });
 
   describe('test discardWebPushToken', () => {
     test('test api call', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/web_push/tokens/5668351916')
+        .delete('/channels/web_push/tokens/1241311005')
         .reply(200, { data: {} });
-      return sdk.channels.discardWebPushToken('5668351916').then((r: any) => expect(r.data).toEqual({}));
+      return sdk.channels.discardWebPushToken('1241311005').then((r: any) => expect(r.data).toEqual({}));
     });
 
     test('test will throw error if required fields missing', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/web_push/tokens/2435504694')
+        .delete('/channels/web_push/tokens/2541074724')
         .reply(200, { data: {} });
       return expect(async () => await sdk.channels.discardWebPushToken()).rejects.toThrow();
     });
 
     test('test will throw error on a non-200 response', () => {
       const scope = nock('https://api.magicbell.com/v2')
-        .delete('/channels/web_push/tokens/5666882608')
+        .delete('/channels/web_push/tokens/5824471081')
         .reply(404, { data: {} });
-      return expect(async () => await sdk.channels.discardWebPushToken('5666882608')).rejects.toThrow();
+      return expect(async () => await sdk.channels.discardWebPushToken('5824471081')).rejects.toThrow();
     });
   });
 });

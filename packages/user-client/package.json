@@ -32,9 +32,9 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --module commonjs --outDir dist/commonjs",
-    "build:esm": "tsc --module esnext --outDir dist/esm",
+    "build": "run-s build:*",
+    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs",
+    "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir dist/esm",
     "lint": "eslint --ext .ts,.js ./src/ --resolve-plugins-relative-to .",
     "lint:ci": "eslint --ext .ts,.js ./src/ --resolve-plugins-relative-to . --cache --quiet",
     "lint:fix": "eslint --ext .ts,.js ./src/ --resolve-plugins-relative-to . --cache --fix",
@@ -47,7 +47,7 @@
   },
   "name": "@magicbell/user-client",
   "description": "Client - OpenAPI 3.1.0 Specification for MagicBell API.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Client",
   "dependencies": {
     "axios": "^0.28.0"

@@ -115,9 +115,13 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   // patch package.json
   const pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   pkgJson.scripts.codegen = 'tsx scripts/build.ts';
+
+  pkgJson.scripts['build'] = 'run-s build:*';
+  pkgJson.scripts['build:cjs'] = 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs';
+  pkgJson.scripts['build:esm'] = 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm';
+
   delete pkgJson.scripts['build:umd'];
   delete pkgJson.scripts['build:all'];
-  pkgJson.scripts.build = 'npm run build:cjs && npm run build:esm';
 
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2));
 
