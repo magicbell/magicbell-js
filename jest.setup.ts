@@ -17,7 +17,9 @@ if (!globalThis.EventSource) {
 
 // it's defined in vitest environment
 // eslint-disable-next-line no-undef
-window.open = jest.fn();
+if (typeof window !== 'undefined') {
+  window.open = jest.fn();
+}
 
 beforeEach(() => {
   useConfig.setState({ lastFetchedAt: Date.now() });

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "packages",
+    "scripts",
+    "types",
+    "jest",
+    "@testing-library/jest-dom",
+    "@testing-library/jest-dom/jest-globals"
+  ],
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}
