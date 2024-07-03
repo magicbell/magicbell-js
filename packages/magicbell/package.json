@@ -1,6 +1,6 @@
 {
   "name": "magicbell",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "MagicBell API wrapper",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
@@ -86,7 +86,7 @@
     }
   ],
   "devDependencies": {
-    "@magicbell/codegen": "^0.2.6",
+    "@magicbell/codegen": "^0.2.7",
     "@size-limit/preset-small-lib": "^8.2.6",
     "ast-types": "^0.14.2",
     "json5": "^2.2.3",
