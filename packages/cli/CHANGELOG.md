@@ -1,5 +1,14 @@
 # @magicbell/cli
 
+## 3.5.1
+
+### Patch Changes
+
+- [#311](https://github.com/magicbell/magicbell-js/pull/311) [`eb8e699`](https://github.com/magicbell/magicbell-js/commit/eb8e699d5c9402924368d39fa917978fac24637c) Thanks [@smeijer](https://github.com/smeijer)! - update repository in package.json
+
+- Updated dependencies [[`eb8e699`](https://github.com/magicbell/magicbell-js/commit/eb8e699d5c9402924368d39fa917978fac24637c)]:
+  - magicbell@3.2.1
+
 ## 3.5.0
 
 ### Minor Changes

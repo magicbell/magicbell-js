@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "clean": "rimraf .next .turbo",
@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@angular/core": "^13.4.0",
-    "@magicbell/embeddable": "3.3.23",
-    "@magicbell/magicbell-react": "10.11.4",
-    "@magicbell/react-headless": "4.5.4",
+    "@magicbell/embeddable": "3.3.24",
+    "@magicbell/magicbell-react": "10.11.5",
+    "@magicbell/react-headless": "4.5.5",
     "@types/react": "^18.2.42",
     "eslint-config-next": "12.3.4",
     "eslint-plugin-jsx-a11y": "^6.8.0",
