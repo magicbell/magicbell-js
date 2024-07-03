@@ -10,6 +10,7 @@
   ],
   "compilerOptions": {
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"]
   }
 }
