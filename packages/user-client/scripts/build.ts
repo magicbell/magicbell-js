@@ -122,6 +122,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
 
   delete pkgJson.scripts['build:umd'];
   delete pkgJson.scripts['build:all'];
+  delete pkgJson.scripts['prepublishOnly'];
 
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2));
 

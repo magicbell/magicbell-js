@@ -42,7 +42,6 @@
     "test": "jest --detectOpenHandles",
     "watch": "rm -rf dist/ && tsc -w",
     "version": "tsc --version",
-    "prepublishOnly": "npm run build",
     "codegen": "tsx scripts/build.ts"
   },
   "name": "@magicbell/user-client",
