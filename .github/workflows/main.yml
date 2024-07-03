@@ -70,4 +70,5 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - name: publish preview release
-        run: npx pkg-pr-new publish --compact $(ls -d ./packages/*)
+        #       todo: add --compact, once repository urls are updated.
+        run: npx pkg-pr-new publish $(ls -d ./packages/*)
