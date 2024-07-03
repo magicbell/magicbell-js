@@ -130,7 +130,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
     directory: 'packages/user-client',
   };
 
-  await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2));
+  await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
 
   execSync(`yarn --cwd ../.. eslint --fix .`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../.. manypkg fix`, { stdio: 'inherit' });
