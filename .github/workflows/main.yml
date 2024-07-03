@@ -70,7 +70,7 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - name: publish preview release
-        #       todo: add --compact, once repository urls are updated.
         run: |
-          echo npx pkg-pr-new publish $(ls -d ./packages/*)
-          npx pkg-pr-new publish $(ls -d ./packages/*)
+          # todo: add --compact, once repository urls are updated.
+          PACKAGES=$(find ./packages -mindepth 1 -maxdepth 1 -type d -exec sh -c '[ -f "$1/package.json" ] && jq -r "if has(\"private\") then \"\" else \"$1\" end" $1/package.json' _ {} \; | grep -v '^$' | tr '\n' ' ')
+          npx pkg-pr-new publish --no-template $PACKAGES
