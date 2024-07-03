@@ -124,9 +124,15 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   delete pkgJson.scripts['build:all'];
   delete pkgJson.scripts['prepublishOnly'];
 
+  pkgJson.repository = {
+    type: 'git',
+    url: 'https://github.com/magicbell/magicbell-js.git',
+    directory: 'packages/user-client',
+  };
+
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2));
 
-  execSync(`yarn eslint --fix .`, { stdio: 'inherit' });
+  execSync(`yarn --cwd ../.. eslint --fix .`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../.. manypkg fix`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../..`, { stdio: 'inherit' });
   execSync(`yarn build`, { stdio: 'inherit' });
