@@ -1,24 +1,16 @@
-import ky from 'ky';
+import WebSocket from 'isomorphic-ws';
+import { v7 as uuidv7 } from 'uuid';
 
 import { Client } from '../client/client';
+import { debug, error, info } from '../client/log';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
 import { RequestOptions } from '../client/types';
+import { isArray, isObject } from '../lib/utils';
 
-type AuthResponse = {
-  keyName: string;
-  timestamp: number;
-  nonce: string;
-  ttl: number;
-  mac: string;
-};
-
-type TokenResponse = {
-  token: string;
-  keyName: string;
-  issued: number;
-  expires: number;
-  capability: string;
-  userClaims: string;
+type CreateTokenResponse = {
+  in_app: {
+    token: string;
+  };
 };
 
 type Event = {
@@ -43,16 +35,31 @@ type IterableEventSource<TNode> = {
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
-export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}): Listener {
-  let eventSource: EventSource;
-  let channels: string;
-  let lastEvent: string;
-  let configPromise;
+function parseMessageData(data) {
+  try {
+    const json = JSON.parse(data);
+    // TODO: more bullet-proof message filtering
+    if (!isObject(json) || isArray(json) || typeof json.name !== 'string') return null;
+    return json;
+  } catch {
+    error('failed to parse message', data);
+    return null;
+  }
+}
+
+export function createListener(
+  client: InstanceType<typeof Client>,
+  args: {
+    socketHost?: string;
+  } = {},
+): Listener {
+  let socket: WebSocket;
+  let _options: RequestOptions;
+  let tokenId;
 
   const messages: { value: Event; done: boolean }[] = [];
-  let resolve;
-  let activeCount = 0;
 
+  let resolve;
   const pushMessage = (p) => {
     messages.push(p);
 
@@ -62,95 +69,137 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     }
   };
 
-  // accept callback or yield
-  async function connect(options?: RequestOptions) {
-    activeCount++;
+  async function createToken() {
+    const token = uuidv7();
+    debug('create token', token);
+    return await client
+      .request<CreateTokenResponse>(
+        {
+          method: 'POST',
+          path: '/channels/in_app/tokens',
+          data: { in_app: { token } },
+        },
+        _options,
+      )
+      .then((res) => {
+        debug('token created', res);
+        return res.in_app.token;
+      });
+  }
 
-    // invoke optional config request in the background, as we only need it after the ably authentication
-    if (!channels && !configPromise) {
-      configPromise = client
-        .request({ method: 'GET', path: '/config' }, options)
-        .then((x) => (channels = x.ws.channel));
+  async function deleteToken(token: string) {
+    debug('delete token', token);
+    void client
+      .request(
+        {
+          method: 'DELETE',
+          path: `/channels/in_app/tokens/${token}`,
+        },
+        _options,
+      )
+      .then((res) => {
+        debug('token deleted', res);
+      })
+      .catch((err) => {
+        // just log a debug message, magicbell backend will expire it
+        debug('failed to delete token', err.message);
+      });
+  }
+
+  let reconnectIntervalId;
+
+  function startReconnectInterval() {
+    debug('scheduling reconnect');
+    reconnectIntervalId = setInterval(() => {
+      debug('reconnecting...');
+      connect();
+    }, 5_000);
+  }
+
+  let pingIntervalId;
+
+  function startPingInterval() {
+    const sendPing = () => {
+      if (socket.readyState !== WebSocket.OPEN) return;
+      debug('send ping');
+      socket.send('PING');
+    };
+
+    pingIntervalId = setInterval(sendPing, 30_000);
+    sendPing();
+  }
+
+  async function connect() {
+    if (socket?.readyState === WebSocket.OPEN || socket?.readyState === WebSocket.CONNECTING) {
+      debug('ignore connect request, already open or connecting');
+      return;
     }
 
-    const auth = await client.request<AuthResponse>({ method: 'POST', path: '/ws/auth' }, options);
-
-    // authenticate against ably
-    const { token } = await ky(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, {
-      method: 'POST',
-      json: auth,
-    }).then((x) => x.json<TokenResponse>());
-
-    // make sure that the optional config request has finished
-    await configPromise;
-
-    // establish a connection with that token, the only reason we allow passing in the sseHost via args,
-    // is so that we have a way to reroute to localhost for testing.
-    const sseHost = args.sseHost || 'https://realtime.ably.io';
-    const url = new URL('sse', sseHost);
-
-    url.searchParams.append('v', '1.1');
-    url.searchParams.append('accessToken', token);
-    url.searchParams.append('channels', channels);
-    url.searchParams.append('heartbeats', 'true');
-
-    if (lastEvent) {
-      url.searchParams.append('lastEvent', lastEvent);
+    if (!tokenId) {
+      tokenId = await createToken();
     }
 
-    if (eventSource) {
-      eventSource.close();
-    }
-
-    // dispose could've been called while we were waiting for the config request to finish
-    if (activeCount < 1) return;
-
-    // new eventsource, flush all messages so we don't auto close this immediately
+    // new connection, flush all messages, so we don't auto close this immediately
     // because of stuck { done: true } messages in React.StrictMode
     messages.length = 0;
-    eventSource = new EventSource(url.toString());
 
-    // handle incoming messages
-    eventSource.addEventListener('message', (event) => {
-      // event.origin can be undefined in react-native (devmode?)
-      if (event.origin && event.origin !== sseHost) return;
+    const clientOptions = client._getOptions();
+    const wssUrl = args?.socketHost ? new URL(args.socketHost) : client._getUrl('/production');
+    wssUrl.protocol = wssUrl.protocol.replace('http', 'ws');
+    wssUrl.searchParams.set('token', tokenId);
+    wssUrl.searchParams.set('api_key', clientOptions.apiKey);
 
-      lastEvent = event.lastEventId;
-      if (!('data' in event)) return;
+    debug(`connecting to`, wssUrl.toString());
+    socket = new WebSocket(wssUrl.toString(), []);
 
-      const message = JSON.parse(event.data);
+    socket.onopen = function onOpen() {
+      info('connected');
+      clearInterval(reconnectIntervalId);
+      startPingInterval();
+    };
+
+    socket.onmessage = function onMessage(event: MessageEvent<Event>) {
+      info('received message', event.data);
+      const message = parseMessageData(event.data);
+
+      if (!message) return;
+
       if (message.type === 'close') {
         return pushMessage({ value: null, done: true });
       }
 
-      message.data = message.encoding === 'json' ? JSON.parse(message.data) : message.data;
       pushMessage({ value: message, done: false });
-    });
+    };
 
-    // handle close
-    eventSource.addEventListener('close', () => {
-      return pushMessage({ value: null, done: true });
-    });
+    let requestClose = false;
+    socket.onclose = function onClose(event: CloseEvent) {
+      clearInterval(pingIntervalId);
 
-    // handle connection errors
-    eventSource.addEventListener('error', (msg) => {
-      const err = 'data' in msg ? JSON.parse((msg as any).data) : {};
-      const isTokenErr = err.code >= 40140 && err.code < 40150;
-      if (isTokenErr) {
-        eventSource.close();
-        connect(options);
-      } else if (/invalid channel id/i.test(err.message)) {
-        eventSource.close();
+      if (event.wasClean || requestClose) {
+        info('connection closed', event.code, event.reason);
         pushMessage({ value: null, done: true });
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('sse error:', msg);
+        void deleteToken(tokenId);
+        tokenId = null;
+        return;
       }
-    });
+
+      debug('connection closed unexpectedly');
+      startReconnectInterval();
+    };
+
+    const fatalErrors = new Set([401]);
+    socket.onerror = function onError(e) {
+      const code = Number(e.message.match(/\d{3}/)?.[0]);
+      debug('socket error: ', code, e.message);
+      if (fatalErrors.has(code)) {
+        requestClose = true;
+      }
+    };
   }
 
   function listen(options?: RequestOptions): IterableEventSource<Event> {
-    void connect(options);
+    _options = options;
+    void connect();
 
     const asyncIteratorNext = async () => {
       let event: (typeof messages)[number] | null = null;
@@ -166,13 +215,17 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
       }
 
       if (!event) return { done: false, value: '' };
-      if (event.done && eventSource) eventSource.close();
+      if (event.done && (socket?.readyState === WebSocket.CONNECTING || socket?.readyState === WebSocket.OPEN)) {
+        info('done');
+        socket.close();
+      }
+
       return event;
     };
 
     const dispose = () => {
-      activeCount--;
-      eventSource?.close();
+      debug('dispose');
+      socket?.close();
       // push to resolve async iterators, return for sync ones
       pushMessage({ done: true, value: undefined });
       return { done: true, value: undefined };

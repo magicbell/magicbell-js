@@ -31,6 +31,14 @@ export class Client {
     return this.#options.features?.[flag] || false;
   }
 
+  _getUrl(path: string, options?: Partial<ClientOptions>) {
+    return new URL(urlJoin(options?.host || this.#options.host, path));
+  }
+
+  _getOptions() {
+    return this.#options;
+  }
+
   async request<TResponse = any>(
     { method, path, data, params, headers: reqHeaders }: RequestArgs,
     options?: RequestOptions,
@@ -42,8 +50,7 @@ export class Client {
     };
 
     // don't just use `new URL(path, host)` as that will strip the path from the host
-    const url = new URL(urlJoin(requestOptions.host, path));
-
+    const url = this._getUrl(path, requestOptions);
     for (const [key, value] of Object.entries(params || {})) {
       url.searchParams.append(key, Array.isArray(value) ? value.join(',') : value);
     }

@@ -1,19 +1,36 @@
 import { deleteEmptyHeaders } from 'fetch-addons';
 import type { Hooks } from 'ky';
+import { v7 as uuidv7 } from 'uuid';
 
 import { ClientOptions } from './types';
 
-function uuid4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
 function getDefaultIdempotencyKey(method: string, maxRetries: number) {
   if (method.toUpperCase() !== 'POST' || maxRetries === 0) return;
-  return `magicbell-retry-${uuid4()}`;
+  return `magicbell-retry-${uuidv7()}`;
+}
+
+export function getAuthHeaders(options: Partial<ClientOptions>) {
+  if (options.token) {
+    return { authorization: `Bearer ${options.token}` };
+  }
+
+  const headers: Record<string, string> = {
+    'x-magicbell-api-key': options.apiKey,
+  };
+
+  if (options.apiSecret) {
+    headers['x-magicbell-api-secret'] = options.apiSecret;
+  } else if (options.userExternalId) {
+    headers['x-magicbell-user-external-id'] = options.userExternalId;
+  } else if (options.userEmail) {
+    headers['x-magicbell-user-email'] = options.userEmail;
+  }
+
+  if (!options.apiSecret && options.userHmac) {
+    headers['x-magicbell-user-hmac'] = options.userHmac;
+  }
+
+  return headers;
 }
 
 function setRequestHeaders(options: ClientOptions, request: Request) {
@@ -38,27 +55,16 @@ function setRequestHeaders(options: ClientOptions, request: Request) {
   }
 
   // can't set user-agent in the browser, see https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
-  request.headers.set('user-agent', typeof document !== 'undefined' ? '' : getUserAgent(options.appInfo));
+  if (typeof document === 'undefined') {
+    request.headers.set('user-agent', getUserAgent(options.appInfo));
+  }
 
   // magicbell headers
   request.headers.set('x-magicbell-client-user-agent', getClientUserAgent(options.appInfo));
 
-  if (options.token) {
-    request.headers.set('authorization', `Bearer ${options.token}`);
-    deleteEmptyHeaders(request.headers);
-    return;
-  }
-
-  request.headers.set('x-magicbell-api-key', options.apiKey);
-
-  if (options.apiSecret) {
-    request.headers.set('x-magicbell-api-secret', options.apiSecret);
-  } else if (options.userExternalId) {
-    request.headers.set('x-magicbell-user-hmac', options.userHmac);
-    request.headers.set('x-magicbell-user-external-id', options.userExternalId);
-  } else if (options.userEmail) {
-    request.headers.set('x-magicbell-user-hmac', options.userHmac);
-    request.headers.set('x-magicbell-user-email', options.userEmail);
+  const authHeaders = getAuthHeaders(options);
+  for (const [key, val] of Object.entries(authHeaders)) {
+    request.headers.set(key, val);
   }
 
   // remove empty headers, they can cause unexpected behavior
