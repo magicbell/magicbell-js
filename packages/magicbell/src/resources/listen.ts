@@ -26,7 +26,7 @@ type Event = {
   | { name: 'notifications/delete'; data: { id: string; client_id: string | null } }
 );
 
-type IterableEventSource<TNode> = {
+type IterableSocket<TNode> = {
   [Symbol.asyncIterator](): Iterator<TNode>;
   forEach(cb: (node: TNode, index: number) => void | boolean | Promise<void | boolean>): Promise<void>;
   close(): void;
@@ -42,7 +42,7 @@ const nonRecoverableErrors = new Set([
   4009, // Internal server error
 ]);
 
-export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
+export type Listener = (options?: RequestOptions) => IterableSocket<Event>;
 
 function parseMessageData(data) {
   try {
@@ -231,7 +231,7 @@ export function createListener(
     };
   }
 
-  function listen(options?: RequestOptions): IterableEventSource<Event> {
+  function listen(options?: RequestOptions): IterableSocket<Event> {
     _options = options;
     void connect();
 

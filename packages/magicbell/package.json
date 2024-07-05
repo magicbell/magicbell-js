@@ -99,7 +99,6 @@
   "dependencies": {
     "debug": "^4.3.4",
     "fetch-addons": "^1.2.0",
-    "isomorphic-ws": "^5.0.0",
     "json-schema-to-ts": "3.1.0",
     "ky": "npm:@smeijer/ky@^0.33.3",
     "url-join": "^4.0.1",
