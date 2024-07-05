@@ -164,7 +164,9 @@ export function createListener(
   );
 
   async function connect() {
-    if (socket?.readyState === WebSocket.OPEN || socket?.readyState === WebSocket.CONNECTING) {
+    debug('ready state', socket?.readyState);
+
+    if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) {
       debug('ignore connect request, already open or connecting');
       return;
     }
@@ -223,6 +225,11 @@ export function createListener(
     };
 
     socket.onerror = function onError(e) {
+      if (!('message' in e) || typeof e.message !== 'string') {
+        debug('unknown socket error', e);
+        return;
+      }
+
       const code = Number(e.message.match(/\d{3}/)?.[0]);
       debug('socket error: ', code, e.message);
       if (nonRecoverableErrors.has(code)) {
