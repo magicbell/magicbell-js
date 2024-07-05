@@ -36,12 +36,17 @@ const commonConfig = {
   moduleNameMapper,
 };
 
+const nodeEnv = new Set([
+  'magicbell',
+  '@magicbell/user-client',
+]);
+
 /** @type {import('jest').Config} */
 module.exports = {
   projects: packages.map(([name, dir]) => ({
     ...commonConfig,
     displayName: name,
-    testEnvironment: name === '@magicbell/user-client' ? 'node' : "jest-environment-jsdom",
+    testEnvironment: nodeEnv.has(name) ? 'node' : "jest-environment-jsdom",
     testMatch: [
       `${dir}/src/**/*.test.[jt]s?(x)"`,
       `${dir}/test/**/*.[jt]s?(x)"`,
