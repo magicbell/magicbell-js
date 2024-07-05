@@ -2,7 +2,7 @@ import WebSocket from 'isomorphic-ws';
 import { v7 as uuidv7 } from 'uuid';
 
 import { Client } from '../client/client';
-import { debug, error, info } from '../client/log';
+import { debug, info } from '../client/log';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
 import { RequestOptions } from '../client/types';
 import { isArray, isObject } from '../lib/utils';
@@ -33,18 +33,59 @@ type IterableEventSource<TNode> = {
   close(): void;
 };
 
+const nonRecoverableErrors = new Set([
+  4001, // Authentication token missing
+  4002, // Invalid authentication token
+  4003, // Forbidden: User is not allowed to connect
+  4004, // Unsupported data type
+  4006, // Too many connection attempts
+  4007, // Rate limit exceeded
+  4009, // Internal server error
+]);
+
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
 function parseMessageData(data) {
   try {
     const json = JSON.parse(data);
-    // TODO: more bullet-proof message filtering
-    if (!isObject(json) || isArray(json) || typeof json.name !== 'string') return null;
+    if (!isObject(json) || isArray(json)) {
+      debug('skip message', { data });
+      return null;
+    }
+
+    // ably sends messages like { id: string, ..., encoding: 'json', data: string }
+    if (json.encoding === 'json' && typeof json.data === 'string') {
+      json.data = JSON.parse(json.data);
+    }
+
     return json;
   } catch {
-    error('failed to parse message', data);
-    return null;
+    debug('non-json message', data);
+    // assume it's a message type like PING, PONG, CLOSE.
+    return { type: data };
   }
+}
+
+function createInterval(callback: () => void, options: { ms: number; leading?: boolean }) {
+  let id;
+
+  function stop() {
+    clearInterval(id);
+  }
+
+  function start() {
+    stop();
+    id = setInterval(callback, options.ms);
+
+    if (options.leading) {
+      callback();
+    }
+  }
+
+  return {
+    start,
+    stop,
+  };
 }
 
 export function createListener(
@@ -106,28 +147,22 @@ export function createListener(
       });
   }
 
-  let reconnectIntervalId;
-
-  function startReconnectInterval() {
-    debug('scheduling reconnect');
-    reconnectIntervalId = setInterval(() => {
+  const reconnectInterval = createInterval(
+    () => {
       debug('reconnecting...');
       connect();
-    }, 5_000);
-  }
+    },
+    { ms: 5_000 },
+  );
 
-  let pingIntervalId;
-
-  function startPingInterval() {
-    const sendPing = () => {
+  const pingInterval = createInterval(
+    () => {
       if (socket.readyState !== WebSocket.OPEN) return;
       debug('send ping');
       socket.send('PING');
-    };
-
-    pingIntervalId = setInterval(sendPing, 30_000);
-    sendPing();
-  }
+    },
+    { ms: 30_000, leading: true },
+  );
 
   async function connect() {
     if (socket?.readyState === WebSocket.OPEN || socket?.readyState === WebSocket.CONNECTING) {
@@ -154,8 +189,8 @@ export function createListener(
 
     socket.onopen = function onOpen() {
       info('connected');
-      clearInterval(reconnectIntervalId);
-      startPingInterval();
+      reconnectInterval.stop();
+      pingInterval.start();
     };
 
     socket.onmessage = function onMessage(event: MessageEvent<Event>) {
@@ -164,7 +199,7 @@ export function createListener(
 
       if (!message) return;
 
-      if (message.type === 'close') {
+      if (message.type === 'CLOSE') {
         return pushMessage({ value: null, done: true });
       }
 
@@ -173,25 +208,25 @@ export function createListener(
 
     let requestClose = false;
     socket.onclose = function onClose(event: CloseEvent) {
-      clearInterval(pingIntervalId);
+      pingInterval.stop();
 
-      if (event.wasClean || requestClose) {
-        info('connection closed', event.code, event.reason);
+      const isFatal = nonRecoverableErrors.has(event.code);
+      if (event.wasClean || requestClose || isFatal) {
+        info('connection closed', { code: event.code, reason: event.reason });
         pushMessage({ value: null, done: true });
         void deleteToken(tokenId);
         tokenId = null;
         return;
       }
 
-      debug('connection closed unexpectedly');
-      startReconnectInterval();
+      debug('connection closed unexpectedly', { code: event.code, reason: event.reason });
+      reconnectInterval.start();
     };
 
-    const fatalErrors = new Set([401]);
     socket.onerror = function onError(e) {
       const code = Number(e.message.match(/\d{3}/)?.[0]);
       debug('socket error: ', code, e.message);
-      if (fatalErrors.has(code)) {
+      if (nonRecoverableErrors.has(code)) {
         requestClose = true;
       }
     };

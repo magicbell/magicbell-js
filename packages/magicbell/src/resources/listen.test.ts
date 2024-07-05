@@ -1,4 +1,4 @@
-import { eventStream, mockHandlers, setupMockServer } from '@magicbell/utils';
+import { messageStream, mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import { Client } from '../client/client';
 import { createListener } from './listen';
@@ -9,21 +9,17 @@ let listen;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 beforeEach(async () => {
-  server.intercept('all', (req) => {
-    if (req.url.pathname === '/config') return { ws: { channel: 'project:1:channel:2' } };
-    if (req.url.pathname === '/ws/auth') return { keyName: 'key', mac: 'random' };
-    if (req.url.pathname === '/keys/key/requestToken') return { token: 'token' };
-    if (req.url.pathname === '/sse') return { passThrough: true };
-  });
+  server.intercept('post', '/channels/in_app/tokens', { in_app: { token: 'token' } });
+  server.intercept('delete', '/channels/in_app/tokens/token', { in_app: { token: 'token' } });
 
-  const { host } = await eventStream(function* () {
+  const socket = await messageStream(function* () {
     yield { type: 'notifications/new', data: { id: 1 } };
     yield { type: 'notifications/new', data: { id: 2 } };
     yield { type: 'notifications/new', data: { id: 3 } };
   });
 
   const client = new Client({ apiKey: 'my-api-key' });
-  listen = createListener(client, { sseHost: host });
+  listen = createListener(client, { socketHost: socket.host });
 });
 
 test('can listen to realtime events using async iterator', async () => {
