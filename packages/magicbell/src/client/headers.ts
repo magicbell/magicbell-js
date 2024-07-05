@@ -1,6 +1,6 @@
 import { deleteEmptyHeaders } from 'fetch-addons';
 import type { Hooks } from 'ky';
-import { v7 as uuidv7 } from 'uuid';
+import { uuidv7 } from 'uuidv7';
 
 import { ClientOptions } from './types';
 

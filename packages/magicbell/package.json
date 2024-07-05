@@ -103,6 +103,6 @@
     "json-schema-to-ts": "3.1.0",
     "ky": "npm:@smeijer/ky@^0.33.3",
     "url-join": "^4.0.1",
-    "uuid": "^10.0.0"
+    "uuidv7": "^1.0.1"
   }
 }
