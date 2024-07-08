@@ -1,22 +1,41 @@
 {
-  "extends": "./tsconfig.build.json",
   "include": [
     "packages",
     "scripts",
     "types",
-    "jest",
+    "./jest.setup.ts",
     "@testing-library/jest-dom",
-    "@testing-library/jest-dom/jest-globals",
-    "./jest.setup.ts"
+    "@testing-library/jest-dom/jest-globals"
   ],
+  "exclude": ["node_modules", "packages/*/dist"],
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types",
-      "@testing-library/jest-dom/jest-globals"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types"],
     "resolveJsonModule": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["dom", "esnext"],
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    "allowJs": false,
+
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
       "@magicbell/cli": ["packages/cli/src"],

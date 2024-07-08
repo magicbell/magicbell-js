@@ -1,17 +1,7 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "packages",
-    "scripts",
-    "types",
-    "jest",
-    "@testing-library/jest-dom",
-    "@testing-library/jest-dom/jest-globals",
-    "./jest.setup.ts"
-  ],
   "compilerOptions": {
     "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"]
+    "noUnusedParameters": false
   }
 }
