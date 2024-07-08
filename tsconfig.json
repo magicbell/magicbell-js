@@ -6,7 +6,8 @@
     "types",
     "jest",
     "@testing-library/jest-dom",
-    "@testing-library/jest-dom/jest-globals"
+    "@testing-library/jest-dom/jest-globals",
+    "./jest.setup.ts"
   ],
   "compilerOptions": {
     "baseUrl": ".",
