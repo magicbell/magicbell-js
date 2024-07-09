@@ -202,11 +202,11 @@ export function createListener(
       info('received message', event.data);
       const message = parseMessageData(event.data);
 
-      if (!message?.data) return;
-
-      if (message.type === 'CLOSE') {
+      if (message?.type === 'CLOSE') {
         return pushMessage({ value: null, done: true });
       }
+
+      if (!message?.data) return;
 
       pushMessage({ value: message, done: false });
     };
