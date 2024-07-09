@@ -112,6 +112,7 @@ export function createListener(
   async function createToken() {
     const token = uuidv7();
     debug('create token', token);
+    // TODO: get wss endpoint from response
     return await client
       .request<CreateTokenResponse>(
         {
@@ -146,6 +147,7 @@ export function createListener(
       });
   }
 
+  // TODO; improve reconnect logic
   const reconnectInterval = createInterval(
     () => {
       debug('reconnecting...');
@@ -158,9 +160,10 @@ export function createListener(
     () => {
       if (socket.readyState !== WebSocket.OPEN) return;
       debug('send ping');
-      socket.send('PING');
+      // TODO: enable pings
+      // socket.send(JSON.stringify({ type: 'ping' }));
     },
-    { ms: 30_000, leading: true },
+    { ms: 20_000, leading: true },
   );
 
   async function connect() {
@@ -180,7 +183,8 @@ export function createListener(
     messages.length = 0;
 
     const clientOptions = client._getOptions();
-    const wssUrl = args?.socketHost ? new URL(args.socketHost) : client._getUrl('/production');
+    // TODO: fix this path name
+    const wssUrl = args?.socketHost ? new URL(args.socketHost) : new URL('wss://ws-4776.magicbell.cloud'); // client._getUrl('/production');
     wssUrl.protocol = wssUrl.protocol.replace('http', 'ws');
     wssUrl.searchParams.set('token', tokenId);
     wssUrl.searchParams.set('api_key', clientOptions.apiKey);
@@ -198,7 +202,7 @@ export function createListener(
       info('received message', event.data);
       const message = parseMessageData(event.data);
 
-      if (!message) return;
+      if (!message?.data) return;
 
       if (message.type === 'CLOSE') {
         return pushMessage({ value: null, done: true });
