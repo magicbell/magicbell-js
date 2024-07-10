@@ -8,8 +8,9 @@ import { PushSubscriptions } from './user-resources/push-subscriptions';
 import { Subscriptions } from './user-resources/subscriptions';
 
 export type UserClientOptions =
-  | WithRequired<Omit<ClientOptions, 'apiSecret'>, 'apiKey' | 'userEmail'>
-  | WithRequired<Omit<ClientOptions, 'apiSecret'>, 'apiKey' | 'userExternalId'>;
+  | WithRequired<Omit<ClientOptions, 'apiSecret' | 'token'>, 'apiKey' | 'userEmail'>
+  | WithRequired<Omit<ClientOptions, 'apiSecret' | 'token'>, 'apiKey' | 'userExternalId'>
+  | WithRequired<Omit<ClientOptions, 'apiSecret' | 'apikey' | 'userEmail' | 'userExternalId'>, 'token'>;
 
 export class UserClient extends Client {
   listen = createListener(this);

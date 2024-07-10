@@ -32,12 +32,14 @@ class ExtendedProjectClient extends ProjectClient {
 }
 
 function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserClientOptions>) {
-  const { profile, host, printRequest, userEmail, userExternalId } = cmd.optsWithGlobals();
+  const { profile, host, printRequest, userEmail, userExternalId, token } = cmd.optsWithGlobals();
   const project = configStore.getProject(profile);
 
   const defaultOptions = {
     apiKey: project?.apiKey,
     apiSecret: project?.apiSecret,
+    // arg has highest prio, then env, then stored in config file
+    token: token || process.env.MAGICBELL_TOKEN || project.token,
     userEmail: userEmail,
     userExternalId: userExternalId,
     host: host || project?.host,

@@ -8,6 +8,7 @@ type Project = {
   userEmail?: string;
   userExternalId?: string;
   host?: string;
+  token?: string;
 };
 
 type Store = InstanceType<typeof ConfigStore> & {

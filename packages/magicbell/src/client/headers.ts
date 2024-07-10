@@ -42,6 +42,13 @@ function setRequestHeaders(options: ClientOptions, request: Request) {
 
   // magicbell headers
   request.headers.set('x-magicbell-client-user-agent', getClientUserAgent(options.appInfo));
+
+  if (options.token) {
+    request.headers.set('authorization', `Bearer ${options.token}`);
+    deleteEmptyHeaders(request.headers);
+    return;
+  }
+
   request.headers.set('x-magicbell-api-key', options.apiKey);
 
   if (options.apiSecret) {

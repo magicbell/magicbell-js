@@ -6,7 +6,7 @@ const server = setupMockServer(...mockHandlers);
 
 test('initialization throws an error if required props are not provided', () => {
   expect(() => new Client({} as any)).toThrow(
-    'You have not provided all required client options. Please provide apiKey.',
+    'You have not provided any of the required client options. Please provide token or apiKey.',
   );
 });
 

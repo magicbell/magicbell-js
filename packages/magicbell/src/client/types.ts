@@ -4,7 +4,8 @@ export type WithRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K
 
 export type ClientOptions = {
   host?: string;
-  apiKey: string;
+  token?: string;
+  apiKey?: string;
   apiSecret?: string;
   userEmail?: string;
   userExternalId?: string;

@@ -7,6 +7,7 @@ const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean>
   host: isString,
   maxRetryDelay: isNumber,
   timeout: isNumber,
+  token: isString,
   apiKey: isString,
   maxRetries: isNumber,
   userEmail: isString,
