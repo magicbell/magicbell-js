@@ -23,10 +23,14 @@ function setRequestHeaders(options: ClientOptions, request: Request) {
     getDefaultIdempotencyKey(request.method, options.maxRetries);
 
   // default headers
-  request.headers.set('accept-version', 'v2');
   request.headers.set('content-type', 'application/json');
   request.headers.set('accept', 'application/json');
   request.headers.set('idempotency-key', idempotencyKey);
+
+  // this is the only endpoint that will ever work with the accept-version: v2 header
+  if (new URL(request.url).pathname === '/notification_preferences') {
+    request.headers.set('accept-version', 'v2');
+  }
 
   // user provided headers
   for (const [key, value] of Object.entries(options.headers || {})) {
