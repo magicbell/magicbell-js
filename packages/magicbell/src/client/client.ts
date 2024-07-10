@@ -5,7 +5,7 @@ import { tryParse } from '../lib/utils';
 import { createError } from './error';
 import { withRequestHeaders } from './headers';
 import { withRequestLogging } from './log';
-import { assertHasRequiredOptions, assertHasValidOptions, mergeHooks } from './options';
+import { assertHasSomeOptions, assertHasValidOptions, mergeHooks } from './options';
 import { withRequestTelemetry } from './telemetry';
 import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from './types';
 
@@ -22,7 +22,8 @@ export class Client {
 
   constructor(options: ClientOptions) {
     assertHasValidOptions(options);
-    assertHasRequiredOptions(options, ['apiKey']);
+    assertHasSomeOptions(options, ['token', 'apiKey']);
+
     this.#options = { ...DEFAULT_OPTIONS, ...options };
   }
 
