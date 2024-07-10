@@ -26,9 +26,10 @@ export const api = createCommand('api')
   .option('-i, --include', 'Include HTTP response status line and headers in the output')
   .option('-s, --silent', 'Do not print the response body')
   .addOption(
-    new Option('-c, --credentials <scope>', 'Specify the authentication scope')
+    new Option('-c, --credentials <scope>', 'Specify the authentication scope.')
       .default('project')
-      .choices(['project', 'user']),
+      .choices(['project', 'user'])
+      .hideHelp(true), // deprecated, use different profiles instead
   )
   .option(
     '-X, --method <string>',
