@@ -4,6 +4,7 @@ import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 
 import { rimraf } from 'rimraf';
+import { sortPackageJson } from 'sort-package-json';
 
 async function move(oldPath: string, newPath: string) {
   await rimraf(newPath);
@@ -114,7 +115,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   await rimraf('output');
 
   // patch package.json
-  const pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
+  let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   pkgJson.scripts.codegen = 'tsx scripts/build.ts';
 
   pkgJson.scripts['build'] = 'run-s build:*';
@@ -125,12 +126,19 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   delete pkgJson.scripts['build:all'];
   delete pkgJson.scripts['prepublishOnly'];
 
+  for (const key of Object.keys(pkgJson.devDependencies)) {
+    if (/eslint|prettier/.test(key)) {
+      delete pkgJson.devDependencies[key];
+    }
+  }
+
   pkgJson.repository = {
     type: 'git',
     url: 'https://github.com/magicbell/magicbell-js.git',
     directory: 'packages/user-client',
   };
 
+  pkgJson = sortPackageJson(pkgJson);
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
 
   execSync(`yarn --cwd ../.. eslint --fix .`, { stdio: 'inherit' });

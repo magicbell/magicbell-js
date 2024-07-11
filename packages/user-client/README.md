@@ -863,4 +863,4 @@ const sdk = new Client({ accessToken: process.env.CLIENT_ACCESS_TOKEN });
 
 ## License
 
-License: MIT. See license in LICENSE.
+See license in LICENSE.

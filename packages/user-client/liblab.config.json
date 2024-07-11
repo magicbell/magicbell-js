@@ -17,7 +17,8 @@
     "inferServiceNames": false,
     "injectedModels": [],
     "license": {
-      "type": "MIT"
+      "type": "CUSTOM",
+      "url": "https://raw.githubusercontent.com/magicbell/magicbell-js/main/LICENSE"
     },
     "responseHeaders": false,
     "retry": {

@@ -87,6 +87,7 @@
     "rimraf": "^5.0.7",
     "rollup-plugin-analyzer": "^4.0.0",
     "size-limit": "^8.2.6",
+    "sort-package-json": "^2.10.0",
     "tiny-glob": "^0.2.9",
     "ts-jest": "^29.2.0",
     "tslib": "^2.6.2",
