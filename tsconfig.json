@@ -3,6 +3,7 @@
     "packages",
     "scripts",
     "types",
+    "jest",
     "./jest.setup.ts",
     "@testing-library/jest-dom",
     "@testing-library/jest-dom/jest-globals"
