@@ -21,6 +21,7 @@
     "@magicbell/embeddable": "../packages/embeddable",
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
+    "@magicbell/user-client": "../packages/user-client",
     "@magicbell/utils": "../packages/utils",
     "@magicbell/webpush": "../packages/webpush",
     "magicbell": "../packages/magicbell",
