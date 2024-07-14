@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/jest-globals';
 
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
-import EventSource from 'eventsource';
+import WebSocket from 'ws';
 import fetch, { Headers, Request, Response } from 'node-fetch';
 
 globalThis.fetch = fetch as any;
@@ -11,8 +11,8 @@ globalThis.Headers = Headers as any;
 globalThis.Request = Request as any;
 globalThis.Response = Response as any;
 
-if (!globalThis.EventSource) {
-  globalThis.EventSource = EventSource;
+if (!globalThis.WebSocket) {
+  globalThis.WebSocket = WebSocket;
 }
 
 // it's defined in vitest environment

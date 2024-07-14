@@ -1,12 +1,12 @@
-import EventSource from 'eventsource';
+import WebSocket from 'ws';
 
 import { getUserClient as getClient } from './lib/client';
 import { createCommand } from './lib/commands';
 import { parseOptions } from './lib/options';
 import { printJson } from './lib/printer';
 
-if (!globalThis.EventSource) {
-  globalThis.EventSource = EventSource;
+if (!globalThis.WebSocket) {
+  globalThis.WebSocket = WebSocket;
 }
 
 export const listen = createCommand('listen')

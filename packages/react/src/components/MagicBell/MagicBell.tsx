@@ -23,7 +23,7 @@ type StoreConfig = {
 };
 
 export type Props = {
-  apiKey: string;
+  apiKey?: string;
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
@@ -43,7 +43,7 @@ export type Props = {
   onToggle?: (isOpen: boolean) => void;
   isOpen?: boolean;
   bellCounter?: 'unread' | 'unseen';
-} & ({ userExternalId: string } | { userEmail: string });
+};
 
 const defaultInbox = (props) => <FloatingNotificationInbox height={500} {...props} />;
 

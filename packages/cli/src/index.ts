@@ -70,5 +70,11 @@ process.on('uncaughtException', function (err) {
     process.exit(1);
   }
 
+  if (process.env.DEBUG) {
+    printMessage('fatal error');
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+
   printError(err.message, true);
 });

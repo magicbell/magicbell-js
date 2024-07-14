@@ -53,6 +53,12 @@ export function setupMockServer(...handlers: RequestHandler[]) {
   const defaultHandlers = [
     ...handlers,
     rest.all('*', (req, res, ctx) => {
+      if (req.url.port && req.url.port !== '80' && req.url.port !== '443') {
+        // pass through requests on non 80 or 443 ports
+        // we assume that those requests are proxied to a mock server
+        return req.passthrough();
+      }
+
       return res(ctx.json({}));
     }),
   ];
