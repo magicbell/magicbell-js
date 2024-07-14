@@ -35,10 +35,14 @@
     {
       matchPackagePatterns: ['eslint'],
       groupName: 'eslint packages',
+      // disable eslint due to flat-config
+      enabled: false
     },
     {
       matchPackagePatterns: ['prettier'],
       groupName: 'prettier packages',
+      // disable prettier due to eslint 9
+      enabled: false,
     },
     {
       matchPackagePatterns: ['vite'],
