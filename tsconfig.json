@@ -10,11 +10,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types",
-      "@testing-library/jest-dom/jest-globals"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"],
     "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
@@ -26,6 +22,7 @@
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "@magicbell/user-client": ["packages/user-client/src"],
       "@magicbell/utils": ["packages/utils/src"],
+      "@magicbell/webcomponents": ["packages/webcomponents/src"],
       "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
       "playground": ["packages/playground/src"]

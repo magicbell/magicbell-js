@@ -23,6 +23,7 @@
     "@magicbell/react-headless": "../packages/react-headless",
     "@magicbell/user-client": "../packages/user-client",
     "@magicbell/utils": "../packages/utils",
+    "@magicbell/webcomponents": "../packages/webcomponents",
     "@magicbell/webpush": "../packages/webpush",
     "magicbell": "../packages/magicbell",
     "playground": "../packages/playground"

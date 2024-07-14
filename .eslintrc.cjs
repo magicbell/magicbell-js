@@ -54,6 +54,14 @@ module.exports = {
       }
     },
     {
+      files: './packages/webcomponents/**/*.{js,ts,tsx}',
+      settings: {
+        react: {
+          version: '18.2.0',
+        }
+      }
+    },
+    {
       files: ['**/*.vue'],
       extends: ['plugin:vue/vue3-recommended'],
       rules: {

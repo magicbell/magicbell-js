@@ -21,6 +21,7 @@
     "lint": "run-s lint:*",
     "lint:typescript": "tsc --noEmit",
     "lint:eslint": "eslint --fix .",
+    "format": "eslint --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand --ci --coverage",
@@ -35,7 +36,7 @@
       "prettier -w"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix ."
     ]
   },
   "dependencies": {
