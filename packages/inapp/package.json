@@ -1,14 +1,18 @@
 {
   "name": "@magicbell/inapp",
-  "private": true,
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "MagicBell web components for in-app notifications",
   "type": "module",
   "exports": {
-    "./*": "./dist/*",
-    "./css/*": "./dist/css/*",
-    "./react/*": "./dist/react/*"
+    "./*": "./dist/*"
   },
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "build": "npm run build:cem && npm run build:react && npm run build:components && npm run build:css",
     "build:watch": "tsc --watch --project tsconfig.json",
@@ -41,7 +45,7 @@
   "license": "MIT",
   "dependencies": {
     "@lit/react": "^1.0.5",
-    "@magicbell/user-client": "0.1.0",
+    "@magicbell/user-client": "0.1.2",
     "lit": "^3.0.0"
   },
   "devDependencies": {
