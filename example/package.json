@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "vite",
     "build": "vite build"
@@ -19,6 +19,7 @@
     "@magicbell/codegen": "../packages/codegen",
     "@magicbell/core": "../packages/core",
     "@magicbell/embeddable": "../packages/embeddable",
+    "@magicbell/in-app": "../packages/in-app",
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
     "@magicbell/user-client": "../packages/user-client",
@@ -32,6 +33,6 @@
     "@types/react-dom": "^18.2.17",
     "vite": "latest",
     "vite-preset-react": "latest",
-    "typescript": "^4.9.5"
+    "typescript": "^5.5.3"
   }
 }

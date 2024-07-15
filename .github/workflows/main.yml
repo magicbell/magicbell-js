@@ -57,6 +57,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: bahmutov/npm-install@v1
       - run: yarn build
+      - run: yarn playwright install --with-deps
       - run: yarn test:ci
         timeout-minutes: 10
 

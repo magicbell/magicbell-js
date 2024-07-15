@@ -1,0 +1,212 @@
+:host:not(:defined) {
+  display: none;
+}
+
+mb-button:not(:defined) > [slot] {
+  display: none;
+}
+
+:root, :host {
+  /*
+   * Border radii
+   */
+  --mb-border-radius-small: 0.1875rem; /* 3px */
+  --mb-border-radius-medium: 0.25rem; /* 4px */
+  --mb-border-radius-large: 0.5rem; /* 8px */
+  --mb-border-radius-x-large: 1rem; /* 16px */
+
+  --mb-border-radius-circle: 50%;
+  --mb-border-radius-pill: 9999px;
+
+  /*
+   * Elevations
+   */
+  --mb-shadow-x-small: 0 1px 2px hsl(240 3.8% 46.1% / 6%);
+  --mb-shadow-small: 0 1px 2px hsl(240 3.8% 46.1% / 12%);
+  --mb-shadow-medium: 0 2px 4px hsl(240 3.8% 46.1% / 12%);
+  --mb-shadow-large: 0 2px 8px hsl(240 3.8% 46.1% / 12%);
+  --mb-shadow-x-large: 0 4px 16px hsl(240 3.8% 46.1% / 12%);
+
+  /*
+   * Spacings
+   */
+  --mb-spacing-3x-small: 0.125rem; /* 2px */
+  --mb-spacing-2x-small: 0.25rem; /* 4px */
+  --mb-spacing-x-small: 0.5rem; /* 8px */
+  --mb-spacing-small: 0.75rem; /* 12px */
+  --mb-spacing-medium: 1rem; /* 16px */
+  --mb-spacing-large: 1.25rem; /* 20px */
+  --mb-spacing-x-large: 1.75rem; /* 28px */
+  --mb-spacing-2x-large: 2.25rem; /* 36px */
+  --mb-spacing-3x-large: 3rem; /* 48px */
+  --mb-spacing-4x-large: 4.5rem; /* 72px */
+
+  /*
+   * Transitions
+   */
+  --mb-transition-x-slow: 1000ms;
+  --mb-transition-slow: 500ms;
+  --mb-transition-medium: 250ms;
+  --mb-transition-fast: 150ms;
+  --mb-transition-x-fast: 50ms;
+
+  /*
+   * Typography
+   */
+
+  /* Fonts */
+  --mb-font-mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  --mb-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --mb-font-serif: Georgia, 'Times New Roman', serif;
+
+  /* Font sizes */
+  --mb-font-size-2x-small: 0.625rem; /* 10px */
+  --mb-font-size-x-small: 0.75rem; /* 12px */
+  --mb-font-size-small: 0.875rem; /* 14px */
+  --mb-font-size-medium: 1rem; /* 16px */
+  --mb-font-size-large: 1.25rem; /* 20px */
+  --mb-font-size-x-large: 1.5rem; /* 24px */
+  --mb-font-size-2x-large: 2.25rem; /* 36px */
+  --mb-font-size-3x-large: 3rem; /* 48px */
+  --mb-font-size-4x-large: 4.5rem; /* 72px */
+
+  /* Font weights */
+  --mb-font-weight-light: 300;
+  --mb-font-weight-normal: 400;
+  --mb-font-weight-semibold: 500;
+  --mb-font-weight-bold: 700;
+
+  /* Letter spacings */
+  --mb-letter-spacing-denser: -0.03em;
+  --mb-letter-spacing-dense: -0.015em;
+  --mb-letter-spacing-normal: normal;
+  --mb-letter-spacing-loose: 0.075em;
+  --mb-letter-spacing-looser: 0.15em;
+
+  /* Line heights */
+  --mb-line-height-denser: 1;
+  --mb-line-height-dense: 1.4;
+  --mb-line-height-normal: 1.8;
+  --mb-line-height-loose: 2.2;
+  --mb-line-height-looser: 2.6;
+
+  /* Focus rings */
+  --mb-focus-ring-offset: 1px;
+  --mb-focus-ring-color: var(--mb-color-primary);
+  --mb-focus-ring-style: solid;
+  --mb-focus-ring-width: 3px;
+  --mb-focus-ring: var(--mb-focus-ring-style) var(--mb-focus-ring-width) var(--mb-focus-ring-color);
+
+  /*
+   * Forms
+   */
+
+  /* Buttons */
+  --mb-button-font-size-small: var(--mb-font-size-x-small);
+  --mb-button-font-size-medium: var(--mb-font-size-small);
+  --mb-button-font-size-large: var(--mb-font-size-medium);
+
+  /* Inputs */
+  --mb-input-height-small: 1.875rem; /* 30px */
+  --mb-input-height-medium: 2.5rem; /* 40px */
+  --mb-input-height-large: 3.125rem; /* 50px */
+
+  --mb-input-background-color: var(--mb-color-neutral-0);
+  --mb-input-background-color-hover: var(--mb-input-background-color);
+  --mb-input-background-color-focus: var(--mb-input-background-color);
+  --mb-input-background-color-disabled: var(--mb-color-neutral-100);
+  --mb-input-border-color: var(--mb-color-neutral-300);
+  --mb-input-border-color-hover: var(--mb-color-neutral-400);
+  --mb-input-border-color-focus: var(--mb-color-primary-500);
+  --mb-input-border-color-disabled: var(--mb-color-neutral-300);
+  --mb-input-border-width: 1px;
+  --mb-input-required-content: '*';
+  --mb-input-required-content-offset: -2px;
+  --mb-input-required-content-color: var(--mb-input-label-color);
+
+  --mb-input-border-radius-small: var(--mb-border-radius-medium);
+  --mb-input-border-radius-medium: var(--mb-border-radius-medium);
+  --mb-input-border-radius-large: var(--mb-border-radius-medium);
+
+  --mb-input-font-family: var(--mb-font-sans);
+  --mb-input-font-weight: var(--mb-font-weight-normal);
+  --mb-input-font-size-small: var(--mb-font-size-small);
+  --mb-input-font-size-medium: var(--mb-font-size-medium);
+  --mb-input-font-size-large: var(--mb-font-size-large);
+  --mb-input-letter-spacing: var(--mb-letter-spacing-normal);
+
+  --mb-input-color: var(--mb-color-neutral-700);
+  --mb-input-color-hover: var(--mb-color-neutral-700);
+  --mb-input-color-focus: var(--mb-color-neutral-700);
+  --mb-input-color-disabled: var(--mb-color-neutral-900);
+  --mb-input-icon-color: var(--mb-color-neutral-500);
+  --mb-input-icon-color-hover: var(--mb-color-neutral-600);
+  --mb-input-icon-color-focus: var(--mb-color-neutral-600);
+  --mb-input-placeholder-color: var(--mb-color-neutral-500);
+  --mb-input-placeholder-color-disabled: var(--mb-color-neutral-600);
+  --mb-input-spacing-small: var(--mb-spacing-small);
+  --mb-input-spacing-medium: var(--mb-spacing-medium);
+  --mb-input-spacing-large: var(--mb-spacing-large);
+
+  --mb-input-focus-ring-color: hsl(198.6 88.7% 48.4% / 40%);
+  --mb-input-focus-ring-offset: 0;
+
+  --mb-input-filled-background-color: var(--mb-color-neutral-100);
+  --mb-input-filled-background-color-hover: var(--mb-color-neutral-100);
+  --mb-input-filled-background-color-focus: var(--mb-color-neutral-100);
+  --mb-input-filled-background-color-disabled: var(--mb-color-neutral-100);
+  --mb-input-filled-color: var(--mb-color-neutral-800);
+  --mb-input-filled-color-hover: var(--mb-color-neutral-800);
+  --mb-input-filled-color-focus: var(--mb-color-neutral-700);
+  --mb-input-filled-color-disabled: var(--mb-color-neutral-800);
+
+  /* Labels */
+  --mb-input-label-font-size-small: var(--mb-font-size-small);
+  --mb-input-label-font-size-medium: var(--mb-font-size-medium);
+  --mb-input-label-font-size-large: var(--mb-font-size-large);
+  --mb-input-label-color: inherit;
+
+  /* Help text */
+  --mb-input-help-text-font-size-small: var(--mb-font-size-x-small);
+  --mb-input-help-text-font-size-medium: var(--mb-font-size-small);
+  --mb-input-help-text-font-size-large: var(--mb-font-size-medium);
+  --mb-input-help-text-color: var(--mb-color-neutral-500);
+
+  /* Toggles (checkboxes, radios, switches) */
+  --mb-toggle-size-small: 0.875rem; /* 14px */
+  --mb-toggle-size-medium: 1.125rem; /* 18px */
+  --mb-toggle-size-large: 1.375rem; /* 22px */
+
+  /*
+   * Overlays
+   */
+  --mb-overlay-background-color: hsl(240 3.8% 46.1% / 33%);
+
+  /*
+   * Panels
+   */
+  --mb-panel-background-color: var(--mb-color-neutral-0);
+  --mb-panel-border-color: var(--mb-color-neutral-200);
+  --mb-panel-border-width: 1px;
+
+  /*
+   * Tooltips
+   */
+  --sl-tooltip-border-radius: var(--sl-border-radius-medium);
+  --sl-tooltip-background-color: var(--sl-color-neutral-800);
+  --sl-tooltip-color: var(--sl-color-neutral-0);
+  --sl-tooltip-font-family: var(--sl-font-sans);
+  --sl-tooltip-font-weight: var(--sl-font-weight-normal);
+  --sl-tooltip-font-size: var(--sl-font-size-small);
+  --sl-tooltip-line-height: var(--sl-line-height-dense);
+  --sl-tooltip-padding: var(--sl-spacing-2x-small) var(--sl-spacing-x-small);
+  --sl-tooltip-arrow-size: 6px;
+
+  /*
+   * Z-indexes
+   */
+  --mb-z-index-drawer: 700;
+  --mb-z-index-dialog: 800;
+  --mb-z-index-dropdown: 900;
+  --mb-z-index-toast: 950;
+}

@@ -21,9 +21,10 @@
     "lint": "run-s lint:*",
     "lint:typescript": "tsc --noEmit",
     "lint:eslint": "eslint --fix .",
+    "format": "eslint --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --runInBand --ci --coverage",
+    "test:ci": "jest --runInBand --ci --coverage && yarn --cwd packages/in-app test",
     "postinstall": "husky && node scripts/sync-paths.js && manypkg check && link-workspaces --no-source",
     "changeset": "changeset",
     "changeset:version": "changeset version",
@@ -35,7 +36,7 @@
       "prettier -w"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix ."
     ]
   },
   "dependencies": {
@@ -58,8 +59,8 @@
     "@types/jest": "^29.5.10",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "@vitejs/plugin-react": "^4.3.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
@@ -93,7 +94,7 @@
     "tslib": "^2.6.2",
     "tsx": "^4.6.2",
     "turbo": "^1.13.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.5.3",
     "vite": "^5.3.3",
     "vite-plugin-banner": "^0.7.1",
     "zx": "^8.1.2"
