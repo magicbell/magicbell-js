@@ -10,7 +10,11 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+      "@testing-library/jest-dom/jest-globals"
+    ],
     "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
