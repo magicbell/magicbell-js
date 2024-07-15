@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { execSync } from 'node:child_process';
-import fs from 'node:fs';
-import path from 'node:path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 import { rimrafSync } from 'rimraf';
 
@@ -39,6 +39,8 @@ fs.mkdirSync(reactDir, { recursive: true });
 const metadata = JSON.parse(fs.readFileSync(path.join(outDir, 'custom-elements.json'), 'utf8'));
 const components = getAllComponents(metadata);
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 for await (const component of components) {
   const componentFile = path.join(reactDir, path.basename(component.path)).replace(/\.[jt]sx?$/, '.tsx');
 
@@ -47,17 +49,11 @@ for await (const component of components) {
     .replace(/\.[jt]sx?$/, '.js');
 
   const eventImports = (component.events || [])
-    .map(
-      (event: Record<string, unknown>) =>
-        `import type { ${event.eventName} } from '../internal/events/${event.name}.js';`,
-    )
+    .map((event: Record<string, unknown>) => `import type { ${event.eventName} } from '../events/${event.name}.js';`)
     .join('\n');
 
   const eventExports = (component.events || [])
-    .map(
-      (event: Record<string, unknown>) =>
-        `export type { ${event.eventName} } from '../internal/events/${event.name}.js';`,
-    )
+    .map((event: Record<string, unknown>) => `export type { ${event.eventName} } from '../events/${event.name}.js';`)
     .join('\n');
 
   const eventNameImport = (component.events || []).length > 0 ? `import { type EventName } from '@lit/react';` : '';
@@ -91,11 +87,11 @@ for await (const component of components) {
 
   try {
     fs.writeFileSync(componentFile, source, 'utf8');
-    console.log(`generated ${componentFile}`);
     execSync(`yarn format '${path.resolve(componentFile)}'`, {
       stdio: 'inherit',
       cwd: '../..',
     });
+    console.log(`generated ${componentFile}`);
   } catch (e) {
     console.log('something went wrong', e);
   }

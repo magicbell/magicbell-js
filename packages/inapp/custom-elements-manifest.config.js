@@ -14,7 +14,7 @@ function replace(string, terms) {
 }
 
 export default {
-  globs: ['src/*.component.ts'],
+  globs: ['src/components/*.ts'],
   exclude: ['**/*.styles.ts', '**/*.test.ts'],
   plugins: [
     // Append package data

@@ -18,11 +18,11 @@
       "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
+      "@magicbell/inapp": ["packages/inapp/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "@magicbell/user-client": ["packages/user-client/src"],
       "@magicbell/utils": ["packages/utils/src"],
-      "@magicbell/webcomponents": ["packages/webcomponents/src"],
       "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
       "playground": ["packages/playground/src"]

@@ -1,4 +1,4 @@
-# MagicBell WebComponents
+# MagicBell InApp
 
 > [!IMPORTANT]
 > This is an early release, docs are lacking. Please look at `@magicbell/magicbell-react` or `@magicbell/embeddable` if you're looking for something stable.

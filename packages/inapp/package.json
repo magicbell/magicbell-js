@@ -1,5 +1,5 @@
 {
-  "name": "@magicbell/webcomponents",
+  "name": "@magicbell/inapp",
   "private": true,
   "version": "0.1.0",
   "description": "MagicBell web components for in-app notifications",

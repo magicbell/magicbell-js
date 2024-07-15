@@ -35,7 +35,7 @@
     "rebuild": "rm -rf dist/ && tsc",
     "test": "jest --detectOpenHandles",
     "version": "tsc --version",
-    "watch": "rm -rf dist/ && tsc -w"
+    "start": "rm -rf dist/ && tsc -w"
   },
   "dependencies": {
     "axios": "^0.28.0"

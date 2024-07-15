@@ -1,7 +1,7 @@
 import { html } from 'lit';
 
-import MagicBellElement from '../mb-element.js';
-import { componentStyles, iconStyles } from '../styles.js';
+import MagicBellElement from '../internal/mb-element.js';
+import { componentStyles, iconStyles } from '../internal/styles.js';
 
 export default class MbIconCheck extends MagicBellElement {
   static override styles = [componentStyles, iconStyles];

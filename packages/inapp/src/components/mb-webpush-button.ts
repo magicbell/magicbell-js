@@ -1,10 +1,10 @@
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 
-import MbIconBell from './internal/icons/mb-icon-bell.js';
-import MbIconBellOff from './internal/icons/mb-icon-bell-off.js';
-import MbIconCheck from './internal/icons/mb-icon-check.js';
-import MbIconCross from './internal/icons/mb-icon-cross.js';
+import MbIconBell from './icons/mb-icon-bell.js';
+import MbIconBellOff from './icons/mb-icon-bell-off.js';
+import MbIconCheck from './icons/mb-icon-check.js';
+import MbIconCross from './icons/mb-icon-cross.js';
 import { isSupported, WebPushClient } from './internal/webpush.js';
 import MbButton from './mb-button.js';
 import MbSpinner from './mb-spinner.js';
@@ -24,7 +24,7 @@ export default class MbWebPushButton extends MbButton {
     'mb-icon-check': MbIconCheck,
   };
 
-  #client: WebPushClient;
+  private _client: WebPushClient;
 
   @property({ type: String, attribute: 'access-token' })
   accessToken = '';
@@ -41,13 +41,13 @@ export default class MbWebPushButton extends MbButton {
   constructor() {
     super();
 
-    this.#client = new WebPushClient();
+    this._client = new WebPushClient();
   }
 
   override connectedCallback() {
     super.connectedCallback();
 
-    this.#client.isSubscribed().then((subscribed) => {
+    this._client.isSubscribed().then((subscribed) => {
       this.isSubscribed = subscribed;
     });
 
@@ -58,7 +58,7 @@ export default class MbWebPushButton extends MbButton {
   override attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (name === 'access-token' && newValue && oldValue !== newValue) {
       this.accessToken = newValue;
-      this.#client.setAccessToken(newValue);
+      this._client.setAccessToken(newValue);
       this.removeAttribute('access-token');
     }
   }
@@ -70,10 +70,10 @@ export default class MbWebPushButton extends MbButton {
       this._state = 'pending';
 
       if (this.isSubscribed) {
-        await this.#client.unsubscribe();
+        await this._client.unsubscribe();
         this.isSubscribed = false;
       } else {
-        await this.#client.subscribe();
+        await this._client.subscribe();
         this.isSubscribed = true;
       }
 
