@@ -1,7 +1,7 @@
 import { assert, expect, fixture } from '@open-wc/testing';
 import { html } from 'lit/static-html.js';
 
-import Spinner from '../dist/mb-spinner.js';
+import Spinner from '../../dist/components/mb-spinner.js';
 
 suite('mb-spinner', () => {
   test('is defined', () => {
