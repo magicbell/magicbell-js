@@ -28,6 +28,9 @@ suite('mb-spinner', () => {
     const svg = el.shadowRoot!.querySelector('svg')!;
     const style = getComputedStyle(svg);
     assert.equal(style.display, 'block');
-    assert.equal(style.animation, '0.6s linear 0s infinite normal none running spin');
+    // different browsers render this string differently
+    assert.include(style.animation, '0.6s linear');
+    assert.include(style.animation, 'infinite');
+    assert.include(style.animation, 'spin');
   });
 });

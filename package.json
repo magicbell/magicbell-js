@@ -24,7 +24,7 @@
     "format": "eslint --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --runInBand --ci --coverage",
+    "test:ci": "jest --runInBand --ci --coverage && yarn --cwd packages/inapp test",
     "postinstall": "husky && node scripts/sync-paths.js && manypkg check && link-workspaces --no-source",
     "changeset": "changeset",
     "changeset:version": "changeset version",
