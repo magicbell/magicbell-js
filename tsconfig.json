@@ -10,11 +10,7 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types",
-      "@testing-library/jest-dom/jest-globals"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types", "@testing-library/jest-dom/jest-globals"],
     "resolveJsonModule": true,
     "paths": {
       "~/sb-decorators": [".storybook/decorators"],
@@ -22,7 +18,7 @@
       "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
-      "@magicbell/inapp": ["packages/inapp/src"],
+      "@magicbell/in-app": ["packages/in-app/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "@magicbell/user-client": ["packages/user-client/src"],

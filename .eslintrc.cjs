@@ -54,7 +54,7 @@ module.exports = {
       }
     },
     {
-      files: './packages/inapp/**/*.{js,ts,tsx}',
+      files: './packages/in-app/**/*.{js,ts,tsx}',
       settings: {
         react: {
           version: '18.2.0',

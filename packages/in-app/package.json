@@ -1,6 +1,6 @@
 {
-  "name": "@magicbell/inapp",
-  "version": "0.1.3",
+  "name": "@magicbell/in-app",
+  "version": "0.1.0",
   "description": "MagicBell web components for in-app notifications",
   "type": "module",
   "exports": {

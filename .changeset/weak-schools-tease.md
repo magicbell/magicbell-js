@@ -1,5 +1,5 @@
 ---
-'@magicbell/inapp': minor
+'@magicbell/in-app': minor
 ---
 
 This adds the `@magicbell/in-app` package, a component library for web browsers, which focuses on the MagicBell v2 API.
@@ -8,9 +8,9 @@ Note that these are native web components. Frameworks that do not support web co
 
 ```astro
 ---
-import '@magicbell/inapp/css/core.css';
-import '@magicbell/inapp/css/theme.css';
-import '@magicbell/inapp/components/mb-webpush-button.js';
+import '@magicbell/in-app/css/core.css';
+import '@magicbell/in-app/css/theme.css';
+import '@magicbell/in-app/components/mb-webpush-button.js';
 ---
 
 <mb-webpush-button access-token="{USER_AUTH_TOKEN}">subscribe</mb-webpush-button>
