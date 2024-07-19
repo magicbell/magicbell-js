@@ -1,5 +1,15 @@
 # magicbell
 
+## 3.3.0
+
+### Minor Changes
+
+- [#319](https://github.com/magicbell/magicbell-js/pull/319) [`e439f60`](https://github.com/magicbell/magicbell-js/commit/e439f60567e987d692eebea503ba2569ab94f54a) Thanks [@smeijer](https://github.com/smeijer)! - Add support for token based authorization.
+
+### Patch Changes
+
+- [#320](https://github.com/magicbell/magicbell-js/pull/320) [`2e3e7de`](https://github.com/magicbell/magicbell-js/commit/2e3e7de2ac9b29b0cec91db31b6164d299d431ca) Thanks [@smeijer](https://github.com/smeijer)! - We now only include the `accept-version` header for endpoints that consume it.
+
 ## 3.2.1
 
 ### Patch Changes
