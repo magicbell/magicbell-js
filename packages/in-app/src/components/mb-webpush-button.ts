@@ -126,4 +126,10 @@ declare global {
   interface HTMLElementTagNameMap {
     'mb-webpush-button': MbWebPushButton;
   }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      'mb-webpush-button': any;
+    }
+  }
 }

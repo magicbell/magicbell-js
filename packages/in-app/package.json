@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/in-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MagicBell web components for in-app notifications",
   "repository": {
     "type": "git",
@@ -8,8 +8,13 @@
     "directory": "packages/in-app"
   },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./*": "./dist/*"
+    "./*": {
+      "types": "./dist/*",
+      "default": "./dist/*"
+    }
   },
   "files": [
     "dist",
