@@ -1,5 +1,20 @@
 # @magicbell/cli
 
+## 3.6.0
+
+### Minor Changes
+
+- [#319](https://github.com/magicbell/magicbell-js/pull/319) [`e439f60`](https://github.com/magicbell/magicbell-js/commit/e439f60567e987d692eebea503ba2569ab94f54a) Thanks [@smeijer](https://github.com/smeijer)! - Add support for token based authorization.
+
+- [#321](https://github.com/magicbell/magicbell-js/pull/321) [`65304b3`](https://github.com/magicbell/magicbell-js/commit/65304b35fb2078d4d80868a3c528f0cd27d0813e) Thanks [@smeijer](https://github.com/smeijer)! - We're deprecating the `magicbell api --credentials` argument. Please use `-p` or `--profile` instead.
+
+### Patch Changes
+
+- [#320](https://github.com/magicbell/magicbell-js/pull/320) [`2e3e7de`](https://github.com/magicbell/magicbell-js/commit/2e3e7de2ac9b29b0cec91db31b6164d299d431ca) Thanks [@smeijer](https://github.com/smeijer)! - We now only include the `accept-version` header for endpoints that consume it.
+
+- Updated dependencies [[`e439f60`](https://github.com/magicbell/magicbell-js/commit/e439f60567e987d692eebea503ba2569ab94f54a), [`2e3e7de`](https://github.com/magicbell/magicbell-js/commit/2e3e7de2ac9b29b0cec91db31b6164d299d431ca)]:
+  - magicbell@3.3.0
+
 ## 3.5.1
 
 ### Patch Changes

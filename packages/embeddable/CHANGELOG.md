@@ -1,5 +1,12 @@
 # @magicbell/embeddable
 
+## 3.3.25
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @magicbell/magicbell-react@10.11.6
+
 ## 3.3.24
 
 ### Patch Changes

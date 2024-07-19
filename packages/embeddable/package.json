@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/embeddable",
-  "version": "3.3.24",
+  "version": "3.3.25",
   "source": "./src/index.tsx",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
@@ -33,7 +33,7 @@
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
-    "@magicbell/magicbell-react": "10.11.5",
+    "@magicbell/magicbell-react": "10.11.6",
     "@tippyjs/react": "^4.2.6",
     "error-stack-parser": "^2.1.4",
     "idb": "^8.0.0",
