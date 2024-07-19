@@ -45,6 +45,12 @@
       enabled: false,
     },
     {
+      matchPackagePatterns: ['husky', 'lint-staged'],
+      groupName: 'prettier packages',
+      // disable git hooks
+      enabled: false,
+    },
+    {
       matchPackagePatterns: ['vite'],
       groupName: 'vite packages',
     },
