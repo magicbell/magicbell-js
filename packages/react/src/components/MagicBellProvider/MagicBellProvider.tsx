@@ -82,7 +82,7 @@ function SettingsProviders({ children, theme, locale, images, ...props }: MagicB
       })
       .then((response) => {
         if (!('inbox' in response)) return;
-        setConfig(response.inbox.config);
+        setConfig(response.inbox);
       })
       .catch(() => void 0)
       .finally(() => setIsFetchingConfig(false));
