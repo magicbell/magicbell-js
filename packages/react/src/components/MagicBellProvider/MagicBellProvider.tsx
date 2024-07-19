@@ -77,8 +77,8 @@ function SettingsProviders({ children, theme, locale, images, ...props }: MagicB
     const client = clientSettings.getState().getClient();
     client
       .request({
-        method: 'POST',
-        path: '/integrations/inbox/installations',
+        method: 'GET',
+        path: '/integrations/inbox',
       })
       .then((response) => {
         if (!('inbox' in response)) return;

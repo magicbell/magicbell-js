@@ -1,6 +1,6 @@
 import { Server } from 'miragejs';
 import NotificationFactory from '../../packages/react/tests/factories/NotificationFactory';
-import { sampleNotificationPreferences } from "../../packages/react/tests/factories/NotificationPreferencesFactory";
+import { sampleNotificationPreferences } from '../../packages/react/tests/factories/NotificationPreferencesFactory';
 
 // TODO: move /server to packages/mock-server
 function unix() {
@@ -8,7 +8,8 @@ function unix() {
 }
 
 const richTextMessages = [
-  { title: 'Getting started with MagicBell',
+  {
+    title: 'Getting started with MagicBell',
     content: `
         <p>
           <span aria-label="waving emoji" class="emoji" style="margin-right: 0.5rem;">👋</span>
@@ -19,18 +20,26 @@ const richTextMessages = [
         </p>
         <p style="text-align: center; margin-top: 2.5em;">
           <a class="button" style="border-radius: 0.5rem; display: inline-block; background-color: #FDE047; padding: 0.75rem 2rem; border: none;">BROWSE THE DOCS</a>
-        </p>`
+        </p>`,
   },
-  { content: `<h3>Hi!</h3><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's a title after all.</p>` },
-  { content: `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>` },
-  { content: `<p>And you can even use <a href="https://magicbell.com" target="_blank">links</a>, <button onclick="javascript:alert('click');">buttons</button>, and <a class="button">button links</a></p>` },
+  {
+    content: `<h3>Hi!</h3><p>It seems this works, right? Nicely formatted text? The title is a bit large, but it's a title after all.</p>`,
+  },
+  {
+    content: `<p>It's also possible to be a bit more subtle, and just use <b>bold text</b>, or <u>underline words</u>.</p>`,
+  },
+  {
+    content: `<p>And you can even use <a href="https://magicbell.com" target="_blank">links</a>, <button onclick="javascript:alert('click');">buttons</button>, and <a class="button">button links</a></p>`,
+  },
   { content: `<p>Or <code>inline code</code> and code blocks</p><pre><code>const foo = 'bar';</code></pre>` },
-  { content: `<p>And paragraphs with lists</p>
+  {
+    content: `<p>And paragraphs with lists</p>
    <ul><li>one</li><li>two</li><li>three</li></ul>
    <p>Both unordered and ordered</p>
    <ol><li>one</li><li>two</li><li>three</li></ol>
-  ` },
-]
+  `,
+  },
+];
 
 // https://www.magicbell.com/docs/rest-api/reference#fetch-notifications
 function buildNotifications({ page, read, seen, archived }) {
@@ -51,25 +60,23 @@ function buildNotifications({ page, read, seen, archived }) {
     notifications[0].readAt = null;
     notifications[1].readAt = null;
 
-    notifications.forEach((notification, index) =>
-      Object.assign(notification, richTextMessages[index])
-    );
+    notifications.forEach((notification, index) => Object.assign(notification, richTextMessages[index]));
   }
 
   if (read !== undefined) {
-    notifications.forEach(notification => {
+    notifications.forEach((notification) => {
       notification.readAt = read ? unix() : null;
     });
   }
 
   if (seen !== undefined) {
-    notifications.forEach(notification => {
+    notifications.forEach((notification) => {
       notification.seenAt = seen ? unix() : null;
     });
   }
 
   if (archived !== undefined) {
-    notifications.forEach(notification => {
+    notifications.forEach((notification) => {
       notification.archivedAt = archived ? unix() : null;
     });
   }
@@ -80,8 +87,8 @@ function buildNotifications({ page, read, seen, archived }) {
     per_page: notifications.length,
     current_page: page,
     notifications,
-    unseen_count: isFirstPage ? notifications.filter(x => !x.seenAt).length : 0,
-    unread_count: isFirstPage ? notifications.filter(x => !x.readAt).length : 0,
+    unseen_count: isFirstPage ? notifications.filter((x) => !x.seenAt).length : 0,
+    unread_count: isFirstPage ? notifications.filter((x) => !x.readAt).length : 0,
   };
 }
 
@@ -107,34 +114,34 @@ const fixtures = {
         },
       },
     },
-  }, preferences: {
+  },
+  preferences: {
     notification_preferences: {
       categories: {
         comment: {
-          label: "Comment",
+          label: 'Comment',
           email: false,
           web_push: true,
           mobile_push: true,
         },
         new_message: {
-          label: "New message",
+          label: 'New message',
           email: false,
           web_push: true,
           mobile_push: false,
         },
         _replies: {
-          label: "replies",
+          label: 'replies',
           in_app: true,
           web_push: true,
         },
       },
     },
-  }
+  },
 };
 
-
 function start() {
-  const server = new Server({urlPrefix: 'https://api.magicbell.com'});
+  const server = new Server({ urlPrefix: 'https://api.magicbell.com' });
 
   // Settings
   server.get('/config', fixtures.config);
@@ -156,7 +163,7 @@ function start() {
   server.post('/notifications/*/unarchive', {});
   server.delete('/notifications/*', {});
 
-  server.post('/integrations/inbox/installations', {
+  server.get('/integrations/inbox', {
     locale: 'en',
     theme: {},
     images: {},
@@ -176,4 +183,4 @@ function start() {
 
 export default {
   start,
-}
+};
