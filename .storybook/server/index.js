@@ -157,9 +157,11 @@ function start() {
   server.delete('/notifications/*', {});
 
   server.post('/integrations/inbox/installations/start', {
-    locale: 'en',
-    theme: {},
-    images: {},
+    config: {
+      locale: 'en',
+      theme: {},
+      images: {},
+    },
   });
 
   // Realtime
