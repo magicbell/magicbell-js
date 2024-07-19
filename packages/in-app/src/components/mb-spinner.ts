@@ -45,4 +45,10 @@ declare global {
   interface HTMLElementTagNameMap {
     'mb-spinner': MbSpinner;
   }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      'mb-spinner': any;
+    }
+  }
 }

@@ -275,4 +275,10 @@ declare global {
   interface HTMLElementTagNameMap {
     'mb-button': MbButton;
   }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      'mb-button': any;
+    }
+  }
 }

@@ -59,6 +59,9 @@ module.exports = {
         react: {
           version: '18.2.0',
         }
+      },
+      rules: {
+        '@typescript-eslint/no-namespace': 'off'
       }
     },
     {
