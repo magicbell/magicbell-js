@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/in-app",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "MagicBell web components for in-app notifications",
   "repository": {
     "type": "git",
@@ -55,7 +55,7 @@
   "license": "MIT",
   "dependencies": {
     "@lit/react": "^1.0.5",
-    "@magicbell/user-client": "0.1.2",
+    "@magicbell/user-client": "0.2.0",
     "lit": "^3.0.0"
   },
   "devDependencies": {
