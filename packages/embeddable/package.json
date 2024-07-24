@@ -37,7 +37,7 @@
     "@tippyjs/react": "^4.2.6",
     "error-stack-parser": "^2.1.4",
     "idb": "^8.0.0",
-    "preact": "^10.22.0",
+    "preact": "^10.23.0",
     "react-frame-component": "^5.2.6",
     "react-use": "^17.5.0",
     "tslib": "^2.6.2"
