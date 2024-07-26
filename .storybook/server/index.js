@@ -156,7 +156,7 @@ function start() {
   server.post('/notifications/*/unarchive', {});
   server.delete('/notifications/*', {});
 
-  server.post('/integrations/inbox/installations', {
+  server.post('/integrations/inbox/installations/start', {
     locale: 'en',
     theme: {},
     images: {},

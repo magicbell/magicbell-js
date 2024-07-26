@@ -78,7 +78,7 @@ function SettingsProviders({ children, theme, locale, images, ...props }: MagicB
     client
       .request({
         method: 'POST',
-        path: '/integrations/inbox/installations',
+        path: '/integrations/inbox/installations/start',
       })
       .then((response) => {
         if (!('inbox' in response)) return;
