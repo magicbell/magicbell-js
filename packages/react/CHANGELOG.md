@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 10.11.7
+
+### Patch Changes
+
+- [#333](https://github.com/magicbell/magicbell-js/pull/333) [`ccb7feb`](https://github.com/magicbell/magicbell-js/commit/ccb7feb189b229c62d97006e77d562fdaf46ba5c) Thanks [@moxley01](https://github.com/moxley01)! - Fixes an issue whereby published inbox themes were not being retrieved.
+
 ## 10.11.6
 
 ### Patch Changes
