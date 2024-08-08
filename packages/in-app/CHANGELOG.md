@@ -1,5 +1,17 @@
 # @magicbell/in-app
 
+## 0.2.1
+
+### Patch Changes
+
+- [`ec38aee`](https://github.com/magicbell/magicbell-js/commit/ec38aee8acc69b263ae5a803fb46228a52a2501a) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `lit` to `^3.2.0`.
+
+- [#338](https://github.com/magicbell/magicbell-js/pull/338) [`640c42c`](https://github.com/magicbell/magicbell-js/commit/640c42cf4d9aadc928fbaef452e4644ff7eccd7b) Thanks [@renovate](https://github.com/apps/renovate)! - Updated dependencies:
+
+  - updated `@custom-elements-manifest/analyzer` to `^0.10.3`.
+
 ## 0.2.0
 
 ### Minor Changes

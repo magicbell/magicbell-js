@@ -1,5 +1,13 @@
 # @magicbell/magicbell-react
 
+## 10.11.8
+
+### Patch Changes
+
+- [`604cce2`](https://github.com/magicbell/magicbell-js/commit/604cce23a75cb352e714f9171d01316f9ac35951) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Updated dependencies:
+
+  - updated `@babel/core` to `^7.25.2`.
+
 ## 10.11.7
 
 ### Patch Changes
