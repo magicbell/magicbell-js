@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 3.6.1
+
+### Patch Changes
+
+- [#343](https://github.com/magicbell/magicbell-js/pull/343) [`c876c93`](https://github.com/magicbell/magicbell-js/commit/c876c938dd7157db7c90bb9efe088989c8565b37) Thanks [@smeijer](https://github.com/smeijer)! - ensure all native node modules are excluded from the bundle
+
 ## 3.6.0
 
 ### Minor Changes
