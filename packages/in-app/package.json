@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/in-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MagicBell web components for in-app notifications",
   "repository": {
     "type": "git",
