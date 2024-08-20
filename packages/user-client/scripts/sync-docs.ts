@@ -70,7 +70,7 @@ async function fetchFileContent() {
       owner: REPO_OWNER,
       repo: REPO_NAME,
       path: FILE_PATH,
-      ref: BRANCH_NAME,
+      ref: `heads/${BASE_BRANCH}`,
     });
 
     const fileContent = Buffer.from(response.data['content'], 'base64').toString('utf-8');
@@ -167,7 +167,6 @@ export async function syncDocs() {
     const readme = await fs.readFile(path.join(__dirname, '..', 'README.md'), { encoding: 'utf-8' });
     const allMethods = getMarkdownSection(readme, '## All Methods');
 
-    await ensureBranchFromMain();
     const { content, sha, exists } = await fetchFileContent();
     const patchedContent = replaceBlock(content, 'ALL_METHODS', allMethods.content);
 
@@ -176,6 +175,7 @@ export async function syncDocs() {
       return;
     }
 
+    await ensureBranchFromMain();
     await updateFile(patchedContent, exists ? sha : '');
     await createOrUpdatePullRequest();
     console.log('Pull request processed successfully.');
