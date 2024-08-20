@@ -3,10 +3,13 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 
+import Debug from 'debug';
 import { rimraf } from 'rimraf';
 import { sortPackageJson } from 'sort-package-json';
 
 import rootPkgJson from '../../../package.json';
+
+const debug = Debug('build');
 
 async function move(oldPath: string, newPath: string) {
   await rimraf(newPath);
@@ -14,7 +17,7 @@ async function move(oldPath: string, newPath: string) {
   await fs.rename(oldPath, newPath);
 }
 
-function deleteAdminPaths(schema: any) {
+function deleteUserPaths(schema: any) {
   schema.tags = schema.tags.filter((x: any) => x.name !== 'admin' && x.name !== 'user');
 
   for (const path of Object.keys(schema.paths)) {
@@ -22,17 +25,17 @@ function deleteAdminPaths(schema: any) {
       const operation = schema.paths[path][method];
       if (!('tags' in operation) || !Array.isArray(operation.tags)) continue;
 
-      // delete operation if it's not for users
-      if (operation.tags.includes('user')) {
-        operation.tags = operation.tags.filter((x: any) => x !== 'user');
+      // delete operation if it's not for admins
+      if (operation.tags.includes('admin')) {
+        operation.tags = operation.tags.filter((x: any) => x !== 'admin');
       } else {
         delete schema.paths[path][method];
-        // console.log(`delete ${path}/${method}`)
+        debug(`delete ${path}/${method}`);
 
         // delete path if no operations left
         if (Object.keys(schema.paths[path]).length > 0) continue;
         delete schema.paths[path];
-        // console.log(`delete ${path}`);
+        debug(`delete ${path}`);
       }
     }
   }
@@ -100,7 +103,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   let swaggerJSON = await readFileOrUrl(specfile);
   const spec = JSON.parse(swaggerJSON);
 
-  deleteAdminPaths(spec);
+  deleteUserPaths(spec);
   deleteUnreferencedComponents(spec);
 
   swaggerJSON = JSON.stringify(spec, null, 2);
@@ -141,7 +144,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   pkgJson.repository = {
     type: 'git',
     url: 'https://github.com/magicbell/magicbell-js.git',
-    directory: 'packages/user-client',
+    directory: 'packages/project-client',
   };
 
   pkgJson = sortPackageJson(pkgJson);

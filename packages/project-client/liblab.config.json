@@ -1,0 +1,46 @@
+{
+  "sdkName": "client",
+  "apiVersion": "2.0.0",
+  "apiName": "magicbell-api",
+  "specFilePath": "./magicbell-client.swagger.json",
+  "languages": ["typescript"],
+  "auth": ["bearer"],
+  "customizations": {
+    "includeOptionalSnippetParameters": true,
+    "authentication": {
+      "access": {
+        "prefix": "Bearer"
+      }
+    },
+    "devContainer": false,
+    "generateEnv": true,
+    "inferServiceNames": false,
+    "injectedModels": [],
+    "license": {
+      "type": "CUSTOM",
+      "url": "https://raw.githubusercontent.com/magicbell/magicbell-js/main/LICENSE"
+    },
+    "responseHeaders": false,
+    "retry": {
+      "enabled": true,
+      "maxAttempts": 3,
+      "retryDelay": 150
+    }
+  },
+  "languageOptions": {
+    "typescript": {
+      "bundle": false,
+      "exportClassDefault": false,
+      "httpClient": "axios",
+      "npmName": "project-client",
+      "npmOrg": "magicbell",
+      "githubRepoName": "magicbell-js",
+      "ignoreFiles": [],
+      "sdkVersion": "0.1.0",
+      "liblabVersion": "1"
+    }
+  },
+  "publishing": {
+    "githubOrg": "magicbell"
+  }
+}
