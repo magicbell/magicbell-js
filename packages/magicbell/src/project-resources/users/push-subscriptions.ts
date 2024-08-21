@@ -55,27 +55,4 @@ export class UsersPushSubscriptions extends Resource {
       options,
     );
   }
-
-  /**
-   * Delete a user's push subscriptions. Identifies the user by the user's ID and the
-   * push subscription by the subscription's ID.
-   *
-   * @param userId - The user id is the MagicBell user id. Accepts a UUID
-   * @param subscriptionId - ID of the subscription.
-   *   The ID of a subscription can be obtained from the "Fetch user subscriptions" API
-   *   endpoint or from push events sent to the MagicBell React library.
-   *
-   * @param options - override client request options.
-   **/
-  delete(userId: string, subscriptionId: string, options?: RequestOptions): Promise<void> {
-    return this.request(
-      {
-        method: 'DELETE',
-        path: '{user_id}/push_subscriptions/{subscription_id}',
-      },
-      userId,
-      subscriptionId,
-      options,
-    );
-  }
 }

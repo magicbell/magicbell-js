@@ -29,15 +29,3 @@ usersPushSubscriptions
       await response.then((result) => printJson(result));
     }
   });
-
-usersPushSubscriptions
-  .command('delete')
-  .description("Delete user's push subscription")
-  .argument('<user-id>', 'The user id is the MagicBell user id. Accepts a UUID')
-  .argument('<subscription-id>', 'ID of the subscription.')
-  .action(async (userId, subscriptionId, opts, cmd) => {
-    const { options } = parseOptions(opts);
-
-    const response = await getClient(cmd).users.pushSubscriptions.delete(userId, subscriptionId, options);
-    printJson(response);
-  });
