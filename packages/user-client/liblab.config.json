@@ -36,7 +36,7 @@
       "npmOrg": "magicbell",
       "githubRepoName": "magicbell-js",
       "ignoreFiles": [],
-      "sdkVersion": "0.1.0",
+      "sdkVersion": "0.2.0",
       "liblabVersion": "1"
     }
   },
