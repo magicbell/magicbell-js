@@ -1,9 +1,9 @@
-# Client Typescript SDK 0.1.0
+# Client Typescript SDK 0.2.0
 
 The Typescript SDK for Client.
 
-- API version: 0.1.0
-- SDK version: 0.1.0
+- API version: 0.2.0
+- SDK version: 0.2.0
 
 ## Table of Contents
 
