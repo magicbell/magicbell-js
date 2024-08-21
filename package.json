@@ -33,10 +33,10 @@
     "console": "ts-node"
   },
   "lint-staged": {
-    "*.{md,json,yml,yaml}": [
+    "*.{md,yml,yaml}": [
       "prettier -w"
     ],
-    "*.{js,jsx,ts,tsx}": [
+    "*.{js,jsx,ts,tsx,json}": [
       "eslint --fix ."
     ]
   },
