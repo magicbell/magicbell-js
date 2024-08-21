@@ -200,7 +200,7 @@ export const ListUsersNotificationsResponseSchema = {
                 status: {
                   type: 'string',
                   description: 'The status of the notification delivery.',
-                  enum: ['processing', 'scheduled', 'sent', 'invalid'],
+                  enum: ['processing', 'skipped', 'dropped', 'scheduled', 'sent', 'failed', 'delivered'],
                   nullable: false,
                 },
               },
