@@ -101,7 +101,7 @@ export default class HTTPLibrary implements HTTPClient {
   }
 
   private getUserAgentHeader(): Headers {
-    const userAgentBase = 'Client/0.1.0';
+    const userAgentBase = 'Client/0.2.0';
 
     let userAgent = '';
     if (typeof window !== 'undefined') {
