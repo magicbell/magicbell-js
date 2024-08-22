@@ -31,13 +31,12 @@
     "typescript": {
       "bundle": false,
       "exportClassDefault": false,
-      "httpClient": "axios",
       "npmName": "project-client",
       "npmOrg": "magicbell",
       "githubRepoName": "magicbell-js",
       "ignoreFiles": [],
       "sdkVersion": "0.1.0",
-      "liblabVersion": "1"
+      "liblabVersion": "2"
     }
   },
   "publishing": {

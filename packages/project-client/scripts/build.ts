@@ -117,21 +117,20 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   // await move('output/typescript/test', './test');
   await move('output/typescript/package.json', './package.json');
   await move('output/typescript/README.md', './README.md');
+  await move('output/typescript/documentation', './docs');
   await rimraf('output');
 
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   pkgJson.scripts.codegen = 'tsx scripts/build.ts';
 
-  pkgJson.scripts['build'] = 'run-s build:*';
-  pkgJson.scripts['build:cjs'] = 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs';
-  pkgJson.scripts['build:esm'] = 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm';
-  pkgJson.scripts['start'] = 'rm -rf dist/ && tsc -w';
-
-  delete pkgJson.scripts['watch'];
-  delete pkgJson.scripts['build:umd'];
-  delete pkgJson.scripts['build:all'];
-  delete pkgJson.scripts['prepublishOnly'];
+  pkgJson.scripts = {
+    build: 'run-s build:*',
+    'build:cjs': 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs',
+    'build:esm': 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm',
+    start: 'rm -rf dist/ && tsc -w',
+    codegen: 'tsx scripts/build.ts',
+  };
 
   for (const key of Object.keys(pkgJson.devDependencies)) {
     if (/eslint|prettier/.test(key)) {
