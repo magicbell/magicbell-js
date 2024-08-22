@@ -1,393 +1,1233 @@
-import BaseService from '../../BaseService';
-import { ApnsConfig } from './models/ApnsConfig';
-import { FcmConfig } from './models/FcmConfig';
-import { InboxConfig } from './models/InboxConfig';
-import { ListIntegrationsResponse } from './models/ListIntegrationsResponse';
-import { MailgunConfig } from './models/MailgunConfig';
-import { PingConfig } from './models/PingConfig';
-import { SaveApnsIntegrationRequest } from './models/SaveApnsIntegrationRequest';
-import { SaveFcmIntegrationRequest } from './models/SaveFcmIntegrationRequest';
-import { SaveInboxIntegrationRequest } from './models/SaveInboxIntegrationRequest';
-import { SaveMailgunIntegrationRequest } from './models/SaveMailgunIntegrationRequest';
-import { SavePingEmailIntegrationRequest } from './models/SavePingEmailIntegrationRequest';
-import { SaveSendgridIntegrationRequest } from './models/SaveSendgridIntegrationRequest';
-import { SaveSlackIntegrationRequest } from './models/SaveSlackIntegrationRequest';
-import { SaveStripeIntegrationRequest } from './models/SaveStripeIntegrationRequest';
-import { SaveTemplatesIntegrationRequest } from './models/SaveTemplatesIntegrationRequest';
-import { SaveTemplatesIntegrationResponse } from './models/SaveTemplatesIntegrationResponse';
-import { SaveTwilioIntegrationRequest } from './models/SaveTwilioIntegrationRequest';
-import { SaveWebPushIntegrationRequest } from './models/SaveWebPushIntegrationRequest';
-import { SendgridConfig } from './models/SendgridConfig';
-import { SlackConfig } from './models/SlackConfig';
-import { StripeConfig } from './models/StripeConfig';
-import { TwilioConfig } from './models/TwilioConfig';
-import { WebpushConfig } from './models/WebpushConfig';
+import { z } from 'zod';
+
+import { RequestBuilder } from '../../http/transport/request-builder';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
+import { BaseService } from '../base-service';
+import { ApnsConfig, apnsConfigRequest, apnsConfigResponse } from './models/apns-config';
+import { FcmConfig, fcmConfigRequest, fcmConfigResponse } from './models/fcm-config';
+import { GithubConfig, githubConfigRequest, githubConfigResponse } from './models/github-config';
+import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config';
+import { ListIntegrationsResponse, listIntegrationsResponseResponse } from './models/list-integrations-response';
+import { MailgunConfig, mailgunConfigRequest, mailgunConfigResponse } from './models/mailgun-config';
+import { PingConfig, pingConfigRequest, pingConfigResponse } from './models/ping-config';
+import { SendgridConfig, sendgridConfigRequest, sendgridConfigResponse } from './models/sendgrid-config';
+import { SesConfig, sesConfigRequest, sesConfigResponse } from './models/ses-config';
+import { SlackConfig, slackConfigRequest, slackConfigResponse } from './models/slack-config';
+import { StripeConfig, stripeConfigRequest, stripeConfigResponse } from './models/stripe-config';
+import { TwilioConfig, twilioConfigRequest, twilioConfigResponse } from './models/twilio-config';
+import { WebpushConfig, webpushConfigRequest, webpushConfigResponse } from './models/webpush-config';
 
 export class IntegrationsService extends BaseService {
-  async listIntegrations(): Promise<ListIntegrationsResponse> {
-    const urlEndpoint = '/integrations';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ListIntegrationsResponse;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async listIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async saveApnsIntegration(input: SaveApnsIntegrationRequest): Promise<ApnsConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/apns';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ApnsConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/apns')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deleteApnsIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/apns';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ApnsConfig>>} OK
+   */
+  async saveApnsIntegration(body: ApnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfig>> {
+    const request = new RequestBuilder<ApnsConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/apns')
+      .setRequestSchema(apnsConfigRequest)
+      .setResponseSchema(apnsConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<ApnsConfig>(request);
   }
 
-  async saveFcmIntegration(input: SaveFcmIntegrationRequest): Promise<FcmConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/fcm';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as FcmConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/apns')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async deleteFcmIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/fcm';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/apns/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async saveInboxIntegration(input: SaveInboxIntegrationRequest): Promise<InboxConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/inbox';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as InboxConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/fcm')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deleteInboxIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/inbox';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<FcmConfig>>} OK
+   */
+  async saveFcmIntegration(body: FcmConfig, requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfig>> {
+    const request = new RequestBuilder<FcmConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/fcm')
+      .setRequestSchema(fcmConfigRequest)
+      .setResponseSchema(fcmConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<FcmConfig>(request);
   }
 
-  async saveMailgunIntegration(input: SaveMailgunIntegrationRequest): Promise<MailgunConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/mailgun';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as MailgunConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/fcm')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async deleteMailgunIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/mailgun';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/fcm/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async savePingEmailIntegration(input: SavePingEmailIntegrationRequest): Promise<PingConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/ping_email';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as PingConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/github')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deletePingEmailIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/ping_email';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<GithubConfig>>} OK
+   */
+  async saveGithubIntegration(body: GithubConfig, requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfig>> {
+    const request = new RequestBuilder<GithubConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/github')
+      .setRequestSchema(githubConfigRequest)
+      .setResponseSchema(githubConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<GithubConfig>(request);
   }
 
-  async saveSendgridIntegration(input: SaveSendgridIntegrationRequest): Promise<SendgridConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/sendgrid';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as SendgridConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/github')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async deleteSendgridIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/sendgrid';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/github/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async saveSlackIntegration(input: SaveSlackIntegrationRequest): Promise<SlackConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/slack';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as SlackConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/inbox')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deleteSlackIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/slack';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<InboxConfig>>} OK
+   */
+  async saveInboxIntegration(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
+    const request = new RequestBuilder<InboxConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/inbox')
+      .setRequestSchema(inboxConfigRequest)
+      .setResponseSchema(inboxConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<InboxConfig>(request);
   }
 
-  async saveStripeIntegration(input: SaveStripeIntegrationRequest): Promise<StripeConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/stripe';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as StripeConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/inbox')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async deleteStripeIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/stripe';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/inbox/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async saveTemplatesIntegration(input: SaveTemplatesIntegrationRequest): Promise<SaveTemplatesIntegrationResponse> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/templates';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as SaveTemplatesIntegrationResponse;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/mailgun')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deleteTemplatesIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/templates';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<MailgunConfig>>} OK
+   */
+  async saveMailgunIntegration(
+    body: MailgunConfig,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<MailgunConfig>> {
+    const request = new RequestBuilder<MailgunConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/mailgun')
+      .setRequestSchema(mailgunConfigRequest)
+      .setResponseSchema(mailgunConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<MailgunConfig>(request);
   }
 
-  async saveTwilioIntegration(input: SaveTwilioIntegrationRequest): Promise<TwilioConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/twilio';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as TwilioConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/mailgun')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async deleteTwilioIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/twilio';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/mailgun/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 
-  async saveWebPushIntegration(input: SaveWebPushIntegrationRequest): Promise<WebpushConfig> {
-    const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
-    const urlEndpoint = '/integrations/web_push';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.put(
-      finalUrl,
-      input,
-      {
-        ...headers,
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as WebpushConfig;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/ping_email')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
   }
 
-  async deleteWebPushIntegration(): Promise<any> {
-    const urlEndpoint = '/integrations/web_push';
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data;
-    return responseModel;
+  /**
+   *
+   * @returns {Promise<HttpResponse<PingConfig>>} OK
+   */
+  async savePingEmailIntegration(body: PingConfig, requestConfig?: RequestConfig): Promise<HttpResponse<PingConfig>> {
+    const request = new RequestBuilder<PingConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/ping_email')
+      .setRequestSchema(pingConfigRequest)
+      .setResponseSchema(pingConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<PingConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/ping_email')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/ping_email/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/sendgrid')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<SendgridConfig>>} OK
+   */
+  async saveSendgridIntegration(
+    body: SendgridConfig,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SendgridConfig>> {
+    const request = new RequestBuilder<SendgridConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/sendgrid')
+      .setRequestSchema(sendgridConfigRequest)
+      .setResponseSchema(sendgridConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<SendgridConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/sendgrid')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/sendgrid/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/ses')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<SesConfig>>} OK
+   */
+  async saveSesIntegration(body: SesConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SesConfig>> {
+    const request = new RequestBuilder<SesConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/ses')
+      .setRequestSchema(sesConfigRequest)
+      .setResponseSchema(sesConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<SesConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/ses')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/ses/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/slack')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<SlackConfig>>} OK
+   */
+  async saveSlackIntegration(body: SlackConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfig>> {
+    const request = new RequestBuilder<SlackConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/slack')
+      .setRequestSchema(slackConfigRequest)
+      .setResponseSchema(slackConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<SlackConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/slack')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/slack/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/stripe')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<StripeConfig>>} OK
+   */
+  async saveStripeIntegration(body: StripeConfig, requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfig>> {
+    const request = new RequestBuilder<StripeConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/stripe')
+      .setRequestSchema(stripeConfigRequest)
+      .setResponseSchema(stripeConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<StripeConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/stripe')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/stripe/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/templates')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} OK
+   */
+  async saveTemplatesIntegration(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<any>> {
+    const request = new RequestBuilder<any>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/templates')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.any())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<any>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/templates')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/templates/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/twilio')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<TwilioConfig>>} OK
+   */
+  async saveTwilioIntegration(body: TwilioConfig, requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfig>> {
+    const request = new RequestBuilder<TwilioConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/twilio')
+      .setRequestSchema(twilioConfigRequest)
+      .setResponseSchema(twilioConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<TwilioConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/twilio')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/twilio/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/web_push')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<WebpushConfig>>} OK
+   */
+  async saveWebPushIntegration(
+    body: WebpushConfig,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<WebpushConfig>> {
+    const request = new RequestBuilder<WebpushConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/web_push')
+      .setRequestSchema(webpushConfigRequest)
+      .setResponseSchema(webpushConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<WebpushConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/web_push')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/web_push/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
   }
 }

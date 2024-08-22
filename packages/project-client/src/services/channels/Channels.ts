@@ -1,310 +1,632 @@
-import BaseService from '../../BaseService';
-import { serializePath } from '../../http/QuerySerializer';
-import { ApnsTokenWithMetadata } from './models/ApnsTokenWithMetadata';
-import { ArrayWithMetadataOfApnsToken } from './models/ArrayWithMetadataOfApnsToken';
-import { ArrayWithMetadataOfFcmToken } from './models/ArrayWithMetadataOfFcmToken';
-import { ArrayWithMetadataOfSlackToken } from './models/ArrayWithMetadataOfSlackToken';
-import { ArrayWithMetadataOfTeamsToken } from './models/ArrayWithMetadataOfTeamsToken';
-import { ArrayWithMetadataOfWebPushToken } from './models/ArrayWithMetadataOfWebPushToken';
-import { DiscardResult } from './models/DiscardResult';
-import { FcmTokenWithMetadata } from './models/FcmTokenWithMetadata';
-import { SlackTokenWithMetadata } from './models/SlackTokenWithMetadata';
-import { TeamsTokenWithMetadata } from './models/TeamsTokenWithMetadata';
-import { WebPushTokenWithMetadata } from './models/WebPushTokenWithMetadata';
+import { z } from 'zod';
+
+import { RequestBuilder } from '../../http/transport/request-builder';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
+import { BaseService } from '../base-service';
+import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata';
+import {
+  ArrayWithMetadataOfApnsToken,
+  arrayWithMetadataOfApnsTokenResponse,
+} from './models/array-with-metadata-of-apns-token';
+import {
+  ArrayWithMetadataOfFcmToken,
+  arrayWithMetadataOfFcmTokenResponse,
+} from './models/array-with-metadata-of-fcm-token';
+import {
+  ArrayWithMetadataOfInboxToken,
+  arrayWithMetadataOfInboxTokenResponse,
+} from './models/array-with-metadata-of-inbox-token';
+import {
+  ArrayWithMetadataOfSlackToken,
+  arrayWithMetadataOfSlackTokenResponse,
+} from './models/array-with-metadata-of-slack-token';
+import {
+  ArrayWithMetadataOfTeamsToken,
+  arrayWithMetadataOfTeamsTokenResponse,
+} from './models/array-with-metadata-of-teams-token';
+import {
+  ArrayWithMetadataOfWebPushToken,
+  arrayWithMetadataOfWebPushTokenResponse,
+} from './models/array-with-metadata-of-web-push-token';
+import { DiscardResult, discardResultResponse } from './models/discard-result';
+import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata';
+import { InboxTokenWithMetadata, inboxTokenWithMetadataResponse } from './models/inbox-token-with-metadata';
+import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata';
+import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata';
+import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata';
 
 export class ChannelsService extends BaseService {
-  async getMobilePushApnsUserTokens(userId: string): Promise<ArrayWithMetadataOfApnsToken> {
-    if (userId === undefined) {
-      throw new Error('The following parameter is required: userId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/apns/tokens';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ArrayWithMetadataOfApnsToken;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfInboxToken>>} OK
+   */
+  async getInAppUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfInboxToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfInboxToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/in_app/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfInboxTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfInboxToken>(request);
   }
 
-  async getMobilePushApnsUserToken(userId: string, tokenId: string): Promise<ApnsTokenWithMetadata> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ApnsTokenWithMetadata;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<InboxTokenWithMetadata>>} OK
+   */
+  async getInAppUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<InboxTokenWithMetadata>> {
+    const request = new RequestBuilder<InboxTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/in_app/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(inboxTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<InboxTokenWithMetadata>(request);
   }
 
-  async discardMobilePushApnsUserToken(userId: string, tokenId: string): Promise<DiscardResult> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as DiscardResult;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardInAppUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/in_app/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
   }
 
-  async getMobilePushFcmUserTokens(userId: string): Promise<ArrayWithMetadataOfFcmToken> {
-    if (userId === undefined) {
-      throw new Error('The following parameter is required: userId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/fcm/tokens';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ArrayWithMetadataOfFcmToken;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfApnsToken>>} OK
+   */
+  async getMobilePushApnsUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfApnsToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfApnsToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/mobile_push/apns/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfApnsTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfApnsToken>(request);
   }
 
-  async getMobilePushFcmUserToken(userId: string, tokenId: string): Promise<FcmTokenWithMetadata> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as FcmTokenWithMetadata;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<ApnsTokenWithMetadata>>} OK
+   */
+  async getMobilePushApnsUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ApnsTokenWithMetadata>> {
+    const request = new RequestBuilder<ApnsTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(apnsTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<ApnsTokenWithMetadata>(request);
   }
 
-  async discardMobilePushFcmUserToken(userId: string, tokenId: string): Promise<DiscardResult> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as DiscardResult;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardMobilePushApnsUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
   }
 
-  async getSlackUserTokens(userId: string): Promise<ArrayWithMetadataOfSlackToken> {
-    if (userId === undefined) {
-      throw new Error('The following parameter is required: userId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/slack/tokens';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ArrayWithMetadataOfSlackToken;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfFcmToken>>} OK
+   */
+  async getMobilePushFcmUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfFcmToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfFcmToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfFcmTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfFcmToken>(request);
   }
 
-  async getSlackUserToken(userId: string, tokenId: string): Promise<SlackTokenWithMetadata> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/slack/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as SlackTokenWithMetadata;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<FcmTokenWithMetadata>>} OK
+   */
+  async getMobilePushFcmUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<FcmTokenWithMetadata>> {
+    const request = new RequestBuilder<FcmTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(fcmTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<FcmTokenWithMetadata>(request);
   }
 
-  async discardSlackUserToken(userId: string, tokenId: string): Promise<DiscardResult> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/slack/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as DiscardResult;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardMobilePushFcmUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
   }
 
-  async getTeamsUserTokens(userId: string): Promise<ArrayWithMetadataOfTeamsToken> {
-    if (userId === undefined) {
-      throw new Error('The following parameter is required: userId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/teams/tokens';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ArrayWithMetadataOfTeamsToken;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfSlackToken>>} OK
+   */
+  async getSlackUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfSlackToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfSlackToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/slack/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfSlackTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfSlackToken>(request);
   }
 
-  async getTeamsUserToken(userId: string, tokenId: string): Promise<TeamsTokenWithMetadata> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/teams/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as TeamsTokenWithMetadata;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<SlackTokenWithMetadata>>} OK
+   */
+  async getSlackUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SlackTokenWithMetadata>> {
+    const request = new RequestBuilder<SlackTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(slackTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<SlackTokenWithMetadata>(request);
   }
 
-  async discardTeamsUserToken(userId: string, tokenId: string): Promise<DiscardResult> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/teams/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as DiscardResult;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardSlackUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
   }
 
-  async getWebPushUserTokens(userId: string): Promise<ArrayWithMetadataOfWebPushToken> {
-    if (userId === undefined) {
-      throw new Error('The following parameter is required: userId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/web_push/tokens';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as ArrayWithMetadataOfWebPushToken;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfTeamsToken>>} OK
+   */
+  async getTeamsUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfTeamsToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfTeamsToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/teams/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfTeamsTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfTeamsToken>(request);
   }
 
-  async getWebPushUserToken(userId: string, tokenId: string): Promise<WebPushTokenWithMetadata> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/web_push/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.get(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as WebPushTokenWithMetadata;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<TeamsTokenWithMetadata>>} OK
+   */
+  async getTeamsUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<TeamsTokenWithMetadata>> {
+    const request = new RequestBuilder<TeamsTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(teamsTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<TeamsTokenWithMetadata>(request);
   }
 
-  async discardWebPushUserToken(userId: string, tokenId: string): Promise<DiscardResult> {
-    if (userId === undefined || tokenId === undefined) {
-      throw new Error('The following are required parameters: userId,tokenId, cannot be empty or blank');
-    }
-    let urlEndpoint = '/users/{user_id}/channels/web_push/tokens/{token_id}';
-    urlEndpoint = urlEndpoint.replace('{user_id}', serializePath('simple', false, userId, undefined));
-    urlEndpoint = urlEndpoint.replace('{token_id}', serializePath('simple', false, tokenId, undefined));
-    const finalUrl = encodeURI(`${this.baseUrl + urlEndpoint}`);
-    const response: any = await this.httpClient.delete(
-      finalUrl,
-      {},
-      {
-        ...this.getAuthorizationHeader(),
-      },
-      true,
-    );
-    const responseModel = response.data as DiscardResult;
-    return responseModel;
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardTeamsUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
+  }
+
+  /**
+   *
+   * @param {string} userId -
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfWebPushToken>>} OK
+   */
+  async getWebPushUserTokens(
+    userId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ArrayWithMetadataOfWebPushToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfWebPushToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/web_push/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfWebPushTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<ArrayWithMetadataOfWebPushToken>(request);
+  }
+
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<WebPushTokenWithMetadata>>} OK
+   */
+  async getWebPushUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<WebPushTokenWithMetadata>> {
+    const request = new RequestBuilder<WebPushTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(webPushTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<WebPushTokenWithMetadata>(request);
+  }
+
+  /**
+   *
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardWebPushUserToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
   }
 }

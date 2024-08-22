@@ -1,50 +1,66 @@
-import { BroadcastsService } from './services/broadcasts/Broadcasts';
-import { ChannelsService } from './services/channels/Channels';
-import { IntegrationsService } from './services/integrations/Integrations';
+import { Environment } from './http/environment';
+import { SdkConfig } from './http/types';
+import { BroadcastsService } from './services/broadcasts';
+import { ChannelsService } from './services/channels';
+import { IntegrationsService } from './services/integrations';
+import { JwtService } from './services/jwt';
 
-export * from './models';
-export * as BroadcastsModels from './services/broadcasts';
-export * as ChannelsModels from './services/channels';
-export * as IntegrationsModels from './services/integrations';
+export type * from './http';
+export * from './services/broadcasts';
+export * from './services/channels';
+export * from './services/integrations';
+export * from './services/jwt';
 
-type Config = {
-  accessToken?: string;
-};
-
-export * from './http/errors';
-
-/**
- * OpenAPI 3.1.0 Specification for MagicBell API.
- */
 export class Client {
-  public broadcasts: BroadcastsService;
-  public channels: ChannelsService;
-  public integrations: IntegrationsService;
+  public readonly broadcasts: BroadcastsService;
 
-  constructor({ accessToken = '' }: Config) {
-    this.broadcasts = new BroadcastsService(accessToken);
-    this.channels = new ChannelsService(accessToken);
-    this.integrations = new IntegrationsService(accessToken);
+  public readonly integrations: IntegrationsService;
+
+  public readonly jwt: JwtService;
+
+  public readonly channels: ChannelsService;
+
+  constructor(public config: SdkConfig) {
+    const baseUrl = config.environment || config.baseUrl || Environment.DEFAULT;
+    this.config = {
+      ...config,
+      baseUrl,
+    };
+    this.broadcasts = new BroadcastsService(this.config);
+
+    this.integrations = new IntegrationsService(this.config);
+
+    this.jwt = new JwtService(this.config);
+
+    this.channels = new ChannelsService(this.config);
   }
 
-  /**
-   * Sets the baseUrl that the SDK will use for its requests.
-   * @param {string} url
-   */
-  setBaseUrl(url: string): void {
-    this.broadcasts.setBaseUrl(url);
-    this.channels.setBaseUrl(url);
-    this.integrations.setBaseUrl(url);
+  set baseUrl(baseUrl: string) {
+    this.broadcasts.baseUrl = baseUrl;
+    this.integrations.baseUrl = baseUrl;
+    this.jwt.baseUrl = baseUrl;
+    this.channels.baseUrl = baseUrl;
   }
 
-  /**
-   * Sets the access token used to authenticate.
-   * @param {string} accessToken
-   */
-  setAccessToken(accessToken: string) {
-    this.broadcasts.setAccessToken(accessToken);
-    this.channels.setAccessToken(accessToken);
-    this.integrations.setAccessToken(accessToken);
+  set environment(environment: Environment) {
+    this.broadcasts.baseUrl = environment;
+    this.integrations.baseUrl = environment;
+    this.jwt.baseUrl = environment;
+    this.channels.baseUrl = environment;
+  }
+
+  set timeout(timeout: number) {
+    this.broadcasts.timeout = timeout;
+    this.integrations.timeout = timeout;
+    this.jwt.timeout = timeout;
+    this.channels.timeout = timeout;
+  }
+
+  set token(token: string) {
+    this.broadcasts.token = token;
+    this.integrations.token = token;
+    this.jwt.token = token;
+    this.channels.token = token;
   }
 }
 
