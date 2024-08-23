@@ -6,6 +6,8 @@ import { parseArgs } from 'node:util';
 import { rimraf } from 'rimraf';
 import { sortPackageJson } from 'sort-package-json';
 
+import rootPkgJson from '../../../package.json';
+
 async function move(oldPath: string, newPath: string) {
   await rimraf(newPath);
   await fs.mkdir(path.dirname(newPath), { recursive: true });
@@ -121,7 +123,9 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   pkgJson.scripts['build'] = 'run-s build:*';
   pkgJson.scripts['build:cjs'] = 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs';
   pkgJson.scripts['build:esm'] = 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm';
+  pkgJson.scripts['start'] = 'rm -rf dist/ && tsc -w';
 
+  delete pkgJson.scripts['watch'];
   delete pkgJson.scripts['build:umd'];
   delete pkgJson.scripts['build:all'];
   delete pkgJson.scripts['prepublishOnly'];
@@ -129,6 +133,8 @@ async function build(specfile = 'https://public.magicbell.com/specs/swagger.json
   for (const key of Object.keys(pkgJson.devDependencies)) {
     if (/eslint|prettier/.test(key)) {
       delete pkgJson.devDependencies[key];
+    } else if (rootPkgJson.dependencies[key]) {
+      pkgJson.devDependencies[key] = rootPkgJson.dependencies[key];
     }
   }
 

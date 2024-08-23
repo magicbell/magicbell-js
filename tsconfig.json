@@ -24,6 +24,7 @@
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/in-app": ["packages/in-app/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
+      "@magicbell/project-client": ["packages/project-client/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "@magicbell/user-client": ["packages/user-client/src"],
       "@magicbell/utils": ["packages/utils/src"],

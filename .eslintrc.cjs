@@ -46,7 +46,7 @@ module.exports = {
       }
     },
     {
-      files: './packages/user-client/**/*.{ts,tsx}',
+      files: './packages/{project,user}-client/**/*.{ts,tsx}',
       rules: {
         '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-unused-vars': 'off',

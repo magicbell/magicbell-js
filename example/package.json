@@ -21,6 +21,7 @@
     "@magicbell/embeddable": "../packages/embeddable",
     "@magicbell/in-app": "../packages/in-app",
     "@magicbell/magicbell-react": "../packages/react",
+    "@magicbell/project-client": "../packages/project-client",
     "@magicbell/react-headless": "../packages/react-headless",
     "@magicbell/user-client": "../packages/user-client",
     "@magicbell/utils": "../packages/utils",
