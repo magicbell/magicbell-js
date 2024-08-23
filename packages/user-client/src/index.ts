@@ -1,44 +1,46 @@
-import { ChannelsService } from './services/channels/Channels';
-import { IntegrationsService } from './services/integrations/Integrations';
+import { Environment } from './http/environment';
+import { SdkConfig } from './http/types';
+import { ChannelsService } from './services/channels';
+import { IntegrationsService } from './services/integrations';
 
-export * from './models';
-export * as ChannelsModels from './services/channels';
-export * as IntegrationsModels from './services/integrations';
+export type * from './http';
+export * from './services/channels';
+export * from './services/integrations';
 
-type Config = {
-  accessToken?: string;
-};
-
-export * from './http/errors';
-
-/**
- * OpenAPI 3.1.0 Specification for MagicBell API.
- */
 export class Client {
-  public channels: ChannelsService;
-  public integrations: IntegrationsService;
+  public readonly channels: ChannelsService;
 
-  constructor({ accessToken = '' }: Config) {
-    this.channels = new ChannelsService(accessToken);
-    this.integrations = new IntegrationsService(accessToken);
+  public readonly integrations: IntegrationsService;
+
+  constructor(public config: SdkConfig) {
+    const baseUrl = config.environment || config.baseUrl || Environment.DEFAULT;
+    this.config = {
+      ...config,
+      baseUrl,
+    };
+    this.channels = new ChannelsService(this.config);
+
+    this.integrations = new IntegrationsService(this.config);
   }
 
-  /**
-   * Sets the baseUrl that the SDK will use for its requests.
-   * @param {string} url
-   */
-  setBaseUrl(url: string): void {
-    this.channels.setBaseUrl(url);
-    this.integrations.setBaseUrl(url);
+  set baseUrl(baseUrl: string) {
+    this.channels.baseUrl = baseUrl;
+    this.integrations.baseUrl = baseUrl;
   }
 
-  /**
-   * Sets the access token used to authenticate.
-   * @param {string} accessToken
-   */
-  setAccessToken(accessToken: string) {
-    this.channels.setAccessToken(accessToken);
-    this.integrations.setAccessToken(accessToken);
+  set environment(environment: Environment) {
+    this.channels.baseUrl = environment;
+    this.integrations.baseUrl = environment;
+  }
+
+  set timeout(timeout: number) {
+    this.channels.timeout = timeout;
+    this.integrations.timeout = timeout;
+  }
+
+  set token(token: string) {
+    this.channels.token = token;
+    this.integrations.token = token;
   }
 }
 
