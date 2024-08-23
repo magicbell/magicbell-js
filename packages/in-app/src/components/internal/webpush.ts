@@ -1,4 +1,4 @@
-import { type SaveWebPushTokenRequest, Client } from '@magicbell/user-client';
+import { Client } from '@magicbell/user-client';
 
 export type WebPushClientOptions = {
   serviceWorkerPath?: string;
@@ -11,7 +11,7 @@ export class WebPushClient {
 
   constructor(options?: WebPushClientOptions) {
     this.#serviceWorkerPath = options?.serviceWorkerPath || '/sw.js';
-    this.#client = new Client({ accessToken: options?.accessToken });
+    this.#client = new Client({ token: options?.accessToken });
   }
 
   /**
@@ -19,7 +19,7 @@ export class WebPushClient {
    * @param {string} accessToken
    */
   setAccessToken(accessToken: string) {
-    this.#client.setAccessToken(accessToken);
+    this.#client.token = accessToken;
   }
 
   /**
@@ -39,8 +39,8 @@ export class WebPushClient {
 
     if (!activeSubscription?.endpoint) return false;
     return (
-      tokens.data
-        ?.filter((x) => !x.metadata?.discarded_at)
+      tokens.data?.data
+        ?.filter((x) => !x.metadata?.discardedAt)
         .some((subscription) => {
           return subscription.data?.endpoint === activeSubscription.endpoint;
         }) ?? false
@@ -65,7 +65,7 @@ export class WebPushClient {
 
     const config = await this.#client.integrations.startWebPushInstallation({});
     // strip the base64 padding, it's either that or convert to uint8array
-    const applicationServerKey = config.public_key.replace(/=/g, '');
+    const applicationServerKey = config.data?.publicKey?.replace(/=/g, '');
 
     const subscription = await registration.pushManager
       .subscribe({ userVisibleOnly: true, applicationServerKey })
@@ -75,7 +75,7 @@ export class WebPushClient {
       throw new Error('Failed to subscribe to push notifications, browser did not return an subscription endpoint.');
     }
 
-    await this.#client.channels.saveWebPushToken(subscription as unknown as SaveWebPushTokenRequest);
+    await this.#client.channels.saveWebPushToken(subscription);
   }
 
   async unsubscribe(): Promise<void> {
@@ -92,7 +92,7 @@ export class WebPushClient {
     void this.#client.channels
       .getWebPushTokens()
       .then(({ data }) => {
-        const token = data?.find((token) => token.data?.endpoint === endpoint);
+        const token = data?.data?.find((token) => token.data?.endpoint === endpoint);
         if (!token) return;
         return this.#client.channels.discardWebPushToken(String(token.metadata?.id));
       })
@@ -103,7 +103,7 @@ export class WebPushClient {
 
   async getAuthToken(): Promise<string> {
     const installation = await this.#client.integrations.startWebPushInstallation({});
-    return installation.auth_token;
+    return installation.data?.authToken || '';
   }
 }
 
