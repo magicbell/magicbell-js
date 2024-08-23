@@ -136,11 +136,11 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
   const badge = Badge.UNREAD;
 
   const apnsConfig: ApnsConfig = {
-    appId: 'Fd8+9',
+    appId: 'iAYqMy12w9iGu7ff1EsX`Yd7Od!5pFmfIMNCPzvFgZiCEg+ihR0u2bAgXQlSqFd8hh',
     badge: badge,
     certificate: 'certificate',
-    keyId: 'magna nost',
-    teamId: 'officia oc',
+    keyId: 'nostrud ul',
+    teamId: 'ut reprehe',
   };
 
   const { data } = await client.integrations.saveApnsIntegration(input);
@@ -368,7 +368,7 @@ import { Client, GithubConfig } from '@magicbell/project-client';
   });
 
   const githubConfig: GithubConfig = {
-    webhookSigningSecret: 'dolore',
+    webhookSigningSecret: 'adipisicing',
   };
 
   const { data } = await client.integrations.saveGithubIntegration(input);
@@ -477,7 +477,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const inboxConfig: InboxConfig = {
     images: {},
-    locale: 'qui',
+    locale: 'dolore moll',
     theme: {},
   };
 
@@ -588,8 +588,8 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
   const mailgunConfigRegion = MailgunConfigRegion.US;
 
   const mailgunConfig: MailgunConfig = {
-    apiKey: 'co',
-    domain: 'm',
+    apiKey: 'molli',
+    domain: 'do ',
     region: mailgunConfigRegion,
   };
 
@@ -698,7 +698,7 @@ import { Client, PingConfig } from '@magicbell/project-client';
   });
 
   const pingConfig: PingConfig = {
-    url: 'ut cupidatat',
+    url: 'laboris Duis',
   };
 
   const { data } = await client.integrations.savePingEmailIntegration(input);
@@ -931,11 +931,11 @@ import { Client, SesConfig } from '@magicbell/project-client';
   };
 
   const sesConfig: SesConfig = {
-    endpoint: 'sit ipsum',
+    endpoint: 'dolor e',
     from: sesConfigFrom,
-    keyId: 'ex ',
-    region: 'in repr',
-    secretKey: 'ali',
+    keyId: 'cillum no',
+    region: 'dolor culpa co',
+    secretKey: 'pa',
   };
 
   const { data } = await client.integrations.saveSesIntegration(input);
@@ -1043,7 +1043,7 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: 'X2ZNPXG8L',
+    appId: '6SX2ZNPXG8L',
     clientId: '430411624.02717865207',
     clientSecret: 'labore in ea fugiat magnainsed v',
     id: 'CM0mBN',

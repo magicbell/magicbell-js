@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { SerializationStyle } from '../../http/serialization/base-serializer';
 import { RequestBuilder } from '../../http/transport/request-builder';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
 import { BaseService } from '../base-service';

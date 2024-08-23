@@ -15,13 +15,6 @@ Returns a list of broadcasts
 - HTTP Method: `GET`
 - Endpoint: `/broadcasts`
 
-**Parameters**
-
-| Name    | Type   | Required | Description                                               |
-| :------ | :----- | :------- | :-------------------------------------------------------- |
-| page    | number | ❌       | The page number of the paginated response. Defaults to 1. |
-| perPage | number | ❌       | The number of items per page. Defaults to 20.             |
-
 **Return Type**
 
 `BroadcastListResponse`
@@ -36,10 +29,7 @@ import { Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.broadcasts.listBroadcasts({
-    page: 8,
-    perPage: 2,
-  });
+  const { data } = await client.broadcasts.listBroadcasts();
 
   console.log(data);
 })();
@@ -73,39 +63,39 @@ import { Broadcast, Client } from '@magicbell/project-client';
   });
 
   const email: Email = {
-    actionUrl: 'nisi ea Duis ipsum',
-    content: 'commodo',
-    title: 'enim',
+    actionUrl: 'ipsum esse',
+    content: 'sit veniam',
+    title: 'in id ex aliqua',
   };
 
   const inApp: InApp = {
-    actionUrl: 'commodo reprehenderit',
-    content: 'aliqua occaecat',
-    title: 'amet',
+    actionUrl: 'ullamco labore voluptate',
+    content: 'consequat magna Excepteur dolor mollit',
+    title: 'irure',
   };
 
   const mobilePush: MobilePush = {
-    actionUrl: 'essead consectetur elit',
-    content: 'nostrud aliqua sed irure',
-    title: 'enim dolore',
+    actionUrl: 'elitdolore adipisicing anim elit deserunt',
+    content: 'cupidatat elit',
+    title: 'ut',
   };
 
   const slack: Slack = {
-    actionUrl: 'id non occaecat cupidatat ad',
-    content: 'nostrud',
-    title: 'laborum commodo magna',
+    actionUrl: 'sit commodo consectetur Duis',
+    content: 'proident sed quis Lorem',
+    title: 'magna reprehenderit ut deserunt nisi',
   };
 
   const sms: Sms = {
-    actionUrl: 'exdolore elit',
-    content: 'Excepteur occaecat eu ipsum',
-    title: 'in',
+    actionUrl: 'irure Excepteur exercitation',
+    content: 'et adipisicing in elit',
+    title: 'sint voluptate ipsum cupidatat',
   };
 
   const webPush: WebPush = {
-    actionUrl: 'ipsum magna',
-    content: 'eiusmod',
-    title: 'cupidatat Lorem sed',
+    actionUrl: 'dolor in elit id',
+    content: 'est ea elit exercitation dolore',
+    title: 'aute eiusmod ea',
   };
 
   const channels: Channels = {
@@ -133,14 +123,14 @@ import { Broadcast, Client } from '@magicbell/project-client';
   };
 
   const broadcast: Broadcast = {
-    actionUrl: 'sed incididunt',
-    category: 'non officia',
-    content: 'qui enim sunt ea dolor',
+    actionUrl: 'Ut aliquip est laboris',
+    category: 'sint in eu tempor magna',
+    content: 'aliqua ad dolor officia',
     customAttributes: {},
     overrides: overrides,
     recipients: [{}],
-    title: 'quis fugiat',
-    topic: 'mollit ut consecte',
+    title: 'nisi elit amet laboris tempor',
+    topic: 'nulla consequat do incididunt',
   };
 
   const { data } = await client.broadcasts.createBroadcast(input);
