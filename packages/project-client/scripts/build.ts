@@ -98,7 +98,7 @@ const { values: args } = parseArgs({
   },
 });
 
-async function build(specfile = 'https://public.magicbell.com/specs/swagger.json') {
+async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.json') {
   const liblabConfig = JSON.parse(await fs.readFile('./liblab.config.json', { encoding: 'utf-8' }));
   let swaggerJSON = await readFileOrUrl(specfile);
   const spec = JSON.parse(swaggerJSON);
