@@ -19,6 +19,10 @@ const program = createCommand()
   .description('Work with MagicBell from the command line')
   .version(pkg.version, '--version', 'Show magicbell version')
   .option('-p, --profile <string>', 'Profile to use', process.env.MAGICBELL_PROFILE || 'default')
+  .option(
+    '-t, --token <string>',
+    'The jwt token to use. Set a default with `magicbell config set token` or via the MAGICBELL_TOKEN env var',
+  )
   .option('-h, --host <string>', 'MagicBell API host', parseHost)
   .option('--no-color', 'Color output', true)
   .addOption(
@@ -33,9 +37,17 @@ program.hook('preAction', function (thisCommand) {
 
 // check auth on authenticated routes, and redirect to login if not authenticated
 program.hook('preAction', function (thisCommand, actionCommand) {
-  const { profile } = thisCommand.opts();
+  const { profile, token } = thisCommand.opts();
+
+  if (!token) {
+    thisCommand.setOptionValueWithSource('token', process.env.MAGICBELL_TOKEN, 'env');
+  }
+
   const command = findTopCommand(actionCommand);
   if (publicCommands.includes(command.name()) || actionCommand.name() === 'help') return;
+
+  // we don't need a profile or project credentials when a token is provided via arg or env
+  if (thisCommand.getOptionValue('token')) return;
 
   const project = configStore.getProject(profile);
 

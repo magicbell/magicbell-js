@@ -1,6 +1,7 @@
 import { Client } from './client/client';
 import { assertHasRequiredOptions } from './client/options';
 import { ClientOptions, WithRequired } from './client/types';
+import { isString } from './lib/utils';
 import { createListener } from './resources/listen';
 import { NotificationPreferences } from './user-resources/notification-preferences';
 import { Notifications } from './user-resources/notifications';
@@ -21,7 +22,10 @@ export class UserClient extends Client {
   subscriptions = new Subscriptions(this);
 
   constructor(options: UserClientOptions) {
-    assertHasRequiredOptions(options, ['apiKey']);
+    if (!('token' in options) || !isString(options.token)) {
+      assertHasRequiredOptions(options, ['apiKey']);
+    }
+
     if ('apiSecret' in options) {
       throw new Error('The API secret should NOT be used on the user client.');
     }
