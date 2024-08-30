@@ -4,7 +4,7 @@
 
 | Name     | Type                           | Required | Description |
 | :------- | :----------------------------- | :------- | :---------- |
-| data     | any                            | ✅       |             |
+| data     | TeamsToken                     | ✅       |             |
 | metadata | TeamsTokenWithMetadataMetadata | ✅       |             |
 
 # TeamsTokenWithMetadataMetadata

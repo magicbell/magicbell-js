@@ -33,10 +33,10 @@
     "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs",
     "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir dist/esm",
     "codegen": "tsx scripts/build.ts",
-    "start": "rm -rf dist/ && tsc -w"
+    "start": "rm -rf dist/ && tsc -w",
+    "test": "tsc --noEmit"
   },
   "dependencies": {
-    "axios": "^1.7.4",
     "zod": "3.23.8"
   },
   "devDependencies": {

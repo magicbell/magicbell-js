@@ -2,10 +2,10 @@
 
 **Properties**
 
-| Name    | Type    | Required | Description |
-| :------ | :------ | :------- | :---------- |
-| oauth   | Oauth   | ❌       |             |
-| webhook | Webhook | ❌       |             |
+| Name    | Type              | Required | Description |
+| :------ | :---------------- | :------- | :---------- |
+| oauth   | Oauth             | ❌       |             |
+| webhook | SlackTokenWebhook | ❌       |             |
 
 # Oauth
 
@@ -17,7 +17,7 @@
 | installationId | string | ✅       |             |
 | scope          | string | ❌       |             |
 
-# Webhook
+# SlackTokenWebhook
 
 **Properties**
 

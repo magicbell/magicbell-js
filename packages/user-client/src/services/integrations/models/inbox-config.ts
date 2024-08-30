@@ -1,22 +1,25 @@
 import { z } from 'zod';
 
+import { images, imagesRequest, imagesResponse } from './images';
+import { theme, themeRequest, themeResponse } from './theme';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const inboxConfig = z.lazy(() => {
   return z.object({
-    images: z.any().nullable(),
+    images: images.nullable(),
     locale: z.string().min(2).nullable(),
-    theme: z.any().nullable(),
+    theme: theme.nullable(),
   });
 });
 
 /**
  *
  * @typedef  {InboxConfig} inboxConfig
- * @property {any}
+ * @property {Images}
  * @property {string}
- * @property {any}
+ * @property {Theme}
  */
 export type InboxConfig = z.infer<typeof inboxConfig>;
 
@@ -27,9 +30,9 @@ export type InboxConfig = z.infer<typeof inboxConfig>;
 export const inboxConfigResponse = z.lazy(() => {
   return z
     .object({
-      images: z.any().nullable(),
+      images: imagesResponse.nullable(),
       locale: z.string().min(2).nullable(),
-      theme: z.any().nullable(),
+      theme: themeResponse.nullable(),
     })
     .transform((data) => ({
       images: data['images'],
@@ -44,7 +47,7 @@ export const inboxConfigResponse = z.lazy(() => {
  */
 export const inboxConfigRequest = z.lazy(() => {
   return z
-    .object({ images: z.any().nullish(), locale: z.string().nullish(), theme: z.any().nullish() })
+    .object({ images: imagesRequest.nullish(), locale: z.string().nullish(), theme: themeRequest.nullish() })
     .transform((data) => ({
       images: data['images'],
       locale: data['locale'],

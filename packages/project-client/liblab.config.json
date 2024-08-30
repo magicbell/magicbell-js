@@ -30,6 +30,7 @@
   "languageOptions": {
     "typescript": {
       "bundle": false,
+      "httpClient": "fetch",
       "exportClassDefault": false,
       "npmName": "project-client",
       "npmOrg": "magicbell",

@@ -8,4 +8,3 @@
 | clientId      | string | ✅       |             |
 | clientSecret  | string | ✅       |             |
 | signingSecret | string | ✅       |             |
-| id            | string | ❌       |             |

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { RequestBuilder } from '../../http/transport/request-builder';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
 import { BaseService } from '../base-service';
+import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from '../common/web-push-token';
 import { ApnsToken, apnsTokenRequest, apnsTokenResponse } from './models/apns-token';
 import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata';
 import {
@@ -10,13 +11,13 @@ import {
   arrayWithMetadataOfApnsTokenResponse,
 } from './models/array-with-metadata-of-apns-token';
 import {
+  ArrayWithMetadataOfExpoToken,
+  arrayWithMetadataOfExpoTokenResponse,
+} from './models/array-with-metadata-of-expo-token';
+import {
   ArrayWithMetadataOfFcmToken,
   arrayWithMetadataOfFcmTokenResponse,
 } from './models/array-with-metadata-of-fcm-token';
-import {
-  ArrayWithMetadataOfInboxToken,
-  arrayWithMetadataOfInboxTokenResponse,
-} from './models/array-with-metadata-of-inbox-token';
 import {
   ArrayWithMetadataOfSlackToken,
   arrayWithMetadataOfSlackTokenResponse,
@@ -30,113 +31,17 @@ import {
   arrayWithMetadataOfWebPushTokenResponse,
 } from './models/array-with-metadata-of-web-push-token';
 import { DiscardResult, discardResultResponse } from './models/discard-result';
+import { ExpoToken, expoTokenRequest, expoTokenResponse } from './models/expo-token';
+import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata';
 import { FcmToken, fcmTokenRequest, fcmTokenResponse } from './models/fcm-token';
 import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata';
-import { InboxToken, inboxTokenRequest, inboxTokenResponse } from './models/inbox-token';
-import { InboxTokenWithMetadata, inboxTokenWithMetadataResponse } from './models/inbox-token-with-metadata';
 import { SlackToken, slackTokenRequest, slackTokenResponse } from './models/slack-token';
 import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata';
+import { TeamsToken, teamsTokenRequest, teamsTokenResponse } from './models/teams-token';
 import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata';
-import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from './models/web-push-token';
 import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata';
 
 export class ChannelsService extends BaseService {
-  /**
-   *
-   * @returns {Promise<HttpResponse<ArrayWithMetadataOfInboxToken>>} OK
-   */
-  async getInAppTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfInboxToken>> {
-    const request = new RequestBuilder<ArrayWithMetadataOfInboxToken>()
-      .setConfig(this.config)
-      .setBaseUrl(this.config)
-      .setMethod('GET')
-      .setPath('/channels/in_app/tokens')
-      .setRequestSchema(z.any())
-      .setResponseSchema(arrayWithMetadataOfInboxTokenResponse)
-      .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<ArrayWithMetadataOfInboxToken>(request);
-  }
-
-  /**
-   *
-   * @returns {Promise<HttpResponse<InboxToken>>} Created
-   */
-  async saveInAppToken(body: InboxToken, requestConfig?: RequestConfig): Promise<HttpResponse<InboxToken>> {
-    const request = new RequestBuilder<InboxToken>()
-      .setConfig(this.config)
-      .setBaseUrl(this.config)
-      .setMethod('POST')
-      .setPath('/channels/in_app/tokens')
-      .setRequestSchema(inboxTokenRequest)
-      .setResponseSchema(inboxTokenResponse)
-      .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<InboxToken>(request);
-  }
-
-  /**
-   *
-   * @param {string} tokenId -
-   * @returns {Promise<HttpResponse<InboxTokenWithMetadata>>} OK
-   */
-  async getInAppToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<InboxTokenWithMetadata>> {
-    const request = new RequestBuilder<InboxTokenWithMetadata>()
-      .setConfig(this.config)
-      .setBaseUrl(this.config)
-      .setMethod('GET')
-      .setPath('/channels/in_app/tokens/{token_id}')
-      .setRequestSchema(z.any())
-      .setResponseSchema(inboxTokenWithMetadataResponse)
-      .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
-        key: 'token_id',
-        value: tokenId,
-      })
-      .build();
-    return this.client.call<InboxTokenWithMetadata>(request);
-  }
-
-  /**
-   *
-   * @param {string} tokenId -
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
-   */
-  async discardInAppToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
-    const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
-      .setBaseUrl(this.config)
-      .setMethod('DELETE')
-      .setPath('/channels/in_app/tokens/{token_id}')
-      .setRequestSchema(z.any())
-      .setResponseSchema(discardResultResponse)
-      .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
-        key: 'token_id',
-        value: tokenId,
-      })
-      .build();
-    return this.client.call<DiscardResult>(request);
-  }
-
   /**
    *
    * @returns {Promise<HttpResponse<ArrayWithMetadataOfApnsToken>>} OK
@@ -224,6 +129,108 @@ export class ChannelsService extends BaseService {
       .setBaseUrl(this.config)
       .setMethod('DELETE')
       .setPath('/channels/mobile_push/apns/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(discardResultResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ArrayWithMetadataOfExpoToken>>} OK
+   */
+  async getMobilePushExpoTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfExpoToken>> {
+    const request = new RequestBuilder<ArrayWithMetadataOfExpoToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/channels/mobile_push/expo/tokens')
+      .setRequestSchema(z.any())
+      .setResponseSchema(arrayWithMetadataOfExpoTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ArrayWithMetadataOfExpoToken>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ExpoToken>>} Created
+   */
+  async saveMobilePushExpoToken(body: ExpoToken, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoToken>> {
+    const request = new RequestBuilder<ExpoToken>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('POST')
+      .setPath('/channels/mobile_push/expo/tokens')
+      .setRequestSchema(expoTokenRequest)
+      .setResponseSchema(expoTokenResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<ExpoToken>(request);
+  }
+
+  /**
+   *
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<ExpoTokenWithMetadata>>} OK
+   */
+  async getMobilePushExpoToken(
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ExpoTokenWithMetadata>> {
+    const request = new RequestBuilder<ExpoTokenWithMetadata>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/channels/mobile_push/expo/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(expoTokenWithMetadataResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<ExpoTokenWithMetadata>(request);
+  }
+
+  /**
+   *
+   * @param {string} tokenId -
+   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   */
+  async discardMobilePushExpoToken(
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder<DiscardResult>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/channels/mobile_push/expo/tokens/{token_id}')
       .setRequestSchema(z.any())
       .setResponseSchema(discardResultResponse)
       .setRequestContentType(ContentType.Json)
@@ -460,16 +467,16 @@ export class ChannelsService extends BaseService {
 
   /**
    *
-   * @returns {Promise<HttpResponse<any>>} Created
+   * @returns {Promise<HttpResponse<TeamsToken>>} Created
    */
-  async saveTeamsToken(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async saveTeamsToken(body: TeamsToken, requestConfig?: RequestConfig): Promise<HttpResponse<TeamsToken>> {
+    const request = new RequestBuilder<TeamsToken>()
       .setConfig(this.config)
       .setBaseUrl(this.config)
       .setMethod('POST')
       .setPath('/channels/teams/tokens')
-      .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
+      .setRequestSchema(teamsTokenRequest)
+      .setResponseSchema(teamsTokenResponse)
       .setRequestContentType(ContentType.Json)
       .setResponseContentType(ContentType.Json)
       .setRetryAttempts(this.config, requestConfig)
@@ -478,7 +485,7 @@ export class ChannelsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<TeamsToken>(request);
   }
 
   /**

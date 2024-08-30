@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { webPushToken, webPushTokenRequest, webPushTokenResponse } from './web-push-token';
+import { webPushToken, webPushTokenRequest, webPushTokenResponse } from '../../common/web-push-token';
 import {
   webPushTokenWithMetadataMetadata,
   webPushTokenWithMetadataMetadataRequest,

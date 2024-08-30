@@ -12,7 +12,7 @@ export const githubConfig = z.lazy(() => {
 /**
  *
  * @typedef  {GithubConfig} githubConfig
- * @property {string} - The signing secret to verify incoming requests from Stripe
+ * @property {string} - The signing secret to verify incoming requests from Github
  */
 export type GithubConfig = z.infer<typeof githubConfig>;
 

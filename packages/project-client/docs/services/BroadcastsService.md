@@ -2,13 +2,13 @@
 
 A list of all methods in the `BroadcastsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                               | Description                              |
-| :------------------------------------ | :--------------------------------------- |
-| [list_broadcasts](#list_broadcasts)   | Returns a list of broadcasts             |
-| [create_broadcast](#create_broadcast) | Handles the create notification request. |
-| [fetch_broadcast](#fetch_broadcast)   | Returns a broadcast                      |
+| Methods                             | Description                              |
+| :---------------------------------- | :--------------------------------------- |
+| [listBroadcasts](#listbroadcasts)   | Returns a list of broadcasts             |
+| [createBroadcast](#createbroadcast) | Handles the create notification request. |
+| [fetchBroadcast](#fetchbroadcast)   | Returns a broadcast                      |
 
-## list_broadcasts
+## listBroadcasts
 
 Returns a list of broadcasts
 
@@ -35,7 +35,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## create_broadcast
+## createBroadcast
 
 Handles the create notification request.
 
@@ -62,40 +62,42 @@ import { Broadcast, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
+  const category = 'Mx';
+
   const email: Email = {
-    actionUrl: 'ipsum esse',
-    content: 'sit veniam',
-    title: 'in id ex aliqua',
+    actionUrl: 'laborum commodo magna',
+    content: 'exdolore elit',
+    title: 'Excepteur occaecat eu ipsum',
   };
 
   const inApp: InApp = {
-    actionUrl: 'ullamco labore voluptate',
-    content: 'consequat magna Excepteur dolor mollit',
-    title: 'irure',
+    actionUrl: 'inest ea elit exercitation dolore',
+    content: 'aute eiusmod ea',
+    title: 'nisi elit amet laboris tempor',
   };
 
   const mobilePush: MobilePush = {
-    actionUrl: 'elitdolore adipisicing anim elit deserunt',
-    content: 'cupidatat elit',
-    title: 'ut',
+    actionUrl: 'nulla consequat do incididunt',
+    content: 'incididunt',
+    title: 'dolore labore',
   };
 
   const slack: Slack = {
-    actionUrl: 'sit commodo consectetur Duis',
-    content: 'proident sed quis Lorem',
-    title: 'magna reprehenderit ut deserunt nisi',
+    actionUrl: 'sunt ullamco esse',
+    content: 'aliqua amet',
+    title: 'aliquip',
   };
 
   const sms: Sms = {
-    actionUrl: 'irure Excepteur exercitation',
-    content: 'et adipisicing in elit',
-    title: 'sint voluptate ipsum cupidatat',
+    actionUrl: 'sit Excepteur',
+    content: 'incididunt laboris',
+    title: 'qui',
   };
 
   const webPush: WebPush = {
-    actionUrl: 'dolor in elit id',
-    content: 'est ea elit exercitation dolore',
-    title: 'aute eiusmod ea',
+    actionUrl: 'Excepteur laboris est',
+    content: 'veniam sed ullamco',
+    title: 'volupta',
   };
 
   const channels: Channels = {
@@ -122,15 +124,17 @@ import { Broadcast, Client } from '@magicbell/project-client';
     providers: providers,
   };
 
+  const topic = 'sPebCt_M0';
+
   const broadcast: Broadcast = {
-    actionUrl: 'Ut aliquip est laboris',
-    category: 'sint in eu tempor magna',
-    content: 'aliqua ad dolor officia',
+    actionUrl: 'tempor enim',
+    category: category,
+    content: 'nostrud',
     customAttributes: {},
     overrides: overrides,
     recipients: [{}],
-    title: 'nisi elit amet laboris tempor',
-    topic: 'nulla consequat do incididunt',
+    title: 'reprehenderit culpa aliqua ',
+    topic: topic,
   };
 
   const { data } = await client.broadcasts.createBroadcast(input);
@@ -139,7 +143,7 @@ import { Broadcast, Client } from '@magicbell/project-client';
 })();
 ```
 
-## fetch_broadcast
+## fetchBroadcast
 
 Returns a broadcast
 

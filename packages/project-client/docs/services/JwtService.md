@@ -2,16 +2,16 @@
 
 A list of all methods in the `JwtService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                       | Description |
-| :-------------------------------------------- | :---------- |
-| [fetch_project_tokens](#fetch_project_tokens) |             |
-| [create_project_jwt](#create_project_jwt)     |             |
-| [discard_project_jwt](#discard_project_jwt)   |             |
-| [create_user_jwt](#create_user_jwt)           |             |
-| [discard_user_jwt](#discard_user_jwt)         |             |
-| [fetch_user_tokens](#fetch_user_tokens)       |             |
+| Methods                                   | Description |
+| :---------------------------------------- | :---------- |
+| [fetchProjectTokens](#fetchprojecttokens) |             |
+| [createProjectJwt](#createprojectjwt)     |             |
+| [discardProjectJwt](#discardprojectjwt)   |             |
+| [createUserJwt](#createuserjwt)           |             |
+| [discardUserJwt](#discarduserjwt)         |             |
+| [fetchUserTokens](#fetchusertokens)       |             |
 
-## fetch_project_tokens
+## fetchProjectTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/jwt/project`
@@ -36,7 +36,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## create_project_jwt
+## createProjectJwt
 
 - HTTP Method: `POST`
 - Endpoint: `/jwt/project`
@@ -62,8 +62,8 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 1,
-    name: 'culpa',
+    expiry: 9,
+    name: 'ullamco ut',
   };
 
   const { data } = await client.jwt.createProjectJwt(input);
@@ -72,7 +72,7 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
 })();
 ```
 
-## discard_project_jwt
+## discardProjectJwt
 
 - HTTP Method: `DELETE`
 - Endpoint: `/jwt/project/{token_id}`
@@ -103,7 +103,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## create_user_jwt
+## createUserJwt
 
 - HTTP Method: `POST`
 - Endpoint: `/jwt/user`
@@ -129,10 +129,10 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
   });
 
   const createUserTokenRequest: CreateUserTokenRequest = {
-    email: 'laborum esse do dolore ullamco',
-    expiry: 6,
-    externalId: 'ut officia',
-    name: 'exercitation esse',
+    email: 'deserunt sit nisi ut',
+    expiry: 10,
+    externalId: 'Duis amet magna',
+    name: 'veniam id adipisicing ea',
   };
 
   const { data } = await client.jwt.createUserJwt(input);
@@ -141,7 +141,7 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
 })();
 ```
 
-## discard_user_jwt
+## discardUserJwt
 
 - HTTP Method: `DELETE`
 - Endpoint: `/jwt/user/{token_id}`
@@ -172,7 +172,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## fetch_user_tokens
+## fetchUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/jwt/user/{user_id}`

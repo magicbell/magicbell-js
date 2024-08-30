@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token';
 import {
   teamsTokenWithMetadataMetadata,
   teamsTokenWithMetadataMetadataRequest,
@@ -11,7 +12,7 @@ import {
  */
 export const teamsTokenWithMetadata = z.lazy(() => {
   return z.object({
-    data: z.any(),
+    data: teamsToken,
     metadata: teamsTokenWithMetadataMetadata,
   });
 });
@@ -19,7 +20,7 @@ export const teamsTokenWithMetadata = z.lazy(() => {
 /**
  *
  * @typedef  {TeamsTokenWithMetadata} teamsTokenWithMetadata
- * @property {any}
+ * @property {TeamsToken}
  * @property {TeamsTokenWithMetadataMetadata}
  */
 export type TeamsTokenWithMetadata = z.infer<typeof teamsTokenWithMetadata>;
@@ -31,7 +32,7 @@ export type TeamsTokenWithMetadata = z.infer<typeof teamsTokenWithMetadata>;
 export const teamsTokenWithMetadataResponse = z.lazy(() => {
   return z
     .object({
-      data: z.any(),
+      data: teamsTokenResponse,
       metadata: teamsTokenWithMetadataMetadataResponse,
     })
     .transform((data) => ({
@@ -46,7 +47,7 @@ export const teamsTokenWithMetadataResponse = z.lazy(() => {
  */
 export const teamsTokenWithMetadataRequest = z.lazy(() => {
   return z
-    .object({ data: z.any().nullish(), metadata: teamsTokenWithMetadataMetadataRequest.nullish() })
+    .object({ data: teamsTokenRequest.nullish(), metadata: teamsTokenWithMetadataMetadataRequest.nullish() })
     .transform((data) => ({
       data: data['data'],
       metadata: data['metadata'],

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { apnsToken, apnsTokenRequest, apnsTokenResponse } from './apns-token';
-import { dataMetadata2, dataMetadata2Request, dataMetadata2Response } from './data-metadata-2';
+import { dataMetadata1, dataMetadata1Request, dataMetadata1Response } from './data-metadata-1';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -9,7 +9,7 @@ import { dataMetadata2, dataMetadata2Request, dataMetadata2Response } from './da
 export const arrayWithMetadataOfApnsTokenData = z.lazy(() => {
   return z.object({
     data: apnsToken,
-    metadata: dataMetadata2,
+    metadata: dataMetadata1,
   });
 });
 
@@ -17,7 +17,7 @@ export const arrayWithMetadataOfApnsTokenData = z.lazy(() => {
  *
  * @typedef  {ArrayWithMetadataOfApnsTokenData} arrayWithMetadataOfApnsTokenData
  * @property {ApnsToken}
- * @property {DataMetadata2}
+ * @property {DataMetadata1}
  */
 export type ArrayWithMetadataOfApnsTokenData = z.infer<typeof arrayWithMetadataOfApnsTokenData>;
 
@@ -29,7 +29,7 @@ export const arrayWithMetadataOfApnsTokenDataResponse = z.lazy(() => {
   return z
     .object({
       data: apnsTokenResponse,
-      metadata: dataMetadata2Response,
+      metadata: dataMetadata1Response,
     })
     .transform((data) => ({
       data: data['data'],
@@ -42,7 +42,7 @@ export const arrayWithMetadataOfApnsTokenDataResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const arrayWithMetadataOfApnsTokenDataRequest = z.lazy(() => {
-  return z.object({ data: apnsTokenRequest.nullish(), metadata: dataMetadata2Request.nullish() }).transform((data) => ({
+  return z.object({ data: apnsTokenRequest.nullish(), metadata: dataMetadata1Request.nullish() }).transform((data) => ({
     data: data['data'],
     metadata: data['metadata'],
   }));

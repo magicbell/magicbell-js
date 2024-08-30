@@ -156,7 +156,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   pkgJson = sortPackageJson(pkgJson);
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
 
-  execSync(`yarn --cwd ../.. eslint --fix .`, { stdio: 'inherit' });
+  execSync(`yarn --cwd ../.. eslint --fix ./packages/user-client`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../.. manypkg fix`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../..`, { stdio: 'inherit' });
   execSync(`yarn build`, { stdio: 'inherit' });

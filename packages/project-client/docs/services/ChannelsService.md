@@ -2,123 +2,28 @@
 
 A list of all methods in the `ChannelsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                                     | Description |
-| :-------------------------------------------------------------------------- | :---------- |
-| [get_in_app_user_tokens](#get_in_app_user_tokens)                           |             |
-| [get_in_app_user_token](#get_in_app_user_token)                             |             |
-| [discard_in_app_user_token](#discard_in_app_user_token)                     |             |
-| [get_mobile_push_apns_user_tokens](#get_mobile_push_apns_user_tokens)       |             |
-| [get_mobile_push_apns_user_token](#get_mobile_push_apns_user_token)         |             |
-| [discard_mobile_push_apns_user_token](#discard_mobile_push_apns_user_token) |             |
-| [get_mobile_push_fcm_user_tokens](#get_mobile_push_fcm_user_tokens)         |             |
-| [get_mobile_push_fcm_user_token](#get_mobile_push_fcm_user_token)           |             |
-| [discard_mobile_push_fcm_user_token](#discard_mobile_push_fcm_user_token)   |             |
-| [get_slack_user_tokens](#get_slack_user_tokens)                             |             |
-| [get_slack_user_token](#get_slack_user_token)                               |             |
-| [discard_slack_user_token](#discard_slack_user_token)                       |             |
-| [get_teams_user_tokens](#get_teams_user_tokens)                             |             |
-| [get_teams_user_token](#get_teams_user_token)                               |             |
-| [discard_teams_user_token](#discard_teams_user_token)                       |             |
-| [get_web_push_user_tokens](#get_web_push_user_tokens)                       |             |
-| [get_web_push_user_token](#get_web_push_user_token)                         |             |
-| [discard_web_push_user_token](#discard_web_push_user_token)                 |             |
+| Methods                                                           | Description |
+| :---------------------------------------------------------------- | :---------- |
+| [getMobilePushApnsUserTokens](#getmobilepushapnsusertokens)       |             |
+| [getMobilePushApnsUserToken](#getmobilepushapnsusertoken)         |             |
+| [discardMobilePushApnsUserToken](#discardmobilepushapnsusertoken) |             |
+| [getMobilePushExpoUserTokens](#getmobilepushexpousertokens)       |             |
+| [getMobilePushExpoUserToken](#getmobilepushexpousertoken)         |             |
+| [discardMobilePushExpoUserToken](#discardmobilepushexpousertoken) |             |
+| [getMobilePushFcmUserTokens](#getmobilepushfcmusertokens)         |             |
+| [getMobilePushFcmUserToken](#getmobilepushfcmusertoken)           |             |
+| [discardMobilePushFcmUserToken](#discardmobilepushfcmusertoken)   |             |
+| [getSlackUserTokens](#getslackusertokens)                         |             |
+| [getSlackUserToken](#getslackusertoken)                           |             |
+| [discardSlackUserToken](#discardslackusertoken)                   |             |
+| [getTeamsUserTokens](#getteamsusertokens)                         |             |
+| [getTeamsUserToken](#getteamsusertoken)                           |             |
+| [discardTeamsUserToken](#discardteamsusertoken)                   |             |
+| [getWebPushUserTokens](#getwebpushusertokens)                     |             |
+| [getWebPushUserToken](#getwebpushusertoken)                       |             |
+| [discardWebPushUserToken](#discardwebpushusertoken)               |             |
 
-## get_in_app_user_tokens
-
-- HTTP Method: `GET`
-- Endpoint: `/users/{user_id}/channels/in_app/tokens`
-
-**Parameters**
-
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
-
-**Return Type**
-
-`ArrayWithMetadataOfInboxToken`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from '@magicbell/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.channels.getInAppUserTokens('user_id');
-
-  console.log(data);
-})();
-```
-
-## get_in_app_user_token
-
-- HTTP Method: `GET`
-- Endpoint: `/users/{user_id}/channels/in_app/tokens/{token_id}`
-
-**Parameters**
-
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
-
-**Return Type**
-
-`InboxTokenWithMetadata`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from '@magicbell/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.channels.getInAppUserToken('user_id', 'token_id');
-
-  console.log(data);
-})();
-```
-
-## discard_in_app_user_token
-
-- HTTP Method: `DELETE`
-- Endpoint: `/users/{user_id}/channels/in_app/tokens/{token_id}`
-
-**Parameters**
-
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
-
-**Return Type**
-
-`DiscardResult`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from '@magicbell/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.channels.discardInAppUserToken('user_id', 'token_id');
-
-  console.log(data);
-})();
-```
-
-## get_mobile_push_apns_user_tokens
+## getMobilePushApnsUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/mobile_push/apns/tokens`
@@ -149,7 +54,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_mobile_push_apns_user_token
+## getMobilePushApnsUserToken
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}`
@@ -181,7 +86,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## discard_mobile_push_apns_user_token
+## discardMobilePushApnsUserToken
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}`
@@ -213,7 +118,102 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_mobile_push_fcm_user_tokens
+## getMobilePushExpoUserTokens
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/mobile_push/expo/tokens`
+
+**Parameters**
+
+| Name   | Type   | Required | Description |
+| :----- | :----- | :------- | :---------- |
+| userId | string | ✅       |             |
+
+**Return Type**
+
+`ArrayWithMetadataOfExpoToken`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getMobilePushExpoUserTokens('user_id');
+
+  console.log(data);
+})();
+```
+
+## getMobilePushExpoUserToken
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`ExpoTokenWithMetadata`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getMobilePushExpoUserToken('user_id', 'token_id');
+
+  console.log(data);
+})();
+```
+
+## discardMobilePushExpoUserToken
+
+- HTTP Method: `DELETE`
+- Endpoint: `/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardResult`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.discardMobilePushExpoUserToken('user_id', 'token_id');
+
+  console.log(data);
+})();
+```
+
+## getMobilePushFcmUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/mobile_push/fcm/tokens`
@@ -244,7 +244,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_mobile_push_fcm_user_token
+## getMobilePushFcmUserToken
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}`
@@ -276,7 +276,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## discard_mobile_push_fcm_user_token
+## discardMobilePushFcmUserToken
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}`
@@ -308,7 +308,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_slack_user_tokens
+## getSlackUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/slack/tokens`
@@ -339,7 +339,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_slack_user_token
+## getSlackUserToken
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/slack/tokens/{token_id}`
@@ -371,7 +371,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## discard_slack_user_token
+## discardSlackUserToken
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}/channels/slack/tokens/{token_id}`
@@ -403,7 +403,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_teams_user_tokens
+## getTeamsUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/teams/tokens`
@@ -434,7 +434,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_teams_user_token
+## getTeamsUserToken
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/teams/tokens/{token_id}`
@@ -466,7 +466,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## discard_teams_user_token
+## discardTeamsUserToken
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}/channels/teams/tokens/{token_id}`
@@ -498,7 +498,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_web_push_user_tokens
+## getWebPushUserTokens
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/web_push/tokens`
@@ -529,7 +529,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_web_push_user_token
+## getWebPushUserToken
 
 - HTTP Method: `GET`
 - Endpoint: `/users/{user_id}/channels/web_push/tokens/{token_id}`
@@ -561,7 +561,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## discard_web_push_user_token
+## discardWebPushUserToken
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}/channels/web_push/tokens/{token_id}`

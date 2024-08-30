@@ -7,11 +7,13 @@
 | recipients       | any[]     | ✅       |             |
 | title            | string    | ✅       |             |
 | actionUrl        | string    | ❌       |             |
-| category         | string    | ❌       |             |
+| category         | Category  | ❌       |             |
 | content          | string    | ❌       |             |
 | customAttributes | any       | ❌       |             |
 | overrides        | Overrides | ❌       |             |
-| topic            | string    | ❌       |             |
+| topic            | Topic     | ❌       |             |
+
+# Category
 
 # Overrides
 
@@ -108,3 +110,5 @@
 | postmark  | any  | ❌       |             |
 | sendgrid  | any  | ❌       |             |
 | slack     | any  | ❌       |             |
+
+# Topic
