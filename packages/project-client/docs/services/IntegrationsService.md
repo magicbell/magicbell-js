@@ -2,63 +2,71 @@
 
 A list of all methods in the `IntegrationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                                     | Description |
-| :-------------------------------------------------------------------------- | :---------- |
-| [list_integrations](#list_integrations)                                     |             |
-| [get_apns_integration](#get_apns_integration)                               |             |
-| [save_apns_integration](#save_apns_integration)                             |             |
-| [delete_apns_integration](#delete_apns_integration)                         |             |
-| [delete_apns_integration_by_id](#delete_apns_integration_by_id)             |             |
-| [get_fcm_integration](#get_fcm_integration)                                 |             |
-| [save_fcm_integration](#save_fcm_integration)                               |             |
-| [delete_fcm_integration](#delete_fcm_integration)                           |             |
-| [delete_fcm_integration_by_id](#delete_fcm_integration_by_id)               |             |
-| [get_github_integration](#get_github_integration)                           |             |
-| [save_github_integration](#save_github_integration)                         |             |
-| [delete_github_integration](#delete_github_integration)                     |             |
-| [delete_github_integration_by_id](#delete_github_integration_by_id)         |             |
-| [get_inbox_integration](#get_inbox_integration)                             |             |
-| [save_inbox_integration](#save_inbox_integration)                           |             |
-| [delete_inbox_integration](#delete_inbox_integration)                       |             |
-| [delete_inbox_integration_by_id](#delete_inbox_integration_by_id)           |             |
-| [get_mailgun_integration](#get_mailgun_integration)                         |             |
-| [save_mailgun_integration](#save_mailgun_integration)                       |             |
-| [delete_mailgun_integration](#delete_mailgun_integration)                   |             |
-| [delete_mailgun_integration_by_id](#delete_mailgun_integration_by_id)       |             |
-| [get_ping_email_integration](#get_ping_email_integration)                   |             |
-| [save_ping_email_integration](#save_ping_email_integration)                 |             |
-| [delete_ping_email_integration](#delete_ping_email_integration)             |             |
-| [delete_ping_email_integration_by_id](#delete_ping_email_integration_by_id) |             |
-| [get_sendgrid_integration](#get_sendgrid_integration)                       |             |
-| [save_sendgrid_integration](#save_sendgrid_integration)                     |             |
-| [delete_sendgrid_integration](#delete_sendgrid_integration)                 |             |
-| [delete_sendgrid_integration_by_id](#delete_sendgrid_integration_by_id)     |             |
-| [get_ses_integration](#get_ses_integration)                                 |             |
-| [save_ses_integration](#save_ses_integration)                               |             |
-| [delete_ses_integration](#delete_ses_integration)                           |             |
-| [delete_ses_integration_by_id](#delete_ses_integration_by_id)               |             |
-| [get_slack_integration](#get_slack_integration)                             |             |
-| [save_slack_integration](#save_slack_integration)                           |             |
-| [delete_slack_integration](#delete_slack_integration)                       |             |
-| [delete_slack_integration_by_id](#delete_slack_integration_by_id)           |             |
-| [get_stripe_integration](#get_stripe_integration)                           |             |
-| [save_stripe_integration](#save_stripe_integration)                         |             |
-| [delete_stripe_integration](#delete_stripe_integration)                     |             |
-| [delete_stripe_integration_by_id](#delete_stripe_integration_by_id)         |             |
-| [get_templates_integration](#get_templates_integration)                     |             |
-| [save_templates_integration](#save_templates_integration)                   |             |
-| [delete_templates_integration](#delete_templates_integration)               |             |
-| [delete_templates_integration_by_id](#delete_templates_integration_by_id)   |             |
-| [get_twilio_integration](#get_twilio_integration)                           |             |
-| [save_twilio_integration](#save_twilio_integration)                         |             |
-| [delete_twilio_integration](#delete_twilio_integration)                     |             |
-| [delete_twilio_integration_by_id](#delete_twilio_integration_by_id)         |             |
-| [get_web_push_integration](#get_web_push_integration)                       |             |
-| [save_web_push_integration](#save_web_push_integration)                     |             |
-| [delete_web_push_integration](#delete_web_push_integration)                 |             |
-| [delete_web_push_integration_by_id](#delete_web_push_integration_by_id)     |             |
+| Methods                                                           | Description |
+| :---------------------------------------------------------------- | :---------- |
+| [listIntegrations](#listintegrations)                             |             |
+| [getApnsIntegration](#getapnsintegration)                         |             |
+| [saveApnsIntegration](#saveapnsintegration)                       |             |
+| [deleteApnsIntegration](#deleteapnsintegration)                   |             |
+| [deleteApnsIntegrationById](#deleteapnsintegrationbyid)           |             |
+| [getAwssnsIntegration](#getawssnsintegration)                     |             |
+| [saveAwssnsIntegration](#saveawssnsintegration)                   |             |
+| [deleteAwssnsIntegration](#deleteawssnsintegration)               |             |
+| [deleteAwssnsIntegrationById](#deleteawssnsintegrationbyid)       |             |
+| [getExpoIntegration](#getexpointegration)                         |             |
+| [saveExpoIntegration](#saveexpointegration)                       |             |
+| [deleteExpoIntegration](#deleteexpointegration)                   |             |
+| [deleteExpoIntegrationById](#deleteexpointegrationbyid)           |             |
+| [getFcmIntegration](#getfcmintegration)                           |             |
+| [saveFcmIntegration](#savefcmintegration)                         |             |
+| [deleteFcmIntegration](#deletefcmintegration)                     |             |
+| [deleteFcmIntegrationById](#deletefcmintegrationbyid)             |             |
+| [getGithubIntegration](#getgithubintegration)                     |             |
+| [saveGithubIntegration](#savegithubintegration)                   |             |
+| [deleteGithubIntegration](#deletegithubintegration)               |             |
+| [deleteGithubIntegrationById](#deletegithubintegrationbyid)       |             |
+| [getInboxIntegration](#getinboxintegration)                       |             |
+| [saveInboxIntegration](#saveinboxintegration)                     |             |
+| [deleteInboxIntegration](#deleteinboxintegration)                 |             |
+| [deleteInboxIntegrationById](#deleteinboxintegrationbyid)         |             |
+| [getMailgunIntegration](#getmailgunintegration)                   |             |
+| [saveMailgunIntegration](#savemailgunintegration)                 |             |
+| [deleteMailgunIntegration](#deletemailgunintegration)             |             |
+| [deleteMailgunIntegrationById](#deletemailgunintegrationbyid)     |             |
+| [getPingEmailIntegration](#getpingemailintegration)               |             |
+| [savePingEmailIntegration](#savepingemailintegration)             |             |
+| [deletePingEmailIntegration](#deletepingemailintegration)         |             |
+| [deletePingEmailIntegrationById](#deletepingemailintegrationbyid) |             |
+| [getSendgridIntegration](#getsendgridintegration)                 |             |
+| [saveSendgridIntegration](#savesendgridintegration)               |             |
+| [deleteSendgridIntegration](#deletesendgridintegration)           |             |
+| [deleteSendgridIntegrationById](#deletesendgridintegrationbyid)   |             |
+| [getSesIntegration](#getsesintegration)                           |             |
+| [saveSesIntegration](#savesesintegration)                         |             |
+| [deleteSesIntegration](#deletesesintegration)                     |             |
+| [deleteSesIntegrationById](#deletesesintegrationbyid)             |             |
+| [getSlackIntegration](#getslackintegration)                       |             |
+| [saveSlackIntegration](#saveslackintegration)                     |             |
+| [deleteSlackIntegration](#deleteslackintegration)                 |             |
+| [deleteSlackIntegrationById](#deleteslackintegrationbyid)         |             |
+| [getStripeIntegration](#getstripeintegration)                     |             |
+| [saveStripeIntegration](#savestripeintegration)                   |             |
+| [deleteStripeIntegration](#deletestripeintegration)               |             |
+| [deleteStripeIntegrationById](#deletestripeintegrationbyid)       |             |
+| [getTemplatesIntegration](#gettemplatesintegration)               |             |
+| [saveTemplatesIntegration](#savetemplatesintegration)             |             |
+| [deleteTemplatesIntegration](#deletetemplatesintegration)         |             |
+| [deleteTemplatesIntegrationById](#deletetemplatesintegrationbyid) |             |
+| [getTwilioIntegration](#gettwiliointegration)                     |             |
+| [saveTwilioIntegration](#savetwiliointegration)                   |             |
+| [deleteTwilioIntegration](#deletetwiliointegration)               |             |
+| [deleteTwilioIntegrationById](#deletetwiliointegrationbyid)       |             |
+| [getWebPushIntegration](#getwebpushintegration)                   |             |
+| [saveWebPushIntegration](#savewebpushintegration)                 |             |
+| [deleteWebPushIntegration](#deletewebpushintegration)             |             |
+| [deleteWebPushIntegrationById](#deletewebpushintegrationbyid)     |             |
 
-## list_integrations
+## listIntegrations
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations`
@@ -83,7 +91,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_apns_integration
+## getApnsIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/apns`
@@ -108,7 +116,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_apns_integration
+## saveApnsIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/apns`
@@ -136,11 +144,11 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
   const badge = Badge.UNREAD;
 
   const apnsConfig: ApnsConfig = {
-    appId: 'iAYqMy12w9iGu7ff1EsX`Yd7Od!5pFmfIMNCPzvFgZiCEg+ihR0u2bAgXQlSqFd8hh',
+    appId: 'd9OR5CpLVzt',
     badge: badge,
     certificate: 'certificate',
-    keyId: 'nostrud ul',
-    teamId: 'ut reprehe',
+    keyId: 'Utpariatur',
+    teamId: 'in Excepte',
   };
 
   const { data } = await client.integrations.saveApnsIntegration(input);
@@ -149,7 +157,7 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_apns_integration
+## deleteApnsIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/apns`
@@ -170,7 +178,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_apns_integration_by_id
+## deleteApnsIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/apns/{id}`
@@ -197,7 +205,223 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_fcm_integration
+## getAwssnsIntegration
+
+- HTTP Method: `GET`
+- Endpoint: `/integrations/awssns`
+
+**Return Type**
+
+`ListIntegrationsResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.getAwssnsIntegration();
+
+  console.log(data);
+})();
+```
+
+## saveAwssnsIntegration
+
+- HTTP Method: `PUT`
+- Endpoint: `/integrations/awssns`
+
+**Parameters**
+
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | [AwssnsConfig](../models/AwssnsConfig.md) | ❌       | The request body. |
+
+**Return Type**
+
+`AwssnsConfig`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { AwssnsConfig, Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const awssnsConfig: AwssnsConfig = {
+    webhookSigningSecret: 'pariatur',
+  };
+
+  const { data } = await client.integrations.saveAwssnsIntegration(input);
+
+  console.log(data);
+})();
+```
+
+## deleteAwssnsIntegration
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/awssns`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteAwssnsIntegration();
+
+  console.log(data);
+})();
+```
+
+## deleteAwssnsIntegrationById
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/awssns/{id}`
+
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| id   | string | ✅       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteAwssnsIntegrationById('id');
+
+  console.log(data);
+})();
+```
+
+## getExpoIntegration
+
+- HTTP Method: `GET`
+- Endpoint: `/integrations/expo`
+
+**Return Type**
+
+`ListIntegrationsResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.getExpoIntegration();
+
+  console.log(data);
+})();
+```
+
+## saveExpoIntegration
+
+- HTTP Method: `PUT`
+- Endpoint: `/integrations/expo`
+
+**Parameters**
+
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | [ExpoConfig](../models/ExpoConfig.md) | ❌       | The request body. |
+
+**Return Type**
+
+`ExpoConfig`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, ExpoConfig } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const expoConfig: ExpoConfig = {
+    accessToken: 'dolore non mo',
+  };
+
+  const { data } = await client.integrations.saveExpoIntegration(input);
+
+  console.log(data);
+})();
+```
+
+## deleteExpoIntegration
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/expo`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteExpoIntegration();
+
+  console.log(data);
+})();
+```
+
+## deleteExpoIntegrationById
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/expo/{id}`
+
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| id   | string | ✅       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteExpoIntegrationById('id');
+
+  console.log(data);
+})();
+```
+
+## getFcmIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/fcm`
@@ -222,7 +446,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_fcm_integration
+## saveFcmIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/fcm`
@@ -269,7 +493,7 @@ import { Client, FcmConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_fcm_integration
+## deleteFcmIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/fcm`
@@ -290,7 +514,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_fcm_integration_by_id
+## deleteFcmIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/fcm/{id}`
@@ -317,7 +541,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_github_integration
+## getGithubIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/github`
@@ -342,7 +566,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_github_integration
+## saveGithubIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/github`
@@ -368,7 +592,7 @@ import { Client, GithubConfig } from '@magicbell/project-client';
   });
 
   const githubConfig: GithubConfig = {
-    webhookSigningSecret: 'adipisicing',
+    webhookSigningSecret: 'id dol',
   };
 
   const { data } = await client.integrations.saveGithubIntegration(input);
@@ -377,7 +601,7 @@ import { Client, GithubConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_github_integration
+## deleteGithubIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/github`
@@ -398,7 +622,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_github_integration_by_id
+## deleteGithubIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/github/{id}`
@@ -425,7 +649,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_inbox_integration
+## getInboxIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/inbox`
@@ -450,7 +674,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_inbox_integration
+## saveInboxIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/inbox`
@@ -475,10 +699,116 @@ import { Client, InboxConfig } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
+  const images: Images = {
+    emptyInboxUrl: 'emptyInboxUrl',
+  };
+
+  const banner: Banner = {
+    backgroundColor: 'backgroundColor',
+    backgroundOpacity: 9.28,
+    fontSize: 'fontSize',
+    textColor: 'textColor',
+  };
+
+  const dialog: Dialog = {
+    accentColor: 'accentColor',
+    backgroundColor: 'backgroundColor',
+    textColor: 'textColor',
+  };
+
+  const footer: Footer = {
+    backgroundColor: 'backgroundColor',
+    borderRadius: 'borderRadius',
+    fontSize: 'fontSize',
+    textColor: 'textColor',
+  };
+
+  const header: Header = {
+    backgroundColor: 'backgroundColor',
+    borderRadius: 'borderRadius',
+    fontFamily: 'fontFamily',
+    fontSize: 'fontSize',
+    textColor: 'textColor',
+  };
+
+  const icon: Icon = {
+    borderColor: 'borderColor',
+    width: 'width',
+  };
+
+  const defaultHover: DefaultHover = {
+    backgroundColor: 'backgroundColor',
+  };
+
+  const defaultState: DefaultState = {
+    color: 'color',
+  };
+
+  const default_: Default_ = {
+    backgroundColor: 'backgroundColor',
+    borderRadius: 'borderRadius',
+    fontFamily: 'fontFamily',
+    fontSize: 'fontSize',
+    hover: defaultHover,
+    margin: 'margin',
+    state: defaultState,
+    textColor: 'textColor',
+  };
+
+  const unreadHover: UnreadHover = {
+    backgroundColor: 'backgroundColor',
+  };
+
+  const unreadState: UnreadState = {
+    color: 'color',
+  };
+
+  const unread: Unread = {
+    backgroundColor: 'backgroundColor',
+    hover: unreadHover,
+    state: unreadState,
+    textColor: 'textColor',
+  };
+
+  const unseenHover: UnseenHover = {
+    backgroundColor: 'backgroundColor',
+  };
+
+  const unseenState: UnseenState = {
+    color: 'color',
+  };
+
+  const unseen: Unseen = {
+    backgroundColor: 'backgroundColor',
+    hover: unseenHover,
+    state: unseenState,
+    textColor: 'textColor',
+  };
+
+  const notification: Notification = {
+    default: default_,
+    unread: unread,
+    unseen: unseen,
+  };
+
+  const unseenBadge: UnseenBadge = {
+    backgroundColor: 'backgroundColor',
+  };
+
+  const theme: Theme = {
+    banner: banner,
+    dialog: dialog,
+    footer: footer,
+    header: header,
+    icon: icon,
+    notification: notification,
+    unseenBadge: unseenBadge,
+  };
+
   const inboxConfig: InboxConfig = {
-    images: {},
-    locale: 'dolore moll',
-    theme: {},
+    images: images,
+    locale: 'ad consequat',
+    theme: theme,
   };
 
   const { data } = await client.integrations.saveInboxIntegration(input);
@@ -487,7 +817,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_inbox_integration
+## deleteInboxIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/inbox`
@@ -508,7 +838,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_inbox_integration_by_id
+## deleteInboxIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/inbox/{id}`
@@ -535,7 +865,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_mailgun_integration
+## getMailgunIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/mailgun`
@@ -560,7 +890,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_mailgun_integration
+## saveMailgunIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/mailgun`
@@ -588,8 +918,8 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
   const mailgunConfigRegion = MailgunConfigRegion.US;
 
   const mailgunConfig: MailgunConfig = {
-    apiKey: 'molli',
-    domain: 'do ',
+    apiKey: 'voluptate ',
+    domain: 'magna a',
     region: mailgunConfigRegion,
   };
 
@@ -599,7 +929,7 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_mailgun_integration
+## deleteMailgunIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/mailgun`
@@ -620,7 +950,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_mailgun_integration_by_id
+## deleteMailgunIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/mailgun/{id}`
@@ -647,7 +977,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_ping_email_integration
+## getPingEmailIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/ping_email`
@@ -672,7 +1002,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_ping_email_integration
+## savePingEmailIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/ping_email`
@@ -698,7 +1028,7 @@ import { Client, PingConfig } from '@magicbell/project-client';
   });
 
   const pingConfig: PingConfig = {
-    url: 'laboris Duis',
+    url: 'et laborum pariatur esse consequat',
   };
 
   const { data } = await client.integrations.savePingEmailIntegration(input);
@@ -707,7 +1037,7 @@ import { Client, PingConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_ping_email_integration
+## deletePingEmailIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ping_email`
@@ -728,7 +1058,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_ping_email_integration_by_id
+## deletePingEmailIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ping_email/{id}`
@@ -755,7 +1085,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_sendgrid_integration
+## getSendgridIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/sendgrid`
@@ -780,7 +1110,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_sendgrid_integration
+## saveSendgridIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/sendgrid`
@@ -827,7 +1157,7 @@ import { Client, SendgridConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_sendgrid_integration
+## deleteSendgridIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/sendgrid`
@@ -848,7 +1178,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_sendgrid_integration_by_id
+## deleteSendgridIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/sendgrid/{id}`
@@ -875,7 +1205,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_ses_integration
+## getSesIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/ses`
@@ -900,7 +1230,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_ses_integration
+## saveSesIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/ses`
@@ -931,11 +1261,11 @@ import { Client, SesConfig } from '@magicbell/project-client';
   };
 
   const sesConfig: SesConfig = {
-    endpoint: 'dolor e',
+    endpoint: 'sed',
     from: sesConfigFrom,
-    keyId: 'cillum no',
-    region: 'dolor culpa co',
-    secretKey: 'pa',
+    keyId: 'pariat',
+    region: 'temp',
+    secretKey: 'c',
   };
 
   const { data } = await client.integrations.saveSesIntegration(input);
@@ -944,7 +1274,7 @@ import { Client, SesConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_ses_integration
+## deleteSesIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ses`
@@ -965,7 +1295,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_ses_integration_by_id
+## deleteSesIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ses/{id}`
@@ -992,7 +1322,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_slack_integration
+## getSlackIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/slack`
@@ -1017,7 +1347,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_slack_integration
+## saveSlackIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/slack`
@@ -1043,11 +1373,10 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: '6SX2ZNPXG8L',
-    clientId: '430411624.02717865207',
-    clientSecret: 'labore in ea fugiat magnainsed v',
-    id: 'CM0mBN',
-    signingSecret: 'exercitation Excepteur et euanim',
+    appId: 'LAUM',
+    clientId: '48902.5229056738',
+    clientSecret: 'esse inest cupidatat dolore offi',
+    signingSecret: 'deserunt quis ametnulla dolore a',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(input);
@@ -1056,7 +1385,7 @@ import { Client, SlackConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_slack_integration
+## deleteSlackIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/slack`
@@ -1077,7 +1406,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_slack_integration_by_id
+## deleteSlackIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/slack/{id}`
@@ -1104,7 +1433,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_stripe_integration
+## getStripeIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/stripe`
@@ -1129,7 +1458,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_stripe_integration
+## saveStripeIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/stripe`
@@ -1155,7 +1484,7 @@ import { Client, StripeConfig } from '@magicbell/project-client';
   });
 
   const stripeConfig: StripeConfig = {
-    webhookSigningSecret: 'et nisi',
+    webhookSigningSecret: 'mollit',
   };
 
   const { data } = await client.integrations.saveStripeIntegration(input);
@@ -1164,7 +1493,7 @@ import { Client, StripeConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_stripe_integration
+## deleteStripeIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/stripe`
@@ -1185,7 +1514,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_stripe_integration_by_id
+## deleteStripeIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/stripe/{id}`
@@ -1212,7 +1541,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_templates_integration
+## getTemplatesIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/templates`
@@ -1237,7 +1566,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_templates_integration
+## saveTemplatesIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/templates`
@@ -1270,7 +1599,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_templates_integration
+## deleteTemplatesIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/templates`
@@ -1291,7 +1620,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_templates_integration_by_id
+## deleteTemplatesIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/templates/{id}`
@@ -1318,7 +1647,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_twilio_integration
+## getTwilioIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/twilio`
@@ -1343,7 +1672,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_twilio_integration
+## saveTwilioIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/twilio`
@@ -1371,10 +1700,10 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
   const twilioConfigRegion = TwilioConfigRegion.US1;
 
   const twilioConfig: TwilioConfig = {
-    accountSid: 'sunt',
-    apiKey: 'laboris non sunt fugiat',
-    apiSecret: 'aliqua sit laboris labore',
-    from: '+959',
+    accountSid: 'Ut fugiat culpa ex',
+    apiKey: 'sunt',
+    apiSecret: 'commodo dolo',
+    from: '+738',
     region: twilioConfigRegion,
   };
 
@@ -1384,7 +1713,7 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_twilio_integration
+## deleteTwilioIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/twilio`
@@ -1405,7 +1734,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_twilio_integration_by_id
+## deleteTwilioIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/twilio/{id}`
@@ -1432,7 +1761,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## get_web_push_integration
+## getWebPushIntegration
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/web_push`
@@ -1457,7 +1786,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## save_web_push_integration
+## saveWebPushIntegration
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/web_push`
@@ -1483,8 +1812,8 @@ import { Client, WebpushConfig } from '@magicbell/project-client';
   });
 
   const webpushConfig: WebpushConfig = {
-    privateKey: 'pariatur occaecat magna',
-    publicKey: 'exercitati',
+    privateKey: 'Lorem minim',
+    publicKey: 'amet ullamco in',
   };
 
   const { data } = await client.integrations.saveWebPushIntegration(input);
@@ -1493,7 +1822,7 @@ import { Client, WebpushConfig } from '@magicbell/project-client';
 })();
 ```
 
-## delete_web_push_integration
+## deleteWebPushIntegration
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/web_push`
@@ -1514,7 +1843,7 @@ import { Client } from '@magicbell/project-client';
 })();
 ```
 
-## delete_web_push_integration_by_id
+## deleteWebPushIntegrationById
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/web_push/{id}`

@@ -13,9 +13,9 @@
 | Name     | Type          | Required | Description |
 | :------- | :------------ | :------- | :---------- |
 | data     | ApnsToken     | ✅       |             |
-| metadata | DataMetadata2 | ✅       |             |
+| metadata | DataMetadata1 | ✅       |             |
 
-# DataMetadata2
+# DataMetadata1
 
 **Properties**
 

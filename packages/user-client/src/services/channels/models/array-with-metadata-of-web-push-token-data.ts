@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
+import { webPushToken, webPushTokenRequest, webPushTokenResponse } from '../../common/web-push-token';
 import { dataMetadata6, dataMetadata6Request, dataMetadata6Response } from './data-metadata-6';
-import { webPushToken, webPushTokenRequest, webPushTokenResponse } from './web-push-token';
 
 /**
  * The shape of the model inside the application code - what the users use

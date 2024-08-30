@@ -19,6 +19,7 @@ OpenAPI 3.1.0 Specification for MagicBell API.
 - [Authentication](#authentication)
   - [Access Token Authentication](#access-token-authentication)
 - [Setting a Custom Timeout](#setting-a-custom-timeout)
+- [Sample Usage](#sample-usage)
 - [Services](#services)
 - [Models](#models)
 
@@ -67,6 +68,24 @@ You can set a custom timeout for the SDK's HTTP requests as follows:
 const client = new Client({ timeout: 10000 });
 ```
 
+# Sample Usage
+
+Below is a comprehensive example demonstrating how to authenticate and call a simple endpoint:
+
+```ts
+import { Client } from '@magicbell/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getMobilePushApnsTokens();
+
+  console.log(data);
+})();
+```
+
 ## Services
 
 The SDK provides various services to interact with the API.
@@ -90,13 +109,13 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                         | Description |
 | :------------------------------------------------------------------------------------------- | :---------- |
-| [ArrayWithMetadataOfInboxToken](documentation/models/ArrayWithMetadataOfInboxToken.md)       |             |
-| [InboxToken](documentation/models/InboxToken.md)                                             |             |
-| [InboxTokenWithMetadata](documentation/models/InboxTokenWithMetadata.md)                     |             |
-| [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
 | [ArrayWithMetadataOfApnsToken](documentation/models/ArrayWithMetadataOfApnsToken.md)         |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
 | [ApnsTokenWithMetadata](documentation/models/ApnsTokenWithMetadata.md)                       |             |
+| [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
+| [ArrayWithMetadataOfExpoToken](documentation/models/ArrayWithMetadataOfExpoToken.md)         |             |
+| [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
+| [ExpoTokenWithMetadata](documentation/models/ExpoTokenWithMetadata.md)                       |             |
 | [ArrayWithMetadataOfFcmToken](documentation/models/ArrayWithMetadataOfFcmToken.md)           |             |
 | [FcmToken](documentation/models/FcmToken.md)                                                 |             |
 | [FcmTokenWithMetadata](documentation/models/FcmTokenWithMetadata.md)                         |             |
@@ -104,6 +123,7 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackToken](documentation/models/SlackToken.md)                                             |             |
 | [SlackTokenWithMetadata](documentation/models/SlackTokenWithMetadata.md)                     |             |
 | [ArrayWithMetadataOfTeamsToken](documentation/models/ArrayWithMetadataOfTeamsToken.md)       |             |
+| [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
 | [TeamsTokenWithMetadata](documentation/models/TeamsTokenWithMetadata.md)                     |             |
 | [ArrayWithMetadataOfWebPushToken](documentation/models/ArrayWithMetadataOfWebPushToken.md)   |             |
 | [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
@@ -112,6 +132,7 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackInstallation](documentation/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](documentation/models/SlackFinishInstallResponse.md)             |             |
 | [SlackStartInstall](documentation/models/SlackStartInstall.md)                               |             |
+| [SlackStartInstallResponseContent](documentation/models/SlackStartInstallResponseContent.md) |             |
 | [TemplatesInstallation](documentation/models/TemplatesInstallation.md)                       |             |
 | [WebPushStartInstallationResponse](documentation/models/WebPushStartInstallationResponse.md) |             |
 

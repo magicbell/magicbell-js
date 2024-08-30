@@ -1,10 +1,11 @@
 import { z } from 'zod';
 
-import { SerializationStyle } from '../../http/serialization/base-serializer';
 import { RequestBuilder } from '../../http/transport/request-builder';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
 import { BaseService } from '../base-service';
 import { ApnsConfig, apnsConfigRequest, apnsConfigResponse } from './models/apns-config';
+import { AwssnsConfig, awssnsConfigRequest, awssnsConfigResponse } from './models/awssns-config';
+import { ExpoConfig, expoConfigRequest, expoConfigResponse } from './models/expo-config';
 import { FcmConfig, fcmConfigRequest, fcmConfigResponse } from './models/fcm-config';
 import { GithubConfig, githubConfigRequest, githubConfigResponse } from './models/github-config';
 import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config';
@@ -116,6 +117,188 @@ export class IntegrationsService extends BaseService {
       .setBaseUrl(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/awssns')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<AwssnsConfig>>} OK
+   */
+  async saveAwssnsIntegration(body: AwssnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfig>> {
+    const request = new RequestBuilder<AwssnsConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/awssns')
+      .setRequestSchema(awssnsConfigRequest)
+      .setResponseSchema(awssnsConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<AwssnsConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/awssns')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/awssns/{id}')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'id',
+        value: id,
+      })
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ListIntegrationsResponse>>} OK
+   */
+  async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
+    const request = new RequestBuilder<ListIntegrationsResponse>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/integrations/expo')
+      .setRequestSchema(z.any())
+      .setResponseSchema(listIntegrationsResponseResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<ListIntegrationsResponse>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<ExpoConfig>>} OK
+   */
+  async saveExpoIntegration(body: ExpoConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfig>> {
+    const request = new RequestBuilder<ExpoConfig>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/integrations/expo')
+      .setRequestSchema(expoConfigRequest)
+      .setResponseSchema(expoConfigResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<ExpoConfig>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/expo')
+      .setRequestSchema(z.any())
+      .setResponseSchema(z.undefined())
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<undefined>(request);
+  }
+
+  /**
+   *
+   * @param {string} id -
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
+    const request = new RequestBuilder<undefined>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('DELETE')
+      .setPath('/integrations/expo/{id}')
       .setRequestSchema(z.any())
       .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)

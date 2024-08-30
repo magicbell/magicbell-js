@@ -8,11 +8,6 @@ export const slackConfig = z.lazy(() => {
     appId: z.string().regex(/^[0-9A-Z]+$/),
     clientId: z.string().regex(/^[0-9]+\.[0-9]+$/),
     clientSecret: z.string().min(32).max(32),
-    id: z
-      .string()
-      .min(1)
-      .regex(/^[\w]*/)
-      .optional(),
     signingSecret: z.string().min(32).max(32),
   });
 });
@@ -20,7 +15,6 @@ export const slackConfig = z.lazy(() => {
 /**
  *
  * @typedef  {SlackConfig} slackConfig
- * @property {string}
  * @property {string}
  * @property {string}
  * @property {string}
@@ -38,18 +32,12 @@ export const slackConfigResponse = z.lazy(() => {
       app_id: z.string().regex(/^[0-9A-Z]+$/),
       client_id: z.string().regex(/^[0-9]+\.[0-9]+$/),
       client_secret: z.string().min(32).max(32),
-      id: z
-        .string()
-        .min(1)
-        .regex(/^[\w]*/)
-        .optional(),
       signing_secret: z.string().min(32).max(32),
     })
     .transform((data) => ({
       appId: data['app_id'],
       clientId: data['client_id'],
       clientSecret: data['client_secret'],
-      id: data['id'],
       signingSecret: data['signing_secret'],
     }));
 });
@@ -64,14 +52,12 @@ export const slackConfigRequest = z.lazy(() => {
       appId: z.string().nullish(),
       clientId: z.string().nullish(),
       clientSecret: z.string().nullish(),
-      id: z.string().nullish(),
       signingSecret: z.string().nullish(),
     })
     .transform((data) => ({
       app_id: data['appId'],
       client_id: data['clientId'],
       client_secret: data['clientSecret'],
-      id: data['id'],
       signing_secret: data['signingSecret'],
     }));
 });
