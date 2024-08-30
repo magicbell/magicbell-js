@@ -79,6 +79,8 @@ export default class MbWebPushButton extends MbButton {
 
       this._state = this.skipSuccess ? 'idle' : 'success';
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log('failed to subscribe', err);
       this._state = 'error';
     }
   }

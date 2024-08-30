@@ -26,6 +26,7 @@ export default {
     exportConditions: mode === 'dev' ? ['development'] : [],
     preferBuiltins: true,
     browser: true,
+    rootDir: '../../',
   },
   preserveSymlinks: true,
   mimeTypes: {

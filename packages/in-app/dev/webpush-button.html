@@ -4,13 +4,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Button Demo</title>
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../node_modules/lit/polyfill-support.js"></script>
 
-    <link rel="stylesheet" href="/src/css/core.css" />
-    <link rel="stylesheet" href="/src/css/theme.css" />
+    <link rel="stylesheet" href="../dist/css/core.css" />
+    <link rel="stylesheet" href="../dist/css/theme.css" />
 
-    <script type="module" src="../dist/mb-webpush-button.js"></script>
+    <script type="module" src="../dist/components/mb-webpush-button.js"></script>
     <style>
       body {
         width: 100vw;
@@ -23,7 +21,7 @@
   </head>
   <body>
     <!-- The default -->
-    <mb-webpush-button access-token="eyJ..."></mb-webpush-button>
+    <mb-webpush-button access-token="eyJ">load</mb-webpush-button>
 
   </body>
 </html>
