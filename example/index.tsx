@@ -21,12 +21,13 @@ function App() {
       <MagicBell
         serverURL="https://api.magicbell.dev"
         apiKey="024b10085bb148d918afe3d92f42b1eba16ad0bd"
-        userEmail="stephan@magicbell.io"
+        userEmail="stephan@example.com"
         locale={customLocale}
         defaultIsOpen={true}
         stores={[
-          { id: 'default', defaultQueryParams: { category: 'billing' } },
-          { id: 'other', defaultQueryParams: { topic: 'issue-1' } },
+          { id: 'default', defaultQueryParams: {} },
+          { id: 'topic', defaultQueryParams: { topic: 'issue-1' } },
+          { id: 'category', defaultQueryParams: { category: 'billing' } },
           { id: 'both', defaultQueryParams: { category: 'billing', topic: 'issue-1' } },
         ]}
       >
@@ -34,8 +35,9 @@ function App() {
           <FloatingNotificationInbox
             tabs={[
               { storeId: 'default', label: 'default' },
-              { storeId: 'other', label: 'other' },
-              { storeId: 'both', label: 'both' },
+              { storeId: 'topic', label: 'topic issue-1' },
+              { storeId: 'category', label: 'category billing' },
+              { storeId: 'both', label: 'topic and category' },
             ]}
             height={450}
             {...props}
