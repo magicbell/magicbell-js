@@ -130,6 +130,15 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   delete pkgJson.scripts['build:all'];
   delete pkgJson.scripts['prepublishOnly'];
 
+  delete pkgJson['unpkg'];
+  delete pkgJson['browser'];
+  pkgJson.exports = {
+    '.': {
+      import: pkgJson.module,
+      require: pkgJson.main,
+    },
+  };
+
   for (const key of Object.keys(pkgJson.devDependencies)) {
     if (/eslint|prettier/.test(key)) {
       delete pkgJson.devDependencies[key];

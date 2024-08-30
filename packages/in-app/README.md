@@ -29,6 +29,18 @@ npm run build:watch
 
 Both the TypeScript compiler and lit-analyzer are configured to be very strict. You may want to change `tsconfig.json` to make them less strict.
 
+## Usage
+
+```astro
+---
+import '@magicbell/in-app/css/core.css';
+import '@magicbell/in-app/css/theme.css';
+import '@magicbell/in-app/components/mb-webpush-button.js';
+---
+
+<mb-webpush-button access-token="{USER_AUTH_TOKEN}">subscribe</mb-webpush-button>
+```
+
 ## Testing
 
 This sample uses modern-web.dev's
