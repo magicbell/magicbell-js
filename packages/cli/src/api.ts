@@ -25,10 +25,6 @@ export const api = createCommand('api')
   .option('-f, --field <string...>', 'Add a field parameter in key=value format')
   .option('-i, --include', 'Include HTTP response status line and headers in the output')
   .option('-s, --silent', 'Do not print the response body')
-  .option(
-    '-t, --token <string>',
-    'The jwt token to use. Set a default with `magicbell config set token` or provide via the MAGICBELL_TOKEN env var',
-  )
   .addOption(
     new Option('-c, --credentials <scope>', 'Specify the authentication scope.')
       .default('project')

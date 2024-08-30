@@ -38,8 +38,7 @@ function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserCl
   const defaultOptions = {
     apiKey: project?.apiKey,
     apiSecret: project?.apiSecret,
-    // arg has highest prio, then env, then stored in config file
-    token: token || process.env.MAGICBELL_TOKEN || project.token,
+    token: token || project?.token,
     userEmail: userEmail,
     userExternalId: userExternalId,
     host: host || project?.host,
