@@ -14,10 +14,10 @@ import { MagicBellProvider } from '@magicbell/react-headless';
 const stores = [
   { id: 'default', defaultQueryParams: {} },
   { id: 'unread', defaultQueryParams: { read: false } },
--  { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
-+  { id: 'billing', defaultQueryParams: { category: 'billing' } },
--  { id: 'support', defaultQueryParams: { topics: ['support'] } },
-+  { id: 'support', defaultQueryParams: { topic: 'support' } },
+- { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
++ { id: 'billing', defaultQueryParams: { category: 'billing' } },
+- { id: 'support', defaultQueryParams: { topics: ['support'] } },
++ { id: 'support', defaultQueryParams: { topic: 'support' } },
 ];
 
 export default function Index({ children }) {
