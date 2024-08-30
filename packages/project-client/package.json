@@ -16,16 +16,13 @@
   "author": "MagicBell",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/commonjs/index.js"
     }
   },
   "main": "./dist/commonjs/index.js",
-  "unpkg": "./dist/index.umd.js",
   "module": "./dist/esm/index.js",
   "source": "./src/index.ts",
-  "browser": "./dist/index.umd.js",
   "types": "./dist/commonjs/index.d.ts",
   "files": [
     "dist",
