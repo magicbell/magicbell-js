@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@magicbell/codegen": "0.2.7",
-    "@types/configstore": "^5.0.1",
+    "@types/configstore": "^6.0.2",
     "commander": "^9.5.0",
     "configstore": "^5.0.1",
     "eventsource": "^2.0.2",

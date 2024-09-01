@@ -4219,10 +4219,10 @@
   resolved "https://registry.yarnpkg.com/@types/command-line-args/-/command-line-args-5.2.3.tgz#553ce2fd5acf160b448d307649b38ffc60d39639"
   integrity sha512-uv0aG6R0Y8WHZLTamZwtfsDLVRnOa+n+n5rEvFWL5Na5gZ8V2Teab/duDPFzIIIhs9qizDpcavCusCLJZu62Kw==
 
-"@types/configstore@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@types/configstore/-/configstore-5.0.1.tgz#7be34d28ce29a408c98e717ada0488664eaf6173"
-  integrity sha512-c/QCznvk7bLKGhHETj29rqKufui3jaAxjBhK4R2zUrMG5UG0qTwfWYxBoUbH8JCyDjdCWMIxPJ7/Fdz1UcAnWg==
+"@types/configstore@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@types/configstore/-/configstore-6.0.2.tgz#0b3d5e176cc5db6c1636a87a333d333693243f3a"
+  integrity sha512-OS//b51j9uyR3zvwD04Kfs5kHpve2qalQ18JhY/ho3voGYUTPLEG90/ocfKPI48hyHH8T04f7KEEbK6Ue60oZQ==
 
 "@types/connect@*":
   version "3.4.38"
