@@ -87,7 +87,7 @@
   ],
   "devDependencies": {
     "@magicbell/codegen": "^0.2.7",
-    "@size-limit/preset-small-lib": "^8.2.6",
+    "@size-limit/preset-small-lib": "^11.1.4",
     "ast-types": "^0.14.2",
     "json5": "^2.2.3",
     "openapi-types": "^12.1.3",
