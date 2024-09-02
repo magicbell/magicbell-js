@@ -1,5 +1,39 @@
 # @magicbell/cli
 
+## 4.0.0
+
+### Major Changes
+
+- [#299](https://github.com/magicbell/magicbell-js/pull/299) [`df2c87f`](https://github.com/magicbell/magicbell-js/commit/df2c87fc1889f02c5e3c96b75aac4850531d0985) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Change**!
+
+  We've renamed the `categories` property to `category` and the `topics` property to `topic`, to reflect that these properties only support a single value. We haven't been supporting multiple categories or topics for a while now, and believe that renaming this property is the right thing to do. It requires a small change on your end, but the clear naming reduces the number of potential bugs caused by misunderstanding.
+
+  If you make use of the `categories` or `topics` filters on `magicbell user notifications`, you'll need to rename them to their singular variants.
+
+  ```diff
+  - magicbell user notifications list --topics support
+  + magicbell user notifications list --topic support
+
+  - magicbell user notifications mark-all-read --topics billing
+  + magicbell user notifications mark-all-read --topic billing
+
+  - magicbell user notifications mark-all-seen --topics other
+  + magicbell user notifications mark-all-seen --topic other
+  ```
+
+### Minor Changes
+
+- [#360](https://github.com/magicbell/magicbell-js/pull/360) [`95bd18d`](https://github.com/magicbell/magicbell-js/commit/95bd18dd99be576321a947cacad407679501385a) Thanks [@smeijer](https://github.com/smeijer)! - Auth tokens are now prioritized over api keys.
+
+- [#349](https://github.com/magicbell/magicbell-js/pull/349) [`13e54bc`](https://github.com/magicbell/magicbell-js/commit/13e54bcea17510814685c32bc6cd0f6f34b360d6) Thanks [@smeijer](https://github.com/smeijer)! - define more notification delivery statuses, added `skipped`, `dropped`, `failed`, and `delivered`.
+
+### Patch Changes
+
+- [#348](https://github.com/magicbell/magicbell-js/pull/348) [`39832a3`](https://github.com/magicbell/magicbell-js/commit/39832a3f5d35ee4c3aba7b0788a7cfc893c07b08) Thanks [@smeijer](https://github.com/smeijer)! - removed function to delete push subscriptions, as it doesn't exist on our v1 (current) api.
+
+- Updated dependencies [[`95bd18d`](https://github.com/magicbell/magicbell-js/commit/95bd18dd99be576321a947cacad407679501385a), [`13e54bc`](https://github.com/magicbell/magicbell-js/commit/13e54bcea17510814685c32bc6cd0f6f34b360d6), [`39832a3`](https://github.com/magicbell/magicbell-js/commit/39832a3f5d35ee4c3aba7b0788a7cfc893c07b08), [`e5027a8`](https://github.com/magicbell/magicbell-js/commit/e5027a817d7e85d3291099e4df93bd5b409be44b)]:
+  - magicbell@4.0.0
+
 ## 3.6.1
 
 ### Patch Changes

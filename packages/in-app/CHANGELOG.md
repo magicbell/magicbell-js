@@ -1,5 +1,14 @@
 # @magicbell/in-app
 
+## 0.2.2
+
+### Patch Changes
+
+- [#357](https://github.com/magicbell/magicbell-js/pull/357) [`139cbb0`](https://github.com/magicbell/magicbell-js/commit/139cbb03633fbf83dcdd8fa92cb5f60dd0ea3531) Thanks [@smeijer](https://github.com/smeijer)! - updated to use new `@magicbell/user-client` version
+
+- Updated dependencies [[`139cbb0`](https://github.com/magicbell/magicbell-js/commit/139cbb03633fbf83dcdd8fa92cb5f60dd0ea3531), [`036278a`](https://github.com/magicbell/magicbell-js/commit/036278ac94df336514454ecee4f5e4cdc1dc75da), [`8f20ec9`](https://github.com/magicbell/magicbell-js/commit/8f20ec9bbea55371b27cf59b22501dcbf758e8e1)]:
+  - @magicbell/user-client@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
