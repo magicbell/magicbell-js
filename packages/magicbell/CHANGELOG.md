@@ -1,5 +1,41 @@
 # magicbell
 
+## 4.0.0
+
+### Major Changes
+
+- [#361](https://github.com/magicbell/magicbell-js/pull/361) [`e5027a8`](https://github.com/magicbell/magicbell-js/commit/e5027a817d7e85d3291099e4df93bd5b409be44b) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Change**!
+
+  We've renamed the `categories` property to `category` and the `topics` property to `topic`, to reflect that these properties only support a single value. We haven't been supporting multiple categories or topics for a while now, and believe that renaming this property is the right thing to do. It requires a small change on your end, but the clear naming reduces the number of potential bugs caused by misunderstanding.
+
+  If you use `topics` or `categories` filters in the `UserClient`, you'll need to update those params to their singular variant.
+
+  ```diff
+  import { UserClient } from 'magicbell/user-client';
+
+  const magicbell = new UserClient({
+    apiKey: 'your-api-key',
+    userEmail: 'you@example.com',
+  });
+
+  const notifications = await magicbell.notifications.list({
+  -  categories: ['billing'],
+  +  category: 'billing',
+  -  topics: ['invoice-1'],
+  +  topic: 'invoice-1',
+  });
+  ```
+
+### Minor Changes
+
+- [#360](https://github.com/magicbell/magicbell-js/pull/360) [`95bd18d`](https://github.com/magicbell/magicbell-js/commit/95bd18dd99be576321a947cacad407679501385a) Thanks [@smeijer](https://github.com/smeijer)! - Auth tokens are now prioritized over api keys.
+
+- [#349](https://github.com/magicbell/magicbell-js/pull/349) [`13e54bc`](https://github.com/magicbell/magicbell-js/commit/13e54bcea17510814685c32bc6cd0f6f34b360d6) Thanks [@smeijer](https://github.com/smeijer)! - define more notification delivery statuses, added `skipped`, `dropped`, `failed`, and `delivered`.
+
+### Patch Changes
+
+- [#348](https://github.com/magicbell/magicbell-js/pull/348) [`39832a3`](https://github.com/magicbell/magicbell-js/commit/39832a3f5d35ee4c3aba7b0788a7cfc893c07b08) Thanks [@smeijer](https://github.com/smeijer)! - removed function to delete push subscriptions, as it doesn't exist on our v1 (current) api.
+
 ## 3.3.0
 
 ### Minor Changes

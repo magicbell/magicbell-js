@@ -1,5 +1,46 @@
 # @magicbell/react-headless
 
+## 5.0.0
+
+### Major Changes
+
+- [#361](https://github.com/magicbell/magicbell-js/pull/361) [`e5027a8`](https://github.com/magicbell/magicbell-js/commit/e5027a817d7e85d3291099e4df93bd5b409be44b) Thanks [@smeijer](https://github.com/smeijer)! - **Breaking Change**!
+
+  We've renamed the `categories` property to `category` and the `topics` property to `topic`, to reflect that these properties only support a single value. We haven't been supporting multiple categories or topics for a while now, and believe that renaming this property is the right thing to do. It requires a small change on your end, but the clear naming reduces the number of potential bugs caused by misunderstanding.
+
+  If you make use of different stores or filters using the `categories` or `topics` properties, you'll need to rename them to their singular variants.
+
+  ```diff
+  import { MagicBellProvider } from '@magicbell/react-headless';
+
+  const stores = [
+    { id: 'default', defaultQueryParams: {} },
+    { id: 'unread', defaultQueryParams: { read: false } },
+  - { id: 'billing', defaultQueryParams: { categories: ['billing'] } },
+  + { id: 'billing', defaultQueryParams: { category: 'billing' } },
+  - { id: 'support', defaultQueryParams: { topics: ['support'] } },
+  + { id: 'support', defaultQueryParams: { topic: 'support' } },
+  ];
+
+  export default function Index({ children }) {
+    return (
+      <MagicBellProvider
+        apiKey="__MAGICBELL_API_KEY__"
+        userEmail="__MAGICBELL_USER_EMAIL__"
+        userKey="__MAGICBELL_USER_KEY__"
+        stores={stores}
+      >
+        {children}
+      </MagicBell>
+    );
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`95bd18d`](https://github.com/magicbell/magicbell-js/commit/95bd18dd99be576321a947cacad407679501385a), [`13e54bc`](https://github.com/magicbell/magicbell-js/commit/13e54bcea17510814685c32bc6cd0f6f34b360d6), [`39832a3`](https://github.com/magicbell/magicbell-js/commit/39832a3f5d35ee4c3aba7b0788a7cfc893c07b08), [`e5027a8`](https://github.com/magicbell/magicbell-js/commit/e5027a817d7e85d3291099e4df93bd5b409be44b)]:
+  - magicbell@4.0.0
+
 ## 4.5.6
 
 ### Patch Changes
