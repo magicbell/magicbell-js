@@ -9013,10 +9013,10 @@ gzip-size@^7.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-happy-dom@^15.6.0:
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-15.6.0.tgz#45f0049ad49e8525188014e4bf5c5bde5f5520e2"
-  integrity sha512-M2ikOwrC5+KVofexnA0DZbQ0/hSHm2ZFKCmS3Ora11KGNHgHBdlRzZ/dzpDDPxQyqko3yNohFepJclG2T0GeZQ==
+happy-dom@^15.7.3:
+  version "15.7.3"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-15.7.3.tgz#aa1bd91de7ad5fac1ed907558d567c88a8570a8b"
+  integrity sha512-w3RUaYNXFJX5LiNVhOJLK4GqCB1bFj1FvELtpon3HrN8gUpS09V0Vvm4/BBRRj7mLUE1+ch8PKv1JxEp/0IHjA==
   dependencies:
     entities "^4.5.0"
     webidl-conversions "^7.0.0"
