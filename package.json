@@ -94,6 +94,7 @@
     "sort-package-json": "^2.10.0",
     "tiny-glob": "^0.2.9",
     "ts-jest": "^29.2.0",
+    "ts-morph": "^23.0.0",
     "tslib": "^2.6.2",
     "tsx": "^4.19.0",
     "turbo": "^2.1.0",
