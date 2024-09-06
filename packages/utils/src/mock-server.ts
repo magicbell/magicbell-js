@@ -21,13 +21,9 @@ type MockReturnValue =
     }
   | { [key: string]: any };
 
-export function mockHandler(
-  method: keyof typeof rest,
-  path: string,
-  cb: MockReturnValue | ((req: MockedRequest, res: MockedResponse, ctx: InterceptorContext) => MockReturnValue),
-) {
+export function mockHandler(method: keyof typeof rest, path: string, cb: MockReturnValue | InterceptorCallback) {
   path = path.startsWith('/') ? `*${path}` : path;
-  return rest[method](path, (req, res, ctx) => {
+  return rest[method](path, async (req, res, ctx) => {
     const {
       status,
       statusText,
@@ -36,7 +32,7 @@ export function mockHandler(
       cacheControl = 'no-cache',
       passThrough = false,
       ...data
-    } = (typeof cb === 'function' ? cb(req, res, ctx) : cb) || {};
+    } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
 
     if (passThrough) return req.passthrough();
 
@@ -94,7 +90,7 @@ export function setupMockServer(...handlers: RequestHandler[]) {
     const path = typeof pathOrCb === 'string' ? (pathOrCb.startsWith('/') ? `*${pathOrCb}` : pathOrCb) : '*';
 
     server.use(
-      rest[method](path, (req, res, ctx) => {
+      rest[method](path, async (req, res, ctx) => {
         const {
           status,
           json,
@@ -102,7 +98,7 @@ export function setupMockServer(...handlers: RequestHandler[]) {
           cacheControl = 'no-cache',
           passThrough = false,
           ...data
-        } = (typeof cb === 'function' ? cb(req, res, ctx) : cb) || {};
+        } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
 
         if (passThrough) return req.passthrough();
 

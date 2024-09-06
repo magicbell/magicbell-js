@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';
+import IRemoteNotificationPreferences, { CategoryChannelPreference } from '../../types/IRemoteNotificationPreferences';
 import NotificationPreferencesRepository from './NotificationPreferencesRepository';
 
 export interface INotificationPreferences extends IRemoteNotificationPreferences {
@@ -21,6 +21,17 @@ export interface INotificationPreferences extends IRemoteNotificationPreferences
   _repository: NotificationPreferencesRepository;
 }
 
+function sortCategories(categories: CategoryChannelPreference[] = []): CategoryChannelPreference[] {
+  // sort categories and category channels,
+  // so the preferences pane is stable after update
+  categories.sort((a, b) => a.slug.localeCompare(b.slug));
+  for (const cat of categories) {
+    cat.channels.sort((a, b) => a.slug.localeCompare(b.slug));
+  }
+
+  return categories;
+}
+
 /**
  * Remote notification preferences store. It contains all preferences stored in MagicBell servers for this user.
  *
@@ -38,7 +49,8 @@ const useNotificationPreferences = create<INotificationPreferences>((set, get) =
 
     try {
       const { notificationPreferences: json } = await _repository.get();
-      set({ ...json, lastFetchedAt: Date.now() });
+      const categories = sortCategories(json.categories);
+      set({ categories, lastFetchedAt: Date.now() });
     } catch (error) {
       set({ categories: [], lastFetchedAt: Date.now() });
     }
@@ -49,7 +61,8 @@ const useNotificationPreferences = create<INotificationPreferences>((set, get) =
 
     try {
       const { notificationPreferences: json } = await _repository.update(preferences);
-      set({ ...json, lastFetchedAt: Date.now() });
+      const categories = sortCategories(json.categories);
+      set({ categories, lastFetchedAt: Date.now() });
     } catch (error) {
       set({ categories: [], lastFetchedAt: Date.now() });
     }
