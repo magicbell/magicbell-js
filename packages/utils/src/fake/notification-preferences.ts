@@ -5,23 +5,13 @@ export const notificationPreferences = {
       slug: 'comments',
       channels: [
         {
-          label: 'In app',
-          slug: 'in_app',
-          enabled: true,
-        },
-        {
-          label: 'Web push',
-          slug: 'web_push',
-          enabled: true,
-        },
-        {
           label: 'Email',
           slug: 'email',
           enabled: false,
         },
         {
-          label: 'Slack',
-          slug: 'slack',
+          label: 'In app',
+          slug: 'in_app',
           enabled: true,
         },
         {
@@ -30,8 +20,18 @@ export const notificationPreferences = {
           enabled: true,
         },
         {
+          label: 'Slack',
+          slug: 'slack',
+          enabled: true,
+        },
+        {
           label: 'Sms',
           slug: 'sms',
+          enabled: true,
+        },
+        {
+          label: 'Web push',
+          slug: 'web_push',
           enabled: true,
         },
       ],
@@ -41,18 +41,18 @@ export const notificationPreferences = {
       slug: 'new_reply',
       channels: [
         {
+          label: 'Email',
+          slug: 'email',
+          enabled: true,
+        },
+        {
           label: 'In app',
           slug: 'in_app',
           enabled: false,
         },
         {
-          label: 'Web push',
-          slug: 'web_push',
-          enabled: false,
-        },
-        {
-          label: 'Email',
-          slug: 'email',
+          label: 'Mobile push',
+          slug: 'mobile_push',
           enabled: true,
         },
         {
@@ -61,14 +61,14 @@ export const notificationPreferences = {
           enabled: true,
         },
         {
-          label: 'Mobile push',
-          slug: 'mobile_push',
-          enabled: true,
-        },
-        {
           label: 'Sms',
           slug: 'sms',
           enabled: true,
+        },
+        {
+          label: 'Web push',
+          slug: 'web_push',
+          enabled: false,
         },
       ],
     },
