@@ -19,12 +19,12 @@
 
 **Properties**
 
-| Name      | Type      | Required | Description |
-| :-------- | :-------- | :------- | :---------- |
-| channels  | Channels  | ❌       |             |
-| providers | Providers | ❌       |             |
+| Name      | Type              | Required | Description |
+| :-------- | :---------------- | :------- | :---------- |
+| channels  | OverridesChannels | ❌       |             |
+| providers | Providers         | ❌       |             |
 
-# Channels
+# OverridesChannels
 
 **Properties**
 
