@@ -1,5 +1,14 @@
 # @magicbell/embeddable
 
+## 3.3.29
+
+### Patch Changes
+
+- [#371](https://github.com/magicbell/magicbell-js/pull/371) [`8e08182`](https://github.com/magicbell/magicbell-js/commit/8e081822c33ebdadac5932d1ef075c4e1095ec3b) Thanks [@smeijer](https://github.com/smeijer)! - make sure that last category in notification preferences can be scrolled to
+
+- Updated dependencies [[`f8e51c3`](https://github.com/magicbell/magicbell-js/commit/f8e51c3ff0abf4bb9a37937d79a15075d61f21df), [`8e08182`](https://github.com/magicbell/magicbell-js/commit/8e081822c33ebdadac5932d1ef075c4e1095ec3b)]:
+  - @magicbell/magicbell-react@11.0.1
+
 ## 3.3.28
 
 ### Patch Changes
