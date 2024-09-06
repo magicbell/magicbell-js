@@ -21,17 +21,7 @@ type MockReturnValue =
     }
   | { [key: string]: any };
 
-export function mockHandler(
-  method: keyof typeof rest,
-  path: string,
-  cb:
-    | MockReturnValue
-    | ((
-        req: MockedRequest,
-        res: MockedResponse,
-        ctx: InterceptorContext,
-      ) => MockReturnValue | Promise<MockReturnValue>),
-) {
+export function mockHandler(method: keyof typeof rest, path: string, cb: MockReturnValue | InterceptorCallback) {
   path = path.startsWith('/') ? `*${path}` : path;
   return rest[method](path, async (req, res, ctx) => {
     const {
