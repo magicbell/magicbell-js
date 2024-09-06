@@ -24,10 +24,16 @@ type MockReturnValue =
 export function mockHandler(
   method: keyof typeof rest,
   path: string,
-  cb: MockReturnValue | ((req: MockedRequest, res: MockedResponse, ctx: InterceptorContext) => MockReturnValue),
+  cb:
+    | MockReturnValue
+    | ((
+        req: MockedRequest,
+        res: MockedResponse,
+        ctx: InterceptorContext,
+      ) => MockReturnValue | Promise<MockReturnValue>),
 ) {
   path = path.startsWith('/') ? `*${path}` : path;
-  return rest[method](path, (req, res, ctx) => {
+  return rest[method](path, async (req, res, ctx) => {
     const {
       status,
       statusText,
@@ -36,7 +42,7 @@ export function mockHandler(
       cacheControl = 'no-cache',
       passThrough = false,
       ...data
-    } = (typeof cb === 'function' ? cb(req, res, ctx) : cb) || {};
+    } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
 
     if (passThrough) return req.passthrough();
 
