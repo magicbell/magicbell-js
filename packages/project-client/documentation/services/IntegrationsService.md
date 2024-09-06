@@ -144,11 +144,11 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
   const badge = Badge.UNREAD;
 
   const apnsConfig: ApnsConfig = {
-    appId: 'd9OR5CpLVzt',
+    appId: 'D4EQ/tIASto0nj1AzqgjxEjFdO6Src0N',
     badge: badge,
     certificate: 'certificate',
-    keyId: 'Utpariatur',
-    teamId: 'in Excepte',
+    keyId: 'velit exdo',
+    teamId: 'sed labore',
   };
 
   const { data } = await client.integrations.saveApnsIntegration(input);
@@ -256,7 +256,7 @@ import { AwssnsConfig, Client } from '@magicbell/project-client';
   });
 
   const awssnsConfig: AwssnsConfig = {
-    webhookSigningSecret: 'pariatur',
+    webhookSigningSecret: 'u',
   };
 
   const { data } = await client.integrations.saveAwssnsIntegration(input);
@@ -364,7 +364,7 @@ import { Client, ExpoConfig } from '@magicbell/project-client';
   });
 
   const expoConfig: ExpoConfig = {
-    accessToken: 'dolore non mo',
+    accessToken: 'officia fugi',
   };
 
   const { data } = await client.integrations.saveExpoIntegration(input);
@@ -592,7 +592,7 @@ import { Client, GithubConfig } from '@magicbell/project-client';
   });
 
   const githubConfig: GithubConfig = {
-    webhookSigningSecret: 'id dol',
+    webhookSigningSecret: 'ipsum',
   };
 
   const { data } = await client.integrations.saveGithubIntegration(input);
@@ -705,7 +705,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 9.28,
+    backgroundOpacity: 9.19,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -807,7 +807,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const inboxConfig: InboxConfig = {
     images: images,
-    locale: 'ad consequat',
+    locale: 'sit nostru',
     theme: theme,
   };
 
@@ -918,8 +918,8 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
   const mailgunConfigRegion = MailgunConfigRegion.US;
 
   const mailgunConfig: MailgunConfig = {
-    apiKey: 'voluptate ',
-    domain: 'magna a',
+    apiKey: 'in ',
+    domain: 'consequat d',
     region: mailgunConfigRegion,
   };
 
@@ -1028,7 +1028,7 @@ import { Client, PingConfig } from '@magicbell/project-client';
   });
 
   const pingConfig: PingConfig = {
-    url: 'et laborum pariatur esse consequat',
+    url: 'ut incididunt irure Ut',
   };
 
   const { data } = await client.integrations.savePingEmailIntegration(input);
@@ -1261,11 +1261,11 @@ import { Client, SesConfig } from '@magicbell/project-client';
   };
 
   const sesConfig: SesConfig = {
-    endpoint: 'sed',
+    endpoint: 'dolore in occa',
     from: sesConfigFrom,
-    keyId: 'pariat',
-    region: 'temp',
-    secretKey: 'c',
+    keyId: 'sit ex ',
+    region: 'in',
+    secretKey: 'do',
   };
 
   const { data } = await client.integrations.saveSesIntegration(input);
@@ -1373,10 +1373,10 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: 'LAUM',
-    clientId: '48902.5229056738',
-    clientSecret: 'esse inest cupidatat dolore offi',
-    signingSecret: 'deserunt quis ametnulla dolore a',
+    appId: 'EC',
+    clientId: '707.8465562093',
+    clientSecret: 'et exercitation voluptate ametni',
+    signingSecret: 'exercitation Utmollitetad ullamc',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(input);
@@ -1484,7 +1484,7 @@ import { Client, StripeConfig } from '@magicbell/project-client';
   });
 
   const stripeConfig: StripeConfig = {
-    webhookSigningSecret: 'mollit',
+    webhookSigningSecret: 'in',
   };
 
   const { data } = await client.integrations.saveStripeIntegration(input);
@@ -1700,10 +1700,10 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
   const twilioConfigRegion = TwilioConfigRegion.US1;
 
   const twilioConfig: TwilioConfig = {
-    accountSid: 'Ut fugiat culpa ex',
-    apiKey: 'sunt',
-    apiSecret: 'commodo dolo',
-    from: '+738',
+    accountSid: 'qui',
+    apiKey: 'velit',
+    apiSecret: 'cillum magna',
+    from: '+300',
     region: twilioConfigRegion,
   };
 
@@ -1812,8 +1812,8 @@ import { Client, WebpushConfig } from '@magicbell/project-client';
   });
 
   const webpushConfig: WebpushConfig = {
-    privateKey: 'Lorem minim',
-    publicKey: 'amet ullamco in',
+    privateKey: 'labore aliquip tempor enim magna',
+    publicKey: 'labore sunt',
   };
 
   const { data } = await client.integrations.saveWebPushIntegration(input);

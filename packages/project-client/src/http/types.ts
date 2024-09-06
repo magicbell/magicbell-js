@@ -3,7 +3,7 @@ import { ZodType } from 'zod';
 import { Environment } from './environment';
 import { Request } from './transport/request';
 
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD';
 
 export interface SdkConfig {
   baseUrl?: string;
@@ -12,6 +12,7 @@ export interface SdkConfig {
   token?: string;
   retry?: RetryOptions;
   validation?: ValidationOptions;
+  headers?: Record<string, string>;
 }
 
 export interface HttpMetadata {

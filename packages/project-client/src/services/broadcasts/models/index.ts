@@ -4,6 +4,7 @@ export type { Category } from './category';
 export type { Channels } from './channels';
 export type { Email } from './email';
 export type { InApp } from './in-app';
+export type { Links } from './links';
 export type { MobilePush } from './mobile-push';
 export type { Overrides } from './overrides';
 export type { Providers } from './providers';
