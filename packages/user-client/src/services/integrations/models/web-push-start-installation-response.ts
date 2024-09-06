@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const webPushStartInstallationResponse = z.lazy(() => {
   return z.object({
-    authToken: z.string().min(8).max(128),
+    authToken: z.string().min(8),
     publicKey: z.string().min(8).max(128),
   });
 });
@@ -25,7 +25,7 @@ export type WebPushStartInstallationResponse = z.infer<typeof webPushStartInstal
 export const webPushStartInstallationResponseResponse = z.lazy(() => {
   return z
     .object({
-      auth_token: z.string().min(8).max(128),
+      auth_token: z.string().min(8),
       public_key: z.string().min(8).max(128),
     })
     .transform((data) => ({

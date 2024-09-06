@@ -1,6 +1,7 @@
 import { AuthHandler } from './handlers/auth-handler';
 import { RequestHandlerChain } from './handlers/handler-chain';
 import { HookHandler } from './handlers/hook-handler';
+import { HeaderHandler } from './handlers/mb-header-handler';
 import { RequestValidationHandler } from './handlers/request-validation-handler';
 import { ResponseValidationHandler } from './handlers/response-validation-handler';
 import { RetryHandler } from './handlers/retry-handler';
@@ -13,6 +14,7 @@ export class HttpClient {
   private readonly requestHandlerChain = new RequestHandlerChain();
 
   constructor(private config: SdkConfig, hook = new CustomHook()) {
+    this.requestHandlerChain.addHandler(new HeaderHandler());
     this.requestHandlerChain.addHandler(new ResponseValidationHandler());
     this.requestHandlerChain.addHandler(new RequestValidationHandler());
     this.requestHandlerChain.addHandler(new AuthHandler());

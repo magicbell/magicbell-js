@@ -80,7 +80,11 @@ import { Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.broadcasts.listBroadcasts();
+  const { data } = await client.broadcasts.listBroadcasts({
+    pageSize: 10,
+    pageBefore: 'page[before]',
+    pageAfter: 'page[after]',
+  });
 
   console.log(data);
 })();

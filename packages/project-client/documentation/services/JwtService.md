@@ -62,8 +62,8 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 9,
-    name: 'ullamco ut',
+    expiry: 3,
+    name: 'mollit elit commodo Lorem ullamco',
   };
 
   const { data } = await client.jwt.createProjectJwt(input);
@@ -129,10 +129,10 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
   });
 
   const createUserTokenRequest: CreateUserTokenRequest = {
-    email: 'deserunt sit nisi ut',
-    expiry: 10,
-    externalId: 'Duis amet magna',
-    name: 'veniam id adipisicing ea',
+    email: 'ut sunt ullamco sint',
+    expiry: 6,
+    externalId: 'commodo dolore cupidatat et ut',
+    name: 'do ea dolore',
   };
 
   const { data } = await client.jwt.createUserJwt(input);

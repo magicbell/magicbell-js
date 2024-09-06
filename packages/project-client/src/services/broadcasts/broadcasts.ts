@@ -1,18 +1,24 @@
 import { z } from 'zod';
 
-import { SerializationStyle } from '../../http/serialization/base-serializer';
 import { RequestBuilder } from '../../http/transport/request-builder';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
 import { BaseService } from '../base-service';
 import { Broadcast, broadcastRequest, broadcastResponse } from './models/broadcast';
 import { BroadcastListResponse, broadcastListResponseResponse } from './models/broadcast-list-response';
+import { ListBroadcastsParams } from './request-params';
 
 export class BroadcastsService extends BaseService {
   /**
    * Returns a list of broadcasts
+   * @param {number} [pageSize] -
+   * @param {string} [pageBefore] -
+   * @param {string} [pageAfter] -
    * @returns {Promise<HttpResponse<BroadcastListResponse>>} OK
    */
-  async listBroadcasts(requestConfig?: RequestConfig): Promise<HttpResponse<BroadcastListResponse>> {
+  async listBroadcasts(
+    params?: ListBroadcastsParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<BroadcastListResponse>> {
     const request = new RequestBuilder<BroadcastListResponse>()
       .setConfig(this.config)
       .setBaseUrl(this.config)
@@ -25,6 +31,18 @@ export class BroadcastsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
+      .addQueryParam({
+        key: 'page[size]',
+        value: params?.pageSize,
+      })
+      .addQueryParam({
+        key: 'page[before]',
+        value: params?.pageBefore,
+      })
+      .addQueryParam({
+        key: 'page[after]',
+        value: params?.pageAfter,
+      })
       .build();
     return this.client.call<BroadcastListResponse>(request);
   }
