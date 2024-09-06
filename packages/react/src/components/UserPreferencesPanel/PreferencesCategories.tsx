@@ -65,7 +65,6 @@ export default function PreferencesCategories({
     <div
       css={css`
         flex: 1;
-        padding: 16px 20px !important;
         height: 100%;
         overflow-y: auto;
       `}
@@ -75,6 +74,7 @@ export default function PreferencesCategories({
           display: grid;
           gap: 1em;
           grid-template-columns: 2fr ${' 1fr'.repeat(channelHeaders.length).trim()};
+          padding: 16px 20px !important;
         `}
       >
         <div />
