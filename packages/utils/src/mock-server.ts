@@ -100,7 +100,7 @@ export function setupMockServer(...handlers: RequestHandler[]) {
     const path = typeof pathOrCb === 'string' ? (pathOrCb.startsWith('/') ? `*${pathOrCb}` : pathOrCb) : '*';
 
     server.use(
-      rest[method](path, (req, res, ctx) => {
+      rest[method](path, async (req, res, ctx) => {
         const {
           status,
           json,
@@ -108,7 +108,7 @@ export function setupMockServer(...handlers: RequestHandler[]) {
           cacheControl = 'no-cache',
           passThrough = false,
           ...data
-        } = (typeof cb === 'function' ? cb(req, res, ctx) : cb) || {};
+        } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
 
         if (passThrough) return req.passthrough();
 
