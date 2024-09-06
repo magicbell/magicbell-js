@@ -8,6 +8,7 @@ import { rimraf } from 'rimraf';
 import { sortPackageJson } from 'sort-package-json';
 
 import rootPkgJson from '../../../package.json';
+import { applyCodeMods } from './mod';
 
 const debug = Debug('build');
 
@@ -119,6 +120,9 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   await move('output/typescript/README.md', './README.md');
   await move('output/typescript/documentation', './docs');
   await rimraf('output');
+
+  // code mods
+  await applyCodeMods();
 
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
