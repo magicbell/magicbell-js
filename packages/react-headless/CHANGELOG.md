@@ -1,5 +1,11 @@
 # @magicbell/react-headless
 
+## 5.0.1
+
+### Patch Changes
+
+- [#370](https://github.com/magicbell/magicbell-js/pull/370) [`f8e51c3`](https://github.com/magicbell/magicbell-js/commit/f8e51c3ff0abf4bb9a37937d79a15075d61f21df) Thanks [@smeijer](https://github.com/smeijer)! - return categories and category channels from useNotificationPreferences hook in stable order
+
 ## 5.0.0
 
 ### Major Changes
