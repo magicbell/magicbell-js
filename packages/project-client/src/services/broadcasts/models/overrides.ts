@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { channels, channelsRequest, channelsResponse } from './channels.js';
+import { overridesChannels, overridesChannelsRequest, overridesChannelsResponse } from './overrides-channels.js';
 import { providers, providersRequest, providersResponse } from './providers.js';
 
 /**
@@ -8,7 +8,7 @@ import { providers, providersRequest, providersResponse } from './providers.js';
  */
 export const overrides = z.lazy(() => {
   return z.object({
-    channels: channels.optional(),
+    channels: overridesChannels.optional(),
     providers: providers.optional(),
   });
 });
@@ -16,7 +16,7 @@ export const overrides = z.lazy(() => {
 /**
  *
  * @typedef  {Overrides} overrides
- * @property {Channels}
+ * @property {OverridesChannels}
  * @property {Providers}
  */
 export type Overrides = z.infer<typeof overrides>;
@@ -28,7 +28,7 @@ export type Overrides = z.infer<typeof overrides>;
 export const overridesResponse = z.lazy(() => {
   return z
     .object({
-      channels: channelsResponse.optional(),
+      channels: overridesChannelsResponse.optional(),
       providers: providersResponse.optional(),
     })
     .transform((data) => ({
@@ -42,8 +42,10 @@ export const overridesResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const overridesRequest = z.lazy(() => {
-  return z.object({ channels: channelsRequest.nullish(), providers: providersRequest.nullish() }).transform((data) => ({
-    channels: data['channels'],
-    providers: data['providers'],
-  }));
+  return z
+    .object({ channels: overridesChannelsRequest.nullish(), providers: providersRequest.nullish() })
+    .transform((data) => ({
+      channels: data['channels'],
+      providers: data['providers'],
+    }));
 });

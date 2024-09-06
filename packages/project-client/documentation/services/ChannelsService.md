@@ -4,6 +4,9 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 
 | Methods                                                           | Description |
 | :---------------------------------------------------------------- | :---------- |
+| [getProjectDeliveryconfig](#getprojectdeliveryconfig)             |             |
+| [saveProjectDeliveryconfig](#saveprojectdeliveryconfig)           |             |
+| [saveCategoriesDeliveryconfig](#savecategoriesdeliveryconfig)     |             |
 | [getMobilePushApnsUserTokens](#getmobilepushapnsusertokens)       |             |
 | [getMobilePushApnsUserToken](#getmobilepushapnsusertoken)         |             |
 | [discardMobilePushApnsUserToken](#discardmobilepushapnsusertoken) |             |
@@ -22,6 +25,119 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 | [getWebPushUserTokens](#getwebpushusertokens)                     |             |
 | [getWebPushUserToken](#getwebpushusertoken)                       |             |
 | [discardWebPushUserToken](#discardwebpushusertoken)               |             |
+
+## getProjectDeliveryconfig
+
+- HTTP Method: `GET`
+- Endpoint: `/channels/deliveryconfig`
+
+**Return Type**
+
+`DeliveryPlan`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getProjectDeliveryconfig();
+
+  console.log(data);
+})();
+```
+
+## saveProjectDeliveryconfig
+
+- HTTP Method: `PUT`
+- Endpoint: `/channels/deliveryconfig`
+
+**Parameters**
+
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | [DeliveryPlan](../models/DeliveryPlan.md) | ❌       | The request body. |
+
+**Return Type**
+
+`DeliveryPlan`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, DeliveryPlan } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const channelsChannel1 = ChannelsChannel1.INAPP;
+
+  const deliveryPlanChannels: DeliveryPlanChannels = {
+    channel: channelsChannel1,
+    delay: 7,
+    if: 'if',
+  };
+
+  const deliveryPlan: DeliveryPlan = {
+    channels: [deliveryPlanChannels],
+  };
+
+  const { data } = await client.channels.saveProjectDeliveryconfig(input);
+
+  console.log(data);
+})();
+```
+
+## saveCategoriesDeliveryconfig
+
+- HTTP Method: `POST`
+- Endpoint: `/channels/deliveryconfig/categories`
+
+**Parameters**
+
+| Name | Type                                                      | Required | Description       |
+| :--- | :-------------------------------------------------------- | :------- | :---------------- |
+| body | [CategoryDeliveryPlan](../models/CategoryDeliveryPlan.md) | ❌       | The request body. |
+
+**Return Type**
+
+`CategoryDeliveryPlan`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { CategoryDeliveryPlan, Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const channelsChannel2 = ChannelsChannel2.INAPP;
+
+  const categoryDeliveryPlanChannels: CategoryDeliveryPlanChannels = {
+    channel: channelsChannel2,
+    delay: 1,
+    if: 'if',
+  };
+
+  const categoryDeliveryPlan: CategoryDeliveryPlan = {
+    category: '62Lu',
+    channels: [categoryDeliveryPlanChannels],
+    disabled: true,
+  };
+
+  const { data } = await client.channels.saveCategoriesDeliveryconfig(input);
+
+  console.log(data);
+})();
+```
 
 ## getMobilePushApnsUserTokens
 
