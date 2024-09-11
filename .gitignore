@@ -12,3 +12,6 @@ yalc.lock
 
 .turbo
 coverage
+
+.tshy
+.tshy-build

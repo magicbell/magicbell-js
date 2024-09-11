@@ -1,6 +1,6 @@
+import type { Hooks } from '@smeijer/ky';
 import Debug from 'debug';
 import { toCurl } from 'fetch-addons';
-import type { Hooks } from 'ky';
 
 export const info = Debug('magicbell:info');
 export const debug = Debug('magicbell:debug');

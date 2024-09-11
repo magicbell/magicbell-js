@@ -1,4 +1,4 @@
-import ky from 'ky';
+import ky from '@smeijer/ky';
 
 import { Client } from '../client/client.js';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';

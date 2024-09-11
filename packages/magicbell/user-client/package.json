@@ -1,0 +1,4 @@
+{
+  "main": "../dist/commonjs/user-client.js",
+  "types": "../dist/commonjs/user-client.d.ts"
+}

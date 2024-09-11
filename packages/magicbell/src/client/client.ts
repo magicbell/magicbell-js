@@ -1,4 +1,4 @@
-import ky from 'ky';
+import ky from '@smeijer/ky';
 import urlJoin from 'url-join';
 
 import { tryParse } from '../lib/utils.js';

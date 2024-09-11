@@ -1,4 +1,4 @@
-import type { Hooks, NormalizedOptions } from 'ky';
+import type { Hooks, NormalizedOptions } from '@smeijer/ky';
 
 import { ClientOptions } from './types.js';
 

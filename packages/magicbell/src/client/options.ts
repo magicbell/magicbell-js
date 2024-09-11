@@ -1,4 +1,4 @@
-import type { Hooks } from 'ky';
+import type { Hooks } from '@smeijer/ky';
 
 import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from '../lib/utils.js';
 import { ClientOptions } from './types.js';

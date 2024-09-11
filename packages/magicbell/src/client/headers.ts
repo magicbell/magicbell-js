@@ -1,5 +1,5 @@
+import type { Hooks } from '@smeijer/ky';
 import { deleteEmptyHeaders } from 'fetch-addons';
-import type { Hooks } from 'ky';
 
 import { ClientOptions } from './types.js';
 
