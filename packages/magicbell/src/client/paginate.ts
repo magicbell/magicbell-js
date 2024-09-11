@@ -1,4 +1,4 @@
-import { hasOwn } from '../lib/utils';
+import { hasOwn } from '../lib/utils.js';
 
 export const ASYNC_ITERATOR_SYMBOL =
   typeof Symbol !== 'undefined' && Symbol.asyncIterator ? Symbol.asyncIterator : '@@asyncIterator';

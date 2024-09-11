@@ -1,10 +1,10 @@
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { MockedRequest } from 'msw';
 
-import { Client } from './client';
-import { ASYNC_ITERATOR_SYMBOL } from './paginate';
-import { Resource } from './resource';
-import { RequestOptions } from './types';
+import { Client } from './client.js';
+import { ASYNC_ITERATOR_SYMBOL } from './paginate.js';
+import { Resource } from './resource.js';
+import { RequestOptions } from './types.js';
 
 const server = setupMockServer(...mockHandlers);
 

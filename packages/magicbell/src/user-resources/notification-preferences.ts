@@ -2,9 +2,9 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { Resource } from '../client/resource';
-import { type RequestOptions } from '../client/types';
-import * as schemas from '../schemas/notification-preferences';
+import { Resource } from '../client/resource.js';
+import { type RequestOptions } from '../client/types.js';
+import * as schemas from '../schemas/notification-preferences.js';
 
 type GetNotificationPreferencesResponse = FromSchema<typeof schemas.GetNotificationPreferencesResponseSchema>;
 type UpdateNotificationPreferencesResponse = FromSchema<typeof schemas.UpdateNotificationPreferencesResponseSchema>;

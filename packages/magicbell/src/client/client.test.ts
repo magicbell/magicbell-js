@@ -1,6 +1,6 @@
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import { Client as Client } from './client';
+import { Client as Client } from './client.js';
 
 const server = setupMockServer(...mockHandlers);
 

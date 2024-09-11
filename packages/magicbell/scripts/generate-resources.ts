@@ -185,7 +185,7 @@ async function createResource(resource: Resource, children?: Resource[]) {
       // ),
     ]);
 
-  const imports = children?.map((x) => b.importDeclaration([pascalCase((x as any).name)], `./${x.path}`)) || [];
+  const imports = children?.map((x) => b.importDeclaration([pascalCase((x as any).name)], `./${x.path}.js`)) || [];
 
   const methods = resource.methods
     .filter((x) => !x.private)
@@ -213,10 +213,10 @@ async function createResource(resource: Resource, children?: Resource[]) {
     ],
     body: [
       b.importDeclaration(['type FromSchema'], 'json-schema-to-ts'),
-      hasListMethod && b.importDeclaration(['type IterablePromise'], `${dots}/client/method`),
-      b.importDeclaration(['Resource'], `${dots}/client/resource`),
-      b.importDeclaration(['type RequestOptions'], `${dots}/client/types`),
-      b.importDeclaration('* as schemas', `${dots}/schemas/${hyphenCase(resource.path)}`),
+      hasListMethod && b.importDeclaration(['type IterablePromise'], `${dots}/client/method.js`),
+      b.importDeclaration(['Resource'], `${dots}/client/resource.js`),
+      b.importDeclaration(['type RequestOptions'], `${dots}/client/types.js`),
+      b.importDeclaration('* as schemas', `${dots}/schemas/${hyphenCase(resource.path)}.js`),
       ...imports,
       ...types,
       builders.exportNamedDeclaration.from({
@@ -372,7 +372,7 @@ async function updateClient(filePath: string, files: File[]) {
     .map((x) => x.name.replace(/\.ts$/, ''))
     .map((filepath) => [filepath, path.relative(baseDir, filepath).replace(/\//g, '-')] as const)
     .map(([filepath, name]) => ({
-      file: `./${filepath}`,
+      file: `./${filepath}.js`,
       class: pascalCase(name),
       property: camelCase(name),
     }))

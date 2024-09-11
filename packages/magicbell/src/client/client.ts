@@ -1,13 +1,13 @@
 import ky from 'ky';
 import urlJoin from 'url-join';
 
-import { tryParse } from '../lib/utils';
-import { createError } from './error';
-import { withRequestHeaders } from './headers';
-import { withRequestLogging } from './log';
-import { assertHasSomeOptions, assertHasValidOptions, mergeHooks } from './options';
-import { withRequestTelemetry } from './telemetry';
-import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from './types';
+import { tryParse } from '../lib/utils.js';
+import { createError } from './error.js';
+import { withRequestHeaders } from './headers.js';
+import { withRequestLogging } from './log.js';
+import { assertHasSomeOptions, assertHasValidOptions, mergeHooks } from './options.js';
+import { withRequestTelemetry } from './telemetry.js';
+import { ClientOptions, FeatureFlag, RequestArgs, RequestOptions } from './types.js';
 
 export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   host: 'https://api.magicbell.com',

@@ -1,7 +1,7 @@
 import type { Hooks } from 'ky';
 
-import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from '../lib/utils';
-import { ClientOptions } from './types';
+import { hasOwn, isBoolean, isNumber, isObject, isString, joinAnd, joinOr } from '../lib/utils.js';
+import { ClientOptions } from './types.js';
 
 const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean> = {
   host: isString,
