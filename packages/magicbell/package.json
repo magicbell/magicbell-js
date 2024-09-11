@@ -74,7 +74,11 @@
   "sideEffects": false,
   "files": [
     "/dist",
-    "LICENSE"
+    "LICENSE",
+    "/crypto/package.json",
+    "/errors/package.json",
+    "/project-client/package.json",
+    "/user-client/package.json"
   ],
   "homepage": "https://magicbell.com",
   "keywords": [
@@ -94,8 +98,10 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean bundle",
-    "bundle": "tshy",
+    "build": "run-s clean build:bundle build:node10 build:attw",
+    "build:bundle": "tshy",
+    "build:node10": "tsx scripts/fix-node10.ts",
+    "build:attw": "attw -P",
     "codegen": "tsx scripts/generate-resources.ts --dest ./src",
     "start": "npm run clean && run-p 'build:entry:* --watch'",
     "size": "size-limit"
