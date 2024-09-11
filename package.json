@@ -26,7 +26,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand --ci --coverage && yarn --cwd packages/in-app test",
-    "postinstall": "husky && node scripts/sync-paths.js && manypkg check && link-workspaces --no-source",
+    "postinstall": "husky && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:release": "yarn build && changeset publish",

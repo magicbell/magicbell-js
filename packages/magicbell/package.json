@@ -67,10 +67,6 @@
     },
     "./package.json": "./package.json"
   },
-  "publishConfig": {
-    "access": "public",
-    "directory": "./dist"
-  },
   "sideEffects": false,
   "files": [
     "/dist",
