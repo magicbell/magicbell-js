@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { tokens, tokensRequest, tokensResponse } from './tokens';
+import { tokens, tokensRequest, tokensResponse } from './tokens.js';
 
 /**
  * The shape of the model inside the application code - what the users use

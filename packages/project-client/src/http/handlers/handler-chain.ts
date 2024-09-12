@@ -1,5 +1,5 @@
-import { Request } from '../transport/request';
-import { HttpResponse, RequestHandler } from '../types';
+import { Request } from '../transport/request.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class RequestHandlerChain {
   private readonly handlers: RequestHandler[] = [];

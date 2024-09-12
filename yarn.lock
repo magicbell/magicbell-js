@@ -8576,6 +8576,13 @@ find-yarn-workspace-root2@1.2.16:
     micromatch "^4.0.2"
     pkg-dir "^4.2.0"
 
+fix-esm-import-path@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/fix-esm-import-path/-/fix-esm-import-path-1.10.0.tgz#f2d3921f1230dd539240698d6af21f1cb5455fe4"
+  integrity sha512-c4BoKC4qA8GFAPrApmF4j0QNDWeeaGy51C9/QQw2z671sgfdDmOwUbGmPp/bdyQ4SoThB7CEjy97PJ3LlfuvfA==
+  dependencies:
+    debug "^4.3.2"
+
 flat-cache@^3.0.4:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.2.0.tgz#2c0c2d5040c99b1632771a9d105725c0115363ee"

@@ -1,39 +1,39 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata.js';
 import {
   ArrayWithMetadataOfApnsToken,
   arrayWithMetadataOfApnsTokenResponse,
-} from './models/array-with-metadata-of-apns-token';
+} from './models/array-with-metadata-of-apns-token.js';
 import {
   ArrayWithMetadataOfExpoToken,
   arrayWithMetadataOfExpoTokenResponse,
-} from './models/array-with-metadata-of-expo-token';
+} from './models/array-with-metadata-of-expo-token.js';
 import {
   ArrayWithMetadataOfFcmToken,
   arrayWithMetadataOfFcmTokenResponse,
-} from './models/array-with-metadata-of-fcm-token';
+} from './models/array-with-metadata-of-fcm-token.js';
 import {
   ArrayWithMetadataOfSlackToken,
   arrayWithMetadataOfSlackTokenResponse,
-} from './models/array-with-metadata-of-slack-token';
+} from './models/array-with-metadata-of-slack-token.js';
 import {
   ArrayWithMetadataOfTeamsToken,
   arrayWithMetadataOfTeamsTokenResponse,
-} from './models/array-with-metadata-of-teams-token';
+} from './models/array-with-metadata-of-teams-token.js';
 import {
   ArrayWithMetadataOfWebPushToken,
   arrayWithMetadataOfWebPushTokenResponse,
-} from './models/array-with-metadata-of-web-push-token';
-import { DiscardResult, discardResultResponse } from './models/discard-result';
-import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata';
-import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata';
-import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata';
-import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata';
-import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata';
+} from './models/array-with-metadata-of-web-push-token.js';
+import { DiscardResult, discardResultResponse } from './models/discard-result.js';
+import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata.js';
+import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata.js';
+import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata.js';
+import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata.js';
+import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata.js';
 
 export class ChannelsService extends BaseService {
   /**

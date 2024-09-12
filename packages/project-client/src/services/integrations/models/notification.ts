@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { default_, defaultRequest, defaultResponse } from './default_';
-import { unread, unreadRequest, unreadResponse } from './unread';
-import { unseen, unseenRequest, unseenResponse } from './unseen';
+import { default_, defaultRequest, defaultResponse } from './default_.js';
+import { unread, unreadRequest, unreadResponse } from './unread.js';
+import { unseen, unseenRequest, unseenResponse } from './unseen.js';
 
 /**
  * The shape of the model inside the application code - what the users use

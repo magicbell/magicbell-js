@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { replyTo, replyToRequest, replyToResponse } from './reply-to';
-import { sendgridConfigFrom, sendgridConfigFromRequest, sendgridConfigFromResponse } from './sendgrid-config-from';
+import { replyTo, replyToRequest, replyToResponse } from './reply-to.js';
+import { sendgridConfigFrom, sendgridConfigFromRequest, sendgridConfigFromResponse } from './sendgrid-config-from.js';
 
 /**
  * The shape of the model inside the application code - what the users use

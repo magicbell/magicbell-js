@@ -1,2 +1,2 @@
-export { BroadcastsService } from './broadcasts';
-export * from './models';
+export { BroadcastsService } from './broadcasts.js';
+export * from './models/index.js';

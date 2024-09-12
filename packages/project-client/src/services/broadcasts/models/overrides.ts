@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { channels, channelsRequest, channelsResponse } from './channels';
-import { providers, providersRequest, providersResponse } from './providers';
+import { channels, channelsRequest, channelsResponse } from './channels.js';
+import { providers, providersRequest, providersResponse } from './providers.js';
 
 /**
  * The shape of the model inside the application code - what the users use

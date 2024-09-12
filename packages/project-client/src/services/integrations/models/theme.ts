@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
-import { banner, bannerRequest, bannerResponse } from './banner';
-import { dialog, dialogRequest, dialogResponse } from './dialog';
-import { footer, footerRequest, footerResponse } from './footer';
-import { header, headerRequest, headerResponse } from './header';
-import { icon, iconRequest, iconResponse } from './icon';
-import { notification, notificationRequest, notificationResponse } from './notification';
-import { unseenBadge, unseenBadgeRequest, unseenBadgeResponse } from './unseen-badge';
+import { banner, bannerRequest, bannerResponse } from './banner.js';
+import { dialog, dialogRequest, dialogResponse } from './dialog.js';
+import { footer, footerRequest, footerResponse } from './footer.js';
+import { header, headerRequest, headerResponse } from './header.js';
+import { icon, iconRequest, iconResponse } from './icon.js';
+import { notification, notificationRequest, notificationResponse } from './notification.js';
+import { unseenBadge, unseenBadgeRequest, unseenBadgeResponse } from './unseen-badge.js';
 
 /**
  * The shape of the model inside the application code - what the users use

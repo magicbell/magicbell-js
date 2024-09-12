@@ -1,4 +1,4 @@
-import { HttpMetadata } from './types';
+import { HttpMetadata } from './types.js';
 
 export class HttpError extends Error {
   public readonly error: string;

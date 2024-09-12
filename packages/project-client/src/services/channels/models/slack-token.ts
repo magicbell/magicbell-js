@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { oauth, oauthRequest, oauthResponse } from './oauth';
-import { slackTokenWebhook, slackTokenWebhookRequest, slackTokenWebhookResponse } from './slack-token-webhook';
+import { oauth, oauthRequest, oauthResponse } from './oauth.js';
+import { slackTokenWebhook, slackTokenWebhookRequest, slackTokenWebhookResponse } from './slack-token-webhook.js';
 
 /**
  * The shape of the model inside the application code - what the users use

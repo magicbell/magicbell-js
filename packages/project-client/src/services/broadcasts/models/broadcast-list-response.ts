@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { broadcast, broadcastRequest, broadcastResponse } from './broadcast';
-import { links, linksRequest, linksResponse } from './links';
+import { broadcast, broadcastRequest, broadcastResponse } from './broadcast.js';
+import { links, linksRequest, linksResponse } from './links.js';
 
 /**
  * The shape of the model inside the application code - what the users use

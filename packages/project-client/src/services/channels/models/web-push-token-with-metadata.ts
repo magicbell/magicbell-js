@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { webPushToken, webPushTokenRequest, webPushTokenResponse } from './web-push-token';
+import { webPushToken, webPushTokenRequest, webPushTokenResponse } from './web-push-token.js';
 import {
   webPushTokenWithMetadataMetadata,
   webPushTokenWithMetadataMetadataRequest,
   webPushTokenWithMetadataMetadataResponse,
-} from './web-push-token-with-metadata-metadata';
+} from './web-push-token-with-metadata-metadata.js';
 
 /**
  * The shape of the model inside the application code - what the users use

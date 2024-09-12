@@ -1,11 +1,11 @@
 import { ZodType } from 'zod';
 
-import { HttpRequest } from '../hooks/hook';
-import { SerializationStyle } from '../serialization/base-serializer';
-import { HeaderSerializer } from '../serialization/header-serializer';
-import { PathSerializer } from '../serialization/path-serializer';
-import { QuerySerializer } from '../serialization/query-serializer';
-import { ContentType, HttpMethod, RetryOptions, SdkConfig, ValidationOptions } from '../types';
+import { HttpRequest } from '../hooks/hook.js';
+import { SerializationStyle } from '../serialization/base-serializer.js';
+import { HeaderSerializer } from '../serialization/header-serializer.js';
+import { PathSerializer } from '../serialization/path-serializer.js';
+import { QuerySerializer } from '../serialization/query-serializer.js';
+import { ContentType, HttpMethod, RetryOptions, SdkConfig, ValidationOptions } from '../types.js';
 
 export interface CreateRequestParameters<T> {
   baseUrl: string;

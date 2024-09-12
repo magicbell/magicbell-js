@@ -1,6 +1,6 @@
-import { HttpClient } from '../http/client';
-import { Environment } from '../http/environment';
-import { SdkConfig } from '../http/types';
+import { HttpClient } from '../http/client.js';
+import { Environment } from '../http/environment.js';
+import { SdkConfig } from '../http/types.js';
 
 export class BaseService {
   public client: HttpClient;
