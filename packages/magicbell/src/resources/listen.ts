@@ -1,3 +1,5 @@
+import '../lib/signal-polyfill.js';
+
 import ky from '@smeijer/ky';
 
 import { Client } from '../client/client.js';
