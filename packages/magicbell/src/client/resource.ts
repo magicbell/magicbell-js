@@ -1,8 +1,8 @@
-import { joinUrlSegments } from '../lib/utils';
-import { Client } from './client';
-import { IterablePromise, normalizeArgs } from './method';
-import { autoPaginate } from './paginate';
-import { FeatureFlag } from './types';
+import { joinUrlSegments } from '../lib/utils.js';
+import { Client } from './client.js';
+import { IterablePromise, normalizeArgs } from './method.js';
+import { autoPaginate } from './paginate.js';
+import { FeatureFlag } from './types.js';
 
 type ResourceRequestOptions = {
   method: 'GET' | 'PUT' | 'POST' | 'DELETE' | 'PATCH';

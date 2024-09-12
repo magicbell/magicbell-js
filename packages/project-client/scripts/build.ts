@@ -136,6 +136,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
     codegen: 'tsx scripts/build.ts',
   };
 
+  delete pkgJson['src'];
   delete pkgJson['unpkg'];
   delete pkgJson['browser'];
   pkgJson.exports = {

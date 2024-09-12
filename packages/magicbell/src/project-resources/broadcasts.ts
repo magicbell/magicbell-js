@@ -2,11 +2,11 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { type IterablePromise } from '../client/method';
-import { Resource } from '../client/resource';
-import { type RequestOptions } from '../client/types';
-import * as schemas from '../schemas/broadcasts';
-import { BroadcastsNotifications } from './broadcasts/notifications';
+import { type IterablePromise } from '../client/method.js';
+import { Resource } from '../client/resource.js';
+import { type RequestOptions } from '../client/types.js';
+import * as schemas from '../schemas/broadcasts.js';
+import { BroadcastsNotifications } from './broadcasts/notifications.js';
 
 type CreateBroadcastsResponse = FromSchema<typeof schemas.CreateBroadcastsResponseSchema>;
 type CreateBroadcastsPayload = FromSchema<typeof schemas.CreateBroadcastsPayloadSchema>;

@@ -7,45 +7,74 @@
     "Stephan Meijer <stephan.meijer@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
   "source": "./src/index.ts",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "typings": "./dist/index.d.ts",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
-    ".": {
-      "types": "./dist/*.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./project-client": {
-      "types": "./dist/project-client.d.ts",
-      "import": "./dist/project-client.mjs",
-      "require": "./dist/project-client.cjs"
-    },
-    "./user-client": {
-      "types": "./dist/user-client.d.ts",
-      "import": "./dist/user-client.mjs",
-      "require": "./dist/user-client.cjs"
-    },
     "./crypto": {
-      "types": "./dist/crypto.d.ts",
-      "import": "./dist/crypto.mjs",
-      "require": "./dist/crypto.cjs"
+      "import": {
+        "types": "./dist/esm/crypto.d.ts",
+        "default": "./dist/esm/crypto.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/crypto.d.ts",
+        "default": "./dist/commonjs/crypto.js"
+      }
     },
     "./errors": {
-      "types": "./dist/errors.d.ts",
-      "import": "./dist/errors.mjs",
-      "require": "./dist/errors.cjs"
-    }
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "./dist"
+      "import": {
+        "types": "./dist/esm/errors.d.ts",
+        "default": "./dist/esm/errors.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/errors.d.ts",
+        "default": "./dist/commonjs/errors.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./project-client": {
+      "import": {
+        "types": "./dist/esm/project-client.d.ts",
+        "default": "./dist/esm/project-client.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/project-client.d.ts",
+        "default": "./dist/commonjs/project-client.js"
+      }
+    },
+    "./user-client": {
+      "import": {
+        "types": "./dist/esm/user-client.d.ts",
+        "default": "./dist/esm/user-client.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/user-client.d.ts",
+        "default": "./dist/commonjs/user-client.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": false,
   "files": [
     "/dist",
-    "LICENSE"
+    "LICENSE",
+    "/crypto/package.json",
+    "/errors/package.json",
+    "/project-client/package.json",
+    "/user-client/package.json"
   ],
   "homepage": "https://magicbell.com",
   "keywords": [
@@ -65,12 +94,10 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean 'build:entry:*'",
-    "build:entry:index": "cross-env ENTRY=src/index.ts vite build",
-    "build:entry:project-client": "cross-env ENTRY=src/project-client.ts vite build",
-    "build:entry:user-client": "cross-env ENTRY=src/user-client.ts vite build",
-    "build:entry:crypto": "cross-env ENTRY=src/crypto.ts vite build",
-    "build:entry:errors": "cross-env ENTRY=src/errors.ts vite build",
+    "build": "run-s clean build:bundle build:node10 build:attw",
+    "build:bundle": "tshy",
+    "build:node10": "tsx scripts/fix-node10.ts",
+    "build:attw": "attw -P",
     "codegen": "tsx scripts/generate-resources.ts --dest ./src",
     "start": "npm run clean && run-p 'build:entry:* --watch'",
     "size": "size-limit"
@@ -96,10 +123,12 @@
     "tsx": "^4.19.0"
   },
   "dependencies": {
+    "@smeijer/ky": "^1.7.2",
     "debug": "^4.3.4",
     "fetch-addons": "^1.3.0",
     "json-schema-to-ts": "3.1.0",
-    "ky": "npm:@smeijer/ky@^0.33.3",
     "url-join": "^4.0.1"
-  }
+  },
+  "type": "module",
+  "types": "./dist/commonjs/index.d.ts"
 }

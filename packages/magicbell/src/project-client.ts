@@ -1,11 +1,11 @@
-import { Client } from './client/client';
-import { assertHasRequiredOptions } from './client/options';
-import { ClientOptions, WithRequired } from './client/types';
-import { isString } from './lib/utils';
-import { Broadcasts } from './project-resources/broadcasts';
-import { Imports } from './project-resources/imports';
-import { Metrics } from './project-resources/metrics';
-import { Users } from './project-resources/users';
+import { Client } from './client/client.js';
+import { assertHasRequiredOptions } from './client/options.js';
+import { ClientOptions, WithRequired } from './client/types.js';
+import { isString } from './lib/utils.js';
+import { Broadcasts } from './project-resources/broadcasts.js';
+import { Imports } from './project-resources/imports.js';
+import { Metrics } from './project-resources/metrics.js';
+import { Users } from './project-resources/users.js';
 
 export type ProjectClientOptions =
   | WithRequired<Omit<ClientOptions, 'userEmail' | 'userExternalId' | 'token'>, 'apiKey' | 'apiSecret'>

@@ -1,6 +1,6 @@
-import { isArray, isBoolean, isObject, isString } from '../lib/utils';
-import { isOptionsHash } from './options';
-import { ClientOptions, RequestMethod } from './types';
+import { isArray, isBoolean, isObject, isString } from '../lib/utils.js';
+import { isOptionsHash } from './options.js';
+import { ClientOptions, RequestMethod } from './types.js';
 
 type KeyOfType<T, V> = keyof {
   [P in keyof T as T[P] extends V ? P : never]: any;

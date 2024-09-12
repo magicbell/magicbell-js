@@ -2,9 +2,9 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { Resource } from '../client/resource';
-import { type RequestOptions } from '../client/types';
-import * as schemas from '../schemas/imports';
+import { Resource } from '../client/resource.js';
+import { type RequestOptions } from '../client/types.js';
+import * as schemas from '../schemas/imports.js';
 
 type CreateImportsResponse = FromSchema<typeof schemas.CreateImportsResponseSchema>;
 type CreateImportsPayload = FromSchema<typeof schemas.CreateImportsPayloadSchema>;

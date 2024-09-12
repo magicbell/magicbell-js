@@ -1,0 +1,4 @@
+{
+  "main": "../dist/commonjs/project-client.js",
+  "types": "../dist/commonjs/project-client.d.ts"
+}

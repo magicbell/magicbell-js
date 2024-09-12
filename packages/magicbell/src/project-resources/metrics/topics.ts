@@ -2,9 +2,9 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { Resource } from '../../client/resource';
-import { type RequestOptions } from '../../client/types';
-import * as schemas from '../../schemas/metrics/topics';
+import { Resource } from '../../client/resource.js';
+import { type RequestOptions } from '../../client/types.js';
+import * as schemas from '../../schemas/metrics/topics.js';
 
 type GetMetricsTopicsResponse = FromSchema<typeof schemas.GetMetricsTopicsResponseSchema>;
 

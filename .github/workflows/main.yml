@@ -21,6 +21,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: bahmutov/npm-install@v1
 
   eslint:
@@ -30,6 +33,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: bahmutov/npm-install@v1
       - name: Lint
         run: yarn lint:eslint
@@ -41,6 +47,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: bahmutov/npm-install@v1
         # we need to upgrade to Node16 module resolution so TSC can use package.json#exports
       - name: Build
@@ -55,6 +64,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - run: yarn playwright install --with-deps
@@ -68,6 +80,9 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - name: publish preview release

@@ -1,13 +1,12 @@
+import type { Hooks } from '@smeijer/ky';
 import Debug from 'debug';
 import { toCurl } from 'fetch-addons';
-import type { Hooks } from 'ky';
 
 export const info = Debug('magicbell:info');
 export const debug = Debug('magicbell:debug');
 export const error = Debug('magicbell:error');
 
 function mask(str: string) {
-  if (__DEV__) return str;
   // note, can't use real ellipsis, that'd throw
   //  error: Cannot convert argument to a ByteString because the character at index 4 has a value of 8230 which is greater than 255.
   return `${str.slice(0, 4)}...${str.slice(-4)}`;

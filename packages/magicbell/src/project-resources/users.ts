@@ -2,12 +2,12 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { type IterablePromise } from '../client/method';
-import { Resource } from '../client/resource';
-import { type RequestOptions } from '../client/types';
-import * as schemas from '../schemas/users';
-import { UsersNotifications } from './users/notifications';
-import { UsersPushSubscriptions } from './users/push-subscriptions';
+import { type IterablePromise } from '../client/method.js';
+import { Resource } from '../client/resource.js';
+import { type RequestOptions } from '../client/types.js';
+import * as schemas from '../schemas/users.js';
+import { UsersNotifications } from './users/notifications.js';
+import { UsersPushSubscriptions } from './users/push-subscriptions.js';
 
 type CreateUsersResponse = FromSchema<typeof schemas.CreateUsersResponseSchema>;
 type CreateUsersPayload = FromSchema<typeof schemas.CreateUsersPayloadSchema>;

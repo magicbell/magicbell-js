@@ -2,10 +2,10 @@
 
 import { type FromSchema } from 'json-schema-to-ts';
 
-import { type IterablePromise } from '../../client/method';
-import { Resource } from '../../client/resource';
-import { type RequestOptions } from '../../client/types';
-import * as schemas from '../../schemas/users/notifications';
+import { type IterablePromise } from '../../client/method.js';
+import { Resource } from '../../client/resource.js';
+import { type RequestOptions } from '../../client/types.js';
+import * as schemas from '../../schemas/users/notifications.js';
 
 type ListUsersNotificationsResponse = FromSchema<typeof schemas.ListUsersNotificationsResponseSchema>;
 type ListUsersNotificationsPayload = FromSchema<typeof schemas.ListUsersNotificationsPayloadSchema>;

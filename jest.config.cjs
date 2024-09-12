@@ -8,6 +8,9 @@ const moduleNameMapper = Object.fromEntries(
     .map(x => [x[0], x[1][0].replace(/^packages/, '<rootDir>/packages')])
 );
 
+// import foo.ts as foo.js
+moduleNameMapper['(.+/.*)\\.js'] = '$1';
+
 // { '@magicbell/core': '<rootDir>/packages/core/src' } > [['@magicbell/core', '<rootDir>/packages/core']]
 const packages = Object.entries(moduleNameMapper)
   .map(([pkg, dir]) => [pkg, dir.split('/').slice(0, 3).join('/')])
@@ -21,7 +24,7 @@ const commonConfig = {
   testEnvironment: 'jest-environment-jsdom',
   transform: {
     '\\.[jt]sx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.test.json'
+      tsconfig: 'tsconfig.test.json',
     }]
   },
   modulePathIgnorePatterns: ['<rootDir>/packages/magicbell/dist', '<rootDir>/packages/playground', '<rootDir>/packages/embeddable/cypress'],

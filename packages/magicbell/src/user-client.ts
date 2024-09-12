@@ -1,12 +1,12 @@
-import { Client } from './client/client';
-import { assertHasRequiredOptions } from './client/options';
-import { ClientOptions, WithRequired } from './client/types';
-import { isString } from './lib/utils';
-import { createListener } from './resources/listen';
-import { NotificationPreferences } from './user-resources/notification-preferences';
-import { Notifications } from './user-resources/notifications';
-import { PushSubscriptions } from './user-resources/push-subscriptions';
-import { Subscriptions } from './user-resources/subscriptions';
+import { Client } from './client/client.js';
+import { assertHasRequiredOptions } from './client/options.js';
+import { ClientOptions, WithRequired } from './client/types.js';
+import { isString } from './lib/utils.js';
+import { createListener } from './resources/listen.js';
+import { NotificationPreferences } from './user-resources/notification-preferences.js';
+import { Notifications } from './user-resources/notifications.js';
+import { PushSubscriptions } from './user-resources/push-subscriptions.js';
+import { Subscriptions } from './user-resources/subscriptions.js';
 
 export type UserClientOptions =
   | WithRequired<Omit<ClientOptions, 'apiSecret' | 'token'>, 'apiKey' | 'userEmail'>

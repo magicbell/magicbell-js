@@ -1,8 +1,10 @@
-import ky from 'ky';
+import '../lib/signal-polyfill.js';
 
-import { Client } from '../client/client';
-import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate';
-import { RequestOptions } from '../client/types';
+import ky from '@smeijer/ky';
+
+import { Client } from '../client/client.js';
+import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';
+import { RequestOptions } from '../client/types.js';
 
 type AuthResponse = {
   keyName: string;
