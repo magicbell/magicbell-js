@@ -8392,10 +8392,10 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-fetch-addons@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/fetch-addons/-/fetch-addons-1.2.0.tgz#a7ca3fc7221a6cb8deba59c258832481e8d8b2a6"
-  integrity sha512-e1xtLHBS8eXTkTkkBsZZbjppd+3bzRKJ7+a9AE2vLH8eDU5FjHa8JCrUhd4JL9cgRlo3qmBs6JYq2J3UBabMDw==
+fetch-addons@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/fetch-addons/-/fetch-addons-1.3.0.tgz#594ec77306f5395e7d059cb7f8044c7c2408609d"
+  integrity sha512-3yQY6axQlA6waoberzRnImaWlASGiIGsF/nW+fxZ0zOJEYtw1DWrUqPBc2c3FcbbTJcssdte3C3HlcmKgbpFSA==
 
 figures@^3.0.0, figures@^3.2.0:
   version "3.2.0"
