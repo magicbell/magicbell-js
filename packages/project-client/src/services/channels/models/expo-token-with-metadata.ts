@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { expoToken, expoTokenRequest, expoTokenResponse } from './expo-token';
+import { expoToken, expoTokenRequest, expoTokenResponse } from './expo-token.js';
 import {
   expoTokenWithMetadataMetadata,
   expoTokenWithMetadataMetadataRequest,
   expoTokenWithMetadataMetadataResponse,
-} from './expo-token-with-metadata-metadata';
+} from './expo-token-with-metadata-metadata.js';
 
 /**
  * The shape of the model inside the application code - what the users use

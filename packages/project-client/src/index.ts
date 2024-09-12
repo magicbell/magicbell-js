@@ -1,15 +1,15 @@
-import { Environment } from './http/environment';
-import { SdkConfig } from './http/types';
-import { BroadcastsService } from './services/broadcasts';
-import { ChannelsService } from './services/channels';
-import { IntegrationsService } from './services/integrations';
-import { JwtService } from './services/jwt';
+import { Environment } from './http/environment.js';
+import { SdkConfig } from './http/types.js';
+import { BroadcastsService } from './services/broadcasts/index.js';
+import { ChannelsService } from './services/channels/index.js';
+import { IntegrationsService } from './services/integrations/index.js';
+import { JwtService } from './services/jwt/index.js';
 
-export type * from './http';
-export * from './services/broadcasts';
-export * from './services/channels';
-export * from './services/integrations';
-export * from './services/jwt';
+export type * from './http/index.js';
+export * from './services/broadcasts/index.js';
+export * from './services/channels/index.js';
+export * from './services/integrations/index.js';
+export * from './services/jwt/index.js';
 
 export class Client {
   public readonly broadcasts: BroadcastsService;

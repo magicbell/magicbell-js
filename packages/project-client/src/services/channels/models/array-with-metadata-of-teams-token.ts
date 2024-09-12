@@ -4,7 +4,7 @@ import {
   arrayWithMetadataOfTeamsTokenData,
   arrayWithMetadataOfTeamsTokenDataRequest,
   arrayWithMetadataOfTeamsTokenDataResponse,
-} from './array-with-metadata-of-teams-token-data';
+} from './array-with-metadata-of-teams-token-data.js';
 
 /**
  * The shape of the model inside the application code - what the users use

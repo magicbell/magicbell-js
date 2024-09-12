@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { AccessToken, accessTokenResponse } from './models/access-token';
-import { CreateProjectTokenRequest, createProjectTokenRequestRequest } from './models/create-project-token-request';
-import { CreateUserTokenRequest, createUserTokenRequestRequest } from './models/create-user-token-request';
-import { DiscardTokenResponse, discardTokenResponseResponse } from './models/discard-token-response';
-import { FetchTokensResponse, fetchTokensResponseResponse } from './models/fetch-tokens-response';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { AccessToken, accessTokenResponse } from './models/access-token.js';
+import { CreateProjectTokenRequest, createProjectTokenRequestRequest } from './models/create-project-token-request.js';
+import { CreateUserTokenRequest, createUserTokenRequestRequest } from './models/create-user-token-request.js';
+import { DiscardTokenResponse, discardTokenResponseResponse } from './models/discard-token-response.js';
+import { FetchTokensResponse, fetchTokensResponseResponse } from './models/fetch-tokens-response.js';
 
 export class JwtService extends BaseService {
   /**

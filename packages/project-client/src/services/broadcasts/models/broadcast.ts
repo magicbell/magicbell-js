@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { category, categoryRequest, categoryResponse } from './category';
-import { overrides, overridesRequest, overridesResponse } from './overrides';
-import { topic, topicRequest, topicResponse } from './topic';
+import { category, categoryRequest, categoryResponse } from './category.js';
+import { overrides, overridesRequest, overridesResponse } from './overrides.js';
+import { topic, topicRequest, topicResponse } from './topic.js';
 
 /**
  * The shape of the model inside the application code - what the users use

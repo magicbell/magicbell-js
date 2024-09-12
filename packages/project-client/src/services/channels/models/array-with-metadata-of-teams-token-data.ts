@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { dataMetadata5, dataMetadata5Request, dataMetadata5Response } from './data-metadata-5';
-import { teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token';
+import { dataMetadata5, dataMetadata5Request, dataMetadata5Response } from './data-metadata-5.js';
+import { teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token.js';
 
 /**
  * The shape of the model inside the application code - what the users use

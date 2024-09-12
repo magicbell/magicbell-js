@@ -1,23 +1,23 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { ApnsConfig, apnsConfigRequest, apnsConfigResponse } from './models/apns-config';
-import { AwssnsConfig, awssnsConfigRequest, awssnsConfigResponse } from './models/awssns-config';
-import { ExpoConfig, expoConfigRequest, expoConfigResponse } from './models/expo-config';
-import { FcmConfig, fcmConfigRequest, fcmConfigResponse } from './models/fcm-config';
-import { GithubConfig, githubConfigRequest, githubConfigResponse } from './models/github-config';
-import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config';
-import { ListIntegrationsResponse, listIntegrationsResponseResponse } from './models/list-integrations-response';
-import { MailgunConfig, mailgunConfigRequest, mailgunConfigResponse } from './models/mailgun-config';
-import { PingConfig, pingConfigRequest, pingConfigResponse } from './models/ping-config';
-import { SendgridConfig, sendgridConfigRequest, sendgridConfigResponse } from './models/sendgrid-config';
-import { SesConfig, sesConfigRequest, sesConfigResponse } from './models/ses-config';
-import { SlackConfig, slackConfigRequest, slackConfigResponse } from './models/slack-config';
-import { StripeConfig, stripeConfigRequest, stripeConfigResponse } from './models/stripe-config';
-import { TwilioConfig, twilioConfigRequest, twilioConfigResponse } from './models/twilio-config';
-import { WebpushConfig, webpushConfigRequest, webpushConfigResponse } from './models/webpush-config';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { ApnsConfig, apnsConfigRequest, apnsConfigResponse } from './models/apns-config.js';
+import { AwssnsConfig, awssnsConfigRequest, awssnsConfigResponse } from './models/awssns-config.js';
+import { ExpoConfig, expoConfigRequest, expoConfigResponse } from './models/expo-config.js';
+import { FcmConfig, fcmConfigRequest, fcmConfigResponse } from './models/fcm-config.js';
+import { GithubConfig, githubConfigRequest, githubConfigResponse } from './models/github-config.js';
+import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config.js';
+import { ListIntegrationsResponse, listIntegrationsResponseResponse } from './models/list-integrations-response.js';
+import { MailgunConfig, mailgunConfigRequest, mailgunConfigResponse } from './models/mailgun-config.js';
+import { PingConfig, pingConfigRequest, pingConfigResponse } from './models/ping-config.js';
+import { SendgridConfig, sendgridConfigRequest, sendgridConfigResponse } from './models/sendgrid-config.js';
+import { SesConfig, sesConfigRequest, sesConfigResponse } from './models/ses-config.js';
+import { SlackConfig, slackConfigRequest, slackConfigResponse } from './models/slack-config.js';
+import { StripeConfig, stripeConfigRequest, stripeConfigResponse } from './models/stripe-config.js';
+import { TwilioConfig, twilioConfigRequest, twilioConfigResponse } from './models/twilio-config.js';
+import { WebpushConfig, webpushConfigRequest, webpushConfigResponse } from './models/webpush-config.js';
 
 export class IntegrationsService extends BaseService {
   /**

@@ -1,2 +1,2 @@
-export { JwtService } from './jwt';
-export * from './models';
+export { JwtService } from './jwt.js';
+export * from './models/index.js';

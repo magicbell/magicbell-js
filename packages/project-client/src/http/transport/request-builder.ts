@@ -1,9 +1,9 @@
 import z, { ZodType } from 'zod';
 
-import { Environment } from '../environment';
-import { SerializationStyle } from '../serialization/base-serializer';
-import { ContentType, HttpMethod, RequestConfig, SdkConfig } from '../types';
-import { CreateRequestParameters, Request, RequestParameter } from './request';
+import { Environment } from '../environment.js';
+import { SerializationStyle } from '../serialization/base-serializer.js';
+import { ContentType, HttpMethod, RequestConfig, SdkConfig } from '../types.js';
+import { CreateRequestParameters, Request, RequestParameter } from './request.js';
 
 export class RequestBuilder<T> {
   private params: CreateRequestParameters<T>;

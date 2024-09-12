@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { fcmToken, fcmTokenRequest, fcmTokenResponse } from './fcm-token';
+import { fcmToken, fcmTokenRequest, fcmTokenResponse } from './fcm-token.js';
 import {
   fcmTokenWithMetadataMetadata,
   fcmTokenWithMetadataMetadataRequest,
   fcmTokenWithMetadataMetadataResponse,
-} from './fcm-token-with-metadata-metadata';
+} from './fcm-token-with-metadata-metadata.js';
 
 /**
  * The shape of the model inside the application code - what the users use

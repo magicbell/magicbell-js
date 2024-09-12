@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { Broadcast, broadcastRequest, broadcastResponse } from './models/broadcast';
-import { BroadcastListResponse, broadcastListResponseResponse } from './models/broadcast-list-response';
-import { ListBroadcastsParams } from './request-params';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { Broadcast, broadcastRequest, broadcastResponse } from './models/broadcast.js';
+import { BroadcastListResponse, broadcastListResponseResponse } from './models/broadcast-list-response.js';
+import { ListBroadcastsParams } from './request-params.js';
 
 export class BroadcastsService extends BaseService {
   /**

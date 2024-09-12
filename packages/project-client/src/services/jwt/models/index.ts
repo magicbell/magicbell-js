@@ -1,6 +1,6 @@
-export type { AccessToken } from './access-token';
-export type { CreateProjectTokenRequest } from './create-project-token-request';
-export type { CreateUserTokenRequest } from './create-user-token-request';
-export type { DiscardTokenResponse } from './discard-token-response';
-export type { FetchTokensResponse } from './fetch-tokens-response';
-export type { Tokens } from './tokens';
+export type { AccessToken } from './access-token.js';
+export type { CreateProjectTokenRequest } from './create-project-token-request.js';
+export type { CreateUserTokenRequest } from './create-user-token-request.js';
+export type { DiscardTokenResponse } from './discard-token-response.js';
+export type { FetchTokensResponse } from './fetch-tokens-response.js';
+export type { Tokens } from './tokens.js';

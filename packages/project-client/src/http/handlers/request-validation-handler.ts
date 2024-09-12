@@ -1,5 +1,5 @@
-import { Request } from '../transport/request';
-import { ContentType, HttpResponse, RequestHandler } from '../types';
+import { Request } from '../transport/request.js';
+import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 
 export class RequestValidationHandler implements RequestHandler {
   next?: RequestHandler;

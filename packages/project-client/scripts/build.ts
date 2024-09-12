@@ -129,21 +129,14 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   pkgJson.scripts.codegen = 'tsx scripts/build.ts';
 
   pkgJson.scripts = {
-    build: 'run-s build:*',
-    'build:cjs': 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs',
-    'build:esm': 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm',
-    start: 'rm -rf dist/ && tsc -w',
+    build: 'tshy',
+    start: 'tshy --watch',
     codegen: 'tsx scripts/build.ts',
   };
 
-  delete pkgJson['src'];
-  delete pkgJson['unpkg'];
-  delete pkgJson['browser'];
-  pkgJson.exports = {
-    '.': {
-      import: pkgJson.module,
-      require: pkgJson.main,
-    },
+  pkgJson.tshy = {
+    project: './tsconfig.build.json',
+    exports: './src/index.ts',
   };
 
   for (const key of Object.keys(pkgJson.devDependencies)) {
@@ -162,7 +155,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
 
   pkgJson = sortPackageJson(pkgJson);
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
-
+  execSync(`npx fix-esm-import-path src`);
   execSync(`yarn --cwd ../.. eslint --fix ./packages/project-client`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../.. manypkg fix`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../..`, { stdio: 'inherit' });

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { integrations, integrationsRequest, integrationsResponse } from './integrations';
+import { integrations, integrationsRequest, integrationsResponse } from './integrations.js';
 
 /**
  * The shape of the model inside the application code - what the users use

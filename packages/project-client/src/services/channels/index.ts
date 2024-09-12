@@ -1,2 +1,2 @@
-export { ChannelsService } from './channels';
-export * from './models';
+export { ChannelsService } from './channels.js';
+export * from './models/index.js';

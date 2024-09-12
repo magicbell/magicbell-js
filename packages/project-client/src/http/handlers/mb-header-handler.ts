@@ -1,6 +1,6 @@
-import { SerializationStyle } from '../serialization/base-serializer';
-import { Request } from '../transport/request';
-import { HttpResponse, RequestHandler } from '../types';
+import { SerializationStyle } from '../serialization/base-serializer.js';
+import { Request } from '../transport/request.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class HeaderHandler implements RequestHandler {
   next?: RequestHandler;

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { sesConfigFrom, sesConfigFromRequest, sesConfigFromResponse } from './ses-config-from';
+import { sesConfigFrom, sesConfigFromRequest, sesConfigFromResponse } from './ses-config-from.js';
 
 /**
  * The shape of the model inside the application code - what the users use
