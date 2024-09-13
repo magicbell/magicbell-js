@@ -1,6 +1,6 @@
-import { HttpError } from '../error';
-import { HttpMethod, HttpResponse } from '../types';
-import { Request } from './request';
+import { HttpError } from '../error.js';
+import { HttpMethod, HttpResponse } from '../types.js';
+import { Request } from './request.js';
 
 interface HttpAdapter {
   send(): Promise<HttpResponse>;

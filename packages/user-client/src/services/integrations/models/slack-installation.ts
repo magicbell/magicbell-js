@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-import { authedUser, authedUserRequest, authedUserResponse } from './authed-user';
-import { enterprise, enterpriseRequest, enterpriseResponse } from './enterprise';
-import { incomingWebhook, incomingWebhookRequest, incomingWebhookResponse } from './incoming-webhook';
-import { team, teamRequest, teamResponse } from './team';
+import { authedUser, authedUserRequest, authedUserResponse } from './authed-user.js';
+import { enterprise, enterpriseRequest, enterpriseResponse } from './enterprise.js';
+import { incomingWebhook, incomingWebhookRequest, incomingWebhookResponse } from './incoming-webhook.js';
+import { team, teamRequest, teamResponse } from './team.js';
 
 /**
  * The shape of the model inside the application code - what the users use

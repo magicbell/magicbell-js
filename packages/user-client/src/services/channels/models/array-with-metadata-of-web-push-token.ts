@@ -4,7 +4,7 @@ import {
   arrayWithMetadataOfWebPushTokenData,
   arrayWithMetadataOfWebPushTokenDataRequest,
   arrayWithMetadataOfWebPushTokenDataResponse,
-} from './array-with-metadata-of-web-push-token-data';
+} from './array-with-metadata-of-web-push-token-data.js';
 
 /**
  * The shape of the model inside the application code - what the users use

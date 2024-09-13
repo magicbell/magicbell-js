@@ -1,6 +1,6 @@
-import { Request } from '../transport/request';
-import { RequestFetchAdapter } from '../transport/request-fetch-adapter';
-import { HttpResponse, RequestHandler } from '../types';
+import { Request } from '../transport/request.js';
+import { RequestFetchAdapter } from '../transport/request-fetch-adapter.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class TerminatingHandler implements RequestHandler {
   async handle<T>(request: Request<T>): Promise<HttpResponse<T>> {

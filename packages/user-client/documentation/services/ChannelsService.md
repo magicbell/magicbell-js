@@ -61,9 +61,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [ApnsToken](../models/ApnsToken.md) | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | `[ApnsToken](../models/ApnsToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -82,7 +82,7 @@ import { ApnsToken, Client } from '@magicbell/user-client';
   const apnsTokenInstallationId = ApnsTokenInstallationId.DEVELOPMENT;
 
   const apnsToken: ApnsToken = {
-    deviceToken: 'velit enimidcon',
+    deviceToken: 'laborum culpano',
     installationId: apnsTokenInstallationId,
   };
 
@@ -99,9 +99,9 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -130,9 +130,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -186,9 +186,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [ExpoToken](../models/ExpoToken.md) | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | `[ExpoToken](../models/ExpoToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -205,7 +205,7 @@ import { Client, ExpoToken } from '@magicbell/user-client';
   });
 
   const expoToken: ExpoToken = {
-    deviceToken: 'ad Exce',
+    deviceToken: 'sit nos',
   };
 
   const { data } = await client.channels.saveMobilePushExpoToken(input);
@@ -221,9 +221,9 @@ import { Client, ExpoToken } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -252,9 +252,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -308,9 +308,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                              | Required | Description       |
-| :--- | :-------------------------------- | :------- | :---------------- |
-| body | [FcmToken](../models/FcmToken.md) | ❌       | The request body. |
+| Name | Type                                | Required | Description       |
+| :--- | :---------------------------------- | :------- | :---------------- |
+| body | `[FcmToken](../models/FcmToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -329,7 +329,7 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'dolore officiac',
+    deviceToken: 'Ut reprehenderi',
     installationId: fcmTokenInstallationId,
   };
 
@@ -346,9 +346,9 @@ import { Client, FcmToken } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -377,9 +377,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -433,9 +433,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [SlackToken](../models/SlackToken.md) | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | `[SlackToken](../models/SlackToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -479,9 +479,9 @@ import { Client, SlackToken } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -510,9 +510,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -566,9 +566,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [TeamsToken](../models/TeamsToken.md) | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | `[TeamsToken](../models/TeamsToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -605,9 +605,9 @@ import { Client, TeamsToken } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -636,9 +636,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -692,9 +692,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[WebPushToken](../models/WebPushToken.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -733,9 +733,9 @@ import { Client, WebPushToken } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -764,9 +764,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 

@@ -2,6 +2,6 @@
 
 **Properties**
 
-| Name        | Type   | Required | Description |
-| :---------- | :----- | :------- | :---------- |
-| deviceToken | string | ✅       |             |
+| Name        | Type     | Required | Description |
+| :---------- | :------- | :------- | :---------- |
+| deviceToken | `string` | ✅       |             |

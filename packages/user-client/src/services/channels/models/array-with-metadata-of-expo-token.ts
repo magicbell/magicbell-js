@@ -4,7 +4,7 @@ import {
   arrayWithMetadataOfExpoTokenData,
   arrayWithMetadataOfExpoTokenDataRequest,
   arrayWithMetadataOfExpoTokenDataResponse,
-} from './array-with-metadata-of-expo-token-data';
+} from './array-with-metadata-of-expo-token-data.js';
 
 /**
  * The shape of the model inside the application code - what the users use

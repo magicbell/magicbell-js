@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { dataMetadata2, dataMetadata2Request, dataMetadata2Response } from './data-metadata-2';
-import { expoToken, expoTokenRequest, expoTokenResponse } from './expo-token';
+import { dataMetadata2, dataMetadata2Request, dataMetadata2Response } from './data-metadata-2.js';
+import { expoToken, expoTokenRequest, expoTokenResponse } from './expo-token.js';
 
 /**
  * The shape of the model inside the application code - what the users use

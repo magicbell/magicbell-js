@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { slackToken, slackTokenRequest, slackTokenResponse } from './slack-token';
+import { slackToken, slackTokenRequest, slackTokenResponse } from './slack-token.js';
 import {
   slackTokenWithMetadataMetadata,
   slackTokenWithMetadataMetadataRequest,
   slackTokenWithMetadataMetadataResponse,
-} from './slack-token-with-metadata-metadata';
+} from './slack-token-with-metadata-metadata.js';
 
 /**
  * The shape of the model inside the application code - what the users use

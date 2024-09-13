@@ -1,5 +1,5 @@
-import { HttpMetadata } from '../types';
-import { Hook, HttpError, HttpRequest, HttpResponse } from './hook';
+import { HttpMetadata } from '../types.js';
+import { Hook, HttpError, HttpRequest, HttpResponse } from './hook.js';
 
 export class CustomHook implements Hook {
   public async beforeRequest(request: HttpRequest, params: Map<string, string>): Promise<HttpRequest> {

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { images, imagesRequest, imagesResponse } from './images';
-import { theme, themeRequest, themeResponse } from './theme';
+import { images, imagesRequest, imagesResponse } from './images.js';
+import { theme, themeRequest, themeResponse } from './theme.js';
 
 /**
  * The shape of the model inside the application code - what the users use

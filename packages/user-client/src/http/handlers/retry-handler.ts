@@ -1,6 +1,6 @@
-import { HttpError } from '../error';
-import { Request } from '../transport/request';
-import { HttpResponse, RequestHandler } from '../types';
+import { HttpError } from '../error.js';
+import { Request } from '../transport/request.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class RetryHandler implements RequestHandler {
   next?: RequestHandler;

@@ -1,6 +1,6 @@
-import { SerializationStyle } from '../serialization/base-serializer';
-import { Request } from '../transport/request';
-import { HttpResponse, RequestHandler } from '../types';
+import { SerializationStyle } from '../serialization/base-serializer.js';
+import { Request } from '../transport/request.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class AuthHandler implements RequestHandler {
   next?: RequestHandler;
@@ -27,6 +27,8 @@ export class AuthHandler implements RequestHandler {
       explode: false,
       encode: false,
       style: SerializationStyle.SIMPLE,
+      isLimit: false,
+      isOffset: false,
     });
 
     return request;

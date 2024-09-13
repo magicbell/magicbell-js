@@ -1,2 +1,2 @@
-export { IntegrationsService } from './integrations';
-export * from './models';
+export { IntegrationsService } from './integrations.js';
+export * from './models/index.js';
