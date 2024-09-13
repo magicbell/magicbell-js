@@ -16,8 +16,8 @@ export class JwtService extends BaseService {
    */
   async fetchProjectTokens(requestConfig?: RequestConfig): Promise<HttpResponse<FetchTokensResponse>> {
     const request = new RequestBuilder<FetchTokensResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/project')
       .setRequestSchema(z.any())
@@ -40,8 +40,8 @@ export class JwtService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<AccessToken>> {
     const request = new RequestBuilder<AccessToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/project')
       .setRequestSchema(createProjectTokenRequestRequest)
@@ -64,8 +64,8 @@ export class JwtService extends BaseService {
    */
   async discardProjectJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
     const request = new RequestBuilder<DiscardTokenResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/project/{token_id}')
       .setRequestSchema(z.any())
@@ -89,8 +89,8 @@ export class JwtService extends BaseService {
    */
   async createUserJwt(body: CreateUserTokenRequest, requestConfig?: RequestConfig): Promise<HttpResponse<AccessToken>> {
     const request = new RequestBuilder<AccessToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/user')
       .setRequestSchema(createUserTokenRequestRequest)
@@ -113,8 +113,8 @@ export class JwtService extends BaseService {
    */
   async discardUserJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
     const request = new RequestBuilder<DiscardTokenResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/user/{token_id}')
       .setRequestSchema(z.any())
@@ -139,8 +139,8 @@ export class JwtService extends BaseService {
    */
   async fetchUserTokens(userId: string, requestConfig?: RequestConfig): Promise<HttpResponse<FetchTokensResponse>> {
     const request = new RequestBuilder<FetchTokensResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/user/{user_id}')
       .setRequestSchema(z.any())

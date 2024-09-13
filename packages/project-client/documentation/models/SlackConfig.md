@@ -2,9 +2,9 @@
 
 **Properties**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| appId         | string | ✅       |             |
-| clientId      | string | ✅       |             |
-| clientSecret  | string | ✅       |             |
-| signingSecret | string | ✅       |             |
+| Name          | Type     | Required | Description |
+| :------------ | :------- | :------- | :---------- |
+| appId         | `string` | ✅       |             |
+| clientId      | `string` | ✅       |             |
+| clientSecret  | `string` | ✅       |             |
+| signingSecret | `string` | ✅       |             |

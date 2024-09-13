@@ -81,7 +81,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 10,
+    pageSize: 9,
     pageBefore: 'page[before]',
     pageAfter: 'page[after]',
   });

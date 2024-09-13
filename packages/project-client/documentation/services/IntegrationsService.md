@@ -123,9 +123,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [ApnsConfig](../models/ApnsConfig.md) | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | `[ApnsConfig](../models/ApnsConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -144,11 +144,11 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
   const badge = Badge.UNREAD;
 
   const apnsConfig: ApnsConfig = {
-    appId: 'D4EQ/tIASto0nj1AzqgjxEjFdO6Src0N',
+    appId: 'ZabA6uTnpv8S3Obr6slNb|wfbQCxeGJ9TTf;gEpHhFigXjWvQ8I6kN3xOSJGiGC',
     badge: badge,
     certificate: 'certificate',
-    keyId: 'velit exdo',
-    teamId: 'sed labore',
+    keyId: 'eiusmod pa',
+    teamId: 'adipisicin',
   };
 
   const { data } = await client.integrations.saveApnsIntegration(input);
@@ -185,9 +185,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -237,9 +237,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [AwssnsConfig](../models/AwssnsConfig.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[AwssnsConfig](../models/AwssnsConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -256,7 +256,7 @@ import { AwssnsConfig, Client } from '@magicbell/project-client';
   });
 
   const awssnsConfig: AwssnsConfig = {
-    webhookSigningSecret: 'u',
+    webhookSigningSecret: 'voluptate',
   };
 
   const { data } = await client.integrations.saveAwssnsIntegration(input);
@@ -293,9 +293,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -345,9 +345,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [ExpoConfig](../models/ExpoConfig.md) | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | `[ExpoConfig](../models/ExpoConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -364,7 +364,7 @@ import { Client, ExpoConfig } from '@magicbell/project-client';
   });
 
   const expoConfig: ExpoConfig = {
-    accessToken: 'officia fugi',
+    accessToken: 'non dolor',
   };
 
   const { data } = await client.integrations.saveExpoIntegration(input);
@@ -401,9 +401,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -453,9 +453,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [FcmConfig](../models/FcmConfig.md) | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | `[FcmConfig](../models/FcmConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -521,9 +521,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -573,9 +573,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [GithubConfig](../models/GithubConfig.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[GithubConfig](../models/GithubConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -592,7 +592,7 @@ import { Client, GithubConfig } from '@magicbell/project-client';
   });
 
   const githubConfig: GithubConfig = {
-    webhookSigningSecret: 'ipsum',
+    webhookSigningSecret: 'ut',
   };
 
   const { data } = await client.integrations.saveGithubIntegration(input);
@@ -629,9 +629,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -681,9 +681,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [InboxConfig](../models/InboxConfig.md) | ❌       | The request body. |
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | `[InboxConfig](../models/InboxConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -705,7 +705,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 9.19,
+    backgroundOpacity: 6.65,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -807,7 +807,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const inboxConfig: InboxConfig = {
     images: images,
-    locale: 'sit nostru',
+    locale: 'non',
     theme: theme,
   };
 
@@ -845,9 +845,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -897,9 +897,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | [MailgunConfig](../models/MailgunConfig.md) | ❌       | The request body. |
+| Name | Type                                          | Required | Description       |
+| :--- | :-------------------------------------------- | :------- | :---------------- |
+| body | `[MailgunConfig](../models/MailgunConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -918,8 +918,8 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
   const mailgunConfigRegion = MailgunConfigRegion.US;
 
   const mailgunConfig: MailgunConfig = {
-    apiKey: 'in ',
-    domain: 'consequat d',
+    apiKey: 'volupt',
+    domain: 'aliquip',
     region: mailgunConfigRegion,
   };
 
@@ -957,9 +957,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1009,9 +1009,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [PingConfig](../models/PingConfig.md) | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | `[PingConfig](../models/PingConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1028,7 +1028,7 @@ import { Client, PingConfig } from '@magicbell/project-client';
   });
 
   const pingConfig: PingConfig = {
-    url: 'ut incididunt irure Ut',
+    url: 'minim',
   };
 
   const { data } = await client.integrations.savePingEmailIntegration(input);
@@ -1065,9 +1065,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1117,9 +1117,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                          | Required | Description       |
-| :--- | :-------------------------------------------- | :------- | :---------------- |
-| body | [SendgridConfig](../models/SendgridConfig.md) | ❌       | The request body. |
+| Name | Type                                            | Required | Description       |
+| :--- | :---------------------------------------------- | :------- | :---------------- |
+| body | `[SendgridConfig](../models/SendgridConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1185,9 +1185,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1237,9 +1237,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [SesConfig](../models/SesConfig.md) | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | `[SesConfig](../models/SesConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1261,11 +1261,11 @@ import { Client, SesConfig } from '@magicbell/project-client';
   };
 
   const sesConfig: SesConfig = {
-    endpoint: 'dolore in occa',
+    endpoint: 'elit su',
     from: sesConfigFrom,
-    keyId: 'sit ex ',
-    region: 'in',
-    secretKey: 'do',
+    keyId: 'sit in occa',
+    region: 'cillum ',
+    secretKey: 'aute Ut cu',
   };
 
   const { data } = await client.integrations.saveSesIntegration(input);
@@ -1302,9 +1302,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1354,9 +1354,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [SlackConfig](../models/SlackConfig.md) | ❌       | The request body. |
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | `[SlackConfig](../models/SlackConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1373,10 +1373,10 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: 'EC',
-    clientId: '707.8465562093',
-    clientSecret: 'et exercitation voluptate ametni',
-    signingSecret: 'exercitation Utmollitetad ullamc',
+    appId: 'DQ01',
+    clientId: '1361923.1921861',
+    clientSecret: 'cupidatat non suntdolore Excepte',
+    signingSecret: 'aliquip Excepteur laboris pariat',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(input);
@@ -1413,9 +1413,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1465,9 +1465,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [StripeConfig](../models/StripeConfig.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[StripeConfig](../models/StripeConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1484,7 +1484,7 @@ import { Client, StripeConfig } from '@magicbell/project-client';
   });
 
   const stripeConfig: StripeConfig = {
-    webhookSigningSecret: 'in',
+    webhookSigningSecret: 'Excepteur Ut cupidatat co',
   };
 
   const { data } = await client.integrations.saveStripeIntegration(input);
@@ -1521,9 +1521,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1573,9 +1573,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type | Required | Description       |
-| :--- | :--- | :------- | :---------------- |
-| body | any  | ❌       | The request body. |
+| Name | Type  | Required | Description       |
+| :--- | :---- | :------- | :---------------- |
+| body | `any` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1627,9 +1627,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1679,9 +1679,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [TwilioConfig](../models/TwilioConfig.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[TwilioConfig](../models/TwilioConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1700,10 +1700,10 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
   const twilioConfigRegion = TwilioConfigRegion.US1;
 
   const twilioConfig: TwilioConfig = {
-    accountSid: 'qui',
-    apiKey: 'velit',
-    apiSecret: 'cillum magna',
-    from: '+300',
+    accountSid: 'in id occaecat',
+    apiKey: 'ut est enim dolor es',
+    apiSecret: 'ad',
+    from: '+7881753143',
     region: twilioConfigRegion,
   };
 
@@ -1741,9 +1741,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 
@@ -1793,9 +1793,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | [WebpushConfig](../models/WebpushConfig.md) | ❌       | The request body. |
+| Name | Type                                          | Required | Description       |
+| :--- | :-------------------------------------------- | :------- | :---------------- |
+| body | `[WebpushConfig](../models/WebpushConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -1812,8 +1812,8 @@ import { Client, WebpushConfig } from '@magicbell/project-client';
   });
 
   const webpushConfig: WebpushConfig = {
-    privateKey: 'labore aliquip tempor enim magna',
-    publicKey: 'labore sunt',
+    privateKey: 'adipisicing consequat consectetur',
+    publicKey: 'magna esse',
   };
 
   const { data } = await client.integrations.saveWebPushIntegration(input);
@@ -1850,9 +1850,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| id   | `string` | ✅       |             |
 
 **Example Usage Code Snippet**
 

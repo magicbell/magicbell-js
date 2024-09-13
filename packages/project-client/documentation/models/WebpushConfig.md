@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| privateKey | string | ✅       |             |
-| publicKey  | string | ✅       |             |
+| Name       | Type     | Required | Description |
+| :--------- | :------- | :------- | :---------- |
+| privateKey | `string` | ✅       |             |
+| publicKey  | `string` | ✅       |             |

@@ -2,6 +2,6 @@
 
 **Properties**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| url  | string | ✅       | URL to ping |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| url  | `string` | ✅       | URL to ping |

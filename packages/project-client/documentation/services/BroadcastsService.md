@@ -17,11 +17,11 @@ Returns a list of broadcasts
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageBefore | string | ❌       |             |
-| pageAfter  | string | ❌       |             |
+| Name       | Type     | Required | Description |
+| :--------- | :------- | :------- | :---------- |
+| pageSize   | `number` | ❌       |             |
+| pageBefore | `string` | ❌       |             |
+| pageAfter  | `string` | ❌       |             |
 
 **Return Type**
 
@@ -38,7 +38,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 10,
+    pageSize: 9,
     pageBefore: 'page[before]',
     pageAfter: 'page[after]',
   });
@@ -56,9 +56,9 @@ Handles the create notification request.
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [Broadcast](../models/Broadcast.md) | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | `[Broadcast](../models/Broadcast.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -74,42 +74,42 @@ import { Broadcast, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const category = 'RiB';
+  const category = 'mviFvt';
 
   const email: Email = {
-    actionUrl: 'labore esse nisi',
-    content: 'non incididunt Duis magna minim',
-    title: 'aliqua ea elit deserunt',
+    actionUrl: 'Utullamco aute dolore magna in',
+    content: 'incididunt',
+    title: 'dolor Excepteur id ad sit',
   };
 
   const inApp: InApp = {
-    actionUrl: 'commodo laborum proident non ea',
-    content: 'et ut sed do',
-    title: 'sint',
+    actionUrl: 'esse laboris ea',
+    content: 'est enim',
+    title: 'aliquip',
   };
 
   const mobilePush: MobilePush = {
-    actionUrl: 'sunt tempor voluptate occaecat',
-    content: 'sed cupidatat do aliquip nisi',
-    title: 'adipisicing culpa',
+    actionUrl: 'quis ipsum',
+    content: 'fugiat Lorem mollit cupidatat',
+    title: 'laborum sunt Ut mollit',
   };
 
   const slack: Slack = {
-    actionUrl: 'et adipisicing Duis fugiat',
-    content: 'ex sed aliquip esse Duis',
-    title: 'est ipsum ea',
+    actionUrl: 'labore qui ullamco amet Lorem',
+    content: 'tempor reprehenderit enim dolor',
+    title: 'eu nisi velit fugiat',
   };
 
   const sms: Sms = {
-    actionUrl: 'et proident amet ipsum irure',
-    content: 'magna Ut',
-    title: 'in',
+    actionUrl: 'culpa',
+    content: 'anim cillum eiusmod',
+    title: 'adipisicing anim reprehenderit',
   };
 
   const webPush: WebPush = {
-    actionUrl: 'amet in Ut occaecat',
-    content: 'enim ut',
-    title: 'in dolor eiusmod laborum minim',
+    actionUrl: 'nonaliqua ipsum dolor',
+    content: 'consequat laboris do eu',
+    title: 'aliquip',
   };
 
   const channels: Channels = {
@@ -136,16 +136,16 @@ import { Broadcast, Client } from '@magicbell/project-client';
     providers: providers,
   };
 
-  const topic = 'cM5OPs/SsM';
+  const topic = 'oFVCUBZ_sT';
 
   const broadcast: Broadcast = {
-    actionUrl: 'minim ut',
+    actionUrl: 'sed sunt',
     category: category,
-    content: 'qui deserunt sed',
+    content: 'nostrud sit dolor',
     customAttributes: {},
     overrides: overrides,
     recipients: [{}],
-    title: 'tempor et quis',
+    title: 'ex Duis',
     topic: topic,
   };
 
@@ -164,9 +164,9 @@ Returns a broadcast
 
 **Parameters**
 
-| Name        | Type   | Required | Description |
-| :---------- | :----- | :------- | :---------- |
-| broadcastId | string | ✅       |             |
+| Name        | Type     | Required | Description |
+| :---------- | :------- | :------- | :---------- |
+| broadcastId | `string` | ✅       |             |
 
 **Return Type**
 

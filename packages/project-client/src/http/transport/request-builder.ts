@@ -3,10 +3,10 @@ import z, { ZodType } from 'zod';
 import { Environment } from '../environment.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
 import { ContentType, HttpMethod, RequestConfig, SdkConfig } from '../types.js';
-import { CreateRequestParameters, Request, RequestParameter } from './request.js';
+import { CreateRequestParameters, Request, RequestPagination, RequestParameter } from './request.js';
 
-export class RequestBuilder<T> {
-  private params: CreateRequestParameters<T>;
+export class RequestBuilder<FullResponse, Page extends unknown[] = unknown[]> {
+  private params: CreateRequestParameters<FullResponse, Page>;
 
   constructor() {
     this.params = {
@@ -31,7 +31,7 @@ export class RequestBuilder<T> {
     };
   }
 
-  setRetryAttempts(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<T> {
+  setRetryAttempts(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<FullResponse, Page> {
     if (requestConfig?.retry?.attempts !== undefined) {
       this.params.retry.attempts = requestConfig.retry.attempts;
     } else if (sdkConfig?.retry?.attempts !== undefined) {
@@ -41,7 +41,7 @@ export class RequestBuilder<T> {
     return this;
   }
 
-  setRetryDelayMs(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<T> {
+  setRetryDelayMs(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<FullResponse, Page> {
     if (requestConfig?.retry?.delayMs !== undefined) {
       this.params.retry.delayMs = requestConfig.retry.delayMs;
     } else if (sdkConfig?.retry?.delayMs !== undefined) {
@@ -51,7 +51,7 @@ export class RequestBuilder<T> {
     return this;
   }
 
-  setResponseValidation(sdkConfig: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<T> {
+  setResponseValidation(sdkConfig: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<FullResponse, Page> {
     if (requestConfig?.validation?.responseValidation !== undefined) {
       this.params.validation.responseValidation = requestConfig.validation.responseValidation;
     } else if (sdkConfig?.validation?.responseValidation !== undefined) {
@@ -61,7 +61,7 @@ export class RequestBuilder<T> {
     return this;
   }
 
-  setBaseUrl(sdkConfig: SdkConfig): RequestBuilder<T> {
+  setBaseUrl(sdkConfig: SdkConfig): RequestBuilder<FullResponse, Page> {
     if (sdkConfig?.baseUrl !== undefined) {
       this.params.baseUrl = sdkConfig.baseUrl;
     }
@@ -69,49 +69,54 @@ export class RequestBuilder<T> {
     return this;
   }
 
-  setMethod(method: HttpMethod): RequestBuilder<T> {
+  setMethod(method: HttpMethod): RequestBuilder<FullResponse, Page> {
     this.params.method = method;
     return this;
   }
 
-  setPath(path: string): RequestBuilder<T> {
+  setPath(path: string): RequestBuilder<FullResponse, Page> {
     this.params.path = path;
     return this;
   }
 
-  setConfig(config: SdkConfig): RequestBuilder<T> {
+  setConfig(config: SdkConfig): RequestBuilder<FullResponse, Page> {
     this.params.config = config;
     return this;
   }
 
-  setRequestContentType(contentType: ContentType): RequestBuilder<T> {
+  setRequestContentType(contentType: ContentType): RequestBuilder<FullResponse, Page> {
     this.params.requestContentType = contentType;
     return this;
   }
 
-  setResponseContentType(contentType: ContentType): RequestBuilder<T> {
+  setResponseContentType(contentType: ContentType): RequestBuilder<FullResponse, Page> {
     this.params.responseContentType = contentType;
     return this;
   }
 
-  setRequestSchema(requestSchema: ZodType): RequestBuilder<T> {
+  setRequestSchema(requestSchema: ZodType): RequestBuilder<FullResponse, Page> {
     this.params.requestSchema = requestSchema;
     return this;
   }
 
-  setResponseSchema(responseSchema: ZodType): RequestBuilder<T> {
+  setResponseSchema(responseSchema: ZodType): RequestBuilder<FullResponse, Page> {
     this.params.responseSchema = responseSchema;
     return this;
   }
 
-  addBody(body?: any): RequestBuilder<T> {
+  setPagination(pagination: RequestPagination<Page>): RequestBuilder<FullResponse, Page> {
+    this.params.pagination = pagination;
+    return this;
+  }
+
+  addBody(body?: any): RequestBuilder<FullResponse, Page> {
     if (body !== undefined) {
       this.params.body = body;
     }
     return this;
   }
 
-  addPathParam(param: Partial<RequestParameter>): RequestBuilder<T> {
+  addPathParam(param: Partial<RequestParameter>): RequestBuilder<FullResponse, Page> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -122,12 +127,14 @@ export class RequestBuilder<T> {
       explode: param.explode ?? true,
       style: param.style ?? SerializationStyle.SIMPLE,
       encode: param.encode ?? true,
+      isLimit: !!param.isLimit,
+      isOffset: !!param.isOffset,
     });
 
     return this;
   }
 
-  addQueryParam(param: Partial<RequestParameter>): RequestBuilder<T> {
+  addQueryParam(param: Partial<RequestParameter>): RequestBuilder<FullResponse, Page> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -138,12 +145,14 @@ export class RequestBuilder<T> {
       explode: param.explode ?? true,
       style: param.style ?? SerializationStyle.FORM,
       encode: param.encode ?? true,
+      isLimit: !!param.isLimit,
+      isOffset: !!param.isOffset,
     });
 
     return this;
   }
 
-  addHeaderParam(param: Partial<RequestParameter>): RequestBuilder<T> {
+  addHeaderParam(param: Partial<RequestParameter>): RequestBuilder<FullResponse, Page> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -154,12 +163,14 @@ export class RequestBuilder<T> {
       explode: param.explode ?? true,
       style: param.style ?? SerializationStyle.SIMPLE,
       encode: param.encode ?? false,
+      isLimit: !!param.isLimit,
+      isOffset: !!param.isOffset,
     });
 
     return this;
   }
 
-  public build(): Request<T> {
-    return new Request<T>(this.params);
+  public build(): Request<FullResponse, Page> {
+    return new Request<FullResponse, Page>(this.params);
   }
 }

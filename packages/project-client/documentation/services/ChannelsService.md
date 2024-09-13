@@ -30,9 +30,9 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -61,10 +61,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -93,10 +93,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -125,9 +125,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -156,10 +156,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -188,10 +188,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -220,9 +220,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -251,10 +251,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -283,10 +283,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -315,9 +315,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -346,10 +346,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -378,10 +378,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -410,9 +410,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -441,10 +441,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -473,10 +473,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -505,9 +505,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -536,10 +536,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -568,10 +568,10 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| userId  | string | ✅       |             |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| userId  | `string` | ✅       |             |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 

@@ -46,8 +46,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfApnsToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfApnsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens')
       .setRequestSchema(z.any())
@@ -77,8 +77,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ApnsTokenWithMetadata>> {
     const request = new RequestBuilder<ApnsTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -112,8 +112,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -145,8 +145,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfExpoToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfExpoToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens')
       .setRequestSchema(z.any())
@@ -176,8 +176,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ExpoTokenWithMetadata>> {
     const request = new RequestBuilder<ExpoTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -211,8 +211,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -244,8 +244,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfFcmToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfFcmToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens')
       .setRequestSchema(z.any())
@@ -275,8 +275,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<FcmTokenWithMetadata>> {
     const request = new RequestBuilder<FcmTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -310,8 +310,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -343,8 +343,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfSlackToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfSlackToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/slack/tokens')
       .setRequestSchema(z.any())
@@ -374,8 +374,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackTokenWithMetadata>> {
     const request = new RequestBuilder<SlackTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -409,8 +409,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -442,8 +442,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfTeamsToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfTeamsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/teams/tokens')
       .setRequestSchema(z.any())
@@ -473,8 +473,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<TeamsTokenWithMetadata>> {
     const request = new RequestBuilder<TeamsTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -508,8 +508,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -541,8 +541,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayWithMetadataOfWebPushToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfWebPushToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/web_push/tokens')
       .setRequestSchema(z.any())
@@ -572,8 +572,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushTokenWithMetadata>> {
     const request = new RequestBuilder<WebPushTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -607,8 +607,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')
       .setRequestSchema(z.any())
