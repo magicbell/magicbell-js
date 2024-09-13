@@ -10,7 +10,7 @@ import { webPush, webPushRequest, webPushResponse } from './web-push.js';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const channels = z.lazy(() => {
+export const overridesChannels = z.lazy(() => {
   return z.object({
     email: email.optional(),
     inApp: inApp.optional(),
@@ -23,7 +23,7 @@ export const channels = z.lazy(() => {
 
 /**
  *
- * @typedef  {Channels} channels
+ * @typedef  {OverridesChannels} overridesChannels
  * @property {Email}
  * @property {InApp}
  * @property {MobilePush}
@@ -31,13 +31,13 @@ export const channels = z.lazy(() => {
  * @property {Sms}
  * @property {WebPush}
  */
-export type Channels = z.infer<typeof channels>;
+export type OverridesChannels = z.infer<typeof overridesChannels>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const channelsResponse = z.lazy(() => {
+export const overridesChannelsResponse = z.lazy(() => {
   return z
     .object({
       email: emailResponse.optional(),
@@ -61,7 +61,7 @@ export const channelsResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const channelsRequest = z.lazy(() => {
+export const overridesChannelsRequest = z.lazy(() => {
   return z
     .object({
       email: emailRequest.nullish(),

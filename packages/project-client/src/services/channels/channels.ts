@@ -28,6 +28,12 @@ import {
   ArrayWithMetadataOfWebPushToken,
   arrayWithMetadataOfWebPushTokenResponse,
 } from './models/array-with-metadata-of-web-push-token.js';
+import {
+  CategoryDeliveryPlan,
+  categoryDeliveryPlanRequest,
+  categoryDeliveryPlanResponse,
+} from './models/category-delivery-plan.js';
+import { DeliveryPlan, deliveryPlanRequest, deliveryPlanResponse } from './models/delivery-plan.js';
 import { DiscardResult, discardResultResponse } from './models/discard-result.js';
 import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata.js';
 import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata.js';
@@ -36,6 +42,79 @@ import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models
 import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata.js';
 
 export class ChannelsService extends BaseService {
+  /**
+   *
+   * @returns {Promise<HttpResponse<DeliveryPlan>>} OK
+   */
+  async getProjectDeliveryconfig(requestConfig?: RequestConfig): Promise<HttpResponse<DeliveryPlan>> {
+    const request = new RequestBuilder<DeliveryPlan>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('GET')
+      .setPath('/channels/deliveryconfig')
+      .setRequestSchema(z.any())
+      .setResponseSchema(deliveryPlanResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<DeliveryPlan>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<DeliveryPlan>>} OK
+   */
+  async saveProjectDeliveryconfig(
+    body: DeliveryPlan,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DeliveryPlan>> {
+    const request = new RequestBuilder<DeliveryPlan>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('PUT')
+      .setPath('/channels/deliveryconfig')
+      .setRequestSchema(deliveryPlanRequest)
+      .setResponseSchema(deliveryPlanResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<DeliveryPlan>(request);
+  }
+
+  /**
+   *
+   * @returns {Promise<HttpResponse<CategoryDeliveryPlan>>} Created
+   */
+  async saveCategoriesDeliveryconfig(
+    body: CategoryDeliveryPlan,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<CategoryDeliveryPlan>> {
+    const request = new RequestBuilder<CategoryDeliveryPlan>()
+      .setConfig(this.config)
+      .setBaseUrl(this.config)
+      .setMethod('POST')
+      .setPath('/channels/deliveryconfig/categories')
+      .setRequestSchema(categoryDeliveryPlanRequest)
+      .setResponseSchema(categoryDeliveryPlanResponse)
+      .setRequestContentType(ContentType.Json)
+      .setResponseContentType(ContentType.Json)
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<CategoryDeliveryPlan>(request);
+  }
+
   /**
    *
    * @param {string} userId -

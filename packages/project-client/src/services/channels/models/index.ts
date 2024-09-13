@@ -14,12 +14,18 @@ export type { ArrayWithMetadataOfTeamsToken } from './array-with-metadata-of-tea
 export type { ArrayWithMetadataOfTeamsTokenData } from './array-with-metadata-of-teams-token-data.js';
 export type { ArrayWithMetadataOfWebPushToken } from './array-with-metadata-of-web-push-token.js';
 export type { ArrayWithMetadataOfWebPushTokenData } from './array-with-metadata-of-web-push-token-data.js';
+export type { CategoryDeliveryPlan } from './category-delivery-plan.js';
+export type { CategoryDeliveryPlanChannels } from './category-delivery-plan-channels.js';
+export { ChannelsChannel1 } from './channels-channel-1.js';
+export { ChannelsChannel2 } from './channels-channel-2.js';
 export type { DataMetadata1 } from './data-metadata-1.js';
 export type { DataMetadata2 } from './data-metadata-2.js';
 export type { DataMetadata3 } from './data-metadata-3.js';
 export type { DataMetadata4 } from './data-metadata-4.js';
 export type { DataMetadata5 } from './data-metadata-5.js';
 export type { DataMetadata6 } from './data-metadata-6.js';
+export type { DeliveryPlan } from './delivery-plan.js';
+export type { DeliveryPlanChannels } from './delivery-plan-channels.js';
 export type { DiscardResult } from './discard-result.js';
 export type { ExpoToken } from './expo-token.js';
 export type { ExpoTokenWithMetadata } from './expo-token-with-metadata.js';

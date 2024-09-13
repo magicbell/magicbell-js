@@ -81,7 +81,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 10,
+    pageSize: 8,
     pageBefore: 'page[before]',
     pageAfter: 'page[after]',
   });
@@ -100,9 +100,9 @@ The SDK provides various services to interact with the API.
 | Name                                                                 |
 | :------------------------------------------------------------------- |
 | [BroadcastsService](documentation/services/BroadcastsService.md)     |
+| [ChannelsService](documentation/services/ChannelsService.md)         |
 | [IntegrationsService](documentation/services/IntegrationsService.md) |
 | [JwtService](documentation/services/JwtService.md)                   |
-| [ChannelsService](documentation/services/ChannelsService.md)         |
 
 </details>
 
@@ -117,6 +117,21 @@ The SDK includes several models that represent the data structures used in API r
 | :----------------------------------------------------------------------------------------- | :---------- |
 | [BroadcastListResponse](documentation/models/BroadcastListResponse.md)                     |             |
 | [Broadcast](documentation/models/Broadcast.md)                                             |             |
+| [DeliveryPlan](documentation/models/DeliveryPlan.md)                                       |             |
+| [CategoryDeliveryPlan](documentation/models/CategoryDeliveryPlan.md)                       |             |
+| [ArrayWithMetadataOfApnsToken](documentation/models/ArrayWithMetadataOfApnsToken.md)       |             |
+| [ApnsTokenWithMetadata](documentation/models/ApnsTokenWithMetadata.md)                     |             |
+| [DiscardResult](documentation/models/DiscardResult.md)                                     |             |
+| [ArrayWithMetadataOfExpoToken](documentation/models/ArrayWithMetadataOfExpoToken.md)       |             |
+| [ExpoTokenWithMetadata](documentation/models/ExpoTokenWithMetadata.md)                     |             |
+| [ArrayWithMetadataOfFcmToken](documentation/models/ArrayWithMetadataOfFcmToken.md)         |             |
+| [FcmTokenWithMetadata](documentation/models/FcmTokenWithMetadata.md)                       |             |
+| [ArrayWithMetadataOfSlackToken](documentation/models/ArrayWithMetadataOfSlackToken.md)     |             |
+| [SlackTokenWithMetadata](documentation/models/SlackTokenWithMetadata.md)                   |             |
+| [ArrayWithMetadataOfTeamsToken](documentation/models/ArrayWithMetadataOfTeamsToken.md)     |             |
+| [TeamsTokenWithMetadata](documentation/models/TeamsTokenWithMetadata.md)                   |             |
+| [ArrayWithMetadataOfWebPushToken](documentation/models/ArrayWithMetadataOfWebPushToken.md) |             |
+| [WebPushTokenWithMetadata](documentation/models/WebPushTokenWithMetadata.md)               |             |
 | [ListIntegrationsResponse](documentation/models/ListIntegrationsResponse.md)               |             |
 | [ApnsConfig](documentation/models/ApnsConfig.md)                                           |             |
 | [AwssnsConfig](documentation/models/AwssnsConfig.md)                                       |             |
@@ -137,19 +152,6 @@ The SDK includes several models that represent the data structures used in API r
 | [AccessToken](documentation/models/AccessToken.md)                                         |             |
 | [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                       |             |
 | [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)                   |             |
-| [ArrayWithMetadataOfApnsToken](documentation/models/ArrayWithMetadataOfApnsToken.md)       |             |
-| [ApnsTokenWithMetadata](documentation/models/ApnsTokenWithMetadata.md)                     |             |
-| [DiscardResult](documentation/models/DiscardResult.md)                                     |             |
-| [ArrayWithMetadataOfExpoToken](documentation/models/ArrayWithMetadataOfExpoToken.md)       |             |
-| [ExpoTokenWithMetadata](documentation/models/ExpoTokenWithMetadata.md)                     |             |
-| [ArrayWithMetadataOfFcmToken](documentation/models/ArrayWithMetadataOfFcmToken.md)         |             |
-| [FcmTokenWithMetadata](documentation/models/FcmTokenWithMetadata.md)                       |             |
-| [ArrayWithMetadataOfSlackToken](documentation/models/ArrayWithMetadataOfSlackToken.md)     |             |
-| [SlackTokenWithMetadata](documentation/models/SlackTokenWithMetadata.md)                   |             |
-| [ArrayWithMetadataOfTeamsToken](documentation/models/ArrayWithMetadataOfTeamsToken.md)     |             |
-| [TeamsTokenWithMetadata](documentation/models/TeamsTokenWithMetadata.md)                   |             |
-| [ArrayWithMetadataOfWebPushToken](documentation/models/ArrayWithMetadataOfWebPushToken.md) |             |
-| [WebPushTokenWithMetadata](documentation/models/WebPushTokenWithMetadata.md)               |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                             |             |
 | [ExpoToken](documentation/models/ExpoToken.md)                                             |             |
 | [FcmToken](documentation/models/FcmToken.md)                                               |             |

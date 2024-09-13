@@ -38,7 +38,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 10,
+    pageSize: 8,
     pageBefore: 'page[before]',
     pageAfter: 'page[after]',
   });
@@ -74,45 +74,45 @@ import { Broadcast, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const category = 'RiB';
+  const category = '3-yOE';
 
   const email: Email = {
-    actionUrl: 'labore esse nisi',
-    content: 'non incididunt Duis magna minim',
-    title: 'aliqua ea elit deserunt',
+    actionUrl: 'mollit magna nostrud eiusmod',
+    content: 'occaecat elit in fugiat sit',
+    title: 'Duis',
   };
 
   const inApp: InApp = {
-    actionUrl: 'commodo laborum proident non ea',
-    content: 'et ut sed do',
-    title: 'sint',
+    actionUrl: 'minim',
+    content: 'irure anim aliquip sit in',
+    title: 'nisi',
   };
 
   const mobilePush: MobilePush = {
-    actionUrl: 'sunt tempor voluptate occaecat',
-    content: 'sed cupidatat do aliquip nisi',
-    title: 'adipisicing culpa',
+    actionUrl: 'irure ullamco ut nulla officia',
+    content: 'labore aute ipsum',
+    title: 'eu nulla Duis',
   };
 
   const slack: Slack = {
-    actionUrl: 'et adipisicing Duis fugiat',
-    content: 'ex sed aliquip esse Duis',
-    title: 'est ipsum ea',
+    actionUrl: 'consectetur labore occaecat Ut anim',
+    content: 'consectetur aute dolor',
+    title: 'qui magna ut dolor',
   };
 
   const sms: Sms = {
-    actionUrl: 'et proident amet ipsum irure',
-    content: 'magna Ut',
-    title: 'in',
+    actionUrl: 'ullamco reprehenderit irure ut id',
+    content: 'culpa officia non in consequat',
+    title: 'Duis et',
   };
 
   const webPush: WebPush = {
-    actionUrl: 'amet in Ut occaecat',
-    content: 'enim ut',
-    title: 'in dolor eiusmod laborum minim',
+    actionUrl: 'laboris ut sint',
+    content: 'ea incididunt',
+    title: 'elit nulla ea voluptate esse',
   };
 
-  const channels: Channels = {
+  const overridesChannels: OverridesChannels = {
     email: email,
     inApp: inApp,
     mobilePush: mobilePush,
@@ -132,20 +132,20 @@ import { Broadcast, Client } from '@magicbell/project-client';
   };
 
   const overrides: Overrides = {
-    channels: channels,
+    channels: overridesChannels,
     providers: providers,
   };
 
-  const topic = 'cM5OPs/SsM';
+  const topic = '/';
 
   const broadcast: Broadcast = {
-    actionUrl: 'minim ut',
+    actionUrl: 'fugiat ullamco ex officia Ut',
     category: category,
-    content: 'qui deserunt sed',
+    content: 'id adipisicing',
     customAttributes: {},
     overrides: overrides,
     recipients: [{}],
-    title: 'tempor et quis',
+    title: 'fugiat commodo enim deserunt est',
     topic: topic,
   };
 
