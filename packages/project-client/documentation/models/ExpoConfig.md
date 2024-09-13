@@ -2,6 +2,6 @@
 
 **Properties**
 
-| Name        | Type   | Required | Description |
-| :---------- | :----- | :------- | :---------- |
-| accessToken | string | ✅       |             |
+| Name        | Type     | Required | Description |
+| :---------- | :------- | :------- | :---------- |
+| accessToken | `string` | ✅       |             |

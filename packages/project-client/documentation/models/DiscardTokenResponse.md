@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name        | Type   | Required | Description |
-| :---------- | :----- | :------- | :---------- |
-| discardedAt | string | ✅       |             |
-| tokenId     | string | ✅       |             |
+| Name        | Type     | Required | Description |
+| :---------- | :------- | :------- | :---------- |
+| discardedAt | `string` | ✅       |             |
+| tokenId     | `string` | ✅       |             |

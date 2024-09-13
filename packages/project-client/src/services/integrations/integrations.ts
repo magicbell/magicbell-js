@@ -26,8 +26,8 @@ export class IntegrationsService extends BaseService {
    */
   async listIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations')
       .setRequestSchema(z.any())
@@ -47,8 +47,8 @@ export class IntegrationsService extends BaseService {
    */
   async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/apns')
       .setRequestSchema(z.any())
@@ -68,8 +68,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveApnsIntegration(body: ApnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfig>> {
     const request = new RequestBuilder<ApnsConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/apns')
       .setRequestSchema(apnsConfigRequest)
@@ -91,8 +91,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns')
       .setRequestSchema(z.any())
@@ -113,8 +113,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns/{id}')
       .setRequestSchema(z.any())
@@ -138,8 +138,8 @@ export class IntegrationsService extends BaseService {
    */
   async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/awssns')
       .setRequestSchema(z.any())
@@ -159,8 +159,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveAwssnsIntegration(body: AwssnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfig>> {
     const request = new RequestBuilder<AwssnsConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/awssns')
       .setRequestSchema(awssnsConfigRequest)
@@ -182,8 +182,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns')
       .setRequestSchema(z.any())
@@ -204,8 +204,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns/{id}')
       .setRequestSchema(z.any())
@@ -229,8 +229,8 @@ export class IntegrationsService extends BaseService {
    */
   async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/expo')
       .setRequestSchema(z.any())
@@ -250,8 +250,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveExpoIntegration(body: ExpoConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfig>> {
     const request = new RequestBuilder<ExpoConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/expo')
       .setRequestSchema(expoConfigRequest)
@@ -273,8 +273,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo')
       .setRequestSchema(z.any())
@@ -295,8 +295,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo/{id}')
       .setRequestSchema(z.any())
@@ -320,8 +320,8 @@ export class IntegrationsService extends BaseService {
    */
   async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/fcm')
       .setRequestSchema(z.any())
@@ -341,8 +341,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveFcmIntegration(body: FcmConfig, requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfig>> {
     const request = new RequestBuilder<FcmConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/fcm')
       .setRequestSchema(fcmConfigRequest)
@@ -364,8 +364,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm')
       .setRequestSchema(z.any())
@@ -386,8 +386,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm/{id}')
       .setRequestSchema(z.any())
@@ -411,8 +411,8 @@ export class IntegrationsService extends BaseService {
    */
   async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/github')
       .setRequestSchema(z.any())
@@ -432,8 +432,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveGithubIntegration(body: GithubConfig, requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfig>> {
     const request = new RequestBuilder<GithubConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/github')
       .setRequestSchema(githubConfigRequest)
@@ -455,8 +455,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github')
       .setRequestSchema(z.any())
@@ -477,8 +477,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github/{id}')
       .setRequestSchema(z.any())
@@ -502,8 +502,8 @@ export class IntegrationsService extends BaseService {
    */
   async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/inbox')
       .setRequestSchema(z.any())
@@ -523,8 +523,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveInboxIntegration(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
     const request = new RequestBuilder<InboxConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/inbox')
       .setRequestSchema(inboxConfigRequest)
@@ -546,8 +546,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox')
       .setRequestSchema(z.any())
@@ -568,8 +568,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox/{id}')
       .setRequestSchema(z.any())
@@ -593,8 +593,8 @@ export class IntegrationsService extends BaseService {
    */
   async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/mailgun')
       .setRequestSchema(z.any())
@@ -617,8 +617,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<MailgunConfig>> {
     const request = new RequestBuilder<MailgunConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/mailgun')
       .setRequestSchema(mailgunConfigRequest)
@@ -640,8 +640,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun')
       .setRequestSchema(z.any())
@@ -662,8 +662,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun/{id}')
       .setRequestSchema(z.any())
@@ -687,8 +687,8 @@ export class IntegrationsService extends BaseService {
    */
   async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ping_email')
       .setRequestSchema(z.any())
@@ -708,8 +708,8 @@ export class IntegrationsService extends BaseService {
    */
   async savePingEmailIntegration(body: PingConfig, requestConfig?: RequestConfig): Promise<HttpResponse<PingConfig>> {
     const request = new RequestBuilder<PingConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ping_email')
       .setRequestSchema(pingConfigRequest)
@@ -731,8 +731,8 @@ export class IntegrationsService extends BaseService {
    */
   async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email')
       .setRequestSchema(z.any())
@@ -753,8 +753,8 @@ export class IntegrationsService extends BaseService {
    */
   async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email/{id}')
       .setRequestSchema(z.any())
@@ -778,8 +778,8 @@ export class IntegrationsService extends BaseService {
    */
   async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(z.any())
@@ -802,8 +802,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SendgridConfig>> {
     const request = new RequestBuilder<SendgridConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(sendgridConfigRequest)
@@ -825,8 +825,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(z.any())
@@ -847,8 +847,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid/{id}')
       .setRequestSchema(z.any())
@@ -872,8 +872,8 @@ export class IntegrationsService extends BaseService {
    */
   async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ses')
       .setRequestSchema(z.any())
@@ -893,8 +893,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveSesIntegration(body: SesConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SesConfig>> {
     const request = new RequestBuilder<SesConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ses')
       .setRequestSchema(sesConfigRequest)
@@ -916,8 +916,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses')
       .setRequestSchema(z.any())
@@ -938,8 +938,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses/{id}')
       .setRequestSchema(z.any())
@@ -963,8 +963,8 @@ export class IntegrationsService extends BaseService {
    */
   async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/slack')
       .setRequestSchema(z.any())
@@ -984,8 +984,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveSlackIntegration(body: SlackConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfig>> {
     const request = new RequestBuilder<SlackConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/slack')
       .setRequestSchema(slackConfigRequest)
@@ -1007,8 +1007,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack')
       .setRequestSchema(z.any())
@@ -1029,8 +1029,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack/{id}')
       .setRequestSchema(z.any())
@@ -1054,8 +1054,8 @@ export class IntegrationsService extends BaseService {
    */
   async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/stripe')
       .setRequestSchema(z.any())
@@ -1075,8 +1075,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveStripeIntegration(body: StripeConfig, requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfig>> {
     const request = new RequestBuilder<StripeConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/stripe')
       .setRequestSchema(stripeConfigRequest)
@@ -1098,8 +1098,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe')
       .setRequestSchema(z.any())
@@ -1120,8 +1120,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe/{id}')
       .setRequestSchema(z.any())
@@ -1145,8 +1145,8 @@ export class IntegrationsService extends BaseService {
    */
   async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
@@ -1166,8 +1166,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveTemplatesIntegration(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<any>> {
     const request = new RequestBuilder<any>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
@@ -1189,8 +1189,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
@@ -1211,8 +1211,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates/{id}')
       .setRequestSchema(z.any())
@@ -1236,8 +1236,8 @@ export class IntegrationsService extends BaseService {
    */
   async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/twilio')
       .setRequestSchema(z.any())
@@ -1257,8 +1257,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveTwilioIntegration(body: TwilioConfig, requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfig>> {
     const request = new RequestBuilder<TwilioConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/twilio')
       .setRequestSchema(twilioConfigRequest)
@@ -1280,8 +1280,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio')
       .setRequestSchema(z.any())
@@ -1302,8 +1302,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio/{id}')
       .setRequestSchema(z.any())
@@ -1327,8 +1327,8 @@ export class IntegrationsService extends BaseService {
    */
   async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ListIntegrationsResponse>> {
     const request = new RequestBuilder<ListIntegrationsResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/web_push')
       .setRequestSchema(z.any())
@@ -1351,8 +1351,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebpushConfig>> {
     const request = new RequestBuilder<WebpushConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/web_push')
       .setRequestSchema(webpushConfigRequest)
@@ -1374,8 +1374,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push')
       .setRequestSchema(z.any())
@@ -1396,8 +1396,8 @@ export class IntegrationsService extends BaseService {
    */
   async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
     const request = new RequestBuilder<undefined>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push/{id}')
       .setRequestSchema(z.any())

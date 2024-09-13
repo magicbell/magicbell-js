@@ -35,20 +35,20 @@
     "dist",
     "README.md"
   ],
-  "tshy": {
-    "project": "./tsconfig.build.json",
-    "exports": "./src/index.ts"
-  },
   "scripts": {
     "build": "tshy",
     "codegen": "tsx scripts/build.ts",
-    "start": "rm -rf dist/ && tsc -w"
+    "start": "tshy --watch"
   },
   "dependencies": {
     "zod": "3.23.8"
   },
   "devDependencies": {
     "typescript": "^5.5.3"
+  },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/index.ts"
   },
   "type": "module"
 }

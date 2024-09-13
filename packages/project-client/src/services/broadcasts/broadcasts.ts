@@ -20,8 +20,8 @@ export class BroadcastsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<BroadcastListResponse>> {
     const request = new RequestBuilder<BroadcastListResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/broadcasts')
       .setRequestSchema(z.any())
@@ -53,8 +53,8 @@ export class BroadcastsService extends BaseService {
    */
   async createBroadcast(body: Broadcast, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
     const request = new RequestBuilder<Broadcast>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/broadcasts')
       .setRequestSchema(broadcastRequest)
@@ -77,8 +77,8 @@ export class BroadcastsService extends BaseService {
    */
   async fetchBroadcast(broadcastId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
     const request = new RequestBuilder<Broadcast>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/broadcasts/{broadcast_id}')
       .setRequestSchema(z.any())

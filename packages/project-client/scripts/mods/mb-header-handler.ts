@@ -27,6 +27,8 @@ export class HeaderHandler implements RequestHandler {
         explode: false,
         encode: false,
         style: SerializationStyle.SIMPLE,
+        isLimit: false,
+        isOffset: false,
       });
     }
 

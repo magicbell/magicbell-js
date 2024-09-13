@@ -2,14 +2,14 @@
 
 **Properties**
 
-| Name    | Type              | Required | Description |
-| :------ | :---------------- | :------- | :---------- |
-| webhook | TeamsTokenWebhook | ❌       |             |
+| Name    | Type                | Required | Description |
+| :------ | :------------------ | :------- | :---------- |
+| webhook | `TeamsTokenWebhook` | ❌       |             |
 
 # TeamsTokenWebhook
 
 **Properties**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| url  | string | ❌       |             |
+| Name | Type     | Required | Description |
+| :--- | :------- | :------- | :---------- |
+| url  | `string` | ❌       |             |

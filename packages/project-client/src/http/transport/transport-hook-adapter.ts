@@ -78,6 +78,8 @@ export class TransportHookAdapter<T> {
         encode: requestParam?.encode ?? false,
         style: requestParam?.style || SerializationStyle.NONE,
         explode: requestParam?.explode ?? false,
+        isLimit: requestParam?.isLimit ?? false,
+        isOffset: requestParam?.isOffset ?? false,
       });
     });
     return transportParams;

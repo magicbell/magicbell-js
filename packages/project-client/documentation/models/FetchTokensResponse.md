@@ -2,17 +2,17 @@
 
 **Properties**
 
-| Name   | Type     | Required | Description |
-| :----- | :------- | :------- | :---------- |
-| tokens | Tokens[] | ✅       |             |
+| Name   | Type       | Required | Description |
+| :----- | :--------- | :------- | :---------- |
+| tokens | `Tokens[]` | ✅       |             |
 
 # Tokens
 
 **Properties**
 
-| Name      | Type   | Required | Description |
-| :-------- | :----- | :------- | :---------- |
-| createdAt | string | ✅       |             |
-| expiresAt | string | ❌       |             |
-| id        | string | ❌       |             |
-| name      | string | ❌       |             |
+| Name      | Type     | Required | Description |
+| :-------- | :------- | :------- | :---------- |
+| createdAt | `string` | ✅       |             |
+| expiresAt | `string` | ❌       |             |
+| id        | `string` | ❌       |             |
+| name      | `string` | ❌       |             |

@@ -2,16 +2,16 @@
 
 **Properties**
 
-| Name         | Type           | Required | Description |
-| :----------- | :------------- | :------- | :---------- |
-| integrations | Integrations[] | ❌       |             |
+| Name         | Type             | Required | Description |
+| :----------- | :--------------- | :------- | :---------- |
+| integrations | `Integrations[]` | ❌       |             |
 
 # Integrations
 
 **Properties**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| config | any    | ❌       |             |
-| id     | string | ❌       |             |
-| name   | string | ❌       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| config | `any`    | ❌       |             |
+| id     | `string` | ❌       |             |
+| name   | `string` | ❌       |             |

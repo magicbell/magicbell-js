@@ -43,9 +43,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                                                | Required | Description       |
-| :--- | :------------------------------------------------------------------ | :------- | :---------------- |
-| body | [CreateProjectTokenRequest](../models/CreateProjectTokenRequest.md) | ❌       | The request body. |
+| Name | Type                                                                  | Required | Description       |
+| :--- | :-------------------------------------------------------------------- | :------- | :---------------- |
+| body | `[CreateProjectTokenRequest](../models/CreateProjectTokenRequest.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -62,8 +62,8 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 3,
-    name: 'mollit elit commodo Lorem ullamco',
+    expiry: 9,
+    name: 'eu aliquip',
   };
 
   const { data } = await client.jwt.createProjectJwt(input);
@@ -79,9 +79,9 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -110,9 +110,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name | Type                                                          | Required | Description       |
-| :--- | :------------------------------------------------------------ | :------- | :---------------- |
-| body | [CreateUserTokenRequest](../models/CreateUserTokenRequest.md) | ❌       | The request body. |
+| Name | Type                                                            | Required | Description       |
+| :--- | :-------------------------------------------------------------- | :------- | :---------------- |
+| body | `[CreateUserTokenRequest](../models/CreateUserTokenRequest.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -129,10 +129,10 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
   });
 
   const createUserTokenRequest: CreateUserTokenRequest = {
-    email: 'ut sunt ullamco sint',
-    expiry: 6,
-    externalId: 'commodo dolore cupidatat et ut',
-    name: 'do ea dolore',
+    email: 'fugiat ex',
+    expiry: 7,
+    externalId: 'exercitation pariatur',
+    name: 'in in ut ut',
   };
 
   const { data } = await client.jwt.createUserJwt(input);
@@ -148,9 +148,9 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| tokenId | string | ✅       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| tokenId | `string` | ✅       |             |
 
 **Return Type**
 
@@ -179,9 +179,9 @@ import { Client } from '@magicbell/project-client';
 
 **Parameters**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| userId | string | ✅       |             |
+| Name   | Type     | Required | Description |
+| :----- | :------- | :------- | :---------- |
+| userId | `string` | ✅       |             |
 
 **Return Type**
 
