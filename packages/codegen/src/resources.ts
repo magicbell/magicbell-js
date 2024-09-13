@@ -1,7 +1,7 @@
 import path from 'path';
 
-import { getOpenAPIDocument, getRootPathMethods, getRootPaths, Method } from './openapi';
-import { hyphenCase } from './text';
+import { getOpenAPIDocument, getRootPathMethods, getRootPaths, Method } from './openapi.js';
+import { hyphenCase } from './text.js';
 
 export type Resource = {
   path: string;

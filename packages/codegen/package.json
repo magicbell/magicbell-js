@@ -9,8 +9,8 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/codegen.esm.js",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -28,14 +28,17 @@
     "url": "https://github.com/magicbell/magicbell-js.git",
     "directory": "packages/codegen"
   },
+  "type": "module",
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
+    "build": "run-s clean build:bundle",
+    "build:bundle": "tshy",
     "generate:resources": "tsx scripts/generate-resources.ts",
-    "dev": "yarn build:dev && node dist/index.js",
-    "start": "yarn build:dev --watch",
+    "start": "tshy --watch",
     "size": "size-limit"
   },
   "dependencies": {
@@ -51,5 +54,89 @@
   },
   "devDependencies": {
     "@types/json-schema-merge-allof": "^0.6.5"
-  }
+  },
+  "exports": {
+    "./builders": {
+      "import": {
+        "types": "./dist/esm/builders.d.ts",
+        "default": "./dist/esm/builders.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/builders.d.ts",
+        "default": "./dist/commonjs/builders.js"
+      }
+    },
+    "./files": {
+      "import": {
+        "types": "./dist/esm/files.d.ts",
+        "default": "./dist/esm/files.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/files.d.ts",
+        "default": "./dist/commonjs/files.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./openapi": {
+      "import": {
+        "types": "./dist/esm/openapi.d.ts",
+        "default": "./dist/esm/openapi.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/openapi.d.ts",
+        "default": "./dist/commonjs/openapi.js"
+      }
+    },
+    "./recast": {
+      "import": {
+        "types": "./dist/esm/recast.d.ts",
+        "default": "./dist/esm/recast.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/recast.d.ts",
+        "default": "./dist/commonjs/recast.js"
+      }
+    },
+    "./resources": {
+      "import": {
+        "types": "./dist/esm/resources.d.ts",
+        "default": "./dist/esm/resources.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/resources.d.ts",
+        "default": "./dist/commonjs/resources.js"
+      }
+    },
+    "./schema": {
+      "import": {
+        "types": "./dist/esm/schema.d.ts",
+        "default": "./dist/esm/schema.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/schema.d.ts",
+        "default": "./dist/commonjs/schema.js"
+      }
+    },
+    "./text": {
+      "import": {
+        "types": "./dist/esm/text.d.ts",
+        "default": "./dist/esm/text.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/text.d.ts",
+        "default": "./dist/commonjs/text.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/commonjs/index.d.ts"
 }

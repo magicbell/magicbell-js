@@ -4,8 +4,8 @@ import fs from 'fs/promises';
 import mergeAllOf from 'json-schema-merge-allof';
 import { OpenAPI } from 'openapi-types';
 
-import { getByRef, getRequestBody, getResponseBody, isEmptySchema, ReferenceObject, SchemaObject } from './schema';
-import { camelCase, pascalCase, snakeCase } from './text';
+import { getByRef, getRequestBody, getResponseBody, isEmptySchema, ReferenceObject, SchemaObject } from './schema.js';
+import { camelCase, pascalCase, snakeCase } from './text.js';
 
 function findBestMatch(str: string, keys: string[]) {
   let bestMatch = '';

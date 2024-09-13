@@ -1,8 +1,8 @@
 import { ASTNode } from 'ast-types';
 import * as recast from 'recast';
-import * as recastTypeScriptParser from 'recast/parsers/typescript';
 
-import { formatCode } from './text';
+import { recastTypeScriptParser } from './polyfills/recast-module.js';
+import { formatCode } from './text.js';
 
 const RECAST_OPTIONS: recast.Options = { tabWidth: 2, quote: 'single', wrapColumn: 120 };
 

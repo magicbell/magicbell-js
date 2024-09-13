@@ -1,10 +1,11 @@
 import { builders } from 'ast-types';
-import { ObjectExpressionBuilder } from 'ast-types/gen/builders';
-import * as K from 'ast-types/gen/kinds';
 import * as recast from 'recast';
-import * as recastTypeScriptParser from 'recast/parsers/typescript';
 
-import { wrapText } from './text';
+import { recastTypeScriptParser } from './polyfills/recast-module.js';
+import { wrapText } from './text.js';
+
+type ObjectExpressionBuilder = typeof builders.objectExpression;
+type CallExpressionArguments = Parameters<typeof builders.callExpression>[1][number];
 
 export function importDeclaration(specifiers: string | string[], source: string) {
   const specifierArray = Array.isArray(specifiers) ? specifiers : [specifiers];
@@ -120,7 +121,7 @@ export function newExpression(callee: string, ...args: string[]) {
   });
 }
 
-export function callExpression(callee: string, ...args: (K.ExpressionKind | K.SpreadElementKind | string)[]) {
+export function callExpression(callee: string, ...args: (CallExpressionArguments | string)[]) {
   return builders.callExpression.from({
     callee: builders.identifier(callee),
     arguments: args.map((x) => (typeof x === 'string' ? builders.identifier(x) : x)).filter(Boolean),
