@@ -128,7 +128,6 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   pkgJson.version = initialPkgJson.version;
-  pkgJson.scripts.codegen = 'tsx scripts/build.ts';
 
   pkgJson.scripts = {
     build: 'tshy',
