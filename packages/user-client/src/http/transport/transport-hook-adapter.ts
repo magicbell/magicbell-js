@@ -1,8 +1,8 @@
-import { CustomHook } from '../hooks/custom-hook';
-import { HttpError, HttpRequest } from '../hooks/hook';
-import { SerializationStyle } from '../serialization/base-serializer';
-import { HttpResponse } from '../types';
-import { Request, RequestParameter } from './request';
+import { CustomHook } from '../hooks/custom-hook.js';
+import { HttpError, HttpRequest } from '../hooks/hook.js';
+import { SerializationStyle } from '../serialization/base-serializer.js';
+import { HttpResponse } from '../types.js';
+import { Request, RequestParameter } from './request.js';
 
 export class TransportHookAdapter<T> {
   private hook: CustomHook = new CustomHook();
@@ -78,6 +78,8 @@ export class TransportHookAdapter<T> {
         encode: requestParam?.encode ?? false,
         style: requestParam?.style || SerializationStyle.NONE,
         explode: requestParam?.explode ?? false,
+        isLimit: requestParam?.isLimit ?? false,
+        isOffset: requestParam?.isOffset ?? false,
       });
     });
     return transportParams;

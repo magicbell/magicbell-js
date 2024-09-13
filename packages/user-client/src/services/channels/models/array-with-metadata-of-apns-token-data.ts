@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { apnsToken, apnsTokenRequest, apnsTokenResponse } from './apns-token';
-import { dataMetadata1, dataMetadata1Request, dataMetadata1Response } from './data-metadata-1';
+import { apnsToken, apnsTokenRequest, apnsTokenResponse } from './apns-token.js';
+import { dataMetadata1, dataMetadata1Request, dataMetadata1Response } from './data-metadata-1.js';
 
 /**
  * The shape of the model inside the application code - what the users use

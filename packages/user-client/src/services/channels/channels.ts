@@ -1,45 +1,45 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from '../common/web-push-token';
-import { ApnsToken, apnsTokenRequest, apnsTokenResponse } from './models/apns-token';
-import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from '../common/web-push-token.js';
+import { ApnsToken, apnsTokenRequest, apnsTokenResponse } from './models/apns-token.js';
+import { ApnsTokenWithMetadata, apnsTokenWithMetadataResponse } from './models/apns-token-with-metadata.js';
 import {
   ArrayWithMetadataOfApnsToken,
   arrayWithMetadataOfApnsTokenResponse,
-} from './models/array-with-metadata-of-apns-token';
+} from './models/array-with-metadata-of-apns-token.js';
 import {
   ArrayWithMetadataOfExpoToken,
   arrayWithMetadataOfExpoTokenResponse,
-} from './models/array-with-metadata-of-expo-token';
+} from './models/array-with-metadata-of-expo-token.js';
 import {
   ArrayWithMetadataOfFcmToken,
   arrayWithMetadataOfFcmTokenResponse,
-} from './models/array-with-metadata-of-fcm-token';
+} from './models/array-with-metadata-of-fcm-token.js';
 import {
   ArrayWithMetadataOfSlackToken,
   arrayWithMetadataOfSlackTokenResponse,
-} from './models/array-with-metadata-of-slack-token';
+} from './models/array-with-metadata-of-slack-token.js';
 import {
   ArrayWithMetadataOfTeamsToken,
   arrayWithMetadataOfTeamsTokenResponse,
-} from './models/array-with-metadata-of-teams-token';
+} from './models/array-with-metadata-of-teams-token.js';
 import {
   ArrayWithMetadataOfWebPushToken,
   arrayWithMetadataOfWebPushTokenResponse,
-} from './models/array-with-metadata-of-web-push-token';
-import { DiscardResult, discardResultResponse } from './models/discard-result';
-import { ExpoToken, expoTokenRequest, expoTokenResponse } from './models/expo-token';
-import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata';
-import { FcmToken, fcmTokenRequest, fcmTokenResponse } from './models/fcm-token';
-import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata';
-import { SlackToken, slackTokenRequest, slackTokenResponse } from './models/slack-token';
-import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata';
-import { TeamsToken, teamsTokenRequest, teamsTokenResponse } from './models/teams-token';
-import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata';
-import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata';
+} from './models/array-with-metadata-of-web-push-token.js';
+import { DiscardResult, discardResultResponse } from './models/discard-result.js';
+import { ExpoToken, expoTokenRequest, expoTokenResponse } from './models/expo-token.js';
+import { ExpoTokenWithMetadata, expoTokenWithMetadataResponse } from './models/expo-token-with-metadata.js';
+import { FcmToken, fcmTokenRequest, fcmTokenResponse } from './models/fcm-token.js';
+import { FcmTokenWithMetadata, fcmTokenWithMetadataResponse } from './models/fcm-token-with-metadata.js';
+import { SlackToken, slackTokenRequest, slackTokenResponse } from './models/slack-token.js';
+import { SlackTokenWithMetadata, slackTokenWithMetadataResponse } from './models/slack-token-with-metadata.js';
+import { TeamsToken, teamsTokenRequest, teamsTokenResponse } from './models/teams-token.js';
+import { TeamsTokenWithMetadata, teamsTokenWithMetadataResponse } from './models/teams-token-with-metadata.js';
+import { WebPushTokenWithMetadata, webPushTokenWithMetadataResponse } from './models/web-push-token-with-metadata.js';
 
 export class ChannelsService extends BaseService {
   /**
@@ -48,8 +48,8 @@ export class ChannelsService extends BaseService {
    */
   async getMobilePushApnsTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfApnsToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfApnsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/apns/tokens')
       .setRequestSchema(z.any())
@@ -69,8 +69,8 @@ export class ChannelsService extends BaseService {
    */
   async saveMobilePushApnsToken(body: ApnsToken, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsToken>> {
     const request = new RequestBuilder<ApnsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/mobile_push/apns/tokens')
       .setRequestSchema(apnsTokenRequest)
@@ -96,8 +96,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ApnsTokenWithMetadata>> {
     const request = new RequestBuilder<ApnsTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/apns/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -125,8 +125,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/mobile_push/apns/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -150,8 +150,8 @@ export class ChannelsService extends BaseService {
    */
   async getMobilePushExpoTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfExpoToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfExpoToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/expo/tokens')
       .setRequestSchema(z.any())
@@ -171,8 +171,8 @@ export class ChannelsService extends BaseService {
    */
   async saveMobilePushExpoToken(body: ExpoToken, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoToken>> {
     const request = new RequestBuilder<ExpoToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/mobile_push/expo/tokens')
       .setRequestSchema(expoTokenRequest)
@@ -198,8 +198,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ExpoTokenWithMetadata>> {
     const request = new RequestBuilder<ExpoTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/expo/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -227,8 +227,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/mobile_push/expo/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -252,8 +252,8 @@ export class ChannelsService extends BaseService {
    */
   async getMobilePushFcmTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfFcmToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfFcmToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/fcm/tokens')
       .setRequestSchema(z.any())
@@ -273,8 +273,8 @@ export class ChannelsService extends BaseService {
    */
   async saveMobilePushFcmToken(body: FcmToken, requestConfig?: RequestConfig): Promise<HttpResponse<FcmToken>> {
     const request = new RequestBuilder<FcmToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/mobile_push/fcm/tokens')
       .setRequestSchema(fcmTokenRequest)
@@ -300,8 +300,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<FcmTokenWithMetadata>> {
     const request = new RequestBuilder<FcmTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/mobile_push/fcm/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -329,8 +329,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/mobile_push/fcm/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -354,8 +354,8 @@ export class ChannelsService extends BaseService {
    */
   async getSlackTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfSlackToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfSlackToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/slack/tokens')
       .setRequestSchema(z.any())
@@ -375,8 +375,8 @@ export class ChannelsService extends BaseService {
    */
   async saveSlackToken(body: SlackToken, requestConfig?: RequestConfig): Promise<HttpResponse<SlackToken>> {
     const request = new RequestBuilder<SlackToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/slack/tokens')
       .setRequestSchema(slackTokenRequest)
@@ -399,8 +399,8 @@ export class ChannelsService extends BaseService {
    */
   async getSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<SlackTokenWithMetadata>> {
     const request = new RequestBuilder<SlackTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/slack/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -425,8 +425,8 @@ export class ChannelsService extends BaseService {
    */
   async discardSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/slack/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -450,8 +450,8 @@ export class ChannelsService extends BaseService {
    */
   async getTeamsTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfTeamsToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfTeamsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/teams/tokens')
       .setRequestSchema(z.any())
@@ -471,8 +471,8 @@ export class ChannelsService extends BaseService {
    */
   async saveTeamsToken(body: TeamsToken, requestConfig?: RequestConfig): Promise<HttpResponse<TeamsToken>> {
     const request = new RequestBuilder<TeamsToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/teams/tokens')
       .setRequestSchema(teamsTokenRequest)
@@ -495,8 +495,8 @@ export class ChannelsService extends BaseService {
    */
   async getTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<TeamsTokenWithMetadata>> {
     const request = new RequestBuilder<TeamsTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/teams/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -521,8 +521,8 @@ export class ChannelsService extends BaseService {
    */
   async discardTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/teams/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -546,8 +546,8 @@ export class ChannelsService extends BaseService {
    */
   async getWebPushTokens(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayWithMetadataOfWebPushToken>> {
     const request = new RequestBuilder<ArrayWithMetadataOfWebPushToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/web_push/tokens')
       .setRequestSchema(z.any())
@@ -567,8 +567,8 @@ export class ChannelsService extends BaseService {
    */
   async saveWebPushToken(body: WebPushToken, requestConfig?: RequestConfig): Promise<HttpResponse<WebPushToken>> {
     const request = new RequestBuilder<WebPushToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/channels/web_push/tokens')
       .setRequestSchema(webPushTokenRequest)
@@ -594,8 +594,8 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushTokenWithMetadata>> {
     const request = new RequestBuilder<WebPushTokenWithMetadata>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/web_push/tokens/{token_id}')
       .setRequestSchema(z.any())
@@ -620,8 +620,8 @@ export class ChannelsService extends BaseService {
    */
   async discardWebPushToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder<DiscardResult>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/channels/web_push/tokens/{token_id}')
       .setRequestSchema(z.any())

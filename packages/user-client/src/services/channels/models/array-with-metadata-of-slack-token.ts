@@ -4,7 +4,7 @@ import {
   arrayWithMetadataOfSlackTokenData,
   arrayWithMetadataOfSlackTokenDataRequest,
   arrayWithMetadataOfSlackTokenDataResponse,
-} from './array-with-metadata-of-slack-token-data';
+} from './array-with-metadata-of-slack-token-data.js';
 
 /**
  * The shape of the model inside the application code - what the users use

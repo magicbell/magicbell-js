@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token';
+import { teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token.js';
 import {
   teamsTokenWithMetadataMetadata,
   teamsTokenWithMetadataMetadataRequest,
   teamsTokenWithMetadataMetadataResponse,
-} from './teams-token-with-metadata-metadata';
+} from './teams-token-with-metadata-metadata.js';
 
 /**
  * The shape of the model inside the application code - what the users use

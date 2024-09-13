@@ -1,5 +1,5 @@
-import { RequestParameter } from '../transport/request';
-import { Serializer } from './base-serializer';
+import { RequestParameter } from '../transport/request.js';
+import { Serializer } from './base-serializer.js';
 
 export class PathSerializer extends Serializer {
   public serialize(pathPattern: string, pathArguments: Map<string, RequestParameter>): string {

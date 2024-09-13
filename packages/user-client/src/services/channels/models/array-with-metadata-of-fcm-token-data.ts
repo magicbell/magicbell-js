@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { dataMetadata3, dataMetadata3Request, dataMetadata3Response } from './data-metadata-3';
-import { fcmToken, fcmTokenRequest, fcmTokenResponse } from './fcm-token';
+import { dataMetadata3, dataMetadata3Request, dataMetadata3Response } from './data-metadata-3.js';
+import { fcmToken, fcmTokenRequest, fcmTokenResponse } from './fcm-token.js';
 
 /**
  * The shape of the model inside the application code - what the users use

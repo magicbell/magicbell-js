@@ -96,6 +96,7 @@ const { values: args } = parseArgs({
 });
 
 async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.json') {
+  const initialPkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   const liblabConfig = JSON.parse(await fs.readFile('./liblab.config.json', { encoding: 'utf-8' }));
   let swaggerJSON = await readFileOrUrl(specfile);
   const spec = JSON.parse(swaggerJSON);
@@ -119,27 +120,22 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
 
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
-  pkgJson.scripts.codegen = 'tsx scripts/build.ts';
+  pkgJson.version = initialPkgJson.version;
 
-  pkgJson.scripts['build'] = 'run-s build:*';
-  pkgJson.scripts['build:cjs'] = 'tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs';
-  pkgJson.scripts['build:esm'] = 'tsc --project tsconfig.build.json --module esnext --outDir dist/esm';
-  pkgJson.scripts['start'] = 'rm -rf dist/ && tsc -w';
+  pkgJson.scripts = {
+    build: 'tshy',
+    start: 'tshy --watch',
+    codegen: 'tsx scripts/build.ts',
+  };
 
-  delete pkgJson.scripts['watch'];
-  delete pkgJson.scripts['build:umd'];
-  delete pkgJson.scripts['build:all'];
-  delete pkgJson.scripts['prepublishOnly'];
+  pkgJson.tshy = {
+    project: './tsconfig.build.json',
+    exports: './src/index.ts',
+  };
 
   delete pkgJson['src'];
   delete pkgJson['unpkg'];
   delete pkgJson['browser'];
-  pkgJson.exports = {
-    '.': {
-      import: pkgJson.module,
-      require: pkgJson.main,
-    },
-  };
 
   for (const key of Object.keys(pkgJson.devDependencies)) {
     if (/eslint|prettier/.test(key)) {
@@ -157,7 +153,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
 
   pkgJson = sortPackageJson(pkgJson);
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
-
+  execSync(`npx fix-esm-import-path src`);
   execSync(`yarn --cwd ../.. eslint --fix ./packages/user-client`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../.. manypkg fix`, { stdio: 'inherit' });
   execSync(`yarn --cwd ../..`, { stdio: 'inherit' });

@@ -1,7 +1,7 @@
 import { ZodType } from 'zod';
 
-import { Environment } from './environment';
-import { Request } from './transport/request';
+import { Environment } from './environment.js';
+import { Request } from './transport/request.js';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD';
 

@@ -1,2 +1,2 @@
-export type { Keys } from './keys';
-export type { WebPushToken } from './web-push-token';
+export type { Keys } from './keys.js';
+export type { WebPushToken } from './web-push-token.js';

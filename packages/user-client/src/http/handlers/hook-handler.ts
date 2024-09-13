@@ -1,8 +1,8 @@
-import { HttpError } from '../error';
-import { Hook } from '../hooks/hook';
-import { Request } from '../transport/request';
-import { TransportHookAdapter } from '../transport/transport-hook-adapter';
-import { HttpResponse, RequestHandler } from '../types';
+import { HttpError } from '../error.js';
+import { Hook } from '../hooks/hook.js';
+import { Request } from '../transport/request.js';
+import { TransportHookAdapter } from '../transport/transport-hook-adapter.js';
+import { HttpResponse, RequestHandler } from '../types.js';
 
 export class HookHandler implements RequestHandler {
   next?: RequestHandler;

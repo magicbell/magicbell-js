@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { teamsTokenWebhook, teamsTokenWebhookRequest, teamsTokenWebhookResponse } from './teams-token-webhook';
+import { teamsTokenWebhook, teamsTokenWebhookRequest, teamsTokenWebhookResponse } from './teams-token-webhook.js';
 
 /**
  * The shape of the model inside the application code - what the users use

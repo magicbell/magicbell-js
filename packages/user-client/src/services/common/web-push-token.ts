@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { keys, keysRequest, keysResponse } from './keys';
+import { keys, keysRequest, keysResponse } from './keys.js';
 
 /**
  * The shape of the model inside the application code - what the users use

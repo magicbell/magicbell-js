@@ -20,9 +20,9 @@ A list of all methods in the `IntegrationsService` service. Click on the method 
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [InboxConfig](../models/InboxConfig.md) | ❌       | The request body. |
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | `[InboxConfig](../models/InboxConfig.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -44,7 +44,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 2.27,
+    backgroundOpacity: 6.1,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -146,7 +146,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const inboxConfig: InboxConfig = {
     images: images,
-    locale: 'off',
+    locale: 'aliquip co',
     theme: theme,
   };
 
@@ -188,9 +188,9 @@ import { Client } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                                | Required | Description       |
-| :--- | :-------------------------------------------------- | :------- | :---------------- |
-| body | [SlackInstallation](../models/SlackInstallation.md) | ❌       | The request body. |
+| Name | Type                                                  | Required | Description       |
+| :--- | :---------------------------------------------------- | :------- | :---------------- |
+| body | `[SlackInstallation](../models/SlackInstallation.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -208,7 +208,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 4,
+    expiresIn: 8,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -237,8 +237,8 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 10,
-    id: 'CRBOWXTZVA',
+    expiresIn: 3,
+    id: 'id',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -260,9 +260,9 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                                                  | Required | Description       |
-| :--- | :-------------------------------------------------------------------- | :------- | :---------------- |
-| body | [SlackFinishInstallResponse](../models/SlackFinishInstallResponse.md) | ❌       | The request body. |
+| Name | Type                                                                    | Required | Description       |
+| :--- | :---------------------------------------------------------------------- | :------- | :---------------- |
+| body | `[SlackFinishInstallResponse](../models/SlackFinishInstallResponse.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -297,9 +297,9 @@ import { Client, SlackFinishInstallResponse } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                                | Required | Description       |
-| :--- | :-------------------------------------------------- | :------- | :---------------- |
-| body | [SlackStartInstall](../models/SlackStartInstall.md) | ❌       | The request body. |
+| Name | Type                                                  | Required | Description       |
+| :--- | :---------------------------------------------------- | :------- | :---------------- |
+| body | `[SlackStartInstall](../models/SlackStartInstall.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -335,9 +335,9 @@ import { Client, SlackStartInstall } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                                        | Required | Description       |
-| :--- | :---------------------------------------------------------- | :------- | :---------------- |
-| body | [TemplatesInstallation](../models/TemplatesInstallation.md) | ❌       | The request body. |
+| Name | Type                                                          | Required | Description       |
+| :--- | :------------------------------------------------------------ | :------- | :---------------- |
+| body | `[TemplatesInstallation](../models/TemplatesInstallation.md)` | ❌       | The request body. |
 
 **Return Type**
 
@@ -372,9 +372,9 @@ import { Client, TemplatesInstallation } from '@magicbell/user-client';
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
+| Name | Type                                        | Required | Description       |
+| :--- | :------------------------------------------ | :------- | :---------------- |
+| body | `[WebPushToken](../models/WebPushToken.md)` | ❌       | The request body. |
 
 **Return Type**
 

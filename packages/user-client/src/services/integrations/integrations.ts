@@ -1,26 +1,29 @@
 import { z } from 'zod';
 
-import { RequestBuilder } from '../../http/transport/request-builder';
-import { ContentType, HttpResponse, RequestConfig } from '../../http/types';
-import { BaseService } from '../base-service';
-import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from '../common/web-push-token';
-import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config';
-import { SlackFinishInstallResponse, slackFinishInstallResponseRequest } from './models/slack-finish-install-response';
-import { SlackInstallation, slackInstallationRequest, slackInstallationResponse } from './models/slack-installation';
-import { SlackStartInstall, slackStartInstallRequest } from './models/slack-start-install';
+import { RequestBuilder } from '../../http/transport/request-builder.js';
+import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
+import { BaseService } from '../base-service.js';
+import { WebPushToken, webPushTokenRequest, webPushTokenResponse } from '../common/web-push-token.js';
+import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config.js';
+import {
+  SlackFinishInstallResponse,
+  slackFinishInstallResponseRequest,
+} from './models/slack-finish-install-response.js';
+import { SlackInstallation, slackInstallationRequest, slackInstallationResponse } from './models/slack-installation.js';
+import { SlackStartInstall, slackStartInstallRequest } from './models/slack-start-install.js';
 import {
   SlackStartInstallResponseContent,
   slackStartInstallResponseContentResponse,
-} from './models/slack-start-install-response-content';
+} from './models/slack-start-install-response-content.js';
 import {
   TemplatesInstallation,
   templatesInstallationRequest,
   templatesInstallationResponse,
-} from './models/templates-installation';
+} from './models/templates-installation.js';
 import {
   WebPushStartInstallationResponse,
   webPushStartInstallationResponseResponse,
-} from './models/web-push-start-installation-response';
+} from './models/web-push-start-installation-response.js';
 
 export class IntegrationsService extends BaseService {
   /**
@@ -29,8 +32,8 @@ export class IntegrationsService extends BaseService {
    */
   async saveInboxInstallation(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
     const request = new RequestBuilder<InboxConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/inbox/installations')
       .setRequestSchema(inboxConfigRequest)
@@ -52,8 +55,8 @@ export class IntegrationsService extends BaseService {
    */
   async startInboxInstallation(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
     const request = new RequestBuilder<InboxConfig>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/inbox/installations/start')
       .setRequestSchema(z.any())
@@ -76,8 +79,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackInstallation>> {
     const request = new RequestBuilder<SlackInstallation>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations')
       .setRequestSchema(slackInstallationRequest)
@@ -102,8 +105,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackInstallation>> {
     const request = new RequestBuilder<SlackInstallation>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations/finish')
       .setRequestSchema(slackFinishInstallResponseRequest)
@@ -128,8 +131,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackStartInstallResponseContent>> {
     const request = new RequestBuilder<SlackStartInstallResponseContent>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations/start')
       .setRequestSchema(slackStartInstallRequest)
@@ -154,8 +157,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<TemplatesInstallation>> {
     const request = new RequestBuilder<TemplatesInstallation>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/templates/installations')
       .setRequestSchema(templatesInstallationRequest)
@@ -180,8 +183,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushToken>> {
     const request = new RequestBuilder<WebPushToken>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/web_push/installations')
       .setRequestSchema(webPushTokenRequest)
@@ -205,8 +208,8 @@ export class IntegrationsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushStartInstallationResponse>> {
     const request = new RequestBuilder<WebPushStartInstallationResponse>()
-      .setConfig(this.config)
       .setBaseUrl(this.config)
+      .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/web_push/installations/start')
       .setRequestSchema(z.any())

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { unreadHover, unreadHoverRequest, unreadHoverResponse } from './unread-hover';
-import { unreadState, unreadStateRequest, unreadStateResponse } from './unread-state';
+import { unreadHover, unreadHoverRequest, unreadHoverResponse } from './unread-hover.js';
+import { unreadState, unreadStateRequest, unreadStateResponse } from './unread-state.js';
 
 /**
  * The shape of the model inside the application code - what the users use

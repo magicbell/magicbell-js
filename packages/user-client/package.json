@@ -16,9 +16,16 @@
   "author": "MagicBell",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/commonjs/index.js"
-    }
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
@@ -29,17 +36,19 @@
     "README.md"
   ],
   "scripts": {
-    "build": "run-s build:*",
-    "build:cjs": "tsc --project tsconfig.build.json --module commonjs --outDir dist/commonjs",
-    "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir dist/esm",
+    "build": "tshy",
     "codegen": "tsx scripts/build.ts",
-    "start": "rm -rf dist/ && tsc -w",
-    "test": "tsc --noEmit"
+    "start": "tshy --watch"
   },
   "dependencies": {
     "zod": "3.23.8"
   },
   "devDependencies": {
     "typescript": "^5.5.3"
-  }
+  },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/index.ts"
+  },
+  "type": "module"
 }
