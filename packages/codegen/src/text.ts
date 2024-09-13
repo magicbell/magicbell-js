@@ -1,7 +1,8 @@
 import { ESLint } from 'eslint';
 import path from 'path';
 import prettier from 'prettier';
-import prettyMarkdown from 'prettier/parser-markdown';
+
+import { prettyMarkdown } from './polyfills/prettier-module.js';
 
 export function formatMarkdown(document) {
   return prettier.format(document, {

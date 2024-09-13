@@ -1,7 +1,7 @@
-export * as builders from './builders';
-export * from './files';
-export * from './openapi';
-export * as recast from './recast';
-export * from './resources';
-export * from './schema';
-export * from './text';
+export * as builders from './builders.js';
+export * from './files.js';
+export * from './openapi.js';
+export * as recast from './recast.js';
+export * from './resources.js';
+export * from './schema.js';
+export * from './text.js';
