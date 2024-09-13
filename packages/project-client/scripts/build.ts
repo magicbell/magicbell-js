@@ -162,4 +162,4 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
   execSync(`yarn build`, { stdio: 'inherit' });
 }
 
-build(args.spec);
+build(args.spec || process.env.V2_SPEC_URL || process.env.SPEC_URL);
