@@ -52,7 +52,7 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^8.3.0",
     "@storybook/addons": "^7.6.17",
-    "@storybook/builder-vite": "^8.2.1",
+    "@storybook/builder-vite": "^8.3.0",
     "@storybook/react": "^8.3.0",
     "@testing-library/cypress": "^10.0.2",
     "@testing-library/jest-dom": "^6.5.0",
@@ -103,7 +103,7 @@
     "turbo": "^2.1.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.0",
-    "vite-plugin-banner": "^0.7.1",
+    "vite-plugin-banner": "^0.8.0",
     "zx": "^8.1.2"
   }
 }
