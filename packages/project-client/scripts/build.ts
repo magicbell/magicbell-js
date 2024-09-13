@@ -100,6 +100,7 @@ const { values: args } = parseArgs({
 });
 
 async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.json') {
+  const initialPkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   const liblabConfig = JSON.parse(await fs.readFile('./liblab.config.json', { encoding: 'utf-8' }));
   let swaggerJSON = await readFileOrUrl(specfile);
   const spec = JSON.parse(swaggerJSON);
@@ -126,6 +127,7 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.j
 
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
+  pkgJson.version = initialPkgJson.version;
   pkgJson.scripts.codegen = 'tsx scripts/build.ts';
 
   pkgJson.scripts = {
