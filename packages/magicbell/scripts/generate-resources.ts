@@ -27,7 +27,7 @@ import {
 /* eslint-disable no-console */
 import { builders } from 'ast-types';
 import fs from 'fs/promises';
-import { stringify } from 'json5';
+import json5 from 'json5';
 import path from 'path';
 
 const SPEC_URL = argv.spec || process.env.SPEC_URL || 'https://public.magicbell.com/specs/openapi.json';
@@ -291,7 +291,7 @@ function createDocs(resource: Resource) {
 
     const args = [...pathParams, body, query, options]
       .filter((x) => x != null)
-      .map((x) => stringify(x, { space: 2, quote: "'" }))
+      .map((x) => json5.stringify(x, { space: 2, quote: "'" }))
       .join(', ');
 
     lines.push(
