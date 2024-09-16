@@ -1,5 +1,11 @@
 # magicbell
 
+## 4.1.0
+
+### Minor Changes
+
+- [#376](https://github.com/magicbell/magicbell-js/pull/376) [`71815e7`](https://github.com/magicbell/magicbell-js/commit/71815e770145bbd1efc81b041f6d5d6a968033dc) Thanks [@smeijer](https://github.com/smeijer)! - publish proper cjs and esm type definitions
+
 ## 4.0.0
 
 ### Major Changes

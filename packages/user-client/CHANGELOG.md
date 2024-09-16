@@ -1,5 +1,11 @@
 # @magicbell/user-client
 
+## 0.4.0
+
+### Minor Changes
+
+- [#384](https://github.com/magicbell/magicbell-js/pull/384) [`6900feb`](https://github.com/magicbell/magicbell-js/commit/6900febaedbad1e11828c1d87d40fed80b343d7e) Thanks [@smeijer](https://github.com/smeijer)! - fix cjs/esm dual module support
+
 ## 0.3.0
 
 ### Minor Changes
