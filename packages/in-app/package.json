@@ -4,7 +4,7 @@
   "description": "MagicBell web components for in-app notifications",
   "repository": {
     "type": "git",
-    "url": "https://github.com/magicbell/magicbell-js.git",
+    "url": "git+https://github.com/magicbell/magicbell-js.git",
     "directory": "packages/in-app"
   },
   "type": "module",
