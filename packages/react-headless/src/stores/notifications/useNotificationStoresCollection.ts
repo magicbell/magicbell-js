@@ -1,4 +1,4 @@
-import produce from 'immer';
+import { produce } from 'immer';
 import { findIndex, mergeRight, propEq } from 'ramda';
 import { create } from 'zustand';
 

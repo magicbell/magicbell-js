@@ -1,5 +1,4 @@
-import mitt from 'mitt';
-
+import { mitt } from '../polyfills/mitt-module.js';
 import clientSettings from '../stores/clientSettings.js';
 import NotificationRepository from '../stores/notifications/NotificationRepository.js';
 
