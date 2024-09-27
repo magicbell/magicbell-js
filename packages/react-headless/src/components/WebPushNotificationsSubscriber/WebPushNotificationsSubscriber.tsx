@@ -1,8 +1,8 @@
 import { path } from 'ramda';
 import { useEffect } from 'react';
 
-import { createPushSubscription, createSafariPushSubscription } from '../../lib/push';
-import useConfig from '../../stores/config';
+import { createPushSubscription, createSafariPushSubscription } from '../../lib/push.js';
+import useConfig from '../../stores/config/useConfig.js';
 
 export interface Props {
   children: (params: { createSubscription: () => Promise<unknown>; isPushAPISupported: boolean }) => JSX.Element;

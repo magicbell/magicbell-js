@@ -3,12 +3,12 @@ import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, render, renderHook, RenderResult, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
-import RealtimeListener from '../../../src/components/RealtimeListener';
-import * as ajax from '../../../src/lib/ajax';
-import { emitEvent } from '../../../src/lib/realtime';
-import clientSettings from '../../../src/stores/clientSettings';
-import { useNotificationStoresCollection } from '../../../src/stores/notifications';
-import NotificationFactory from '../../factories/NotificationFactory';
+import RealtimeListener from '../../../src/components/RealtimeListener.js';
+import * as ajax from '../../../src/lib/ajax.js';
+import { emitEvent } from '../../../src/lib/realtime.js';
+import clientSettings from '../../../src/stores/clientSettings.js';
+import useNotificationStoresCollection from '../../../src/stores/notifications/useNotificationStoresCollection.js';
+import NotificationFactory from '../../factories/NotificationFactory.js';
 
 setupMockServer(...mockHandlers);
 

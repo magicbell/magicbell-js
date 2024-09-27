@@ -1,8 +1,8 @@
 import faker from '@faker-js/faker';
 import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import clientSettings from '../../../../src/stores/clientSettings';
-import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository';
+import clientSettings from '../../../../src/stores/clientSettings.js';
+import NotificationPreferencesRepository from '../../../../src/stores/notification_preferences/NotificationPreferencesRepository.js';
 
 const server = setupMockServer(...mockHandlers);
 

@@ -1,7 +1,7 @@
 import humps from 'humps';
 
-import { fetchAPI } from '../../lib/ajax';
-import IRemoteConfig from '../../types/IRemoteConfig';
+import { fetchAPI } from '../../lib/ajax.js';
+import IRemoteConfig from '../../types/IRemoteConfig.js';
 
 /**
  * Class to interact with the config API endpoint.

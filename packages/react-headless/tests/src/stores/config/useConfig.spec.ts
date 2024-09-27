@@ -4,8 +4,8 @@ import { renderHook, waitFor } from '@testing-library/react';
 import * as humps from 'humps';
 import { useEffect } from 'react';
 
-import clientSettings from '../../../../src/stores/clientSettings';
-import useConfig from '../../../../src/stores/config';
+import clientSettings from '../../../../src/stores/clientSettings.js';
+import useConfig from '../../../../src/stores/config/useConfig.js';
 
 const server = setupMockServer(...mockHandlers);
 

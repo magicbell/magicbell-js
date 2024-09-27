@@ -1,4 +1,4 @@
-import IRemoteNotification from './IRemoteNotification';
+import IRemoteNotification from './IRemoteNotification.js';
 
 export type IStrategyComparator = (attribute, rule) => boolean;
 

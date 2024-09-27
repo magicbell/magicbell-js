@@ -1,10 +1,10 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import * as ajax from '../../../src/lib/ajax';
-import { emitEvent, eventAggregator, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
-import clientSettings from '../../../src/stores/clientSettings';
-import { sampleNotification } from '../../factories/NotificationFactory';
+import * as ajax from '../../../src/lib/ajax.js';
+import { emitEvent, eventAggregator, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime.js';
+import clientSettings from '../../../src/stores/clientSettings.js';
+import { sampleNotification } from '../../factories/NotificationFactory.js';
 
 const server = setupMockServer(...mockHandlers);
 

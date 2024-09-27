@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { eventAggregator, EventSource } from '../lib/realtime';
+import { eventAggregator, EventSource } from '../lib/realtime.js';
 
 interface HookOptions {
   source: EventSource | 'any';

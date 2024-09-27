@@ -3,8 +3,8 @@ import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 
-import { MagicBellProvider, useConfig } from '../../../../src';
-import * as ajax from '../../../../src/lib/ajax';
+import { MagicBellProvider, useConfig } from '../../../../src/index.js';
+import * as ajax from '../../../../src/lib/ajax.js';
 
 setupMockServer(...mockHandlers);
 

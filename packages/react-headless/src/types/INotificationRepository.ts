@@ -1,7 +1,7 @@
-import RemoteRepository from '../stores/repository/RemoteRepository';
-import { QueryParams } from './INotificationsStoresCollection';
-import INotificationStore from './INotificationStore';
-import IRemoteNotification from './IRemoteNotification';
+import RemoteRepository from '../stores/repository/RemoteRepository.js';
+import { QueryParams } from './INotificationsStoresCollection.js';
+import INotificationStore from './INotificationStore.js';
+import IRemoteNotification from './IRemoteNotification.js';
 
 interface IWrappedNotification {
   notification: IRemoteNotification;

@@ -15,7 +15,7 @@ import {
   useNotifications,
   useNotificationStoresCollection,
   useNotificationUnmount,
-} from '../../src';
+} from '../../src/index.js';
 
 describe('index.ts', () => {
   it('exports the clientSettings store', () => {

@@ -1,4 +1,4 @@
-import useNotifications, { NotificationStore } from './useNotifications';
+import useNotifications, { NotificationStore } from './useNotifications.js';
 
 interface useBellArgs {
   storeId?: string;

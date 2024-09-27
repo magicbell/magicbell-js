@@ -1,6 +1,6 @@
-import { IRemoteNotification } from '../types';
-import INotificationRepository from './INotificationRepository';
-import INotificationStore from './INotificationStore';
+import INotificationRepository from './INotificationRepository.js';
+import INotificationStore from './INotificationStore.js';
+import IRemoteNotification from './IRemoteNotification.js';
 
 export type QueryParams = {
   /**

@@ -1,7 +1,7 @@
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import clientSettings from '../../../../src/stores/clientSettings';
-import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository';
+import clientSettings from '../../../../src/stores/clientSettings.js';
+import NotificationRepository from '../../../../src/stores/notifications/NotificationRepository.js';
 
 beforeEach(() => {
   clientSettings.setState({

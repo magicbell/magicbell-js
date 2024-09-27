@@ -3,13 +3,13 @@ import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import dayjs from 'dayjs';
 
-import { useNotification } from '../../../../src';
-import useNotifications from '../../../../src/hooks/useNotifications';
-import * as ajax from '../../../../src/lib/ajax';
-import { eventAggregator } from '../../../../src/lib/realtime';
-import clientSettings from '../../../../src/stores/clientSettings';
-import { useNotificationStoresCollection } from '../../../../src/stores/notifications';
-import NotificationFactory from '../../../factories/NotificationFactory';
+import useNotifications from '../../../../src/hooks/useNotifications.js';
+import { useNotification } from '../../../../src/index.js';
+import * as ajax from '../../../../src/lib/ajax.js';
+import { eventAggregator } from '../../../../src/lib/realtime.js';
+import clientSettings from '../../../../src/stores/clientSettings.js';
+import useNotificationStoresCollection from '../../../../src/stores/notifications/useNotificationStoresCollection.js';
+import NotificationFactory from '../../../factories/NotificationFactory.js';
 
 const fiveSecondsAgo = () => Math.floor(Date.now() / 1_000) - 5_000;
 

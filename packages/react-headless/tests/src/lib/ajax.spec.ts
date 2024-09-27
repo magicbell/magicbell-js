@@ -1,8 +1,8 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax';
-import clientSettings from '../../../src/stores/clientSettings';
+import { deleteAPI, fetchAPI, postAPI, putAPI } from '../../../src/lib/ajax.js';
+import clientSettings from '../../../src/stores/clientSettings.js';
 
 beforeEach(() => {
   clientSettings.setState({

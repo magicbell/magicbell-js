@@ -1,4 +1,4 @@
-import clientSettings from '../../../src/stores/clientSettings';
+import clientSettings from '../../../src/stores/clientSettings.js';
 
 describe('stores', () => {
   describe('clientSettings', () => {

@@ -2,9 +2,9 @@ import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react';
 
-import useMagicBellEvent from '../../../src/hooks/useMagicBellEvent';
-import { eventAggregator } from '../../../src/lib/realtime';
-import clientSettings from '../../../src/stores/clientSettings';
+import useMagicBellEvent from '../../../src/hooks/useMagicBellEvent.js';
+import { eventAggregator } from '../../../src/lib/realtime.js';
+import clientSettings from '../../../src/stores/clientSettings.js';
 
 setupMockServer(...mockHandlers);
 

@@ -1,7 +1,7 @@
 import humps from 'humps';
 
-import { fetchAPI, putAPI } from '../../lib/ajax';
-import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences';
+import { fetchAPI, putAPI } from '../../lib/ajax.js';
+import IRemoteNotificationPreferences from '../../types/IRemoteNotificationPreferences.js';
 
 interface IWrappedNotificationPreferences {
   notificationPreferences: IRemoteNotificationPreferences;

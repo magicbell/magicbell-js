@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import INotification from '../types/INotification';
+import INotification from '../types/INotification.js';
 
 /**
  * Hook that is ran when the component is unmounted. By default marks a

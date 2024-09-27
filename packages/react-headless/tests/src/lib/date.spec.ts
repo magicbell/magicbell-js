@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import { secondsToDate } from '../../../src/lib/date';
+import { secondsToDate } from '../../../src/lib/date.js';
 
 describe('lib', () => {
   describe('date', () => {

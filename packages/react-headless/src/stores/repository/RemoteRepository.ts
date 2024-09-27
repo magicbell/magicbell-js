@@ -1,7 +1,7 @@
 import humps from 'humps';
 
-import { deleteAPI, fetchAPI } from '../../lib/ajax';
-import { QueryParams } from '../../types/INotificationsStoresCollection';
+import { deleteAPI, fetchAPI } from '../../lib/ajax.js';
+import { QueryParams } from '../../types/INotificationsStoresCollection.js';
 
 /**
  * Class to represent a client that interacts with the MagicBell API.

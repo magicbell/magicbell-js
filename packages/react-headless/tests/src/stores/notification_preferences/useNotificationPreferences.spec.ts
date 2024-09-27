@@ -3,10 +3,10 @@ import { fake, mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act } from '@testing-library/react';
 import * as humps from 'humps';
 
-import clientSettings from '../../../../src/stores/clientSettings';
-import useNotificationPreferences from '../../../../src/stores/notification_preferences';
-import { CategoryChannelPreference } from '../../../../src/types/IRemoteNotificationPreferences';
-import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory';
+import clientSettings from '../../../../src/stores/clientSettings.js';
+import useNotificationPreferences from '../../../../src/stores/notification_preferences/useNotificationPreferences.js';
+import { CategoryChannelPreference } from '../../../../src/types/IRemoteNotificationPreferences.js';
+import { sampleNotificationPreferences } from '../../../factories/NotificationPreferencesFactory.js';
 
 const server = setupMockServer(...mockHandlers);
 

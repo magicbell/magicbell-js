@@ -3,11 +3,11 @@ import { mockHandlers, setupMockServer } from '@magicbell/utils';
 import { act, renderHook } from '@testing-library/react';
 import dayjs from 'dayjs';
 
-import useNotificationFactory from '../../../src/hooks/useNotificationFactory';
-import * as ajax from '../../../src/lib/ajax';
-import clientSettings from '../../../src/stores/clientSettings';
-import { useNotificationStoresCollection } from '../../../src/stores/notifications';
-import NotificationFactory from '../../factories/NotificationFactory';
+import useNotificationFactory from '../../../src/hooks/useNotificationFactory.js';
+import * as ajax from '../../../src/lib/ajax.js';
+import clientSettings from '../../../src/stores/clientSettings.js';
+import useNotificationStoresCollection from '../../../src/stores/notifications/useNotificationStoresCollection.js';
+import NotificationFactory from '../../factories/NotificationFactory.js';
 
 const server = setupMockServer(...mockHandlers);
 

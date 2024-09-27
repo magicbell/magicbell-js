@@ -1,7 +1,7 @@
 import { isNil } from 'ramda';
 
-import { IRemoteNotification } from '../../../types';
-import { IStrategyComparator } from '../../../types/INotificationStore';
+import { IStrategyComparator } from '../../../types/INotificationStore.js';
+import IRemoteNotification from '../../../types/IRemoteNotification.js';
 
 function eq(value, other) {
   return value === other || (value !== value && other !== other);

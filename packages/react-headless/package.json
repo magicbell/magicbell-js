@@ -10,8 +10,13 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell-react-headless.esm.js",
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "type": "module",
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
   "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -42,10 +47,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "start": "yarn build:dev --watch",
+    "build": "run-s clean build:bundle",
+    "build:bundle": "tshy",
+    "start": "tshy --watch",
     "size": "size-limit"
   },
   "size-limit": [
@@ -90,5 +94,19 @@
   },
   "peerDependencies": {
     "react": ">= 18.3.1"
-  }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/commonjs/index.d.ts"
 }
