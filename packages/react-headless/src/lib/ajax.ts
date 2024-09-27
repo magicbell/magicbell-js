@@ -1,4 +1,4 @@
-import clientSettings from '../stores/clientSettings';
+import clientSettings from '../stores/clientSettings.js';
 
 /**
  * Performs an ajax request to the MagicBell API server.

@@ -1,3 +1,3 @@
-import useConfig from './useConfig';
+import useConfig from './useConfig.js';
 
 export default useConfig;

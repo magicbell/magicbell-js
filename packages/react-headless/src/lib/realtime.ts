@@ -1,7 +1,7 @@
 import mitt from 'mitt';
 
-import clientSettings from '../stores/clientSettings';
-import NotificationRepository from '../stores/notifications/NotificationRepository';
+import clientSettings from '../stores/clientSettings.js';
+import NotificationRepository from '../stores/notifications/NotificationRepository.js';
 
 export function getAuthHeaders() {
   const { apiKey, userEmail, userExternalId, userKey } = clientSettings.getState();

@@ -1,6 +1,6 @@
 import { uniqBy } from 'ramda';
 
-import INotificationStore from '../../../types/INotificationStore';
+import INotificationStore from '../../../types/INotificationStore.js';
 
 type Props = Omit<INotificationStore, 'context'>;
 type Options = {

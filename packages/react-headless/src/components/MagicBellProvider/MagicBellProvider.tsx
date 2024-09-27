@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import clientSettings, { ClientSettings } from '../../stores/clientSettings';
-import useConfig from '../../stores/config';
-import { useNotificationStoresCollection } from '../../stores/notifications';
-import buildStore from '../../stores/notifications/helpers/buildStore';
-import { QueryParams } from '../../types/INotificationsStoresCollection';
-import INotificationStore from '../../types/INotificationStore';
-import RealtimeListener from '../RealtimeListener';
+import clientSettings, { ClientSettings } from '../../stores/clientSettings.js';
+import useConfig from '../../stores/config/index.js';
+import buildStore from '../../stores/notifications/helpers/buildStore.js';
+import { useNotificationStoresCollection } from '../../stores/notifications/index.js';
+import { QueryParams } from '../../types/INotificationsStoresCollection.js';
+import INotificationStore from '../../types/INotificationStore.js';
+import RealtimeListener from '../RealtimeListener.js';
 
 type StoreConfig = {
   id: string;

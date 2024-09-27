@@ -2,12 +2,12 @@ import produce from 'immer';
 import { findIndex, mergeRight, propEq } from 'ramda';
 import { create } from 'zustand';
 
-import { emitEvent } from '../../lib/realtime';
-import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types';
-import buildStore from './helpers/buildStore';
-import setStoreProps from './helpers/setStoreProps';
-import { objMatchesContext } from './helpers/strategies';
-import NotificationRepository from './NotificationRepository';
+import { emitEvent } from '../../lib/realtime.js';
+import { INotificationsStoresCollection, INotificationStore, IRemoteNotification } from '../../types/index.js';
+import buildStore from './helpers/buildStore.js';
+import setStoreProps from './helpers/setStoreProps.js';
+import { objMatchesContext } from './helpers/strategies.js';
+import NotificationRepository from './NotificationRepository.js';
 
 function unix() {
   return Math.floor(Date.now() / 1000);

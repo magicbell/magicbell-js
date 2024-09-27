@@ -1,3 +1,3 @@
-import useNotificationPreferences from './useNotificationPreferences';
+import useNotificationPreferences from './useNotificationPreferences.js';
 
 export default useNotificationPreferences;

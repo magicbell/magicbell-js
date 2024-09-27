@@ -1,7 +1,7 @@
-import INotification from '../types/INotification';
-import IRemoteNotification from '../types/IRemoteNotification';
-import useNotificationFactory from './useNotificationFactory';
-import useNotificationUnmount from './useNotificationUnmount';
+import INotification from '../types/INotification.js';
+import IRemoteNotification from '../types/IRemoteNotification.js';
+import useNotificationFactory from './useNotificationFactory.js';
+import useNotificationUnmount from './useNotificationUnmount.js';
 
 export default function useNotification(
   data: IRemoteNotification,

@@ -1,7 +1,7 @@
 import { path } from 'ramda';
 
-import { IRemoteConfig } from '../types';
-import { postAPI } from './ajax';
+import { IRemoteConfig } from '../types/index.js';
+import { postAPI } from './ajax.js';
 
 function stringToUint8Array(plainString: string) {
   const padding = '='.repeat((4 - (plainString.length % 4)) % 4);

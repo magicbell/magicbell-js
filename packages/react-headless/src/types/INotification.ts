@@ -1,5 +1,5 @@
-import { Dayjs } from '../lib/date';
-import IRemoteNotification from './IRemoteNotification';
+import { Dayjs } from '../lib/date.js';
+import IRemoteNotification from './IRemoteNotification.js';
 
 export default interface INotification
   extends Omit<IRemoteNotification, 'readAt' | 'seenAt' | 'sentAt' | 'archivedAt'> {
