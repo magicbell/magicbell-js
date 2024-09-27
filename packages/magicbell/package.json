@@ -99,7 +99,7 @@
     "build:node10": "tsx scripts/fix-node10.ts",
     "build:attw": "attw -P",
     "codegen": "tsx scripts/generate-resources.ts --dest ./src",
-    "start": "npm run clean && run-p 'build:entry:* --watch'",
+    "start": "tshy --watch",
     "size": "size-limit"
   },
   "size-limit": [
