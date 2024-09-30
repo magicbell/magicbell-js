@@ -2,11 +2,11 @@
 import { css } from '@emotion/react';
 import { INotification } from '@magicbell/react-headless';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { useTranslate } from '../../context/TranslationsContext';
-import MenuIcon from '../icons/MenuIcon';
-import NotificationContextMenu from '../NotificationContextMenu';
-import Popover from '../Popover';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { useTranslate } from '../../context/TranslationsContext.js';
+import MenuIcon from '../icons/MenuIcon.js';
+import NotificationContextMenu from '../NotificationContextMenu/index.js';
+import Popover from '../Popover/index.js';
 
 export interface Props {
   notification: INotification;

@@ -1,4 +1,4 @@
-import PushNotificationsSubscriber from './PushNotificationsSubscriber';
+import PushNotificationsSubscriber from './PushNotificationsSubscriber.js';
 
-export type { Props as PushNotificationsSubscriberProps } from './PushNotificationsSubscriber';
+export type { Props as PushNotificationsSubscriberProps } from './PushNotificationsSubscriber.js';
 export default PushNotificationsSubscriber;

@@ -3,20 +3,20 @@ import { INotification, useConfig, useNotifications } from '@magicbell/react-hea
 import { pathOr } from 'ramda';
 import { Fragment, ReactElement, useState } from 'react';
 
-import { useTranslate } from '../../../context/TranslationsContext';
-import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner';
-import Footer from '../../Footer';
-import Header from '../../Header';
-import HeaderTabs, { HeaderTabsProps } from '../../Header/HeaderTabs';
-import IconButton from '../../IconButton/IconButton';
-import CheckMarkIcon from '../../icons/CheckMarkIcon';
-import SettingsIcon from '../../icons/SettingsIcon';
-import { ListItemProps } from '../../NotificationList';
-import Text from '../../Text';
-import ClearInboxMessage from '../ClearInboxMessage';
-import Layout from '../Layout';
-import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
-import NotificationInboxContent from '../NotificationInboxContent';
+import { useTranslate } from '../../../context/TranslationsContext.js';
+import EnablePushNotificationsBanner from '../../EnablePushNotificationsBanner/index.js';
+import Footer from '../../Footer/index.js';
+import HeaderTabs, { HeaderTabsProps } from '../../Header/HeaderTabs.js';
+import Header from '../../Header/index.js';
+import IconButton from '../../IconButton/IconButton.js';
+import CheckMarkIcon from '../../icons/CheckMarkIcon.js';
+import SettingsIcon from '../../icons/SettingsIcon.js';
+import { ListItemProps } from '../../NotificationList/index.js';
+import Text from '../../Text/index.js';
+import ClearInboxMessage from '../ClearInboxMessage.js';
+import Layout from '../Layout.js';
+import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox.js';
+import NotificationInboxContent from '../NotificationInboxContent.js';
 
 export type NotificationsViewProps = {
   storeId?: string;

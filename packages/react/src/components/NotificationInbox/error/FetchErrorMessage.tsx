@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useTheme } from '../../../context/MagicBellThemeContext';
-import InternetConnectionErrorMessage from './InternetConnectionErrorMessage';
-import ServerErrorMessage from './ServerErrorMessage';
+import { useTheme } from '../../../context/MagicBellThemeContext.js';
+import InternetConnectionErrorMessage from './InternetConnectionErrorMessage.js';
+import ServerErrorMessage from './ServerErrorMessage.js';
 
 /**
  * If the browser is not online, it shows a connection error message. Otherwise,

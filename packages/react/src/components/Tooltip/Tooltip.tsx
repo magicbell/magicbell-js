@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { ReactElement } from 'react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import Popover, { PopoverProps } from '../Popover/Popover';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import Popover, { PopoverProps } from '../Popover/Popover.js';
 
 export type TooltipProps = {
   tooltip?: string;

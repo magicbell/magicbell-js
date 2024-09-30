@@ -1,4 +1,4 @@
-import Popover from './Popover';
+import Popover from './Popover.js';
 
-export type { PopoverPlacement, PopoverProps, PopperOptions } from './Popover';
+export type { PopoverPlacement, PopoverProps, PopperOptions } from './Popover.js';
 export default Popover;

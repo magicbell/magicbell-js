@@ -1,3 +1,3 @@
-import cleanslate from './cleanslate';
+import cleanslate from './cleanslate.js';
 
 export { cleanslate };

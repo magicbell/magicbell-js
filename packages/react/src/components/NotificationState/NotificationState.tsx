@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { INotification } from '@magicbell/react-headless';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import DotIcon from '../icons/DotIcon';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import DotIcon from '../icons/DotIcon.js';
 
 export interface Props {
   notification: INotification;

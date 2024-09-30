@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useConfig } from '@magicbell/react-headless';
 import { pathOr } from 'ramda';
 
-import MagicBellLogo from './MagicBellLogo';
+import MagicBellLogo from './MagicBellLogo.js';
 
 /**
  * MagicBell Logo for the footer. If the customer has branding off, the logo is

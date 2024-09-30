@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 
-import { NotificationInboxProps } from '../NotificationInbox';
-import Popover, { PopoverPlacement, PopperOptions } from '../Popover';
-import Arrow from './Arrow';
-import StyledPopoverContainer from './StyledPopoverContainer';
+import { NotificationInboxProps } from '../NotificationInbox/index.js';
+import Popover, { PopoverPlacement, PopperOptions } from '../Popover/index.js';
+import Arrow from './Arrow.js';
+import StyledPopoverContainer from './StyledPopoverContainer.js';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;

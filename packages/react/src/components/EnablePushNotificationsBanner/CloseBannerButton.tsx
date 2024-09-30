@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import CloseIcon from '../UserPreferencesPanel/CloseIcon';
+import CloseIcon from '../UserPreferencesPanel/CloseIcon.js';
 
 type CloseBannerButtonProps = {
   onClick: () => void;

@@ -2,9 +2,9 @@
 import { css } from '@emotion/react';
 import { INotification } from '@magicbell/react-headless';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { toRGBA } from '../../lib/color';
-import Text from '../Text';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { toRGBA } from '../../lib/color.js';
+import Text from '../Text/index.js';
 
 export interface Props {
   notification: INotification;

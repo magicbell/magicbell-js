@@ -1,3 +1,3 @@
-export { classicTheme } from './classic';
-export { flatTheme } from './flat';
-export { lightTheme } from './light';
+export { classicTheme } from './classic.js';
+export { flatTheme } from './flat.js';
+export { lightTheme } from './light.js';

@@ -1,4 +1,4 @@
-import FloatingNotificationInbox from './FloatingNotificationInbox';
+import FloatingNotificationInbox from './FloatingNotificationInbox.js';
 
-export type { Props as FloatingNotificationInboxProps } from './FloatingNotificationInbox';
+export type { Props as FloatingNotificationInboxProps } from './FloatingNotificationInbox.js';
 export default FloatingNotificationInbox;

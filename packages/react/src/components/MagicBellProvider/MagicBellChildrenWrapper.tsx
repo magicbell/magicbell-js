@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import CurrentProviderContext, { NO_PROVIDER } from '../../context/CurrentProviderContext';
-import MagicBellProvider, { MagicBellProviderProps } from './MagicBellProvider';
+import CurrentProviderContext, { NO_PROVIDER } from '../../context/CurrentProviderContext.js';
+import MagicBellProvider, { MagicBellProviderProps } from './MagicBellProvider.js';
 
 /**
  * Component that conditionally wraps the children with a MagicBellProvider

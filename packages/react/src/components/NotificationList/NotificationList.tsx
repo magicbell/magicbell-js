@@ -4,8 +4,8 @@ import { INotification, IRemoteNotification, useNotifications } from '@magicbell
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import ClickableNotification from '../ClickableNotification';
-import Loader from './Loader';
+import ClickableNotification from '../ClickableNotification/index.js';
+import Loader from './Loader.js';
 
 type NotificationStore = ReturnType<typeof useNotifications>;
 

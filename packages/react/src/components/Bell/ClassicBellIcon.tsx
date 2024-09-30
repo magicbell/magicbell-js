@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
 
 /**
  * Default MacigBell icon for the notification launcher/toggler.

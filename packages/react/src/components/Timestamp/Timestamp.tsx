@@ -1,9 +1,8 @@
 import { Dayjs } from 'dayjs';
-import React, { useState } from 'react';
-import useInterval from 'react-use/lib/useInterval';
+import React, { useEffect, useState } from 'react';
 
-import { toDate } from '../../lib/date';
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import { toDate } from '../../lib/date.js';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip.js';
 
 export interface Props {
   date: Dayjs | Date | number | string;

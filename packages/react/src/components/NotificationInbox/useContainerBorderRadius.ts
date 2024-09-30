@@ -1,4 +1,4 @@
-import { useTheme } from '../../context/MagicBellThemeContext';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
 
 /**
  * Hook to get the right border radius for the notification inbox.

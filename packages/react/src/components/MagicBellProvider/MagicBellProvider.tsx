@@ -1,14 +1,15 @@
 import { clientSettings, MagicBellProvider as Provider } from '@magicbell/react-headless';
 import React, { useEffect, useState } from 'react';
 
-import CurrentProviderContext from '../../context/CurrentProviderContext';
-import MagicBellContext from '../../context/MagicBellContext';
-import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext';
-import { IMagicBellTheme } from '../../context/Theme';
-import { TranslationsProvider } from '../../context/TranslationsContext';
-import { CustomLocale, useLocale } from '../../lib/i18n';
-import { DeepPartial } from '../../lib/types';
-import { Props as MagicBellProps } from '../MagicBell/MagicBell';
+import CurrentProviderContext from '../../context/CurrentProviderContext.js';
+import MagicBellContext from '../../context/MagicBellContext.js';
+import { MagicBellThemeProvider } from '../../context/MagicBellThemeContext.js';
+import { IMagicBellTheme } from '../../context/Theme.js';
+import { TranslationsProvider } from '../../context/TranslationsContext.js';
+import { CustomLocale, useLocale } from '../../lib/i18n.js';
+import { pkg } from '../../lib/pkg.js';
+import { DeepPartial } from '../../lib/types.js';
+import { Props as MagicBellProps } from '../MagicBell/MagicBell.js';
 
 export type MagicBellProviderProps = {
   apiKey: string;

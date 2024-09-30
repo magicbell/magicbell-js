@@ -1,5 +1,5 @@
-import { IMagicBellTheme } from '../context/Theme';
-import { DeepPartial } from '../lib/types';
+import { IMagicBellTheme } from '../context/Theme.js';
+import { DeepPartial } from '../lib/types.js';
 
 const fonts = {
   sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',

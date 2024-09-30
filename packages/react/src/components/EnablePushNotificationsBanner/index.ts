@@ -1,4 +1,4 @@
-import EnablePushNotificationsBanner from './EnablePushNotificationsBanner';
+import EnablePushNotificationsBanner from './EnablePushNotificationsBanner.js';
 
-export { default as EnablePushNotificationsButton } from './EnablePushNotificationsButton';
+export { default as EnablePushNotificationsButton } from './EnablePushNotificationsButton.js';
 export default EnablePushNotificationsBanner;

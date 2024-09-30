@@ -2,8 +2,8 @@
 import { INotification, useNotifications } from '@magicbell/react-headless';
 import { useState } from 'react';
 
-import NotificationList from '../NotificationList';
-import { NotificationListItem } from '../NotificationList/NotificationList';
+import NotificationList from '../NotificationList/index.js';
+import { NotificationListItem } from '../NotificationList/NotificationList.js';
 
 type NotificationStore = ReturnType<typeof useNotifications>;
 

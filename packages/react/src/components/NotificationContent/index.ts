@@ -1,4 +1,4 @@
-import NotificationContent from './NotificationContent';
+import NotificationContent from './NotificationContent.js';
 
-export type { Props as NotificationContentProps } from './NotificationContent';
+export type { Props as NotificationContentProps } from './NotificationContent.js';
 export default NotificationContent;

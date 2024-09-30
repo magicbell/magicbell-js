@@ -1,8 +1,8 @@
 import { IRemoteNotificationPreferences, useNotificationPreferences } from '@magicbell/react-headless';
 import React from 'react';
 
-import { useTranslate } from '../../context/TranslationsContext';
-import ToggleInput from './ToggleInput';
+import { useTranslate } from '../../context/TranslationsContext.js';
+import ToggleInput from './ToggleInput.js';
 
 type CategoryChannelPreference = IRemoteNotificationPreferences['categories'][number];
 type ChannelPreference = CategoryChannelPreference['channels'][number];

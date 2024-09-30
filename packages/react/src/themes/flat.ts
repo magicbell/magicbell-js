@@ -1,6 +1,6 @@
-import { IMagicBellTheme } from '../context/Theme';
-import { DeepPartial } from '../lib/types';
-import { fonts } from './light';
+import { IMagicBellTheme } from '../context/Theme.js';
+import { DeepPartial } from '../lib/types.js';
+import { fonts } from './light.js';
 
 const colors = {
   bg: '#FFFFFF',

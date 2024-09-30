@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useMagicBellContext } from '../../context/MagicBellContext';
-import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
-import { NotificationListItem } from '../NotificationList/NotificationList';
-import { PopoverPlacement, PopperOptions } from '../Popover';
-import FloatingInboxContainer from './FloatingInboxContainer';
+import { useMagicBellContext } from '../../context/MagicBellContext.js';
+import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox/index.js';
+import { NotificationListItem } from '../NotificationList/NotificationList.js';
+import { PopoverPlacement, PopperOptions } from '../Popover/index.js';
+import FloatingInboxContainer from './FloatingInboxContainer.js';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;

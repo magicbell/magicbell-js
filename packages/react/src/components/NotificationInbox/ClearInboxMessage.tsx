@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useMagicBellContext } from '../../context/MagicBellContext';
-import { useTheme } from '../../context/MagicBellThemeContext';
-import Text from '../Text';
+import { useMagicBellContext } from '../../context/MagicBellContext.js';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import Text from '../Text/index.js';
 
 /**
  * Is renders an "All clear" message and an image to indicate the user has no

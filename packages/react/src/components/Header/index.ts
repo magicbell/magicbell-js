@@ -1,4 +1,4 @@
-import Header from './Header';
+import Header from './Header.js';
 
-export type { Props as HeaderProps } from './Header';
+export type { Props as HeaderProps } from './Header.js';
 export default Header;

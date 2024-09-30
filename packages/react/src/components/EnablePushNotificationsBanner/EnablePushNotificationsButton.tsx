@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import Text from '../Text';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import Text from '../Text/index.js';
 
 interface Props {
   onClick: () => void;

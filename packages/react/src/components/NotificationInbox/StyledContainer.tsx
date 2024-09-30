@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { cleanslate } from '../Styled';
-import useContainerBorderRadius from './useContainerBorderRadius';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { cleanslate } from '../Styled/index.js';
+import useContainerBorderRadius from './useContainerBorderRadius.js';
 
 interface StyledContainerProps {
   height?: number;

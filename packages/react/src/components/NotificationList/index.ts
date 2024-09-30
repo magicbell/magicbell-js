@@ -1,4 +1,4 @@
-import NotificationList from './NotificationList';
+import NotificationList from './NotificationList.js';
 
-export type { ListItemProps, NotificationListProps } from './NotificationList';
+export type { ListItemProps, NotificationListProps } from './NotificationList.js';
 export default NotificationList;

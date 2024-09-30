@@ -1,4 +1,4 @@
-import { lightTheme } from '../themes/light';
+import { lightTheme } from '../themes/light.js';
 
 export interface IElementTheme {
   backgroundColor: string;
