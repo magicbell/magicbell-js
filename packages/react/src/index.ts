@@ -1,4 +1,3 @@
-import warning from 'tiny-warning';
 import MagicBell from './components/MagicBell/index.js';
 
 export default MagicBell;
@@ -53,15 +52,3 @@ export {
   useNotificationStoresCollection,
   useNotificationUnmount,
 } from '@magicbell/react-headless';
-
-if (__DEV__) {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const testFunc = function testFn() {};
-
-  warning(
-    (testFunc.name || testFunc.toString()).indexOf('testFn') !== -1,
-    "It looks like you're using a minified copy of the development build " +
-      `of ${__PACKAGE_NAME__}. When deploying your app to production, make sure to use ` +
-      'the production build which is faster and does not print development warnings.',
-  );
-}

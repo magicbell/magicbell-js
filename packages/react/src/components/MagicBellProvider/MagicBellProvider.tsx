@@ -29,8 +29,8 @@ export type MagicBellProviderProps = {
 
 const internals = {
   appInfo: {
-    name: __PACKAGE_NAME__,
-    version: __PACKAGE_VERSION__,
+    name: pkg.name,
+    version: pkg.version,
   },
 };
 
