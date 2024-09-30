@@ -38,8 +38,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:bundle build:attw",
+    "build": "run-s clean build:bundle build:replace build:attw",
     "build:bundle": "tshy",
+    "build:replace": "tsx scripts/post-build.ts",
     "build:attw": "attw -P",
     "start": "tshy --watch"
   },

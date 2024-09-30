@@ -8895,7 +8895,7 @@ glob@7.1.7:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^10.3.2, glob@^10.3.7, glob@^10.4.1:
+glob@^10.3.2, glob@^10.3.7, glob@^10.4.1, glob@^10.4.2:
   version "10.4.5"
   resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
@@ -13165,6 +13165,15 @@ rehype-slug@^6.0.0:
     hast-util-heading-rank "^3.0.0"
     hast-util-to-string "^3.0.0"
     unist-util-visit "^5.0.0"
+
+replace-in-file@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-8.2.0.tgz#5284a5ce0f1a04f3118b9afd4e2dfc15250c7ba8"
+  integrity sha512-hMsQtdYHwWviQT5ZbNsgfu0WuCiNlcUSnnD+aHAL081kbU9dPkPocDaHlDvAHKydTWWpx1apfcEcmvIyQk3CpQ==
+  dependencies:
+    chalk "^5.3.0"
+    glob "^10.4.2"
+    yargs "^17.7.2"
 
 request-progress@^3.0.0:
   version "3.0.0"
