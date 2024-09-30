@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import module from 'node:module';
+import _mitt from 'mitt';
 
 // @ts-ignore
-const require = module.createRequire(import.meta.url);
-export const mitt = require('mitt');
+export const mitt = _mitt as unknown as typeof _mitt.default;
