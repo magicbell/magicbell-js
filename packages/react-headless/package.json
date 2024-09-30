@@ -38,10 +38,11 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:bundle build:replace build:attw",
+    "build": "run-s clean build:bundle build:replace test:bundle build:attw",
     "build:bundle": "tshy",
     "build:replace": "tsx scripts/post-build.ts",
     "build:attw": "attw -P",
+    "test:bundle": "node tests/bundle/commonjs.cjs && node tests/bundle/esm.mjs",
     "start": "tshy --watch"
   },
   "tshy": {
