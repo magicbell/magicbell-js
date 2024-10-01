@@ -1,9 +1,9 @@
-import { postAPI } from '../../lib/ajax';
-import INotificationRepository from '../../types/INotificationRepository';
-import { QueryParams } from '../../types/INotificationsStoresCollection';
-import INotificationStore from '../../types/INotificationStore';
-import IRemoteNotification from '../../types/IRemoteNotification';
-import RemoteRepository from '../repository/RemoteRepository';
+import { postAPI } from '../../lib/ajax.js';
+import INotificationRepository from '../../types/INotificationRepository.js';
+import { QueryParams } from '../../types/INotificationsStoresCollection.js';
+import INotificationStore from '../../types/INotificationStore.js';
+import IRemoteNotification from '../../types/IRemoteNotification.js';
+import RemoteRepository from '../repository/RemoteRepository.js';
 
 interface IWrappedNotification {
   notification: IRemoteNotification;

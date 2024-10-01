@@ -1,4 +1,4 @@
-import MagicBellProvider from './MagicBellProvider';
+import MagicBellProvider from './MagicBellProvider.js';
 
-export type { MagicBellProviderProps } from './MagicBellProvider';
+export type { MagicBellProviderProps } from './MagicBellProvider.js';
 export default MagicBellProvider;

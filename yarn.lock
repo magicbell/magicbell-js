@@ -8582,10 +8582,10 @@ find-yarn-workspace-root2@1.2.16:
     micromatch "^4.0.2"
     pkg-dir "^4.2.0"
 
-fix-esm-import-path@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/fix-esm-import-path/-/fix-esm-import-path-1.10.0.tgz#f2d3921f1230dd539240698d6af21f1cb5455fe4"
-  integrity sha512-c4BoKC4qA8GFAPrApmF4j0QNDWeeaGy51C9/QQw2z671sgfdDmOwUbGmPp/bdyQ4SoThB7CEjy97PJ3LlfuvfA==
+fix-esm-import-path@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/fix-esm-import-path/-/fix-esm-import-path-1.10.1.tgz#c68059a33680eb436d2494b69a75dd5da60aa96d"
+  integrity sha512-9PyPwTRujdf6UWDWMz4W1HUlPVHliD68aOC2tpRO+XvRfM1lQjJb8eo1yNVo8G9XZfYoWLPstoXxaUnnpP3TIA==
   dependencies:
     debug "^4.3.2"
 
@@ -8906,7 +8906,7 @@ glob@7.1.7:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^10.3.2, glob@^10.3.7, glob@^10.4.1:
+glob@^10.3.2, glob@^10.3.7, glob@^10.4.1, glob@^10.4.2:
   version "10.4.5"
   resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
@@ -9487,10 +9487,10 @@ ignore@^5.1.4, ignore@^5.2.0, ignore@^5.2.4, ignore@^5.3.1:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.3.2.tgz#3cd40e729f3643fd87cb04e50bf0eb722bc596f5"
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
 
-immer@^9.0.21:
-  version "9.0.21"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.21.tgz#1e025ea31a40f24fb064f1fef23e931496330176"
-  integrity sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==
+immer@^10.1.1:
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-10.1.1.tgz#206f344ea372d8ea176891545ee53ccc062db7bc"
+  integrity sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==
 
 import-fresh@^3.1.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -13203,6 +13203,15 @@ rehype-slug@^6.0.0:
     hast-util-heading-rank "^3.0.0"
     hast-util-to-string "^3.0.0"
     unist-util-visit "^5.0.0"
+
+replace-in-file@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-8.2.0.tgz#5284a5ce0f1a04f3118b9afd4e2dfc15250c7ba8"
+  integrity sha512-hMsQtdYHwWviQT5ZbNsgfu0WuCiNlcUSnnD+aHAL081kbU9dPkPocDaHlDvAHKydTWWpx1apfcEcmvIyQk3CpQ==
+  dependencies:
+    chalk "^5.3.0"
+    glob "^10.4.2"
+    yargs "^17.7.2"
 
 request-progress@^3.0.0:
   version "3.0.0"

@@ -27,6 +27,8 @@ const commonConfig = {
       tsconfig: 'tsconfig.test.json',
     }]
   },
+  resolver: './jest.resolver.cjs',
+  moduleFileExtensions: ['ts', 'tsx', 'cts', 'js', 'json'],
   modulePathIgnorePatterns: ['<rootDir>/packages/magicbell/dist', '<rootDir>/packages/playground', '<rootDir>/packages/embeddable/cypress'],
   globals: {
     __PACKAGE_NAME__: 'TEST',
@@ -41,16 +43,22 @@ const commonConfig = {
   moduleNameMapper,
 };
 
+const projectConfigs = {
+  '@magicbell/user-client': {
+    testEnvironment: 'node',
+  }
+};
+
 /** @type {import('jest').Config} */
 module.exports = {
   projects: packages.map(([name, dir]) => ({
     ...commonConfig,
     displayName: name,
-    testEnvironment: name === '@magicbell/user-client' ? 'node' : "jest-environment-jsdom",
     testMatch: [
       `${dir}/src/**/*.test.[jt]s?(x)"`,
       `${dir}/test/**/*.[jt]s?(x)"`,
       `${dir}/tests/**/*.spec.[jt]s?(x)"`,
     ],
+    ...projectConfigs[name],
   }))
 };

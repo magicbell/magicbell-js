@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
-import IRemoteConfig from '../../types/IRemoteConfig';
-import ConfigRepository from './ConfigRepository';
+import IRemoteConfig from '../../types/IRemoteConfig.js';
+import ConfigRepository from './ConfigRepository.js';
 
 interface Config extends IRemoteConfig {
   lastFetchedAt?: number;

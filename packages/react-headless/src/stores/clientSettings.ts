@@ -1,6 +1,8 @@
 import { UserClient } from 'magicbell/user-client';
 import { createStore } from 'zustand/vanilla';
 
+import { pkg } from '../lib/pkg.js';
+
 export type ClientSettings = {
   apiKey: string;
   userEmail?: string;
@@ -45,8 +47,8 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
           apiKey: state.apiKey,
           host: state.serverURL,
           appInfo: state.appInfo || {
-            name: __PACKAGE_NAME__,
-            version: __PACKAGE_VERSION__,
+            name: pkg.name,
+            version: pkg.version,
           },
         });
       }

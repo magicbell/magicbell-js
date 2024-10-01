@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 
-import IRemoteNotificationPreferences, { CategoryChannelPreference } from '../../types/IRemoteNotificationPreferences';
-import NotificationPreferencesRepository from './NotificationPreferencesRepository';
+import IRemoteNotificationPreferences, {
+  CategoryChannelPreference,
+} from '../../types/IRemoteNotificationPreferences.js';
+import NotificationPreferencesRepository from './NotificationPreferencesRepository.js';
 
 export interface INotificationPreferences extends IRemoteNotificationPreferences {
   lastFetchedAt?: number;

@@ -9,10 +9,6 @@
     "Stephan Meijer <stephan.meijer@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell-react-headless.esm.js",
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist",
@@ -42,22 +38,17 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "start": "yarn build:dev --watch",
-    "size": "size-limit"
+    "build": "run-s clean build:bundle build:replace test:bundle build:attw",
+    "build:bundle": "tshy",
+    "build:replace": "tsx scripts/post-build.ts",
+    "build:attw": "attw -P",
+    "test:bundle": "node tests/bundle/commonjs.cjs && node tests/bundle/esm.mjs",
+    "start": "tshy --watch"
   },
-  "size-limit": [
-    {
-      "path": "dist/magicbell-react-headless.cjs.min.js",
-      "limit": "125 KB"
-    },
-    {
-      "path": "dist/magicbell-react-headless.esm.min.js",
-      "limit": "125 KB"
-    }
-  ],
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
     "@size-limit/preset-small-lib": "^11.1.4",
@@ -77,7 +68,7 @@
   "dependencies": {
     "dayjs": "^1.11.10",
     "humps": "^2.0.1",
-    "immer": "^9.0.21",
+    "immer": "^10.1.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "magicbell": "4.1.0",
@@ -90,5 +81,22 @@
   },
   "peerDependencies": {
     "react": ">= 18.3.1"
-  }
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "./dist/esm/index.js",
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts"
 }

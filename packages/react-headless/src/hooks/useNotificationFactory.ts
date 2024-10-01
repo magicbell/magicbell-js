@@ -1,10 +1,10 @@
 import { isNil } from 'ramda';
 
-import { secondsToDate } from '../lib/date';
-import { parseJSON } from '../lib/json';
-import { useNotificationStoresCollection } from '../stores/notifications';
-import INotification from '../types/INotification';
-import IRemoteNotification from '../types/IRemoteNotification';
+import { secondsToDate } from '../lib/date.js';
+import { parseJSON } from '../lib/json.js';
+import { useNotificationStoresCollection } from '../stores/notifications/index.js';
+import INotification from '../types/INotification.js';
+import IRemoteNotification from '../types/IRemoteNotification.js';
 
 /**
  * Hook that builds a notification object.

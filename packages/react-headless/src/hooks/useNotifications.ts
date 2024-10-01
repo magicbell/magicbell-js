@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react';
 
-import useConfig from '../stores/config';
-import { useNotificationStoresCollection } from '../stores/notifications';
-import { QueryParams } from '../types/INotificationsStoresCollection';
-import INotificationStore from '../types/INotificationStore';
+import useConfig from '../stores/config/index.js';
+import { useNotificationStoresCollection } from '../stores/notifications/index.js';
+import { QueryParams } from '../types/INotificationsStoresCollection.js';
+import INotificationStore from '../types/INotificationStore.js';
 
 type FetchOptions = Partial<{
   reset: boolean;

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import useMagicBellEvent from '../hooks/useMagicBellEvent';
-import { handleAblyEvent } from '../lib/realtime';
-import clientSettings from '../stores/clientSettings';
-import { useNotificationStoresCollection } from '../stores/notifications';
-import IRemoteNotification from '../types/IRemoteNotification';
+import useMagicBellEvent from '../hooks/useMagicBellEvent.js';
+import { handleAblyEvent } from '../lib/realtime.js';
+import clientSettings from '../stores/clientSettings.js';
+import { useNotificationStoresCollection } from '../stores/notifications/index.js';
+import IRemoteNotification from '../types/IRemoteNotification.js';
 
 /**
  * Component that setups a listener to realtime events and keeps notifications

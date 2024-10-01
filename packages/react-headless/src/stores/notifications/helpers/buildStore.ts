@@ -1,4 +1,4 @@
-import INotificationStore from '../../../types/INotificationStore';
+import INotificationStore from '../../../types/INotificationStore.js';
 
 const emptyStore = {
   // the context defaults to unarchived notifications, as that's the behaviour
