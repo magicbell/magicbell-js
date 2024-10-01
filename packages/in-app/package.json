@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
-    "@biomejs/biome": "1.8.1",
+    "@biomejs/biome": "1.9.2",
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@open-wc/testing": "^4.0.0",
     "@rollup/plugin-alias": "^5.1.0",
