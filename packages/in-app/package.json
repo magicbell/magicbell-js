@@ -79,7 +79,7 @@
     "@web/test-runner-playwright": "^0.11.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "babel": "^6.23.0",
-    "babel-preset-solid": "^1.8.17",
+    "babel-preset-solid": "^1.9.0",
     "command-line-args": "^5.2.1",
     "lit-analyzer": "^2.0.3",
     "mime-types": "^2.1.35",
