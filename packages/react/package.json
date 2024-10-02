@@ -77,9 +77,9 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
+    "@floating-ui/react": "^0.26.24",
     "@magicbell/react-headless": "5.0.2",
     "@magicbell/webpush": "2.0.2",
-    "@tippyjs/react": "^4.2.6",
     "dayjs": "^1.11.10",
     "humps": "^2.0.1",
     "lodash": "^4.17.21",

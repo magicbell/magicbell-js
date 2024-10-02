@@ -1,18 +1,27 @@
+import {
+  autoPlacement,
+  autoUpdate,
+  flip,
+  Middleware,
+  offset,
+  OpenChangeReason,
+  Placement,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
 import React, { ReactNode } from 'react';
 
 import { NotificationInboxProps } from '../NotificationInbox/index.js';
-import Popover, { PopoverPlacement, PopperOptions } from '../Popover/index.js';
 import Arrow from './Arrow.js';
-import StyledPopoverContainer from './StyledPopoverContainer.js';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;
   toggle?: () => void;
   launcherRef: React.RefObject<Element>;
-  placement?: PopoverPlacement;
+  placement?: Placement;
   width?: number;
   closeOnClickOutside?: boolean;
-  popperOptions?: PopperOptions;
   hideArrow?: boolean;
   layout?: string[];
   children: ReactNode | ReactNode[];
@@ -26,34 +35,49 @@ export interface Props extends NotificationInboxProps {
  */
 export default function FloatingInboxContainer({
   launcherRef,
-  isOpen,
+  isOpen = false,
   toggle,
-  placement = 'auto',
+  placement,
   width = 500,
   closeOnClickOutside = true,
-  popperOptions,
   hideArrow = false,
-  layout = ['header', 'content', 'push-notifications-banner', 'footer'],
   children,
 }: Props) {
-  const handleClickOutside = () => {
-    if (closeOnClickOutside) toggle?.();
-  };
+  const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(10)];
+
+  const floating = useFloating({
+    placement,
+    middleware,
+    strategy: 'absolute',
+    open: isOpen,
+    onOpenChange(open: boolean, event?: Event, reason?: OpenChangeReason) {
+      if (reason === 'outside-press') {
+        toggle?.();
+      }
+    },
+    elements: { reference: launcherRef.current },
+    whileElementsMounted: autoUpdate,
+  });
+
+  const dismiss = useDismiss(floating.context, {
+    referencePress: false,
+    outsidePress: closeOnClickOutside,
+  });
+
+  const { getFloatingProps } = useInteractions([dismiss]);
 
   return (
-    <Popover
-      isOpen={isOpen}
-      launcherRef={launcherRef}
-      onClickOutside={handleClickOutside}
-      placement={placement}
-      popperOptions={popperOptions}
-    >
-      {(attrs) => (
-        <StyledPopoverContainer width={width} attrs={attrs} layout={layout}>
+    <>
+      {isOpen ? (
+        <div
+          ref={floating.refs.setFloating}
+          style={{ ...floating.floatingStyles, width, maxWidth: `calc(100vw - 10px)`, zIndex: 1 }}
+          {...getFloatingProps()}
+        >
           {children}
-          {hideArrow ? null : <Arrow placement={attrs['data-placement']} />}
-        </StyledPopoverContainer>
-      )}
-    </Popover>
+          {hideArrow ? null : <Arrow placement={floating.placement} />}
+        </div>
+      ) : null}
+    </>
   );
 }

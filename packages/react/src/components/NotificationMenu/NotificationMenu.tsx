@@ -1,31 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { flip, offset, useClick, useDismiss, useFloating, useInteractions } from '@floating-ui/react';
 import { INotification } from '@magicbell/react-headless';
+import { useState } from 'react';
 
 import { useTheme } from '../../context/MagicBellThemeContext.js';
 import { useTranslate } from '../../context/TranslationsContext.js';
 import MenuIcon from '../icons/MenuIcon.js';
 import NotificationContextMenu from '../NotificationContextMenu/index.js';
-import Popover from '../Popover/index.js';
 
 export interface Props {
   notification: INotification;
-  menuPlacement?:
-    | 'auto'
-    | 'auto-start'
-    | 'auto-end'
-    | 'top'
-    | 'bottom'
-    | 'right'
-    | 'left'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'right-start'
-    | 'right-end'
-    | 'left-start'
-    | 'left-end';
 }
 
 /**
@@ -34,9 +19,11 @@ export interface Props {
  * @example
  * <NotificationState notification={notification} />
  */
-export default function NotificationMenu({ notification, menuPlacement = 'bottom-end' }: Props) {
+export default function NotificationMenu({ notification }: Props) {
   const { notification: themeVariants } = useTheme();
   const t = useTranslate();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const theme = !notification.isSeen
     ? themeVariants.unseen
@@ -44,36 +31,43 @@ export default function NotificationMenu({ notification, menuPlacement = 'bottom
     ? themeVariants.unread
     : themeVariants.default;
 
-  const launcher = (
-    <button
-      type="button"
-      aria-label={t('notification.menu', 'Menu')}
-      css={css`
-        color: ${theme.textColor} !important;
+  const { refs, context, floatingStyles } = useFloating({
+    placement: 'bottom-end',
+    middleware: [flip(), offset({ mainAxis: 2, crossAxis: -4 })],
+    open: isOpen,
+    onOpenChange: setIsOpen,
+  });
 
-        &:focus {
-          outline: none;
-        }
-
-        &:focus-visible {
-          outline: 2px ${theme.textColor} auto !important;
-        }
-      `}
-      onClick={(e) => e.preventDefault()}
-    >
-      <MenuIcon />
-    </button>
-  );
+  const dismiss = useDismiss(context);
+  const click = useClick(context);
+  const { getFloatingProps, getReferenceProps } = useInteractions([dismiss, click]);
 
   return (
-    <Popover
-      launcher={launcher}
-      offset={{ skidding: -4, distance: 2 }}
-      placement={menuPlacement}
-      zIndex={1}
-      trigger="click"
-    >
-      {() => <NotificationContextMenu notification={notification} />}
-    </Popover>
+    <>
+      <button
+        ref={refs.setReference}
+        type="button"
+        aria-label={t('notification.menu', 'Menu')}
+        css={css`
+          color: ${theme.textColor} !important;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:focus-visible {
+            outline: 2px ${theme.textColor} auto !important;
+          }
+        `}
+        {...getReferenceProps()}
+      >
+        <MenuIcon />
+      </button>
+      {isOpen && (
+        <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 1 }} {...getFloatingProps()}>
+          <NotificationContextMenu notification={notification} />
+        </div>
+      )}
+    </>
   );
 }
