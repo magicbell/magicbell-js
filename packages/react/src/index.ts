@@ -22,8 +22,6 @@ export { default as NotificationContent } from './components/NotificationContent
 export { default as NotificationInbox } from './components/NotificationInbox/index.js';
 export { default as NotificationList } from './components/NotificationList/index.js';
 export { default as NotificationState } from './components/NotificationState/index.js';
-export type { PopoverPlacement } from './components/Popover/index.js';
-export { default as Popover } from './components/Popover/index.js';
 export { default as PushNotificationsSubscriber } from './components/PushNotificationsSubscriber/index.js';
 export { default as Timestamp } from './components/Timestamp/index.js';
 export { default as NotificationPreferences } from './components/UserPreferencesPanel/PreferencesCategories.js';

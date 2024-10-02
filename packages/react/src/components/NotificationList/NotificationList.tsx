@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { INotification, IRemoteNotification, useNotifications } from '@magicbell/react-headless';
 import React from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
+import { InfiniteScroll } from '../../polyfills/infinite-scroll-module.js';
 import ClickableNotification from '../ClickableNotification/index.js';
 import Loader from './Loader.js';
 
@@ -22,7 +22,7 @@ export interface NotificationListProps {
   height?: number | string;
   ListItem?: (props: ListItemProps) => React.ReactElement;
   notifications: NotificationStore;
-  queryParams?;
+  queryParams?: any;
   scrollableTarget?: React.ReactNode;
 }
 

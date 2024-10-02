@@ -22,6 +22,7 @@ test('fetches from the MagicBell API config endpoint', async () => {
 
   const useFetchConfig = () => {
     const config = useConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => void config.fetch(), []);
 
     return config;

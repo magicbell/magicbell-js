@@ -87,12 +87,12 @@ export default function MagicBell({
   const launcherRef = useRef(null);
   const isControlled = typeof externalIsOpen !== 'undefined';
 
-  const [internalIsOpen, toggleInternal] = useToggle(defaultIsOpen);
+  const [internalIsOpen, setInternalIsOpen] = useState(defaultIsOpen);
   const isOpen = isControlled ? externalIsOpen : internalIsOpen;
 
   const handleToggle = () => {
     if (!isControlled) {
-      toggleInternal();
+      setInternalIsOpen((c) => !c);
     }
 
     onToggle?.(!isOpen);

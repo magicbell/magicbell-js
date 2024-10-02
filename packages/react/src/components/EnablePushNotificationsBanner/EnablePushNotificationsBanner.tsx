@@ -34,6 +34,7 @@ export default function EnablePushNotificationsBanner() {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
     const { accentColor, backgroundColor, textColor } = theme.dialog;
 
+    if (!subscribeUrl) return;
     const url = new URL(subscribeUrl);
     if (userEmail) url.searchParams.set('user_email', userEmail);
     if (userExternalId) url.searchParams.set('user_external_id', userExternalId);

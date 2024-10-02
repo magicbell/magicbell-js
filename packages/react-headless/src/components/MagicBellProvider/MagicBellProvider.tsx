@@ -73,6 +73,7 @@ export default function MagicBellProvider({
   useState(() => setupXHR(clientSettings));
   useEffect(() => {
     setupStores(stores);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const config = useConfig();
