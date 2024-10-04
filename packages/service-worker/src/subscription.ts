@@ -1,10 +1,3 @@
-import axios from 'axios';
-
-function isEmpty(value) {
-  if (value == null) return true;
-  return false;
-}
-
 function stringToUint8Array(plainString: string) {
   const padding = '='.repeat((4 - (plainString.length % 4)) % 4);
   const base64 = (plainString + padding).replace(/-/g, '+').replace(/_/g, '/');
@@ -31,10 +24,14 @@ export function storeSubscription(
 ) {
   const { email: userEmail, externalId: userExternalId, hmacSecret } = user;
 
-  const headers = { 'X-MAGICBELL-API-KEY': project.apiKey };
-  if (!isEmpty(userEmail)) headers['X-MAGICBELL-USER-EMAIL'] = userEmail;
-  if (!isEmpty(userExternalId)) headers['X-MAGICBELL-USER-EXTERNAL-ID'] = userExternalId;
-  if (!isEmpty(hmacSecret)) headers['X-MAGICBELL-USER-HMAC'] = hmacSecret;
+  const headers = {
+    'content-type': 'application/json',
+    'x-magicbell-api-key': project.apiKey,
+  };
+
+  if (userEmail) headers['x-magicbell-user-email'] = userEmail;
+  if (userExternalId) headers['x-magicbell-user-external-id'] = userExternalId;
+  if (hmacSecret) headers['x-magicbell-user-hmac'] = hmacSecret;
 
   const data = {
     web_push_subscription: {
@@ -42,7 +39,17 @@ export function storeSubscription(
     },
   };
 
-  return axios.post('/web_push_subscriptions', data, { headers });
+  void fetch('/web_push_subscriptions', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(data),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  });
 }
 
 /**
