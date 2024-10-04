@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { colorize, colors } from './colorize';
-import { configStore } from './config';
+import { colorize, colors } from './colorize.js';
+import { configStore } from './config.js';
 
 export function printMessage(message = ''): void {
   console.log(message);

@@ -1,11 +1,11 @@
 import { Option } from 'commander';
 import fs from 'fs';
 
-import { getProjectClient, getUserClient } from './lib/client';
-import { createCommand } from './lib/commands';
-import { parseJsonLikes } from './lib/options';
-import { printError, printJson, printKeyValue, printMessage } from './lib/printer';
-import { readStdin } from './lib/stdin';
+import { getProjectClient, getUserClient } from './lib/client.js';
+import { createCommand } from './lib/commands.js';
+import { parseJsonLikes } from './lib/options.js';
+import { printError, printJson, printKeyValue, printMessage } from './lib/printer.js';
+import { readStdin } from './lib/stdin.js';
 
 function printResponse(response: Response) {
   printMessage(`${response.status} ${response.statusText}`);

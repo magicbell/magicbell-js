@@ -1,8 +1,8 @@
-import { createCommand } from './lib/commands';
-import { configStore } from './lib/config';
-import { printError } from './lib/printer';
-import { listen } from './listen';
-import * as userResources from './user-resources';
+import { createCommand } from './lib/commands.js';
+import { configStore } from './lib/config.js';
+import { printError } from './lib/printer.js';
+import { listen } from './listen.js';
+import * as userResources from './user-resources/index.js';
 
 export const user = createCommand('user')
   .summary("Manage a users' notifications & preferences")

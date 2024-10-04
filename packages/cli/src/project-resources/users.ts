@@ -1,11 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { getProjectClient as getClient } from '../lib/client';
-import { createCommand } from '../lib/commands';
-import { parseOptions } from '../lib/options';
-import { printJson } from '../lib/printer';
-import { usersNotifications } from './users/notifications';
-import { usersPushSubscriptions } from './users/push-subscriptions';
+import { getProjectClient as getClient } from '../lib/client.js';
+import { createCommand } from '../lib/commands.js';
+import { parseOptions } from '../lib/options.js';
+import { printJson } from '../lib/printer.js';
+import { usersNotifications } from './users/notifications.js';
+import { usersPushSubscriptions } from './users/push-subscriptions.js';
 
 export const users = createCommand('users').description('Manage users');
 users.addCommand(usersNotifications);

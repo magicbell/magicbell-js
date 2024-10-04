@@ -1,9 +1,9 @@
 // This file is generated. Do not update manually!
 
-import { getUserClient as getClient } from '../lib/client';
-import { createCommand } from '../lib/commands';
-import { parseOptions } from '../lib/options';
-import { printJson } from '../lib/printer';
+import { getUserClient as getClient } from '../lib/client.js';
+import { createCommand } from '../lib/commands.js';
+import { parseOptions } from '../lib/options.js';
+import { printJson } from '../lib/printer.js';
 
 export const subscriptions = createCommand('subscriptions').description('Manage user subscriptions');
 

@@ -1,8 +1,8 @@
 import kleur from 'kleur';
 
-import { createCommand } from './lib/commands';
-import { configStore } from './lib/config';
-import { printMessage } from './lib/printer';
+import { createCommand } from './lib/commands.js';
+import { configStore } from './lib/config.js';
+import { printMessage } from './lib/printer.js';
 
 export const logout = createCommand('logout')
   .description('Logout of your MagicBell account')

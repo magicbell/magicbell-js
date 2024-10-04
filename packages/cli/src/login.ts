@@ -1,10 +1,10 @@
 import kleur from 'kleur';
 import readline from 'readline-sync';
 
-import { getProjectClient as getClient } from './lib/client';
-import { createCommand } from './lib/commands';
-import { configStore } from './lib/config';
-import { printError, printMessage } from './lib/printer';
+import { getProjectClient as getClient } from './lib/client.js';
+import { createCommand } from './lib/commands.js';
+import { configStore } from './lib/config.js';
+import { printError, printMessage } from './lib/printer.js';
 
 export const login = createCommand('login')
   .description('Login to your MagicBell account')
