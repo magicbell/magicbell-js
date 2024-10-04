@@ -3,10 +3,10 @@ import { createHmac } from 'magicbell/crypto';
 import { ProjectClient, ProjectClientOptions } from 'magicbell/project-client';
 import { UserClient, UserClientOptions } from 'magicbell/user-client';
 
-import pkg from '../../package.json';
-import { configStore } from './config';
-import { printMessage } from './printer';
-import { serialize } from './serializers';
+import { configStore } from './config.js';
+import { pkg } from './pkg.js';
+import { printMessage } from './printer.js';
+import { serialize } from './serializers.js';
 
 type Hooks = ProjectClientOptions['hooks'];
 const features: ProjectClientOptions['features'] = {};

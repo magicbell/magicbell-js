@@ -1,6 +1,6 @@
 import { toCurl } from 'fetch-addons';
 
-import { printError } from './printer';
+import { printError } from './printer.js';
 
 // we don't want to print these headers, as we don't want to have people copy/paste them
 // into other requests, and thereby mess up our telemetry / request logs

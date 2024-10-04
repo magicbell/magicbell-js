@@ -1,7 +1,7 @@
 import json from 'json5';
 
-import { printError } from './printer';
-import { camelToSnakeCase } from './text';
+import { printError } from './printer.js';
+import { camelToSnakeCase } from './text.js';
 
 const optionKeys = new Set(['userEmail', 'userExternalId']);
 

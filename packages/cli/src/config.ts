@@ -1,7 +1,7 @@
-import { createCommand } from './lib/commands';
-import { configStore } from './lib/config';
-import { printJson, printMessage } from './lib/printer';
-import { mask } from './lib/text';
+import { createCommand } from './lib/commands.js';
+import { configStore } from './lib/config.js';
+import { printJson, printMessage } from './lib/printer.js';
+import { mask } from './lib/text.js';
 
 export const config = createCommand('config')
   .description('Manage configuration for magicbell')

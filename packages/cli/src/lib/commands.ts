@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 
-import { formatHelp } from './help';
+import { formatHelp } from './help.js';
 
 type ExtendedCommand = Command & {
   group(name): ExtendedCommand;

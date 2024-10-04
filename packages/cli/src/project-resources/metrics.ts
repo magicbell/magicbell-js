@@ -1,11 +1,11 @@
 // This file is generated. Do not update manually!
 
-import { getProjectClient as getClient } from '../lib/client';
-import { createCommand } from '../lib/commands';
-import { parseOptions } from '../lib/options';
-import { printJson } from '../lib/printer';
-import { metricsCategories } from './metrics/categories';
-import { metricsTopics } from './metrics/topics';
+import { getProjectClient as getClient } from '../lib/client.js';
+import { createCommand } from '../lib/commands.js';
+import { parseOptions } from '../lib/options.js';
+import { printJson } from '../lib/printer.js';
+import { metricsCategories } from './metrics/categories.js';
+import { metricsTopics } from './metrics/topics.js';
 
 export const metrics = createCommand('metrics').description('Manage metrics');
 metrics.addCommand(metricsCategories);

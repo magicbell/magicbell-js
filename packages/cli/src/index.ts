@@ -1,16 +1,16 @@
 import { Option } from 'commander';
 
-import pkg from '../package.json';
-import { api } from './api';
-import { config } from './config';
-import { createCommand, findCommand, findTopCommand } from './lib/commands';
-import { configStore } from './lib/config';
-import { parseHost } from './lib/options';
-import { printError, printMessage } from './lib/printer';
-import { login } from './login';
-import { logout } from './logout';
-import * as projectResources from './project-resources';
-import { user } from './user';
+import { api } from './api.js';
+import { config } from './config.js';
+import { createCommand, findCommand, findTopCommand } from './lib/commands.js';
+import { configStore } from './lib/config.js';
+import { parseHost } from './lib/options.js';
+import { pkg } from './lib/pkg.js';
+import { printError, printMessage } from './lib/printer.js';
+import { login } from './login.js';
+import { logout } from './logout.js';
+import * as projectResources from './project-resources/index.js';
+import { user } from './user.js';
 
 const publicCommands = ['login', 'logout', 'config'];
 
