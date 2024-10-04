@@ -1,6 +1,6 @@
-import { config, notificationPreferences, wsAuth } from './fake';
-import { ablyAuth, ablyRequestToken } from './fake/ably';
-import { mockHandler } from './mock-server';
+import { ablyAuth, ablyRequestToken } from './fake/ably.js';
+import { config, notificationPreferences, wsAuth } from './fake/index.js';
+import { mockHandler } from './mock-server.js';
 
 async function updateNotificationPreferences(req) {
   const payload = await req.json();
