@@ -7,11 +7,6 @@
     "Stephan Meijer <stephan.meijer@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell-webpush.esm.js",
-  "unpkg": "dist/magicbell-webpush.esm.min.js",
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist",
@@ -34,12 +29,32 @@
   "bugs": {
     "url": "https://github.com/magicbell/magicbell-js/issues"
   },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "start": "yarn build:dev --watch",
-    "size": "size-limit"
-  }
+    "build": "run-s clean build:bundle build:attw",
+    "build:bundle": "tshy",
+    "build:attw": "attw -P",
+    "start": "tshy --watch"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }

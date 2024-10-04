@@ -1,4 +1,4 @@
-import { ChannelToken, ClientOptions, IntegrationClient } from './internal/client';
+import { ChannelToken, ClientOptions, IntegrationClient } from './internal/client.js';
 
 export type Installation = {
   public_key: string;
