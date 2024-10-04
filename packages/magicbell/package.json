@@ -94,8 +94,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:bundle build:node10 build:attw",
+    "build": "run-s clean build:bundle build:replace build:node10 build:attw",
     "build:bundle": "tshy",
+    "build:replace": "tsx scripts/post-build.ts",
     "build:node10": "tsx scripts/fix-node10.ts",
     "build:attw": "attw -P",
     "codegen": "tsx scripts/generate-resources.ts --dest ./src",

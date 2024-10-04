@@ -1,6 +1,7 @@
 import type { Hooks } from '@smeijer/ky';
 import { deleteEmptyHeaders } from 'fetch-addons';
 
+import { pkg } from '../lib/pkg.js';
 import { ClientOptions } from './types.js';
 
 function uuid4() {
@@ -72,11 +73,18 @@ export function withRequestHeaders(options: ClientOptions): Hooks {
 }
 
 function getEnvInfo() {
+  const common = {
+    binding: pkg.name,
+    binding_version: pkg.version,
+    publisher: 'magicbell',
+  };
+
   if (typeof process === 'undefined') {
-    return { binding: 'magicbell' };
+    return common;
   }
 
   return {
+    ...common,
     binding: 'magicbell',
     runtime: process?.release?.name || 'node',
     runtime_version: process.version,
