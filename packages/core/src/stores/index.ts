@@ -1,2 +1,2 @@
-export { default as NotificationStore } from './NotificationStore';
-export { default as NotificationStoreWithContext } from './NotificationStoreWithContext';
+export { default as NotificationStore } from './NotificationStore.js';
+export { default as NotificationStoreWithContext } from './NotificationStoreWithContext.js';

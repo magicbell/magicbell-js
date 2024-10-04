@@ -1,6 +1,6 @@
-import Notification from '../models/Notification';
-import NotificationStore from './NotificationStore';
-import { compareAttributeStrategy, NotificationCompareStrategy } from './strategy';
+import Notification from '../models/Notification/index.js';
+import NotificationStore from './NotificationStore.js';
+import { compareAttributeStrategy, NotificationCompareStrategy } from './strategy.js';
 
 type StrategyComparator = (attribute, rule) => boolean;
 

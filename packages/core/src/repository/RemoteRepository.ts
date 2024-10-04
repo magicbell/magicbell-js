@@ -1,6 +1,6 @@
-import { deleteAPI, fetchAPI, postAPI, putAPI } from '../lib/ajax';
-import IReader from './IReader';
-import IWriter from './IWriter';
+import { deleteAPI, fetchAPI, postAPI, putAPI } from '../lib/ajax.js';
+import IReader from './IReader.js';
+import IWriter from './IWriter.js';
 
 /**
  * Class to represent a client that interacts with the MagicBell API.

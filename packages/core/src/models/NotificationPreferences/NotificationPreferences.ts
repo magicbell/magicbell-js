@@ -1,7 +1,7 @@
-import camelize from '../../lib/decorators/camelize';
-import unwrap from '../../lib/decorators/unwrap';
-import { CategoryChannelPreferences, CategoryPreference } from './IRemoteNotificationPreferences';
-import NotificationPreferencesRepository from './NotificationPreferencesRepository';
+import camelize from '../../lib/decorators/camelize.js';
+import unwrap from '../../lib/decorators/unwrap.js';
+import { CategoryChannelPreferences, CategoryPreference } from './IRemoteNotificationPreferences.js';
+import NotificationPreferencesRepository from './NotificationPreferencesRepository.js';
 
 /**
  * A representation of notification preferences.

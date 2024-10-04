@@ -1,6 +1,6 @@
-import filter from 'lodash/filter';
-import find from 'lodash/find';
-import map from 'lodash/map';
+import filter from 'lodash/filter.js';
+import find from 'lodash/find.js';
+import map from 'lodash/map.js';
 
 export interface Identifiable {
   id?: string | number | null;

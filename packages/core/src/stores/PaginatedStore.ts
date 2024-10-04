@@ -1,4 +1,4 @@
-import Store, { Identifiable } from './Store';
+import Store, { Identifiable } from './Store.js';
 
 export interface IPagination {
   total: number;

@@ -1,8 +1,8 @@
-import eq from 'lodash/eq';
-import has from 'lodash/has';
-import keys from 'lodash/keys';
+import eq from 'lodash/eq.js';
+import has from 'lodash/has.js';
+import keys from 'lodash/keys.js';
 
-import { Notification } from '../models';
+import { Notification } from '../models/index.js';
 
 export type NotificationCompareStrategy = (
   notification: Notification,

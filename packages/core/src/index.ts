@@ -1,9 +1,9 @@
-import MagicBellClient from './MagicBellClient';
+import MagicBellClient from './MagicBellClient.js';
 
-export * from './lib/ajax';
-export * from './lib/date';
-export * from './lib/realtime';
-export * from './models';
-export * from './stores';
+export * from './lib/ajax.js';
+export * from './lib/date.js';
+export * from './lib/realtime.js';
+export * from './models/index.js';
+export * from './stores/index.js';
 
 export default MagicBellClient;

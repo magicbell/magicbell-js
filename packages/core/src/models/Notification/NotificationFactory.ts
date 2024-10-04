@@ -1,4 +1,4 @@
-import Notification from './Notification';
+import Notification from './Notification.js';
 
 /**
  * A factory to create notifications. It implements identity map so there is
