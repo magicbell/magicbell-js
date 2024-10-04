@@ -1,0 +1,39 @@
+{
+  "name": "@magicbell/service-worker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "MagicBell service-worker",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src",
+    "LICENSE"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "service-worker"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magicbell/magicbell-js.git",
+    "directory": "packages/service-worker"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean build:check build:bundle",
+    "build:check": "tsc --noEmit --project tsconfig.build.json",
+    "build:bundle": "esbuild src/index.ts --bundle --outfile=dist/sw.js --format=cjs --platform=browser --tsconfig=tsconfig.build.json --minify --sourcemap",
+    "start": "yarn build:bundle --watch"
+  },
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.4",
+    "idb": "^8.0.0"
+  }
+}

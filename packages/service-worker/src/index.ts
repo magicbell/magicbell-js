@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
-import { at } from './db';
-import { storeSubscription, subscribeToPushNotifications } from './subscription';
+import { at } from './db.js';
+import { storeSubscription, subscribeToPushNotifications } from './subscription.js';
 
 declare const self: ServiceWorkerGlobalScope;
 
