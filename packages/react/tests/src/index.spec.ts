@@ -13,7 +13,6 @@ import {
   NotificationInbox,
   NotificationList,
   NotificationState,
-  Popover,
   StyledNotificationContainer,
   Timestamp,
   toRGBA,
@@ -96,10 +95,6 @@ describe('index.ts', () => {
 
   it('exports the NotificationState component', () => {
     expect(NotificationState).toBeDefined();
-  });
-
-  it('exports the Popover component', () => {
-    expect(Popover).toBeDefined();
   });
 
   it('exports the Timestamp component', () => {
