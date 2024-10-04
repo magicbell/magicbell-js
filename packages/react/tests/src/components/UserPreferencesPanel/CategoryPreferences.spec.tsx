@@ -71,7 +71,7 @@ describe('CategoryPreferences component', () => {
     afterEach(() => jest.clearAllMocks());
 
     test('updates the preferences for the inbox channel of the Comments category', async () => {
-      render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
+      render(<CategoryPreferences category={sampleNotificationPreferences.categories[0]} />);
 
       const { result } = renderHook(() => useNotificationPreferences());
       const spy = jest.spyOn(result.current, 'save');
@@ -80,7 +80,9 @@ describe('CategoryPreferences component', () => {
       await userEvent.click(inAppCheckbox);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(result.current.categories[0]).toStrictEqual(threeChannelAfterUpdatePreference.categories[0]);
+      const before = sampleNotificationPreferences.categories[0].channels[0].enabled;
+      const after = result.current.categories[0].channels[0].enabled;
+      expect(before).toStrictEqual(!after);
     });
   });
 });

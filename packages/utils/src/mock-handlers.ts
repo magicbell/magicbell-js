@@ -4,16 +4,20 @@ import { mockHandler } from './mock-server';
 
 async function updateNotificationPreferences(req) {
   const payload = await req.json();
-  const category = payload.categories[0];
+  const category = payload.notification_preferences.categories[0];
+
   return {
-    notificationPreferences: {
+    notification_preferences: {
       categories: notificationPreferences.categories.map((cat) => {
         if (cat.slug !== category.slug) return cat;
         return {
           ...cat,
           channels: cat.channels.map((channel) => {
             if (channel.slug !== category.channels[0].slug) return channel;
-            return category.channels[0];
+            return {
+              ...channel,
+              enabled: category.channels[0].enabled,
+            };
           }),
         };
       }),
