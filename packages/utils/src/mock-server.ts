@@ -1,5 +1,4 @@
-import { MockedRequest, MockedResponse, rest } from 'msw';
-import { c as RequestHandler } from 'msw/lib/glossary-de6278a9';
+import { MockedRequest, MockedResponse, RequestHandler, rest } from 'msw';
 import { setupServer } from 'msw/node';
 
 type InterceptorContext = {
