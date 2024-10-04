@@ -33,6 +33,7 @@
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
+    "@floating-ui/react": "^0.26.24",
     "@magicbell/magicbell-react": "11.0.2",
     "error-stack-parser": "^2.1.4",
     "idb": "^8.0.0",
