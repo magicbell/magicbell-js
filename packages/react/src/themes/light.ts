@@ -1,4 +1,4 @@
-import { IMagicBellTheme } from '../context/Theme';
+import { IMagicBellTheme } from '../context/Theme.js';
 
 export const fonts = {
   sans: `Inter, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, -apple-system, system`,

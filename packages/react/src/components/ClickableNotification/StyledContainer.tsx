@@ -3,9 +3,9 @@ import { css } from '@emotion/react';
 import { INotification } from '@magicbell/react-headless';
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { toRGBA } from '../../lib/color';
-import { cleanslate } from '../Styled';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { toRGBA } from '../../lib/color.js';
+import { cleanslate } from '../Styled/index.js';
 
 export type Props = {
   notification: INotification;

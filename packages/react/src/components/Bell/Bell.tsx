@@ -3,11 +3,11 @@ import { css } from '@emotion/react';
 import { useBell } from '@magicbell/react-headless';
 import { isNil } from 'ramda';
 
-import { useMagicBellContext } from '../../context/MagicBellContext';
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { cleanslate } from '../Styled';
-import BellBadge from './BellBadge';
-import BellIcon from './BellIcon';
+import { useMagicBellContext } from '../../context/MagicBellContext.js';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { cleanslate } from '../Styled/index.js';
+import BellBadge from './BellBadge.js';
+import BellIcon from './BellIcon.js';
 
 export interface Props {
   Icon?: JSX.Element;

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import Badge from '../Badge';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import Badge from '../Badge/index.js';
 
 export interface Props {
   count: number;

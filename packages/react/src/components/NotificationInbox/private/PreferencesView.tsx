@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { ReactElement } from 'react';
 
-import { useTranslate } from '../../../context/TranslationsContext';
-import Footer from '../../Footer';
-import Header from '../../Header';
-import IconButton from '../../IconButton/IconButton';
-import Text from '../../Text';
-import CloseIcon from '../../UserPreferencesPanel/CloseIcon';
-import PreferencesCategories, { PreferencesCategoriesProps } from '../../UserPreferencesPanel/PreferencesCategories';
-import Layout from '../Layout';
-import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox';
+import { useTranslate } from '../../../context/TranslationsContext.js';
+import Footer from '../../Footer/index.js';
+import Header from '../../Header/index.js';
+import IconButton from '../../IconButton/IconButton.js';
+import Text from '../../Text/index.js';
+import CloseIcon from '../../UserPreferencesPanel/CloseIcon.js';
+import PreferencesCategories, { PreferencesCategoriesProps } from '../../UserPreferencesPanel/PreferencesCategories.js';
+import Layout from '../Layout.js';
+import { NotificationInboxProps, SetViewHandler } from '../NotificationInbox.js';
 
 // TODO: Remove null when PreferencesCategories or PreferencesView has been
 //  updated to support a preferences page.

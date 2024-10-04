@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { clientSettings, useConfig } from '@magicbell/react-headless';
 import { path, pathOr } from 'ramda';
-import { useLocalStorage } from 'react-use';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import { toRGBA } from '../../lib/color';
-import { openWindow } from '../../lib/window';
-import Text from '../Text';
-import CloseBannerButton from './CloseBannerButton';
-import EnablePushNotificationsButton from './EnablePushNotificationsButton';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import { toRGBA } from '../../lib/color.js';
+import { useLocalStorage } from '../../lib/use-local-storage.js';
+import { openWindow } from '../../lib/window.js';
+import Text from '../Text/index.js';
+import CloseBannerButton from './CloseBannerButton.js';
+import EnablePushNotificationsButton from './EnablePushNotificationsButton.js';
 
 /**
  * Banner to ask the user to enable push notifications.
@@ -34,6 +34,7 @@ export default function EnablePushNotificationsBanner() {
     const subscribeUrl = path<string>(['webPush', 'config', 'subscribeUrl'], channels);
     const { accentColor, backgroundColor, textColor } = theme.dialog;
 
+    if (!subscribeUrl) return;
     const url = new URL(subscribeUrl);
     if (userEmail) url.searchParams.set('user_email', userEmail);
     if (userExternalId) url.searchParams.set('user_external_id', userExternalId);

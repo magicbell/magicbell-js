@@ -2,8 +2,8 @@
 import { css } from '@emotion/react';
 import { Children, ReactComponentElement, ReactNode } from 'react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import Text from '../Text';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import Text from '../Text/index.js';
 
 function isTab(child: unknown): child is ReactComponentElement<typeof Tab> {
   return child != null && typeof child === 'object' && child['type'] === Tab;

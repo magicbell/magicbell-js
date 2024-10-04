@@ -1,20 +1,19 @@
+import { Placement } from '@floating-ui/react';
 import React from 'react';
 
-import { useMagicBellContext } from '../../context/MagicBellContext';
-import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox';
-import { NotificationListItem } from '../NotificationList/NotificationList';
-import { PopoverPlacement, PopperOptions } from '../Popover';
-import FloatingInboxContainer from './FloatingInboxContainer';
+import { useMagicBellContext } from '../../context/MagicBellContext.js';
+import NotificationInbox, { NotificationInboxProps } from '../NotificationInbox/index.js';
+import { NotificationListItem } from '../NotificationList/NotificationList.js';
+import FloatingInboxContainer from './FloatingInboxContainer.js';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;
   toggle?: () => void;
   launcherRef: React.RefObject<Element>;
-  placement?: PopoverPlacement;
+  placement?: Placement;
   width?: number;
   closeOnClickOutside?: boolean;
   closeOnNotificationClick?: boolean;
-  popperOptions?: PopperOptions;
   hideArrow?: boolean;
   NotificationItem?: NotificationListItem;
   layout?: string[];
@@ -30,12 +29,11 @@ export default function FloatingNotificationInbox({
   launcherRef,
   isOpen,
   toggle,
-  placement = 'auto',
+  placement,
   width = 500,
   onNotificationClick,
   closeOnClickOutside = true,
   closeOnNotificationClick = true,
-  popperOptions,
   hideArrow = false,
   layout,
   ...inboxProps
@@ -56,7 +54,6 @@ export default function FloatingNotificationInbox({
       placement={placement}
       width={width}
       closeOnClickOutside={closeOnClickOutside}
-      popperOptions={popperOptions}
       hideArrow={hideArrow}
       layout={layout}
     >

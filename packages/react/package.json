@@ -9,10 +9,6 @@
     "Eric Hosick <erichosick@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell-magicbell-react.esm.js",
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist",
@@ -42,25 +38,22 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "start": "yarn build:dev --watch",
-    "size": "size-limit"
+    "build": "run-s clean build:bundle build:replace test:bundle build:attw",
+    "build:bundle": "tshy",
+    "build:replace": "tsx scripts/post-build.ts",
+    "build:attw": "attw -P",
+    "test:bundle": "node tests/bundle/commonjs.cjs && node tests/bundle/esm.mjs",
+    "start": "tshy --watch"
   },
-  "size-limit": [
-    {
-      "path": "dist/magicbell-magicbell-react.cjs.min.js",
-      "limit": "250 KB"
-    },
-    {
-      "path": "dist/magicbell-magicbell-react.esm.min.js",
-      "limit": "175 KB"
-    }
-  ],
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts",
+    "exclude": [
+      "./src/**/*.stories.tsx"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@size-limit/preset-small-lib": "^11.1.4",
     "@types/faker": "^5.5.9",
     "@types/lodash": "^4.14.202",
     "@types/rosie": "^0.0.45",
@@ -72,14 +65,13 @@
     "react-dom": "^18.3.1",
     "rosie": "^2.1.1",
     "sinon": "^13.0.2",
-    "size-limit": "^8.2.6",
     "typescript": "^5.6.2"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
+    "@floating-ui/react": "^0.26.24",
     "@magicbell/react-headless": "5.0.2",
     "@magicbell/webpush": "2.0.2",
-    "@tippyjs/react": "^4.2.6",
     "dayjs": "^1.11.10",
     "humps": "^2.0.1",
     "lodash": "^4.17.21",
@@ -96,5 +88,22 @@
   },
   "peerDependencies": {
     "react": ">= 18.3.1"
-  }
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }

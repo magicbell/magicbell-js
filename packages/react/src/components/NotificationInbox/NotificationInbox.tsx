@@ -1,12 +1,12 @@
 import { INotification } from '@magicbell/react-headless';
 import React, { ComponentProps, Dispatch, SetStateAction, useState } from 'react';
 
-import { useMagicBellContext } from '../../context/MagicBellContext';
-import { NotificationListItem } from '../NotificationList/NotificationList';
-import Layout from './Layout';
-import NotificationsView, { NotificationsViewProps } from './private/NotificationsView';
-import PreferencesView from './private/PreferencesView';
-import StyledContainer from './StyledContainer';
+import { useMagicBellContext } from '../../context/MagicBellContext.js';
+import { NotificationListItem } from '../NotificationList/NotificationList.js';
+import Layout from './Layout.js';
+import NotificationsView, { NotificationsViewProps } from './private/NotificationsView.js';
+import PreferencesView from './private/PreferencesView.js';
+import StyledContainer from './StyledContainer.js';
 
 export type NotificationInboxProps = {
   height?: number;

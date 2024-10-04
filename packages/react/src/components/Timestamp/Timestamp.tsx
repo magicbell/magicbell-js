@@ -1,9 +1,8 @@
 import { Dayjs } from 'dayjs';
-import React, { useState } from 'react';
-import useInterval from 'react-use/lib/useInterval';
+import React, { useEffect, useState } from 'react';
 
-import { toDate } from '../../lib/date';
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import { toDate } from '../../lib/date.js';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip.js';
 
 export interface Props {
   date: Dayjs | Date | number | string;
@@ -21,7 +20,11 @@ export default function Timestamp({ date, tooltipPlacement = 'bottom-end', delay
   const [dateObj] = useState(() => toDate(date));
   const [relativeTime, setRelativeTime] = useState(dateObj.fromNow(true));
 
-  useInterval(() => setRelativeTime(dateObj.fromNow(true)), 60_000);
+  useEffect(() => {
+    const fn = () => setRelativeTime(toDate(date).fromNow(true));
+    const interval = setInterval(fn, 60_000);
+    return () => clearInterval(interval);
+  }, [date]);
 
   return (
     <Tooltip tooltip={dateObj.format('LL LT')} placement={tooltipPlacement} delay={delay}>

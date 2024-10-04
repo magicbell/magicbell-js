@@ -1,9 +1,9 @@
 import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 
-import { darken } from '../lib/color';
-import { merge } from '../lib/merge';
-import { DeepPartial } from '../lib/types';
-import { defaultTheme, IMagicBellTheme } from './Theme';
+import { darken } from '../lib/color.js';
+import { merge } from '../lib/merge.js';
+import { DeepPartial } from '../lib/types.js';
+import { defaultTheme, IMagicBellTheme } from './Theme.js';
 
 const MagicBellThemeContext = createContext<IMagicBellTheme>(defaultTheme);
 

@@ -1,13 +1,13 @@
-import 'dayjs/locale/es';
-import 'dayjs/locale/pt-br';
-import 'dayjs/locale/de';
+import 'dayjs/locale/es.js';
+import 'dayjs/locale/pt-br.js';
+import 'dayjs/locale/de.js';
 
 import dayjs from 'dayjs';
 import { mergeDeepRight } from 'ramda';
 
-import de from './translations/de';
-import es from './translations/es';
-import pt_br from './translations/pt-br';
+import de from './translations/de.js';
+import es from './translations/es.js';
+import pt_br from './translations/pt-br.js';
 
 export type CustomLocale = {
   name: string;

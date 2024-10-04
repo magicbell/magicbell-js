@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tabs from '../Tabs/Tabs';
+import Tabs from '../Tabs/Tabs.js';
 
 export type HeaderTabsProps = {
   activeTab: string;

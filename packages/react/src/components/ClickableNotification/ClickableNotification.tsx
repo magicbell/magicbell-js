@@ -2,14 +2,14 @@
 import { css } from '@emotion/react';
 import { INotification, IRemoteNotification, useNotification } from '@magicbell/react-headless';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
-import NotificationContent from '../NotificationContent';
-import NotificationMenu from '../NotificationMenu';
-import NotificationState from '../NotificationState';
-import Timestamp from '../Timestamp';
-import { openActionUrl } from './eventHandlers';
-import NotificationTitle from './NotificationTitle';
-import StyledContainer from './StyledContainer';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
+import NotificationContent from '../NotificationContent/index.js';
+import NotificationMenu from '../NotificationMenu/index.js';
+import NotificationState from '../NotificationState/index.js';
+import Timestamp from '../Timestamp/index.js';
+import { openActionUrl } from './eventHandlers.js';
+import NotificationTitle from './NotificationTitle.js';
+import StyledContainer from './StyledContainer.js';
 
 export interface Props {
   notification: IRemoteNotification;

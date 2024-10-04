@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-import { useTheme } from '../../context/MagicBellThemeContext';
+import { useTheme } from '../../context/MagicBellThemeContext.js';
 
 export function useProse() {
   const { prose } = useTheme();

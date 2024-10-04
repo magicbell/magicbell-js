@@ -1,7 +1,7 @@
 import { pathOr } from 'ramda';
 import React from 'react';
 
-import { useTranslations } from '../../context/TranslationsContext';
+import { useTranslations } from '../../context/TranslationsContext.js';
 
 type TextProps = {
   id: string;

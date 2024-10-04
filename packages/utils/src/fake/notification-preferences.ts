@@ -1,7 +1,7 @@
 export const notificationPreferences = {
   categories: [
     {
-      label: 'Comments Label',
+      label: 'Comments',
       slug: 'comments',
       channels: [
         {

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { ReactNode } from 'react';
 
-import StyledHeader from './StyledHeader';
+import StyledHeader from './StyledHeader.js';
 
 export interface Props {
   title: ReactNode;

@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useNotificationPreferences } from '@magicbell/react-headless';
 import { ComponentProps, useEffect, useMemo } from 'react';
 
-import CategoryPreferences from './CategoryPreferences';
+import CategoryPreferences from './CategoryPreferences.js';
 
 export type PreferencesCategoriesProps = {
   channels?: Array<string>;

@@ -1,6 +1,6 @@
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
-import Tooltip, { TooltipProps } from '../Tooltip/Tooltip';
+import Tooltip, { TooltipProps } from '../Tooltip/Tooltip.js';
 
 type IconButtonProps = {
   children?: ReactNode;

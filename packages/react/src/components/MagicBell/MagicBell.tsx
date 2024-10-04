@@ -1,13 +1,12 @@
 import { INotificationStore, IRemoteNotification, useMagicBellEvent } from '@magicbell/react-headless';
-import React, { useRef } from 'react';
-import useToggle from 'react-use/lib/useToggle';
+import React, { useRef, useState } from 'react';
 
-import { IMagicBellTheme } from '../../context/Theme';
-import { CustomLocale } from '../../lib/i18n';
-import { DeepPartial } from '../../lib/types';
-import Bell from '../Bell';
-import FloatingNotificationInbox from '../FloatingNotificationInbox';
-import MagicBellChildrenWrapper from '../MagicBellProvider/MagicBellChildrenWrapper';
+import { IMagicBellTheme } from '../../context/Theme.js';
+import { CustomLocale } from '../../lib/i18n.js';
+import { DeepPartial } from '../../lib/types.js';
+import Bell from '../Bell/index.js';
+import FloatingNotificationInbox from '../FloatingNotificationInbox/index.js';
+import MagicBellChildrenWrapper from '../MagicBellProvider/MagicBellChildrenWrapper.js';
 
 type StoreConfig = {
   id: string;
@@ -88,12 +87,12 @@ export default function MagicBell({
   const launcherRef = useRef(null);
   const isControlled = typeof externalIsOpen !== 'undefined';
 
-  const [internalIsOpen, toggleInternal] = useToggle(defaultIsOpen);
+  const [internalIsOpen, setInternalIsOpen] = useState(defaultIsOpen);
   const isOpen = isControlled ? externalIsOpen : internalIsOpen;
 
   const handleToggle = () => {
     if (!isControlled) {
-      toggleInternal();
+      setInternalIsOpen((c) => !c);
     }
 
     onToggle?.(!isOpen);

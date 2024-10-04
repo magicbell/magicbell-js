@@ -4,7 +4,7 @@ import { INotification } from '@magicbell/react-headless';
 import { useEffect, useRef } from 'react';
 import { cancel, render } from 'timeago.js';
 
-import { useProse } from '../ClickableNotification/prose';
+import { useProse } from '../ClickableNotification/prose.js';
 
 export interface Props {
   notification: INotification;
