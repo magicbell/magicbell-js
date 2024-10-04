@@ -1,5 +1,5 @@
-import { fetchAPI, putAPI } from '../../lib/ajax';
-import IRemoteNotificationPreferences from './IRemoteNotificationPreferences';
+import { fetchAPI, putAPI } from '../../lib/ajax.js';
+import IRemoteNotificationPreferences from './IRemoteNotificationPreferences.js';
 
 /**
  * Class to interact with the user preferences API endpoints.

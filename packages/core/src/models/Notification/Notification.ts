@@ -1,13 +1,13 @@
 import DOMPurify from 'dompurify';
-import isNil from 'lodash/isNil';
+import isNil from 'lodash/isNil.js';
 
-import { secondsToDate, toUnix } from '../../lib/date';
-import camelize from '../../lib/decorators/camelize';
-import unwrap from '../../lib/decorators/unwrap';
-import wrap from '../../lib/decorators/wrap';
-import { NewNotification } from './NewNotification';
-import NotificationFactory from './NotificationFactory';
-import NotificationRepository from './NotificationRepository';
+import { secondsToDate, toUnix } from '../../lib/date.js';
+import camelize from '../../lib/decorators/camelize.js';
+import unwrap from '../../lib/decorators/unwrap.js';
+import wrap from '../../lib/decorators/wrap.js';
+import { NewNotification } from './NewNotification.js';
+import NotificationFactory from './NotificationFactory.js';
+import NotificationRepository from './NotificationRepository.js';
 
 /**
  * A notification.

@@ -1,7 +1,7 @@
-import { postAPI } from '../../lib/ajax';
-import RemoteRepository from '../../repository/RemoteRepository';
-import IRemoteNotification from './IRemoteNotification';
-import { NewNotification } from './NewNotification';
+import { postAPI } from '../../lib/ajax.js';
+import RemoteRepository from '../../repository/RemoteRepository.js';
+import IRemoteNotification from './IRemoteNotification.js';
+import { NewNotification } from './NewNotification.js';
 
 /**
  * Class to interact with the notification API endpoints.

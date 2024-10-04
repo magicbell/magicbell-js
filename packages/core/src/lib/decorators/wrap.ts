@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import get from 'lodash/get.js';
 
 /**
  * Decorator factory to wrap the first argument of the method decorated with

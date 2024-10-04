@@ -1,8 +1,8 @@
-import camelize from '../lib/decorators/camelize';
-import Notification from '../models/Notification';
-import NotificationFactory from '../models/Notification/NotificationFactory';
-import NotificationRepository from '../models/Notification/NotificationRepository';
-import RemoteStore from './RemoteStore';
+import camelize from '../lib/decorators/camelize.js';
+import Notification from '../models/Notification/index.js';
+import NotificationFactory from '../models/Notification/NotificationFactory.js';
+import NotificationRepository from '../models/Notification/NotificationRepository.js';
+import RemoteStore from './RemoteStore.js';
 
 export type NotificationStoreAttrs = {
   items: Notification[] | any[];

@@ -1,9 +1,9 @@
-import isNil from 'lodash/isNil';
+import isNil from 'lodash/isNil.js';
 
-import { setupAjax } from './lib/ajax';
-import { connectToAbly, handleAblyEvent, pushEventAggregator } from './lib/realtime';
-import Config from './models/Config';
-import NotificationStoreWithContext from './stores/NotificationStoreWithContext';
+import { setupAjax } from './lib/ajax.js';
+import { connectToAbly, handleAblyEvent, pushEventAggregator } from './lib/realtime.js';
+import Config from './models/Config/index.js';
+import NotificationStoreWithContext from './stores/NotificationStoreWithContext.js';
 
 export type MagicBellConfigOptions = {
   apiKey: string;

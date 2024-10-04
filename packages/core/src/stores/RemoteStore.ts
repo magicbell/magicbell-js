@@ -1,5 +1,5 @@
-import PaginatedStore from './PaginatedStore';
-import { Identifiable } from './Store';
+import PaginatedStore from './PaginatedStore.js';
+import { Identifiable } from './Store.js';
 
 /**
  * A store that keep tracks of pagination as well.

@@ -1,5 +1,5 @@
-import { fetchAPI } from '../../lib/ajax';
-import IRemoteConfig from './IRemoteConfig';
+import { fetchAPI } from '../../lib/ajax.js';
+import IRemoteConfig from './IRemoteConfig.js';
 
 /**
  * Class to interact with the config API endpoint.

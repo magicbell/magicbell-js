@@ -1,6 +1,6 @@
-import camelize from '../../lib/decorators/camelize';
-import ConfigRepository from './ConfigRepository';
-import { Channels, Inbox, WebSocket } from './IRemoteConfig';
+import camelize from '../../lib/decorators/camelize.js';
+import ConfigRepository from './ConfigRepository.js';
+import { Channels, Inbox, WebSocket } from './IRemoteConfig.js';
 
 /**
  * A configuration object.

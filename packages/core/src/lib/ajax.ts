@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from '../polyfills/axios-module.js';
 
 interface ServerResponse {
   data: any;

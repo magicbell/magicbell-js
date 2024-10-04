@@ -8,22 +8,20 @@
     "Bilal Budhani <bilal@bilalbudhani.com>",
     "Josue Montano <josue@magicbell.io>"
   ],
-  "source": "./src/index.ts",
-  "main": "dist/index.js",
-  "module": "dist/magicbell-core.esm.js",
-  "typings": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist",
     "/src",
-    "LICENSE"
+    "LICENSE",
+    "/MagicBellClient/package.json"
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build -c ../../scripts/vite/vite.config.js",
-    "build:prod": "vite build -c ../../scripts/vite/vite.config.js --minify",
-    "start": "yarn build:dev --watch",
+    "build": "run-s clean build:bundle build:node10 build:attw",
+    "build:bundle": "tshy",
+    "build:node10": "tsx scripts/fix-node10.ts",
+    "build:attw": "attw -P",
+    "start": "tshy --watch",
     "report-coverage": "codecov"
   },
   "devDependencies": {
@@ -65,5 +63,36 @@
   "homepage": "https://magicbell.com",
   "bugs": {
     "url": "https://github.com/magicbell/magicbell-js/issues"
-  }
+  },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  },
+  "type": "module",
+  "exports": {
+    "./MagicBellClient": {
+      "import": {
+        "types": "./dist/esm/MagicBellClient.d.ts",
+        "default": "./dist/esm/MagicBellClient.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/MagicBellClient.d.ts",
+        "default": "./dist/commonjs/MagicBellClient.js"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js"
 }
