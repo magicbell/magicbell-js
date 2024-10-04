@@ -7,22 +7,6 @@ import DotIcon from '../icons/DotIcon.js';
 
 export interface Props {
   notification: INotification;
-  menuPlacement?:
-    | 'auto'
-    | 'auto-start'
-    | 'auto-end'
-    | 'top'
-    | 'bottom'
-    | 'right'
-    | 'left'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'right-start'
-    | 'right-end'
-    | 'left-start'
-    | 'left-end';
 }
 
 /**

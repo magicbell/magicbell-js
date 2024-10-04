@@ -31,7 +31,7 @@ test.skip('renders a menu in the specified position', async () => {
 
   const { container } = render(
     <MagicBellThemeProvider value={defaultTheme}>
-      <NotificationMenu notification={result.current} menuPlacement="top-end" />
+      <NotificationMenu notification={result.current} />
     </MagicBellThemeProvider>,
   );
 
