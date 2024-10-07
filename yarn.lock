@@ -6599,9 +6599,9 @@ co@^4.6.0:
   integrity sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==
 
 code-block-writer@^13.0.1:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-13.0.2.tgz#e1c6c3dbe5d38b4ac76fb62c4d4b2fc4bf04c9c1"
-  integrity sha512-XfXzAGiStXSmCIwrkdfvc7FS5Dtj8yelCtyOf2p2skCAfvLd6zu0rGzuS9NSCO3bq1JKpFZ7tbKdKlcd5occQA==
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/code-block-writer/-/code-block-writer-13.0.3.tgz#90f8a84763a5012da7af61319dd638655ae90b5b"
+  integrity sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==
 
 code-red@^1.0.3:
   version "1.0.4"
@@ -10711,9 +10711,9 @@ jest@^29.7.0:
     jest-cli "^29.7.0"
 
 jiti@^2.0.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.1.2.tgz#2a37dbb3897d24767dc37bc29693a1033d368040"
-  integrity sha512-cYNjJus5X9J4jLzTaI8rYoIq1k6YySiA1lK4wxSnOrBRXkbVyreZfhoboJhsUmwgU82lpPjj1IoU7Ggrau8r3g==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-2.3.1.tgz#b81ff051075117768dd67829f47f5035eeceb5c7"
+  integrity sha512-xPZ6pPzUifI8XDBBxIL4OB1w1ZKmBpmNEeKwNt2d0Spn8XisAIZhWrlOHq5seBrFGTxVx9PbrWvEMyrk4IO5bA==
 
 jju@^1.4.0:
   version "1.4.0"
@@ -12288,9 +12288,9 @@ package-json@^8.1.0:
     semver "^7.3.7"
 
 package-manager-detector@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/package-manager-detector/-/package-manager-detector-0.2.0.tgz#160395cd5809181f5a047222319262b8c2d8aaea"
-  integrity sha512-E385OSk9qDcXhcM9LNSe4sdhx8a9mAPrZ4sMLW+tmxl5ZuGtPUcdFu+MPP2jbgiWAZ6Pfe5soGFMd+0Db5Vrog==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/package-manager-detector/-/package-manager-detector-0.2.1.tgz#c9a0e3d7d2972cf1aa787f7d0c4665b0cf472c84"
+  integrity sha512-/hVW2fZvAdEas+wyKh0SnlZ2mx0NIa1+j11YaQkogEJkcMErbwchHCuo8z7lEtajZJQZ6rgZNVTWMVVd71Bjng==
 
 parent-module@^1.0.0:
   version "1.0.1"
@@ -13331,9 +13331,9 @@ regjsgen@^0.8.0:
   integrity sha512-RvwtGe3d7LvWiDQXeQw8p5asZUmfU1G/l6WbUXeHta7Y2PEIvBTwH6E2EfmYUK8pxcxEdEmaomqyp0vZZ7C+3Q==
 
 regjsparser@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/regjsparser/-/regjsparser-0.11.0.tgz#f01e6ccaba36d384fb0d00a06b78b372c8b681e8"
-  integrity sha512-vTbzVAjQDzwQdKuvj7qEq6OlAprCjE656khuGQ4QaBLg7abQ9I9ISpmLuc6inWe7zP75AECjqUa4g4sdQvOXhg==
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/regjsparser/-/regjsparser-0.11.1.tgz#ae55c74f646db0c8fcb922d4da635e33da405149"
+  integrity sha512-1DHODs4B8p/mQHU9kr+jv8+wIC9mtG4eBHxWxIq5mhjE3D5oORhCc6deRKzTjs9DcfRFmj9BHSDguZklqCGFWQ==
   dependencies:
     jsesc "~3.0.2"
 
@@ -16004,9 +16004,9 @@ zustand@^4.5.2:
     use-sync-external-store "1.2.2"
 
 zx@^8.1.2:
-  version "8.1.8"
-  resolved "https://registry.yarnpkg.com/zx/-/zx-8.1.8.tgz#0d0abb501d7e2593bf6f4539fc578ad36e6988b3"
-  integrity sha512-m8s48skYQ8EcRz9KXfc7rZCjqlZevOGiNxq5tNhDiGnhOvXKRGxVr+ajUma9B6zxMdHGSSbnjV/R/r7Ue2xd+A==
+  version "8.1.9"
+  resolved "https://registry.yarnpkg.com/zx/-/zx-8.1.9.tgz#36b8be5929a1c870dcaa28551095e17aa7ebf251"
+  integrity sha512-UHuLHphHmsBYKkAchkSrEN4nzDyagafqC9HUxtc1J7eopaScW6H9dsLJ1lmkAntnLtDTGoM8fa+jrJrXiIfKFA==
   optionalDependencies:
     "@types/fs-extra" ">=11"
     "@types/node" ">=20"
