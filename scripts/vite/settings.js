@@ -13,7 +13,7 @@ function readJSON(filepath) {
 
 export const pkg = JSON.parse(fs.readFileSync(path.resolve(cwd, './package.json'), 'utf-8'));
 
-export const revision = execSync(`git rev-parse HEAD`).toString('utf-8');
+export const revision = execSync(`git rev-parse HEAD`).toString('utf-8').trim();
 
 const normalize = (name) =>
   name
@@ -72,4 +72,17 @@ export function getPackageAliases(useSourceAsRoot) {
     find: readJSON(file).name,
     replacement: path.join(path.dirname(file), useSourceAsRoot ? 'src' : ''),
   }));
+}
+
+export function getCopyRightNotice(name, version) {
+  return `
+/** 
+ * @license ${name} v${version.replace(/^v/, '')}
+ *
+ * Copyright (c) MagicBell Inc. and its affiliates.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+`.trimStart();
 }

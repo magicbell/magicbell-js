@@ -12975,6 +12975,11 @@ react-dom@^16.8.3:
   resolved "https://registry.yarnpkg.com/@pika/react-dom/-/react-dom-16.13.1.tgz#8e684617ea2e3e0741e418954f74e8ec1c93f81d"
   integrity sha512-tCROpA6uP7caCNodaOUcqmauQmpVOmFXsaaKUJgLOMiZdlW+L02ItK3WAqGSOw25rM0bbwDXNC/x9PpfiQ9ESg==
 
+"react-dom@npm:@preact/compat@18.3.1":
+  version "18.3.1"
+  resolved "https://registry.yarnpkg.com/@preact/compat/-/compat-18.3.1.tgz#9eddfe25eb1002f97a6a88fe4e9bcebe58136fe5"
+  integrity sha512-Kog4PSRxtT4COtOXjsuQPV1vMXpUzREQfv+6Dmcy9/rMk0HOPK0HTE9fspFjAmY8R80T/T8gtgmZ68u5bOSngw==
+
 react-element-to-jsx-string@^14.0.2:
   version "14.3.4"
   resolved "https://registry.yarnpkg.com/react-element-to-jsx-string/-/react-element-to-jsx-string-14.3.4.tgz#709125bc72f06800b68f9f4db485f2c7d31218a8"
@@ -13156,6 +13161,11 @@ react@^16.8.3:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/@pika/react/-/react-16.13.1.tgz#20e47997d2a2f1e5da39a8e28b75db2ec77d99c6"
   integrity sha512-v33Ub2QxntNpDFRnkj3tCbT6jMb7Etu7LOMQO/YAulLRIDtDvJdMwuOVJDdPYUmDtWjfWOB5xSP7nl7k0BApbQ==
+
+"react@npm:@preact/compat@18.3.1":
+  version "18.3.1"
+  resolved "https://registry.yarnpkg.com/@preact/compat/-/compat-18.3.1.tgz#9eddfe25eb1002f97a6a88fe4e9bcebe58136fe5"
+  integrity sha512-Kog4PSRxtT4COtOXjsuQPV1vMXpUzREQfv+6Dmcy9/rMk0HOPK0HTE9fspFjAmY8R80T/T8gtgmZ68u5bOSngw==
 
 read-package-json-fast@^3.0.2:
   version "3.0.2"
@@ -15506,6 +15516,11 @@ vite-plugin-banner@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/vite-plugin-banner/-/vite-plugin-banner-0.7.1.tgz#16550c27983938d52e4a4ee8a71c7266db4f5ab8"
   integrity sha512-Bww2Xd5tOGsZ1yZ9rQiGneryvsL1u86znPrqeQjCsXPsG72pnSdV5lcQA+cy8UNDguMqyTJiCevlNUbLnT85UA==
+
+vite-plugin-replace@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-replace/-/vite-plugin-replace-0.1.1.tgz#d9fdd04ac98d4d2552ef9ff3d6c2768e825c8562"
+  integrity sha512-v+okl3JNt2pf1jDYijw+WPVt6h9FWa/atTi+qnSFBqmKThLTDhlesx0r3bh+oFPmxRJmis5tNx9HtN6lGFoqWg==
 
 vite@^5.4.0:
   version "5.4.8"

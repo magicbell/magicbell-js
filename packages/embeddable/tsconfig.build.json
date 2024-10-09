@@ -1,4 +1,9 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "../../types", "vitest/globals"]
+  "include": ["src", "types", "../../types", "vitest/globals"],
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react"
+  }
 }
