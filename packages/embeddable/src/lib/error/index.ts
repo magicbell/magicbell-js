@@ -1,5 +1,5 @@
-import { ReactError } from './ReactError';
-import { UnhandledError } from './UnhandledError';
+import { ReactError } from './ReactError.js';
+import { UnhandledError } from './UnhandledError.js';
 
-export type { Context, Person } from './MonitoredError';
+export type { Context, Person } from './MonitoredError.js';
 export { ReactError, UnhandledError };

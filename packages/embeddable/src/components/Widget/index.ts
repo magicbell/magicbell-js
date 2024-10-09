@@ -1,4 +1,4 @@
-import Widget from './Widget';
+import Widget from './Widget.js';
 
-export type { WidgetProps } from './Widget';
+export type { WidgetProps } from './Widget.js';
 export default Widget;

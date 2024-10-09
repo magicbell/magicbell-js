@@ -1,4 +1,4 @@
-import IFrame from './IFrame';
+import IFrame from './IFrame.js';
 
-export type { IFrameProps } from './IFrame';
+export type { IFrameProps } from './IFrame.js';
 export default IFrame;

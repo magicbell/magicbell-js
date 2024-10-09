@@ -6,8 +6,8 @@ import 'preact/debug';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Widget, { WidgetProps } from './components/Widget';
-import emitter, { MagicBellEventEmitter } from './lib/emitter';
+import Widget, { WidgetProps } from './components/Widget/Widget.js';
+import emitter, { MagicBellEventEmitter } from './lib/emitter.js';
 
 function validateIsFn(fn, message) {
   if (fn && typeof fn !== 'function') throw message;

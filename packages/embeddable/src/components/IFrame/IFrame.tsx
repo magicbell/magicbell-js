@@ -3,10 +3,10 @@ import { FloatingNotificationInbox, useTheme } from '@magicbell/magicbell-react'
 import React, { ComponentProps } from 'react';
 import Frame from 'react-frame-component';
 
-import { useFrameSize } from '../../lib/window';
-import FrameContent from '../FrameContent';
-import FrameProvider from '../FrameProvider';
-import IFrameHead from './IFrameHead';
+import { useFrameSize } from '../../lib/window.js';
+import FrameContent from '../FrameContent/index.js';
+import FrameProvider from '../FrameProvider/index.js';
+import IFrameHead from './IFrameHead.js';
 
 type NotificationInboxProps = Omit<ComponentProps<typeof FloatingNotificationInbox>, 'isOpen' | 'launcherRef'>;
 export interface IFrameProps extends NotificationInboxProps {

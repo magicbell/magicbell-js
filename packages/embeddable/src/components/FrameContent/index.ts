@@ -1,4 +1,4 @@
-import FrameContent from './FrameContent';
+import FrameContent from './FrameContent.js';
 
-export type { FrameContentProps } from './FrameContent';
+export type { FrameContentProps } from './FrameContent.js';
 export default FrameContent;
