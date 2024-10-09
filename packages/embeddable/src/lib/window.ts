@@ -1,5 +1,46 @@
-import { useMemo } from 'react';
-import useWindowSize from 'react-use/esm/useWindowSize';
+import { Dispatch, SetStateAction, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
+const useRafState = <S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>] => {
+  const frame = useRef(0);
+  const [state, setState] = useState(initialState);
+
+  const setRafState = useCallback((value: S | ((prevState: S) => S)) => {
+    cancelAnimationFrame(frame.current);
+
+    frame.current = requestAnimationFrame(() => {
+      setState(value);
+    });
+  }, []);
+
+  useEffect(() => () => cancelAnimationFrame(frame.current), []);
+
+  return [state, setRafState];
+};
+
+export function useWindowSize() {
+  const [size, setSize] = useRafState({
+    width: null,
+    height: null,
+  });
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setSize]);
+
+  return size;
+}
 
 /**
  * Hook to resize an iframe when the viewport changes

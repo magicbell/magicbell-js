@@ -37,7 +37,6 @@
     "error-stack-parser": "^2.1.4",
     "preact": "^10.24.0",
     "react-frame-component": "^5.2.6",
-    "react-use": "^17.5.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
