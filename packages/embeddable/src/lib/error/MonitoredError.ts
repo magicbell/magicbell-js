@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { pkg } from '../pkg.js';
+
 export type Person = Partial<{ id: string }>;
 export type Context = Partial<{ apiKey: string; userKey: string; userExternalId: string }>;
 
@@ -25,7 +27,7 @@ export default abstract class MonitoredError {
       client: {
         javascript: {
           browser: browserInfo,
-          code_version: __CODE_VERSION__,
+          code_version: pkg.gitHash,
         },
       },
       person,
