@@ -1,6 +1,6 @@
 import * as ErrorStackParser from 'error-stack-parser';
 
-import MonitoredError from './MonitoredError';
+import MonitoredError from './MonitoredError.js';
 
 export class UnhandledError extends MonitoredError {
   error: Error;

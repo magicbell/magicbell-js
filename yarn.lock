@@ -15507,6 +15507,11 @@ vite-plugin-banner@^0.7.1:
   resolved "https://registry.yarnpkg.com/vite-plugin-banner/-/vite-plugin-banner-0.7.1.tgz#16550c27983938d52e4a4ee8a71c7266db4f5ab8"
   integrity sha512-Bww2Xd5tOGsZ1yZ9rQiGneryvsL1u86znPrqeQjCsXPsG72pnSdV5lcQA+cy8UNDguMqyTJiCevlNUbLnT85UA==
 
+vite-plugin-replace@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-replace/-/vite-plugin-replace-0.1.1.tgz#d9fdd04ac98d4d2552ef9ff3d6c2768e825c8562"
+  integrity sha512-v+okl3JNt2pf1jDYijw+WPVt6h9FWa/atTi+qnSFBqmKThLTDhlesx0r3bh+oFPmxRJmis5tNx9HtN6lGFoqWg==
+
 vite@^5.4.0:
   version "5.4.8"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.8.tgz#af548ce1c211b2785478d3ba3e8da51e39a287e8"

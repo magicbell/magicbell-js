@@ -19,7 +19,7 @@ import {
 } from '@magicbell/magicbell-react';
 import { ComponentProps } from 'react';
 
-import IFrame from '../IFrame';
+import IFrame from '../IFrame/index.js';
 
 type FloatingNotificationInboxProps = ComponentProps<typeof FloatingNotificationInbox>;
 /**

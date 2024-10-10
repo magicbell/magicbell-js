@@ -4,10 +4,11 @@ import type { CustomLocale, IMagicBellTheme } from '@magicbell/magicbell-react';
 import MagicBell from '@magicbell/magicbell-react';
 import React, { Component, ComponentProps } from 'react';
 
-import { cache } from '../../lib/emotion';
-import { ReactError } from '../../lib/error';
-import FloatingFrame from '../FloatingFrame';
-import { FrameContentProps } from '../FrameContent';
+import { cache } from '../../lib/emotion.js';
+import { ReactError } from '../../lib/error/index.js';
+import { pkg } from '../../lib/pkg.js';
+import FloatingFrame from '../FloatingFrame/index.js';
+import { FrameContentProps } from '../FrameContent/index.js';
 
 type MagicBellProps = ComponentProps<typeof MagicBell>;
 
@@ -34,8 +35,8 @@ export interface WidgetProps extends FrameContentProps {
 
 const internals = {
   appInfo: {
-    name: __PACKAGE_NAME__,
-    version: __PACKAGE_VERSION__,
+    name: pkg.name,
+    version: pkg.version,
   },
 };
 

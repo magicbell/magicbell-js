@@ -1,7 +1,6 @@
 {
   "name": "@magicbell/embeddable",
   "version": "3.3.30",
-  "source": "./src/index.tsx",
   "main": "dist/magicbell.min.js",
   "esmodule": "dist/magicbell.esm.js",
   "module": "dist/magicbell.esm.js",
@@ -20,10 +19,14 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "run-s clean build:*",
-    "build:dev": "vite build",
-    "build:prod": "vite build --minify",
-    "start": "yarn build:dev --watch",
+    "build": "run-s clean build:check build:bundle:* build:attw",
+    "build:bundle:dev": "vite build",
+    "build:bundle:prod": "vite build --minify",
+    "build:check": "run-s build:check:*",
+    "build:check:esm": "tsc --project tsconfig.esm.json --noEmit",
+    "build:check:cjs": "tsc --project tsconfig.cjs.json --noEmit",
+    "start": "vite build --watch",
+    "build:attw": "attw -P",
     "cypress": "cypress run",
     "cypress:headed": "cypress open",
     "test": "start-server-and-test 'yarn start' http://localhost:10001 'yarn cypress'",
@@ -37,11 +40,15 @@
     "error-stack-parser": "^2.1.4",
     "preact": "^10.24.0",
     "react-frame-component": "^5.2.6",
-    "react-use": "^17.5.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
     "cypress": "8.7.0",
     "start-server-and-test": "^1.15.4"
-  }
+  },
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "type": "module"
 }

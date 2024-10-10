@@ -1,7 +1,7 @@
 import { NotificationInbox } from '@magicbell/magicbell-react';
 import React, { Component, ComponentProps } from 'react';
 
-import { ReactError } from '../../lib/error';
+import { ReactError } from '../../lib/error/index.js';
 
 export type FrameContentProps = ComponentProps<typeof NotificationInbox>;
 

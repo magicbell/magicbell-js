@@ -1,6 +1,5 @@
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 import analyze from 'rollup-plugin-analyzer';
-import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
 
@@ -8,6 +7,7 @@ import { writeIndexFile, writeTypeDefs } from './plugins/index.js';
 import {
   createFilename,
   cwd,
+  getCopyRightNotice,
   getPackageAliases,
   globalModules,
   isAnalyze,
@@ -17,20 +17,6 @@ import {
   revision,
   shouldMinify,
 } from './settings.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const copyRightNotice = `
-/** 
- * @license ${pkg.name} v${pkg.version.replace(/^v/, '')}
- *
- * Copyright (c) MagicBell Inc. and its affiliates.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- */
-`.trimStart();
 
 export default defineConfig(async ({ mode, command }) => {
   const isDev = mode === 'development';
@@ -42,7 +28,7 @@ export default defineConfig(async ({ mode, command }) => {
     publicDir: false,
     plugins: isBuild
       ? [
-          banner(copyRightNotice),
+          banner(getCopyRightNotice(pkg.name, pkg.version)),
           isAnalyze && analyze({}),
           pkg.main === 'dist/index.js' && writeIndexFile({ fileName: pkg.name }),
           !shouldMinify && isBuild && writeTypeDefs(),

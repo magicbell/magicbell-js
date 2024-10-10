@@ -1,4 +1,12 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "../../types", "vitest/globals"]
+  "include": ["src", "types", "../../types", "vitest/globals"],
+  "compilerOptions": {
+    "rootDir": "./src",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react"
+  }
 }

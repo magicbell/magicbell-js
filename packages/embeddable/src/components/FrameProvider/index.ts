@@ -1,3 +1,3 @@
-import FrameProvider from './FrameProvider';
+import FrameProvider from './FrameProvider.js';
 
 export default FrameProvider;
