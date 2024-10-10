@@ -1,5 +1,11 @@
 # @magicbell/core
 
+## 5.1.0
+
+### Minor Changes
+
+- [#399](https://github.com/magicbell/magicbell-js/pull/399) [`8d2bd6b`](https://github.com/magicbell/magicbell-js/commit/8d2bd6b2ba7374069e7a52bc055a199e33988ed5) Thanks [@smeijer](https://github.com/smeijer)! - improve cjs/esm dual module support.
+
 ## 5.0.16
 
 ### Patch Changes
