@@ -1,5 +1,16 @@
 # @magicbell/embeddable
 
+## 3.4.0
+
+### Minor Changes
+
+- [#395](https://github.com/magicbell/magicbell-js/pull/395) [`b6d0354`](https://github.com/magicbell/magicbell-js/commit/b6d03543f06264fc75d597d190f7038ca7c37e34) Thanks [@smeijer](https://github.com/smeijer)! - Use `@floating-ui/react` for inbox positioning, instead of `@tippyjs/react`.
+
+### Patch Changes
+
+- Updated dependencies [[`b6d0354`](https://github.com/magicbell/magicbell-js/commit/b6d03543f06264fc75d597d190f7038ca7c37e34)]:
+  - @magicbell/magicbell-react@11.1.0
+
 ## 3.3.30
 
 ### Patch Changes

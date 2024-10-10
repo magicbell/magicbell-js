@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 4.1.0
+
+### Minor Changes
+
+- [#400](https://github.com/magicbell/magicbell-js/pull/400) [`2666294`](https://github.com/magicbell/magicbell-js/commit/2666294c8befbc9a28f7138fbd0917c19958653f) Thanks [@smeijer](https://github.com/smeijer)! - switch build system from vite to tshy
+
 ## 4.0.1
 
 ### Patch Changes

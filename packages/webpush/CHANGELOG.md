@@ -1,5 +1,11 @@
 # @magicbell/webpush
 
+## 2.1.0
+
+### Minor Changes
+
+- [#397](https://github.com/magicbell/magicbell-js/pull/397) [`2131ee1`](https://github.com/magicbell/magicbell-js/commit/2131ee1beef4cf0dc6a90b5e5c8ca939de9ef41e) Thanks [@smeijer](https://github.com/smeijer)! - improve cjs/esm dual module support.
+
 ## 2.0.2
 
 ### Patch Changes
