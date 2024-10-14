@@ -2500,9 +2500,9 @@
     "@floating-ui/dom" "^1.0.0"
 
 "@floating-ui/react@^0.26.24":
-  version "0.26.24"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.26.24.tgz#072b9dfeca4e79ef4e3000ef1c28e0ffc86f4ed4"
-  integrity sha512-2ly0pCkZIGEQUq5H8bBK0XJmc1xIK/RM3tvVzY3GBER7IOD1UgmC2Y2tjj4AuS+TC+vTE1KJv2053290jua0Sw==
+  version "0.26.25"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.26.25.tgz#cf4c8a2b89fab1a71712d15e6551df3bfbd2ea1d"
+  integrity sha512-hZOmgN0NTOzOuZxI1oIrDu3Gcl8WViIkvPMpB4xdd4QD6xAMtwgwr3VPoiyH/bLtRcS1cDnhxLSD1NsMJmwh/A==
   dependencies:
     "@floating-ui/react-dom" "^2.1.2"
     "@floating-ui/utils" "^0.2.8"
@@ -14807,9 +14807,9 @@ ts-morph@^23.0.0:
     code-block-writer "^13.0.1"
 
 ts-pattern@^5.0.1:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-5.4.0.tgz#efbe74d1ffbb63b80298dbc89b6ec442eab095fa"
-  integrity sha512-hgfOMfjlrARCnYtGD/xEAkFHDXuSyuqjzFSltyQCbN689uNvoQL20TVN2XFcLMjfNuwSsQGU+xtH6MrjIwhwUg==
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-5.5.0.tgz#1f137eb2bd2bc30a030b5583dee022d00fac3415"
+  integrity sha512-jqbIpTsa/KKTJYWgPNsFNbLVpwCgzXfFJ1ukNn4I8hMwyQzHMJnk/BqWzggB0xpkILuKzaO/aMYhS0SkaJyKXg==
 
 ts-simple-type@2.0.0-next.0, ts-simple-type@~2.0.0-next.0:
   version "2.0.0-next.0"
