@@ -1,5 +1,11 @@
 # @magicbell/project-client
 
+## 0.4.0
+
+### Minor Changes
+
+- [#374](https://github.com/magicbell/magicbell-js/pull/374) [`535534f`](https://github.com/magicbell/magicbell-js/commit/535534f91034ce88a1a9cc4280cb872102db1665) Thanks [@smeijer](https://github.com/smeijer)! - add deliveryconfig endpoints
+
 ## 0.3.0
 
 ### Minor Changes
