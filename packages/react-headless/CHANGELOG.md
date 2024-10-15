@@ -1,5 +1,11 @@
 # @magicbell/react-headless
 
+## 5.1.0
+
+### Minor Changes
+
+- [#391](https://github.com/magicbell/magicbell-js/pull/391) [`60d24da`](https://github.com/magicbell/magicbell-js/commit/60d24dae5b1dc786bc7a2ade4950c4043caa10f2) Thanks [@smeijer](https://github.com/smeijer)! - fix cjs/esm dual module support
+
 ## 5.0.2
 
 ### Patch Changes

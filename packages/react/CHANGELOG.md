@@ -1,5 +1,19 @@
 # @magicbell/magicbell-react
 
+## 11.1.0
+
+### Minor Changes
+
+- [#395](https://github.com/magicbell/magicbell-js/pull/395) [`b6d0354`](https://github.com/magicbell/magicbell-js/commit/b6d03543f06264fc75d597d190f7038ca7c37e34) Thanks [@smeijer](https://github.com/smeijer)! - Improved cjs/esm support by moving our build system to tshy. This change includes switching the floating inbox positioning from `@tippyjs/react` to `@floating-ui/react`, as the former would make it impossible to properly support both cjs and esm.
+
+  As part of this change, we no longer export internal properties like `popperOptions` or the internal `Popover` component.
+
+### Patch Changes
+
+- Updated dependencies [[`60d24da`](https://github.com/magicbell/magicbell-js/commit/60d24dae5b1dc786bc7a2ade4950c4043caa10f2), [`2131ee1`](https://github.com/magicbell/magicbell-js/commit/2131ee1beef4cf0dc6a90b5e5c8ca939de9ef41e)]:
+  - @magicbell/react-headless@5.1.0
+  - @magicbell/webpush@2.1.0
+
 ## 11.0.2
 
 ### Patch Changes
