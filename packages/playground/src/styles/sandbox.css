@@ -153,17 +153,24 @@
     height: 100%;
   }
   .sp-layout > .sp-stack {
-    --sp-layout-height: 50vh;
+    min-height: 300px;
+    height: 1px;
   }
   .sp-layout > .sp-stack:not(:first-child) {
-    --sp-layout-height: auto;
+    height: 600px;
+    min-height: 600px;
+    max-height: 600px;
   }
   .sp-layout > :not(:first-child) {
     border-left: none;
   }
 
   .sp-layout > :not(:first-child)::before {
-    display: none;
+    width: unset;
+    height: 2px;
+    left: 1.5rem;
+    right: 1.5rem;
+    top: -1px;
   }
 }
 
