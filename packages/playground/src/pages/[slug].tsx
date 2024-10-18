@@ -3,7 +3,7 @@ import { FileTextIcon } from '@radix-ui/react-icons';
 import cn from 'clsx';
 import { GetStaticPropsResult } from 'next';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Navbar from '../components/layout/navbar';
 import SocialHead from '../components/layout/social-head';
@@ -53,8 +53,8 @@ type ExampleProps = {
 };
 
 export default function Example({ files, dependencies, template, examples, slug }) {
-  const contentRef = useRef();
-  let height = useHeight(contentRef, 300);
+  const [ref, setRef] = useState(null);
+  let height = useHeight(ref, 300);
   const params = useSearchParams();
   const embedded = params.has('embed');
 
@@ -74,7 +74,7 @@ export default function Example({ files, dependencies, template, examples, slug 
 
   const editor = (
     <div className={cn('h-full max-h-screen overflow-hidden relative', { 'mt-6': !embedded })}>
-      <div className="h-full" ref={contentRef}>
+      <div className="h-full" ref={setRef}>
         <Sandbox
           key={slug} // remount component on page change
           template={template}
@@ -85,7 +85,7 @@ export default function Example({ files, dependencies, template, examples, slug 
           }}
           setup={{ dependencies }}
           files={files}
-          height={`${height - (embedded ? 0 : 40)}px`}
+          height={`${height - 40}px`}
         />
       </div>
     </div>
