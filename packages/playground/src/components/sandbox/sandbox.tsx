@@ -24,6 +24,7 @@ export type PlaygroundProps = {
   template?: SandpackPredefinedTemplate;
   define?: Record<string, unknown>;
   height?: string;
+  embedded?: boolean;
 };
 
 function template(string, data) {

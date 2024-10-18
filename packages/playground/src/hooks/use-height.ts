@@ -16,7 +16,10 @@ export function useHeight(ref: MutableRefObject<Element> | Element | null, initi
     if (!target) return;
 
     const observer = new ResizeObserver(([entry]) => {
-      setHeight(entry.contentRect.height);
+      const height = entry.contentRect.height;
+      // sometimes height is 0. React double-render issue, where the ref is unmounted?
+      if (!height) return;
+      setHeight(height);
     });
 
     observer.observe(target);

@@ -131,8 +131,24 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: var(--colors-bg-body);
   color: var(--colors-fg-body);
+}
+
+html, body, #__next {
+  height: 1px;
+  min-height: 100vh;
+}
+
+body {
+  background-color: var(--colors-bg-body);
+}
+
+body.embed {
+  background-color: initial;
+}
+
+html body.embed .sp-wrapper {
+  --pg-shadow: none;
 }
 
 body {

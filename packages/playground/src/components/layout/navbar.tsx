@@ -141,11 +141,9 @@ function Navbar({ examples, currentPath }: NavbarProps) {
           <ul className="grid grid-flow-col grid-rows-5 gap-x-16 gap-y-4 p-8">
             {group?.items.map((example) => (
               <li key={example.slug}>
-                <Link href={example.slug}>
-                  <a data-active={example.slug === currentPath} className="fg-popper block w-64">
-                    <div className="truncate">{getName(activeGroup, example.slug)}</div>
-                    <div className="text-sm opacity-50 line-clamp-2 h-10">{example.description || ''}</div>
-                  </a>
+                <Link href={example.slug} data-active={example.slug === currentPath} className="fg-popper block w-64">
+                  <div className="truncate">{getName(activeGroup, example.slug)}</div>
+                  <div className="text-sm opacity-50 line-clamp-2 h-10">{example.description || ''}</div>
                 </Link>
               </li>
             ))}

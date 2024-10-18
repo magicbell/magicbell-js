@@ -93,6 +93,9 @@ const config = {
         '8xl': '88rem',
         '9xl': '96rem',
       },
+      minHeight: {
+        96: '24rem',
+      },
       colors: {
         purple: {
           900: '#532F70',
