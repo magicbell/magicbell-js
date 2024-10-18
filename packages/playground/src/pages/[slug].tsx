@@ -1,7 +1,9 @@
 import { SandpackFile, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
 import { FileTextIcon } from '@radix-ui/react-icons';
+import cn from 'clsx';
 import { GetStaticPropsResult } from 'next';
-import React, { useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useRef } from 'react';
 
 import Navbar from '../components/layout/navbar';
 import SocialHead from '../components/layout/social-head';
@@ -52,13 +54,46 @@ type ExampleProps = {
 
 export default function Example({ files, dependencies, template, examples, slug }) {
   const contentRef = useRef();
-  const height = useHeight(contentRef, 300);
+  let height = useHeight(contentRef, 300);
+  const params = useSearchParams();
+  const embedded = params.has('embed');
+
+  height = Math.max(height, 300);
 
   const example = examples.find((x) => x.slug === slug);
   const name = slug
     .split('-')
     .map((x) => x[0].toUpperCase() + x.slice(1))
     .join(' ');
+
+  useEffect(() => {
+    if (embedded) {
+      document.body.classList.add('embed');
+    }
+  }, [embedded]);
+
+  const editor = (
+    <div className={cn('h-full max-h-screen overflow-hidden relative', { 'mt-6': !embedded })}>
+      <div className="h-full" ref={contentRef}>
+        <Sandbox
+          key={slug} // remount component on page change
+          template={template}
+          define={{
+            MAGICBELL_API_KEY: 'e1f70f214b0be42a8efde915af39feacc956b06b',
+            MAGICBELL_USER_EMAIL: 'person@example.com',
+            MAGICBELL_USER_KEY: '...',
+          }}
+          setup={{ dependencies }}
+          files={files}
+          height={`${height - (embedded ? 0 : 40)}px`}
+        />
+      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return editor;
+  }
 
   return (
     <>
@@ -71,22 +106,7 @@ export default function Example({ files, dependencies, template, examples, slug 
           <Navbar examples={examples} currentPath={slug} />
         </header>
 
-        <div className="mt-6 h-full overflow-hidden relative">
-          <div className="h-full" ref={contentRef}>
-            <Sandbox
-              key={slug} // remount component on page change
-              template={template}
-              define={{
-                MAGICBELL_API_KEY: 'e1f70f214b0be42a8efde915af39feacc956b06b',
-                MAGICBELL_USER_EMAIL: 'person@example.com',
-                MAGICBELL_USER_KEY: '...',
-              }}
-              setup={{ dependencies }}
-              files={files}
-              height={`${height - 40}px`}
-            />
-          </div>
-        </div>
+        {editor}
 
         <footer className="mt-6 mb-12 flex-row justify-end space-x-6 text-xs">
           <a href="https://magicbell.com/docs" className="flex-row fg-body">

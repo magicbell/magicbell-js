@@ -14,12 +14,12 @@ function DarkModeToggle() {
       return;
     }
 
-    setRotate((c) => c + 180);
+    setRotate(() => (mode === 'dark' ? 0 : 180));
   }, [mode]);
 
-  // server can't detect the prefered media, so rendering this on the server will
+  // server can't detect the preferred media, so rendering this on the server will
   // place it out of sync.
-  if (typeof window === 'undefined') return null;
+  if (!mounted.current) return <div suppressHydrationWarning />;
 
   return (
     <button
