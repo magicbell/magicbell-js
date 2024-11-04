@@ -2,9 +2,10 @@
 
 **Properties**
 
-| Name      | Type   | Required | Description |
-| :-------- | :----- | :------- | :---------- |
-| createdAt | string | ✅       |             |
-| expiresAt | string | ❌       |             |
-| id        | string | ❌       |             |
-| name      | string | ❌       |             |
+| Name        | Type   | Required | Description |
+| :---------- | :----- | :------- | :---------- |
+| createdAt   | string | ✅       |             |
+| discardedAt | string | ❌       |             |
+| expiresAt   | string | ❌       |             |
+| id          | string | ❌       |             |
+| name        | string | ❌       |             |
