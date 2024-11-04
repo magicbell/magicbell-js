@@ -1,5 +1,11 @@
 # @magicbell/user-client
 
+## 0.5.0
+
+### Minor Changes
+
+- [#414](https://github.com/magicbell/magicbell-js/pull/414) [`e2e3a78`](https://github.com/magicbell/magicbell-js/commit/e2e3a78ac1f32ccca77a0c8604b85a534d9c0c5c) Thanks [@smeijer](https://github.com/smeijer)! - regen client to match spec
+
 ## 0.4.0
 
 ### Minor Changes
