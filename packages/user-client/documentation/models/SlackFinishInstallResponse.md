@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name        | Type     | Required | Description |
-| :---------- | :------- | :------- | :---------- |
-| appId       | `string` | ✅       |             |
-| code        | `string` | ✅       |             |
-| redirectUrl | `string` | ❌       |             |
+| Name        | Type   | Required | Description |
+| :---------- | :----- | :------- | :---------- |
+| appId       | string | ✅       |             |
+| code        | string | ✅       |             |
+| redirectUrl | string | ❌       |             |

@@ -1,3 +1,4 @@
+import { HttpError } from '../error.js';
 import { Request } from '../transport/request.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 
@@ -46,6 +47,14 @@ export class RequestValidationHandler implements RequestHandler {
       body.forEach((value, key) => {
         params.append(key, value.toString());
       });
+      return params.toString();
+    }
+
+    if (typeof body === 'object' && !Array.isArray(body)) {
+      const params = new URLSearchParams();
+      for (const [key, value] of Object.entries(body)) {
+        params.append(key, value.toString());
+      }
       return params.toString();
     }
 

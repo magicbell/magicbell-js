@@ -80,7 +80,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getMobilePushApnsTokens();
+  const { data } = await client.channels.getMobilePushApnsTokens({
+    pageSize: 9,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -109,25 +113,25 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                         | Description |
 | :------------------------------------------------------------------------------------------- | :---------- |
-| [ArrayWithMetadataOfApnsToken](documentation/models/ArrayWithMetadataOfApnsToken.md)         |             |
+| [ArrayOfMetadataApnsTokens](documentation/models/ArrayOfMetadataApnsTokens.md)               |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
-| [ApnsTokenWithMetadata](documentation/models/ApnsTokenWithMetadata.md)                       |             |
+| [MetadataApnsToken](documentation/models/MetadataApnsToken.md)                               |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
-| [ArrayWithMetadataOfExpoToken](documentation/models/ArrayWithMetadataOfExpoToken.md)         |             |
+| [ArrayOfMetadataExpoTokens](documentation/models/ArrayOfMetadataExpoTokens.md)               |             |
 | [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
-| [ExpoTokenWithMetadata](documentation/models/ExpoTokenWithMetadata.md)                       |             |
-| [ArrayWithMetadataOfFcmToken](documentation/models/ArrayWithMetadataOfFcmToken.md)           |             |
+| [MetadataExpoToken](documentation/models/MetadataExpoToken.md)                               |             |
+| [ArrayOfMetadataFcmTokens](documentation/models/ArrayOfMetadataFcmTokens.md)                 |             |
 | [FcmToken](documentation/models/FcmToken.md)                                                 |             |
-| [FcmTokenWithMetadata](documentation/models/FcmTokenWithMetadata.md)                         |             |
-| [ArrayWithMetadataOfSlackToken](documentation/models/ArrayWithMetadataOfSlackToken.md)       |             |
+| [MetadataFcmToken](documentation/models/MetadataFcmToken.md)                                 |             |
+| [ArrayOfMetadataSlackTokens](documentation/models/ArrayOfMetadataSlackTokens.md)             |             |
 | [SlackToken](documentation/models/SlackToken.md)                                             |             |
-| [SlackTokenWithMetadata](documentation/models/SlackTokenWithMetadata.md)                     |             |
-| [ArrayWithMetadataOfTeamsToken](documentation/models/ArrayWithMetadataOfTeamsToken.md)       |             |
+| [MetadataSlackToken](documentation/models/MetadataSlackToken.md)                             |             |
+| [ArrayOfMetadataTeamsTokens](documentation/models/ArrayOfMetadataTeamsTokens.md)             |             |
 | [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
-| [TeamsTokenWithMetadata](documentation/models/TeamsTokenWithMetadata.md)                     |             |
-| [ArrayWithMetadataOfWebPushToken](documentation/models/ArrayWithMetadataOfWebPushToken.md)   |             |
+| [MetadataTeamsToken](documentation/models/MetadataTeamsToken.md)                             |             |
+| [ArrayOfMetadataWebPushTokens](documentation/models/ArrayOfMetadataWebPushTokens.md)         |             |
 | [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
-| [WebPushTokenWithMetadata](documentation/models/WebPushTokenWithMetadata.md)                 |             |
+| [MetadataWebPushToken](documentation/models/MetadataWebPushToken.md)                         |             |
 | [InboxConfig](documentation/models/InboxConfig.md)                                           |             |
 | [SlackInstallation](documentation/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](documentation/models/SlackFinishInstallResponse.md)             |             |
@@ -135,5 +139,7 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackStartInstallResponseContent](documentation/models/SlackStartInstallResponseContent.md) |             |
 | [TemplatesInstallation](documentation/models/TemplatesInstallation.md)                       |             |
 | [WebPushStartInstallationResponse](documentation/models/WebPushStartInstallationResponse.md) |             |
+| [Links](documentation/models/Links.md)                                                       |             |
+| [TokenMetadata](documentation/models/TokenMetadata.md)                                       |             |
 
 </details>

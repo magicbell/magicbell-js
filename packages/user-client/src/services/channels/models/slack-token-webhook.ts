@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const slackTokenWebhook = z.lazy(() => {
   return z.object({
-    url: z.string(),
+    url: z.string().min(1),
   });
 });
 
@@ -23,7 +23,7 @@ export type SlackTokenWebhook = z.infer<typeof slackTokenWebhook>;
 export const slackTokenWebhookResponse = z.lazy(() => {
   return z
     .object({
-      url: z.string(),
+      url: z.string().min(1),
     })
     .transform((data) => ({
       url: data['url'],

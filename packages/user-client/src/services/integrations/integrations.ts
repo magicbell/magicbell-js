@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
@@ -27,7 +28,7 @@ import {
 
 export class IntegrationsService extends BaseService {
   /**
-   *
+   * Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @returns {Promise<HttpResponse<InboxConfig>>} Created
    */
   async saveInboxInstallation(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
@@ -50,7 +51,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @returns {Promise<HttpResponse<InboxConfig>>} Created
    */
   async startInboxInstallation(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
@@ -71,7 +72,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @returns {Promise<HttpResponse<SlackInstallation>>} Created
    */
   async saveSlackInstallation(
@@ -97,7 +98,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
    * @returns {Promise<HttpResponse<SlackInstallation>>} Created
    */
   async finishSlackInstallation(
@@ -123,7 +124,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @returns {Promise<HttpResponse<SlackStartInstallResponseContent>>} Created
    */
   async startSlackInstallation(
@@ -149,7 +150,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @returns {Promise<HttpResponse<TemplatesInstallation>>} Created
    */
   async saveTemplatesInstallation(
@@ -175,7 +176,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @returns {Promise<HttpResponse<WebPushToken>>} Created
    */
   async saveWebPushInstallation(
@@ -201,7 +202,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   *
+   * Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @returns {Promise<HttpResponse<WebPushStartInstallationResponse>>} Created
    */
   async startWebPushInstallation(

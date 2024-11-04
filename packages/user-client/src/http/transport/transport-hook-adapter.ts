@@ -19,6 +19,7 @@ export class TransportHookAdapter<T> {
       body: newRequest.body,
       queryParams: this.hookParamsToTransportParams(newRequest.queryParams, request.queryParams, true),
       headers: this.hookParamsToTransportParams(newRequest.headers, request.headers, false),
+      pathParams: this.hookParamsToTransportParams(newRequest.pathParams, request.headers, false),
     });
 
     return newTransportRequest;
@@ -53,6 +54,11 @@ export class TransportHookAdapter<T> {
       hookQueryParams.set(key, queryParam.value);
     });
 
+    const hookPathParams: Map<string, unknown> = new Map();
+    request.pathParams.forEach((pathParam, key) => {
+      hookPathParams.set(key, pathParam.value);
+    });
+
     const hookRequest: HttpRequest = {
       baseUrl: request.baseUrl,
       method: request.method,
@@ -60,6 +66,7 @@ export class TransportHookAdapter<T> {
       headers: hookHeaders,
       body: request.body,
       queryParams: hookQueryParams,
+      pathParams: hookPathParams,
     };
     return hookRequest;
   }

@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name      | Type     | Required | Description |
-| :-------- | :------- | :------- | :---------- |
-| authToken | `string` | ✅       |             |
-| publicKey | `string` | ✅       |             |
+| Name      | Type   | Required | Description |
+| :-------- | :----- | :------- | :---------- |
+| authToken | string | ✅       |             |
+| publicKey | string | ✅       |             |

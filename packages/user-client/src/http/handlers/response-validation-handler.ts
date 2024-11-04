@@ -1,5 +1,6 @@
 import { ZodUndefined } from 'zod';
 
+import { HttpError } from '../error.js';
 import { Request } from '../transport/request.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 

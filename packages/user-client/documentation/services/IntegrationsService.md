@@ -2,27 +2,29 @@
 
 A list of all methods in the `IntegrationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                 | Description |
-| :------------------------------------------------------ | :---------- |
-| [saveInboxInstallation](#saveinboxinstallation)         |             |
-| [startInboxInstallation](#startinboxinstallation)       |             |
-| [saveSlackInstallation](#saveslackinstallation)         |             |
-| [finishSlackInstallation](#finishslackinstallation)     |             |
-| [startSlackInstallation](#startslackinstallation)       |             |
-| [saveTemplatesInstallation](#savetemplatesinstallation) |             |
-| [saveWebPushInstallation](#savewebpushinstallation)     |             |
-| [startWebPushInstallation](#startwebpushinstallation)   |             |
+| Methods                                                 | Description                                                                                                                                                                                         |
+| :------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [saveInboxInstallation](#saveinboxinstallation)         | Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
+| [startInboxInstallation](#startinboxinstallation)       | Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.    |
+| [saveSlackInstallation](#saveslackinstallation)         | Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
+| [finishSlackInstallation](#finishslackinstallation)     | Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.                                |
+| [startSlackInstallation](#startslackinstallation)       | Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.    |
+| [saveTemplatesInstallation](#savetemplatesinstallation) | Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                     |
+| [saveWebPushInstallation](#savewebpushinstallation)     | Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                      |
+| [startWebPushInstallation](#startwebpushinstallation)   | Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required. |
 
 ## saveInboxInstallation
+
+Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
 
 - HTTP Method: `POST`
 - Endpoint: `/integrations/inbox/installations`
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | `[InboxConfig](../models/InboxConfig.md)` | ❌       | The request body. |
+| Name | Type                                    | Required | Description       |
+| :--- | :-------------------------------------- | :------- | :---------------- |
+| body | [InboxConfig](../models/InboxConfig.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -44,7 +46,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 6.1,
+    backgroundOpacity: 2.68,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -146,17 +148,19 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const inboxConfig: InboxConfig = {
     images: images,
-    locale: 'aliquip co',
+    locale: 'locale',
     theme: theme,
   };
 
-  const { data } = await client.integrations.saveInboxInstallation(input);
+  const { data } = await client.integrations.saveInboxInstallation(inboxConfig);
 
   console.log(data);
 })();
 ```
 
 ## startInboxInstallation
+
+Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
 
 - HTTP Method: `POST`
 - Endpoint: `/integrations/inbox/installations/start`
@@ -183,14 +187,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveSlackInstallation
 
+Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+
 - HTTP Method: `POST`
 - Endpoint: `/integrations/slack/installations`
 
 **Parameters**
 
-| Name | Type                                                  | Required | Description       |
-| :--- | :---------------------------------------------------- | :------- | :---------------- |
-| body | `[SlackInstallation](../models/SlackInstallation.md)` | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [SlackInstallation](../models/SlackInstallation.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -208,7 +214,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 8,
+    expiresIn: 123,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -237,8 +243,8 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 3,
-    id: 'id',
+    expiresIn: 10,
+    id: '0GKF',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -247,7 +253,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     tokenType: 'token_type',
   };
 
-  const { data } = await client.integrations.saveSlackInstallation(input);
+  const { data } = await client.integrations.saveSlackInstallation(slackInstallation);
 
   console.log(data);
 })();
@@ -255,14 +261,16 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
 ## finishSlackInstallation
 
+Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
+
 - HTTP Method: `POST`
 - Endpoint: `/integrations/slack/installations/finish`
 
 **Parameters**
 
-| Name | Type                                                                    | Required | Description       |
-| :--- | :---------------------------------------------------------------------- | :------- | :---------------- |
-| body | `[SlackFinishInstallResponse](../models/SlackFinishInstallResponse.md)` | ❌       | The request body. |
+| Name | Type                                                                  | Required | Description       |
+| :--- | :-------------------------------------------------------------------- | :------- | :---------------- |
+| body | [SlackFinishInstallResponse](../models/SlackFinishInstallResponse.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -284,7 +292,7 @@ import { Client, SlackFinishInstallResponse } from '@magicbell/user-client';
     redirectUrl: 'redirect_url',
   };
 
-  const { data } = await client.integrations.finishSlackInstallation(input);
+  const { data } = await client.integrations.finishSlackInstallation(slackFinishInstallResponse);
 
   console.log(data);
 })();
@@ -292,14 +300,16 @@ import { Client, SlackFinishInstallResponse } from '@magicbell/user-client';
 
 ## startSlackInstallation
 
+Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+
 - HTTP Method: `POST`
 - Endpoint: `/integrations/slack/installations/start`
 
 **Parameters**
 
-| Name | Type                                                  | Required | Description       |
-| :--- | :---------------------------------------------------- | :------- | :---------------- |
-| body | `[SlackStartInstall](../models/SlackStartInstall.md)` | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [SlackStartInstall](../models/SlackStartInstall.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -322,7 +332,7 @@ import { Client, SlackStartInstall } from '@magicbell/user-client';
     redirectUrl: 'redirect_url',
   };
 
-  const { data } = await client.integrations.startSlackInstallation(input);
+  const { data } = await client.integrations.startSlackInstallation(slackStartInstall);
 
   console.log(data);
 })();
@@ -330,14 +340,16 @@ import { Client, SlackStartInstall } from '@magicbell/user-client';
 
 ## saveTemplatesInstallation
 
+Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+
 - HTTP Method: `POST`
 - Endpoint: `/integrations/templates/installations`
 
 **Parameters**
 
-| Name | Type                                                          | Required | Description       |
-| :--- | :------------------------------------------------------------ | :------- | :---------------- |
-| body | `[TemplatesInstallation](../models/TemplatesInstallation.md)` | ❌       | The request body. |
+| Name | Type                                                        | Required | Description       |
+| :--- | :---------------------------------------------------------- | :------- | :---------------- |
+| body | [TemplatesInstallation](../models/TemplatesInstallation.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -359,7 +371,7 @@ import { Client, TemplatesInstallation } from '@magicbell/user-client';
     text: 'text',
   };
 
-  const { data } = await client.integrations.saveTemplatesInstallation(input);
+  const { data } = await client.integrations.saveTemplatesInstallation(templatesInstallation);
 
   console.log(data);
 })();
@@ -367,14 +379,16 @@ import { Client, TemplatesInstallation } from '@magicbell/user-client';
 
 ## saveWebPushInstallation
 
+Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+
 - HTTP Method: `POST`
 - Endpoint: `/integrations/web_push/installations`
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | `[WebPushToken](../models/WebPushToken.md)` | ❌       | The request body. |
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -400,13 +414,15 @@ import { Client, WebPushToken } from '@magicbell/user-client';
     keys: keys,
   };
 
-  const { data } = await client.integrations.saveWebPushInstallation(input);
+  const { data } = await client.integrations.saveWebPushInstallation(webPushToken);
 
   console.log(data);
 })();
 ```
 
 ## startWebPushInstallation
+
+Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
 
 - HTTP Method: `POST`
 - Endpoint: `/integrations/web_push/installations/start`
