@@ -13,7 +13,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     this.setMethod(request.method);
     this.setHeaders(request.getHeaders());
     this.setBody(request.body);
-    this.setTimeout(request.config.timeout);
+    this.setTimeout(request.config.timeoutMs);
   }
 
   public async send(): Promise<HttpResponse<T>> {
@@ -24,10 +24,6 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
       statusText: response.statusText || '',
       headers: this.getHeaders(response),
     };
-
-    if (metadata.status >= 400) {
-      throw new HttpError(metadata);
-    }
 
     return {
       metadata,
@@ -66,14 +62,14 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     };
   }
 
-  private setTimeout(timeout: number | undefined) {
-    if (!timeout) {
+  private setTimeout(timeoutMs: number | undefined) {
+    if (!timeoutMs) {
       return;
     }
 
     this.requestInit = {
       ...this.requestInit,
-      signal: AbortSignal.timeout(timeout),
+      signal: AbortSignal.timeout(timeoutMs),
     };
   }
 

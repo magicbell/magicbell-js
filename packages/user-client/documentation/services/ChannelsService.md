@@ -2,41 +2,51 @@
 
 A list of all methods in the `ChannelsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                   | Description |
-| :-------------------------------------------------------- | :---------- |
-| [getMobilePushApnsTokens](#getmobilepushapnstokens)       |             |
-| [saveMobilePushApnsToken](#savemobilepushapnstoken)       |             |
-| [getMobilePushApnsToken](#getmobilepushapnstoken)         |             |
-| [discardMobilePushApnsToken](#discardmobilepushapnstoken) |             |
-| [getMobilePushExpoTokens](#getmobilepushexpotokens)       |             |
-| [saveMobilePushExpoToken](#savemobilepushexpotoken)       |             |
-| [getMobilePushExpoToken](#getmobilepushexpotoken)         |             |
-| [discardMobilePushExpoToken](#discardmobilepushexpotoken) |             |
-| [getMobilePushFcmTokens](#getmobilepushfcmtokens)         |             |
-| [saveMobilePushFcmToken](#savemobilepushfcmtoken)         |             |
-| [getMobilePushFcmToken](#getmobilepushfcmtoken)           |             |
-| [discardMobilePushFcmToken](#discardmobilepushfcmtoken)   |             |
-| [getSlackTokens](#getslacktokens)                         |             |
-| [saveSlackToken](#saveslacktoken)                         |             |
-| [getSlackToken](#getslacktoken)                           |             |
-| [discardSlackToken](#discardslacktoken)                   |             |
-| [getTeamsTokens](#getteamstokens)                         |             |
-| [saveTeamsToken](#saveteamstoken)                         |             |
-| [getTeamsToken](#getteamstoken)                           |             |
-| [discardTeamsToken](#discardteamstoken)                   |             |
-| [getWebPushTokens](#getwebpushtokens)                     |             |
-| [saveWebPushToken](#savewebpushtoken)                     |             |
-| [getWebPushToken](#getwebpushtoken)                       |             |
-| [discardWebPushToken](#discardwebpushtoken)               |             |
+| Methods                                                   | Description                                                                                                                                                                                                                                                      |
+| :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [getMobilePushApnsTokens](#getmobilepushapnstokens)       | Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                           |
+| [saveMobilePushApnsToken](#savemobilepushapnstoken)       | Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
+| [getMobilePushApnsToken](#getmobilepushapnstoken)         | Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                         |
+| [discardMobilePushApnsToken](#discardmobilepushapnstoken) | Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                     |
+| [getMobilePushExpoTokens](#getmobilepushexpotokens)       | Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                           |
+| [saveMobilePushExpoToken](#savemobilepushexpotoken)       | Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
+| [getMobilePushExpoToken](#getmobilepushexpotoken)         | Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                         |
+| [discardMobilePushExpoToken](#discardmobilepushexpotoken) | Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                     |
+| [getMobilePushFcmTokens](#getmobilepushfcmtokens)         | Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                           |
+| [saveMobilePushFcmToken](#savemobilepushfcmtoken)         | Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
+| [getMobilePushFcmToken](#getmobilepushfcmtoken)           | Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                         |
+| [discardMobilePushFcmToken](#discardmobilepushfcmtoken)   | Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                     |
+| [getSlackTokens](#getslacktokens)                         | Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
+| [saveSlackToken](#saveslacktoken)                         | Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.       |
+| [getSlackToken](#getslacktoken)                           | Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                               |
+| [discardSlackToken](#discardslacktoken)                   | Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
+| [getTeamsTokens](#getteamstokens)                         | Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
+| [saveTeamsToken](#saveteamstoken)                         | Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.       |
+| [getTeamsToken](#getteamstoken)                           | Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                               |
+| [discardTeamsToken](#discardteamstoken)                   | Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
+| [getWebPushTokens](#getwebpushtokens)                     | Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                              |
+| [saveWebPushToken](#savewebpushtoken)                     | Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
+| [getWebPushToken](#getwebpushtoken)                       | Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                            |
+| [discardWebPushToken](#discardwebpushtoken)               | Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                        |
 
 ## getMobilePushApnsTokens
+
+Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
 
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/apns/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfApnsToken`
+`ArrayOfMetadataApnsTokens`
 
 **Example Usage Code Snippet**
 
@@ -48,7 +58,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getMobilePushApnsTokens();
+  const { data } = await client.channels.getMobilePushApnsTokens({
+    pageSize: 9,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -56,14 +70,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveMobilePushApnsToken
 
+Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/mobile_push/apns/tokens`
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | `[ApnsToken](../models/ApnsToken.md)` | ❌       | The request body. |
+| Name | Type                                | Required | Description       |
+| :--- | :---------------------------------- | :------- | :---------------- |
+| body | [ApnsToken](../models/ApnsToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -82,11 +98,12 @@ import { ApnsToken, Client } from '@magicbell/user-client';
   const apnsTokenInstallationId = ApnsTokenInstallationId.DEVELOPMENT;
 
   const apnsToken: ApnsToken = {
-    deviceToken: 'laborum culpano',
+    appId: 'app_id',
+    deviceToken: 'voluptateveniam',
     installationId: apnsTokenInstallationId,
   };
 
-  const { data } = await client.channels.saveMobilePushApnsToken(input);
+  const { data } = await client.channels.saveMobilePushApnsToken(apnsToken);
 
   console.log(data);
 })();
@@ -94,18 +111,20 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
 ## getMobilePushApnsToken
 
+Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/apns/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`ApnsTokenWithMetadata`
+`MetadataApnsToken`
 
 **Example Usage Code Snippet**
 
@@ -125,14 +144,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardMobilePushApnsToken
 
+Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/mobile_push/apns/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
@@ -156,12 +177,22 @@ import { Client } from '@magicbell/user-client';
 
 ## getMobilePushExpoTokens
 
+Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/expo/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfExpoToken`
+`ArrayOfMetadataExpoTokens`
 
 **Example Usage Code Snippet**
 
@@ -173,7 +204,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getMobilePushExpoTokens();
+  const { data } = await client.channels.getMobilePushExpoTokens({
+    pageSize: 4,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -181,14 +216,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveMobilePushExpoToken
 
+Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/mobile_push/expo/tokens`
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | `[ExpoToken](../models/ExpoToken.md)` | ❌       | The request body. |
+| Name | Type                                | Required | Description       |
+| :--- | :---------------------------------- | :------- | :---------------- |
+| body | [ExpoToken](../models/ExpoToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -205,10 +242,10 @@ import { Client, ExpoToken } from '@magicbell/user-client';
   });
 
   const expoToken: ExpoToken = {
-    deviceToken: 'sit nos',
+    deviceToken: 'device_token',
   };
 
-  const { data } = await client.channels.saveMobilePushExpoToken(input);
+  const { data } = await client.channels.saveMobilePushExpoToken(expoToken);
 
   console.log(data);
 })();
@@ -216,18 +253,20 @@ import { Client, ExpoToken } from '@magicbell/user-client';
 
 ## getMobilePushExpoToken
 
+Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/expo/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`ExpoTokenWithMetadata`
+`MetadataExpoToken`
 
 **Example Usage Code Snippet**
 
@@ -247,14 +286,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardMobilePushExpoToken
 
+Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/mobile_push/expo/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
@@ -278,12 +319,22 @@ import { Client } from '@magicbell/user-client';
 
 ## getMobilePushFcmTokens
 
+Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/fcm/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfFcmToken`
+`ArrayOfMetadataFcmTokens`
 
 **Example Usage Code Snippet**
 
@@ -295,7 +346,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getMobilePushFcmTokens();
+  const { data } = await client.channels.getMobilePushFcmTokens({
+    pageSize: 2,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -303,14 +358,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveMobilePushFcmToken
 
+Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/mobile_push/fcm/tokens`
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | `[FcmToken](../models/FcmToken.md)` | ❌       | The request body. |
+| Name | Type                              | Required | Description       |
+| :--- | :-------------------------------- | :------- | :---------------- |
+| body | [FcmToken](../models/FcmToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -329,11 +386,11 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'Ut reprehenderi',
+    deviceToken: 'pariaturaliqua ',
     installationId: fcmTokenInstallationId,
   };
 
-  const { data } = await client.channels.saveMobilePushFcmToken(input);
+  const { data } = await client.channels.saveMobilePushFcmToken(fcmToken);
 
   console.log(data);
 })();
@@ -341,18 +398,20 @@ import { Client, FcmToken } from '@magicbell/user-client';
 
 ## getMobilePushFcmToken
 
+Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/mobile_push/fcm/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`FcmTokenWithMetadata`
+`MetadataFcmToken`
 
 **Example Usage Code Snippet**
 
@@ -372,14 +431,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardMobilePushFcmToken
 
+Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/mobile_push/fcm/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
@@ -403,12 +464,22 @@ import { Client } from '@magicbell/user-client';
 
 ## getSlackTokens
 
+Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/slack/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfSlackToken`
+`ArrayOfMetadataSlackTokens`
 
 **Example Usage Code Snippet**
 
@@ -420,7 +491,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getSlackTokens();
+  const { data } = await client.channels.getSlackTokens({
+    pageSize: 10,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -428,14 +503,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveSlackToken
 
+Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/slack/tokens`
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | `[SlackToken](../models/SlackToken.md)` | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | [SlackToken](../models/SlackToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -466,7 +543,7 @@ import { Client, SlackToken } from '@magicbell/user-client';
     webhook: slackTokenWebhook,
   };
 
-  const { data } = await client.channels.saveSlackToken(input);
+  const { data } = await client.channels.saveSlackToken(slackToken);
 
   console.log(data);
 })();
@@ -474,18 +551,20 @@ import { Client, SlackToken } from '@magicbell/user-client';
 
 ## getSlackToken
 
+Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/slack/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`SlackTokenWithMetadata`
+`MetadataSlackToken`
 
 **Example Usage Code Snippet**
 
@@ -505,14 +584,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardSlackToken
 
+Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/slack/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
@@ -536,12 +617,22 @@ import { Client } from '@magicbell/user-client';
 
 ## getTeamsTokens
 
+Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/teams/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfTeamsToken`
+`ArrayOfMetadataTeamsTokens`
 
 **Example Usage Code Snippet**
 
@@ -553,7 +644,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getTeamsTokens();
+  const { data } = await client.channels.getTeamsTokens({
+    pageSize: 9,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -561,14 +656,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveTeamsToken
 
+Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/teams/tokens`
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | `[TeamsToken](../models/TeamsToken.md)` | ❌       | The request body. |
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | [TeamsToken](../models/TeamsToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -592,7 +689,7 @@ import { Client, TeamsToken } from '@magicbell/user-client';
     webhook: teamsTokenWebhook,
   };
 
-  const { data } = await client.channels.saveTeamsToken(input);
+  const { data } = await client.channels.saveTeamsToken(teamsToken);
 
   console.log(data);
 })();
@@ -600,18 +697,20 @@ import { Client, TeamsToken } from '@magicbell/user-client';
 
 ## getTeamsToken
 
+Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/teams/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`TeamsTokenWithMetadata`
+`MetadataTeamsToken`
 
 **Example Usage Code Snippet**
 
@@ -631,14 +730,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardTeamsToken
 
+Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/teams/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
@@ -662,12 +763,22 @@ import { Client } from '@magicbell/user-client';
 
 ## getWebPushTokens
 
+Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/web_push/tokens`
 
+**Parameters**
+
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
+
 **Return Type**
 
-`ArrayWithMetadataOfWebPushToken`
+`ArrayOfMetadataWebPushTokens`
 
 **Example Usage Code Snippet**
 
@@ -679,7 +790,11 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getWebPushTokens();
+  const { data } = await client.channels.getWebPushTokens({
+    pageSize: 7,
+    pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
+  });
 
   console.log(data);
 })();
@@ -687,14 +802,16 @@ import { Client } from '@magicbell/user-client';
 
 ## saveWebPushToken
 
+Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
 - HTTP Method: `POST`
 - Endpoint: `/channels/web_push/tokens`
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | `[WebPushToken](../models/WebPushToken.md)` | ❌       | The request body. |
+| Name | Type                                      | Required | Description       |
+| :--- | :---------------------------------------- | :------- | :---------------- |
+| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -720,7 +837,7 @@ import { Client, WebPushToken } from '@magicbell/user-client';
     keys: keys,
   };
 
-  const { data } = await client.channels.saveWebPushToken(input);
+  const { data } = await client.channels.saveWebPushToken(webPushToken);
 
   console.log(data);
 })();
@@ -728,18 +845,20 @@ import { Client, WebPushToken } from '@magicbell/user-client';
 
 ## getWebPushToken
 
+Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
 - HTTP Method: `GET`
 - Endpoint: `/channels/web_push/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 
-`WebPushTokenWithMetadata`
+`MetadataWebPushToken`
 
 **Example Usage Code Snippet**
 
@@ -759,14 +878,16 @@ import { Client } from '@magicbell/user-client';
 
 ## discardWebPushToken
 
+Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
 - HTTP Method: `DELETE`
 - Endpoint: `/channels/web_push/tokens/{token_id}`
 
 **Parameters**
 
-| Name    | Type     | Required | Description |
-| :------ | :------- | :------- | :---------- |
-| tokenId | `string` | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
 
 **Return Type**
 

@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name    | Type       | Required | Description |
-| :------ | :--------- | :------- | :---------- |
-| appId   | `string`   | ❌       |             |
-| authUrl | `string`   | ❌       |             |
-| scopes  | `string[]` | ❌       |             |
+| Name    | Type     | Required | Description |
+| :------ | :------- | :------- | :---------- |
+| appId   | string   | ❌       |             |
+| authUrl | string   | ❌       |             |
+| scopes  | string[] | ❌       |             |

@@ -1,5 +1,5 @@
 import { RequestParameter } from '../transport/request.js';
-import { Serializer } from './base-serializer.js';
+import { SerializationOptions, Serializer } from './base-serializer.js';
 
 export class QuerySerializer extends Serializer {
   public serialize(queryParams: Map<string, RequestParameter>): string {

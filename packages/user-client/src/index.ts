@@ -34,9 +34,9 @@ export class Client {
     this.integrations.baseUrl = environment;
   }
 
-  set timeout(timeout: number) {
-    this.channels.timeout = timeout;
-    this.integrations.timeout = timeout;
+  set timeoutMs(timeoutMs: number) {
+    this.channels.timeoutMs = timeoutMs;
+    this.integrations.timeoutMs = timeoutMs;
   }
 
   set token(token: string) {

@@ -17,8 +17,8 @@ export class BaseService {
     this.config.environment = environment;
   }
 
-  set timeout(timeout: number) {
-    this.config.timeout = timeout;
+  set timeoutMs(timeoutMs: number) {
+    this.config.timeoutMs = timeoutMs;
   }
 
   set token(token: string) {

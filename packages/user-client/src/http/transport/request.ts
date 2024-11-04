@@ -168,17 +168,6 @@ export class Request<T = unknown, PageSchema = unknown[]> {
     this.body = hookRequest.body;
   }
 
-  public toHookRequest(): HttpRequest {
-    return {
-      baseUrl: this.baseUrl,
-      method: this.method,
-      path: this.path,
-      headers: this.headers,
-      body: this.body,
-      queryParams: this.queryParams,
-    };
-  }
-
   public constructFullUrl(): string {
     const queryString = new QuerySerializer().serialize(this.queryParams);
     const path = this.constructPath();
