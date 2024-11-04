@@ -1,5 +1,11 @@
 # @magicbell/project-client
 
+## 0.5.1
+
+### Patch Changes
+
+- [#417](https://github.com/magicbell/magicbell-js/pull/417) [`a910be1`](https://github.com/magicbell/magicbell-js/commit/a910be1a7a520f998f2a1de8477ec8377b02cc9d) Thanks [@smeijer](https://github.com/smeijer)! - add discarded_at to jwt tokens
+
 ## 0.5.0
 
 ### Minor Changes
