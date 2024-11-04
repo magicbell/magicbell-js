@@ -14,32 +14,6 @@ async function move(oldPath: string, newPath: string) {
   await fs.rename(oldPath, newPath);
 }
 
-function deleteAdminPaths(schema: any) {
-  schema.tags = schema.tags.filter((x: any) => x.name !== 'admin' && x.name !== 'user');
-
-  for (const path of Object.keys(schema.paths)) {
-    for (const method of Object.keys(schema.paths[path])) {
-      const operation = schema.paths[path][method];
-      if (!('tags' in operation) || !Array.isArray(operation.tags)) continue;
-
-      // delete operation if it's not for users
-      if (operation.tags.includes('user')) {
-        operation.tags = operation.tags.filter((x: any) => x !== 'user');
-      } else {
-        delete schema.paths[path][method];
-        // console.log(`delete ${path}/${method}`)
-
-        // delete path if no operations left
-        if (Object.keys(schema.paths[path]).length > 0) continue;
-        delete schema.paths[path];
-        // console.log(`delete ${path}`);
-      }
-    }
-  }
-
-  return schema;
-}
-
 function findAllRefs(obj: any, refs = new Set<string>()) {
   if (typeof obj !== 'object' || obj === null) return refs;
 
@@ -95,13 +69,12 @@ const { values: args } = parseArgs({
   },
 });
 
-async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.json') {
+async function build(specfile = 'https://public.magicbell.com/specs/openapi.v1.user.json') {
   const initialPkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
   const liblabConfig = JSON.parse(await fs.readFile('./liblab.config.json', { encoding: 'utf-8' }));
   let swaggerJSON = await readFileOrUrl(specfile);
   const spec = JSON.parse(swaggerJSON);
 
-  deleteAdminPaths(spec);
   deleteUnreferencedComponents(spec);
 
   swaggerJSON = JSON.stringify(spec, null, 2);
