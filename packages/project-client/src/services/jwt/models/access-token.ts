@@ -6,6 +6,7 @@ import { z } from 'zod';
 export const accessToken = z.lazy(() => {
   return z.object({
     createdAt: z.string(),
+    discardedAt: z.string().optional(),
     expiresAt: z.string().optional(),
     token: z.string(),
     tokenId: z.string(),
@@ -15,6 +16,7 @@ export const accessToken = z.lazy(() => {
 /**
  *
  * @typedef  {AccessToken} accessToken
+ * @property {string}
  * @property {string}
  * @property {string}
  * @property {string}
@@ -30,12 +32,14 @@ export const accessTokenResponse = z.lazy(() => {
   return z
     .object({
       created_at: z.string(),
+      discarded_at: z.string().optional(),
       expires_at: z.string().optional(),
       token: z.string(),
       token_id: z.string(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
+      discardedAt: data['discarded_at'],
       expiresAt: data['expires_at'],
       token: data['token'],
       tokenId: data['token_id'],
@@ -50,12 +54,14 @@ export const accessTokenRequest = z.lazy(() => {
   return z
     .object({
       createdAt: z.string().nullish(),
+      discardedAt: z.string().nullish(),
       expiresAt: z.string().nullish(),
       token: z.string().nullish(),
       tokenId: z.string().nullish(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],
+      discarded_at: data['discardedAt'],
       expires_at: data['expiresAt'],
       token: data['token'],
       token_id: data['tokenId'],
