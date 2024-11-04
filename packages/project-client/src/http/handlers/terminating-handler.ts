@@ -1,3 +1,4 @@
+import { HttpError } from '../error.js';
 import { Request } from '../transport/request.js';
 import { RequestFetchAdapter } from '../transport/request-fetch-adapter.js';
 import { HttpResponse, RequestHandler } from '../types.js';

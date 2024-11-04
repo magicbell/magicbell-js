@@ -8,7 +8,7 @@ export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'HEAD';
 export interface SdkConfig {
   baseUrl?: string;
   environment?: Environment;
-  timeout?: number;
+  timeoutMs?: number;
   token?: string;
   retry?: RetryOptions;
   validation?: ValidationOptions;

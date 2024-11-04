@@ -81,9 +81,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 9,
-    pageBefore: 'page[before]',
+    pageSize: 8,
     pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
   });
 
   console.log(data);
@@ -100,9 +100,10 @@ The SDK provides various services to interact with the API.
 | Name                                                                 |
 | :------------------------------------------------------------------- |
 | [BroadcastsService](documentation/services/BroadcastsService.md)     |
+| [ChannelsService](documentation/services/ChannelsService.md)         |
+| [EventsService](documentation/services/EventsService.md)             |
 | [IntegrationsService](documentation/services/IntegrationsService.md) |
 | [JwtService](documentation/services/JwtService.md)                   |
-| [ChannelsService](documentation/services/ChannelsService.md)         |
 
 </details>
 
@@ -113,48 +114,86 @@ The SDK includes several models that represent the data structures used in API r
 <details> 
 <summary>Below is a list of all available models with links to their detailed documentation:</summary>
 
-| Name                                                                                       | Description |
-| :----------------------------------------------------------------------------------------- | :---------- |
-| [BroadcastListResponse](documentation/models/BroadcastListResponse.md)                     |             |
-| [Broadcast](documentation/models/Broadcast.md)                                             |             |
-| [ListIntegrationsResponse](documentation/models/ListIntegrationsResponse.md)               |             |
-| [ApnsConfig](documentation/models/ApnsConfig.md)                                           |             |
-| [AwssnsConfig](documentation/models/AwssnsConfig.md)                                       |             |
-| [ExpoConfig](documentation/models/ExpoConfig.md)                                           |             |
-| [FcmConfig](documentation/models/FcmConfig.md)                                             |             |
-| [GithubConfig](documentation/models/GithubConfig.md)                                       |             |
-| [InboxConfig](documentation/models/InboxConfig.md)                                         |             |
-| [MailgunConfig](documentation/models/MailgunConfig.md)                                     |             |
-| [PingConfig](documentation/models/PingConfig.md)                                           |             |
-| [SendgridConfig](documentation/models/SendgridConfig.md)                                   |             |
-| [SesConfig](documentation/models/SesConfig.md)                                             |             |
-| [SlackConfig](documentation/models/SlackConfig.md)                                         |             |
-| [StripeConfig](documentation/models/StripeConfig.md)                                       |             |
-| [TwilioConfig](documentation/models/TwilioConfig.md)                                       |             |
-| [WebpushConfig](documentation/models/WebpushConfig.md)                                     |             |
-| [FetchTokensResponse](documentation/models/FetchTokensResponse.md)                         |             |
-| [CreateProjectTokenRequest](documentation/models/CreateProjectTokenRequest.md)             |             |
-| [AccessToken](documentation/models/AccessToken.md)                                         |             |
-| [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                       |             |
-| [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)                   |             |
-| [ArrayWithMetadataOfApnsToken](documentation/models/ArrayWithMetadataOfApnsToken.md)       |             |
-| [ApnsTokenWithMetadata](documentation/models/ApnsTokenWithMetadata.md)                     |             |
-| [DiscardResult](documentation/models/DiscardResult.md)                                     |             |
-| [ArrayWithMetadataOfExpoToken](documentation/models/ArrayWithMetadataOfExpoToken.md)       |             |
-| [ExpoTokenWithMetadata](documentation/models/ExpoTokenWithMetadata.md)                     |             |
-| [ArrayWithMetadataOfFcmToken](documentation/models/ArrayWithMetadataOfFcmToken.md)         |             |
-| [FcmTokenWithMetadata](documentation/models/FcmTokenWithMetadata.md)                       |             |
-| [ArrayWithMetadataOfSlackToken](documentation/models/ArrayWithMetadataOfSlackToken.md)     |             |
-| [SlackTokenWithMetadata](documentation/models/SlackTokenWithMetadata.md)                   |             |
-| [ArrayWithMetadataOfTeamsToken](documentation/models/ArrayWithMetadataOfTeamsToken.md)     |             |
-| [TeamsTokenWithMetadata](documentation/models/TeamsTokenWithMetadata.md)                   |             |
-| [ArrayWithMetadataOfWebPushToken](documentation/models/ArrayWithMetadataOfWebPushToken.md) |             |
-| [WebPushTokenWithMetadata](documentation/models/WebPushTokenWithMetadata.md)               |             |
-| [ApnsToken](documentation/models/ApnsToken.md)                                             |             |
-| [ExpoToken](documentation/models/ExpoToken.md)                                             |             |
-| [FcmToken](documentation/models/FcmToken.md)                                               |             |
-| [SlackToken](documentation/models/SlackToken.md)                                           |             |
-| [TeamsToken](documentation/models/TeamsToken.md)                                           |             |
-| [WebPushToken](documentation/models/WebPushToken.md)                                       |             |
+| Name                                                                                         | Description |
+| :------------------------------------------------------------------------------------------- | :---------- |
+| [ArrayOfBroadcasts](documentation/models/ArrayOfBroadcasts.md)                               |             |
+| [Broadcast](documentation/models/Broadcast.md)                                               |             |
+| [ProjectDeliveryConfig](documentation/models/ProjectDeliveryConfig.md)                       |             |
+| [CategoryDeliveryConfig](documentation/models/CategoryDeliveryConfig.md)                     |             |
+| [ArrayOfMetadataApnsTokens](documentation/models/ArrayOfMetadataApnsTokens.md)               |             |
+| [MetadataApnsToken](documentation/models/MetadataApnsToken.md)                               |             |
+| [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
+| [ArrayOfMetadataExpoTokens](documentation/models/ArrayOfMetadataExpoTokens.md)               |             |
+| [MetadataExpoToken](documentation/models/MetadataExpoToken.md)                               |             |
+| [ArrayOfMetadataFcmTokens](documentation/models/ArrayOfMetadataFcmTokens.md)                 |             |
+| [MetadataFcmToken](documentation/models/MetadataFcmToken.md)                                 |             |
+| [ArrayOfMetadataSlackTokens](documentation/models/ArrayOfMetadataSlackTokens.md)             |             |
+| [MetadataSlackToken](documentation/models/MetadataSlackToken.md)                             |             |
+| [ArrayOfMetadataTeamsTokens](documentation/models/ArrayOfMetadataTeamsTokens.md)             |             |
+| [MetadataTeamsToken](documentation/models/MetadataTeamsToken.md)                             |             |
+| [ArrayOfMetadataWebPushTokens](documentation/models/ArrayOfMetadataWebPushTokens.md)         |             |
+| [MetadataWebPushToken](documentation/models/MetadataWebPushToken.md)                         |             |
+| [ArrayOfEvents](documentation/models/ArrayOfEvents.md)                                       |             |
+| [ArrayOfIntegrationObjects](documentation/models/ArrayOfIntegrationObjects.md)               |             |
+| [ArrayOfApnsConfigObjects](documentation/models/ArrayOfApnsConfigObjects.md)                 |             |
+| [ApnsConfig](documentation/models/ApnsConfig.md)                                             |             |
+| [ArrayOfAwssnsConfigObjects](documentation/models/ArrayOfAwssnsConfigObjects.md)             |             |
+| [AwssnsConfig](documentation/models/AwssnsConfig.md)                                         |             |
+| [ArrayOfExpoConfigObjects](documentation/models/ArrayOfExpoConfigObjects.md)                 |             |
+| [ExpoConfig](documentation/models/ExpoConfig.md)                                             |             |
+| [ArrayOfFcmConfigObjects](documentation/models/ArrayOfFcmConfigObjects.md)                   |             |
+| [FcmConfig](documentation/models/FcmConfig.md)                                               |             |
+| [ArrayOfGithubConfigObjects](documentation/models/ArrayOfGithubConfigObjects.md)             |             |
+| [GithubConfig](documentation/models/GithubConfig.md)                                         |             |
+| [ArrayOfInboxConfigObjects](documentation/models/ArrayOfInboxConfigObjects.md)               |             |
+| [InboxConfig](documentation/models/InboxConfig.md)                                           |             |
+| [ArrayOfMailgunConfigObjects](documentation/models/ArrayOfMailgunConfigObjects.md)           |             |
+| [MailgunConfig](documentation/models/MailgunConfig.md)                                       |             |
+| [ArrayOfPingConfigObjects](documentation/models/ArrayOfPingConfigObjects.md)                 |             |
+| [PingConfig](documentation/models/PingConfig.md)                                             |             |
+| [ArrayOfSendgridConfigObjects](documentation/models/ArrayOfSendgridConfigObjects.md)         |             |
+| [SendgridConfig](documentation/models/SendgridConfig.md)                                     |             |
+| [ArrayOfSesConfigObjects](documentation/models/ArrayOfSesConfigObjects.md)                   |             |
+| [SesConfig](documentation/models/SesConfig.md)                                               |             |
+| [ArrayOfSlackConfigObjects](documentation/models/ArrayOfSlackConfigObjects.md)               |             |
+| [SlackConfig](documentation/models/SlackConfig.md)                                           |             |
+| [ArrayOfStripeConfigObjects](documentation/models/ArrayOfStripeConfigObjects.md)             |             |
+| [StripeConfig](documentation/models/StripeConfig.md)                                         |             |
+| [ArrayOfTemplatesConfigObjects](documentation/models/ArrayOfTemplatesConfigObjects.md)       |             |
+| [ArrayOfTwilioConfigObjects](documentation/models/ArrayOfTwilioConfigObjects.md)             |             |
+| [TwilioConfig](documentation/models/TwilioConfig.md)                                         |             |
+| [ArrayOfWebpushConfigObjects](documentation/models/ArrayOfWebpushConfigObjects.md)           |             |
+| [WebpushConfig](documentation/models/WebpushConfig.md)                                       |             |
+| [ArrayOfFetchTokensResponseTokens](documentation/models/ArrayOfFetchTokensResponseTokens.md) |             |
+| [CreateProjectTokenRequest](documentation/models/CreateProjectTokenRequest.md)               |             |
+| [AccessToken](documentation/models/AccessToken.md)                                           |             |
+| [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                         |             |
+| [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)                     |             |
+| [Links](documentation/models/Links.md)                                                       |             |
+| [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
+| [TokenMetadata](documentation/models/TokenMetadata.md)                                       |             |
+| [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
+| [FcmToken](documentation/models/FcmToken.md)                                                 |             |
+| [SlackToken](documentation/models/SlackToken.md)                                             |             |
+| [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
+| [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
+| [Event](documentation/models/Event.md)                                                       |             |
+| [IntegrationObject](documentation/models/IntegrationObject.md)                               |             |
+| [ApnsConfigObject](documentation/models/ApnsConfigObject.md)                                 |             |
+| [AwssnsConfigObject](documentation/models/AwssnsConfigObject.md)                             |             |
+| [ExpoConfigObject](documentation/models/ExpoConfigObject.md)                                 |             |
+| [FcmConfigObject](documentation/models/FcmConfigObject.md)                                   |             |
+| [GithubConfigObject](documentation/models/GithubConfigObject.md)                             |             |
+| [InboxConfigObject](documentation/models/InboxConfigObject.md)                               |             |
+| [MailgunConfigObject](documentation/models/MailgunConfigObject.md)                           |             |
+| [PingConfigObject](documentation/models/PingConfigObject.md)                                 |             |
+| [SendgridConfigObject](documentation/models/SendgridConfigObject.md)                         |             |
+| [SesConfigObject](documentation/models/SesConfigObject.md)                                   |             |
+| [SlackConfigObject](documentation/models/SlackConfigObject.md)                               |             |
+| [StripeConfigObject](documentation/models/StripeConfigObject.md)                             |             |
+| [TemplatesConfigObject](documentation/models/TemplatesConfigObject.md)                       |             |
+| [TwilioConfigObject](documentation/models/TwilioConfigObject.md)                             |             |
+| [WebpushConfigObject](documentation/models/WebpushConfigObject.md)                           |             |
+| [FetchTokensResponseToken](documentation/models/FetchTokensResponseToken.md)                 |             |
 
 </details>

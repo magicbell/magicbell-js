@@ -8,6 +8,7 @@ export interface HttpRequest {
   body?: BodyInit;
   abortSignal?: AbortSignal;
   queryParams: Map<string, unknown>;
+  pathParams: Map<string, unknown>;
 }
 
 interface HttpMetadata {

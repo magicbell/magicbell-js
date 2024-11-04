@@ -1,31 +1,32 @@
 import { z } from 'zod';
 
+import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
+import { ArrayOfBroadcasts, arrayOfBroadcastsResponse } from './models/array-of-broadcasts.js';
 import { Broadcast, broadcastRequest, broadcastResponse } from './models/broadcast.js';
-import { BroadcastListResponse, broadcastListResponseResponse } from './models/broadcast-list-response.js';
 import { ListBroadcastsParams } from './request-params.js';
 
 export class BroadcastsService extends BaseService {
   /**
-   * Returns a list of broadcasts
+   * Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status.
    * @param {number} [pageSize] -
-   * @param {string} [pageBefore] -
    * @param {string} [pageAfter] -
-   * @returns {Promise<HttpResponse<BroadcastListResponse>>} OK
+   * @param {string} [pageBefore] -
+   * @returns {Promise<HttpResponse<ArrayOfBroadcasts>>} OK
    */
   async listBroadcasts(
     params?: ListBroadcastsParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<BroadcastListResponse>> {
-    const request = new RequestBuilder<BroadcastListResponse>()
+  ): Promise<HttpResponse<ArrayOfBroadcasts>> {
+    const request = new RequestBuilder<ArrayOfBroadcasts>()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/broadcasts')
       .setRequestSchema(z.any())
-      .setResponseSchema(broadcastListResponseResponse)
+      .setResponseSchema(arrayOfBroadcastsResponse)
       .setRequestContentType(ContentType.Json)
       .setResponseContentType(ContentType.Json)
       .setRetryAttempts(this.config, requestConfig)
@@ -36,19 +37,19 @@ export class BroadcastsService extends BaseService {
         value: params?.pageSize,
       })
       .addQueryParam({
-        key: 'page[before]',
-        value: params?.pageBefore,
-      })
-      .addQueryParam({
         key: 'page[after]',
         value: params?.pageAfter,
       })
+      .addQueryParam({
+        key: 'page[before]',
+        value: params?.pageBefore,
+      })
       .build();
-    return this.client.call<BroadcastListResponse>(request);
+    return this.client.call<ArrayOfBroadcasts>(request);
   }
 
   /**
-   * Handles the create notification request.
+   * Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project. Only administrators can create broadcasts.
    * @returns {Promise<HttpResponse<Broadcast>>} Created
    */
   async createBroadcast(body: Broadcast, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
@@ -71,7 +72,7 @@ export class BroadcastsService extends BaseService {
   }
 
   /**
-   * Returns a broadcast
+   * Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.
    * @param {string} broadcastId -
    * @returns {Promise<HttpResponse<Broadcast>>} OK
    */

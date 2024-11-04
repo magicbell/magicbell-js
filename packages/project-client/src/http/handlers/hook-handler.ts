@@ -26,9 +26,7 @@ export class HookHandler implements RequestHandler {
       return await hook.afterResponse(nextRequest, response, hookParams);
     }
 
-    const error = await hook.onError(nextRequest, response, hookParams);
-
-    throw new HttpError(error.metadata, error.error);
+    throw await hook.onError(nextRequest, response, hookParams);
   }
 
   private getHookParams<T>(_request: Request<T>): Map<string, string> {

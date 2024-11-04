@@ -7,8 +7,9 @@ import { ResponseValidationHandler } from './handlers/response-validation-handle
 import { RetryHandler } from './handlers/retry-handler.js';
 import { TerminatingHandler } from './handlers/terminating-handler.js';
 import { CustomHook } from './hooks/custom-hook.js';
+import { SerializationStyle } from './serialization/base-serializer.js';
 import { Request } from './transport/request.js';
-import { HttpResponse, SdkConfig } from './types.js';
+import { HttpMethod, HttpResponse, Options, RetryOptions, SdkConfig } from './types.js';
 
 export class HttpClient {
   private readonly requestHandlerChain = new RequestHandlerChain();
@@ -31,7 +32,7 @@ export class HttpClient {
     const response = await this.call<FullResponse>(request as any);
 
     if (!response.data) {
-      throw new Error('now response data to paginate through');
+      throw new Error('no response data to paginate through');
     }
 
     return {

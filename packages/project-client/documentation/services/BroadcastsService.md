@@ -2,30 +2,30 @@
 
 A list of all methods in the `BroadcastsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                             | Description                              |
-| :---------------------------------- | :--------------------------------------- |
-| [listBroadcasts](#listbroadcasts)   | Returns a list of broadcasts             |
-| [createBroadcast](#createbroadcast) | Handles the create notification request. |
-| [fetchBroadcast](#fetchbroadcast)   | Returns a broadcast                      |
+| Methods                             | Description                                                                                                                                                                           |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [listBroadcasts](#listbroadcasts)   | Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status.                                      |
+| [createBroadcast](#createbroadcast) | Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project. Only administrators can create broadcasts. |
+| [fetchBroadcast](#fetchbroadcast)   | Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.                                                       |
 
 ## listBroadcasts
 
-Returns a list of broadcasts
+Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status.
 
 - HTTP Method: `GET`
 - Endpoint: `/broadcasts`
 
 **Parameters**
 
-| Name       | Type     | Required | Description |
-| :--------- | :------- | :------- | :---------- |
-| pageSize   | `number` | ❌       |             |
-| pageBefore | `string` | ❌       |             |
-| pageAfter  | `string` | ❌       |             |
+| Name       | Type   | Required | Description |
+| :--------- | :----- | :------- | :---------- |
+| pageSize   | number | ❌       |             |
+| pageAfter  | string | ❌       |             |
+| pageBefore | string | ❌       |             |
 
 **Return Type**
 
-`BroadcastListResponse`
+`ArrayOfBroadcasts`
 
 **Example Usage Code Snippet**
 
@@ -38,9 +38,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 9,
-    pageBefore: 'page[before]',
+    pageSize: 8,
     pageAfter: 'page[after]',
+    pageBefore: 'page[before]',
   });
 
   console.log(data);
@@ -49,16 +49,16 @@ import { Client } from '@magicbell/project-client';
 
 ## createBroadcast
 
-Handles the create notification request.
+Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project. Only administrators can create broadcasts.
 
 - HTTP Method: `POST`
 - Endpoint: `/broadcasts`
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | `[Broadcast](../models/Broadcast.md)` | ❌       | The request body. |
+| Name | Type                                | Required | Description       |
+| :--- | :---------------------------------- | :------- | :---------------- |
+| body | [Broadcast](../models/Broadcast.md) | ❌       | The request body. |
 
 **Return Type**
 
@@ -74,45 +74,45 @@ import { Broadcast, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const category = 'mviFvt';
+  const category = '3wP';
 
   const email: Email = {
-    actionUrl: 'Utullamco aute dolore magna in',
-    content: 'incididunt',
-    title: 'dolor Excepteur id ad sit',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
   const inApp: InApp = {
-    actionUrl: 'esse laboris ea',
-    content: 'est enim',
-    title: 'aliquip',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
   const mobilePush: MobilePush = {
-    actionUrl: 'quis ipsum',
-    content: 'fugiat Lorem mollit cupidatat',
-    title: 'laborum sunt Ut mollit',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
   const slack: Slack = {
-    actionUrl: 'labore qui ullamco amet Lorem',
-    content: 'tempor reprehenderit enim dolor',
-    title: 'eu nisi velit fugiat',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
   const sms: Sms = {
-    actionUrl: 'culpa',
-    content: 'anim cillum eiusmod',
-    title: 'adipisicing anim reprehenderit',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
   const webPush: WebPush = {
-    actionUrl: 'nonaliqua ipsum dolor',
-    content: 'consequat laboris do eu',
-    title: 'aliquip',
+    actionUrl: 'action_url',
+    content: 'content',
+    title: 'title',
   };
 
-  const channels: Channels = {
+  const overridesChannels: OverridesChannels = {
     email: email,
     inApp: inApp,
     mobilePush: mobilePush,
@@ -132,24 +132,24 @@ import { Broadcast, Client } from '@magicbell/project-client';
   };
 
   const overrides: Overrides = {
-    channels: channels,
+    channels: overridesChannels,
     providers: providers,
   };
 
-  const topic = 'oFVCUBZ_sT';
+  const topic = 'ptLP';
 
   const broadcast: Broadcast = {
-    actionUrl: 'sed sunt',
+    actionUrl: 'action_url',
     category: category,
-    content: 'nostrud sit dolor',
+    content: 'content',
     customAttributes: {},
     overrides: overrides,
     recipients: [{}],
-    title: 'ex Duis',
+    title: 'title',
     topic: topic,
   };
 
-  const { data } = await client.broadcasts.createBroadcast(input);
+  const { data } = await client.broadcasts.createBroadcast(broadcast);
 
   console.log(data);
 })();
@@ -157,16 +157,16 @@ import { Broadcast, Client } from '@magicbell/project-client';
 
 ## fetchBroadcast
 
-Returns a broadcast
+Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.
 
 - HTTP Method: `GET`
 - Endpoint: `/broadcasts/{broadcast_id}`
 
 **Parameters**
 
-| Name        | Type     | Required | Description |
-| :---------- | :------- | :------- | :---------- |
-| broadcastId | `string` | ✅       |             |
+| Name        | Type   | Required | Description |
+| :---------- | :----- | :------- | :---------- |
+| broadcastId | string | ✅       |             |
 
 **Return Type**
 
