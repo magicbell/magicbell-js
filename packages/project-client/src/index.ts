@@ -2,12 +2,15 @@ import { Environment } from './http/environment.js';
 import { SdkConfig } from './http/types.js';
 import { BroadcastsService } from './services/broadcasts/index.js';
 import { ChannelsService } from './services/channels/index.js';
+import { EventsService } from './services/events/index.js';
 import { IntegrationsService } from './services/integrations/index.js';
 import { JwtService } from './services/jwt/index.js';
 
 export type * from './http/index.js';
 export * from './services/broadcasts/index.js';
 export * from './services/channels/index.js';
+export * from './services/common/index.js';
+export * from './services/events/index.js';
 export * from './services/integrations/index.js';
 export * from './services/jwt/index.js';
 
@@ -15,6 +18,8 @@ export class Client {
   public readonly broadcasts: BroadcastsService;
 
   public readonly channels: ChannelsService;
+
+  public readonly events: EventsService;
 
   public readonly integrations: IntegrationsService;
 
@@ -30,6 +35,8 @@ export class Client {
 
     this.channels = new ChannelsService(this.config);
 
+    this.events = new EventsService(this.config);
+
     this.integrations = new IntegrationsService(this.config);
 
     this.jwt = new JwtService(this.config);
@@ -38,6 +45,7 @@ export class Client {
   set baseUrl(baseUrl: string) {
     this.broadcasts.baseUrl = baseUrl;
     this.channels.baseUrl = baseUrl;
+    this.events.baseUrl = baseUrl;
     this.integrations.baseUrl = baseUrl;
     this.jwt.baseUrl = baseUrl;
   }
@@ -45,20 +53,23 @@ export class Client {
   set environment(environment: Environment) {
     this.broadcasts.baseUrl = environment;
     this.channels.baseUrl = environment;
+    this.events.baseUrl = environment;
     this.integrations.baseUrl = environment;
     this.jwt.baseUrl = environment;
   }
 
-  set timeout(timeout: number) {
-    this.broadcasts.timeout = timeout;
-    this.channels.timeout = timeout;
-    this.integrations.timeout = timeout;
-    this.jwt.timeout = timeout;
+  set timeoutMs(timeoutMs: number) {
+    this.broadcasts.timeoutMs = timeoutMs;
+    this.channels.timeoutMs = timeoutMs;
+    this.events.timeoutMs = timeoutMs;
+    this.integrations.timeoutMs = timeoutMs;
+    this.jwt.timeoutMs = timeoutMs;
   }
 
   set token(token: string) {
     this.broadcasts.token = token;
     this.channels.token = token;
+    this.events.token = token;
     this.integrations.token = token;
     this.jwt.token = token;
   }

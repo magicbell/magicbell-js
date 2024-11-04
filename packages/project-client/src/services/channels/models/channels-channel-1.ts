@@ -1,8 +1,10 @@
+import { z } from 'zod';
+
 export enum ChannelsChannel1 {
-  INAPP = 'in_app',
+  IN_APP = 'in_app',
   SLACK = 'slack',
-  WEBPUSH = 'web_push',
-  MOBILEPUSH = 'mobile_push',
+  WEB_PUSH = 'web_push',
+  MOBILE_PUSH = 'mobile_push',
   TEAMS = 'teams',
   EMAIL = 'email',
   SMS = 'sms',

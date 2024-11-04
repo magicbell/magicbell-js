@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 export enum Type_ {
-  SERVICEACCOUNT = 'service_account',
+  SERVICE_ACCOUNT = 'service_account',
 }

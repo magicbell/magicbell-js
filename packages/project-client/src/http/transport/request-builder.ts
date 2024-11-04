@@ -2,7 +2,7 @@ import z, { ZodType } from 'zod';
 
 import { Environment } from '../environment.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
-import { ContentType, HttpMethod, RequestConfig, SdkConfig } from '../types.js';
+import { ContentType, HttpMethod, RequestConfig, RetryOptions, SdkConfig, ValidationOptions } from '../types.js';
 import { CreateRequestParameters, Request, RequestPagination, RequestParameter } from './request.js';
 
 export class RequestBuilder<FullResponse, Page extends unknown[] = unknown[]> {
