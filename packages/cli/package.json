@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/cli",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Work with MagicBell from the command line",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
