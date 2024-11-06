@@ -1,5 +1,13 @@
 # @magicbell/cli
 
+## 4.1.1
+
+### Patch Changes
+
+- [#422](https://github.com/magicbell/magicbell-js/pull/422) [`68e683c`](https://github.com/magicbell/magicbell-js/commit/68e683c8472864fe0d5cb6013b33fbcbceefc20c) Thanks [@stigi](https://github.com/stigi)! - Fixes @magicbell/cli NPM package content
+
+- [#424](https://github.com/magicbell/magicbell-js/pull/424) [`5177703`](https://github.com/magicbell/magicbell-js/commit/51777030bfbd44c5d1ce2adc5140871845087c11) Thanks [@stigi](https://github.com/stigi)! - Fixes dependencies that were incorrectly dev dependencies in @magicbell/cli
+
 ## 4.1.0
 
 ### Minor Changes
