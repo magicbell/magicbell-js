@@ -31,6 +31,6 @@ jobs:
 
       - name: Publish to brew tap
         shell: bash
-        run: "npx brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
+        run: "npx -y brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
         env:
           GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
