@@ -13,7 +13,7 @@
   "sideEffects": false,
   "files": [
     "/bin/magicbell.js",
-    "/dist/index.cjs",
+    "/dist",
     "LICENSE"
   ],
   "homepage": "https://magicbell.com",
