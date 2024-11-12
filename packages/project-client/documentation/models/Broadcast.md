@@ -2,16 +2,19 @@
 
 **Properties**
 
-| Name             | Type      | Required | Description |
-| :--------------- | :-------- | :------- | :---------- |
-| recipients       | any[]     | ✅       |             |
-| title            | string    | ✅       |             |
-| actionUrl        | string    | ❌       |             |
-| category         | Category  | ❌       |             |
-| content          | string    | ❌       |             |
-| customAttributes | any       | ❌       |             |
-| overrides        | Overrides | ❌       |             |
-| topic            | Topic     | ❌       |             |
+| Name             | Type            | Required | Description                                   |
+| :--------------- | :-------------- | :------- | :-------------------------------------------- |
+| recipients       | any[]           | ✅       |                                               |
+| title            | string          | ✅       |                                               |
+| actionUrl        | string          | ❌       |                                               |
+| category         | Category        | ❌       |                                               |
+| content          | string          | ❌       |                                               |
+| createdAt        | string          | ❌       | The timestamp when the broadcast was created. |
+| customAttributes | any             | ❌       |                                               |
+| id               | string          | ❌       | The unique id for this broadcast.             |
+| overrides        | Overrides       | ❌       |                                               |
+| status           | BroadcastStatus | ❌       |                                               |
+| topic            | Topic           | ❌       |                                               |
 
 # Category
 
@@ -110,5 +113,34 @@
 | postmark  | any  | ❌       |             |
 | sendgrid  | any  | ❌       |             |
 | slack     | any  | ❌       |             |
+
+# BroadcastStatus
+
+**Properties**
+
+| Name    | Type         | Required | Description |
+| :------ | :----------- | :------- | :---------- |
+| errors  | any[]        | ✅       |             |
+| status  | StatusStatus | ✅       |             |
+| summary | Summary      | ✅       |             |
+
+# StatusStatus
+
+**Properties**
+
+| Name       | Type   | Required | Description  |
+| :--------- | :----- | :------- | :----------- |
+| ENQUEUED   | string | ✅       | "enqueued"   |
+| PROCESSING | string | ✅       | "processing" |
+| PROCESSED  | string | ✅       | "processed"  |
+
+# Summary
+
+**Properties**
+
+| Name     | Type   | Required | Description                                              |
+| :------- | :----- | :------- | :------------------------------------------------------- |
+| failures | number | ✅       | The number of failures while processing the broadcast.   |
+| total    | number | ✅       | The number of recipients that the broadcast was sent to. |
 
 # Topic

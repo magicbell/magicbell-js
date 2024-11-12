@@ -38,7 +38,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 8,
+    pageSize: 3,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -74,7 +74,7 @@ import { Broadcast, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const category = '3wP';
+  const category = 'Tm2nfAJnnP';
 
   const email: Email = {
     actionUrl: 'action_url',
@@ -136,15 +136,31 @@ import { Broadcast, Client } from '@magicbell/project-client';
     providers: providers,
   };
 
-  const topic = 'ptLP';
+  const statusStatus = StatusStatus.ENQUEUED;
+
+  const summary: Summary = {
+    failures: 3,
+    total: 10,
+  };
+
+  const broadcastStatus: BroadcastStatus = {
+    errors: [{}],
+    status: statusStatus,
+    summary: summary,
+  };
+
+  const topic = 'nTAt/P';
 
   const broadcast: Broadcast = {
     actionUrl: 'action_url',
     category: category,
     content: 'content',
+    createdAt: 'created_at',
     customAttributes: {},
+    id: 'id',
     overrides: overrides,
     recipients: [{}],
+    status: broadcastStatus,
     title: 'title',
     topic: topic,
   };

@@ -1,5 +1,6 @@
 export type { ArrayOfBroadcasts } from './array-of-broadcasts.js';
 export type { Broadcast } from './broadcast.js';
+export type { BroadcastStatus } from './broadcast-status.js';
 export type { Category } from './category.js';
 export type { Email } from './email.js';
 export type { InApp } from './in-app.js';
@@ -9,5 +10,7 @@ export type { OverridesChannels } from './overrides-channels.js';
 export type { Providers } from './providers.js';
 export type { Slack } from './slack.js';
 export type { Sms } from './sms.js';
+export { StatusStatus } from './status-status.js';
+export type { Summary } from './summary.js';
 export type { Topic } from './topic.js';
 export type { WebPush } from './web-push.js';

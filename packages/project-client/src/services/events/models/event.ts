@@ -5,14 +5,24 @@ import { z } from 'zod';
  */
 export const event = z.lazy(() => {
   return z.object({
-    discardedAt: z.string().optional(),
-    id: z.string().optional(),
+    code: z.number().optional(),
+    context: z.any().optional(),
+    id: z.string(),
+    level: z.string().optional(),
+    log: z.string().optional().nullable(),
+    timestamp: z.string(),
+    type: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {Event} event
+ * @property {number}
+ * @property {any}
+ * @property {string}
+ * @property {string}
+ * @property {string}
  * @property {string}
  * @property {string}
  */
@@ -25,12 +35,22 @@ export type Event = z.infer<typeof event>;
 export const eventResponse = z.lazy(() => {
   return z
     .object({
-      discarded_at: z.string().optional(),
-      id: z.string().optional(),
+      code: z.number().optional(),
+      context: z.any().optional(),
+      id: z.string(),
+      level: z.string().optional(),
+      log: z.string().optional().nullable(),
+      timestamp: z.string(),
+      type: z.string(),
     })
     .transform((data) => ({
-      discardedAt: data['discarded_at'],
+      code: data['code'],
+      context: data['context'],
       id: data['id'],
+      level: data['level'],
+      log: data['log'],
+      timestamp: data['timestamp'],
+      type: data['type'],
     }));
 });
 
@@ -39,8 +59,23 @@ export const eventResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const eventRequest = z.lazy(() => {
-  return z.object({ discardedAt: z.string().nullish(), id: z.string().nullish() }).transform((data) => ({
-    discarded_at: data['discardedAt'],
-    id: data['id'],
-  }));
+  return z
+    .object({
+      code: z.number().nullish(),
+      context: z.any().nullish(),
+      id: z.string().nullish(),
+      level: z.string().nullish(),
+      log: z.string().nullish(),
+      timestamp: z.string().nullish(),
+      type: z.string().nullish(),
+    })
+    .transform((data) => ({
+      code: data['code'],
+      context: data['context'],
+      id: data['id'],
+      level: data['level'],
+      log: data['log'],
+      timestamp: data['timestamp'],
+      type: data['type'],
+    }));
 });
