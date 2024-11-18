@@ -19,7 +19,7 @@ export class RequestValidationHandler implements RequestHandler {
     ) {
       request.body = request.body;
     } else if (request.requestContentType === ContentType.FormUrlEncoded) {
-      request.body = this.toFormUrlEncoded(request.body);
+      request.body = this.toFormUrlEncoded(request);
     } else if (request.requestContentType === ContentType.MultipartFormData) {
       request.body = this.toFormData(request.body);
     } else {
@@ -29,31 +29,33 @@ export class RequestValidationHandler implements RequestHandler {
     return await this.next.handle(request);
   }
 
-  toFormUrlEncoded(body: BodyInit | undefined): string {
-    if (body === undefined) {
+  toFormUrlEncoded<T>(request: Request<T>): string {
+    if (request.body === undefined) {
       return '';
     }
 
-    if (typeof body === 'string') {
-      return body;
+    if (typeof request.body === 'string') {
+      return request.body;
     }
 
-    if (body instanceof URLSearchParams) {
-      return body.toString();
+    if (request.body instanceof URLSearchParams) {
+      return request.body.toString();
     }
 
-    if (body instanceof FormData) {
+    const validatedBody = request.requestSchema?.parse(request.body);
+
+    if (validatedBody instanceof FormData) {
       const params = new URLSearchParams();
-      body.forEach((value, key) => {
+      validatedBody.forEach((value, key) => {
         params.append(key, value.toString());
       });
       return params.toString();
     }
 
-    if (typeof body === 'object' && !Array.isArray(body)) {
+    if (typeof validatedBody === 'object' && !Array.isArray(validatedBody)) {
       const params = new URLSearchParams();
-      for (const [key, value] of Object.entries(body)) {
-        params.append(key, value.toString());
+      for (const [key, value] of Object.entries(validatedBody)) {
+        params.append(key, `${value}`);
       }
       return params.toString();
     }

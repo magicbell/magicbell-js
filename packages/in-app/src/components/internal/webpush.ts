@@ -1,4 +1,4 @@
-import { Client } from '@magicbell/user-client';
+import { Client, WebPushToken } from '@magicbell/user-client';
 
 export type WebPushClientOptions = {
   serviceWorkerPath?: string;
@@ -75,7 +75,7 @@ export class WebPushClient {
       throw new Error('Failed to subscribe to push notifications, browser did not return an subscription endpoint.');
     }
 
-    await this.#client.channels.saveWebPushToken(subscription);
+    await this.#client.channels.saveWebPushToken(subscription as WebPushToken);
   }
 
   async unsubscribe(): Promise<void> {

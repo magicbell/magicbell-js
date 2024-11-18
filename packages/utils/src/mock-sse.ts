@@ -52,10 +52,10 @@ export function eventStream(generatorFn: () => Generator<Record<string, unknown>
 
   const timeout = setTimeout(() => clearInterval(interval), TIMEOUT);
 
-  return new Promise<{ host: string; port: number }>((resolve) => {
+  return new Promise<{ host: string; port: number; close: () => void }>((resolve) => {
     portFinder.getPortPromise().then((port) => {
       server.listen(port);
-      resolve({ port, host: `http://localhost:${port}` });
+      resolve({ port, host: `http://localhost:${port}`, close: () => server.close() });
     });
   });
 }

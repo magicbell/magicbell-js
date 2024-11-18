@@ -125,10 +125,10 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channelsChannel2,
-    delay: 8,
+    delay: 6,
     disabled: true,
     if: 'if',
-    priority: 7,
+    priority: 1,
   };
 
   const categoryDeliveryConfig: CategoryDeliveryConfig = {
@@ -174,7 +174,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    pageSize: 8,
+    pageSize: 9,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -282,7 +282,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
-    pageSize: 4,
+    pageSize: 3,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -390,7 +390,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
-    pageSize: 4,
+    pageSize: 2,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -498,7 +498,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getSlackUserTokens('user_id', {
-    pageSize: 9,
+    pageSize: 7,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -606,7 +606,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    pageSize: 4,
+    pageSize: 123,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });

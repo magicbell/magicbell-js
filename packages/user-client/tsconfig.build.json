@@ -9,6 +9,7 @@
     "baseUrl": "./",
     "declarationMap": true,
     "lib": ["ES2021.String", "dom", "esnext"],
-    "noEmit": false
+    "noEmit": false,
+    "strictNullChecks": true
   }
 }
