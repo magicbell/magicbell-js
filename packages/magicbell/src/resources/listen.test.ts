@@ -1,10 +1,11 @@
 import { eventStream, mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import { Client } from '../client/client.js';
-import { createListener } from './listen.js';
+import { createListener, Listener } from './listen.js';
 
 const server = setupMockServer(...mockHandlers);
-let listen;
+let listen: Listener;
+let sse: Awaited<ReturnType<typeof eventStream>>;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -16,14 +17,18 @@ beforeEach(async () => {
     if (req.url.pathname === '/sse') return { passThrough: true };
   });
 
-  const { host } = await eventStream(function* () {
+  sse = await eventStream(function* () {
     yield { type: 'notifications/new', data: { id: 1 } };
     yield { type: 'notifications/new', data: { id: 2 } };
     yield { type: 'notifications/new', data: { id: 3 } };
   });
 
   const client = new Client({ apiKey: 'my-api-key' });
-  listen = createListener(client, { sseHost: host });
+  listen = createListener(client, { sseHost: sse.host });
+});
+
+afterEach(() => {
+  sse.close();
 });
 
 test('can listen to realtime events using async iterator', async () => {
@@ -74,8 +79,7 @@ test('return false in forEach helper closes listener', async () => {
   expect(events[1].data).toEqual({ id: 2 });
 });
 
-// flaky in CI
-test.skip('can close listener', async () => {
+test('can close listener', async () => {
   const events = [];
 
   const iterator = listen();
