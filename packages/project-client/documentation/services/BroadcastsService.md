@@ -38,7 +38,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    pageSize: 3,
+    pageSize: 8,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -73,8 +73,6 @@ import { Broadcast, Client } from '@magicbell/project-client';
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
-
-  const category = 'Tm2nfAJnnP';
 
   const email: Email = {
     actionUrl: 'action_url',
@@ -136,24 +134,26 @@ import { Broadcast, Client } from '@magicbell/project-client';
     providers: providers,
   };
 
+  const errors: Errors = {
+    message: 'message',
+  };
+
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 3,
-    total: 10,
+    failures: 2,
+    total: 9,
   };
 
   const broadcastStatus: BroadcastStatus = {
-    errors: [{}],
+    errors: [errors],
     status: statusStatus,
     summary: summary,
   };
 
-  const topic = 'nTAt/P';
-
   const broadcast: Broadcast = {
     actionUrl: 'action_url',
-    category: category,
+    category: 'category',
     content: 'content',
     createdAt: 'created_at',
     customAttributes: {},
@@ -162,7 +162,7 @@ import { Broadcast, Client } from '@magicbell/project-client';
     recipients: [{}],
     status: broadcastStatus,
     title: 'title',
-    topic: topic,
+    topic: 'topic',
   };
 
   const { data } = await client.broadcasts.createBroadcast(broadcast);

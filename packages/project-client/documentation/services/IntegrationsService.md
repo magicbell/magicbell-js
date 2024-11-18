@@ -96,7 +96,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    pageSize: 4,
+    pageSize: 3,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -165,13 +165,12 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfig: ApnsConfig = {
   appId: "app_id",
   badge: badge,
-  certificate: " BEGINQG--------
-5db72SdF+==
----- ENDBOSIE----------
-",
-  keyId: "tempor ind",
+  certificate: "----- BEGINMYXRQV RJX--------
+C==
+------ENDPY------",
+  keyId: "quis irure",
   payloadVersion: payloadVersion,
-  teamId: "officiaut "
+  teamId: "commodo ma"
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
@@ -527,9 +526,10 @@ const fcmConfig: FcmConfig = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "----- BEGINCT----------
-vUpQ
--- ENDCG--------",
+  privateKey: "BEGINSPJ WRG------
+cJGTsgilO=
+-- ENDXLDHRV--------
+",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -773,7 +773,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 4.48,
+    backgroundOpacity: 8.57,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1481,10 +1481,10 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: 'VN377TRY',
-    clientId: '7946114.407771',
-    clientSecret: 'eiusmod temporofficianisi veniam',
-    signingSecret: 'enim adipisicing deseruntincidid',
+    appId: 'EP2DZ',
+    clientId: '986001.1869975198',
+    clientSecret: 'Loremconsectetur dolorculpaquis ',
+    signingSecret: 'non officia velit ut aliquaExcep',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfig);
@@ -1835,7 +1835,7 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+7',
+    from: '+99300830465',
     region: twilioConfigRegion,
   };
 

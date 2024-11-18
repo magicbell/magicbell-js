@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { errors, errorsRequest, errorsResponse } from './errors.js';
 import { summary, summaryRequest, summaryResponse } from './summary.js';
 
 /**
@@ -7,7 +8,7 @@ import { summary, summaryRequest, summaryResponse } from './summary.js';
  */
 export const broadcastStatus = z.lazy(() => {
   return z.object({
-    errors: z.array(z.any()).nullable(),
+    errors: z.array(errors).nullable(),
     status: z.string(),
     summary: summary,
   });
@@ -16,7 +17,7 @@ export const broadcastStatus = z.lazy(() => {
 /**
  *
  * @typedef  {BroadcastStatus} broadcastStatus
- * @property {any[]}
+ * @property {Errors[]}
  * @property {StatusStatus}
  * @property {Summary}
  */
@@ -29,7 +30,7 @@ export type BroadcastStatus = z.infer<typeof broadcastStatus>;
 export const broadcastStatusResponse = z.lazy(() => {
   return z
     .object({
-      errors: z.array(z.any()).nullable(),
+      errors: z.array(errorsResponse).nullable(),
       status: z.string(),
       summary: summaryResponse,
     })
@@ -46,7 +47,11 @@ export const broadcastStatusResponse = z.lazy(() => {
  */
 export const broadcastStatusRequest = z.lazy(() => {
   return z
-    .object({ errors: z.array(z.any()).nullish(), status: z.string().nullish(), summary: summaryRequest.nullish() })
+    .object({
+      errors: z.array(errorsRequest).nullish(),
+      status: z.string().nullish(),
+      summary: summaryRequest.nullish(),
+    })
     .transform((data) => ({
       errors: data['errors'],
       status: data['status'],

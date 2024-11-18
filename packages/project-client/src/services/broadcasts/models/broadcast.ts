@@ -1,9 +1,7 @@
 import { z } from 'zod';
 
 import { broadcastStatus, broadcastStatusRequest, broadcastStatusResponse } from './broadcast-status.js';
-import { category, categoryRequest, categoryResponse } from './category.js';
 import { overrides, overridesRequest, overridesResponse } from './overrides.js';
-import { topic, topicRequest, topicResponse } from './topic.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -11,16 +9,26 @@ import { topic, topicRequest, topicResponse } from './topic.js';
 export const broadcast = z.lazy(() => {
   return z.object({
     actionUrl: z.string().max(2048).optional().nullable(),
-    category: category.optional(),
+    category: z
+      .string()
+      .max(255)
+      .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+      .optional()
+      .nullable(),
     content: z.string().max(10485760).optional().nullable(),
     createdAt: z.string().optional(),
     customAttributes: z.any().optional().nullable(),
     id: z.string().optional(),
     overrides: overrides.optional().nullable(),
     recipients: z.array(z.any()).min(1).max(1000),
-    status: broadcastStatus.optional().nullable(),
+    status: broadcastStatus.optional(),
     title: z.string().min(1).max(255),
-    topic: topic.optional(),
+    topic: z
+      .string()
+      .max(255)
+      .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+      .optional()
+      .nullable(),
   });
 });
 
@@ -28,7 +36,7 @@ export const broadcast = z.lazy(() => {
  *
  * @typedef  {Broadcast} broadcast
  * @property {string}
- * @property {Category}
+ * @property {string}
  * @property {string}
  * @property {string} - The timestamp when the broadcast was created.
  * @property {any}
@@ -37,7 +45,7 @@ export const broadcast = z.lazy(() => {
  * @property {any[]}
  * @property {BroadcastStatus}
  * @property {string}
- * @property {Topic}
+ * @property {string}
  */
 export type Broadcast = z.infer<typeof broadcast>;
 
@@ -49,16 +57,26 @@ export const broadcastResponse = z.lazy(() => {
   return z
     .object({
       action_url: z.string().max(2048).optional().nullable(),
-      category: categoryResponse.optional(),
+      category: z
+        .string()
+        .max(255)
+        .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+        .optional()
+        .nullable(),
       content: z.string().max(10485760).optional().nullable(),
       created_at: z.string().optional(),
       custom_attributes: z.any().optional().nullable(),
       id: z.string().optional(),
       overrides: overridesResponse.optional().nullable(),
       recipients: z.array(z.any()).min(1).max(1000),
-      status: broadcastStatusResponse.optional().nullable(),
+      status: broadcastStatusResponse.optional(),
       title: z.string().min(1).max(255),
-      topic: topicResponse.optional(),
+      topic: z
+        .string()
+        .max(255)
+        .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+        .optional()
+        .nullable(),
     })
     .transform((data) => ({
       actionUrl: data['action_url'],
@@ -83,7 +101,7 @@ export const broadcastRequest = z.lazy(() => {
   return z
     .object({
       actionUrl: z.string().nullish(),
-      category: categoryRequest.nullish(),
+      category: z.string().nullish(),
       content: z.string().nullish(),
       createdAt: z.string().nullish(),
       customAttributes: z.any().nullish(),
@@ -92,7 +110,7 @@ export const broadcastRequest = z.lazy(() => {
       recipients: z.array(z.any()).nullish(),
       status: broadcastStatusRequest.nullish(),
       title: z.string().nullish(),
-      topic: topicRequest.nullish(),
+      topic: z.string().nullish(),
     })
     .transform((data) => ({
       action_url: data['actionUrl'],
