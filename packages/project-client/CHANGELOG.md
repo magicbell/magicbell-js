@@ -1,5 +1,11 @@
 # @magicbell/project-client
 
+## 0.5.3
+
+### Patch Changes
+
+- [#428](https://github.com/magicbell/magicbell-js/pull/428) [`b2cb190`](https://github.com/magicbell/magicbell-js/commit/b2cb190bb8a541a6305108548e9f5f97edf8d15e) Thanks [@smeijer](https://github.com/smeijer)! - regen project client
+
 ## 0.5.1
 
 ### Patch Changes
