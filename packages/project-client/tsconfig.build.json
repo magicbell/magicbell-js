@@ -11,6 +11,7 @@
     "lib": ["ES2021.String", "dom", "esnext"],
     "noEmit": false,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "strictNullChecks": true
   }
 }
