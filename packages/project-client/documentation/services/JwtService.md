@@ -78,7 +78,7 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 1,
+    expiry: 5,
     name: 'name',
   };
 
@@ -150,7 +150,7 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
 
   const createUserTokenRequest: CreateUserTokenRequest = {
     email: 'email',
-    expiry: 1,
+    expiry: 6,
     externalId: 'external_id',
     name: 'name',
   };
@@ -225,7 +225,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.jwt.fetchUserTokens('user_id', {
-    pageSize: 5,
+    pageSize: 9,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });

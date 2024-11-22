@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const replyTo = z.lazy(() => {
   return z.object({
     email: z.string(),
-    name: z.string().optional(),
+    name: z.string().optional().nullable(),
   });
 });
 
@@ -26,7 +26,7 @@ export const replyToResponse = z.lazy(() => {
   return z
     .object({
       email: z.string(),
-      name: z.string().optional(),
+      name: z.string().optional().nullable(),
     })
     .transform((data) => ({
       email: data['email'],

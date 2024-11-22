@@ -6,9 +6,9 @@ import { z } from 'zod';
 export const tokenMetadata = z.lazy(() => {
   return z.object({
     createdAt: z.string(),
-    discardedAt: z.string().optional(),
+    discardedAt: z.string().optional().nullable(),
     id: z.string(),
-    updatedAt: z.string().optional(),
+    updatedAt: z.string().optional().nullable(),
   });
 });
 
@@ -30,9 +30,9 @@ export const tokenMetadataResponse = z.lazy(() => {
   return z
     .object({
       created_at: z.string(),
-      discarded_at: z.string().optional(),
+      discarded_at: z.string().optional().nullable(),
       id: z.string(),
-      updated_at: z.string().optional(),
+      updated_at: z.string().optional().nullable(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
