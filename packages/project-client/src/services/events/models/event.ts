@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const event = z.lazy(() => {
   return z.object({
     code: z.number().optional(),
-    context: z.any().optional(),
+    context: z.any().optional().nullable(),
     id: z.string(),
     level: z.string().optional(),
     log: z.string().optional().nullable(),
@@ -36,7 +36,7 @@ export const eventResponse = z.lazy(() => {
   return z
     .object({
       code: z.number().optional(),
-      context: z.any().optional(),
+      context: z.any().optional().nullable(),
       id: z.string(),
       level: z.string().optional(),
       log: z.string().optional().nullable(),
