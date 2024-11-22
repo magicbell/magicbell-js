@@ -1,5 +1,11 @@
 # @magicbell/project-client
 
+## 0.5.4
+
+### Patch Changes
+
+- [#433](https://github.com/magicbell/magicbell-js/pull/433) [`d0f7bae`](https://github.com/magicbell/magicbell-js/commit/d0f7bae98a7a05c375c78bb354778376fffadde1) Thanks [@stigi](https://github.com/stigi)! - Correctly flagging nullable properties. All of them were optional before so they are likely handled correctly already and this is just affecting response validation.
+
 ## 0.5.3
 
 ### Patch Changes
