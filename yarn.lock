@@ -12315,10 +12315,10 @@ postcss@^8.4.43, postcss@^8.4.47:
     picocolors "^1.1.0"
     source-map-js "^1.2.1"
 
-preact@^10.24.0:
-  version "10.24.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.24.2.tgz#42179771d3b06e7adb884e3f8127ddd3d99b78f6"
-  integrity sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==
+preact@^10.25.0:
+  version "10.25.0"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.25.0.tgz#22a1c93ce97336c5d01d74f363433ab0cd5cde64"
+  integrity sha512-6bYnzlLxXV3OSpUxLdaxBmE7PMOu0aR3pG6lryK/0jmvcDFPlcXGQAt5DpK3RITWiDrfYZRI0druyaK/S9kYLg==
 
 prelude-ls@^1.2.1:
   version "1.2.1"

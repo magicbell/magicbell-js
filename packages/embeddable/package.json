@@ -38,7 +38,7 @@
     "@floating-ui/react": "^0.26.24",
     "@magicbell/magicbell-react": "11.1.0",
     "error-stack-parser": "^2.1.4",
-    "preact": "^10.24.0",
+    "preact": "^10.25.0",
     "react-frame-component": "^5.2.6",
     "tslib": "^2.8.0"
   },
