@@ -120,8 +120,8 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.p
   for (const key of Object.keys(pkgJson.devDependencies)) {
     if (/eslint|prettier/.test(key)) {
       delete pkgJson.devDependencies[key];
-    } else if (rootPkgJson.dependencies[key]) {
-      pkgJson.devDependencies[key] = rootPkgJson.dependencies[key];
+    } else if (rootPkgJson.devDependencies[key]) {
+      pkgJson.devDependencies[key] = rootPkgJson.devDependencies[key];
     }
   }
 
