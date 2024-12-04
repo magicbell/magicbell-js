@@ -1,8 +1,6 @@
 import ConfigStore from 'configstore';
 
 type Project = {
-  id: string;
-  name: string;
   apiKey: string;
   apiSecret: string;
   userEmail?: string;
