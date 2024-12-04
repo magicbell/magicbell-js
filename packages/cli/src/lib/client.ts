@@ -11,26 +11,6 @@ import { serialize } from './serializers.js';
 type Hooks = ProjectClientOptions['hooks'];
 const features: ProjectClientOptions['features'] = {};
 
-class ExtendedProjectClient extends ProjectClient {
-  async getProject() {
-    const project = await super
-      .request({
-        method: 'POST',
-        path: '/graphql',
-        data: {
-          query: `{ currentProject { id, name } }`,
-        },
-      })
-      .then((x) => x.data.currentProject);
-
-    if (!project) {
-      throw Error('Could not find project');
-    }
-
-    return project;
-  }
-}
-
 function getConfig(cmd: Command, options?: Partial<ProjectClientOptions | UserClientOptions>) {
   const { profile, host, printRequest, userEmail, userExternalId, token } = cmd.optsWithGlobals();
   const project = configStore.getProject(profile);
@@ -85,5 +65,5 @@ export function getUserClient(cmd: Command, options?: Partial<UserClientOptions>
 
 export function getProjectClient(cmd: Command, options?: Partial<ProjectClientOptions>) {
   const config = getConfig(cmd, options);
-  return new ExtendedProjectClient(config);
+  return new ProjectClient(config);
 }

@@ -26,7 +26,7 @@ export const login = createCommand('login')
 
       const { profile, host } = cmd.optsWithGlobals();
 
-      const project = await client.getProject().catch((e) => {
+      await client.broadcasts.list({ per_page: 1 }).catch((e) => {
         const code = String(e?.code);
 
         if (e?.status === 401) {
@@ -41,8 +41,6 @@ export const login = createCommand('login')
 
       try {
         configStore.setProject(profile, {
-          id: project.id,
-          name: project.name,
           apiKey,
           apiSecret,
           host,
@@ -51,7 +49,7 @@ export const login = createCommand('login')
         throw new Error(`Failed to save project: ${e.message}. Is the config path (${configStore.path}) writable?`);
       }
 
-      printMessage(`\nYou are now logged in to project ${kleur.bold(project.name)}`);
+      printMessage(`\nYou are now logged in.`);
     } catch (e) {
       printMessage('');
       printError(e.message);
