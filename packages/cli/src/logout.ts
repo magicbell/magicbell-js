@@ -1,5 +1,3 @@
-import kleur from 'kleur';
-
 import { createCommand } from './lib/commands.js';
 import { configStore } from './lib/config.js';
 import { printMessage } from './lib/printer.js';
@@ -21,6 +19,6 @@ export const logout = createCommand('logout')
       }
 
       configStore.unsetProject(profile);
-      printMessage(`You are now logged out from project ${kleur.bold(project.name)}.`);
+      printMessage(`You are now logged out.`);
     }
   });
