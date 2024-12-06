@@ -1,5 +1,11 @@
 # @magicbell/cli
 
+## 4.2.0
+
+### Minor Changes
+
+- [#437](https://github.com/magicbell/magicbell-js/pull/437) [`2f4a412`](https://github.com/magicbell/magicbell-js/commit/2f4a412a1ca73c82d7a7106702708b89d41b5478) Thanks [@smeijer](https://github.com/smeijer)! - remove graphql call during login
+
 ## 4.1.1
 
 ### Patch Changes

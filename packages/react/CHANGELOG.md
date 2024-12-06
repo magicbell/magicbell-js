@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 11.1.1
+
+### Patch Changes
+
+- [#440](https://github.com/magicbell/magicbell-js/pull/440) [`0b8f1f2`](https://github.com/magicbell/magicbell-js/commit/0b8f1f2daa2eb322a12e8bbc691cada7c4c205f9) Thanks [@smeijer](https://github.com/smeijer)! - ensure that clicking notification menu doesn't trigger action url
+
 ## 11.1.0
 
 ### Minor Changes
