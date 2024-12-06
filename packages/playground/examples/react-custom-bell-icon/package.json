@@ -2,6 +2,6 @@
   "name": "magicbell-project",
   "description": "Using a custom bell icon.",
   "dependencies": {
-    "@magicbell/magicbell-react": "10.7.5"
+    "@magicbell/magicbell-react": "11.1.0"
   }
 }
