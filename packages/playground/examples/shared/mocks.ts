@@ -137,11 +137,13 @@ const fakeNotifications = {
     notification({
       title: `Welcome to MagicBell Playground! 🎉`,
       content: 'Here you can explore, and play with, our various web SDKs.',
+      action_url: 'https://magicbell.com',
     }),
     notification({
       title: 'Make demos or reproductions. 👀',
       content:
         'Click the "Fork" button in the top right corner when you wish to save your changes. It will load the current playground - including all modifications - in CodeSandbox. The sandbox can then be easily shared with coworkers, or with us.',
+      action_url: 'https://example.com',
     }),
     notification({
       title: 'Escape the Sandbox. 🚀',

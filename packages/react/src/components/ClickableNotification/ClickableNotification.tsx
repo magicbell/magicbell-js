@@ -17,6 +17,21 @@ export interface Props {
   prose?: boolean;
 }
 
+const actionableTags = new Set(['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT']);
+function isActionableElement(event: MouseEvent) {
+  let el = event.target as HTMLElement;
+
+  while (el && el !== event.currentTarget) {
+    if (actionableTags.has(el.tagName.toUpperCase())) {
+      return true;
+    }
+
+    el = el.parentElement;
+  }
+
+  return false;
+}
+
 /**
  * Component that renders a notification. When the notification is clicked the
  * `onClick` callback is called and the notification is marked as read.
@@ -37,9 +52,9 @@ export default function ClickableNotification({ notification: rawNotification, o
 
     // We don't want to invoke the action url when the user clicks a link or button inside the notification.
     // Notification content should take precedence.
-    const isActionableElement = /^(a|button|input)$/i.test(event.target.tagName);
+    const isAction = isActionableElement(event);
+    if (isAction) return;
 
-    if (isActionableElement) return;
     const onClickResult = onClick?.(notification);
     if (onClickResult === false) return;
 
