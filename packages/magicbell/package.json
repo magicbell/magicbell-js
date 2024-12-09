@@ -126,7 +126,7 @@
   },
   "dependencies": {
     "@smeijer/ky": "^1.7.2",
-    "debug": "^4.3.4",
+    "debug": "^4.4.0",
     "fetch-addons": "^1.3.0",
     "json-schema-to-ts": "3.1.0",
     "url-join": "^4.0.1"
