@@ -68,7 +68,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
+    "@emotion/react": "^11.14.0",
     "@floating-ui/react": "^0.26.24",
     "@magicbell/react-headless": "5.1.0",
     "@magicbell/webpush": "2.1.0",
