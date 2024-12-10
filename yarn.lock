@@ -2483,10 +2483,10 @@
   dependencies:
     "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/react@^0.26.24":
-  version "0.26.25"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.26.25.tgz#cf4c8a2b89fab1a71712d15e6551df3bfbd2ea1d"
-  integrity sha512-hZOmgN0NTOzOuZxI1oIrDu3Gcl8WViIkvPMpB4xdd4QD6xAMtwgwr3VPoiyH/bLtRcS1cDnhxLSD1NsMJmwh/A==
+"@floating-ui/react@^0.27.0":
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react/-/react-0.27.0.tgz#e0931fd09374ab4b8ce1a1af5cb44d1ccd1bb95a"
+  integrity sha512-WLEksq7fJapXSJbmfiyq9pAW0a7ZFMEJToFE4oTDESxGjoa+nZu3YMjmZE2KvoUtQhqOK2yMMfWQFZyeWD0wGQ==
   dependencies:
     "@floating-ui/react-dom" "^2.1.2"
     "@floating-ui/utils" "^0.2.8"
