@@ -2,7 +2,7 @@
 // data: specifically https://github.com/magicbell/react-headless/blob/main/tests/factories/NotificationPreferencesFactory.ts
 // in this case.
 
-import IRemoteNotificationPreferences from '@magicbell/react-headless/src/types/IRemoteNotificationPreferences';
+import { IRemoteNotificationPreferences } from '@magicbell/react-headless';
 
 import deepFreeze from '../lib/deepFreeze';
 

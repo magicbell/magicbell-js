@@ -9,7 +9,6 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "source": "./src/index.ts",
-  "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,
@@ -31,7 +30,10 @@
   "type": "module",
   "tshy": {
     "project": "./tsconfig.build.json",
-    "exports": "./src/*.ts"
+    "exports": "./src/*.ts",
+    "dialects": [
+      "esm"
+    ]
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -48,9 +50,16 @@
     "eslint": "^8.57.0",
     "json-schema-merge-allof": "^0.8.1",
     "json5": "^2.2.3",
+    "mdast": "^3.0.0",
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-frontmatter": "^2.0.1",
+    "mdast-util-to-markdown": "^2.1.2",
+    "micromark-extension-frontmatter": "^2.0.0",
     "openapi-types": "^12.1.3",
     "prettier": "^2.8.8",
-    "recast": "^0.23.4"
+    "recast": "^0.23.4",
+    "unist-util-remove": "^4.0.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@types/json-schema-merge-allof": "^0.6.5"
@@ -60,83 +69,62 @@
       "import": {
         "types": "./dist/esm/builders.d.ts",
         "default": "./dist/esm/builders.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/builders.d.ts",
-        "default": "./dist/commonjs/builders.js"
       }
     },
     "./files": {
       "import": {
         "types": "./dist/esm/files.d.ts",
         "default": "./dist/esm/files.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/files.d.ts",
-        "default": "./dist/commonjs/files.js"
+      }
+    },
+    "./fs": {
+      "import": {
+        "types": "./dist/esm/fs.d.ts",
+        "default": "./dist/esm/fs.js"
       }
     },
     ".": {
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/index.d.ts",
-        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./markdown": {
+      "import": {
+        "types": "./dist/esm/markdown.d.ts",
+        "default": "./dist/esm/markdown.js"
       }
     },
     "./openapi": {
       "import": {
         "types": "./dist/esm/openapi.d.ts",
         "default": "./dist/esm/openapi.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/openapi.d.ts",
-        "default": "./dist/commonjs/openapi.js"
       }
     },
     "./recast": {
       "import": {
         "types": "./dist/esm/recast.d.ts",
         "default": "./dist/esm/recast.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/recast.d.ts",
-        "default": "./dist/commonjs/recast.js"
       }
     },
     "./resources": {
       "import": {
         "types": "./dist/esm/resources.d.ts",
         "default": "./dist/esm/resources.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/resources.d.ts",
-        "default": "./dist/commonjs/resources.js"
       }
     },
     "./schema": {
       "import": {
         "types": "./dist/esm/schema.d.ts",
         "default": "./dist/esm/schema.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/schema.d.ts",
-        "default": "./dist/commonjs/schema.js"
       }
     },
     "./text": {
       "import": {
         "types": "./dist/esm/text.d.ts",
         "default": "./dist/esm/text.js"
-      },
-      "require": {
-        "types": "./dist/commonjs/text.d.ts",
-        "default": "./dist/commonjs/text.js"
       }
     },
     "./package.json": "./package.json"
-  },
-  "types": "./dist/commonjs/index.d.ts"
+  }
 }

@@ -32,4 +32,4 @@ for (const file of pkgPaths) {
   pkgJson.files.push(file);
 }
 
-fs.writeFileSync(path.join(__dirname, '..', 'package.json'), JSON.stringify(pkgJson, null, 2), 'utf-8');
+fs.writeFileSync(path.join(__dirname, '..', 'package.json'), JSON.stringify(pkgJson, null, 2) + '\n', 'utf-8');

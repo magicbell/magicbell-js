@@ -3,6 +3,7 @@
   "compilerOptions": {
     "incremental": true,
     "resolveJsonModule": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "moduleResolution": "bundler"
   }
 }
