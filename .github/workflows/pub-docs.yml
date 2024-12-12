@@ -1,0 +1,25 @@
+name: publish docs
+on:
+  push:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BELLA_ACTION_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: bahmutov/npm-install@v1
+
+      - name: Build docs
+        run: |
+          ./packages/project-client/scripts/build-docs.ts
+
+      - name: Sync docs with remote repo
+        uses: BetaHuhn/repo-file-sync-action@v1
+        #if: steps.changesets.outputs.published == 'true'
+        with:
+          GH_PAT: ${{ secrets.BELLA_ACTION_TOKEN }}

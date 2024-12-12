@@ -1,0 +1,3 @@
+smeijer/test:
+  - source: packages/project-client/docs-dist
+    dest: src/go/app/site/docs/mdx/03-libraries/project-client
