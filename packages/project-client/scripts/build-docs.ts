@@ -15,11 +15,12 @@ function rewriteHref(url: string) {
   return url.replace(/^documentation\//, '').replace(/([^/]+)\.md$/, (_, fileName) => pascalToHyphenCase(fileName));
 }
 
-const outdir = './docs-dist';
+const root = path.join(import.meta.dirname, '../');
+const outdir = path.join(import.meta.dirname, '../docs-dist');
 await fs.rm(outdir, { recursive: true, force: true });
 
 // process readme
-const [readme] = glob.sync('README.md');
+const [readme] = glob.sync('README.md', { cwd: root });
 const readmeAst = await md.read(readme);
 md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 md.reIndentHeadings(readmeAst, 1);
@@ -30,11 +31,11 @@ await md.write(readmeAst, path.join(outdir, 'index.mdx'));
 
 // process pages
 const docs = glob.sync('**/*.md', {
-  cwd: './documentation',
+  cwd: path.join(root, 'documentation'),
 });
 
 for (const file of docs) {
-  const ast = await md.read(path.join('documentation', file));
+  const ast = await md.read(path.join(root, 'documentation', file));
 
   md.reIndentHeadings(ast, 1);
   md.mapLinks(ast, rewriteHref);
