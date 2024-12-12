@@ -101,3 +101,5 @@ jobs:
           title: 'chore: regen sdks'
           body: 'Automated PR to update the generated SDKs'
           commit-message: 'chore: regen sdks'
+          committer: 'MagicBella <${{ secrets.BELLA_EMAIL_ADDRESS }}>'
+          author: 'MagicBella <${{ secrets.BELLA_EMAIL_ADDRESS }}>'
