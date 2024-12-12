@@ -1,0 +1,38 @@
+name: Regen
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1' # At 06:00 on Monday.
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regen:
+    name: Regen
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BELLA_ACTION_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: bahmutov/npm-install@v1
+      - name: Regen
+        run: yarn codegen
+        env:
+          LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.BELLA_ACTION_TOKEN }}
+          branch: 'feature/regen-sdks'
+          base: 'main'
+          title: 'chore: regen sdks'
+          body: 'Automated PR to update the generated SDKs'
+          commit-message: 'chore: regen sdks'
