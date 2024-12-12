@@ -23,11 +23,11 @@ jobs:
           node-version: 20
       - uses: bahmutov/npm-install@v1
 
-      - name: Regen `@magicbell/cli`
-        run: yarn --cwd packages/cli codegen
-
       - name: Regen `magicbell`
         run: yarn --cwd packages/magicbell codegen
+
+      - name: Regen `@magicbell/cli`
+        run: yarn --cwd packages/cli codegen
 
       - name: Regen `@magicbell/project-client`
         run: yarn --cwd packages/project-client codegen
@@ -38,6 +38,59 @@ jobs:
         run: yarn --cwd packages/user-client codegen
         env:
           LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
+
+      - name: Generate Changesets
+        run: |
+          CHANGED_PACKAGES=$(git diff --name-only | grep '^packages/' | awk -F/ '{print $2}' | sort -u)
+          TIMESTAMP=$(date +%s)
+          mkdir -p .changeset
+          for PACKAGE in $CHANGED_PACKAGES; do
+            PACKAGE_NAME=$(jq -r '.name' packages/$PACKAGE/package.json)
+            FILE_NAME=".changeset/auto-bump-${PACKAGE}-${TIMESTAMP}.md"
+
+            if [ -z "$PACKAGE_NAME" ] || [ "$PACKAGE_NAME" == "null" ]; then
+              echo "Warning: Could not find 'name' in packages/$PACKAGE/package.json. Skipping..."
+              continue
+            fi
+
+            # Create the Changeset file with the correct package name and minor bump
+            {
+              echo "---"
+              echo "\"$PACKAGE_NAME\": minor"
+              echo "---"
+              echo ""
+              echo "Automatic minor version bump for changes in \`$PACKAGE_NAME\`."
+            } > "$FILE_NAME"
+
+            echo "Created Changeset: $FILE_NAME"
+          done
+
+      - name: Generate Changesets
+        shell: bash
+        run: |
+          CHANGED_PACKAGES=$(git diff --name-only | grep '^packages/' | awk -F/ '{print $2}' | sort -u)
+          TIMESTAMP=$(date +%s)
+          mkdir -p .changeset
+          for PACKAGE in $CHANGED_PACKAGES; do
+            PACKAGE_NAME=$(jq -r '.name' packages/$PACKAGE/package.json)
+            FILE_NAME=".changeset/auto-bump-${PACKAGE}-${TIMESTAMP}.md"
+
+            if [ -z "$PACKAGE_NAME" ] || [ "$PACKAGE_NAME" == "null" ]; then
+              echo "Warning: Could not find 'name' in packages/$PACKAGE/package.json. Skipping..."
+              continue
+            fi
+
+            # Create the Changeset file with the correct package name and minor bump
+            {
+              echo "---"
+              echo "\"$PACKAGE_NAME\": minor"
+              echo "---"
+              echo ""
+              echo "Automatic minor version bump for changes in \`$PACKAGE_NAME\`."
+            } > "$FILE_NAME"
+
+            echo "Created Changeset: $FILE_NAME"
+          done
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
