@@ -16,7 +16,7 @@ jobs:
 
       - name: Build docs
         run: |
-          ./packages/project-client/scripts/build-docs.ts
+          node_modules/.bin/tsx ./packages/project-client/scripts/build-docs.ts
 
       - name: Sync docs with remote repo
         uses: BetaHuhn/repo-file-sync-action@v1
