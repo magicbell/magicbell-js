@@ -1,6 +1,5 @@
 {
   "name": "@magicbell/codegen",
-  "private": true,
   "version": "0.2.7",
   "description": "MagicBell codegen",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
@@ -24,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell/magicbell-js.git",
+    "url": "https://github.com/magicbell/magicbell-js.git",
     "directory": "packages/codegen"
   },
   "type": "module",
