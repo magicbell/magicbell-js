@@ -14,6 +14,7 @@
     "directory": "packages/project-client"
   },
   "author": "MagicBell",
+  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -37,7 +38,7 @@
   ],
   "scripts": {
     "build": "tshy",
-    "codegen": "tsx scripts/build.ts",
+    "codegen": "tsx ../../scripts/liblab-gen.ts --spec https://public.magicbell.com/specs/openapi.v2.project.json",
     "start": "tshy --watch"
   },
   "dependencies": {
@@ -56,6 +57,5 @@
   "tshy": {
     "project": "./tsconfig.build.json",
     "exports": "./src/index.ts"
-  },
-  "type": "module"
+  }
 }
