@@ -49,7 +49,7 @@ for (const file of docs) {
 for (const dir of getDirs(docs)) {
   const file = path.join(outdir, dir, 'index.mdx');
   if (await exists(file)) continue;
-  const ast = { type: 'root', children: [] };
+  const ast: md.Root = { type: 'root', children: [] };
   md.insertFrontMatter(ast, { title: path.basename(dir) });
   await md.write(ast, file);
 }

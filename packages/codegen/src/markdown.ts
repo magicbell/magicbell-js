@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fs from 'fs/promises';
-import type { Heading, Link, Node, Parent } from 'mdast';
+import type { Heading, Link, Node, Parent, Root } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter';
 import { toMarkdown } from 'mdast-util-to-markdown';
@@ -12,6 +12,7 @@ import { visit } from 'unist-util-visit';
 type Tree = ReturnType<typeof fromMarkdown>;
 
 export { remove, visit };
+export type { Root, Tree };
 
 export function insertFrontMatter(tree: Tree, frontMatter: Record<string, unknown>) {
   tree.children.unshift({
