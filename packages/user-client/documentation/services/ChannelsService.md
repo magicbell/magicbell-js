@@ -59,7 +59,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    pageSize: 9,
+    pageSize: 8,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -99,7 +99,7 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
   const apnsToken: ApnsToken = {
     appId: 'app_id',
-    deviceToken: 'voluptateveniam',
+    deviceToken: 'fugiat ullamco ',
     installationId: apnsTokenInstallationId,
   };
 
@@ -205,7 +205,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    pageSize: 4,
+    pageSize: 8,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -347,7 +347,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    pageSize: 2,
+    pageSize: 7,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -386,7 +386,7 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'pariaturaliqua ',
+    deviceToken: 'velit dolor adi',
     installationId: fcmTokenInstallationId,
   };
 
@@ -492,7 +492,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    pageSize: 10,
+    pageSize: 5,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -645,7 +645,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getTeamsTokens({
-    pageSize: 9,
+    pageSize: 6,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -791,7 +791,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    pageSize: 7,
+    pageSize: 6,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });

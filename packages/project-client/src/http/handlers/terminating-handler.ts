@@ -7,4 +7,8 @@ export class TerminatingHandler implements RequestHandler {
   async handle<T>(request: Request<T>): Promise<HttpResponse<T>> {
     return new RequestFetchAdapter(request).send();
   }
+
+  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    yield* new RequestFetchAdapter(request).stream();
+  }
 }

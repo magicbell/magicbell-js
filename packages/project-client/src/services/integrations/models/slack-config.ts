@@ -15,10 +15,10 @@ export const slackConfig = z.lazy(() => {
 /**
  *
  * @typedef  {SlackConfig} slackConfig
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The Slack app ID that can be found in the app's settings page of the Slack API dashboard.
+ * @property {string} - The Slack client ID that can be found in the app's settings page of the Slack API dashboard.
+ * @property {string} - The Slack client secret that can be found in the app's settings page of the Slack API dashboard.
+ * @property {string} - The Slack signing secret that can be found in the app's settings page of the Slack API dashboard.
  */
 export type SlackConfig = z.infer<typeof slackConfig>;
 

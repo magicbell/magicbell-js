@@ -7,7 +7,9 @@ export const apnsConfig = z.lazy(() => {
   return z.object({
     appId: z.string().regex(/^[a-zA-Z0-9]+(.[a-zA-Z0-9]+)*$/),
     badge: z.string(),
-    certificate: z.string().regex(/^-+?\s?BEGIN[A-Z ]+-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END[A-Z ]+-+\n?$/),
+    certificate: z
+      .string()
+      .regex(/^-+?\s?BEGIN PRIVATE KEY-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END PRIVATE KEY+-+\n?$/),
     keyId: z.string().min(10).max(10),
     payloadVersion: z.string().optional(),
     teamId: z.string().min(10).max(10),
@@ -17,9 +19,9 @@ export const apnsConfig = z.lazy(() => {
 /**
  *
  * @typedef  {ApnsConfig} apnsConfig
- * @property {string}
+ * @property {string} - The default bundle identifier of the application that is configured with this project. It can be overriden on a per token basis, when registering device tokens.
  * @property {Badge}
- * @property {string} - The APNs certificate in PEM format. Generate it at [developer.apple.com](https://developer.apple.com/account/resources/authkeys/add) with the 'Apple Push Notification service (APNs)' option selected.
+ * @property {string} - The APNs certificate in P8 format. Generate it at [developer.apple.com](https://developer.apple.com/account/resources/authkeys/add) with the 'Apple Push Notification service (APNs)' option selected.
  * @property {string}
  * @property {PayloadVersion}
  * @property {string}
@@ -35,7 +37,9 @@ export const apnsConfigResponse = z.lazy(() => {
     .object({
       app_id: z.string().regex(/^[a-zA-Z0-9]+(.[a-zA-Z0-9]+)*$/),
       badge: z.string(),
-      certificate: z.string().regex(/^-+?\s?BEGIN[A-Z ]+-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END[A-Z ]+-+\n?$/),
+      certificate: z
+        .string()
+        .regex(/^-+?\s?BEGIN PRIVATE KEY-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END PRIVATE KEY+-+\n?$/),
       key_id: z.string().min(10).max(10),
       payload_version: z.string().optional(),
       team_id: z.string().min(10).max(10),

@@ -1,4 +1,3 @@
-import { HttpError } from '../error.js';
 import { Request } from '../transport/request.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 
@@ -10,6 +9,22 @@ export class RequestValidationHandler implements RequestHandler {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
 
+    this.validateRequest(request);
+
+    return this.next.handle(request);
+  }
+
+  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    if (!this.next) {
+      throw new Error('No next handler set in ContentTypeHandler.');
+    }
+
+    this.validateRequest(request);
+
+    yield* this.next.stream(request);
+  }
+
+  validateRequest<T>(request: Request<T>): void {
     if (request.requestContentType === ContentType.Json) {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     } else if (
@@ -19,41 +34,41 @@ export class RequestValidationHandler implements RequestHandler {
     ) {
       request.body = request.body;
     } else if (request.requestContentType === ContentType.FormUrlEncoded) {
-      request.body = this.toFormUrlEncoded(request.body);
+      request.body = this.toFormUrlEncoded(request);
     } else if (request.requestContentType === ContentType.MultipartFormData) {
       request.body = this.toFormData(request.body);
     } else {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     }
-
-    return await this.next.handle(request);
   }
 
-  toFormUrlEncoded(body: BodyInit | undefined): string {
-    if (body === undefined) {
+  toFormUrlEncoded<T>(request: Request<T>): string {
+    if (request.body === undefined) {
       return '';
     }
 
-    if (typeof body === 'string') {
-      return body;
+    if (typeof request.body === 'string') {
+      return request.body;
     }
 
-    if (body instanceof URLSearchParams) {
-      return body.toString();
+    if (request.body instanceof URLSearchParams) {
+      return request.body.toString();
     }
 
-    if (body instanceof FormData) {
+    const validatedBody = request.requestSchema?.parse(request.body);
+
+    if (validatedBody instanceof FormData) {
       const params = new URLSearchParams();
-      body.forEach((value, key) => {
+      validatedBody.forEach((value, key) => {
         params.append(key, value.toString());
       });
       return params.toString();
     }
 
-    if (typeof body === 'object' && !Array.isArray(body)) {
+    if (typeof validatedBody === 'object' && !Array.isArray(validatedBody)) {
       const params = new URLSearchParams();
-      for (const [key, value] of Object.entries(body)) {
-        params.append(key, value.toString());
+      for (const [key, value] of Object.entries(validatedBody)) {
+        params.append(key, `${value}`);
       }
       return params.toString();
     }
