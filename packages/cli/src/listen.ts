@@ -1,4 +1,4 @@
-import EventSource from 'eventsource';
+import { EventSource } from 'eventsource';
 
 import { getUserClient as getClient } from './lib/client.js';
 import { createCommand } from './lib/commands.js';
