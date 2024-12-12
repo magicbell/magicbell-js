@@ -86,4 +86,4 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - run: yarn build
       - name: publish preview release
-        run: npx pkg-pr-new publish --no-template --compact $(ls -d ./packages/*)
+        run: npx pkg-pr-new publish --no-template --compact './packages/*'
