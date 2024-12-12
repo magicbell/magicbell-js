@@ -28,7 +28,7 @@ const readmeAst = await md.read(readme);
 md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 md.reIndentHeadings(readmeAst, 1);
 md.mapLinks(readmeAst, rewriteHref);
-md.insertFrontMatter(readmeAst, { title: 'JS Project Client' });
+md.insertFrontMatter(readmeAst, { title: 'JS User Client' });
 
 await md.write(readmeAst, path.join(outdir, 'index.mdx'));
 
