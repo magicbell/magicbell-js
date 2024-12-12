@@ -65,7 +65,7 @@ function createResource(scope: 'user' | 'project', resource: Resource, children:
   const commandName = hyphenCase(resource.path.split('/').pop());
 
   // child resource imports
-  const imports = children?.map((x) => b.importDeclaration([camelCase((x as any).name)], `./${x.path}`)) || [];
+  const imports = children?.map((x) => b.importDeclaration([camelCase((x as any).name)], `./${x.path}.js`)) || [];
 
   // createCommand(commandName);
   let command = builders.callExpression(b.id('createCommand'), [builders.stringLiteral(commandName)]);
@@ -296,10 +296,10 @@ function createResource(scope: 'user' | 'project', resource: Resource, children:
     ],
     body: [
       hasBetaMethod && b.importDeclaration('kleur', 'kleur'),
-      b.importDeclaration([`${clientFn} as getClient`], `${dots}/lib/client`),
-      b.importDeclaration(['createCommand'], `${dots}/lib/commands`),
-      b.importDeclaration(['parseOptions'], `${dots}/lib/options`),
-      b.importDeclaration(['printJson'], `${dots}/lib/printer`),
+      b.importDeclaration([`${clientFn} as getClient`], `${dots}/lib/client.js`),
+      b.importDeclaration(['createCommand'], `${dots}/lib/commands.js`),
+      b.importDeclaration(['parseOptions'], `${dots}/lib/options.js`),
+      b.importDeclaration(['printJson'], `${dots}/lib/printer.js`),
       ...imports,
       ...body,
     ].filter(Boolean),
@@ -412,7 +412,7 @@ async function updateFeatureFlags(filePath: string, betaMethods: Method[]) {
 async function createResourceIndex(resources: Resource[]) {
   const ast = builders.program([
     ...resources.map((resource) =>
-      builders.exportAllDeclaration(builders.stringLiteral(`./${hyphenCase(resource.path)}`), null),
+      builders.exportAllDeclaration(builders.stringLiteral(`./${hyphenCase(resource.path)}.js`), null),
     ),
   ]);
 
