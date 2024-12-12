@@ -3,14 +3,10 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 
-import Debug from 'debug';
 import { rimraf } from 'rimraf';
 import { sortPackageJson } from 'sort-package-json';
 
 import rootPkgJson from '../../../package.json';
-import { applyCodeMods } from './mod';
-
-const debug = Debug('build');
 
 async function move(oldPath: string, newPath: string) {
   await rimraf(newPath);
@@ -94,9 +90,6 @@ async function build(specfile = 'https://public.magicbell.com/specs/openapi.v2.p
   await move('output/typescript/README.md', './README.md');
   await move('output/typescript/documentation', './documentation');
   await rimraf('output');
-
-  // code mods
-  await applyCodeMods();
 
   // patch package.json
   let pkgJson = JSON.parse(await fs.readFile('./package.json', { encoding: 'utf-8' }));
