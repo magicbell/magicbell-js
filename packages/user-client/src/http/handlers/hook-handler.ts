@@ -1,4 +1,3 @@
-import { HttpError } from '../error.js';
 import { Hook } from '../hooks/hook.js';
 import { Request } from '../transport/request.js';
 import { TransportHookAdapter } from '../transport/transport-hook-adapter.js';
@@ -27,6 +26,28 @@ export class HookHandler implements RequestHandler {
     }
 
     throw await hook.onError(nextRequest, response, hookParams);
+  }
+
+  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    if (!this.next) {
+      throw new Error('No next handler set in hook handler.');
+    }
+
+    const hook = new TransportHookAdapter<T>();
+
+    const hookParams = this.getHookParams<T>(request);
+
+    const nextRequest = await hook.beforeRequest(request, hookParams);
+
+    const stream = this.next.stream(nextRequest);
+
+    for await (const response of stream) {
+      if (response.metadata.status < 400) {
+        yield await hook.afterResponse(nextRequest, response, hookParams);
+      } else {
+        throw await hook.onError(nextRequest, response, hookParams);
+      }
+    }
   }
 
   private getHookParams<T>(_request: Request<T>): Map<string, string> {

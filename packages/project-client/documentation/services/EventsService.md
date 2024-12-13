@@ -36,7 +36,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.events.getEvents({
-    pageSize: 1,
+    pageSize: 8,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });

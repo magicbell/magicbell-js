@@ -19,4 +19,12 @@ export class RequestHandlerChain {
 
     return this.handlers[0].handle(request);
   }
+
+  async *streamChain<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    if (!this.handlers.length) {
+      throw new Error('No handlers added to the chain');
+    }
+
+    yield* this.handlers[0].stream(request);
+  }
 }
