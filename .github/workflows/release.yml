@@ -31,6 +31,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to brew tap
+        if: steps.changesets.outputs.published == 'true'
         shell: bash
         run: "npx -y brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
         env:
@@ -39,8 +40,9 @@ jobs:
       - name: Build docs
         if: steps.changesets.outputs.published == 'true'
         run: |
-          node_modules/.bin/tsx ./packages/project-client/scripts/build-docs.ts
-          node_modules/.bin/tsx ./packages/user-client/scripts/build-docs.ts
+          yarn --cwd ./packages/codegen build # needed by scripts below
+          yarn --cwd ./packages/project-client build:docs
+          yarn --cwd ./packages/user-client build:docs
 
       - name: Push docs to remote repo
         uses: BetaHuhn/repo-file-sync-action@v1
