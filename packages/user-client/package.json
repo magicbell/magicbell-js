@@ -38,6 +38,7 @@
   ],
   "scripts": {
     "build": "tshy",
+    "build:docs": "tsx ../../scripts/liblab-docs.ts",
     "codegen": "tsx ../../scripts/liblab-gen.ts --spec https://www.magicbell.com/docs/api/openapi.user.json",
     "start": "tshy --watch"
   },

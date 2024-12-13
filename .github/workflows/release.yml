@@ -14,6 +14,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.BELLA_ACTION_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email '${{ secrets.BELLA_EMAIL_ADDRESS }}'
+          git config --global user.name 'MagicBella'
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -31,6 +37,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to brew tap
+        if: steps.changesets.outputs.published == 'true'
         shell: bash
         run: "npx -y brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
         env:
@@ -39,8 +46,9 @@ jobs:
       - name: Build docs
         if: steps.changesets.outputs.published == 'true'
         run: |
-          node_modules/.bin/tsx ./packages/project-client/scripts/build-docs.ts
-          node_modules/.bin/tsx ./packages/user-client/scripts/build-docs.ts
+          yarn --cwd ./packages/codegen build # needed by scripts below
+          yarn --cwd ./packages/project-client build:docs
+          yarn --cwd ./packages/user-client build:docs
 
       - name: Push docs to remote repo
         uses: BetaHuhn/repo-file-sync-action@v1
@@ -48,3 +56,5 @@ jobs:
         with:
           GH_PAT: ${{ secrets.BELLA_ACTION_TOKEN }}
           COMMIT_PREFIX: 'docs: '
+          GIT_USERNAME: 'MagicBella'
+          GIT_EMAIL: '${{ secrets.BELLA_EMAIL_ADDRESS }}'
