@@ -6,9 +6,8 @@ import { ResponseValidationHandler } from './handlers/response-validation-handle
 import { RetryHandler } from './handlers/retry-handler.js';
 import { TerminatingHandler } from './handlers/terminating-handler.js';
 import { CustomHook } from './hooks/custom-hook.js';
-import { SerializationStyle } from './serialization/base-serializer.js';
 import { Request } from './transport/request.js';
-import { HttpMethod, HttpResponse, Options, RetryOptions, SdkConfig } from './types.js';
+import { HttpResponse, SdkConfig } from './types.js';
 
 export class HttpClient {
   private readonly requestHandlerChain = new RequestHandlerChain();
@@ -24,6 +23,10 @@ export class HttpClient {
 
   call<T>(request: Request<T>): Promise<HttpResponse<T>> {
     return this.requestHandlerChain.callChain(request);
+  }
+
+  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    yield* this.requestHandlerChain.streamChain(request);
   }
 
   public async callPaginated<FullResponse, Page>(request: Request<FullResponse, Page>): Promise<HttpResponse<Page>> {

@@ -1,4 +1,3 @@
-import { HttpError } from '../error.js';
 import { Request } from '../transport/request.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 
@@ -10,6 +9,22 @@ export class RequestValidationHandler implements RequestHandler {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
 
+    this.validateRequest(request);
+
+    return this.next.handle(request);
+  }
+
+  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+    if (!this.next) {
+      throw new Error('No next handler set in ContentTypeHandler.');
+    }
+
+    this.validateRequest(request);
+
+    yield* this.next.stream(request);
+  }
+
+  validateRequest<T>(request: Request<T>): void {
     if (request.requestContentType === ContentType.Json) {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     } else if (
@@ -25,8 +40,6 @@ export class RequestValidationHandler implements RequestHandler {
     } else {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     }
-
-    return await this.next.handle(request);
   }
 
   toFormUrlEncoded<T>(request: Request<T>): string {

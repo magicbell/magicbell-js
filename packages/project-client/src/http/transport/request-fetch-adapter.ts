@@ -1,9 +1,10 @@
 import { HttpError } from '../error.js';
-import { HttpMethod, HttpResponse } from '../types.js';
+import { HttpMetadata, HttpMethod, HttpResponse } from '../types.js';
 import { Request } from './request.js';
 
 interface HttpAdapter {
   send(): Promise<HttpResponse>;
+  stream(): AsyncGenerator<HttpResponse>;
 }
 
 export class RequestFetchAdapter<T> implements HttpAdapter {
@@ -19,7 +20,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
   public async send(): Promise<HttpResponse<T>> {
     const response = await fetch(this.request.constructFullUrl(), this.requestInit);
 
-    const metadata = {
+    const metadata: HttpMetadata = {
       status: response.status,
       statusText: response.statusText || '',
       headers: this.getHeaders(response),
@@ -31,7 +32,41 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     };
   }
 
-  private setMethod(method: HttpMethod) {
+  public async *stream(): AsyncGenerator<HttpResponse<T>> {
+    const response = await fetch(this.request.constructFullUrl(), this.requestInit);
+
+    const metadata: HttpMetadata = {
+      status: response.status,
+      statusText: response.statusText || '',
+      headers: this.getHeaders(response),
+    };
+
+    if (response.status >= 400) {
+      throw new HttpError(metadata, await response.clone().arrayBuffer());
+    }
+
+    if (!response.body) {
+      return yield {
+        metadata,
+        raw: await response.clone().arrayBuffer(),
+      };
+    }
+
+    const reader = response.body.getReader();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      yield {
+        metadata,
+        raw: value,
+      };
+    }
+  }
+
+  private setMethod(method: HttpMethod): void {
     if (!method) {
       return;
     }
@@ -41,7 +76,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     };
   }
 
-  private setBody(body: ReadableStream<Uint8Array> | null) {
+  private setBody(body: ReadableStream<Uint8Array> | null): void {
     if (!body) {
       return;
     }
@@ -51,7 +86,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     };
   }
 
-  private setHeaders(headers: HeadersInit | undefined) {
+  private setHeaders(headers: HeadersInit | undefined): void {
     if (!headers) {
       return;
     }
@@ -62,7 +97,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     };
   }
 
-  private setTimeout(timeoutMs: number | undefined) {
+  private setTimeout(timeoutMs: number | undefined): void {
     if (!timeoutMs) {
       return;
     }

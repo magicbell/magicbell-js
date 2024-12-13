@@ -30,6 +30,7 @@ export interface RequestHandler {
   next?: RequestHandler;
 
   handle<T>(request: Request<T>): Promise<HttpResponse<T>>;
+  stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>>;
 }
 
 export enum ContentType {
@@ -42,6 +43,7 @@ export enum ContentType {
   FormUrlEncoded = 'form',
   Text = 'text',
   MultipartFormData = 'multipartFormData',
+  EventStream = 'eventStream',
 }
 
 export interface Options<T> {

@@ -17,9 +17,9 @@ export const apnsToken = z.lazy(() => {
 /**
  *
  * @typedef  {ApnsToken} apnsToken
+ * @property {string} - (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
  * @property {string}
- * @property {string}
- * @property {ApnsTokenInstallationId}
+ * @property {ApnsTokenInstallationId} - (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
  */
 export type ApnsToken = z.infer<typeof apnsToken>;
 
