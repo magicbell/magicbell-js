@@ -14,6 +14,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.BELLA_ACTION_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email '${{ secrets.BELLA_EMAIL_ADDRESS }}'
+          git config --global user.name 'MagicBella'
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -50,3 +56,5 @@ jobs:
         with:
           GH_PAT: ${{ secrets.BELLA_ACTION_TOKEN }}
           COMMIT_PREFIX: 'docs: '
+          GIT_USERNAME: 'MagicBella'
+          GIT_EMAIL: '${{ secrets.BELLA_EMAIL_ADDRESS }}'
