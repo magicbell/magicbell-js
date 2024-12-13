@@ -16,7 +16,7 @@ jobs:
         uses: magicbell/release-discussion-action@main
         with:
           repo: magicbell/community
-          category: product-changelog
+          category: changelog
           cycle: week
         env:
           GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
