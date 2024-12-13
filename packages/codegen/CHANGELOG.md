@@ -1,5 +1,11 @@
 # @magicbell/codegen
 
+## 0.3.0
+
+### Minor Changes
+
+- [#444](https://github.com/magicbell/magicbell-js/pull/444) [`55bd397`](https://github.com/magicbell/magicbell-js/commit/55bd397e044e150c4910179697230d9dac1078e0) Thanks [@smeijer](https://github.com/smeijer)! - add markdown utils
+
 ## 0.2.7
 
 ### Patch Changes
