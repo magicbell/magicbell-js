@@ -12,7 +12,7 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import { useTheme } from '../../context/MagicBellThemeContext.js';
 import { NotificationInboxProps } from '../NotificationInbox/index.js';
@@ -49,7 +49,7 @@ export default function FloatingInboxContainer({
   arrowPadding = 18,
   children,
 }: Props) {
-  const arrowRef = useRef(null);
+  const [arrowEl, setArrowEl] = useState(null);
   const theme = useTheme();
 
   const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(offsetProp)];
@@ -57,7 +57,7 @@ export default function FloatingInboxContainer({
   if (!hideArrow) {
     middleware.push(
       arrow({
-        element: arrowRef,
+        element: arrowEl,
         padding: arrowPadding,
       }),
     );
@@ -96,7 +96,7 @@ export default function FloatingInboxContainer({
         >
           {children}
           {hideArrow ? null : (
-            <FloatingArrow ref={arrowRef} context={floating.context} tipRadius={1} width={18} fill={arrowColor} />
+            <FloatingArrow ref={setArrowEl} context={floating.context} tipRadius={1} width={18} fill={arrowColor} />
           )}
         </div>
       ) : null}
