@@ -17,7 +17,23 @@ const customLocale = {
 
 function App() {
   return (
-    <div id="target">
+    <div
+      id="target"
+      style={{
+        position: 'absolute',
+        bottom: '50%',
+        left: '50%',
+        marginLeft: -25,
+        marginTop: -25,
+        width: 50,
+        height: 50,
+        background: 'white',
+        borderRadius: 24,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <MagicBell
         serverURL="https://api.magicbell.dev"
         apiKey="024b10085bb148d918afe3d92f42b1eba16ad0bd"
@@ -41,6 +57,10 @@ function App() {
             ]}
             height={450}
             {...props}
+            placement="bottom-start"
+            offset={{ mainAxis: 24, crossAxis: -16 }}
+            arrowPadding={16}
+            hideArrow
             isOpen
           />
         )}
