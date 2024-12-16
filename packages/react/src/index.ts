@@ -12,7 +12,6 @@ export {
   StyledNotificationContainer,
 } from './components/ClickableNotification/index.js';
 export { EnablePushNotificationsButton } from './components/EnablePushNotificationsBanner/index.js';
-export { default as FloatingNotificationInboxArrow } from './components/FloatingNotificationInbox/Arrow.js';
 export { default as FloatingInboxContainer } from './components/FloatingNotificationInbox/FloatingInboxContainer.js';
 export { default as FloatingNotificationInbox } from './components/FloatingNotificationInbox/index.js';
 export { default as Footer } from './components/Footer/index.js';

@@ -11,6 +11,8 @@ export interface Props extends NotificationInboxProps {
   toggle?: () => void;
   launcherRef: React.RefObject<Element>;
   placement?: Placement;
+  offset?: number | { mainAxis?: number; crossAxis?: number };
+  arrowPadding?: number;
   width?: number;
   closeOnClickOutside?: boolean;
   closeOnNotificationClick?: boolean;
@@ -30,6 +32,8 @@ export default function FloatingNotificationInbox({
   isOpen,
   toggle,
   placement,
+  offset,
+  arrowPadding,
   width = 500,
   onNotificationClick,
   closeOnClickOutside = true,
@@ -52,6 +56,8 @@ export default function FloatingNotificationInbox({
       isOpen={isOpen}
       toggle={toggle}
       placement={placement}
+      offset={offset}
+      arrowPadding={arrowPadding}
       width={width}
       closeOnClickOutside={closeOnClickOutside}
       hideArrow={hideArrow}
