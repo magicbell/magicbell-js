@@ -1,7 +1,9 @@
 import {
+  arrow,
   autoPlacement,
   autoUpdate,
   flip,
+  FloatingArrow,
   Middleware,
   offset,
   OpenChangeReason,
@@ -10,16 +12,18 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 
+import { useTheme } from '../../context/MagicBellThemeContext.js';
 import { NotificationInboxProps } from '../NotificationInbox/index.js';
-import Arrow from './Arrow.js';
 
 export interface Props extends NotificationInboxProps {
   isOpen: boolean;
   toggle?: () => void;
   launcherRef: React.RefObject<Element>;
   placement?: Placement;
+  offset?: number | { mainAxis?: number; crossAxis?: number };
+  arrowPadding?: number;
   width?: number;
   closeOnClickOutside?: boolean;
   hideArrow?: boolean;
@@ -38,12 +42,26 @@ export default function FloatingInboxContainer({
   isOpen = false,
   toggle,
   placement,
+  offset: offsetProp = 10,
   width = 500,
   closeOnClickOutside = true,
   hideArrow = false,
+  arrowPadding = 18,
   children,
 }: Props) {
-  const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(10)];
+  const [arrowEl, setArrowEl] = useState(null);
+  const theme = useTheme();
+
+  const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(offsetProp)];
+
+  if (!hideArrow) {
+    middleware.push(
+      arrow({
+        element: arrowEl,
+        padding: arrowPadding,
+      }),
+    );
+  }
 
   const floating = useFloating({
     placement,
@@ -66,6 +84,8 @@ export default function FloatingInboxContainer({
 
   const { getFloatingProps } = useInteractions([dismiss]);
 
+  const arrowColor = /bottom/i.test(floating.placement) ? theme.footer.backgroundColor : theme.header.backgroundColor;
+
   return (
     <>
       {isOpen ? (
@@ -75,7 +95,9 @@ export default function FloatingInboxContainer({
           {...getFloatingProps()}
         >
           {children}
-          {hideArrow ? null : <Arrow placement={floating.placement} />}
+          {hideArrow ? null : (
+            <FloatingArrow ref={setArrowEl} context={floating.context} tipRadius={1} width={18} fill={arrowColor} />
+          )}
         </div>
       ) : null}
     </>

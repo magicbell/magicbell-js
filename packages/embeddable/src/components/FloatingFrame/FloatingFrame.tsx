@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import {
+  arrow,
   autoPlacement,
   autoUpdate,
   flip,
+  FloatingArrow,
   Middleware,
   offset,
   OpenChangeReason,
@@ -11,13 +13,8 @@ import {
   useFloating,
   useInteractions,
 } from '@floating-ui/react';
-import {
-  FloatingNotificationInbox,
-  FloatingNotificationInboxArrow,
-  Notification,
-  useTheme,
-} from '@magicbell/magicbell-react';
-import { ComponentProps } from 'react';
+import { FloatingNotificationInbox, Notification, useTheme } from '@magicbell/magicbell-react';
+import { ComponentProps, useState } from 'react';
 
 import IFrame from '../IFrame/index.js';
 
@@ -37,9 +34,22 @@ export default function FloatingFrame({
   onNotificationClick,
   closeOnNotificationClick = true,
   closeOnClickOutside = true,
+  offset: offsetProp = 10,
+  arrowPadding = 18,
+  hideArrow = false,
   ...props
 }: FloatingNotificationInboxProps) {
-  const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(10)];
+  const [arrowEl, setArrowEl] = useState(null);
+  const middleware: Middleware[] = [placement ? flip() : autoPlacement(), offset(offsetProp)];
+
+  if (!hideArrow) {
+    middleware.push(
+      arrow({
+        element: arrowEl,
+        padding: arrowPadding,
+      }),
+    );
+  }
 
   const floating = useFloating({
     placement,
@@ -76,13 +86,14 @@ export default function FloatingFrame({
   };
 
   const style = css`
-    overflow: hidden !important;
     font-family: ${containerTheme.fontFamily} !important;
     background-color: ${containerTheme.backgroundColor} !important;
     color: ${containerTheme.textColor} !important;
     border-radius: ${headerTheme.borderRadius} ${footerTheme.borderRadius} !important;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.08), 0 5px 12px rgba(0, 0, 0, 0.16) !important;
   `;
+
+  const arrowColor = /bottom/i.test(floating.placement) ? footerTheme.backgroundColor : headerTheme.backgroundColor;
 
   return (
     <>
@@ -94,7 +105,9 @@ export default function FloatingFrame({
           css={style}
         >
           <IFrame onNotificationClick={handleNotificationClick} {...props} />
-          <FloatingNotificationInboxArrow placement={floating.placement} />
+          {hideArrow ? null : (
+            <FloatingArrow ref={setArrowEl} context={floating.context} tipRadius={1} width={18} fill={arrowColor} />
+          )}
         </div>
       ) : null}
     </>
