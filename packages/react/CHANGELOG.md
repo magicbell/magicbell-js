@@ -1,5 +1,17 @@
 # @magicbell/magicbell-react
 
+## 11.2.0
+
+### Minor Changes
+
+- [#457](https://github.com/magicbell/magicbell-js/pull/457) [`679f894`](https://github.com/magicbell/magicbell-js/commit/679f894a580003a17ee8d2fd14dcfac66341600f) Thanks [@smeijer](https://github.com/smeijer)! - We fixed an issue in arrow positioning and provided a new prop, `arrowPadding,` to adjust the arrow position, for example, to match the border radius.
+
+  Provide the `offset` property, which accepts a `number` or an object with `mainAxis` and `crossAxis` properties, to position the inbox relative to its trigger.
+
+  ```jsx
+  <FloatingNotificationInbox height={450} placement="bottom-start" offset={24} arrowPadding={16} {...props} />
+  ```
+
 ## 11.1.1
 
 ### Patch Changes
