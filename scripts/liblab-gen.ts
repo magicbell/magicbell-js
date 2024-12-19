@@ -21,7 +21,7 @@ async function writeJSON(path: string, data: any) {
 }
 
 async function readFile(path: string): Promise<string> {
-  if (/^http?s:\/\//.test(path)) {
+  if (/^https?:\/\//.test(path)) {
     return fetch(path, { headers: { 'content-type': 'application/json' } }).then((x) => x.text());
   }
 
