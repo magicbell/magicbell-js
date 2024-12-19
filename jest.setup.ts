@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/jest-globals';
 
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
-import EventSource from 'eventsource';
+import { EventSource } from 'eventsource';
 import fetch, { Headers, Request, Response } from 'node-fetch';
 
 globalThis.fetch = fetch as any;
