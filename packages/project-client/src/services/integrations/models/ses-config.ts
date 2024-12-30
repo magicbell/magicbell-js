@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { endpoint, endpointRequest, endpointResponse } from './endpoint.js';
 import { sesConfigFrom, sesConfigFromRequest, sesConfigFromResponse } from './ses-config-from.js';
 
 /**
@@ -7,7 +8,7 @@ import { sesConfigFrom, sesConfigFromRequest, sesConfigFromResponse } from './se
  */
 export const sesConfig = z.lazy(() => {
   return z.object({
-    endpoint: z.string().min(1).optional(),
+    endpoint: endpoint.optional(),
     from: sesConfigFrom.optional(),
     keyId: z.string().min(1),
     region: z.string().min(1),
@@ -18,7 +19,7 @@ export const sesConfig = z.lazy(() => {
 /**
  *
  * @typedef  {SesConfig} sesConfig
- * @property {string} - HTTP endpoint to send requests to (testing only)
+ * @property {Endpoint} - HTTP endpoint to send requests to (testing only)
  * @property {SesConfigFrom}
  * @property {string} - AWS Access Key ID
  * @property {string} - AWS Region
@@ -33,7 +34,7 @@ export type SesConfig = z.infer<typeof sesConfig>;
 export const sesConfigResponse = z.lazy(() => {
   return z
     .object({
-      endpoint: z.string().min(1).optional(),
+      endpoint: endpointResponse.optional(),
       from: sesConfigFromResponse.optional(),
       key_id: z.string().min(1),
       region: z.string().min(1),
@@ -55,7 +56,7 @@ export const sesConfigResponse = z.lazy(() => {
 export const sesConfigRequest = z.lazy(() => {
   return z
     .object({
-      endpoint: z.string().nullish(),
+      endpoint: endpointRequest.nullish(),
       from: sesConfigFromRequest.nullish(),
       keyId: z.string().nullish(),
       region: z.string().nullish(),
