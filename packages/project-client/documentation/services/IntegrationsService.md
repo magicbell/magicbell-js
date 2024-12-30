@@ -96,7 +96,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    pageSize: 3,
+    pageSize: 123,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -165,13 +165,12 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfig: ApnsConfig = {
   appId: "app_id",
   badge: badge,
-  certificate: "----- BEGIN PRIVATE KEY----------
-42qmz9=
----- END PRIVATE KEY-
-",
-  keyId: "mollit dol",
+  certificate: "- BEGIN PRIVATE KEY----
+xomeHjp
+----END PRIVATE KEYYYYYY----------",
+  keyId: "Duis occae",
   payloadVersion: payloadVersion,
-  teamId: "enimmollit"
+  teamId: "mollit sun"
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
@@ -527,10 +526,9 @@ const fcmConfig: FcmConfig = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "BEGINNQX--------
-B+JvPM/f7Ms==
-------ENDEPJVIYYY-----
-",
+  privateKey: "---BEGINXRCFFWU -------
++cpLLfheB==
+--------- ENDJHLHRZ--------",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -774,7 +772,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 4.92,
+    backgroundOpacity: 5.28,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1356,13 +1354,15 @@ import { Client, SesConfig } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
+  const endpoint = [];
+
   const sesConfigFrom: SesConfigFrom = {
     email: 'email',
     name: 'name',
   };
 
   const sesConfig: SesConfig = {
-    endpoint: 'endpoint',
+    endpoint: endpoint,
     from: sesConfigFrom,
     keyId: 'key_id',
     region: 'region',
@@ -1482,10 +1482,10 @@ import { Client, SlackConfig } from '@magicbell/project-client';
   });
 
   const slackConfig: SlackConfig = {
-    appId: 'QTEIRE',
-    clientId: '7201.6182620',
-    clientSecret: 'ex dolore ametauteDuis culpaquis',
-    signingSecret: 'eu ex animmollit sunt consequat ',
+    appId: 'LYWWZU',
+    clientId: '5814523.0',
+    clientSecret: 'nisi nostrud minim commodopariat',
+    signingSecret: 'in aute pariatur inconsectetur a',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfig);
@@ -1836,7 +1836,7 @@ import { Client, TwilioConfig } from '@magicbell/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+0528138710599',
+    from: '+44206',
     region: twilioConfigRegion,
   };
 

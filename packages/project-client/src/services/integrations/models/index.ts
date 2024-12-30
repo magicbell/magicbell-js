@@ -24,6 +24,7 @@ export type { Default_ } from './default_.js';
 export type { DefaultHover } from './default-hover.js';
 export type { DefaultState } from './default-state.js';
 export type { Dialog } from './dialog.js';
+export type { Endpoint } from './endpoint.js';
 export type { ExpoConfig } from './expo-config.js';
 export type { ExpoConfigObject } from './expo-config-object.js';
 export type { FcmConfig } from './fcm-config.js';

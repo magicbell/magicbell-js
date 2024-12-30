@@ -7,8 +7,12 @@
 | keyId     | string        | ✅       | AWS Access Key ID                                |
 | region    | string        | ✅       | AWS Region                                       |
 | secretKey | string        | ✅       | AWS Secret Key                                   |
-| endpoint  | string        | ❌       | HTTP endpoint to send requests to (testing only) |
+| endpoint  | Endpoint      | ❌       | HTTP endpoint to send requests to (testing only) |
 | from      | SesConfigFrom | ❌       |                                                  |
+
+# Endpoint
+
+HTTP endpoint to send requests to (testing only)
 
 # SesConfigFrom
 
