@@ -69,7 +69,7 @@
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-replace": "^5.0.7",
     "@types/mocha": "^10.0.7",
-    "@types/node": "^20.14.8",
+    "@types/node": "^20.17.11",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "@web/dev-server": "^0.4.6",
