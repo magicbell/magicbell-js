@@ -8,7 +8,7 @@
     "target": "es2018",
     "baseUrl": "./",
     "declarationMap": true,
-    "lib": ["es2018", "dom"],
+    "lib": ["ES2021", "DOM"],
     "noEmit": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,

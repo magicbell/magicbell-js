@@ -1,4 +1,5 @@
 {
   "extends": "../../tsconfig.build.json",
-  "include": ["src", "types", "../../types", "next-env.d.ts", "global.d.ts"]
+  "include": ["src", "types", "../../types", "next-env.d.ts", "global.d.ts"],
+  "lib": ["ES2021", "DOM"]
 }

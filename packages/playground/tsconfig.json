@@ -4,6 +4,7 @@
     "incremental": true,
     "resolveJsonModule": true,
     "jsx": "preserve",
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "lib": ["ES2021", "DOM"]
   }
 }
