@@ -8,7 +8,7 @@
     "target": "es2018",
     "baseUrl": "./",
     "declarationMap": true,
-    "lib": ["ES2021.String", "dom", "esnext"],
+    "lib": ["ES2021", "DOM"],
     "noEmit": false,
     "strictNullChecks": true
   }

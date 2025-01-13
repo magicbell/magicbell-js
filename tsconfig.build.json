@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["dom", "esnext"],
+    "lib": ["ES2021", "DOM"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
