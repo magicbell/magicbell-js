@@ -13,9 +13,9 @@ export const user = createCommand('user')
   persist the \`userEmail\` or \`userExternalId\` via \`magicbell config set\`.
   `,
   )
-  .option('--email, --user-email <string>', 'Email of the user')
-  .option('--id, --user-external-id <string>', 'External ID of the user')
-  .option('--hmac, --user-hmac <string>', 'User HMAC key')
+  .option('--user-email <string>', 'Email of the user')
+  .option('--user-external-id <string>', 'External ID of the user')
+  .option('--user-hmac <string>', 'User HMAC key')
   .hook('preAction', function (thisCommand) {
     const options = thisCommand.opts();
     const { profile } = thisCommand.optsWithGlobals();
