@@ -52,7 +52,7 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^8.4.2",
     "@storybook/addons": "^7.6.17",
-    "@storybook/builder-vite": "^8.4.5",
+    "@storybook/builder-vite": "^8.5.3",
     "@storybook/react": "^8.4.2",
     "@testing-library/cypress": "^10.0.2",
     "@testing-library/jest-dom": "^6.6.1",
