@@ -3690,12 +3690,12 @@
     "@storybook/icons" "^1.2.12"
     ts-dedent "^2.0.0"
 
-"@storybook/builder-vite@^8.4.5":
-  version "8.4.7"
-  resolved "https://registry.yarnpkg.com/@storybook/builder-vite/-/builder-vite-8.4.7.tgz#3d6d542fa1f46fce5ee7a159dc8491cb4421254d"
-  integrity sha512-LovyXG5VM0w7CovI/k56ZZyWCveQFVDl0m7WwetpmMh2mmFJ+uPQ35BBsgTvTfc8RHi+9Q3F58qP1MQSByXi9g==
+"@storybook/builder-vite@^8.5.3":
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/@storybook/builder-vite/-/builder-vite-8.5.3.tgz#887056a9b36145318275dc9b9a19ac4052c7a7fa"
+  integrity sha512-MxriwzZSVidaXj3kpH/jCOJZUdF7ofcvxmvrMrNehH9UvXIGM6b73CBC5ucnptbnQ7qxYKdAZiMhQbPHZ9cqOQ==
   dependencies:
-    "@storybook/csf-plugin" "8.4.7"
+    "@storybook/csf-plugin" "8.5.3"
     browser-assert "^1.2.1"
     ts-dedent "^2.0.0"
 
@@ -3782,6 +3782,13 @@
   version "8.4.7"
   resolved "https://registry.yarnpkg.com/@storybook/csf-plugin/-/csf-plugin-8.4.7.tgz#0117c872b05bf033eec089ab0224e0fab01da810"
   integrity sha512-Fgogplu4HImgC+AYDcdGm1rmL6OR1rVdNX1Be9C/NEXwOCpbbBwi0BxTf/2ZxHRk9fCeaPEcOdP5S8QHfltc1g==
+  dependencies:
+    unplugin "^1.3.1"
+
+"@storybook/csf-plugin@8.5.3":
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/@storybook/csf-plugin/-/csf-plugin-8.5.3.tgz#28b8beeb3425030f9fa8d4ce62a21c1756bf4d1f"
+  integrity sha512-u5oyXTFg3KIy4h9qoNyiCG2mJF3OpkLO/AcM4lMAwQVnBvz8pwITvr4jDZByVjGmcIbgKJQnWX+BwdK2NI4yAw==
   dependencies:
     unplugin "^1.3.1"
 
