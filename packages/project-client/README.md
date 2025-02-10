@@ -11,7 +11,7 @@ Welcome to the Client SDK documentation. This guide will help you get started wi
 
 ## About the API
 
-OpenAPI 3.1.0 Specification for MagicBell API.
+OpenAPI 3.0.3 Specification for MagicBell API.
 
 ## Table of Contents
 
@@ -106,6 +106,7 @@ The SDK provides various services to interact with the API.
 | [EventsService](documentation/services/EventsService.md)             |
 | [IntegrationsService](documentation/services/IntegrationsService.md) |
 | [JwtService](documentation/services/JwtService.md)                   |
+| [UsersService](documentation/services/UsersService.md)               |
 
 </details>
 
@@ -120,21 +121,20 @@ The SDK includes several models that represent the data structures used in API r
 | :------------------------------------------------------------------------------------------- | :---------- |
 | [ArrayOfBroadcasts](documentation/models/ArrayOfBroadcasts.md)                               |             |
 | [Broadcast](documentation/models/Broadcast.md)                                               |             |
-| [ProjectDeliveryConfig](documentation/models/ProjectDeliveryConfig.md)                       |             |
 | [CategoryDeliveryConfig](documentation/models/CategoryDeliveryConfig.md)                     |             |
-| [ArrayOfMetadataApnsTokens](documentation/models/ArrayOfMetadataApnsTokens.md)               |             |
-| [MetadataApnsToken](documentation/models/MetadataApnsToken.md)                               |             |
+| [ArrayOfApnsTokenResponses](documentation/models/ArrayOfApnsTokenResponses.md)               |             |
+| [ApnsTokenResponse](documentation/models/ApnsTokenResponse.md)                               |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
-| [ArrayOfMetadataExpoTokens](documentation/models/ArrayOfMetadataExpoTokens.md)               |             |
-| [MetadataExpoToken](documentation/models/MetadataExpoToken.md)                               |             |
-| [ArrayOfMetadataFcmTokens](documentation/models/ArrayOfMetadataFcmTokens.md)                 |             |
-| [MetadataFcmToken](documentation/models/MetadataFcmToken.md)                                 |             |
-| [ArrayOfMetadataSlackTokens](documentation/models/ArrayOfMetadataSlackTokens.md)             |             |
-| [MetadataSlackToken](documentation/models/MetadataSlackToken.md)                             |             |
-| [ArrayOfMetadataTeamsTokens](documentation/models/ArrayOfMetadataTeamsTokens.md)             |             |
-| [MetadataTeamsToken](documentation/models/MetadataTeamsToken.md)                             |             |
-| [ArrayOfMetadataWebPushTokens](documentation/models/ArrayOfMetadataWebPushTokens.md)         |             |
-| [MetadataWebPushToken](documentation/models/MetadataWebPushToken.md)                         |             |
+| [ArrayOfExpoTokenResponses](documentation/models/ArrayOfExpoTokenResponses.md)               |             |
+| [ExpoTokenResponse](documentation/models/ExpoTokenResponse.md)                               |             |
+| [ArrayOfFcmTokenResponses](documentation/models/ArrayOfFcmTokenResponses.md)                 |             |
+| [FcmTokenResponse](documentation/models/FcmTokenResponse.md)                                 |             |
+| [ArrayOfSlackTokenResponses](documentation/models/ArrayOfSlackTokenResponses.md)             |             |
+| [SlackTokenResponse](documentation/models/SlackTokenResponse.md)                             |             |
+| [ArrayOfTeamsTokenResponses](documentation/models/ArrayOfTeamsTokenResponses.md)             |             |
+| [TeamsTokenResponse](documentation/models/TeamsTokenResponse.md)                             |             |
+| [ArrayOfWebPushTokenResponses](documentation/models/ArrayOfWebPushTokenResponses.md)         |             |
+| [WebPushTokenResponse](documentation/models/WebPushTokenResponse.md)                         |             |
 | [ArrayOfEvents](documentation/models/ArrayOfEvents.md)                                       |             |
 | [ArrayOfIntegrationObjects](documentation/models/ArrayOfIntegrationObjects.md)               |             |
 | [ArrayOfApnsConfigObjects](documentation/models/ArrayOfApnsConfigObjects.md)                 |             |
@@ -171,14 +171,8 @@ The SDK includes several models that represent the data structures used in API r
 | [AccessToken](documentation/models/AccessToken.md)                                           |             |
 | [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                         |             |
 | [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)                     |             |
+| [ArrayOfUsers](documentation/models/ArrayOfUsers.md)                                         |             |
 | [Links](documentation/models/Links.md)                                                       |             |
-| [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
-| [TokenMetadata](documentation/models/TokenMetadata.md)                                       |             |
-| [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
-| [FcmToken](documentation/models/FcmToken.md)                                                 |             |
-| [SlackToken](documentation/models/SlackToken.md)                                             |             |
-| [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
-| [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
 | [Event](documentation/models/Event.md)                                                       |             |
 | [IntegrationObject](documentation/models/IntegrationObject.md)                               |             |
 | [ApnsConfigObject](documentation/models/ApnsConfigObject.md)                                 |             |
@@ -197,5 +191,6 @@ The SDK includes several models that represent the data structures used in API r
 | [TwilioConfigObject](documentation/models/TwilioConfigObject.md)                             |             |
 | [WebpushConfigObject](documentation/models/WebpushConfigObject.md)                           |             |
 | [FetchTokensResponseToken](documentation/models/FetchTokensResponseToken.md)                 |             |
+| [User](documentation/models/User.md)                                                         |             |
 
 </details>

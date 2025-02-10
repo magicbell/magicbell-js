@@ -16,15 +16,18 @@ export class EventsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfEvents>>} OK
    */
   async getEvents(params?: GetEventsParams, requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfEvents>> {
-    const request = new RequestBuilder<ArrayOfEvents>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/events')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfEventsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfEventsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)

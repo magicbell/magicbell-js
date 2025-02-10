@@ -4,10 +4,10 @@
 
 | Name    | Type              | Required | Description |
 | :------ | :---------------- | :------- | :---------- |
-| oauth   | Oauth             | ❌       |             |
+| oauth   | SlackTokenOauth   | ❌       |             |
 | webhook | SlackTokenWebhook | ❌       |             |
 
-# Oauth
+# SlackTokenOauth
 
 **Properties**
 

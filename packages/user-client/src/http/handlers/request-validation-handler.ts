@@ -4,27 +4,27 @@ import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 export class RequestValidationHandler implements RequestHandler {
   next?: RequestHandler;
 
-  async handle<T>(request: Request<T>): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
 
     this.validateRequest(request);
 
-    return this.next.handle(request);
+    return this.next.handle<T>(request);
   }
 
-  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
 
     this.validateRequest(request);
 
-    yield* this.next.stream(request);
+    yield* this.next.stream<T>(request);
   }
 
-  validateRequest<T>(request: Request<T>): void {
+  validateRequest(request: Request): void {
     if (request.requestContentType === ContentType.Json) {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     } else if (
@@ -42,7 +42,7 @@ export class RequestValidationHandler implements RequestHandler {
     }
   }
 
-  toFormUrlEncoded<T>(request: Request<T>): string {
+  toFormUrlEncoded(request: Request): string {
     if (request.body === undefined) {
       return '';
     }

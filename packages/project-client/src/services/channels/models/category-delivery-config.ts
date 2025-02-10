@@ -11,21 +11,21 @@ import {
  */
 export const categoryDeliveryConfig = z.lazy(() => {
   return z.object({
-    category: z
-      .string()
-      .min(3)
-      .regex(/^[a-zA-Z0-9_]+$/),
     channels: z.array(categoryDeliveryConfigChannels),
     disabled: z.boolean().optional(),
+    key: z
+      .string()
+      .min(3)
+      .regex(/^[A-Za-z0-9_\.\-:]+$/),
   });
 });
 
 /**
  *
  * @typedef  {CategoryDeliveryConfig} categoryDeliveryConfig
- * @property {string}
  * @property {CategoryDeliveryConfigChannels[]}
  * @property {boolean}
+ * @property {string}
  */
 export type CategoryDeliveryConfig = z.infer<typeof categoryDeliveryConfig>;
 
@@ -36,17 +36,17 @@ export type CategoryDeliveryConfig = z.infer<typeof categoryDeliveryConfig>;
 export const categoryDeliveryConfigResponse = z.lazy(() => {
   return z
     .object({
-      category: z
-        .string()
-        .min(3)
-        .regex(/^[a-zA-Z0-9_]+$/),
       channels: z.array(categoryDeliveryConfigChannelsResponse),
       disabled: z.boolean().optional(),
+      key: z
+        .string()
+        .min(3)
+        .regex(/^[A-Za-z0-9_\.\-:]+$/),
     })
     .transform((data) => ({
-      category: data['category'],
       channels: data['channels'],
       disabled: data['disabled'],
+      key: data['key'],
     }));
 });
 
@@ -57,13 +57,13 @@ export const categoryDeliveryConfigResponse = z.lazy(() => {
 export const categoryDeliveryConfigRequest = z.lazy(() => {
   return z
     .object({
-      category: z.string().nullish(),
       channels: z.array(categoryDeliveryConfigChannelsRequest).nullish(),
       disabled: z.boolean().nullish(),
+      key: z.string().nullish(),
     })
     .transform((data) => ({
-      category: data['category'],
       channels: data['channels'],
       disabled: data['disabled'],
+      key: data['key'],
     }));
 });

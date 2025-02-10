@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { keys, keysRequest, keysResponse } from './keys.js';
+import { webPushTokenKeys, webPushTokenKeysRequest, webPushTokenKeysResponse } from './web-push-token-keys.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -8,7 +8,7 @@ import { keys, keysRequest, keysResponse } from './keys.js';
 export const webPushToken = z.lazy(() => {
   return z.object({
     endpoint: z.string(),
-    keys: keys,
+    keys: webPushTokenKeys,
   });
 });
 
@@ -16,7 +16,7 @@ export const webPushToken = z.lazy(() => {
  *
  * @typedef  {WebPushToken} webPushToken
  * @property {string}
- * @property {Keys}
+ * @property {WebPushTokenKeys}
  */
 export type WebPushToken = z.infer<typeof webPushToken>;
 
@@ -28,7 +28,7 @@ export const webPushTokenResponse = z.lazy(() => {
   return z
     .object({
       endpoint: z.string(),
-      keys: keysResponse,
+      keys: webPushTokenKeysResponse,
     })
     .transform((data) => ({
       endpoint: data['endpoint'],
@@ -41,7 +41,7 @@ export const webPushTokenResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webPushTokenRequest = z.lazy(() => {
-  return z.object({ endpoint: z.string().nullish(), keys: keysRequest.nullish() }).transform((data) => ({
+  return z.object({ endpoint: z.string().nullish(), keys: webPushTokenKeysRequest.nullish() }).transform((data) => ({
     endpoint: data['endpoint'],
     keys: data['keys'],
   }));
