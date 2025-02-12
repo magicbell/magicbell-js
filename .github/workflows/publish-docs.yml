@@ -1,0 +1,29 @@
+name: Publish Docs
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: bahmutov/npm-install@v1
+
+      - name: Build docs
+        run: yarn build:docs
+
+      - name: Push docs to remote repo
+        uses: BetaHuhn/repo-file-sync-action@v1
+        with:
+          GH_PAT: ${{ secrets.BELLA_ACTION_TOKEN }}
+          COMMIT_PREFIX: 'docs: '
+          GIT_USERNAME: 'MagicBella'
+          GIT_EMAIL: ${{ secrets.BELLA_EMAIL_ADDRESS }}
