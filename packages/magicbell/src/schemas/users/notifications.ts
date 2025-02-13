@@ -106,8 +106,8 @@ export const ListUsersNotificationsResponseSchema = {
 
             properties: {
               user: {
-                nullable: false,
                 type: 'object',
+                nullable: false,
                 additionalProperties: false,
 
                 properties: {

@@ -7,7 +7,7 @@ import { Request, RequestParameter } from './request.js';
 export class TransportHookAdapter<T> {
   private hook: CustomHook = new CustomHook();
 
-  public async beforeRequest(request: Request<T>, params: Map<string, string>): Promise<Request<T>> {
+  public async beforeRequest(request: Request, params: Map<string, string>): Promise<Request> {
     const hookRequest = this.requestToHookRequest(request);
 
     const newRequest = await this.hook.beforeRequest(hookRequest, params);
@@ -26,7 +26,7 @@ export class TransportHookAdapter<T> {
   }
 
   public async afterResponse(
-    request: Request<T>,
+    request: Request,
     response: HttpResponse<T>,
     params: Map<string, string>,
   ): Promise<HttpResponse<T>> {
@@ -34,16 +34,12 @@ export class TransportHookAdapter<T> {
     return this.hook.afterResponse(hookRequest, response, params);
   }
 
-  public async onError(
-    request: Request<T>,
-    response: HttpResponse<T>,
-    params: Map<string, string>,
-  ): Promise<HttpError> {
+  public async onError(request: Request, response: HttpResponse<T>, params: Map<string, string>): Promise<HttpError> {
     const hookRequest = this.requestToHookRequest(request);
     return this.hook.onError(hookRequest, response, params);
   }
 
-  private requestToHookRequest(request: Request<T>): HttpRequest {
+  private requestToHookRequest(request: Request): HttpRequest {
     const hookHeaders: Map<string, unknown> = new Map();
     request.headers.forEach((header, key) => {
       hookHeaders.set(key, header.value);

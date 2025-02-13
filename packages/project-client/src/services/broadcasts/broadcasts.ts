@@ -20,15 +20,18 @@ export class BroadcastsService extends BaseService {
     params?: ListBroadcastsParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayOfBroadcasts>> {
-    const request = new RequestBuilder<ArrayOfBroadcasts>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/broadcasts')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfBroadcastsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfBroadcastsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -53,15 +56,18 @@ export class BroadcastsService extends BaseService {
    * @returns {Promise<HttpResponse<Broadcast>>} Created
    */
   async createBroadcast(body: Broadcast, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
-    const request = new RequestBuilder<Broadcast>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/broadcasts')
       .setRequestSchema(broadcastRequest)
-      .setResponseSchema(broadcastResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: broadcastResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -77,15 +83,18 @@ export class BroadcastsService extends BaseService {
    * @returns {Promise<HttpResponse<Broadcast>>} OK
    */
   async fetchBroadcast(broadcastId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
-    const request = new RequestBuilder<Broadcast>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/broadcasts/{broadcast_id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(broadcastResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: broadcastResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)

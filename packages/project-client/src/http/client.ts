@@ -21,15 +21,15 @@ export class HttpClient {
     this.requestHandlerChain.addHandler(new TerminatingHandler());
   }
 
-  call<T>(request: Request<T>): Promise<HttpResponse<T>> {
+  call<T>(request: Request): Promise<HttpResponse<T>> {
     return this.requestHandlerChain.callChain(request);
   }
 
-  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
     yield* this.requestHandlerChain.streamChain(request);
   }
 
-  public async callPaginated<FullResponse, Page>(request: Request<FullResponse, Page>): Promise<HttpResponse<Page>> {
+  public async callPaginated<FullResponse, Page>(request: Request<Page>): Promise<HttpResponse<Page>> {
     const response = await this.call<FullResponse>(request as any);
 
     if (!response.data) {
@@ -50,7 +50,7 @@ export class HttpClient {
     this.config = config;
   }
 
-  private getPage<FullResponse, Page>(request: Request<FullResponse, Page>, data: FullResponse): Page {
+  private getPage<FullResponse, Page>(request: Request<Page>, data: FullResponse): Page {
     if (!request.pagination) {
       throw new Error('getPage called for request without pagination property');
     }

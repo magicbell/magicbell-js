@@ -29,8 +29,8 @@ export interface HttpResponse<T = unknown> {
 export interface RequestHandler {
   next?: RequestHandler;
 
-  handle<T>(request: Request<T>): Promise<HttpResponse<T>>;
-  stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>>;
+  handle<T>(request: Request): Promise<HttpResponse<T>>;
+  stream<T>(request: Request): AsyncGenerator<HttpResponse<T>>;
 }
 
 export enum ContentType {
@@ -44,6 +44,7 @@ export enum ContentType {
   Text = 'text',
   MultipartFormData = 'multipartFormData',
   EventStream = 'eventStream',
+  NoContent = 'noContent',
 }
 
 export interface Options<T> {

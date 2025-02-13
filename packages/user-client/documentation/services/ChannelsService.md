@@ -46,7 +46,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfMetadataApnsTokens`
+`ArrayOfApnsTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -99,7 +99,7 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
   const apnsToken: ApnsToken = {
     appId: 'app_id',
-    deviceToken: 'voluptate paria',
+    deviceToken: 'nostrud elit do',
     installationId: apnsTokenInstallationId,
   };
 
@@ -124,7 +124,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`MetadataApnsToken`
+`ApnsTokenResponse1`
 
 **Example Usage Code Snippet**
 
@@ -192,7 +192,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfMetadataExpoTokens`
+`ArrayOfExpoTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -205,7 +205,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    pageSize: 6,
+    pageSize: 10,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -266,7 +266,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`MetadataExpoToken`
+`ExpoTokenResponse1`
 
 **Example Usage Code Snippet**
 
@@ -334,7 +334,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfMetadataFcmTokens`
+`ArrayOfFcmTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -347,7 +347,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    pageSize: 10,
+    pageSize: 9,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -386,7 +386,7 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'eiusmod esse ni',
+    deviceToken: 'voluptate nulla',
     installationId: fcmTokenInstallationId,
   };
 
@@ -411,7 +411,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`MetadataFcmToken`
+`FcmTokenResponse1`
 
 **Example Usage Code Snippet**
 
@@ -479,7 +479,7 @@ Lists all slack tokens belonging to the authenticated user. Returns a paginated 
 
 **Return Type**
 
-`ArrayOfMetadataSlackTokens`
+`ArrayOfSlackTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -492,7 +492,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    pageSize: 2,
+    pageSize: 3,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -528,7 +528,7 @@ import { Client, SlackToken } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const oauth: Oauth = {
+  const slackTokenOauth: SlackTokenOauth = {
     channelId: 'channel_id',
     installationId: 'installation_id',
     scope: 'scope',
@@ -539,7 +539,7 @@ import { Client, SlackToken } from '@magicbell/user-client';
   };
 
   const slackToken: SlackToken = {
-    oauth: oauth,
+    oauth: slackTokenOauth,
     webhook: slackTokenWebhook,
   };
 
@@ -564,7 +564,7 @@ Retrieves details of a specific slack token belonging to the authenticated user.
 
 **Return Type**
 
-`MetadataSlackToken`
+`SlackTokenResponse1`
 
 **Example Usage Code Snippet**
 
@@ -632,7 +632,7 @@ Lists all teams tokens belonging to the authenticated user. Returns a paginated 
 
 **Return Type**
 
-`ArrayOfMetadataTeamsTokens`
+`ArrayOfTeamsTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -710,7 +710,7 @@ Retrieves details of a specific teams token belonging to the authenticated user.
 
 **Return Type**
 
-`MetadataTeamsToken`
+`TeamsTokenResponse1`
 
 **Example Usage Code Snippet**
 
@@ -778,7 +778,7 @@ Lists all web_push tokens belonging to the authenticated user. Returns a paginat
 
 **Return Type**
 
-`ArrayOfMetadataWebPushTokens`
+`ArrayOfWebPushTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -791,7 +791,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    pageSize: 5,
+    pageSize: 1,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -827,14 +827,14 @@ import { Client, WebPushToken } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const keys: Keys = {
+  const webPushTokenKeys: WebPushTokenKeys = {
     auth: 'auth',
     p256dh: 'p256dh',
   };
 
   const webPushToken: WebPushToken = {
     endpoint: 'endpoint',
-    keys: keys,
+    keys: webPushTokenKeys,
   };
 
   const { data } = await client.channels.saveWebPushToken(webPushToken);
@@ -858,7 +858,7 @@ Retrieves details of a specific web_push token belonging to the authenticated us
 
 **Return Type**
 
-`MetadataWebPushToken`
+`WebPushTokenResponse`
 
 **Example Usage Code Snippet**
 

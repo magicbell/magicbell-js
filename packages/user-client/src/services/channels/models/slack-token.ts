@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { oauth, oauthRequest, oauthResponse } from './oauth.js';
+import { slackTokenOauth, slackTokenOauthRequest, slackTokenOauthResponse } from './slack-token-oauth.js';
 import { slackTokenWebhook, slackTokenWebhookRequest, slackTokenWebhookResponse } from './slack-token-webhook.js';
 
 /**
@@ -8,7 +8,7 @@ import { slackTokenWebhook, slackTokenWebhookRequest, slackTokenWebhookResponse 
  */
 export const slackToken = z.lazy(() => {
   return z.object({
-    oauth: oauth.optional(),
+    oauth: slackTokenOauth.optional(),
     webhook: slackTokenWebhook.optional(),
   });
 });
@@ -16,7 +16,7 @@ export const slackToken = z.lazy(() => {
 /**
  *
  * @typedef  {SlackToken} slackToken
- * @property {Oauth}
+ * @property {SlackTokenOauth}
  * @property {SlackTokenWebhook}
  */
 export type SlackToken = z.infer<typeof slackToken>;
@@ -28,7 +28,7 @@ export type SlackToken = z.infer<typeof slackToken>;
 export const slackTokenResponse = z.lazy(() => {
   return z
     .object({
-      oauth: oauthResponse.optional(),
+      oauth: slackTokenOauthResponse.optional(),
       webhook: slackTokenWebhookResponse.optional(),
     })
     .transform((data) => ({
@@ -42,8 +42,10 @@ export const slackTokenResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const slackTokenRequest = z.lazy(() => {
-  return z.object({ oauth: oauthRequest.nullish(), webhook: slackTokenWebhookRequest.nullish() }).transform((data) => ({
-    oauth: data['oauth'],
-    webhook: data['webhook'],
-  }));
+  return z
+    .object({ oauth: slackTokenOauthRequest.nullish(), webhook: slackTokenWebhookRequest.nullish() })
+    .transform((data) => ({
+      oauth: data['oauth'],
+      webhook: data['webhook'],
+    }));
 });

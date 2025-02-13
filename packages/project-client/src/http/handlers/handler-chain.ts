@@ -12,19 +12,19 @@ export class RequestHandlerChain {
     this.handlers.push(handler);
   }
 
-  async callChain<T>(request: Request<T>): Promise<HttpResponse<T>> {
+  async callChain<T>(request: Request): Promise<HttpResponse<T>> {
     if (!this.handlers.length) {
       throw new Error('No handlers added to the chain');
     }
 
-    return this.handlers[0].handle(request);
+    return this.handlers[0].handle<T>(request);
   }
 
-  async *streamChain<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+  async *streamChain<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
     if (!this.handlers.length) {
       throw new Error('No handlers added to the chain');
     }
 
-    yield* this.handlers[0].stream(request);
+    yield* this.handlers[0].stream<T>(request);
   }
 }
