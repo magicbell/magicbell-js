@@ -19,6 +19,7 @@ export interface MagicBellProviderProps {
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
+  token?: string;
   children: React.ReactElement | React.ReactElement[];
   stores?: StoreConfig[];
   serverURL?: string;
@@ -54,6 +55,7 @@ function setupStores(storesConfig: StoreConfig[]) {
  * @param props.userEmail Email of the user whose notifications will be displayed
  * @param props.userExternalId External ID of the user whose notifications will be displayed
  * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
+ * @param props.token User token that can be used to authenticate instead of using the apiKey + userEmail/userExternalID combination
  * @param props.stores List of stores to be created
  * @param props.disableRealtime Disable realtime updates
  *
