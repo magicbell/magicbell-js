@@ -40,9 +40,9 @@ export class WebPushClient {
     if (!activeSubscription?.endpoint) return false;
     return (
       tokens.data?.data
-        ?.filter((x) => !x.metadata?.discardedAt)
+        ?.filter((x) => !x.discardedAt)
         .some((subscription) => {
-          return subscription.data?.endpoint === activeSubscription.endpoint;
+          return subscription.endpoint === activeSubscription.endpoint;
         }) ?? false
     );
   }
@@ -92,9 +92,9 @@ export class WebPushClient {
     void this.#client.channels
       .getWebPushTokens()
       .then(({ data }) => {
-        const token = data?.data?.find((token) => token.data?.endpoint === endpoint);
+        const token = data?.data?.find((token) => token.endpoint === endpoint);
         if (!token) return;
-        return this.#client.channels.discardWebPushToken(String(token.metadata?.id));
+        return this.#client.channels.discardWebPushToken(String(token.id));
       })
       .catch(() => void 0);
 
