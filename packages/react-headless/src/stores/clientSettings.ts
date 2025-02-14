@@ -8,6 +8,7 @@ export type ClientSettings = {
   userEmail?: string;
   userExternalId?: string;
   userKey?: string;
+  token?: string;
   clientId: string;
   serverURL: string;
   getClient(): InstanceType<typeof UserClient>;
@@ -30,13 +31,14 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
     userEmail: undefined,
     userExternalId: undefined,
     userKey: undefined,
+    token: undefined,
     clientId: Math.random().toString(36).substring(2) + Date.now(),
     serverURL: 'https://api.magicbell.com',
     appInfo: undefined,
 
     getClient() {
       const state = get();
-      const key = JSON.stringify([state.apiKey, state.userEmail, state.userExternalId, state.userKey]);
+      const key = JSON.stringify([state.apiKey, state.userEmail, state.userExternalId, state.userKey, state.token]);
 
       if (key !== _key) {
         _key = key;
@@ -45,6 +47,7 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
           userEmail: state.userEmail,
           userHmac: state.userKey,
           apiKey: state.apiKey,
+          token: state.token,
           host: state.serverURL,
           appInfo: state.appInfo || {
             name: pkg.name,

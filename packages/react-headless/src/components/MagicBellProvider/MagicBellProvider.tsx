@@ -14,16 +14,16 @@ type StoreConfig = {
   defaults?: Partial<Omit<INotificationStore, 'context'>>;
 };
 
-export interface MagicBellProviderProps {
-  apiKey: string;
-  userEmail?: string;
-  userExternalId?: string;
-  userKey?: string;
+export type MagicBellProviderProps = {
   children: React.ReactElement | React.ReactElement[];
   stores?: StoreConfig[];
   serverURL?: string;
   disableRealtime?: boolean;
-}
+} & (
+  | { apiKey: string; userEmail: string; userKey?: string; token?: never }
+  | { apiKey: string; userExternalId: string; userKey?: string; token?: never }
+  | { token: string; apiKey?: never }
+);
 
 function setupXHR({ serverURL, ...userSettings }: Omit<MagicBellProviderProps, 'children' | 'stores'>) {
   const settings = userSettings as ClientSettings;
@@ -54,6 +54,7 @@ function setupStores(storesConfig: StoreConfig[]) {
  * @param props.userEmail Email of the user whose notifications will be displayed
  * @param props.userExternalId External ID of the user whose notifications will be displayed
  * @param props.userKey Computed HMAC of the user whose notifications will be displayed, compute this with the secret of the magicbell project
+ * @param props.token User token that can be used to authenticate instead of using the apiKey + userEmail/userExternalID combination
  * @param props.stores List of stores to be created
  * @param props.disableRealtime Disable realtime updates
  *
