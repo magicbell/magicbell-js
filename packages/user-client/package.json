@@ -2,6 +2,9 @@
   "name": "@magicbell/user-client",
   "version": "0.6.0",
   "description": "OpenAPI 3.1.0 Specification for MagicBell API.",
+  "docs": {
+    "name": "JavaScript User Client"
+  },
   "keywords": [
     "typescript",
     "sdk",

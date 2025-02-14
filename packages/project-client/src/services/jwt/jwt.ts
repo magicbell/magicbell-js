@@ -26,15 +26,18 @@ export class JwtService extends BaseService {
     params?: FetchProjectTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>> {
-    const request = new RequestBuilder<ArrayOfFetchTokensResponseTokens>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/project')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfFetchTokensResponseTokensResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfFetchTokensResponseTokensResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -62,15 +65,18 @@ export class JwtService extends BaseService {
     body: CreateProjectTokenRequest,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<AccessToken>> {
-    const request = new RequestBuilder<AccessToken>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/project')
       .setRequestSchema(createProjectTokenRequestRequest)
-      .setResponseSchema(accessTokenResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: accessTokenResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -86,15 +92,18 @@ export class JwtService extends BaseService {
    * @returns {Promise<HttpResponse<DiscardTokenResponse>>} OK
    */
   async discardProjectJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
-    const request = new RequestBuilder<DiscardTokenResponse>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/project/{token_id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(discardTokenResponseResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: discardTokenResponseResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -111,15 +120,18 @@ export class JwtService extends BaseService {
    * @returns {Promise<HttpResponse<AccessToken>>} Created
    */
   async createUserJwt(body: CreateUserTokenRequest, requestConfig?: RequestConfig): Promise<HttpResponse<AccessToken>> {
-    const request = new RequestBuilder<AccessToken>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/user')
       .setRequestSchema(createUserTokenRequestRequest)
-      .setResponseSchema(accessTokenResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: accessTokenResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -135,15 +147,18 @@ export class JwtService extends BaseService {
    * @returns {Promise<HttpResponse<DiscardTokenResponse>>} OK
    */
   async discardUserJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
-    const request = new RequestBuilder<DiscardTokenResponse>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/user/{token_id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(discardTokenResponseResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: discardTokenResponseResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -168,15 +183,18 @@ export class JwtService extends BaseService {
     params?: FetchUserTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>> {
-    const request = new RequestBuilder<ArrayOfFetchTokensResponseTokens>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/user/{user_id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfFetchTokensResponseTokensResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfFetchTokensResponseTokensResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)

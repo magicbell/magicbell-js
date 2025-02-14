@@ -2,13 +2,12 @@
 
 **Properties**
 
-| Name      | Type          | Required | Description                                      |
-| :-------- | :------------ | :------- | :----------------------------------------------- |
-| keyId     | string        | ✅       | AWS Access Key ID                                |
-| region    | string        | ✅       | AWS Region                                       |
-| secretKey | string        | ✅       | AWS Secret Key                                   |
-| endpoint  | string        | ❌       | HTTP endpoint to send requests to (testing only) |
-| from      | SesConfigFrom | ❌       |                                                  |
+| Name      | Type          | Required | Description       |
+| :-------- | :------------ | :------- | :---------------- |
+| keyId     | string        | ✅       | AWS Access Key ID |
+| region    | string        | ✅       | AWS Region        |
+| secretKey | string        | ✅       | AWS Secret Key    |
+| from      | SesConfigFrom | ❌       |                   |
 
 # SesConfigFrom
 

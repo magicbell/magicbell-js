@@ -1,5 +1,7 @@
 magicbell/magicbell:
   - source: packages/project-client/docs-dist
     dest: src/go/app/site/docs/mdx/03-libraries/project-client
+    deleteOrphaned: true
   - source: packages/user-client/docs-dist
     dest: src/go/app/site/docs/mdx/03-libraries/user-client
+    deleteOrphaned: true

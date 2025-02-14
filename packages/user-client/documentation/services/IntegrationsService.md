@@ -46,7 +46,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 9.57,
+    backgroundOpacity: 1.63,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -214,7 +214,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 7,
+    expiresIn: 9,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -243,8 +243,8 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 10,
-    id: 'YDW09447',
+    expiresIn: 5,
+    id: 'ZZYOJ3PL',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -404,14 +404,14 @@ import { Client, WebPushToken } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const keys: Keys = {
+  const webPushTokenKeys: WebPushTokenKeys = {
     auth: 'auth',
     p256dh: 'p256dh',
   };
 
   const webPushToken: WebPushToken = {
     endpoint: 'endpoint',
-    keys: keys,
+    keys: webPushTokenKeys,
   };
 
   const { data } = await client.integrations.saveWebPushInstallation(webPushToken);

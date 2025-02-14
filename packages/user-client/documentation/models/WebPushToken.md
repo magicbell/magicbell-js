@@ -2,12 +2,12 @@
 
 **Properties**
 
-| Name     | Type   | Required | Description |
-| :------- | :----- | :------- | :---------- |
-| endpoint | string | ✅       |             |
-| keys     | Keys   | ✅       |             |
+| Name     | Type             | Required | Description |
+| :------- | :--------------- | :------- | :---------- |
+| endpoint | string           | ✅       |             |
+| keys     | WebPushTokenKeys | ✅       |             |
 
-# Keys
+# WebPushTokenKeys
 
 **Properties**
 

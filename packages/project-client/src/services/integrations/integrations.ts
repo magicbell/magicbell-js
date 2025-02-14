@@ -78,15 +78,18 @@ export class IntegrationsService extends BaseService {
     params?: ListIntegrationsParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ArrayOfIntegrationObjects>> {
-    const request = new RequestBuilder<ArrayOfIntegrationObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfIntegrationObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfIntegrationObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -111,15 +114,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfApnsConfigObjects>>} OK
    */
   async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfApnsConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfApnsConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/apns')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfApnsConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfApnsConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -132,15 +138,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ApnsConfig>>} OK
    */
   async saveApnsIntegration(body: ApnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfig>> {
-    const request = new RequestBuilder<ApnsConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/apns')
       .setRequestSchema(apnsConfigRequest)
-      .setResponseSchema(apnsConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: apnsConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -154,21 +163,24 @@ export class IntegrationsService extends BaseService {
    * Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -176,16 +188,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -194,7 +209,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -202,15 +217,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfAwssnsConfigObjects>>} OK
    */
   async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfAwssnsConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfAwssnsConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/awssns')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfAwssnsConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfAwssnsConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -223,15 +241,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<AwssnsConfig>>} OK
    */
   async saveAwssnsIntegration(body: AwssnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfig>> {
-    const request = new RequestBuilder<AwssnsConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/awssns')
       .setRequestSchema(awssnsConfigRequest)
-      .setResponseSchema(awssnsConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: awssnsConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -245,21 +266,24 @@ export class IntegrationsService extends BaseService {
    * Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -267,16 +291,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -285,7 +312,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -293,15 +320,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfExpoConfigObjects>>} OK
    */
   async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfExpoConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfExpoConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/expo')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfExpoConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfExpoConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -314,15 +344,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ExpoConfig>>} OK
    */
   async saveExpoIntegration(body: ExpoConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfig>> {
-    const request = new RequestBuilder<ExpoConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/expo')
       .setRequestSchema(expoConfigRequest)
-      .setResponseSchema(expoConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: expoConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -336,21 +369,24 @@ export class IntegrationsService extends BaseService {
    * Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -358,16 +394,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -376,7 +415,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -384,15 +423,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfFcmConfigObjects>>} OK
    */
   async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfFcmConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfFcmConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/fcm')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfFcmConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfFcmConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -405,15 +447,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<FcmConfig>>} OK
    */
   async saveFcmIntegration(body: FcmConfig, requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfig>> {
-    const request = new RequestBuilder<FcmConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/fcm')
       .setRequestSchema(fcmConfigRequest)
-      .setResponseSchema(fcmConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: fcmConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -427,21 +472,24 @@ export class IntegrationsService extends BaseService {
    * Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -449,16 +497,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -467,7 +518,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -475,15 +526,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfGithubConfigObjects>>} OK
    */
   async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfGithubConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfGithubConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/github')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfGithubConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfGithubConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -496,15 +550,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<GithubConfig>>} OK
    */
   async saveGithubIntegration(body: GithubConfig, requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfig>> {
-    const request = new RequestBuilder<GithubConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/github')
       .setRequestSchema(githubConfigRequest)
-      .setResponseSchema(githubConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: githubConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -518,21 +575,24 @@ export class IntegrationsService extends BaseService {
    * Removes a github integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -540,16 +600,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -558,7 +621,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -566,15 +629,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfInboxConfigObjects>>} OK
    */
   async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfInboxConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfInboxConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/inbox')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfInboxConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfInboxConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -587,15 +653,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<InboxConfig>>} OK
    */
   async saveInboxIntegration(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
-    const request = new RequestBuilder<InboxConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/inbox')
       .setRequestSchema(inboxConfigRequest)
-      .setResponseSchema(inboxConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: inboxConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -609,21 +678,24 @@ export class IntegrationsService extends BaseService {
    * Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -631,16 +703,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -649,7 +724,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -657,15 +732,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfMailgunConfigObjects>>} OK
    */
   async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfMailgunConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfMailgunConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/mailgun')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfMailgunConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfMailgunConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -681,15 +759,18 @@ export class IntegrationsService extends BaseService {
     body: MailgunConfig,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<MailgunConfig>> {
-    const request = new RequestBuilder<MailgunConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/mailgun')
       .setRequestSchema(mailgunConfigRequest)
-      .setResponseSchema(mailgunConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: mailgunConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -703,21 +784,24 @@ export class IntegrationsService extends BaseService {
    * Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -725,16 +809,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -743,7 +830,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -751,15 +838,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfPingConfigObjects>>} OK
    */
   async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfPingConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfPingConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ping_email')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfPingConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfPingConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -772,15 +862,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<PingConfig>>} OK
    */
   async savePingEmailIntegration(body: PingConfig, requestConfig?: RequestConfig): Promise<HttpResponse<PingConfig>> {
-    const request = new RequestBuilder<PingConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ping_email')
       .setRequestSchema(pingConfigRequest)
-      .setResponseSchema(pingConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: pingConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -794,21 +887,24 @@ export class IntegrationsService extends BaseService {
    * Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -816,16 +912,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -834,7 +933,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -842,15 +941,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfSendgridConfigObjects>>} OK
    */
   async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSendgridConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfSendgridConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfSendgridConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfSendgridConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -866,15 +968,18 @@ export class IntegrationsService extends BaseService {
     body: SendgridConfig,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SendgridConfig>> {
-    const request = new RequestBuilder<SendgridConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(sendgridConfigRequest)
-      .setResponseSchema(sendgridConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: sendgridConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -888,21 +993,24 @@ export class IntegrationsService extends BaseService {
    * Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -910,16 +1018,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -928,7 +1039,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -936,15 +1047,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfSesConfigObjects>>} OK
    */
   async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSesConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfSesConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ses')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfSesConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfSesConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -957,15 +1071,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<SesConfig>>} OK
    */
   async saveSesIntegration(body: SesConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SesConfig>> {
-    const request = new RequestBuilder<SesConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ses')
       .setRequestSchema(sesConfigRequest)
-      .setResponseSchema(sesConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: sesConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -979,21 +1096,24 @@ export class IntegrationsService extends BaseService {
    * Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1001,16 +1121,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1019,7 +1142,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1027,15 +1150,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfSlackConfigObjects>>} OK
    */
   async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSlackConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfSlackConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/slack')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfSlackConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfSlackConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1048,15 +1174,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<SlackConfig>>} OK
    */
   async saveSlackIntegration(body: SlackConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfig>> {
-    const request = new RequestBuilder<SlackConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/slack')
       .setRequestSchema(slackConfigRequest)
-      .setResponseSchema(slackConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: slackConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1070,21 +1199,24 @@ export class IntegrationsService extends BaseService {
    * Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1092,16 +1224,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1110,7 +1245,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1118,15 +1253,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfStripeConfigObjects>>} OK
    */
   async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfStripeConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfStripeConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/stripe')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfStripeConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfStripeConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1139,15 +1277,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<StripeConfig>>} OK
    */
   async saveStripeIntegration(body: StripeConfig, requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfig>> {
-    const request = new RequestBuilder<StripeConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/stripe')
       .setRequestSchema(stripeConfigRequest)
-      .setResponseSchema(stripeConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: stripeConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1161,21 +1302,24 @@ export class IntegrationsService extends BaseService {
    * Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1183,16 +1327,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1201,7 +1348,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1209,15 +1356,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfTemplatesConfigObjects>>} OK
    */
   async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfTemplatesConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfTemplatesConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfTemplatesConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfTemplatesConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1230,15 +1380,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<any>>} OK
    */
   async saveTemplatesIntegration(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<any>> {
-    const request = new RequestBuilder<any>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.any())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.any(),
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1252,21 +1405,24 @@ export class IntegrationsService extends BaseService {
    * Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1274,16 +1430,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1292,7 +1451,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1300,15 +1459,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfTwilioConfigObjects>>} OK
    */
   async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfTwilioConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfTwilioConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/twilio')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfTwilioConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfTwilioConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1321,15 +1483,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<TwilioConfig>>} OK
    */
   async saveTwilioIntegration(body: TwilioConfig, requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfig>> {
-    const request = new RequestBuilder<TwilioConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/twilio')
       .setRequestSchema(twilioConfigRequest)
-      .setResponseSchema(twilioConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: twilioConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1343,21 +1508,24 @@ export class IntegrationsService extends BaseService {
    * Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1365,16 +1533,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1383,7 +1554,7 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1391,15 +1562,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<ArrayOfWebpushConfigObjects>>} OK
    */
   async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfWebpushConfigObjects>> {
-    const request = new RequestBuilder<ArrayOfWebpushConfigObjects>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/web_push')
       .setRequestSchema(z.any())
-      .setResponseSchema(arrayOfWebpushConfigObjectsResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: arrayOfWebpushConfigObjectsResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1415,15 +1589,18 @@ export class IntegrationsService extends BaseService {
     body: WebpushConfig,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebpushConfig>> {
-    const request = new RequestBuilder<WebpushConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/web_push')
       .setRequestSchema(webpushConfigRequest)
-      .setResponseSchema(webpushConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: webpushConfigResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1437,21 +1614,24 @@ export class IntegrationsService extends BaseService {
    * Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 
   /**
@@ -1459,16 +1639,19 @@ export class IntegrationsService extends BaseService {
    * @param {string} id -
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<undefined>> {
-    const request = new RequestBuilder<undefined>()
+  async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push/{id}')
       .setRequestSchema(z.any())
-      .setResponseSchema(z.undefined())
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -1477,6 +1660,6 @@ export class IntegrationsService extends BaseService {
         value: id,
       })
       .build();
-    return this.client.call<undefined>(request);
+    return this.client.call<void>(request);
   }
 }

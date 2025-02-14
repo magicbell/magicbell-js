@@ -4,9 +4,8 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 
 | Methods                                                           | Description                                                                                                                                                                                                                                                        |
 | :---------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [getProjectDeliveryconfig](#getprojectdeliveryconfig)             |                                                                                                                                                                                                                                                                    |
-| [saveProjectDeliveryconfig](#saveprojectdeliveryconfig)           |                                                                                                                                                                                                                                                                    |
-| [saveCategoriesDeliveryconfig](#savecategoriesdeliveryconfig)     |                                                                                                                                                                                                                                                                    |
+| [getDeliveryconfig](#getdeliveryconfig)                           |                                                                                                                                                                                                                                                                    |
+| [saveDeliveryconfig](#savedeliveryconfig)                         |                                                                                                                                                                                                                                                                    |
 | [getMobilePushApnsUserTokens](#getmobilepushapnsusertokens)       | Lists all mobile_push tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                               |
 | [getMobilePushApnsUserToken](#getmobilepushapnsusertoken)         | Retrieves a specific mobile_push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata. |
 | [discardMobilePushApnsUserToken](#discardmobilepushapnsusertoken) | Revokes a specific user's mobile_push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.         |
@@ -26,14 +25,20 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 | [getWebPushUserToken](#getwebpushusertoken)                       | Retrieves a specific web_push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.    |
 | [discardWebPushUserToken](#discardwebpushusertoken)               | Revokes a specific user's web_push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.            |
 
-## getProjectDeliveryconfig
+## getDeliveryconfig
 
 - HTTP Method: `GET`
 - Endpoint: `/channels/deliveryconfig`
 
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| key  | string | ❌       |             |
+
 **Return Type**
 
-`ProjectDeliveryConfig`
+`CategoryDeliveryConfig`
 
 **Example Usage Code Snippet**
 
@@ -45,61 +50,18 @@ import { Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getProjectDeliveryconfig();
+  const { data } = await client.channels.getDeliveryconfig({
+    key: 'key',
+  });
 
   console.log(data);
 })();
 ```
 
-## saveProjectDeliveryconfig
+## saveDeliveryconfig
 
 - HTTP Method: `PUT`
 - Endpoint: `/channels/deliveryconfig`
-
-**Parameters**
-
-| Name | Type                                                        | Required | Description       |
-| :--- | :---------------------------------------------------------- | :------- | :---------------- |
-| body | [ProjectDeliveryConfig](../models/ProjectDeliveryConfig.md) | ❌       | The request body. |
-
-**Return Type**
-
-`ProjectDeliveryConfig`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client, ProjectDeliveryConfig } from '@magicbell/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const channelsChannel1 = ChannelsChannel1.IN_APP;
-
-  const projectDeliveryConfigChannels: ProjectDeliveryConfigChannels = {
-    channel: channelsChannel1,
-    delay: 8,
-    disabled: true,
-    if: 'if',
-    priority: 3,
-  };
-
-  const projectDeliveryConfig: ProjectDeliveryConfig = {
-    channels: [projectDeliveryConfigChannels],
-  };
-
-  const { data } = await client.channels.saveProjectDeliveryconfig(projectDeliveryConfig);
-
-  console.log(data);
-})();
-```
-
-## saveCategoriesDeliveryconfig
-
-- HTTP Method: `POST`
-- Endpoint: `/channels/deliveryconfig/categories`
 
 **Parameters**
 
@@ -121,23 +83,21 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const channelsChannel2 = ChannelsChannel2.IN_APP;
+  const channel = Channel.IN_APP;
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
-    channel: channelsChannel2,
-    delay: 6,
-    disabled: true,
+    channel: channel,
+    delay: 4,
     if: 'if',
-    priority: 1,
   };
 
   const categoryDeliveryConfig: CategoryDeliveryConfig = {
-    category: 'category',
     channels: [categoryDeliveryConfigChannels],
     disabled: true,
+    key: 'key',
   };
 
-  const { data } = await client.channels.saveCategoriesDeliveryconfig(categoryDeliveryConfig);
+  const { data } = await client.channels.saveDeliveryconfig(categoryDeliveryConfig);
 
   console.log(data);
 })();
@@ -161,7 +121,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfMetadataApnsTokens`
+`ArrayOfApnsTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -174,7 +134,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    pageSize: 3,
+    pageSize: 7,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -199,7 +159,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`MetadataApnsToken`
+`ApnsTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -269,7 +229,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfMetadataExpoTokens`
+`ArrayOfExpoTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -282,7 +242,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
-    pageSize: 6,
+    pageSize: 2,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -307,7 +267,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`MetadataExpoToken`
+`ExpoTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -377,7 +337,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfMetadataFcmTokens`
+`ArrayOfFcmTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -390,7 +350,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
-    pageSize: 4,
+    pageSize: 2,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -415,7 +375,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`MetadataFcmToken`
+`FcmTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -485,7 +445,7 @@ Lists all slack tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfMetadataSlackTokens`
+`ArrayOfSlackTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -523,7 +483,7 @@ Retrieves a specific slack token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`MetadataSlackToken`
+`SlackTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -593,7 +553,7 @@ Lists all teams tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfMetadataTeamsTokens`
+`ArrayOfTeamsTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -606,7 +566,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    pageSize: 8,
+    pageSize: 5,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -631,7 +591,7 @@ Retrieves a specific teams token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`MetadataTeamsToken`
+`TeamsTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -701,7 +661,7 @@ Lists all web_push tokens associated with a specific user. This endpoint is avai
 
 **Return Type**
 
-`ArrayOfMetadataWebPushTokens`
+`ArrayOfWebPushTokenResponses`
 
 **Example Usage Code Snippet**
 
@@ -714,7 +674,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getWebPushUserTokens('user_id', {
-    pageSize: 4,
+    pageSize: 3,
     pageAfter: 'page[after]',
     pageBefore: 'page[before]',
   });
@@ -739,7 +699,7 @@ Retrieves a specific web_push token by its ID for a given user. This endpoint is
 
 **Return Type**
 
-`MetadataWebPushToken`
+`WebPushTokenResponse`
 
 **Example Usage Code Snippet**
 

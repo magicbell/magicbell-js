@@ -1,5 +1,6 @@
 import { HttpError } from '../error.js';
 import { HttpMetadata, HttpMethod, HttpResponse } from '../types.js';
+import { LineDecoder } from '../utils/line-decoder.js';
 import { Request } from './request.js';
 
 interface HttpAdapter {
@@ -10,7 +11,7 @@ interface HttpAdapter {
 export class RequestFetchAdapter<T> implements HttpAdapter {
   private requestInit: RequestInit = {};
 
-  constructor(private request: Request<T>) {
+  constructor(private request: Request) {
     this.setMethod(request.method);
     this.setHeaders(request.getHeaders());
     this.setBody(request.body);
@@ -53,15 +54,26 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     }
 
     const reader = response.body.getReader();
+    const lineDecoder = new LineDecoder();
 
     while (true) {
       const { done, value } = await reader.read();
       if (done) {
         break;
       }
+
+      for (const line of lineDecoder.splitLines(value)) {
+        yield {
+          metadata,
+          raw: line,
+        };
+      }
+    }
+
+    for (const line of lineDecoder.flush()) {
       yield {
         metadata,
-        raw: value,
+        raw: line,
       };
     }
   }

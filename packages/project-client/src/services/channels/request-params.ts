@@ -1,3 +1,7 @@
+export interface GetDeliveryconfigParams {
+  key?: string;
+}
+
 export interface GetMobilePushApnsUserTokensParams {
   pageSize?: number;
   pageAfter?: string;

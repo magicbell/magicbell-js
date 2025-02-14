@@ -7,20 +7,16 @@ export const categoryDeliveryConfigChannels = z.lazy(() => {
   return z.object({
     channel: z.string(),
     delay: z.number().gte(0).optional(),
-    disabled: z.boolean().optional(),
-    if: z.string().optional(),
-    priority: z.number().gte(0).optional(),
+    if: z.string().optional().nullable(),
   });
 });
 
 /**
  *
  * @typedef  {CategoryDeliveryConfigChannels} categoryDeliveryConfigChannels
- * @property {ChannelsChannel2}
+ * @property {Channel}
  * @property {number}
- * @property {boolean}
  * @property {string}
- * @property {number}
  */
 export type CategoryDeliveryConfigChannels = z.infer<typeof categoryDeliveryConfigChannels>;
 
@@ -33,16 +29,12 @@ export const categoryDeliveryConfigChannelsResponse = z.lazy(() => {
     .object({
       channel: z.string(),
       delay: z.number().gte(0).optional(),
-      disabled: z.boolean().optional(),
-      if: z.string().optional(),
-      priority: z.number().gte(0).optional(),
+      if: z.string().optional().nullable(),
     })
     .transform((data) => ({
       channel: data['channel'],
       delay: data['delay'],
-      disabled: data['disabled'],
       if: data['if'],
-      priority: data['priority'],
     }));
 });
 
@@ -52,18 +44,10 @@ export const categoryDeliveryConfigChannelsResponse = z.lazy(() => {
  */
 export const categoryDeliveryConfigChannelsRequest = z.lazy(() => {
   return z
-    .object({
-      channel: z.string().nullish(),
-      delay: z.number().nullish(),
-      disabled: z.boolean().nullish(),
-      if: z.string().nullish(),
-      priority: z.number().nullish(),
-    })
+    .object({ channel: z.string().nullish(), delay: z.number().nullish(), if: z.string().nullish() })
     .transform((data) => ({
       channel: data['channel'],
       delay: data['delay'],
-      disabled: data['disabled'],
       if: data['if'],
-      priority: data['priority'],
     }));
 });

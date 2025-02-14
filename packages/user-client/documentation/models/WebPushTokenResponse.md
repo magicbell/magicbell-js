@@ -1,0 +1,21 @@
+# WebPushTokenResponse
+
+**Properties**
+
+| Name        | Type                     | Required | Description |
+| :---------- | :----------------------- | :------- | :---------- |
+| createdAt   | string                   | ✅       |             |
+| endpoint    | string                   | ✅       |             |
+| id          | string                   | ✅       |             |
+| keys        | WebPushTokenResponseKeys | ✅       |             |
+| discardedAt | string                   | ❌       |             |
+| updatedAt   | string                   | ❌       |             |
+
+# WebPushTokenResponseKeys
+
+**Properties**
+
+| Name   | Type   | Required | Description |
+| :----- | :----- | :------- | :---------- |
+| auth   | string | ✅       |             |
+| p256dh | string | ✅       |             |

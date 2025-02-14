@@ -5,14 +5,14 @@ import { HttpResponse, RequestHandler } from '../types.js';
 export class RetryHandler implements RequestHandler {
   next?: RequestHandler;
 
-  async handle<T>(request: Request<T>): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in retry handler.');
     }
 
     for (let attempt = 1; attempt <= request.retry.attempts; attempt++) {
       try {
-        return await this.next.handle(request);
+        return await this.next.handle<T>(request);
       } catch (error: any) {
         if (!this.shouldRetry(error) || attempt === request.retry.attempts) {
           throw error;
@@ -24,14 +24,14 @@ export class RetryHandler implements RequestHandler {
     throw new Error('Error retrying request.');
   }
 
-  async *stream<T>(request: Request<T>): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in retry handler.');
     }
 
     for (let attempt = 1; attempt <= request.retry.attempts; attempt++) {
       try {
-        yield* this.next.stream(request);
+        yield* this.next.stream<T>(request);
         return;
       } catch (error: any) {
         if (!this.shouldRetry(error) || attempt === request.retry.attempts) {

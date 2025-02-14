@@ -11,7 +11,7 @@ Welcome to the Client SDK documentation. This guide will help you get started wi
 
 ## About the API
 
-OpenAPI 3.1.0 Specification for MagicBell API.
+OpenAPI 3.0.3 Specification for MagicBell API.
 
 ## Table of Contents
 
@@ -115,25 +115,25 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                         | Description |
 | :------------------------------------------------------------------------------------------- | :---------- |
-| [ArrayOfMetadataApnsTokens](documentation/models/ArrayOfMetadataApnsTokens.md)               |             |
+| [ArrayOfApnsTokenResponses](documentation/models/ArrayOfApnsTokenResponses.md)               |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
-| [MetadataApnsToken](documentation/models/MetadataApnsToken.md)                               |             |
+| [ApnsTokenResponse1](documentation/models/ApnsTokenResponse1.md)                             |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
-| [ArrayOfMetadataExpoTokens](documentation/models/ArrayOfMetadataExpoTokens.md)               |             |
+| [ArrayOfExpoTokenResponses](documentation/models/ArrayOfExpoTokenResponses.md)               |             |
 | [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
-| [MetadataExpoToken](documentation/models/MetadataExpoToken.md)                               |             |
-| [ArrayOfMetadataFcmTokens](documentation/models/ArrayOfMetadataFcmTokens.md)                 |             |
+| [ExpoTokenResponse1](documentation/models/ExpoTokenResponse1.md)                             |             |
+| [ArrayOfFcmTokenResponses](documentation/models/ArrayOfFcmTokenResponses.md)                 |             |
 | [FcmToken](documentation/models/FcmToken.md)                                                 |             |
-| [MetadataFcmToken](documentation/models/MetadataFcmToken.md)                                 |             |
-| [ArrayOfMetadataSlackTokens](documentation/models/ArrayOfMetadataSlackTokens.md)             |             |
+| [FcmTokenResponse1](documentation/models/FcmTokenResponse1.md)                               |             |
+| [ArrayOfSlackTokenResponses](documentation/models/ArrayOfSlackTokenResponses.md)             |             |
 | [SlackToken](documentation/models/SlackToken.md)                                             |             |
-| [MetadataSlackToken](documentation/models/MetadataSlackToken.md)                             |             |
-| [ArrayOfMetadataTeamsTokens](documentation/models/ArrayOfMetadataTeamsTokens.md)             |             |
+| [SlackTokenResponse1](documentation/models/SlackTokenResponse1.md)                           |             |
+| [ArrayOfTeamsTokenResponses](documentation/models/ArrayOfTeamsTokenResponses.md)             |             |
 | [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
-| [MetadataTeamsToken](documentation/models/MetadataTeamsToken.md)                             |             |
-| [ArrayOfMetadataWebPushTokens](documentation/models/ArrayOfMetadataWebPushTokens.md)         |             |
+| [TeamsTokenResponse1](documentation/models/TeamsTokenResponse1.md)                           |             |
+| [ArrayOfWebPushTokenResponses](documentation/models/ArrayOfWebPushTokenResponses.md)         |             |
 | [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
-| [MetadataWebPushToken](documentation/models/MetadataWebPushToken.md)                         |             |
+| [WebPushTokenResponse](documentation/models/WebPushTokenResponse.md)                         |             |
 | [InboxConfig](documentation/models/InboxConfig.md)                                           |             |
 | [SlackInstallation](documentation/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](documentation/models/SlackFinishInstallResponse.md)             |             |
@@ -142,6 +142,5 @@ The SDK includes several models that represent the data structures used in API r
 | [TemplatesInstallation](documentation/models/TemplatesInstallation.md)                       |             |
 | [WebPushStartInstallationResponse](documentation/models/WebPushStartInstallationResponse.md) |             |
 | [Links](documentation/models/Links.md)                                                       |             |
-| [TokenMetadata](documentation/models/TokenMetadata.md)                                       |             |
 
 </details>

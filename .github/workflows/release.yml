@@ -42,19 +42,3 @@ jobs:
         run: "npx -y brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
         env:
           GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
-
-      - name: Build docs
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          yarn --cwd ./packages/codegen build # needed by scripts below
-          yarn --cwd ./packages/project-client build:docs
-          yarn --cwd ./packages/user-client build:docs
-
-      - name: Push docs to remote repo
-        uses: BetaHuhn/repo-file-sync-action@v1
-        if: steps.changesets.outputs.published == 'true'
-        with:
-          GH_PAT: ${{ secrets.BELLA_ACTION_TOKEN }}
-          COMMIT_PREFIX: 'docs: '
-          GIT_USERNAME: 'MagicBella'
-          GIT_EMAIL: '${{ secrets.BELLA_EMAIL_ADDRESS }}'

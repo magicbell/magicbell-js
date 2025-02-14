@@ -32,15 +32,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<InboxConfig>>} Created
    */
   async saveInboxInstallation(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
-    const request = new RequestBuilder<InboxConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/inbox/installations')
       .setRequestSchema(inboxConfigRequest)
-      .setResponseSchema(inboxConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: inboxConfigResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -55,15 +58,18 @@ export class IntegrationsService extends BaseService {
    * @returns {Promise<HttpResponse<InboxConfig>>} Created
    */
   async startInboxInstallation(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
-    const request = new RequestBuilder<InboxConfig>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/inbox/installations/start')
       .setRequestSchema(z.any())
-      .setResponseSchema(inboxConfigResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: inboxConfigResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -79,15 +85,18 @@ export class IntegrationsService extends BaseService {
     body: SlackInstallation,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackInstallation>> {
-    const request = new RequestBuilder<SlackInstallation>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations')
       .setRequestSchema(slackInstallationRequest)
-      .setResponseSchema(slackInstallationResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: slackInstallationResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -105,15 +114,18 @@ export class IntegrationsService extends BaseService {
     body: SlackFinishInstallResponse,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackInstallation>> {
-    const request = new RequestBuilder<SlackInstallation>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations/finish')
       .setRequestSchema(slackFinishInstallResponseRequest)
-      .setResponseSchema(slackInstallationResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: slackInstallationResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -131,15 +143,18 @@ export class IntegrationsService extends BaseService {
     body: SlackStartInstall,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackStartInstallResponseContent>> {
-    const request = new RequestBuilder<SlackStartInstallResponseContent>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/slack/installations/start')
       .setRequestSchema(slackStartInstallRequest)
-      .setResponseSchema(slackStartInstallResponseContentResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: slackStartInstallResponseContentResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -157,15 +172,18 @@ export class IntegrationsService extends BaseService {
     body: TemplatesInstallation,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<TemplatesInstallation>> {
-    const request = new RequestBuilder<TemplatesInstallation>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/templates/installations')
       .setRequestSchema(templatesInstallationRequest)
-      .setResponseSchema(templatesInstallationResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: templatesInstallationResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -183,15 +201,18 @@ export class IntegrationsService extends BaseService {
     body: WebPushToken,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushToken>> {
-    const request = new RequestBuilder<WebPushToken>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/web_push/installations')
       .setRequestSchema(webPushTokenRequest)
-      .setResponseSchema(webPushTokenResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: webPushTokenResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
@@ -208,15 +229,18 @@ export class IntegrationsService extends BaseService {
   async startWebPushInstallation(
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushStartInstallationResponse>> {
-    const request = new RequestBuilder<WebPushStartInstallationResponse>()
+    const request = new RequestBuilder()
       .setBaseUrl(this.config)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/integrations/web_push/installations/start')
       .setRequestSchema(z.any())
-      .setResponseSchema(webPushStartInstallationResponseResponse)
       .setRequestContentType(ContentType.Json)
-      .setResponseContentType(ContentType.Json)
+      .addResponse({
+        schema: webPushStartInstallationResponseResponse,
+        contentType: ContentType.Json,
+        status: 201,
+      })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
