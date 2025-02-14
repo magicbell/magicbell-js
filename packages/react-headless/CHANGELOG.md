@@ -1,5 +1,16 @@
 # @magicbell/react-headless
 
+## 5.2.0
+
+### Minor Changes
+
+- [#465](https://github.com/magicbell/magicbell-js/pull/465) [`748822c`](https://github.com/magicbell/magicbell-js/commit/748822ca48d48f9361364f78ce26e819cfa28d80) Thanks [@stigi](https://github.com/stigi)! - Added `token` as a way to authenticate the react-headless SDK. Also improved typings to make clear which combination of parameters are expected
+
+### Patch Changes
+
+- Updated dependencies [[`6688f1c`](https://github.com/magicbell/magicbell-js/commit/6688f1ced10daa74d4953042fe7de12554d88156)]:
+  - magicbell@4.2.0
+
 ## 5.1.0
 
 ### Minor Changes
