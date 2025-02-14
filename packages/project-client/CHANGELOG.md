@@ -1,5 +1,11 @@
 # @magicbell/project-client
 
+## 0.7.0
+
+### Minor Changes
+
+- [#459](https://github.com/magicbell/magicbell-js/pull/459) [`6688f1c`](https://github.com/magicbell/magicbell-js/commit/6688f1ced10daa74d4953042fe7de12554d88156) Thanks [@MagicBella](https://github.com/MagicBella)! - Automatic minor version bump for changes in `@magicbell/project-client`.
+
 ## 0.6.0
 
 ### Minor Changes
