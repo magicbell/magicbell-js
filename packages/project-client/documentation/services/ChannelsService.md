@@ -87,7 +87,7 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 4,
+    delay: 8,
     if: 'if',
   };
 
@@ -112,12 +112,12 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -134,9 +134,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    pageSize: 7,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 7,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -220,12 +220,12 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -242,9 +242,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
-    pageSize: 2,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 4,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -328,12 +328,12 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -350,9 +350,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
-    pageSize: 2,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 9,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -436,12 +436,12 @@ Lists all slack tokens associated with a specific user. This endpoint is availab
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -458,9 +458,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getSlackUserTokens('user_id', {
-    pageSize: 8,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 7,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -544,12 +544,12 @@ Lists all teams tokens associated with a specific user. This endpoint is availab
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -566,9 +566,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    pageSize: 5,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 3,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -652,12 +652,12 @@ Lists all web_push tokens associated with a specific user. This endpoint is avai
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| userId     | string | ✅       |             |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -674,9 +674,9 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getWebPushUserTokens('user_id', {
-    pageSize: 3,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 6,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -750,3 +750,5 @@ import { Client } from '@magicbell/project-client';
   console.log(data);
 })();
 ```
+
+<!-- This file was generated by liblab | https://liblab.com/ -->
