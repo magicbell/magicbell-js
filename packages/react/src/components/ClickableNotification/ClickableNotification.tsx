@@ -18,18 +18,19 @@ export interface Props {
 }
 
 const actionableTags = new Set(['A', 'BUTTON', 'INPUT', 'TEXTAREA', 'SELECT']);
-function isActionableElement(event: MouseEvent) {
+function isActionableElement(event: MouseEvent): [boolean, boolean] {
   let el = event.target as HTMLElement;
 
   while (el && el !== event.currentTarget) {
     if (actionableTags.has(el.tagName.toUpperCase())) {
-      return true;
+      const isMenu = el.dataset.magicbellTarget === 'notification-menu';
+      return [true, isMenu];
     }
 
     el = el.parentElement;
   }
 
-  return false;
+  return [false, false];
 }
 
 /**
@@ -48,11 +49,16 @@ export default function ClickableNotification({ notification: rawNotification, o
   const handleClick = (event) => {
     // ignore event when user clicks inside the menu
     if (event.isDefaultPrevented()) return;
-    const markAsReadPromise = notification.markAsRead();
+    const [isAction, isMenu] = isActionableElement(event);
+    let markAsReadPromise;
+
+    // don't mark as read when the user clicks the menu
+    if (!isMenu) {
+      markAsReadPromise = notification.markAsRead();
+    }
 
     // We don't want to invoke the action url when the user clicks a link or button inside the notification.
     // Notification content should take precedence.
-    const isAction = isActionableElement(event);
     if (isAction) return;
 
     const onClickResult = onClick?.(notification);
