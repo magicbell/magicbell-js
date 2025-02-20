@@ -1,9 +1,6 @@
 {
   "name": "@magicbell/project-client",
   "version": "0.7.0",
-  "docs": {
-    "name": "JavaScript Project Client"
-  },
   "keywords": [
     "typescript",
     "sdk",
@@ -56,6 +53,9 @@
     "typescript": "^5.7.3",
     "unist-util-remove": "^4.0.0",
     "unist-util-visit": "^5.0.0"
+  },
+  "docs": {
+    "name": "JavaScript Project Client"
   },
   "tshy": {
     "project": "./tsconfig.build.json",

@@ -38,11 +38,11 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -59,9 +59,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    pageSize: 6,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 8,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -99,7 +99,7 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
   const apnsToken: ApnsToken = {
     appId: 'app_id',
-    deviceToken: 'nostrud elit do',
+    deviceToken: 'non etExcepteur',
     installationId: apnsTokenInstallationId,
   };
 
@@ -184,11 +184,11 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -205,9 +205,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    pageSize: 10,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 123,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -326,11 +326,11 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -347,9 +347,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    pageSize: 9,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 8,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -386,7 +386,7 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'voluptate nulla',
+    deviceToken: 'quis eiusmoddol',
     installationId: fcmTokenInstallationId,
   };
 
@@ -471,11 +471,11 @@ Lists all slack tokens belonging to the authenticated user. Returns a paginated 
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -492,9 +492,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    pageSize: 3,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 1,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -624,11 +624,11 @@ Lists all teams tokens belonging to the authenticated user. Returns a paginated 
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -645,9 +645,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getTeamsTokens({
-    pageSize: 2,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 123,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -770,11 +770,11 @@ Lists all web_push tokens belonging to the authenticated user. Returns a paginat
 
 **Parameters**
 
-| Name       | Type   | Required | Description |
-| :--------- | :----- | :------- | :---------- |
-| pageSize   | number | ❌       |             |
-| pageAfter  | string | ❌       |             |
-| pageBefore | string | ❌       |             |
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
 
 **Return Type**
 
@@ -791,9 +791,9 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    pageSize: 1,
-    pageAfter: 'page[after]',
-    pageBefore: 'page[before]',
+    limit: 1,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
   });
 
   console.log(data);
@@ -908,3 +908,5 @@ import { Client } from '@magicbell/user-client';
   console.log(data);
 })();
 ```
+
+<!-- This file was generated by liblab | https://liblab.com/ -->
