@@ -47,6 +47,7 @@ export default function NotificationMenu({ notification }: Props) {
       <button
         ref={refs.setReference}
         type="button"
+        data-magicbell-target="notification-menu"
         aria-label={t('notification.menu', 'Menu')}
         css={css`
           color: ${theme.textColor} !important;
