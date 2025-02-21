@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 11.2.2
+
+### Patch Changes
+
+- [#468](https://github.com/magicbell/magicbell-js/pull/468) [`506e929`](https://github.com/magicbell/magicbell-js/commit/506e9293e2014cdf4ffc3c96cd73a5442950a486) Thanks [@smeijer](https://github.com/smeijer)! - notifications are no longer marked as read when the notification menu is clicked
+
 ## 11.2.1
 
 ### Patch Changes
