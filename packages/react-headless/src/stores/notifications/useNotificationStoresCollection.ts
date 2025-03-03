@@ -13,6 +13,16 @@ function unix() {
   return Math.floor(Date.now() / 1000);
 }
 
+function addToStore(store: INotificationStore, notification: IRemoteNotification) {
+  store.total += 1;
+  const idx = store.notifications.findIndex((n) => n.sentAt < notification.sentAt);
+  if (idx === -1) {
+    store.notifications.push(notification);
+  } else {
+    store.notifications.splice(idx, 0, notification);
+  }
+}
+
 /**
  * Collection of notifications store. It contains all stores of notifications
  * and exposes methods to interact with them.
@@ -118,9 +128,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
           } else {
             const readNotification = mergeRight(notification, attrs);
             if (objMatchesContext(readNotification, context).result) {
-              // Add the notification to the store
-              draft.stores[storeId].total += 1;
-              draft.stores[storeId].notifications.push(readNotification);
+              addToStore(draft.stores[storeId], readNotification);
             }
           }
         }
@@ -158,10 +166,8 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
           } else {
             const unreadNotification = mergeRight(notification, attrs);
             if (objMatchesContext(unreadNotification, context).result) {
-              // Add the notification to the store
-              draft.stores[storeId].total += 1;
+              addToStore(draft.stores[storeId], unreadNotification);
               if (notification.readAt) draft.stores[storeId].unreadCount += 1;
-              draft.stores[storeId].notifications.push(unreadNotification);
             }
           }
         }
@@ -212,9 +218,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               // Add the notification to the store
               if (!notification.readAt) draft.stores[storeId].unreadCount += 1;
               if (!notification.seenAt) draft.stores[storeId].unseenCount += 1;
-
-              draft.stores[storeId].total += 1;
-              draft.stores[storeId].notifications.push(newNotification);
+              addToStore(draft.stores[storeId], newNotification);
             }
           }
         }
@@ -261,9 +265,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               // Add the notification to the store
               if (!notification.readAt) draft.stores[storeId].unreadCount += 1;
               if (!notification.seenAt) draft.stores[storeId].unseenCount += 1;
-
-              draft.stores[storeId].total += 1;
-              draft.stores[storeId].notifications.push(newNotification);
+              addToStore(draft.stores[storeId], newNotification);
             }
           }
         }
@@ -361,8 +363,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               objMatchesContext(notification, context).result &&
               !notifications.find((n) => n.id === notification.id)
             ) {
-              notifications.push(notification);
-              draft.stores[storeId].total += 1;
+              addToStore(draft.stores[storeId], notification);
             }
           }
         }
@@ -429,8 +430,7 @@ const useNotificationStoresCollection = create<INotificationsStoresCollection>((
               objMatchesContext(notification, context).result &&
               !notifications.find((n) => n.id === notification.id)
             ) {
-              notifications.push(notification);
-              draft.stores[storeId].total += 1;
+              addToStore(draft.stores[storeId], notification);
             }
           }
         }
