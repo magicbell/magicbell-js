@@ -5,6 +5,10 @@ on:
     types: [published]
   workflow_dispatch:
 
+concurrency:
+  group: publish-docs
+  cancel-in-progress: true
+
 jobs:
   publish:
     runs-on: ubuntu-latest
