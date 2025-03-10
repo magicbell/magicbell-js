@@ -2,69 +2,73 @@
 
 A list of all methods in the `IntegrationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                           | Description                                                                                                                                                             |
-| :---------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [listIntegrations](#listintegrations)                             | Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information. |
-| [getApnsIntegration](#getapnsintegration)                         | Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
-| [saveApnsIntegration](#saveapnsintegration)                       | Creates or updates a apns integration for the project. Only administrators can configure integrations.                                                                  |
-| [deleteApnsIntegration](#deleteapnsintegration)                   | Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.                                        |
-| [deleteApnsIntegrationById](#deleteapnsintegrationbyid)           | Removes a specific apns integration instance by ID from the project.                                                                                                    |
-| [getAwssnsIntegration](#getawssnsintegration)                     | Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveAwssnsIntegration](#saveawssnsintegration)                   | Creates or updates a awssns integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteAwssnsIntegration](#deleteawssnsintegration)               | Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteAwssnsIntegrationById](#deleteawssnsintegrationbyid)       | Removes a specific awssns integration instance by ID from the project.                                                                                                  |
-| [getExpoIntegration](#getexpointegration)                         | Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
-| [saveExpoIntegration](#saveexpointegration)                       | Creates or updates a expo integration for the project. Only administrators can configure integrations.                                                                  |
-| [deleteExpoIntegration](#deleteexpointegration)                   | Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.                                        |
-| [deleteExpoIntegrationById](#deleteexpointegrationbyid)           | Removes a specific expo integration instance by ID from the project.                                                                                                    |
-| [getFcmIntegration](#getfcmintegration)                           | Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
-| [saveFcmIntegration](#savefcmintegration)                         | Creates or updates a fcm integration for the project. Only administrators can configure integrations.                                                                   |
-| [deleteFcmIntegration](#deletefcmintegration)                     | Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.                                         |
-| [deleteFcmIntegrationById](#deletefcmintegrationbyid)             | Removes a specific fcm integration instance by ID from the project.                                                                                                     |
-| [getGithubIntegration](#getgithubintegration)                     | Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveGithubIntegration](#savegithubintegration)                   | Creates or updates a github integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteGithubIntegration](#deletegithubintegration)               | Removes a github integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteGithubIntegrationById](#deletegithubintegrationbyid)       | Removes a specific github integration instance by ID from the project.                                                                                                  |
-| [getInboxIntegration](#getinboxintegration)                       | Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
-| [saveInboxIntegration](#saveinboxintegration)                     | Creates or updates a inbox integration for the project. Only administrators can configure integrations.                                                                 |
-| [deleteInboxIntegration](#deleteinboxintegration)                 | Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.                                       |
-| [deleteInboxIntegrationById](#deleteinboxintegrationbyid)         | Removes a specific inbox integration instance by ID from the project.                                                                                                   |
-| [getMailgunIntegration](#getmailgunintegration)                   | Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.          |
-| [saveMailgunIntegration](#savemailgunintegration)                 | Creates or updates a mailgun integration for the project. Only administrators can configure integrations.                                                               |
-| [deleteMailgunIntegration](#deletemailgunintegration)             | Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.                                     |
-| [deleteMailgunIntegrationById](#deletemailgunintegrationbyid)     | Removes a specific mailgun integration instance by ID from the project.                                                                                                 |
-| [getPingEmailIntegration](#getpingemailintegration)               | Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
-| [savePingEmailIntegration](#savepingemailintegration)             | Creates or updates a ping_email integration for the project. Only administrators can configure integrations.                                                            |
-| [deletePingEmailIntegration](#deletepingemailintegration)         | Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.                                  |
-| [deletePingEmailIntegrationById](#deletepingemailintegrationbyid) | Removes a specific ping_email integration instance by ID from the project.                                                                                              |
-| [getSendgridIntegration](#getsendgridintegration)                 | Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
-| [saveSendgridIntegration](#savesendgridintegration)               | Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.                                                              |
-| [deleteSendgridIntegration](#deletesendgridintegration)           | Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.                                    |
-| [deleteSendgridIntegrationById](#deletesendgridintegrationbyid)   | Removes a specific sendgrid integration instance by ID from the project.                                                                                                |
-| [getSesIntegration](#getsesintegration)                           | Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
-| [saveSesIntegration](#savesesintegration)                         | Creates or updates a ses integration for the project. Only administrators can configure integrations.                                                                   |
-| [deleteSesIntegration](#deletesesintegration)                     | Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.                                         |
-| [deleteSesIntegrationById](#deletesesintegrationbyid)             | Removes a specific ses integration instance by ID from the project.                                                                                                     |
-| [getSlackIntegration](#getslackintegration)                       | Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
-| [saveSlackIntegration](#saveslackintegration)                     | Creates or updates a slack integration for the project. Only administrators can configure integrations.                                                                 |
-| [deleteSlackIntegration](#deleteslackintegration)                 | Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.                                       |
-| [deleteSlackIntegrationById](#deleteslackintegrationbyid)         | Removes a specific slack integration instance by ID from the project.                                                                                                   |
-| [getStripeIntegration](#getstripeintegration)                     | Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveStripeIntegration](#savestripeintegration)                   | Creates or updates a stripe integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteStripeIntegration](#deletestripeintegration)               | Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteStripeIntegrationById](#deletestripeintegrationbyid)       | Removes a specific stripe integration instance by ID from the project.                                                                                                  |
-| [getTemplatesIntegration](#gettemplatesintegration)               | Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.        |
-| [saveTemplatesIntegration](#savetemplatesintegration)             | Creates or updates a templates integration for the project. Only administrators can configure integrations.                                                             |
-| [deleteTemplatesIntegration](#deletetemplatesintegration)         | Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.                                   |
-| [deleteTemplatesIntegrationById](#deletetemplatesintegrationbyid) | Removes a specific templates integration instance by ID from the project.                                                                                               |
-| [getTwilioIntegration](#gettwiliointegration)                     | Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveTwilioIntegration](#savetwiliointegration)                   | Creates or updates a twilio integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteTwilioIntegration](#deletetwiliointegration)               | Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteTwilioIntegrationById](#deletetwiliointegrationbyid)       | Removes a specific twilio integration instance by ID from the project.                                                                                                  |
-| [getWebPushIntegration](#getwebpushintegration)                   | Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
-| [saveWebPushIntegration](#savewebpushintegration)                 | Creates or updates a web_push integration for the project. Only administrators can configure integrations.                                                              |
-| [deleteWebPushIntegration](#deletewebpushintegration)             | Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.                                    |
-| [deleteWebPushIntegrationById](#deletewebpushintegrationbyid)     | Removes a specific web_push integration instance by ID from the project.                                                                                                |
+| Methods                                                               | Description                                                                                                                                                             |
+| :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [listIntegrations](#listintegrations)                                 | Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information. |
+| [getApnsIntegration](#getapnsintegration)                             | Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
+| [saveApnsIntegration](#saveapnsintegration)                           | Creates or updates a apns integration for the project. Only administrators can configure integrations.                                                                  |
+| [deleteApnsIntegration](#deleteapnsintegration)                       | Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.                                        |
+| [deleteApnsIntegrationById](#deleteapnsintegrationbyid)               | Removes a specific apns integration instance by ID from the project.                                                                                                    |
+| [getAwssnsIntegration](#getawssnsintegration)                         | Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveAwssnsIntegration](#saveawssnsintegration)                       | Creates or updates a awssns integration for the project. Only administrators can configure integrations.                                                                |
+| [deleteAwssnsIntegration](#deleteawssnsintegration)                   | Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [deleteAwssnsIntegrationById](#deleteawssnsintegrationbyid)           | Removes a specific awssns integration instance by ID from the project.                                                                                                  |
+| [getEventsourceIntegration](#geteventsourceintegration)               | Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.      |
+| [saveEventsourceIntegration](#saveeventsourceintegration)             | Creates or updates a eventsource integration for the project. Only administrators can configure integrations.                                                           |
+| [deleteEventsourceIntegration](#deleteeventsourceintegration)         | Removes a eventsource integration configuration from the project. This will disable the integration's functionality within the project.                                 |
+| [deleteEventsourceIntegrationById](#deleteeventsourceintegrationbyid) | Removes a specific eventsource integration instance by ID from the project.                                                                                             |
+| [getExpoIntegration](#getexpointegration)                             | Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
+| [saveExpoIntegration](#saveexpointegration)                           | Creates or updates a expo integration for the project. Only administrators can configure integrations.                                                                  |
+| [deleteExpoIntegration](#deleteexpointegration)                       | Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.                                        |
+| [deleteExpoIntegrationById](#deleteexpointegrationbyid)               | Removes a specific expo integration instance by ID from the project.                                                                                                    |
+| [getFcmIntegration](#getfcmintegration)                               | Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
+| [saveFcmIntegration](#savefcmintegration)                             | Creates or updates a fcm integration for the project. Only administrators can configure integrations.                                                                   |
+| [deleteFcmIntegration](#deletefcmintegration)                         | Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.                                         |
+| [deleteFcmIntegrationById](#deletefcmintegrationbyid)                 | Removes a specific fcm integration instance by ID from the project.                                                                                                     |
+| [getGithubIntegration](#getgithubintegration)                         | Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveGithubIntegration](#savegithubintegration)                       | Creates or updates a github integration for the project. Only administrators can configure integrations.                                                                |
+| [deleteGithubIntegration](#deletegithubintegration)                   | Removes a github integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [deleteGithubIntegrationById](#deletegithubintegrationbyid)           | Removes a specific github integration instance by ID from the project.                                                                                                  |
+| [getInboxIntegration](#getinboxintegration)                           | Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
+| [saveInboxIntegration](#saveinboxintegration)                         | Creates or updates a inbox integration for the project. Only administrators can configure integrations.                                                                 |
+| [deleteInboxIntegration](#deleteinboxintegration)                     | Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.                                       |
+| [deleteInboxIntegrationById](#deleteinboxintegrationbyid)             | Removes a specific inbox integration instance by ID from the project.                                                                                                   |
+| [getMailgunIntegration](#getmailgunintegration)                       | Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.          |
+| [saveMailgunIntegration](#savemailgunintegration)                     | Creates or updates a mailgun integration for the project. Only administrators can configure integrations.                                                               |
+| [deleteMailgunIntegration](#deletemailgunintegration)                 | Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.                                     |
+| [deleteMailgunIntegrationById](#deletemailgunintegrationbyid)         | Removes a specific mailgun integration instance by ID from the project.                                                                                                 |
+| [getPingEmailIntegration](#getpingemailintegration)                   | Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
+| [savePingEmailIntegration](#savepingemailintegration)                 | Creates or updates a ping_email integration for the project. Only administrators can configure integrations.                                                            |
+| [deletePingEmailIntegration](#deletepingemailintegration)             | Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.                                  |
+| [deletePingEmailIntegrationById](#deletepingemailintegrationbyid)     | Removes a specific ping_email integration instance by ID from the project.                                                                                              |
+| [getSendgridIntegration](#getsendgridintegration)                     | Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
+| [saveSendgridIntegration](#savesendgridintegration)                   | Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.                                                              |
+| [deleteSendgridIntegration](#deletesendgridintegration)               | Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.                                    |
+| [deleteSendgridIntegrationById](#deletesendgridintegrationbyid)       | Removes a specific sendgrid integration instance by ID from the project.                                                                                                |
+| [getSesIntegration](#getsesintegration)                               | Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
+| [saveSesIntegration](#savesesintegration)                             | Creates or updates a ses integration for the project. Only administrators can configure integrations.                                                                   |
+| [deleteSesIntegration](#deletesesintegration)                         | Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.                                         |
+| [deleteSesIntegrationById](#deletesesintegrationbyid)                 | Removes a specific ses integration instance by ID from the project.                                                                                                     |
+| [getSlackIntegration](#getslackintegration)                           | Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
+| [saveSlackIntegration](#saveslackintegration)                         | Creates or updates a slack integration for the project. Only administrators can configure integrations.                                                                 |
+| [deleteSlackIntegration](#deleteslackintegration)                     | Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.                                       |
+| [deleteSlackIntegrationById](#deleteslackintegrationbyid)             | Removes a specific slack integration instance by ID from the project.                                                                                                   |
+| [getStripeIntegration](#getstripeintegration)                         | Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveStripeIntegration](#savestripeintegration)                       | Creates or updates a stripe integration for the project. Only administrators can configure integrations.                                                                |
+| [deleteStripeIntegration](#deletestripeintegration)                   | Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [deleteStripeIntegrationById](#deletestripeintegrationbyid)           | Removes a specific stripe integration instance by ID from the project.                                                                                                  |
+| [getTemplatesIntegration](#gettemplatesintegration)                   | Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.        |
+| [saveTemplatesIntegration](#savetemplatesintegration)                 | Creates or updates a templates integration for the project. Only administrators can configure integrations.                                                             |
+| [deleteTemplatesIntegration](#deletetemplatesintegration)             | Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.                                   |
+| [deleteTemplatesIntegrationById](#deletetemplatesintegrationbyid)     | Removes a specific templates integration instance by ID from the project.                                                                                               |
+| [getTwilioIntegration](#gettwiliointegration)                         | Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveTwilioIntegration](#savetwiliointegration)                       | Creates or updates a twilio integration for the project. Only administrators can configure integrations.                                                                |
+| [deleteTwilioIntegration](#deletetwiliointegration)                   | Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [deleteTwilioIntegrationById](#deletetwiliointegrationbyid)           | Removes a specific twilio integration instance by ID from the project.                                                                                                  |
+| [getWebPushIntegration](#getwebpushintegration)                       | Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
+| [saveWebPushIntegration](#savewebpushintegration)                     | Creates or updates a web_push integration for the project. Only administrators can configure integrations.                                                              |
+| [deleteWebPushIntegration](#deletewebpushintegration)                 | Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.                                    |
+| [deleteWebPushIntegrationById](#deletewebpushintegrationbyid)         | Removes a specific web_push integration instance by ID from the project.                                                                                                |
 
 ## listIntegrations
 
@@ -345,6 +349,122 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.integrations.deleteAwssnsIntegrationById('id');
+
+  console.log(data);
+})();
+```
+
+## getEventsourceIntegration
+
+Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.
+
+- HTTP Method: `GET`
+- Endpoint: `/integrations/eventsource`
+
+**Return Type**
+
+`ArrayOfEventSourceIntegrationConfigObjects`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.getEventsourceIntegration();
+
+  console.log(data);
+})();
+```
+
+## saveEventsourceIntegration
+
+Creates or updates a eventsource integration for the project. Only administrators can configure integrations.
+
+- HTTP Method: `PUT`
+- Endpoint: `/integrations/eventsource`
+
+**Parameters**
+
+| Name | Type                                                                      | Required | Description       |
+| :--- | :------------------------------------------------------------------------ | :------- | :---------------- |
+| body | [EventSourceIntegrationConfig](../models/EventSourceIntegrationConfig.md) | ❌       | The request body. |
+
+**Return Type**
+
+`EventSourceIntegrationConfig`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, EventSourceIntegrationConfig } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const eventSourceIntegrationConfig: EventSourceIntegrationConfig = {
+    source: 'source',
+  };
+
+  const { data } = await client.integrations.saveEventsourceIntegration(eventSourceIntegrationConfig);
+
+  console.log(data);
+})();
+```
+
+## deleteEventsourceIntegration
+
+Removes a eventsource integration configuration from the project. This will disable the integration's functionality within the project.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/eventsource`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteEventsourceIntegration();
+
+  console.log(data);
+})();
+```
+
+## deleteEventsourceIntegrationById
+
+Removes a specific eventsource integration instance by ID from the project.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/eventsource/{id}`
+
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| id   | string | ✅       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteEventsourceIntegrationById('id');
 
   console.log(data);
 })();
@@ -2009,5 +2129,3 @@ import { Client } from '@magicbell/project-client';
   console.log(data);
 })();
 ```
-
-<!-- This file was generated by liblab | https://liblab.com/ -->
