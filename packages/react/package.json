@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/magicbell-react",
-  "version": "11.2.2",
+  "version": "11.2.3",
   "description": "React components for building a notification inbox for your app",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
@@ -70,7 +70,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@floating-ui/react": "^0.27.0",
-    "@magicbell/react-headless": "5.2.0",
+    "@magicbell/react-headless": "5.3.0",
     "@magicbell/webpush": "2.1.0",
     "dayjs": "^1.11.10",
     "humps": "^2.0.1",

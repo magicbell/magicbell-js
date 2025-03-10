@@ -1,5 +1,11 @@
 # @magicbell/core
 
+## 5.2.0
+
+### Minor Changes
+
+- [#478](https://github.com/magicbell/magicbell-js/pull/478) [`0e8d41b`](https://github.com/magicbell/magicbell-js/commit/0e8d41bf764fc0e904d3022e2c536407c0164f5e) Thanks [@smeijer](https://github.com/smeijer)! - Swap mitt with mittly, for better esm/cjs support
+
 ## 5.1.0
 
 ### Minor Changes

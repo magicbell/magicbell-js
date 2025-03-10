@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/react-headless",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "Hooks to build a notification inbox",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
