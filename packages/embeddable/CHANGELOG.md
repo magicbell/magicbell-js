@@ -1,5 +1,12 @@
 # @magicbell/embeddable
 
+## 3.4.5
+
+### Patch Changes
+
+- Updated dependencies [[`493487c`](https://github.com/magicbell/magicbell-js/commit/493487c0f0e1debda0953a03126791ed1cec40f2)]:
+  - @magicbell/magicbell-react@11.2.3
+
 ## 3.4.4
 
 ### Patch Changes

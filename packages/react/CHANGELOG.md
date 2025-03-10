@@ -1,5 +1,14 @@
 # @magicbell/magicbell-react
 
+## 11.2.3
+
+### Patch Changes
+
+- [#473](https://github.com/magicbell/magicbell-js/pull/473) [`493487c`](https://github.com/magicbell/magicbell-js/commit/493487c0f0e1debda0953a03126791ed1cec40f2) Thanks [@smeijer](https://github.com/smeijer)! - maintain stable order when moving notifications between read/unread tabs
+
+- Updated dependencies [[`0e8d41b`](https://github.com/magicbell/magicbell-js/commit/0e8d41bf764fc0e904d3022e2c536407c0164f5e), [`493487c`](https://github.com/magicbell/magicbell-js/commit/493487c0f0e1debda0953a03126791ed1cec40f2)]:
+  - @magicbell/react-headless@5.3.0
+
 ## 11.2.2
 
 ### Patch Changes
