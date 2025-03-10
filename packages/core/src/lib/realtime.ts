@@ -1,9 +1,9 @@
 import * as Ably from 'ably';
 import get from 'lodash/get.js';
+import mitt from 'mittly';
 
 import Config from '../models/Config/index.js';
 import Notification from '../models/Notification/index.js';
-import { mitt } from '../polyfills/mitt-module.js';
 import { api } from './ajax.js';
 
 const pushEventAggregator = mitt();
