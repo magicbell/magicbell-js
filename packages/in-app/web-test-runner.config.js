@@ -33,6 +33,7 @@ export default {
   nodeResolve: { exportConditions: mode === 'dev' ? ['development'] : [] },
   preserveSymlinks: true,
   browsers: commandLineBrowsers ?? Object.values(browsers),
+  browserStartTimeout: 120_000,
   testFramework: {
     // https://mochajs.org/api/mocha
     config: {
