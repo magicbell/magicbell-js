@@ -47,11 +47,7 @@ export const sendgridConfigResponse = z.lazy(() => {
  */
 export const sendgridConfigRequest = z.lazy(() => {
   return z
-    .object({
-      apiKey: z.string().nullish(),
-      from: sendgridConfigFromRequest.nullish(),
-      replyTo: replyToRequest.nullish(),
-    })
+    .object({ apiKey: z.string(), from: sendgridConfigFromRequest.optional(), replyTo: replyToRequest.optional() })
     .transform((data) => ({
       api_key: data['apiKey'],
       from: data['from'],

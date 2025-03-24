@@ -100,17 +100,17 @@ export const broadcastResponse = z.lazy(() => {
 export const broadcastRequest = z.lazy(() => {
   return z
     .object({
-      actionUrl: z.string().nullish(),
-      category: z.string().nullish(),
-      content: z.string().nullish(),
-      createdAt: z.string().nullish(),
-      customAttributes: z.any().nullish(),
-      id: z.string().nullish(),
-      overrides: overridesRequest.nullish(),
-      recipients: z.array(z.any()).nullish(),
-      status: broadcastStatusRequest.nullish(),
-      title: z.string().nullish(),
-      topic: z.string().nullish(),
+      actionUrl: z.string().nullable().optional(),
+      category: z.string().nullable().optional(),
+      content: z.string().nullable().optional(),
+      createdAt: z.string().optional(),
+      customAttributes: z.any().nullable().optional(),
+      id: z.string().optional(),
+      overrides: overridesRequest.nullable().optional(),
+      recipients: z.array(z.any()).nullable(),
+      status: broadcastStatusRequest.nullable().optional(),
+      title: z.string(),
+      topic: z.string().nullable().optional(),
     })
     .transform((data) => ({
       action_url: data['actionUrl'],

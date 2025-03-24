@@ -35,7 +35,7 @@ export const errorsResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const errorsRequest = z.lazy(() => {
-  return z.object({ message: z.string().nullish() }).transform((data) => ({
+  return z.object({ message: z.string().optional() }).transform((data) => ({
     message: data['message'],
   }));
 });

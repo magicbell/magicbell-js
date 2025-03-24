@@ -47,7 +47,7 @@ export const arrayOfWebpushConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfWebpushConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(webpushConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(webpushConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

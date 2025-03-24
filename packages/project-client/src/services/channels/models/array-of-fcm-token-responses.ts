@@ -43,7 +43,7 @@ export const arrayOfFcmTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfFcmTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(fcmTokenResponseRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(fcmTokenResponseRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

@@ -11,7 +11,7 @@ Welcome to the Client SDK documentation. This guide will help you get started wi
 
 ## About the API
 
-OpenAPI 3.0.3 Specification for MagicBell API.
+OpenAPI 3.1.0 Specification for MagicBell API.
 
 ## Table of Contents
 
@@ -83,7 +83,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 8,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

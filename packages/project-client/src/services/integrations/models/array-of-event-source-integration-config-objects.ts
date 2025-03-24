@@ -47,7 +47,7 @@ export const arrayOfEventSourceIntegrationConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfEventSourceIntegrationConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(eventSourceIntegrationConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(eventSourceIntegrationConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

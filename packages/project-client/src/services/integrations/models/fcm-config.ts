@@ -77,17 +77,17 @@ export const fcmConfigResponse = z.lazy(() => {
 export const fcmConfigRequest = z.lazy(() => {
   return z
     .object({
-      authProviderX509CertUrl: z.string().nullish(),
-      authUri: z.string().nullish(),
-      clientEmail: z.string().nullish(),
-      clientId: z.string().nullish(),
-      clientX509CertUrl: z.string().nullish(),
-      privateKey: z.string().nullish(),
-      privateKeyId: z.string().nullish(),
-      projectId: z.string().nullish(),
-      tokenUri: z.string().nullish(),
-      type: z.string().nullish(),
-      universeDomain: z.string().nullish(),
+      authProviderX509CertUrl: z.string(),
+      authUri: z.string(),
+      clientEmail: z.string(),
+      clientId: z.string(),
+      clientX509CertUrl: z.string(),
+      privateKey: z.string(),
+      privateKeyId: z.string(),
+      projectId: z.string(),
+      tokenUri: z.string(),
+      type: z.string(),
+      universeDomain: z.string(),
     })
     .transform((data) => ({
       auth_provider_x509_cert_url: data['authProviderX509CertUrl'],

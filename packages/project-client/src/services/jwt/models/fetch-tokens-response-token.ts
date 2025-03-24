@@ -6,10 +6,10 @@ import { z } from 'zod';
 export const fetchTokensResponseToken = z.lazy(() => {
   return z.object({
     createdAt: z.string(),
-    discardedAt: z.string().optional(),
+    discardedAt: z.string().optional().nullable(),
     expiresAt: z.string().optional(),
     id: z.string().optional(),
-    name: z.string().optional(),
+    name: z.string().optional().nullable(),
   });
 });
 
@@ -32,10 +32,10 @@ export const fetchTokensResponseTokenResponse = z.lazy(() => {
   return z
     .object({
       created_at: z.string(),
-      discarded_at: z.string().optional(),
+      discarded_at: z.string().optional().nullable(),
       expires_at: z.string().optional(),
       id: z.string().optional(),
-      name: z.string().optional(),
+      name: z.string().optional().nullable(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
@@ -53,11 +53,11 @@ export const fetchTokensResponseTokenResponse = z.lazy(() => {
 export const fetchTokensResponseTokenRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      expiresAt: z.string().nullish(),
-      id: z.string().nullish(),
-      name: z.string().nullish(),
+      createdAt: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      expiresAt: z.string().optional(),
+      id: z.string().optional(),
+      name: z.string().nullable().optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

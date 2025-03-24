@@ -43,7 +43,7 @@ export const arrayOfApnsTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfApnsTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(apnsTokenResponse1Request).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(apnsTokenResponse1Request).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

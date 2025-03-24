@@ -45,11 +45,9 @@ export const pingConfigObjectResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const pingConfigObjectRequest = z.lazy(() => {
-  return z
-    .object({ config: pingConfigRequest.nullish(), id: z.string().nullish(), name: z.string().nullish() })
-    .transform((data) => ({
-      config: data['config'],
-      id: data['id'],
-      name: data['name'],
-    }));
+  return z.object({ config: pingConfigRequest, id: z.string(), name: z.string() }).transform((data) => ({
+    config: data['config'],
+    id: data['id'],
+    name: data['name'],
+  }));
 });

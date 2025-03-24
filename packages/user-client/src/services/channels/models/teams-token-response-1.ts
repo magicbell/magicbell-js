@@ -59,11 +59,11 @@ export const teamsTokenResponse1Response = z.lazy(() => {
 export const teamsTokenResponse1Request = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      id: z.string().nullish(),
-      updatedAt: z.string().nullish(),
-      webhook: teamsTokenResponseWebhookRequest.nullish(),
+      createdAt: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      id: z.string(),
+      updatedAt: z.string().nullable().optional(),
+      webhook: teamsTokenResponseWebhookRequest.optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

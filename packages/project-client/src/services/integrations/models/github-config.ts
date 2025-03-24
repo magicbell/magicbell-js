@@ -35,7 +35,7 @@ export const githubConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const githubConfigRequest = z.lazy(() => {
-  return z.object({ webhookSigningSecret: z.string().nullish() }).transform((data) => ({
+  return z.object({ webhookSigningSecret: z.string() }).transform((data) => ({
     webhook_signing_secret: data['webhookSigningSecret'],
   }));
 });

@@ -47,7 +47,7 @@ export const arrayOfTemplatesConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfTemplatesConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(templatesConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(templatesConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

@@ -35,7 +35,7 @@ export const defaultHoverResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const defaultHoverRequest = z.lazy(() => {
-  return z.object({ backgroundColor: z.string().nullish() }).transform((data) => ({
+  return z.object({ backgroundColor: z.string() }).transform((data) => ({
     backgroundColor: data['backgroundColor'],
   }));
 });

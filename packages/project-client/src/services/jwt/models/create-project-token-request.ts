@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const createProjectTokenRequest = z.lazy(() => {
   return z.object({
-    expiry: z.number().gte(1).optional(),
+    expiry: z.number().gte(1).optional().nullable(),
     name: z.string().max(255),
   });
 });
@@ -25,7 +25,7 @@ export type CreateProjectTokenRequest = z.infer<typeof createProjectTokenRequest
 export const createProjectTokenRequestResponse = z.lazy(() => {
   return z
     .object({
-      expiry: z.number().gte(1).optional(),
+      expiry: z.number().gte(1).optional().nullable(),
       name: z.string().max(255),
     })
     .transform((data) => ({
@@ -39,7 +39,7 @@ export const createProjectTokenRequestResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const createProjectTokenRequestRequest = z.lazy(() => {
-  return z.object({ expiry: z.number().nullish(), name: z.string().nullish() }).transform((data) => ({
+  return z.object({ expiry: z.number().nullable().optional(), name: z.string() }).transform((data) => ({
     expiry: data['expiry'],
     name: data['name'],
   }));

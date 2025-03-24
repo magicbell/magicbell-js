@@ -43,7 +43,7 @@ export const arrayOfExpoTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfExpoTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(expoTokenResponse1Request).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(expoTokenResponse1Request).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

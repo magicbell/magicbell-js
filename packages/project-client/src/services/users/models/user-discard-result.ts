@@ -3,38 +3,34 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const integrationObject = z.lazy(() => {
+export const userDiscardResult = z.lazy(() => {
   return z.object({
-    config: z.any(),
-    id: z.string(),
-    name: z.string(),
+    discardedAt: z.string().optional(),
+    id: z.string().optional(),
   });
 });
 
 /**
  *
- * @typedef  {IntegrationObject} integrationObject
- * @property {any}
+ * @typedef  {UserDiscardResult} userDiscardResult
  * @property {string}
  * @property {string}
  */
-export type IntegrationObject = z.infer<typeof integrationObject>;
+export type UserDiscardResult = z.infer<typeof userDiscardResult>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const integrationObjectResponse = z.lazy(() => {
+export const userDiscardResultResponse = z.lazy(() => {
   return z
     .object({
-      config: z.any(),
-      id: z.string(),
-      name: z.string(),
+      discarded_at: z.string().optional(),
+      id: z.string().optional(),
     })
     .transform((data) => ({
-      config: data['config'],
+      discardedAt: data['discarded_at'],
       id: data['id'],
-      name: data['name'],
     }));
 });
 
@@ -42,10 +38,9 @@ export const integrationObjectResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const integrationObjectRequest = z.lazy(() => {
-  return z.object({ config: z.any(), id: z.string(), name: z.string() }).transform((data) => ({
-    config: data['config'],
+export const userDiscardResultRequest = z.lazy(() => {
+  return z.object({ discardedAt: z.string().optional(), id: z.string().optional() }).transform((data) => ({
+    discarded_at: data['discardedAt'],
     id: data['id'],
-    name: data['name'],
   }));
 });

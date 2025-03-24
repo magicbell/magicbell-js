@@ -29,8 +29,9 @@ export class RequestValidationHandler implements RequestHandler {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     } else if (
       request.requestContentType === ContentType.Xml ||
-      request.requestContentType === ContentType.Binary ||
-      request.requestContentType === ContentType.Text
+      request.requestContentType === ContentType.Text ||
+      request.requestContentType === ContentType.Image ||
+      request.requestContentType === ContentType.Binary
     ) {
       request.body = request.body;
     } else if (request.requestContentType === ContentType.FormUrlEncoded) {

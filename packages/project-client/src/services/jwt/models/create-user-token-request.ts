@@ -5,10 +5,10 @@ import { z } from 'zod';
  */
 export const createUserTokenRequest = z.lazy(() => {
   return z.object({
-    email: z.string().max(255).optional(),
-    expiry: z.number().gte(1).optional(),
-    externalId: z.string().max(255).optional(),
-    name: z.string().max(255).optional(),
+    email: z.string().max(255).optional().nullable(),
+    expiry: z.number().gte(1).optional().nullable(),
+    externalId: z.string().max(255).optional().nullable(),
+    name: z.string().max(255).optional().nullable(),
   });
 });
 
@@ -29,10 +29,10 @@ export type CreateUserTokenRequest = z.infer<typeof createUserTokenRequest>;
 export const createUserTokenRequestResponse = z.lazy(() => {
   return z
     .object({
-      email: z.string().max(255).optional(),
-      expiry: z.number().gte(1).optional(),
-      external_id: z.string().max(255).optional(),
-      name: z.string().max(255).optional(),
+      email: z.string().max(255).optional().nullable(),
+      expiry: z.number().gte(1).optional().nullable(),
+      external_id: z.string().max(255).optional().nullable(),
+      name: z.string().max(255).optional().nullable(),
     })
     .transform((data) => ({
       email: data['email'],
@@ -49,10 +49,10 @@ export const createUserTokenRequestResponse = z.lazy(() => {
 export const createUserTokenRequestRequest = z.lazy(() => {
   return z
     .object({
-      email: z.string().nullish(),
-      expiry: z.number().nullish(),
-      externalId: z.string().nullish(),
-      name: z.string().nullish(),
+      email: z.string().nullable().optional(),
+      expiry: z.number().nullable().optional(),
+      externalId: z.string().nullable().optional(),
+      name: z.string().nullable().optional(),
     })
     .transform((data) => ({
       email: data['email'],

@@ -39,7 +39,7 @@ export const webPushTokenResponseKeysResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webPushTokenResponseKeysRequest = z.lazy(() => {
-  return z.object({ auth: z.string().nullish(), p256dh: z.string().nullish() }).transform((data) => ({
+  return z.object({ auth: z.string(), p256dh: z.string() }).transform((data) => ({
     auth: data['auth'],
     p256dh: data['p256dh'],
   }));

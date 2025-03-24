@@ -39,7 +39,7 @@ export const fcmTokenResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const fcmTokenRequest = z.lazy(() => {
-  return z.object({ deviceToken: z.string().nullish(), installationId: z.string().nullish() }).transform((data) => ({
+  return z.object({ deviceToken: z.string(), installationId: z.string().optional() }).transform((data) => ({
     device_token: data['deviceToken'],
     installation_id: data['installationId'],
   }));

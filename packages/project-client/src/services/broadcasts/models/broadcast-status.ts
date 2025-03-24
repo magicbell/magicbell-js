@@ -47,11 +47,7 @@ export const broadcastStatusResponse = z.lazy(() => {
  */
 export const broadcastStatusRequest = z.lazy(() => {
   return z
-    .object({
-      errors: z.array(errorsRequest).nullish(),
-      status: z.string().nullish(),
-      summary: summaryRequest.nullish(),
-    })
+    .object({ errors: z.array(errorsRequest).nullable(), status: z.string(), summary: summaryRequest })
     .transform((data) => ({
       errors: data['errors'],
       status: data['status'],

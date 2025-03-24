@@ -49,10 +49,10 @@ export const slackStartInstallResponse = z.lazy(() => {
 export const slackStartInstallRequest = z.lazy(() => {
   return z
     .object({
-      appId: z.string().nullish(),
-      authUrl: z.string().nullish(),
-      extraScopes: z.array(z.string()).nullish(),
-      redirectUrl: z.string().nullish(),
+      appId: z.string(),
+      authUrl: z.string().optional(),
+      extraScopes: z.array(z.string()).optional(),
+      redirectUrl: z.string().optional(),
     })
     .transform((data) => ({
       app_id: data['appId'],

@@ -45,11 +45,9 @@ export const sesConfigObjectResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const sesConfigObjectRequest = z.lazy(() => {
-  return z
-    .object({ config: sesConfigRequest.nullish(), id: z.string().nullish(), name: z.string().nullish() })
-    .transform((data) => ({
-      config: data['config'],
-      id: data['id'],
-      name: data['name'],
-    }));
+  return z.object({ config: sesConfigRequest, id: z.string(), name: z.string() }).transform((data) => ({
+    config: data['config'],
+    id: data['id'],
+    name: data['name'],
+  }));
 });

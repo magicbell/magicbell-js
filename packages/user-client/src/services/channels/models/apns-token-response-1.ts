@@ -67,13 +67,13 @@ export const apnsTokenResponse1Response = z.lazy(() => {
 export const apnsTokenResponse1Request = z.lazy(() => {
   return z
     .object({
-      appId: z.string().nullish(),
-      createdAt: z.string().nullish(),
-      deviceToken: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      id: z.string().nullish(),
-      installationId: z.string().nullish(),
-      updatedAt: z.string().nullish(),
+      appId: z.string().optional(),
+      createdAt: z.string(),
+      deviceToken: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      id: z.string(),
+      installationId: z.string().optional(),
+      updatedAt: z.string().nullable().optional(),
     })
     .transform((data) => ({
       app_id: data['appId'],

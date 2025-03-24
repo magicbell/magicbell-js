@@ -61,13 +61,13 @@ export const eventResponse = z.lazy(() => {
 export const eventRequest = z.lazy(() => {
   return z
     .object({
-      code: z.number().nullish(),
-      context: z.any().nullish(),
-      id: z.string().nullish(),
-      level: z.string().nullish(),
-      log: z.string().nullish(),
-      timestamp: z.string().nullish(),
-      type: z.string().nullish(),
+      code: z.number().optional(),
+      context: z.any().nullable().optional(),
+      id: z.string(),
+      level: z.string().optional(),
+      log: z.string().nullable().optional(),
+      timestamp: z.string(),
+      type: z.string(),
     })
     .transform((data) => ({
       code: data['code'],

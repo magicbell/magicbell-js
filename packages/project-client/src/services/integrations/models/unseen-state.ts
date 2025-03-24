@@ -35,7 +35,7 @@ export const unseenStateResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const unseenStateRequest = z.lazy(() => {
-  return z.object({ color: z.string().nullish() }).transform((data) => ({
+  return z.object({ color: z.string() }).transform((data) => ({
     color: data['color'],
   }));
 });

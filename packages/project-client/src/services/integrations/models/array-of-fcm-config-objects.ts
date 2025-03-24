@@ -43,7 +43,7 @@ export const arrayOfFcmConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfFcmConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(fcmConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(fcmConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

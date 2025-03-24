@@ -52,10 +52,10 @@ export const unseenResponse = z.lazy(() => {
 export const unseenRequest = z.lazy(() => {
   return z
     .object({
-      backgroundColor: z.string().nullish(),
-      hover: unseenHoverRequest.nullish(),
-      state: unseenStateRequest.nullish(),
-      textColor: z.string().nullish(),
+      backgroundColor: z.string(),
+      hover: unseenHoverRequest.optional(),
+      state: unseenStateRequest.optional(),
+      textColor: z.string(),
     })
     .transform((data) => ({
       backgroundColor: data['backgroundColor'],

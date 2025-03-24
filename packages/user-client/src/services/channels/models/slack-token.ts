@@ -43,7 +43,7 @@ export const slackTokenResponse = z.lazy(() => {
  */
 export const slackTokenRequest = z.lazy(() => {
   return z
-    .object({ oauth: slackTokenOauthRequest.nullish(), webhook: slackTokenWebhookRequest.nullish() })
+    .object({ oauth: slackTokenOauthRequest.optional(), webhook: slackTokenWebhookRequest.optional() })
     .transform((data) => ({
       oauth: data['oauth'],
       webhook: data['webhook'],

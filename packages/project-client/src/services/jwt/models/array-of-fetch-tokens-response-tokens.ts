@@ -47,7 +47,7 @@ export const arrayOfFetchTokensResponseTokensResponse = z.lazy(() => {
  */
 export const arrayOfFetchTokensResponseTokensRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(fetchTokensResponseTokenRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(fetchTokensResponseTokenRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

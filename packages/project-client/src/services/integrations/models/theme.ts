@@ -69,13 +69,13 @@ export const themeResponse = z.lazy(() => {
 export const themeRequest = z.lazy(() => {
   return z
     .object({
-      banner: bannerRequest.nullish(),
-      dialog: dialogRequest.nullish(),
-      footer: footerRequest.nullish(),
-      header: headerRequest.nullish(),
-      icon: iconRequest.nullish(),
-      notification: notificationRequest.nullish(),
-      unseenBadge: unseenBadgeRequest.nullish(),
+      banner: bannerRequest.optional(),
+      dialog: dialogRequest.optional(),
+      footer: footerRequest.optional(),
+      header: headerRequest.optional(),
+      icon: iconRequest.optional(),
+      notification: notificationRequest.optional(),
+      unseenBadge: unseenBadgeRequest.optional(),
     })
     .transform((data) => ({
       banner: data['banner'],

@@ -48,12 +48,7 @@ export const slackConfigResponse = z.lazy(() => {
  */
 export const slackConfigRequest = z.lazy(() => {
   return z
-    .object({
-      appId: z.string().nullish(),
-      clientId: z.string().nullish(),
-      clientSecret: z.string().nullish(),
-      signingSecret: z.string().nullish(),
-    })
+    .object({ appId: z.string(), clientId: z.string(), clientSecret: z.string(), signingSecret: z.string() })
     .transform((data) => ({
       app_id: data['appId'],
       client_id: data['clientId'],

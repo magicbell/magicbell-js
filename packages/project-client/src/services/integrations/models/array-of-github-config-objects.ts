@@ -43,7 +43,7 @@ export const arrayOfGithubConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfGithubConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(githubConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(githubConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

@@ -45,11 +45,9 @@ export const apnsConfigObjectResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const apnsConfigObjectRequest = z.lazy(() => {
-  return z
-    .object({ config: apnsConfigRequest.nullish(), id: z.string().nullish(), name: z.string().nullish() })
-    .transform((data) => ({
-      config: data['config'],
-      id: data['id'],
-      name: data['name'],
-    }));
+  return z.object({ config: apnsConfigRequest, id: z.string(), name: z.string() }).transform((data) => ({
+    config: data['config'],
+    id: data['id'],
+    name: data['name'],
+  }));
 });

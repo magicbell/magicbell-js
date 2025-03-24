@@ -39,7 +39,7 @@ export const webpushConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webpushConfigRequest = z.lazy(() => {
-  return z.object({ privateKey: z.string().nullish(), publicKey: z.string().nullish() }).transform((data) => ({
+  return z.object({ privateKey: z.string(), publicKey: z.string() }).transform((data) => ({
     private_key: data['privateKey'],
     public_key: data['publicKey'],
   }));

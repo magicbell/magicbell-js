@@ -35,7 +35,7 @@ export const eventSourceIntegrationConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const eventSourceIntegrationConfigRequest = z.lazy(() => {
-  return z.object({ source: z.string().nullish() }).transform((data) => ({
+  return z.object({ source: z.string() }).transform((data) => ({
     source: data['source'],
   }));
 });

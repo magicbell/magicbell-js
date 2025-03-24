@@ -44,7 +44,11 @@ export const linksResponse = z.lazy(() => {
  */
 export const linksRequest = z.lazy(() => {
   return z
-    .object({ first: z.string().nullish(), next: z.string().nullish(), prev: z.string().nullish() })
+    .object({
+      first: z.string().optional(),
+      next: z.string().nullable().optional(),
+      prev: z.string().nullable().optional(),
+    })
     .transform((data) => ({
       first: data['first'],
       next: data['next'],

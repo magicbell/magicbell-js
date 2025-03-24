@@ -42,7 +42,7 @@ export const arrayOfUsersResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const arrayOfUsersRequest = z.lazy(() => {
-  return z.object({ data: z.array(userRequest).nullish(), links: linksRequest.nullish() }).transform((data) => ({
+  return z.object({ data: z.array(userRequest).optional(), links: linksRequest.optional() }).transform((data) => ({
     data: data['data'],
     links: data['links'],
   }));

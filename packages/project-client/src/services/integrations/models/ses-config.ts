@@ -50,12 +50,7 @@ export const sesConfigResponse = z.lazy(() => {
  */
 export const sesConfigRequest = z.lazy(() => {
   return z
-    .object({
-      from: sesConfigFromRequest.nullish(),
-      keyId: z.string().nullish(),
-      region: z.string().nullish(),
-      secretKey: z.string().nullish(),
-    })
+    .object({ from: sesConfigFromRequest.optional(), keyId: z.string(), region: z.string(), secretKey: z.string() })
     .transform((data) => ({
       from: data['from'],
       key_id: data['keyId'],

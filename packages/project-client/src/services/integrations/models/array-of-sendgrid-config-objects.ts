@@ -47,7 +47,7 @@ export const arrayOfSendgridConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfSendgridConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(sendgridConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(sendgridConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

@@ -47,11 +47,9 @@ export const notificationResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const notificationRequest = z.lazy(() => {
-  return z
-    .object({ default: defaultRequest.nullish(), unread: unreadRequest.nullish(), unseen: unseenRequest.nullish() })
-    .transform((data) => ({
-      default: data['default'],
-      unread: data['unread'],
-      unseen: data['unseen'],
-    }));
+  return z.object({ default: defaultRequest, unread: unreadRequest, unseen: unseenRequest }).transform((data) => ({
+    default: data['default'],
+    unread: data['unread'],
+    unseen: data['unseen'],
+  }));
 });

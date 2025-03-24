@@ -41,7 +41,7 @@ export const webPushTokenResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webPushTokenRequest = z.lazy(() => {
-  return z.object({ endpoint: z.string().nullish(), keys: webPushTokenKeysRequest.nullish() }).transform((data) => ({
+  return z.object({ endpoint: z.string(), keys: webPushTokenKeysRequest }).transform((data) => ({
     endpoint: data['endpoint'],
     keys: data['keys'],
   }));

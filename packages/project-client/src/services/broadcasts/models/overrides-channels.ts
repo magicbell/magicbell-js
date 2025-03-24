@@ -64,12 +64,12 @@ export const overridesChannelsResponse = z.lazy(() => {
 export const overridesChannelsRequest = z.lazy(() => {
   return z
     .object({
-      email: emailRequest.nullish(),
-      inApp: inAppRequest.nullish(),
-      mobilePush: mobilePushRequest.nullish(),
-      slack: slackRequest.nullish(),
-      sms: smsRequest.nullish(),
-      webPush: webPushRequest.nullish(),
+      email: emailRequest.optional(),
+      inApp: inAppRequest.optional(),
+      mobilePush: mobilePushRequest.optional(),
+      slack: slackRequest.optional(),
+      sms: smsRequest.optional(),
+      webPush: webPushRequest.optional(),
     })
     .transform((data) => ({
       email: data['email'],

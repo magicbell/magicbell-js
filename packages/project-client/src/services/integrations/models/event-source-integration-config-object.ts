@@ -50,11 +50,7 @@ export const eventSourceIntegrationConfigObjectResponse = z.lazy(() => {
  */
 export const eventSourceIntegrationConfigObjectRequest = z.lazy(() => {
   return z
-    .object({
-      config: eventSourceIntegrationConfigRequest.nullish(),
-      id: z.string().nullish(),
-      name: z.string().nullish(),
-    })
+    .object({ config: eventSourceIntegrationConfigRequest, id: z.string(), name: z.string() })
     .transform((data) => ({
       config: data['config'],
       id: data['id'],

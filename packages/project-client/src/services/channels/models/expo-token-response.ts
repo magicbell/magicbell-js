@@ -53,11 +53,11 @@ export const expoTokenResponseResponse = z.lazy(() => {
 export const expoTokenResponseRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      deviceToken: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      id: z.string().nullish(),
-      updatedAt: z.string().nullish(),
+      createdAt: z.string(),
+      deviceToken: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      id: z.string(),
+      updatedAt: z.string().nullable().optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

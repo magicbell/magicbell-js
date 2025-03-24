@@ -43,7 +43,7 @@ export const arrayOfIntegrationObjectsResponse = z.lazy(() => {
  */
 export const arrayOfIntegrationObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(integrationObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(integrationObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],
