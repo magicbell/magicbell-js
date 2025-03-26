@@ -1,5 +1,12 @@
 # @magicbell/in-app
 
+## 0.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`beda014`](https://github.com/magicbell/magicbell-js/commit/beda014abb848d22135dc2644d3f4d5daffa789e)]:
+  - @magicbell/user-client@0.10.0
+
 ## 0.2.8
 
 ### Patch Changes
