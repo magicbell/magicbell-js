@@ -1,5 +1,11 @@
 # @magicbell/core
 
+## 5.3.0
+
+### Minor Changes
+
+- [`a145e67`](https://github.com/magicbell/magicbell-js/commit/a145e673306d0c4a986c2e86e66c6ce9535f71c9) Thanks [@smeijer](https://github.com/smeijer)! - update dependency axios to v1.8.4
+
 ## 5.2.0
 
 ### Minor Changes
