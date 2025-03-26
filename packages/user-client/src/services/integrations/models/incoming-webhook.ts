@@ -43,11 +43,9 @@ export const incomingWebhookResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const incomingWebhookRequest = z.lazy(() => {
-  return z
-    .object({ channel: z.string().nullish(), configurationUrl: z.string().nullish(), url: z.string().nullish() })
-    .transform((data) => ({
-      channel: data['channel'],
-      configuration_url: data['configurationUrl'],
-      url: data['url'],
-    }));
+  return z.object({ channel: z.string(), configurationUrl: z.string(), url: z.string() }).transform((data) => ({
+    channel: data['channel'],
+    configuration_url: data['configurationUrl'],
+    url: data['url'],
+  }));
 });

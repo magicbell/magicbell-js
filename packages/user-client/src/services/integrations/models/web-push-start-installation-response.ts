@@ -39,7 +39,7 @@ export const webPushStartInstallationResponseResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webPushStartInstallationResponseRequest = z.lazy(() => {
-  return z.object({ authToken: z.string().nullish(), publicKey: z.string().nullish() }).transform((data) => ({
+  return z.object({ authToken: z.string(), publicKey: z.string() }).transform((data) => ({
     auth_token: data['authToken'],
     public_key: data['publicKey'],
   }));

@@ -5,6 +5,7 @@ import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
 import { ArrayOfUsers, arrayOfUsersResponse } from './models/array-of-users.js';
+import { UserDiscardResult, userDiscardResultResponse } from './models/user-discard-result.js';
 import { ListUsersParams } from './request-params.js';
 
 export class UsersService extends BaseService {
@@ -47,5 +48,36 @@ export class UsersService extends BaseService {
       })
       .build();
     return this.client.call<ArrayOfUsers>(request);
+  }
+
+  /**
+   *
+   * @param {string} userId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<UserDiscardResult>>} OK
+   */
+  async deleteUser(userId: string, requestConfig?: RequestConfig): Promise<HttpResponse<UserDiscardResult>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(this.config)
+      .setConfig(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: userDiscardResultResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .build();
+    return this.client.call<UserDiscardResult>(request);
   }
 }

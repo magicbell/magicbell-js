@@ -44,7 +44,7 @@ export const categoryDeliveryConfigChannelsResponse = z.lazy(() => {
  */
 export const categoryDeliveryConfigChannelsRequest = z.lazy(() => {
   return z
-    .object({ channel: z.string().nullish(), delay: z.number().nullish(), if: z.string().nullish() })
+    .object({ channel: z.string(), delay: z.number().optional(), if: z.string().nullable().optional() })
     .transform((data) => ({
       channel: data['channel'],
       delay: data['delay'],

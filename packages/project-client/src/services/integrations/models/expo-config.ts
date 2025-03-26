@@ -35,7 +35,7 @@ export const expoConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const expoConfigRequest = z.lazy(() => {
-  return z.object({ accessToken: z.string().nullish() }).transform((data) => ({
+  return z.object({ accessToken: z.string() }).transform((data) => ({
     access_token: data['accessToken'],
   }));
 });

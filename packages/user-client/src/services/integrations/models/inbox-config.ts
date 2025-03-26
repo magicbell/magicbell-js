@@ -47,7 +47,7 @@ export const inboxConfigResponse = z.lazy(() => {
  */
 export const inboxConfigRequest = z.lazy(() => {
   return z
-    .object({ images: imagesRequest.nullish(), locale: z.string().nullish(), theme: themeRequest.nullish() })
+    .object({ images: imagesRequest.nullable(), locale: z.string().nullable(), theme: themeRequest.nullable() })
     .transform((data) => ({
       images: data['images'],
       locale: data['locale'],

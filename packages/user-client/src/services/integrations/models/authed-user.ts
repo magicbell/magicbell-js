@@ -57,12 +57,12 @@ export const authedUserResponse = z.lazy(() => {
 export const authedUserRequest = z.lazy(() => {
   return z
     .object({
-      accessToken: z.string().nullish(),
-      expiresIn: z.number().nullish(),
-      id: z.string().nullish(),
-      refreshToken: z.string().nullish(),
-      scope: z.string().nullish(),
-      tokenType: z.string().nullish(),
+      accessToken: z.string().optional(),
+      expiresIn: z.number().optional(),
+      id: z.string(),
+      refreshToken: z.string().optional(),
+      scope: z.string().optional(),
+      tokenType: z.string().optional(),
     })
     .transform((data) => ({
       access_token: data['accessToken'],

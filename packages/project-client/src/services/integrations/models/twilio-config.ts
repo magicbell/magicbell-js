@@ -56,12 +56,7 @@ export const twilioConfigResponse = z.lazy(() => {
  */
 export const twilioConfigRequest = z.lazy(() => {
   return z
-    .object({
-      accountSid: z.string().nullish(),
-      apiKey: z.string().nullish(),
-      apiSecret: z.string().nullish(),
-      from: z.string().nullish(),
-    })
+    .object({ accountSid: z.string(), apiKey: z.string(), apiSecret: z.string(), from: z.string() })
     .transform((data) => ({
       account_sid: data['accountSid'],
       api_key: data['apiKey'],

@@ -43,7 +43,7 @@ export const arrayOfTwilioConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfTwilioConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(twilioConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(twilioConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

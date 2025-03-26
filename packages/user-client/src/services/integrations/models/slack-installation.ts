@@ -96,19 +96,19 @@ export const slackInstallationResponse = z.lazy(() => {
 export const slackInstallationRequest = z.lazy(() => {
   return z
     .object({
-      accessToken: z.string().nullish(),
-      appId: z.string().nullish(),
-      authedUser: authedUserRequest.nullish(),
-      botUserId: z.string().nullish(),
-      enterprise: enterpriseRequest.nullish(),
-      expiresIn: z.number().nullish(),
-      id: z.string().nullish(),
-      incomingWebhook: incomingWebhookRequest.nullish(),
-      isEnterpriseInstall: z.boolean().nullish(),
-      refreshToken: z.string().nullish(),
-      scope: z.string().nullish(),
-      team: teamRequest.nullish(),
-      tokenType: z.string().nullish(),
+      accessToken: z.string(),
+      appId: z.string(),
+      authedUser: authedUserRequest,
+      botUserId: z.string().optional(),
+      enterprise: enterpriseRequest.optional(),
+      expiresIn: z.number().optional(),
+      id: z.string().optional(),
+      incomingWebhook: incomingWebhookRequest.optional(),
+      isEnterpriseInstall: z.boolean().optional(),
+      refreshToken: z.string().optional(),
+      scope: z.string().optional(),
+      team: teamRequest,
+      tokenType: z.string().optional(),
     })
     .transform((data) => ({
       access_token: data['accessToken'],

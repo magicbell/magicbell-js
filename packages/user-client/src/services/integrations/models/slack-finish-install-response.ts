@@ -43,11 +43,9 @@ export const slackFinishInstallResponseResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const slackFinishInstallResponseRequest = z.lazy(() => {
-  return z
-    .object({ appId: z.string().nullish(), code: z.string().nullish(), redirectUrl: z.string().nullish() })
-    .transform((data) => ({
-      app_id: data['appId'],
-      code: data['code'],
-      redirect_url: data['redirectUrl'],
-    }));
+  return z.object({ appId: z.string(), code: z.string(), redirectUrl: z.string().optional() }).transform((data) => ({
+    app_id: data['appId'],
+    code: data['code'],
+    redirect_url: data['redirectUrl'],
+  }));
 });

@@ -43,11 +43,9 @@ export const mailgunConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const mailgunConfigRequest = z.lazy(() => {
-  return z
-    .object({ apiKey: z.string().nullish(), domain: z.string().nullish(), region: z.string().nullish() })
-    .transform((data) => ({
-      api_key: data['apiKey'],
-      domain: data['domain'],
-      region: data['region'],
-    }));
+  return z.object({ apiKey: z.string(), domain: z.string(), region: z.string() }).transform((data) => ({
+    api_key: data['apiKey'],
+    domain: data['domain'],
+    region: data['region'],
+  }));
 });

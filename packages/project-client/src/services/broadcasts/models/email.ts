@@ -44,7 +44,11 @@ export const emailResponse = z.lazy(() => {
  */
 export const emailRequest = z.lazy(() => {
   return z
-    .object({ actionUrl: z.string().nullish(), content: z.string().nullish(), title: z.string().nullish() })
+    .object({
+      actionUrl: z.string().nullable().optional(),
+      content: z.string().optional(),
+      title: z.string().optional(),
+    })
     .transform((data) => ({
       action_url: data['actionUrl'],
       content: data['content'],

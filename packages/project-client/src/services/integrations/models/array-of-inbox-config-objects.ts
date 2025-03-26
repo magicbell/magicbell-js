@@ -43,7 +43,7 @@ export const arrayOfInboxConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfInboxConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(inboxConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(inboxConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

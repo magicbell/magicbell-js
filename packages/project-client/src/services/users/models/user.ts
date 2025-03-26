@@ -81,18 +81,18 @@ export const userResponse = z.lazy(() => {
 export const userRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      customAttributes: z.any().nullish(),
-      email: z.string().nullish(),
-      externalId: z.string().nullish(),
-      firstName: z.string().nullish(),
-      id: z.string().nullish(),
-      lastName: z.string().nullish(),
-      lastNotifiedAt: z.string().nullish(),
-      lastSeenAt: z.string().nullish(),
-      phoneNumbers: z.array(z.string()).nullish(),
-      projectId: z.number().nullish(),
-      updatedAt: z.string().nullish(),
+      createdAt: z.string(),
+      customAttributes: z.any(),
+      email: z.string().optional(),
+      externalId: z.string().optional(),
+      firstName: z.string().optional(),
+      id: z.string(),
+      lastName: z.string().optional(),
+      lastNotifiedAt: z.string().optional(),
+      lastSeenAt: z.string().optional(),
+      phoneNumbers: z.array(z.string()).optional(),
+      projectId: z.number(),
+      updatedAt: z.string(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

@@ -43,7 +43,7 @@ export const arrayOfSlackTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfSlackTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(slackTokenResponseRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(slackTokenResponseRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

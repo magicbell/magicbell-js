@@ -47,7 +47,7 @@ export const arrayOfTeamsTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfTeamsTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(teamsTokenResponse1Request).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(teamsTokenResponse1Request).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

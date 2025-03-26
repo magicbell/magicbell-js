@@ -43,7 +43,7 @@ export const arrayOfExpoConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfExpoConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(expoConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(expoConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

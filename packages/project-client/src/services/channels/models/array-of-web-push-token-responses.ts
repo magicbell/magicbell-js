@@ -47,7 +47,7 @@ export const arrayOfWebPushTokenResponsesResponse = z.lazy(() => {
  */
 export const arrayOfWebPushTokenResponsesRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(webPushTokenResponseRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(webPushTokenResponseRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

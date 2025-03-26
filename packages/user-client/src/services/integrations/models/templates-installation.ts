@@ -44,7 +44,7 @@ export const templatesInstallationResponse = z.lazy(() => {
  */
 export const templatesInstallationRequest = z.lazy(() => {
   return z
-    .object({ category: z.string().nullish(), channel: z.string().nullish(), text: z.string().nullish() })
+    .object({ category: z.string().nullable().optional(), channel: z.string(), text: z.string() })
     .transform((data) => ({
       category: data['category'],
       channel: data['channel'],

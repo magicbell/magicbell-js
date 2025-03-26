@@ -43,7 +43,7 @@ export const arrayOfStripeConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfStripeConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(stripeConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(stripeConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

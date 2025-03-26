@@ -68,12 +68,12 @@ export const slackTokenResponse1Response = z.lazy(() => {
 export const slackTokenResponse1Request = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      id: z.string().nullish(),
-      oauth: slackTokenResponseOauthRequest.nullish(),
-      updatedAt: z.string().nullish(),
-      webhook: slackTokenResponseWebhookRequest.nullish(),
+      createdAt: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      id: z.string(),
+      oauth: slackTokenResponseOauthRequest.optional(),
+      updatedAt: z.string().nullable().optional(),
+      webhook: slackTokenResponseWebhookRequest.optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

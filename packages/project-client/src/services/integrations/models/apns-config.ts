@@ -61,12 +61,12 @@ export const apnsConfigResponse = z.lazy(() => {
 export const apnsConfigRequest = z.lazy(() => {
   return z
     .object({
-      appId: z.string().nullish(),
-      badge: z.string().nullish(),
-      certificate: z.string().nullish(),
-      keyId: z.string().nullish(),
-      payloadVersion: z.string().nullish(),
-      teamId: z.string().nullish(),
+      appId: z.string(),
+      badge: z.string(),
+      certificate: z.string(),
+      keyId: z.string(),
+      payloadVersion: z.string().optional(),
+      teamId: z.string(),
     })
     .transform((data) => ({
       app_id: data['appId'],

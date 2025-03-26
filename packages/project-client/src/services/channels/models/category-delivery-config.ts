@@ -57,9 +57,9 @@ export const categoryDeliveryConfigResponse = z.lazy(() => {
 export const categoryDeliveryConfigRequest = z.lazy(() => {
   return z
     .object({
-      channels: z.array(categoryDeliveryConfigChannelsRequest).nullish(),
-      disabled: z.boolean().nullish(),
-      key: z.string().nullish(),
+      channels: z.array(categoryDeliveryConfigChannelsRequest),
+      disabled: z.boolean().optional(),
+      key: z.string(),
     })
     .transform((data) => ({
       channels: data['channels'],

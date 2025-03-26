@@ -43,7 +43,7 @@ export const overridesResponse = z.lazy(() => {
  */
 export const overridesRequest = z.lazy(() => {
   return z
-    .object({ channels: overridesChannelsRequest.nullish(), providers: providersRequest.nullish() })
+    .object({ channels: overridesChannelsRequest.optional(), providers: providersRequest.optional() })
     .transform((data) => ({
       channels: data['channels'],
       providers: data['providers'],

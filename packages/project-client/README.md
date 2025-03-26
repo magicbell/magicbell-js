@@ -11,7 +11,7 @@ Welcome to the Client SDK documentation. This guide will help you get started wi
 
 ## About the API
 
-OpenAPI 3.0.3 Specification for MagicBell API.
+OpenAPI 3.1.0 Specification for MagicBell API.
 
 ## Table of Contents
 
@@ -175,6 +175,7 @@ The SDK includes several models that represent the data structures used in API r
 | [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                                             |             |
 | [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)                                         |             |
 | [ArrayOfUsers](documentation/models/ArrayOfUsers.md)                                                             |             |
+| [UserDiscardResult](documentation/models/UserDiscardResult.md)                                                   |             |
 | [Links](documentation/models/Links.md)                                                                           |             |
 | [IntegrationObject](documentation/models/IntegrationObject.md)                                                   |             |
 | [ApnsConfigObject](documentation/models/ApnsConfigObject.md)                                                     |             |

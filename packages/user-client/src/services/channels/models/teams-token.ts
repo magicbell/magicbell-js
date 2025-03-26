@@ -37,7 +37,7 @@ export const teamsTokenResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const teamsTokenRequest = z.lazy(() => {
-  return z.object({ webhook: teamsTokenWebhookRequest.nullish() }).transform((data) => ({
+  return z.object({ webhook: teamsTokenWebhookRequest.optional() }).transform((data) => ({
     webhook: data['webhook'],
   }));
 });

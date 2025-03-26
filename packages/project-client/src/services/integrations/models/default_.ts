@@ -68,14 +68,14 @@ export const defaultResponse = z.lazy(() => {
 export const defaultRequest = z.lazy(() => {
   return z
     .object({
-      backgroundColor: z.string().nullish(),
-      borderRadius: z.string().nullish(),
-      fontFamily: z.string().nullish(),
-      fontSize: z.string().nullish(),
-      hover: defaultHoverRequest.nullish(),
-      margin: z.string().nullish(),
-      state: defaultStateRequest.nullish(),
-      textColor: z.string().nullish(),
+      backgroundColor: z.string(),
+      borderRadius: z.string(),
+      fontFamily: z.string(),
+      fontSize: z.string(),
+      hover: defaultHoverRequest.optional(),
+      margin: z.string(),
+      state: defaultStateRequest.optional(),
+      textColor: z.string(),
     })
     .transform((data) => ({
       backgroundColor: data['backgroundColor'],

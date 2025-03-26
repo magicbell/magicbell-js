@@ -47,7 +47,7 @@ export const arrayOfMailgunConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfMailgunConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(mailgunConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(mailgunConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

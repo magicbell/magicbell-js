@@ -39,7 +39,7 @@ export const discardResultResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const discardResultRequest = z.lazy(() => {
-  return z.object({ discardedAt: z.string().nullish(), id: z.string().nullish() }).transform((data) => ({
+  return z.object({ discardedAt: z.string().optional(), id: z.string().optional() }).transform((data) => ({
     discarded_at: data['discardedAt'],
     id: data['id'],
   }));

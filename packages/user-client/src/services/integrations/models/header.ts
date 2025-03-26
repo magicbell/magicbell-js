@@ -53,11 +53,11 @@ export const headerResponse = z.lazy(() => {
 export const headerRequest = z.lazy(() => {
   return z
     .object({
-      backgroundColor: z.string().nullish(),
-      borderRadius: z.string().nullish(),
-      fontFamily: z.string().nullish(),
-      fontSize: z.string().nullish(),
-      textColor: z.string().nullish(),
+      backgroundColor: z.string(),
+      borderRadius: z.string(),
+      fontFamily: z.string(),
+      fontSize: z.string(),
+      textColor: z.string(),
     })
     .transform((data) => ({
       backgroundColor: data['backgroundColor'],

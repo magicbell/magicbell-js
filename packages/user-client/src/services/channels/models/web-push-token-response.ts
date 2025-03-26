@@ -63,12 +63,12 @@ export const webPushTokenResponseResponse = z.lazy(() => {
 export const webPushTokenResponseRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      discardedAt: z.string().nullish(),
-      endpoint: z.string().nullish(),
-      id: z.string().nullish(),
-      keys: webPushTokenResponseKeysRequest.nullish(),
-      updatedAt: z.string().nullish(),
+      createdAt: z.string(),
+      discardedAt: z.string().nullable().optional(),
+      endpoint: z.string(),
+      id: z.string(),
+      keys: webPushTokenResponseKeysRequest,
+      updatedAt: z.string().nullable().optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

@@ -49,10 +49,10 @@ export const bannerResponse = z.lazy(() => {
 export const bannerRequest = z.lazy(() => {
   return z
     .object({
-      backgroundColor: z.string().nullish(),
-      backgroundOpacity: z.number().nullish(),
-      fontSize: z.string().nullish(),
-      textColor: z.string().nullish(),
+      backgroundColor: z.string(),
+      backgroundOpacity: z.number().optional(),
+      fontSize: z.string(),
+      textColor: z.string(),
     })
     .transform((data) => ({
       backgroundColor: data['backgroundColor'],

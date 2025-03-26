@@ -61,13 +61,13 @@ export const providersResponse = z.lazy(() => {
 export const providersRequest = z.lazy(() => {
   return z
     .object({
-      amazonSes: z.any().nullish(),
-      android: z.any().nullish(),
-      ios: z.any().nullish(),
-      mailgun: z.any().nullish(),
-      postmark: z.any().nullish(),
-      sendgrid: z.any().nullish(),
-      slack: z.any().nullish(),
+      amazonSes: z.any().optional(),
+      android: z.any().optional(),
+      ios: z.any().optional(),
+      mailgun: z.any().optional(),
+      postmark: z.any().optional(),
+      sendgrid: z.any().optional(),
+      slack: z.any().optional(),
     })
     .transform((data) => ({
       amazon_ses: data['amazonSes'],

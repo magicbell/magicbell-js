@@ -43,7 +43,7 @@ export const arrayOfPingConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfPingConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(pingConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(pingConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

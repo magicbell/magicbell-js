@@ -44,7 +44,7 @@ export const slackStartInstallResponseContentResponse = z.lazy(() => {
  */
 export const slackStartInstallResponseContentRequest = z.lazy(() => {
   return z
-    .object({ appId: z.string().nullish(), authUrl: z.string().nullish(), scopes: z.array(z.string()).nullish() })
+    .object({ appId: z.string().optional(), authUrl: z.string().optional(), scopes: z.array(z.string()).optional() })
     .transform((data) => ({
       app_id: data['appId'],
       auth_url: data['authUrl'],

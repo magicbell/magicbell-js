@@ -43,7 +43,7 @@ export const arrayOfAwssnsConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfAwssnsConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(awssnsConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(awssnsConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],

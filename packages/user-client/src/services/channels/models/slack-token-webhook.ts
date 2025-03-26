@@ -35,7 +35,7 @@ export const slackTokenWebhookResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const slackTokenWebhookRequest = z.lazy(() => {
-  return z.object({ url: z.string().nullish() }).transform((data) => ({
+  return z.object({ url: z.string() }).transform((data) => ({
     url: data['url'],
   }));
 });

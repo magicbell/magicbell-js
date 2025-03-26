@@ -59,7 +59,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 8,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -99,7 +99,7 @@ import { ApnsToken, Client } from '@magicbell/user-client';
 
   const apnsToken: ApnsToken = {
     appId: 'app_id',
-    deviceToken: 'non etExcepteur',
+    deviceToken: 'nostrud elit do',
     installationId: apnsTokenInstallationId,
   };
 
@@ -205,7 +205,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    limit: 123,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -347,7 +347,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    limit: 8,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -386,7 +386,7 @@ import { Client, FcmToken } from '@magicbell/user-client';
   const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
 
   const fcmToken: FcmToken = {
-    deviceToken: 'quis eiusmoddol',
+    deviceToken: 'voluptate nulla',
     installationId: fcmTokenInstallationId,
   };
 
@@ -492,7 +492,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    limit: 1,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -645,7 +645,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getTeamsTokens({
-    limit: 123,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

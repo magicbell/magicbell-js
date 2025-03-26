@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const accessToken = z.lazy(() => {
   return z.object({
     createdAt: z.string(),
-    expiresAt: z.string().optional(),
+    expiresAt: z.string().optional().nullable(),
     token: z.string(),
     tokenId: z.string(),
   });
@@ -30,7 +30,7 @@ export const accessTokenResponse = z.lazy(() => {
   return z
     .object({
       created_at: z.string(),
-      expires_at: z.string().optional(),
+      expires_at: z.string().optional().nullable(),
       token: z.string(),
       token_id: z.string(),
     })
@@ -49,10 +49,10 @@ export const accessTokenResponse = z.lazy(() => {
 export const accessTokenRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().nullish(),
-      expiresAt: z.string().nullish(),
-      token: z.string().nullish(),
-      tokenId: z.string().nullish(),
+      createdAt: z.string(),
+      expiresAt: z.string().nullable().optional(),
+      token: z.string(),
+      tokenId: z.string(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],

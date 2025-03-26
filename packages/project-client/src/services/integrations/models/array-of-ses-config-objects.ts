@@ -43,7 +43,7 @@ export const arrayOfSesConfigObjectsResponse = z.lazy(() => {
  */
 export const arrayOfSesConfigObjectsRequest = z.lazy(() => {
   return z
-    .object({ data: z.array(sesConfigObjectRequest).nullish(), links: linksRequest.nullish() })
+    .object({ data: z.array(sesConfigObjectRequest).optional(), links: linksRequest.optional() })
     .transform((data) => ({
       data: data['data'],
       links: data['links'],
