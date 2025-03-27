@@ -6,7 +6,7 @@ import path from 'node:path';
 
 // @ts-ignore
 import * as md from '@magicbell/codegen/markdown';
-import glob from 'glob';
+import * as glob from 'glob';
 import urlJoin from 'url-join';
 
 const root = process.cwd();

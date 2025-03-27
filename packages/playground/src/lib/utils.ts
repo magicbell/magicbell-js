@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { SandpackFile, SandpackPredefinedTemplate } from '@codesandbox/sandpack-react';
-import glob from 'glob';
+import * as glob from 'glob';
 
 import { TEMPLATES } from './templates';
 
