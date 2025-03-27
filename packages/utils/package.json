@@ -15,7 +15,8 @@
     "LICENSE",
     "/mock-handlers/package.json",
     "/mock-server/package.json",
-    "/mock-sse/package.json"
+    "/mock-sse/package.json",
+    "/mock-data/package.json"
   ],
   "homepage": "https://magicbell.com",
   "keywords": [
@@ -53,6 +54,16 @@
       "require": {
         "types": "./dist/commonjs/index.d.ts",
         "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./mock-data": {
+      "import": {
+        "types": "./dist/esm/mock-data.d.ts",
+        "default": "./dist/esm/mock-data.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/mock-data.d.ts",
+        "default": "./dist/commonjs/mock-data.js"
       }
     },
     "./mock-handlers": {
