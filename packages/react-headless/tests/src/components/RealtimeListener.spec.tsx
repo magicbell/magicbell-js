@@ -1,16 +1,15 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { act, render, renderHook, RenderResult, waitFor } from '@testing-library/react';
+import { act, render, renderHook, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
 import RealtimeListener from '../../../src/components/RealtimeListener';
-import * as ajax from '../../../src/lib/ajax';
 import { emitEvent } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { useNotificationStoresCollection } from '../../../src/stores/notifications';
 import NotificationFactory from '../../factories/NotificationFactory';
 
-setupMockServer(...mockHandlers);
+const server = setupMockServer(...mockHandlers);
 
 beforeAll(() => {
   clientSettings.setState({
@@ -21,173 +20,160 @@ beforeAll(() => {
   });
 });
 
-describe('components', () => {
-  describe('RealtimeListener', () => {
-    let view: RenderResult;
+const RealtimeComponent = () => {
+  const collection = useNotificationStoresCollection();
+  React.useLayoutEffect(() => {
+    collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
+    // Adding collection to the deps, will cause an infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return <RealtimeListener />;
+};
 
-    beforeEach(() => {
-      const RealtimeComponent = () => {
-        const collection = useNotificationStoresCollection();
-        React.useEffect(() => {
-          collection.setStore('default', {}, { unreadCount: 1, unseenCount: 1 });
-          // Adding collection to the deps, will cause an infinite loop
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+it('fetches notifications on connect', async () => {
+  const spy = server.intercept('get', '/notifications');
+  render(<RealtimeComponent />);
+  emitEvent('reconnected', null, 'local');
 
-        return <RealtimeListener />;
-      };
+  await waitFor(() => {
+    const params = new URL(spy.lastRequest.url).searchParams;
+    expect(params.get('page')).toEqual('1');
+  });
+});
 
-      view = render(<RealtimeComponent />);
-    });
+it('fetches notifications on notifications.new', async () => {
+  const spy = server.intercept('get', '/notifications');
+  render(<RealtimeComponent />);
+  emitEvent('notifications.new', { id: 'uuid' }, 'remote');
 
-    afterEach(() => {
-      view.unmount();
-    });
+  await waitFor(() => {
+    const params = new URL(spy.lastRequest.url).searchParams;
+    expect(params.get('page')).toEqual('1');
+  });
+});
 
-    describe('realtime events', () => {
-      describe('reconnected', () => {
-        it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+it('prepends the new notifications', async () => {
+  const notification = NotificationFactory.build();
+  server.intercept('get', '/notifications', { notifications: [notification] });
 
-          act(() => {
-            emitEvent('reconnected', null, 'local');
-          });
+  render(<RealtimeComponent />);
+  const { result } = renderHook(() => useNotificationStoresCollection());
 
-          expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
-          spy.mockRestore();
-        });
-      });
+  emitEvent('notifications.new', notification, 'remote');
 
-      describe('notifications.new', () => {
-        it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+  await waitFor(() => {
+    expect(result.current.stores['default'].notifications[0]).toEqual(notification);
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.new', { id: 'uuid' }, 'remote');
-          });
+it('notifications.seen.all resets the unseen count', async () => {
+  render(<RealtimeComponent />);
+  const { result } = renderHook(() => useNotificationStoresCollection());
 
-          expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
-          spy.mockRestore();
-        });
+  act(() => {
+    emitEvent('notifications.seen.all', null, 'remote');
+  });
 
-        it('prepends the new notifications', async () => {
-          const notification = NotificationFactory.build();
-          const { result } = renderHook(() => useNotificationStoresCollection());
-          const spy = jest.spyOn(ajax, 'fetchAPI').mockResolvedValue({ notifications: [notification] });
+  await waitFor(() => {
+    expect(result.current.stores['default'].unseenCount).toBe(0);
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.new', notification, 'remote');
-          });
+it('notifications.seen.all does not make a post request to avoid infinite loops', async () => {
+  const spy = server.intercept('post', '/notifications');
+  render(<RealtimeComponent />);
 
-          await waitFor(() => {
-            expect(result.current.stores['default'].notifications[0]).toEqual(notification);
-          });
-          spy.mockRestore();
-        });
-      });
+  act(() => {
+    emitEvent('notifications.seen.all', null, 'remote');
+  });
 
-      describe('notifications.seen.all', () => {
-        it('resets the unseen count', () => {
-          const { result } = renderHook(() => useNotificationStoresCollection());
+  await waitFor(() => {
+    expect(spy.handledRequests).toEqual(0);
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.seen.all', null, 'remote');
-          });
+it('notifications.read.all marks all notifications as read', async () => {
+  render(<RealtimeComponent />);
+  const { result } = renderHook(() => useNotificationStoresCollection());
 
-          expect(result.current.stores['default'].unseenCount).toBe(0);
-        });
+  act(() => {
+    emitEvent('notifications.read.all', null, 'remote');
+  });
 
-        it('does not make a post request to avoid infinite loops', () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+  await waitFor(() => {
+    for (const model of result.current.stores['default'].notifications) {
+      expect(model.readAt).toBeDefined();
+    }
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.seen.all', null, 'remote');
-          });
+it('notifications.read.all does not make a post request to avoid infinite loops', async () => {
+  const spy = server.intercept('post', '/notifications');
+  render(<RealtimeComponent />);
 
-          expect(spy).not.toHaveBeenCalled();
-          spy.mockRestore();
-        });
-      });
+  act(() => {
+    emitEvent('notifications.read.all', null, 'remote');
+  });
 
-      describe('notifications.read.all', () => {
-        it('marks all notifications as read', () => {
-          const { result } = renderHook(() => useNotificationStoresCollection());
+  await waitFor(() => {
+    expect(spy.handledRequests).toEqual(0);
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.read.all', null, 'remote');
-          });
+it('notifications.read fetches notifications', async () => {
+  const spy = server.intercept('get', '/notifications');
+  render(<RealtimeComponent />);
 
-          for (const model of result.current.stores['default'].notifications) {
-            expect(model.readAt).toBeDefined();
-          }
-        });
+  act(() => {
+    emitEvent('notifications.read', { id: 'uuid' }, 'remote');
+  });
 
-        it('does not make a post request to avoid infinite loops', () => {
-          const spy = jest.spyOn(ajax, 'postAPI');
+  await waitFor(() => {
+    const params = new URL(spy.lastRequest.url).searchParams;
+    expect(params.get('page')).toEqual('1');
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.read.all', null, 'remote');
-          });
+it('notifications.unread fetches notifications', async () => {
+  const spy = server.intercept('get', '/notifications');
+  render(<RealtimeComponent />);
 
-          expect(spy).not.toHaveBeenCalled();
-          spy.mockRestore();
-        });
-      });
+  act(() => {
+    emitEvent('notifications.unread', { id: 'uuid' }, 'remote');
+  });
 
-      describe('notifications.read', () => {
-        it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+  await waitFor(() => {
+    const params = new URL(spy.lastRequest.url).searchParams;
+    expect(params.get('page')).toEqual('1');
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.read', { id: 'uuid' }, 'remote');
-          });
+it('notifications.delete removes the notification from the store', async () => {
+  server.intercept('get', '/notifications', { notifications: [] });
+  render(<RealtimeComponent />);
+  const { result } = renderHook(() => useNotificationStoresCollection());
+  const notification = NotificationFactory.build();
 
-          expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
-          spy.mockRestore();
-        });
-      });
+  act(() => {
+    emitEvent('notifications.delete', { id: notification.id }, 'remote');
+  });
 
-      describe('notifications.unread', () => {
-        it('fetches notifications', () => {
-          const spy = jest.spyOn(ajax, 'fetchAPI');
+  await waitFor(() => {
+    expect(result.current.stores['default'].notifications).not.toEqual(expect.arrayContaining([notification]));
+  });
+});
 
-          act(() => {
-            emitEvent('notifications.unread', { id: 'uuid' }, 'remote');
-          });
+it('notifications.delete does not remove anything from the store that doesnt exist', async () => {
+  render(<RealtimeComponent />);
+  const { result } = renderHook(() => useNotificationStoresCollection());
+  const notification = NotificationFactory.build();
 
-          expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
-          spy.mockRestore();
-        });
-      });
+  act(() => {
+    emitEvent('notifications.delete', { id: notification.id }, 'remote');
+  });
 
-      describe('notifications.delete', () => {
-        describe('the notification exists', () => {
-          it('removes the notification from the store', () => {
-            const { result } = renderHook(() => useNotificationStoresCollection());
-            const notification = NotificationFactory.build();
-
-            act(() => {
-              emitEvent('notifications.delete', { id: notification.id }, 'remote');
-            });
-
-            expect(result.current.stores['default'].notifications).not.toEqual(expect.arrayContaining([notification]));
-          });
-        });
-
-        describe('the notification does not exist', () => {
-          it('does not remove anything from the store', () => {
-            const { result } = renderHook(() => useNotificationStoresCollection());
-            const notification = NotificationFactory.build();
-
-            act(() => {
-              emitEvent('notifications.delete', { id: notification.id }, 'remote');
-            });
-
-            expect(result.current.stores['default'].total).toBe(0);
-            expect(result.current.stores['default'].notifications).toHaveLength(0);
-          });
-        });
-      });
-    });
+  await waitFor(() => {
+    expect(result.current.stores['default'].total).toBe(0);
+    expect(result.current.stores['default'].notifications).toHaveLength(0);
   });
 });

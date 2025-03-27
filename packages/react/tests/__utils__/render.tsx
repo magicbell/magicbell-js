@@ -31,6 +31,7 @@ export function renderWithProviders(node: ReactElement, options?: Partial<Render
       locale={locale}
       theme={theme}
       apiClientCacheTTL={0}
+      disableRealtime
     >
       {node}
     </MagicBellProvider>,
