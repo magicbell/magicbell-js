@@ -46,6 +46,7 @@ test('requests are retried in case of recoverable errors', async () => {
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    cacheTTL: 0,
   });
 
   await expect(
@@ -70,6 +71,7 @@ test('retried requests get an idempotency-key header', async () => {
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
     maxRetries: 3,
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -100,6 +102,7 @@ test('requests are not retried in case of unrecoverable errors', async () => {
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    cacheTTL: 0,
   });
 
   await expect(
@@ -123,6 +126,7 @@ test('client accepts custom headers', async () => {
       'X-Custom-Header': 'foo',
       host: 'api.magicbell.com',
     },
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -141,6 +145,7 @@ test("custom headers don't override controlled ones", async () => {
     headers: {
       'x-magicbell-api-key': 'bar',
     },
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -157,6 +162,7 @@ test('custom headers can be provided per request basis', async () => {
     headers: {
       'x-custom-header-one': 'one',
     },
+    cacheTTL: 0,
   });
 
   await client.request({
@@ -171,12 +177,13 @@ test('custom headers can be provided per request basis', async () => {
   expect(status.lastRequest.headers.get('x-custom-header-two')).toEqual('two');
 });
 
-test('requests within the same second are deduped', async () => {
+test('requests within the same ttl are deduped', async () => {
   const status = server.intercept('all', () => ({ id: Math.random() }));
 
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    cacheTTL: 1_000,
   });
 
   const res1 = await client.request({ method: 'GET', path: '/me' });

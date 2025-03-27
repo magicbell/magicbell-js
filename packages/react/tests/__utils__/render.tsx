@@ -23,7 +23,15 @@ export function renderWithProviders(node: ReactElement, options?: Partial<Render
   const { apiKey, locale, theme, images, stores } = Object.assign(defaultOptions, options);
 
   return TLRender(
-    <MagicBellProvider apiKey={apiKey} userEmail="-" stores={stores} images={images} locale={locale} theme={theme}>
+    <MagicBellProvider
+      apiKey={apiKey}
+      userEmail="-"
+      stores={stores}
+      images={images}
+      locale={locale}
+      theme={theme}
+      apiClientCacheTTL={0}
+    >
       {node}
     </MagicBellProvider>,
   );

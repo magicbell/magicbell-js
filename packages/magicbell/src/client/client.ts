@@ -18,6 +18,7 @@ export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   maxRetries: 3,
   maxRetryDelay: 60,
   telemetry: true,
+  cacheTTL: 1000,
 };
 
 export class Client {
@@ -27,9 +28,9 @@ export class Client {
   constructor(options: ClientOptions) {
     assertHasValidOptions(options);
     assertHasSomeOptions(options, ['token', 'apiKey']);
-    this.#cache = new Cache({ ttl: 1000 });
 
     this.#options = { ...DEFAULT_OPTIONS, ...options };
+    this.#cache = new Cache({ ttl: this.#options.cacheTTL });
   }
 
   hasFlag(flag: FeatureFlag) {

@@ -75,7 +75,8 @@ export default function useNotifications(storeId = 'default'): NotificationStore
 
   useEffect(() => {
     if (!store) return;
-    if (config.lastFetchedAt && !store.lastFetchedAt) fetch({ page: 1 });
+    if (!config.lastFetchedAt || store.lastFetchedAt) return;
+    void fetch({ page: 1 });
   }, [config.lastFetchedAt, store, fetch]);
 
   const markAllAsReadFn = useCallback<NotificationStore['markAllAsRead']>(

@@ -42,6 +42,7 @@ export type Props = {
   onToggle?: (isOpen: boolean) => void;
   isOpen?: boolean;
   bellCounter?: 'unread' | 'unseen';
+  apiClientCacheTTL?: number;
 } & ({ userExternalId: string } | { userEmail: string });
 
 const defaultInbox = (props) => <FloatingNotificationInbox height={500} {...props} />;

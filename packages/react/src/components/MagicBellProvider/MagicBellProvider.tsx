@@ -25,6 +25,7 @@ export type MagicBellProviderProps = {
   }>;
   serverURL?: string;
   disableRealtime?: boolean;
+  apiClientCacheTTL?: number;
 } & ({ userExternalId: string } | { userEmail: string });
 
 const internals = {

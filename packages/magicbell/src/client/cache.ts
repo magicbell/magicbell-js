@@ -11,7 +11,7 @@ export class Cache {
   #ttl: number;
 
   constructor(options: { ttl: number }) {
-    this.#ttl = options.ttl || 1000;
+    this.#ttl = options.ttl ?? 1000;
   }
 
   getRequestKey(args: Omit<RequestArgs, 'path' | 'params'> & { url: URL }): string {
@@ -28,7 +28,7 @@ export class Cache {
   #flush() {
     const currentTimestamp = Date.now();
     for (const [key, { timestamp }] of this.#records.entries()) {
-      if (currentTimestamp - timestamp > this.#ttl) {
+      if (currentTimestamp - timestamp >= this.#ttl) {
         this.#records.delete(key);
       }
     }
@@ -45,6 +45,7 @@ export class Cache {
   }
 
   set(key: string, promise: Promise<any>) {
+    if (this.#ttl <= 0) return;
     this.#records.set(key, { promise, timestamp: Date.now() });
   }
 }

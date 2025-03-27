@@ -23,7 +23,7 @@ beforeEach(async () => {
     yield { type: 'notifications/new', data: { id: 3 } };
   });
 
-  const client = new Client({ apiKey: 'my-api-key' });
+  const client = new Client({ apiKey: 'my-api-key', cacheTTL: 0 });
   listen = createListener(client, { sseHost: sse.host });
 });
 

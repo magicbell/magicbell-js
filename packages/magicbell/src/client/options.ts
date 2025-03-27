@@ -20,6 +20,7 @@ const optionValidators: Record<keyof ClientOptions, (value: unknown) => boolean>
   features: isObject,
   headers: isObject,
   hooks: isObject,
+  cacheTTL: isNumber,
 };
 
 export function isOptionsHash(object) {

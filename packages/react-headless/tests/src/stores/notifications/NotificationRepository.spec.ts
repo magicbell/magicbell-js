@@ -8,6 +8,7 @@ beforeEach(() => {
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
     userEmail: 'person@example.com',
+    apiClientCacheTTL: 0,
   });
 });
 
