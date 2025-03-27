@@ -28,7 +28,7 @@ async function updateNotificationPreferences(req) {
 export const mockHandlers = [
   mockHandler('get', '/config', config),
   mockHandler('post', '/ws/auth', wsAuth),
-  mockHandler('get', '/notification_preferences', { notificationPreferences }),
+  mockHandler('get', '/notification_preferences', { notification_preferences: notificationPreferences }),
   mockHandler('put', '/notification_preferences', updateNotificationPreferences),
   mockHandler('post', 'https://api.magicbell.com/ably/auth', ablyAuth),
   mockHandler('post', 'https://rest.ably.io/keys/:key/requestToken', ablyRequestToken),
