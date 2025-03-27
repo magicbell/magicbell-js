@@ -89,7 +89,7 @@ function SettingsProviders({ children, theme, locale, images, ...props }: MagicB
       .finally(() => setIsFetchingConfig(false));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [needsRemoteConfig, props.apiKey, props.userExternalId, props.userExternalId]);
+  }, [needsRemoteConfig, props.apiKey, props.userExternalId, props.userEmail, props.userKey]);
 
   const textTranslations = useLocale(locale || config.locale || 'en');
 
