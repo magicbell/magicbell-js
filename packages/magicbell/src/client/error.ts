@@ -36,6 +36,7 @@ type ErrorConfig = {
   responseBody?: unknown;
   message: string;
   suggestion?: string;
+  stack?: string;
 };
 
 /**
@@ -98,6 +99,7 @@ export class MagicBellError extends Error {
     this.message = raw.message;
     this.suggestion = raw.suggestion;
     this.docsUrl = raw.docs_url || raw.help_link;
+    this.stack = raw.stack;
   }
 }
 

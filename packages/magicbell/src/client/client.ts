@@ -87,6 +87,7 @@ export class Client {
           statusText: error?.response?.statusText,
           responseBody: body,
           ...body?.errors?.[0],
+          stack: error.stack,
         });
       });
   }
