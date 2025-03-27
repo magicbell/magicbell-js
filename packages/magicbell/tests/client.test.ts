@@ -2,7 +2,7 @@ import { setTimeout } from 'node:timers/promises';
 
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
-import { Client as Client } from './client.js';
+import { Client as Client } from '../src/client/client.js';
 
 const server = setupMockServer(...mockHandlers);
 

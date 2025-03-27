@@ -1,7 +1,7 @@
-import { eventStream, mockHandlers, setupMockServer } from '@magicbell/utils';
+import { eventStream, mockHandlers, setupMockServer } from '@magicbell/utils/src';
 
-import { Client } from '../client/client.js';
-import { createListener, Listener } from './listen.js';
+import { Client } from '../src/client/client.js';
+import { createListener, Listener } from '../src/resources/listen.js';
 
 const server = setupMockServer(...mockHandlers);
 let listen: Listener;
