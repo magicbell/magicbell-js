@@ -2,6 +2,8 @@ import { resolve } from 'path';
 import analyze from 'rollup-plugin-analyzer';
 import { defineConfig } from 'vite';
 import banner from 'vite-plugin-banner';
+import { configDefaults } from 'vitest/config';
+import GithubActionsReporter from 'vitest-github-actions-reporter';
 
 import { writeIndexFile, writeTypeDefs } from './plugins/index.js';
 import {
@@ -74,6 +76,18 @@ export default defineConfig(async ({ mode, command }) => {
           globals: globalModules,
         },
       },
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: resolve(__dirname, 'test.setup.js'),
+      restoreMocks: true,
+      mockReset: true,
+      clearMocks: true,
+      isolate: true,
+      threads: false,
+      reporters: isTest && process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
+      exclude: [...configDefaults.exclude, 'packages/in-app/*'],
     },
   };
 });

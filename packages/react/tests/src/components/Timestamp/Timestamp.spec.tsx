@@ -8,18 +8,18 @@ import { renderWithProviders } from '../../../__utils__/render';
 setupMockServer(...mockHandlers);
 
 beforeEach(() => {
-  jest.useFakeTimers();
-  jest.setSystemTime(1600599000000);
+  vi.useFakeTimers();
+  vi.setSystemTime(1600599000000);
 });
 
 afterEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 test('renders the relative date', async () => {
   renderWithProviders(<Timestamp date={new Date()} delay={0} />);
   act(() => {
-    jest.advanceTimersByTime(60_000);
+    vi.advanceTimersByTime(60_000);
   });
 
   screen.getByText(/1m/i);
@@ -28,7 +28,7 @@ test('renders the relative date', async () => {
 test('updates the relative date text', async () => {
   renderWithProviders(<Timestamp date={new Date()} delay={0} />);
   act(() => {
-    jest.advanceTimersByTime(180_000);
+    vi.advanceTimersByTime(180_000);
   });
 
   screen.getByText(/3m/i);
