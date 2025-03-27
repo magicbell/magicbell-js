@@ -25,7 +25,7 @@ const server = setupMockServer(
 
 function MagicBell(props: ComponentProps<typeof MagicBellProvider>) {
   // apply defaults to disable theme fetching
-  return <MagicBellProvider theme={{}} locale="en" images={{}} apiClientCacheTTL={0} {...props} />;
+  return <MagicBellProvider theme={{}} locale="en" images={{}} network={{ cacheTTL: 0 }} {...props} />;
 }
 
 test("renders the notification bell, but not it's default children", async () => {

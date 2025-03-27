@@ -30,7 +30,7 @@ export function renderWithProviders(node: ReactElement, options?: Partial<Render
       images={images}
       locale={locale}
       theme={theme}
-      apiClientCacheTTL={0}
+      network={{ cacheTTL: 0, maxRetries: 0 }}
       disableRealtime
     >
       {node}

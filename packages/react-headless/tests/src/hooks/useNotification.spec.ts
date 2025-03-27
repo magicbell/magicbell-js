@@ -14,7 +14,7 @@ beforeAll(() => {
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
     userEmail: faker.internet.email(),
-    apiClientCacheTTL: 0,
+    network: { cacheTTL: 0, maxRetries: 0 },
   });
 });
 

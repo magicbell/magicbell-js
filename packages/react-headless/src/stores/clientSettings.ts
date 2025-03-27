@@ -13,7 +13,10 @@ export type ClientSettings = {
   serverURL: string;
   getClient(): InstanceType<typeof UserClient>;
   appInfo?: { name: string; version: string };
-  apiClientCacheTTL?: number;
+  network?: {
+    maxRetries?: number;
+    cacheTTL?: number;
+  };
 } & ({ userEmail: string } | { userExternalId: string });
 
 /**
@@ -36,7 +39,7 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
     clientId: Math.random().toString(36).substring(2) + Date.now(),
     serverURL: 'https://api.magicbell.com',
     appInfo: undefined,
-    apiClientCacheTTL: 1000,
+    network: {},
 
     getClient() {
       const state = get();
@@ -55,7 +58,8 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
             name: pkg.name,
             version: pkg.version,
           },
-          cacheTTL: state.apiClientCacheTTL,
+          cacheTTL: state.network?.cacheTTL,
+          maxRetries: state.network?.maxRetries,
         });
       }
 
