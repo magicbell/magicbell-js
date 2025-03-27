@@ -5,6 +5,7 @@ import '@testing-library/jest-dom/jest-globals';
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
 import EventSource from 'eventsource';
 import fetch, { Headers, Request, Response } from 'node-fetch';
+import { act } from "@testing-library/react";
 
 globalThis.fetch = fetch as any;
 globalThis.Headers = Headers as any;
@@ -22,8 +23,10 @@ if (typeof window !== 'undefined') {
 }
 
 beforeEach(() => {
-  useConfig.setState({ lastFetchedAt: Date.now() });
-  useNotificationPreferences.setState({ lastFetchedAt: Date.now() });
+  act(()=> {
+    useConfig.setState({ lastFetchedAt: Date.now() });
+    useNotificationPreferences.setState({ lastFetchedAt: Date.now() });
+  })
 });
 
 const _log = console.log;

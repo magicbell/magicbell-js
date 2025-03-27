@@ -1,6 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
 import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
@@ -29,7 +29,9 @@ setupMockServer(
 );
 
 beforeEach(() => {
-  useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  act(() => {
+    useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  });
 });
 
 test('does not render the inbox on load', () => {

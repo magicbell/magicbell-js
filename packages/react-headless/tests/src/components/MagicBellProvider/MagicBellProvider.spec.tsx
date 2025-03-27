@@ -1,6 +1,6 @@
 import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import * as React from 'react';
 
 import { MagicBellProvider, useConfig } from '../../../../src';
@@ -14,8 +14,12 @@ describe('components', () => {
     const userExternalId = faker.datatype.uuid();
 
     it('renders the children', () => {
+      act(() => {
+        useConfig.setState({ lastFetchedAt: Date.now() });
+      });
+
       const { container } = render(
-        <MagicBellProvider apiKey={apiKey} userExternalId={userExternalId}>
+        <MagicBellProvider apiKey={apiKey} userExternalId={userExternalId} disableRealtime>
           <p>We are gradually adding new functionality and we welcome your suggestions and feedback.</p>
           <p style={{ opacity: 0.5 }}>Please feel free to send us any additional feedback.</p>
         </MagicBellProvider>,
@@ -27,7 +31,9 @@ describe('components', () => {
     });
 
     it('fetches config', async () => {
-      useConfig.setState({ lastFetchedAt: null });
+      act(() => {
+        useConfig.setState({ lastFetchedAt: null });
+      });
       const spy = jest.spyOn(ajax, 'fetchAPI');
 
       render(
@@ -43,7 +49,9 @@ describe('components', () => {
 
     describe('config is fetched', () => {
       beforeEach(() => {
-        useConfig.setState({ lastFetchedAt: Date.now() });
+        act(() => {
+          useConfig.setState({ lastFetchedAt: Date.now() });
+        });
       });
 
       it('does not fetch config', async () => {
