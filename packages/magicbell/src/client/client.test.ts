@@ -1,3 +1,5 @@
+import { setTimeout } from 'node:timers/promises';
+
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import { Client as Client } from './client.js';
@@ -167,4 +169,30 @@ test('custom headers can be provided per request basis', async () => {
 
   expect(status.lastRequest.headers.get('x-custom-header-one')).toEqual('one');
   expect(status.lastRequest.headers.get('x-custom-header-two')).toEqual('two');
+});
+
+test('requests within the same second are deduped', async () => {
+  const status = server.intercept('all', () => ({ id: Math.random() }));
+
+  const client = new Client({
+    apiKey: 'my-api-key',
+    maxRetryDelay: 0,
+  });
+
+  const res1 = await client.request({ method: 'GET', path: '/me' });
+  const res2 = await client.request({ method: 'GET', path: '/me' });
+  expect(res1).toEqual(res2);
+  expect(status.handledRequests).toEqual(1);
+
+  await setTimeout(1100);
+
+  // a new call after the 1sec ttl should result in a new promise
+  const res3 = await client.request({ method: 'GET', path: '/me' });
+  expect(res3).not.toEqual(res1);
+  expect(status.handledRequests).toEqual(2);
+
+  // a call in the same time, but using another endpoint results in a new promise
+  const res4 = await client.request({ method: 'GET', path: '/them' });
+  expect(res4).not.toEqual(res3);
+  expect(status.handledRequests).toEqual(3);
 });
