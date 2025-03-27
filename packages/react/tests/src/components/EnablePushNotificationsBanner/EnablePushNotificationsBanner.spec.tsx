@@ -1,6 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
@@ -12,9 +12,11 @@ setupMockServer(...mockHandlers);
 
 beforeEach(() => {
   localStorage.clear();
-  useConfig.setState({
-    ...sampleConfig,
-    lastFetchedAt: Date.now(),
+  act(() => {
+    useConfig.setState({
+      ...sampleConfig,
+      lastFetchedAt: Date.now(),
+    });
   });
 });
 
@@ -31,9 +33,11 @@ test('does not render anything if push notifications are enabled', () => {
 });
 
 test('does not render anything if web push channel is disabled', () => {
-  useConfig.setState({
-    ...ConfigFactory.build({ channels: { webPush: { enabled: false } } }),
-    lastFetchedAt: Date.now(),
+  act(() => {
+    useConfig.setState({
+      ...ConfigFactory.build({ channels: { webPush: { enabled: false } } }),
+      lastFetchedAt: Date.now(),
+    });
   });
 
   render(<EnablePushNotificationsBanner />);

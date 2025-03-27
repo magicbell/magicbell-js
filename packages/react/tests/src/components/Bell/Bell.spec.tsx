@@ -23,7 +23,9 @@ test('the notification button has a namespaced data attribute', async () => {
 });
 
 test('does not render the notification count if there are no notifications', () => {
-  useConfig.setState({ lastFetchedAt: undefined });
+  act(() => {
+    useConfig.setState({ lastFetchedAt: undefined });
+  });
 
   render(<Bell onClick={jest.fn()} />);
   expect(screen.queryByRole('status', { name: /1 unread items/i })).not.toBeInTheDocument();

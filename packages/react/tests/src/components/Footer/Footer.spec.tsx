@@ -1,6 +1,6 @@
 import { useConfig } from '@magicbell/react-headless';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import * as React from 'react';
 
 import Footer from '../../../../src/components/Footer';
@@ -14,15 +14,17 @@ test('renders a link to the magicbell site', () => {
 });
 
 test('branding can be disabled', async () => {
-  useConfig.setState(
-    ConfigFactory.build({
-      inbox: {
-        features: {
-          noMagicbellBranding: { enabled: true },
+  act(() => {
+    useConfig.setState(
+      ConfigFactory.build({
+        inbox: {
+          features: {
+            noMagicbellBranding: { enabled: true },
+          },
         },
-      },
-    }),
-  );
+      }),
+    );
+  });
 
   render(<Footer />);
 

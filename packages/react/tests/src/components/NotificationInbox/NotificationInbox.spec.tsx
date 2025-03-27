@@ -1,6 +1,6 @@
 import { useConfig, useNotificationPreferences } from '@magicbell/react-headless';
 import { fake, mockHandler, mockHandlers, setupMockServer } from '@magicbell/utils';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
@@ -22,7 +22,9 @@ const server = setupMockServer(
 );
 
 beforeEach(() => {
-  useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  act(() => {
+    useConfig.setState({ ...sampleConfig, lastFetchedAt: Date.now() });
+  });
 });
 
 test('renders a header, the list of notifications and a footer if the notifications are fetched', async () => {
@@ -109,7 +111,9 @@ test('notification preferences can be disabled trough property', () => {
 });
 
 test('notification preferences can be disabled trough useConfig hook', () => {
-  useConfig.setState(ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }));
+  act(() => {
+    useConfig.setState(ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }));
+  });
 
   render(<NotificationInbox />, { locale: 'en' });
   expect(screen.queryByRole('button', { name: /Notification preferences/ })).not.toBeInTheDocument();
