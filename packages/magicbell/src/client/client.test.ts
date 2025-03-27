@@ -24,9 +24,9 @@ test('requests are made against the configured host', async () => {
     apiKey: 'my-api-key',
   });
 
-  let reqUrl: URL;
-  server.intercept('all', (req) => {
-    reqUrl = req.url;
+  let reqUrl: string;
+  server.intercept('all', ({ request }) => {
+    reqUrl = request.url;
   });
 
   await client.request({
@@ -34,7 +34,7 @@ test('requests are made against the configured host', async () => {
     path: '/me',
   });
 
-  expect(reqUrl.toString()).toEqual('https://example.com/me');
+  expect(reqUrl).toEqual('https://example.com/me');
 });
 
 test('requests are retried in case of recoverable errors', async () => {
@@ -61,8 +61,8 @@ test('requests are retried in case of recoverable errors', async () => {
 
 test('retried requests get an idempotency-key header', async () => {
   let idempotencyKeys = [];
-  server.intercept('all', (req) => {
-    idempotencyKeys.push(req.headers.get('idempotency-key'));
+  server.intercept('all', ({ request }) => {
+    idempotencyKeys.push(request.headers.get('idempotency-key'));
     if (idempotencyKeys.length < 2) return { status: 503 };
     return { id: 1 };
   });

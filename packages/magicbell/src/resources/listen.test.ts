@@ -10,11 +10,12 @@ let sse: Awaited<ReturnType<typeof eventStream>>;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 beforeEach(async () => {
-  server.intercept('all', (req) => {
-    if (req.url.pathname === '/config') return { ws: { channel: 'project:1:channel:2' } };
-    if (req.url.pathname === '/ws/auth') return { keyName: 'key', mac: 'random' };
-    if (req.url.pathname === '/keys/key/requestToken') return { token: 'token' };
-    if (req.url.pathname === '/sse') return { passThrough: true };
+  server.intercept('all', ({ request }) => {
+    const pathname = new URL(request.url).pathname;
+    if (pathname === '/config') return { ws: { channel: 'project:1:channel:2' } };
+    if (pathname === '/ws/auth') return { keyName: 'key', mac: 'random' };
+    if (pathname === '/keys/key/requestToken') return { token: 'token' };
+    if (pathname === '/sse') return { passThrough: true };
   });
 
   sse = await eventStream(function* () {

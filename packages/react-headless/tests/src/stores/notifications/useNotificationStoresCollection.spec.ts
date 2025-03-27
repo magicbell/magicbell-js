@@ -59,9 +59,10 @@ describe('useNotificationStoresCollection', () => {
         });
 
         expect(status.handledRequests).toEqual(1);
-        expect(status.lastRequest.url.pathname).toEqual('/notifications');
-        expect(status.lastRequest.url.searchParams.get('read')).toEqual('false');
-        expect(status.lastRequest.url.searchParams.get('page')).toEqual('2');
+        const url = new URL(status.lastRequest.url);
+        expect(url.pathname).toEqual('/notifications');
+        expect(url.searchParams.get('read')).toEqual('false');
+        expect(url.searchParams.get('page')).toEqual('2');
       });
 
       it('updates the store with the response', async () => {
@@ -151,8 +152,9 @@ describe('useNotificationStoresCollection', () => {
         server.intercept('post', '/notifications/:id/read', { status: 204 });
         server.intercept('post', '/notifications/:id/unread', { status: 204 });
 
-        server.intercept('get', '/notifications', (req) => {
-          const storeId = req.url.searchParams.get('read') === 'true' ? 'read' : 'unread';
+        server.intercept('get', '/notifications', ({ request }) => {
+          const url = new URL(request.url);
+          const storeId = url.searchParams.get('read') === 'true' ? 'read' : 'unread';
           return {
             total: notifications[storeId].length,
             unreadCount: storeId === 'read' ? 0 : notifications[storeId].length,

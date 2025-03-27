@@ -38,7 +38,7 @@
     "generate:resources": "tsx scripts/generate-resources.ts"
   },
   "dependencies": {
-    "msw": "^1.3.2"
+    "msw": "^2.7.3"
   },
   "tshy": {
     "project": "./tsconfig.build.json",

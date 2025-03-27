@@ -75,7 +75,8 @@ describe('useNotificationFactory', () => {
     await act(() => result.current.markAsUnread());
 
     expect(status.handledRequests).toEqual(1);
-    expect(status.lastRequest.url.pathname).toEqual(`/notifications/${result.current.id}/unread`);
+    const url = new URL(status.lastRequest.url);
+    expect(url.pathname).toEqual(`/notifications/${result.current.id}/unread`);
   });
 
   it('.delete deletes the notification', async () => {
@@ -86,6 +87,7 @@ describe('useNotificationFactory', () => {
     await act(async () => result.current.delete());
 
     expect(status.handledRequests).toEqual(1);
-    expect(status.lastRequest.url.pathname).toEqual(`/notifications/${result.current.id}`);
+    const url = new URL(status.lastRequest.url);
+    expect(url.pathname).toEqual(`/notifications/${result.current.id}`);
   });
 });

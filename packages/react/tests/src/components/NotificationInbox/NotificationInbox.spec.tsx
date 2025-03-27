@@ -197,12 +197,12 @@ test('renders notifications matching selected tab', async () => {
     { storeId: 'comments', label: 'Comments' },
   ];
 
-  server.intercept('get', '/notifications', (req) => ({
+  server.intercept('get', '/notifications', ({ request }) => ({
     ...fake.notificationPage,
     notifications: [
       {
         ...fake.notification,
-        content: `notification in ${req.url.searchParams.get('category') || 'default'} tab`,
+        content: `notification in ${new URL(request.url).searchParams.get('category') || 'default'} tab`,
       },
     ],
   }));
