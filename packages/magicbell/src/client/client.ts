@@ -4,6 +4,7 @@ import ky from '@smeijer/ky';
 import urlJoin from 'url-join';
 
 import { tryParse } from '../lib/utils.js';
+import { Cache } from './cache.js';
 import { createError } from './error.js';
 import { withRequestHeaders } from './headers.js';
 import { withRequestLogging } from './log.js';
@@ -17,16 +18,19 @@ export const DEFAULT_OPTIONS: Partial<ClientOptions> = {
   maxRetries: 3,
   maxRetryDelay: 60,
   telemetry: true,
+  cacheTTL: 1000,
 };
 
 export class Client {
   #options: ClientOptions;
+  #cache: Cache;
 
   constructor(options: ClientOptions) {
     assertHasValidOptions(options);
     assertHasSomeOptions(options, ['token', 'apiKey']);
 
     this.#options = { ...DEFAULT_OPTIONS, ...options };
+    this.#cache = new Cache({ ttl: this.#options.cacheTTL });
   }
 
   hasFlag(flag: FeatureFlag) {
@@ -46,8 +50,9 @@ export class Client {
     // don't just use `new URL(path, host)` as that will strip the path from the host
     const url = new URL(urlJoin(requestOptions.host, path));
 
-    for (const [key, value] of Object.entries(params || {})) {
-      url.searchParams.append(key, Array.isArray(value) ? value.join(',') : value);
+    for (const [key, value] of Object.entries(params || {}).sort()) {
+      const val = Array.isArray(value) ? [...value].sort().join(',') : value;
+      url.searchParams.append(key, val);
     }
 
     const hooks = mergeHooks(
@@ -57,7 +62,15 @@ export class Client {
       this.#options.hooks,
     );
 
-    return ky(url, {
+    const requestKey = this.#cache.getRequestKey({ method, url, data, headers: reqHeaders });
+
+    // Check if there's already a pending request
+    let promise = this.#cache.get(requestKey);
+    if (promise) {
+      return promise;
+    }
+
+    promise = ky(url, {
       method,
       body: data && JSON.stringify(data),
       retry: {
@@ -90,5 +103,9 @@ export class Client {
           stack: error.stack,
         });
       });
+
+    // Cache the promise so we can dedupe parallel requests
+    this.#cache.set(requestKey, promise);
+    return promise;
   }
 }

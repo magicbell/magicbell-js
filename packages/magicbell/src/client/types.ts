@@ -23,6 +23,7 @@ export type ClientOptions = {
   features?: Record<string, never>;
   headers?: Record<string, string>;
   hooks?: Hooks;
+  cacheTTL?: number;
 };
 
 export type FeatureFlag = keyof ClientOptions['features'];

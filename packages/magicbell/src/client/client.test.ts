@@ -1,3 +1,5 @@
+import { setTimeout } from 'node:timers/promises';
+
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import { Client as Client } from './client.js';
@@ -44,6 +46,7 @@ test('requests are retried in case of recoverable errors', async () => {
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    cacheTTL: 0,
   });
 
   await expect(
@@ -68,6 +71,7 @@ test('retried requests get an idempotency-key header', async () => {
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
     maxRetries: 3,
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -98,6 +102,7 @@ test('requests are not retried in case of unrecoverable errors', async () => {
   const client = new Client({
     apiKey: 'my-api-key',
     maxRetryDelay: 0,
+    cacheTTL: 0,
   });
 
   await expect(
@@ -121,6 +126,7 @@ test('client accepts custom headers', async () => {
       'X-Custom-Header': 'foo',
       host: 'api.magicbell.com',
     },
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -139,6 +145,7 @@ test("custom headers don't override controlled ones", async () => {
     headers: {
       'x-magicbell-api-key': 'bar',
     },
+    cacheTTL: 0,
   });
 
   // verify that this request is done using 3 identical idempotencyKeys
@@ -155,6 +162,7 @@ test('custom headers can be provided per request basis', async () => {
     headers: {
       'x-custom-header-one': 'one',
     },
+    cacheTTL: 0,
   });
 
   await client.request({
@@ -167,4 +175,31 @@ test('custom headers can be provided per request basis', async () => {
 
   expect(status.lastRequest.headers.get('x-custom-header-one')).toEqual('one');
   expect(status.lastRequest.headers.get('x-custom-header-two')).toEqual('two');
+});
+
+test('requests within the same ttl are deduped', async () => {
+  const status = server.intercept('all', () => ({ id: Math.random() }));
+
+  const client = new Client({
+    apiKey: 'my-api-key',
+    maxRetryDelay: 0,
+    cacheTTL: 1_000,
+  });
+
+  const res1 = await client.request({ method: 'GET', path: '/me' });
+  const res2 = await client.request({ method: 'GET', path: '/me' });
+  expect(res1).toEqual(res2);
+  expect(status.handledRequests).toEqual(1);
+
+  await setTimeout(1100);
+
+  // a new call after the 1sec ttl should result in a new promise
+  const res3 = await client.request({ method: 'GET', path: '/me' });
+  expect(res3).not.toEqual(res1);
+  expect(status.handledRequests).toEqual(2);
+
+  // a call in the same time, but using another endpoint results in a new promise
+  const res4 = await client.request({ method: 'GET', path: '/them' });
+  expect(res4).not.toEqual(res3);
+  expect(status.handledRequests).toEqual(3);
 });

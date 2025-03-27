@@ -50,6 +50,7 @@ class FakeResource extends Resource {
 const client = new Client({
   host: 'https://example.com',
   apiKey: 'my-api-key',
+  cacheTTL: 0,
 });
 
 const fakeResource = new FakeResource(client);
