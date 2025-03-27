@@ -45,7 +45,7 @@ type IterableEventSource<TNode> = {
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
-export function createListener(client: InstanceType<typeof Client>, args: { sseHost?: string } = {}): Listener {
+export function createListener(client: InstanceType<typeof Client>): Listener {
   let eventSource: EventSource;
   let channels: string;
   let lastEvent: string;
@@ -86,11 +86,8 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     // make sure that the optional config request has finished
     await configPromise;
 
-    // establish a connection with that token, the only reason we allow passing in the sseHost via args,
-    // is so that we have a way to reroute to localhost for testing.
-    const sseHost = args.sseHost || 'https://realtime.ably.io';
-    const url = new URL('sse', sseHost);
-
+    // establish a connection with that token
+    const url = new URL('https://realtime.ably.io/sse');
     url.searchParams.append('v', '1.1');
     url.searchParams.append('accessToken', token);
     url.searchParams.append('channels', channels);
@@ -115,7 +112,7 @@ export function createListener(client: InstanceType<typeof Client>, args: { sseH
     // handle incoming messages
     eventSource.addEventListener('message', (event) => {
       // event.origin can be undefined in react-native (devmode?)
-      if (event.origin && event.origin !== sseHost) return;
+      if (event.origin && event.origin !== url.origin) return;
 
       lastEvent = event.lastEventId;
       if (!('data' in event)) return;
