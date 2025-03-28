@@ -40,7 +40,7 @@ export class Client {
   async request<TResponse = any>(
     { method, path, data, params, headers: reqHeaders }: RequestArgs,
     options?: RequestOptions,
-  ) {
+  ): Promise<TResponse> {
     const requestOptions: ClientOptions & RequestOptions = {
       ...this.#options,
       ...options,
@@ -65,7 +65,7 @@ export class Client {
     const requestKey = this.#cache.getRequestKey({ method, url, data, headers: reqHeaders });
 
     // Check if there's already a pending request
-    let promise = this.#cache.get(requestKey);
+    let promise: Promise<TResponse> = this.#cache.get(requestKey);
     if (promise) {
       return promise;
     }
