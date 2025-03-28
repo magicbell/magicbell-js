@@ -2,7 +2,7 @@
 '@magicbell/magicbell-react': minor
 ---
 
-We now expose the property to control the retries of failed network request.
+We now expose the property to control the retries of failed network requests.
 `network.maxRetries` defaults to `3`. Setting it to `0` disables retries entirely.
 
 ```tsx
