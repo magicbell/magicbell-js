@@ -1,5 +1,46 @@
 # @magicbell/react-headless
 
+## 5.4.0
+
+### Minor Changes
+
+- [#487](https://github.com/magicbell/magicbell-js/pull/487) [`e3cd22e`](https://github.com/magicbell/magicbell-js/commit/e3cd22e92b00aa6f64977bcb99395235dc6afdf2) Thanks [@smeijer](https://github.com/smeijer)! - Network requests are now deduped. You can control this behavior using the
+  `network.cacheTTL` setting. Setting it to `0` disables caching entirely. The TTL
+  defaults to one second. Meaning any identical request within that second shares
+  the same Promise and thus outcome.
+
+  ```tsx
+  import { MagicBellProvider } from '@magicbell/react-headless';
+
+  function Component() {
+    return (
+      <MagicBellProvider apiKey="your-api-key" userEmail="you@example.com" network={{ cacheTTL: 1_000 }}>
+        <App />
+      </MagicBellProvider>
+    );
+  }
+  ```
+
+- [#487](https://github.com/magicbell/magicbell-js/pull/487) [`e3cd22e`](https://github.com/magicbell/magicbell-js/commit/e3cd22e92b00aa6f64977bcb99395235dc6afdf2) Thanks [@smeijer](https://github.com/smeijer)! - We now expose the property to control the retries of failed network requests.
+  `network.maxRetries` defaults to `3`. Setting it to `0` disables retries entirely.
+
+  ```tsx
+  import { MagicBellProvider } from '@magicbell/react-headless';
+
+  function Component() {
+    return (
+      <MagicBellProvider apiKey="your-api-key" userEmail="you@example.com" network={{ maxRetries: 5 }}>
+        <App />
+      </MagicBellProvider>
+    );
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`a826a43`](https://github.com/magicbell/magicbell-js/commit/a826a4326f30905a2bdb9279db9b23be48661968), [`e3cd22e`](https://github.com/magicbell/magicbell-js/commit/e3cd22e92b00aa6f64977bcb99395235dc6afdf2)]:
+  - magicbell@4.3.0
+
 ## 5.3.0
 
 ### Minor Changes
