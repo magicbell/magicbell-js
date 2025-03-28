@@ -4,6 +4,7 @@ import ky from '@smeijer/ky';
 
 import { Cache } from '../client/cache.js';
 import { Client } from '../client/client.js';
+import { debug } from '../client/log.js';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';
 import { RequestOptions } from '../client/types.js';
 
@@ -152,8 +153,7 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
         eventSource.close();
         pushMessage({ value: null, done: true });
       } else {
-        // eslint-disable-next-line no-console
-        console.log('sse error:', msg);
+        debug('sse error', msg);
       }
     });
   }
