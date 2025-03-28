@@ -69,7 +69,8 @@ jobs:
           node-version: 20
       - uses: bahmutov/npm-install@v1
       - run: yarn build
-      - run: yarn playwright install --with-deps
+      #       playwright needs to be re-enabled when we're including in-app tests in ci
+      #     - run: yarn playwright install --with-deps
       - run: yarn test:ci
         timeout-minutes: 10
 
