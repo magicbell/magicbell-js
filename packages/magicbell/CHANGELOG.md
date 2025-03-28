@@ -1,5 +1,26 @@
 # magicbell
 
+## 4.3.0
+
+### Minor Changes
+
+- [#482](https://github.com/magicbell/magicbell-js/pull/482) [`a826a43`](https://github.com/magicbell/magicbell-js/commit/a826a4326f30905a2bdb9279db9b23be48661968) Thanks [@smeijer](https://github.com/smeijer)! - We now dedupe identical requests that are made within the same second.
+
+- [#487](https://github.com/magicbell/magicbell-js/pull/487) [`e3cd22e`](https://github.com/magicbell/magicbell-js/commit/e3cd22e92b00aa6f64977bcb99395235dc6afdf2) Thanks [@smeijer](https://github.com/smeijer)! - Network requests are now deduped. You can control this behavior using the
+  `cacheTTL` setting. Set it to `0` to disable. The TTL defaults to one second.
+  Meaning any identical request within that second shares the same Promise and
+  thus outcome.
+
+  ```ts
+  import { UserClient } from 'magicbell/user-client';
+
+  const magicbell = new UserClient({
+    apiKey: 'your-api-key',
+    userEmail: 'you@example.com',
+    cacheTTL: 1_000,
+  });
+  ```
+
 ## 4.2.0
 
 ### Minor Changes
