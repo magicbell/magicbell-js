@@ -1,61 +1,40 @@
-import http from 'http';
-import portFinder from 'portfinder';
+import { setTimeout } from 'node:timers/promises';
 
-const TIMEOUT = 30_000;
-const DELAY = 30;
+import { http, HttpResponse } from 'msw';
 
-export function eventStream(generatorFn: () => Generator<Record<string, unknown>, void, unknown>) {
-  let done = false;
+async function createStream(
+  controller: ReadableStreamController<any>,
+  generator: () => Generator<Record<string, unknown>>,
+) {
+  const iterator = generator();
+  const encoder = new TextEncoder();
+  const e = encoder.encode.bind(encoder);
 
-  const server = http.createServer(function (req, res) {
-    const url = new URL(req.url, 'http://localhost');
+  controller.enqueue(e(`retry: 10000\n\n`));
 
-    if (url.pathname === '/sse') {
-      const iterator = generatorFn();
+  for (let result = iterator.next(); !result.done; result = iterator.next()) {
+    const data = JSON.stringify(result.value);
+    controller.enqueue(e(`event: message\ndata: ${data}\n\n`));
+    await setTimeout(5);
+  }
 
-      res.setHeader('Cache-Control', 'no-cache');
-      res.setHeader('Content-Type', 'text/event-stream');
-      res.setHeader('Connection', 'keep-alive');
-      res.flushHeaders();
+  controller.enqueue(e(`event: message\ndata: { "type": "close" }\n\n`));
+  await setTimeout(5);
+  controller.close();
+}
 
-      res.write('retry: 10000\n\n');
+export function eventStream(url: string, generatorFn: () => Generator<Record<string, unknown>, void, unknown>) {
+  return http.get(url, () => {
+    const stream = new ReadableStream({
+      start(controller) {
+        void createStream(controller, generatorFn);
+      },
+    });
 
-      let msg = 0;
-      while (true) {
-        const next = iterator.next();
-
-        if (next.value) {
-          setTimeout(() => {
-            res.write('data: ' + JSON.stringify(next.value) + '\n\n');
-          }, msg++ * DELAY);
-        }
-
-        if (next.done) {
-          setTimeout(() => {
-            res.write('data:' + JSON.stringify({ type: 'close' }) + '\n\n');
-          }, msg++ * DELAY);
-
-          break;
-        }
-      }
-
-      setTimeout(() => (done = true), msg++ * DELAY);
-    }
-  });
-
-  const interval = setInterval(() => {
-    if (!done) return;
-    clearInterval(interval);
-    clearTimeout(timeout);
-    server.close();
-  }, DELAY);
-
-  const timeout = setTimeout(() => clearInterval(interval), TIMEOUT);
-
-  return new Promise<{ host: string; port: number; close: () => void }>((resolve) => {
-    portFinder.getPortPromise().then((port) => {
-      server.listen(port);
-      resolve({ port, host: `http://localhost:${port}`, close: () => server.close() });
+    return new HttpResponse(stream, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+      },
     });
   });
 }

@@ -25,6 +25,9 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
+      - uses: rharkor/caching-for-turbo@v1.6
+      - name: Build
+        run: yarn build
 
   eslint:
     name: ESLint
@@ -52,6 +55,7 @@ jobs:
           node-version: 20
       - uses: bahmutov/npm-install@v1
         # we need to upgrade to Node16 module resolution so TSC can use package.json#exports
+      - uses: rharkor/caching-for-turbo@v1.6
       - name: Build
         run: yarn build
       - name: TypeScript
@@ -68,8 +72,11 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
-      - run: yarn build
-      - run: yarn playwright install --with-deps
+      - uses: rharkor/caching-for-turbo@v1.6
+      - name: Build
+        run: yarn build
+      # playwright needs to be re-enabled when we're including in-app tests in ci
+      # - run: yarn playwright install --with-deps
       - run: yarn test:ci
         timeout-minutes: 10
 
@@ -84,6 +91,8 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
-      - run: yarn build
+      - uses: rharkor/caching-for-turbo@v1.6
+      - name: Build
+        run: yarn build
       - name: publish preview release
         run: npx pkg-pr-new publish --template "./pkg-pr-issue-302" --compact './packages/*'

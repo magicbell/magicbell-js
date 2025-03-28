@@ -7,7 +7,7 @@ import { renderWithProviders as render } from '../../../../__utils__/render';
 
 setupMockServer(...mockHandlers);
 test('renders an api error when notifications cannot be retrieved', () => {
-  jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true);
+  vi.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(true);
   render(<FetchErrorMessage />);
 
   screen.getByText(/we can’t seem to retrieve your notifications./i);
@@ -15,7 +15,7 @@ test('renders an api error when notifications cannot be retrieved', () => {
 });
 
 test('renders a connection error when there is no internet connection', () => {
-  jest.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false);
+  vi.spyOn(navigator, 'onLine', 'get').mockReturnValueOnce(false);
   render(<FetchErrorMessage />);
 
   screen.getByText(/hmm, we’re unable to connect to the internet./i);

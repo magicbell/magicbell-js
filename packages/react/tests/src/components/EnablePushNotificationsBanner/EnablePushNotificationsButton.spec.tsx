@@ -9,12 +9,12 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 setupMockServer(...mockHandlers);
 
 test('renders a button', () => {
-  render(<EnablePushNotificationsButton onClick={jest.fn()} />);
+  render(<EnablePushNotificationsButton onClick={vi.fn()} />);
   screen.getByRole('button', { name: /enable now/i });
 });
 
 test('calls the onClick handler on click', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   render(<EnablePushNotificationsButton onClick={onClick} />);
   const button = screen.getByRole('button', { name: /enable now/i });
   await userEvent.click(button);

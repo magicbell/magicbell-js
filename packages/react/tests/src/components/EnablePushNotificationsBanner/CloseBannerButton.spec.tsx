@@ -9,7 +9,7 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 setupMockServer(...mockHandlers);
 
 test('renders a close button', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   render(<CloseBannerButton onClick={onClick} />);
   const closeButton = screen.getByRole('button', { name: /close notification/i });
   await userEvent.click(closeButton);

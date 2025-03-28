@@ -10,9 +10,9 @@ import { readStdin } from './lib/stdin.js';
 function printResponse(response: Response) {
   printMessage(`${response.status} ${response.statusText}`);
 
-  for (const [key, value] of response.headers) {
+  response.headers.forEach((value, key) => {
     printKeyValue(key, value);
-  }
+  });
 
   printMessage();
 }

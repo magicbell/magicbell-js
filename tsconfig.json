@@ -4,7 +4,7 @@
     "packages",
     "scripts",
     "types",
-    "jest",
+    "vitest/globals",
     "@testing-library/jest-dom",
     "@testing-library/jest-dom/jest-globals"
   ],

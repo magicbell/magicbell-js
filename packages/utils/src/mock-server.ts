@@ -1,13 +1,15 @@
-import { MockedRequest, MockedResponse, RequestHandler, rest } from 'msw';
+import { http, passthrough, RequestHandler, ResponseResolver } from 'msw';
 import { setupServer } from 'msw/node';
+import { afterAll, afterEach, beforeAll } from 'vitest';
 
 type InterceptorContext = {
   handledRequests: number;
-  lastRequest?: MockedRequest & { params: Record<string, string> };
-  lastResponse?: MockedResponse & { json: () => Promise<any> };
+  lastRequest?: Request;
+  lastResponse?: Response;
 };
 
-type InterceptorCallback = (req: MockedRequest, res: MockedResponse, ctx: InterceptorContext) => MockReturnValue;
+export type ResponseResolverInfo = Parameters<ResponseResolver>[0];
+type InterceptorCallback = (info: ResponseResolverInfo) => MockReturnValue;
 
 type MockReturnValue =
   | {
@@ -20,9 +22,9 @@ type MockReturnValue =
     }
   | { [key: string]: any };
 
-export function mockHandler(method: keyof typeof rest, path: string, cb: MockReturnValue | InterceptorCallback) {
+export function mockHandler(method: keyof typeof http, path: string, cb: MockReturnValue | InterceptorCallback) {
   path = path.startsWith('/') ? `*${path}` : path;
-  return rest[method](path, async (req, res, ctx) => {
+  return http[method](path, async (info) => {
     const {
       status,
       statusText,
@@ -31,24 +33,26 @@ export function mockHandler(method: keyof typeof rest, path: string, cb: MockRet
       cacheControl = 'no-cache',
       passThrough = false,
       ...data
-    } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
+    } = (typeof cb === 'function' ? await cb(info) : cb) || {};
 
-    if (passThrough) return req.passthrough();
+    if (passThrough) return passthrough();
 
-    return res(
-      ctx.status(status || 200, statusText),
-      ctx.set('Content-Type', contentType),
-      ctx.set('Cache-Control', cacheControl),
-      ctx.json(json || data || ''),
-    );
+    return new Response(JSON.stringify(json || data || ''), {
+      status: status || 200,
+      statusText: statusText,
+      headers: {
+        'Content-Type': contentType,
+        'Cache-Control': cacheControl,
+      },
+    });
   });
 }
 
 export function setupMockServer(...handlers: RequestHandler[]) {
   const defaultHandlers = [
     ...handlers,
-    rest.all('*', (req, res, ctx) => {
-      return res(ctx.json({}));
+    http.all('*', () => {
+      return new Response('{}');
     }),
   ];
 
@@ -74,13 +78,13 @@ export function setupMockServer(...handlers: RequestHandler[]) {
   process.once('SIGTERM', () => server.close());
 
   function intercept(
-    method: keyof typeof rest,
+    method: keyof typeof http,
     path: string,
     cb?: MockReturnValue | InterceptorCallback,
   ): InterceptorContext;
-  function intercept(method: keyof typeof rest, cb?: MockReturnValue | InterceptorCallback): InterceptorContext;
+  function intercept(method: keyof typeof http, cb?: MockReturnValue | InterceptorCallback): InterceptorContext;
   function intercept(
-    method: keyof typeof rest,
+    method: keyof typeof http,
     pathOrCb?: string | MockReturnValue | InterceptorCallback,
     cb?: MockReturnValue | InterceptorCallback,
   ): InterceptorContext {
@@ -89,35 +93,34 @@ export function setupMockServer(...handlers: RequestHandler[]) {
     const path = typeof pathOrCb === 'string' ? (pathOrCb.startsWith('/') ? `*${pathOrCb}` : pathOrCb) : '*';
 
     server.use(
-      rest[method](path, async (req, res, ctx) => {
+      http[method](path, async (info) => {
         const {
           status,
+          statusText,
           json,
           contentType = 'application/json',
           cacheControl = 'no-cache',
           passThrough = false,
           ...data
-        } = (typeof cb === 'function' ? await cb(req, res, ctx) : cb) || {};
+        } = (typeof cb === 'function' ? await cb(info) : cb) || {};
 
-        if (passThrough) return req.passthrough();
+        if (passThrough) return passthrough();
 
         // Response('', { status: 204 }) is invalid
-        const body = [204].includes(status) ? null : ctx.json(json || data || '');
+        const body = status === 204 ? null : JSON.stringify(json || data || '');
 
-        const response = res(
-          ctx.status(status || 200),
-          ctx.set('Content-Type', contentType),
-          ctx.set('Cache-Control', cacheControl),
-          body,
-        );
-
-        context.handledRequests++;
-        context.lastRequest = req;
-        response.then((res) => {
-          context.lastResponse = res;
-          context.lastResponse.json = async () => JSON.parse(res.body);
+        const response = new Response(body, {
+          status: status || 200,
+          statusText: statusText || 'ok',
+          headers: {
+            'Content-Type': contentType,
+            'Cache-Control': cacheControl,
+          },
         });
 
+        context.handledRequests++;
+        context.lastRequest = info.request.clone();
+        context.lastResponse = response.clone();
         return response;
       }),
     );

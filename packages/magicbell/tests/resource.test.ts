@@ -1,16 +1,16 @@
-import { mockHandlers, setupMockServer } from '@magicbell/utils';
-import { MockedRequest } from 'msw';
+import { mockHandlers, ResponseResolverInfo, setupMockServer } from '@magicbell/utils';
 
-import { Client } from './client.js';
-import { ASYNC_ITERATOR_SYMBOL } from './paginate.js';
-import { Resource } from './resource.js';
-import { RequestOptions } from './types.js';
+import { Client } from '../src/client/client.js';
+import { ASYNC_ITERATOR_SYMBOL } from '../src/client/paginate.js';
+import { Resource } from '../src/client/resource.js';
+import { RequestOptions } from '../src/client/types.js';
 
 const server = setupMockServer(...mockHandlers);
 
 function pagedResponse({ total_pages, per_page }: { total_pages: number; per_page: number }) {
-  return (req: MockedRequest) => {
-    const page = Number(req.url.searchParams.get('page') || 1);
+  return (info: ResponseResolverInfo) => {
+    const url = new URL(info.request.url);
+    const page = Number(url.searchParams.get('page') || 1);
     return {
       total_pages,
       per_page,
@@ -59,13 +59,16 @@ test('path parameters are replaced with their values', async () => {
   const spy = server.intercept('all');
 
   await fakeResource.get('obj-1');
-  expect(spy.lastRequest.url.pathname).toEqual('/fakes/obj-1');
+  let url = new URL(spy.lastRequest.url);
+  expect(url.pathname).toEqual('/fakes/obj-1');
 
   await fakeResource.get('obj-2');
-  expect(spy.lastRequest.url.pathname).toEqual('/fakes/obj-2');
+  url = new URL(spy.lastRequest.url);
+  expect(url.pathname).toEqual('/fakes/obj-2');
 
   await fakeResource.getNested('obj-3', 'field-1');
-  expect(spy.lastRequest.url.pathname).toEqual('/fakes/box/obj-3/with/field-1');
+  url = new URL(spy.lastRequest.url);
+  expect(url.pathname).toEqual('/fakes/box/obj-3/with/field-1');
 });
 
 test('methods transparently add and remove wrapping entity names', async () => {
@@ -114,8 +117,9 @@ test('methods are able to detect filter arguments, and move them to query args',
   const spy = server.intercept('all');
 
   await fakeResource.post({ read: true, seen: true });
-  expect(spy.lastRequest.url.searchParams.get('read')).toEqual('true');
-  expect(spy.lastRequest.url.searchParams.get('seen')).toEqual('true');
+  const url = new URL(spy.lastRequest.url);
+  expect(url.searchParams.get('read')).toEqual('true');
+  expect(url.searchParams.get('seen')).toEqual('true');
 });
 
 test('methods dont put categories and topics in query params if they hold objects', async () => {
@@ -123,19 +127,23 @@ test('methods dont put categories and topics in query params if they hold object
 
   await fakeResource.post({ categories: [{ slug: 'comments' }] });
   expect(await spy.lastRequest.json()).toEqual({ fake: { categories: [{ slug: 'comments' }] } });
-  expect(spy.lastRequest.url.search).toEqual('');
+  let url = new URL(spy.lastRequest.url);
+  expect(url.search).toEqual('');
 
   await fakeResource.post({ topics: [{ slug: 'issue.3' }] });
+  url = new URL(spy.lastRequest.url);
   expect(await spy.lastRequest.json()).toEqual({ fake: { topics: [{ slug: 'issue.3' }] } });
-  expect(spy.lastRequest.url.search).toEqual('');
+  expect(url.search).toEqual('');
 
   await fakeResource.post({ category: 'comments' });
+  url = new URL(spy.lastRequest.url);
   expect(await spy.lastRequest.text()).toEqual('');
-  expect(spy.lastRequest.url.search).toEqual('?category=comments');
+  expect(url.search).toEqual('?category=comments');
 
   await fakeResource.post({ topic: 'issue.3' });
+  url = new URL(spy.lastRequest.url);
   expect(await spy.lastRequest.text()).toEqual('');
-  expect(spy.lastRequest.url.search).toEqual('?topic=issue.3');
+  expect(url.search).toEqual('?topic=issue.3');
 });
 
 test('single resource methods are not iterable', async () => {
@@ -262,5 +270,6 @@ test('beta method can be enabled via feature flags', async () => {
 
   const fakeResource = new FakeResource(betaClient);
   await fakeResource.betaMethod('obj-1');
-  expect(spy.lastRequest.url.pathname).toEqual('/fakes/obj-1');
+  const url = new URL(spy.lastRequest.url);
+  expect(url.pathname).toEqual('/fakes/obj-1');
 });

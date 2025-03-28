@@ -1,4 +1,4 @@
-import { assertHasRequiredOptions, assertHasSomeOptions, assertHasValidOptions } from './options.js';
+import { assertHasRequiredOptions, assertHasSomeOptions, assertHasValidOptions } from '../src/client/options.js';
 
 test('throws if one of the options is in unexpected format', async () => {
   expect(() => assertHasValidOptions({ apiKey: 'test', first: '1000', second: 1, third: true })).toThrow(

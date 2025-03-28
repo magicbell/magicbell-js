@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import glob from 'glob';
+import * as glob from 'glob';
 
 // Function to extract CSS variables from code files
 function extractCssVars(content: string): Set<string> {

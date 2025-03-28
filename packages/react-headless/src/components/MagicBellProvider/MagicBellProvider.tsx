@@ -19,7 +19,10 @@ export type MagicBellProviderProps = {
   stores?: StoreConfig[];
   serverURL?: string;
   disableRealtime?: boolean;
-  apiClientCacheTTL?: number;
+  network?: {
+    cacheTTL?: number;
+    maxRetries?: number;
+  };
 } & (
   | { apiKey: string; userEmail: string; userKey?: string; token?: never }
   | { apiKey: string; userExternalId: string; userKey?: string; token?: never }

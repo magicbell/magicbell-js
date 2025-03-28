@@ -25,7 +25,7 @@ const server = setupMockServer(
 
 function MagicBell(props: ComponentProps<typeof MagicBellProvider>) {
   // apply defaults to disable theme fetching
-  return <MagicBellProvider theme={{}} locale="en" images={{}} apiClientCacheTTL={0} {...props} />;
+  return <MagicBellProvider theme={{}} locale="en" images={{}} network={{ cacheTTL: 0 }} {...props} />;
 }
 
 test("renders the notification bell, but not it's default children", async () => {
@@ -145,7 +145,7 @@ test('can close the inbox when defaultIsOpen is provided', async () => {
 });
 
 test('calls the onToggle callback when the button is clicked', async () => {
-  const onToggle = jest.fn();
+  const onToggle = vi.fn();
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onToggle={onToggle} defaultIsOpen>
@@ -236,7 +236,7 @@ test('sets the external id header for fetching from the API', async () => {
 });
 
 test('calls the onNewNotification callback when a new notification is received', () => {
-  const onNewNotification = jest.fn();
+  const onNewNotification = vi.fn();
 
   render(
     <MagicBell apiKey={apiKey} userEmail={userEmail} userKey={userKey} onNewNotification={onNewNotification}>

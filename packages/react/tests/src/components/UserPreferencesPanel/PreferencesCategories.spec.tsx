@@ -26,7 +26,7 @@ describe('PreferencesCategories component', () => {
       });
     });
 
-    afterEach(() => jest.clearAllMocks());
+    afterEach(() => vi.clearAllMocks());
 
     // Note: It is also important that these are physically ordered correctly.
     // How do we check for this using @testing-library/react?
@@ -68,7 +68,7 @@ describe('PreferencesCategories component', () => {
     });
 
     test.skip('it calls the onChange callback when preferences are changed', async () => {
-      const onChangeSpy = jest.fn();
+      const onChangeSpy = vi.fn();
       render(<PreferencesCategories onChange={onChangeSpy} />);
 
       const checkboxes = screen.getAllByRole('checkbox');

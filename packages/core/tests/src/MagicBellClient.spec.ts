@@ -38,7 +38,7 @@ describe('MagicBellClient', () => {
 
   describe('#createInstance', () => {
     it('fetches the config', async () => {
-      const spy = jest.spyOn(ajax, 'fetchAPI');
+      const spy = vi.spyOn(ajax, 'fetchAPI');
       const { config } = await MagicBellClient.createInstance({ apiKey, userEmail, userKey, apiSecret });
 
       expect(spy).toHaveBeenCalledTimes(1);

@@ -9,7 +9,7 @@ beforeEach(() => {
     serverURL: 'https://api.magicbell.com',
     apiKey: 'fake-key',
     userEmail: faker.internet.email(),
-    apiClientCacheTTL: 0,
+    network: { cacheTTL: 0, maxRetries: 0 },
   });
 });
 
@@ -95,7 +95,8 @@ describe('.postAPI', () => {
     const status = server.intercept('post', '/notifications', { notification: { id: 1 } });
     await postAPI('/notifications', { title: 'Another notification' });
 
-    expect(status.lastRequest.body).toEqual({ title: 'Another notification' });
+    const body = await status.lastRequest.json();
+    expect(body).toEqual({ title: 'Another notification' });
   });
 
   it('throws the original error', async () => {
@@ -121,7 +122,8 @@ describe('.putAPI', () => {
     const status = server.intercept('put', '/notifications/1');
 
     await putAPI('/notifications/1', { title: 'A title' });
-    expect(status.lastRequest.body).toEqual({ title: 'A title' });
+    const body = await status.lastRequest.json();
+    expect(body).toEqual({ title: 'A title' });
   });
 
   it('throws the original error', async () => {
