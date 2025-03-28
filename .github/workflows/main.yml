@@ -75,8 +75,8 @@ jobs:
       - uses: rharkor/caching-for-turbo@v1.6
       - name: Build
         run: yarn build
-      #       playwright needs to be re-enabled when we're including in-app tests in ci
-      #     - run: yarn playwright install --with-deps
+      # playwright needs to be re-enabled when we're including in-app tests in ci
+      # - run: yarn playwright install --with-deps
       - run: yarn test:ci
         timeout-minutes: 10
 
