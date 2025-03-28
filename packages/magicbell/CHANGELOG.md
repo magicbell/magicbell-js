@@ -1,5 +1,11 @@
 # magicbell
 
+## 4.4.0
+
+### Minor Changes
+
+- [#489](https://github.com/magicbell/magicbell-js/pull/489) [`60189d6`](https://github.com/magicbell/magicbell-js/commit/60189d6ac29bea8ba1b8a258ac5120ca3a6d1427) Thanks [@smeijer](https://github.com/smeijer)! - ably token requests are now cached and deduped
+
 ## 4.3.0
 
 ### Minor Changes
