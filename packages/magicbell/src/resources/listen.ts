@@ -2,6 +2,7 @@ import '../lib/signal-polyfill.js';
 
 import ky from '@smeijer/ky';
 
+import { Cache } from '../client/cache.js';
 import { Client } from '../client/client.js';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';
 import { RequestOptions } from '../client/types.js';
@@ -50,6 +51,7 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
   let channels: string;
   let lastEvent: string;
   let configPromise;
+  const cache = new Cache();
 
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
@@ -68,7 +70,7 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
   async function connect(options?: RequestOptions) {
     activeCount++;
 
-    // invoke optional config request in the background, as we only need it after the ably authentication
+    // invoke config request in the background, as we only need it after the ably authentication
     if (!channels && !configPromise) {
       configPromise = client
         .request({ method: 'GET', path: '/config' }, options)
@@ -76,14 +78,22 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
     }
 
     const auth = await client.request<AuthResponse>({ method: 'POST', path: '/ws/auth' }, options);
+    const tokenUrl = new URL(`https://rest.ably.io/keys/${auth.keyName}/requestToken`);
 
     // authenticate against ably
-    const { token } = await ky(`https://rest.ably.io/keys/${auth.keyName}/requestToken`, {
-      method: 'POST',
-      json: auth,
-    }).then((x) => x.json<TokenResponse>());
+    const cacheKey = cache.getRequestKey({ url: tokenUrl, method: 'POST', data: auth });
+    let authRequest = cache.get(cacheKey);
+    if (!authRequest) {
+      authRequest = ky(tokenUrl, {
+        method: 'POST',
+        json: auth,
+      }).then((x) => x.json<TokenResponse>());
+      cache.set(cacheKey, authRequest);
+    }
 
-    // make sure that the optional config request has finished
+    const { token } = await authRequest;
+
+    // make sure that the config request has finished
     await configPromise;
 
     // establish a connection with that token
