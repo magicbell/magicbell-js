@@ -1,6 +1,6 @@
 {
   "name": "@magicbell/cli",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "description": "Work with MagicBell from the command line",
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
   "contributors": [
@@ -46,7 +46,7 @@
     "fetch-addons": "^1.3.0",
     "json5": "^2.2.3",
     "kleur": "^4.1.5",
-    "magicbell": "4.4.0",
+    "magicbell": "4.4.1",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
