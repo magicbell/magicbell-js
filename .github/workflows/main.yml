@@ -95,4 +95,4 @@ jobs:
       - name: Build
         run: yarn build
       - name: publish preview release
-        run: npx pkg-pr-new publish './packages/*'
+        run: npx pkg-pr-new publish --compact './packages/*'
