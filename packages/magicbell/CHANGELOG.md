@@ -1,5 +1,11 @@
 # magicbell
 
+## 4.4.1
+
+### Patch Changes
+
+- [#491](https://github.com/magicbell/magicbell-js/pull/491) [`dd46ddf`](https://github.com/magicbell/magicbell-js/commit/dd46ddf6f8ca04300a527d56cfe53d58008c42aa) Thanks [@smeijer](https://github.com/smeijer)! - strengthen internal response type
+
 ## 4.4.0
 
 ### Minor Changes
