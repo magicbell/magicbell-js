@@ -1,25 +1,29 @@
 import { z } from 'zod';
 
-import { replyTo, replyToRequest, replyToResponse } from './reply-to.js';
-import { sendgridConfigFrom, sendgridConfigFromRequest, sendgridConfigFromResponse } from './sendgrid-config-from.js';
+import {
+  SendgridConfigPayload,
+  sendgridConfigPayload,
+  sendgridConfigPayloadRequest,
+  sendgridConfigPayloadResponse,
+} from './sendgrid-config-payload.js';
 
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const sendgridConfig = z.lazy(() => {
   return z.object({
-    apiKey: z.string(),
-    from: sendgridConfigFrom.optional(),
-    replyTo: replyTo.optional(),
+    config: sendgridConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {SendgridConfig} sendgridConfig
- * @property {string} - The API key for Sendgrid
- * @property {SendgridConfigFrom}
- * @property {ReplyTo}
+ * @property {SendgridConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type SendgridConfig = z.infer<typeof sendgridConfig>;
 
@@ -30,14 +34,14 @@ export type SendgridConfig = z.infer<typeof sendgridConfig>;
 export const sendgridConfigResponse = z.lazy(() => {
   return z
     .object({
-      api_key: z.string(),
-      from: sendgridConfigFromResponse.optional(),
-      reply_to: replyToResponse.optional(),
+      config: sendgridConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      apiKey: data['api_key'],
-      from: data['from'],
-      replyTo: data['reply_to'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -47,10 +51,14 @@ export const sendgridConfigResponse = z.lazy(() => {
  */
 export const sendgridConfigRequest = z.lazy(() => {
   return z
-    .object({ apiKey: z.string(), from: sendgridConfigFromRequest.optional(), replyTo: replyToRequest.optional() })
+    .object({
+      config: sendgridConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
     .transform((data) => ({
-      api_key: data['apiKey'],
-      from: data['from'],
-      reply_to: data['replyTo'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

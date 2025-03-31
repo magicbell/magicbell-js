@@ -44,7 +44,11 @@ export const oauthResponse = z.lazy(() => {
  */
 export const oauthRequest = z.lazy(() => {
   return z
-    .object({ channelId: z.string(), installationId: z.string(), scope: z.string().optional() })
+    .object({
+      channelId: z.string(),
+      installationId: z.string(),
+      scope: z.string().optional(),
+    })
     .transform((data) => ({
       channel_id: data['channelId'],
       installation_id: data['installationId'],

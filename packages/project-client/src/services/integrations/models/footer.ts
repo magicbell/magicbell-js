@@ -48,7 +48,12 @@ export const footerResponse = z.lazy(() => {
  */
 export const footerRequest = z.lazy(() => {
   return z
-    .object({ backgroundColor: z.string(), borderRadius: z.string(), fontSize: z.string(), textColor: z.string() })
+    .object({
+      backgroundColor: z.string(),
+      borderRadius: z.string(),
+      fontSize: z.string(),
+      textColor: z.string(),
+    })
     .transform((data) => ({
       backgroundColor: data['backgroundColor'],
       borderRadius: data['borderRadius'],

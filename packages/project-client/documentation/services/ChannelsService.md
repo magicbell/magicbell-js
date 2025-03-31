@@ -87,7 +87,7 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 4,
+    delay: 123,
     if: 'if',
   };
 
@@ -121,7 +121,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfApnsTokenResponses`
+`ApnsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -134,7 +134,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    limit: 7,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -159,7 +159,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`ApnsTokenResponse`
+`ApnsToken`
 
 **Example Usage Code Snippet**
 
@@ -229,7 +229,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfExpoTokenResponses`
+`ExpoTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -267,7 +267,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`ExpoTokenResponse`
+`ExpoToken`
 
 **Example Usage Code Snippet**
 
@@ -337,7 +337,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfFcmTokenResponses`
+`FcmTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -375,7 +375,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`FcmTokenResponse`
+`FcmToken`
 
 **Example Usage Code Snippet**
 
@@ -445,7 +445,7 @@ Lists all slack tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfSlackTokenResponses`
+`SlackTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -483,7 +483,7 @@ Retrieves a specific slack token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`SlackTokenResponse`
+`SlackToken`
 
 **Example Usage Code Snippet**
 
@@ -553,7 +553,7 @@ Lists all teams tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfTeamsTokenResponses`
+`TeamsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -566,7 +566,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    limit: 5,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -591,7 +591,7 @@ Retrieves a specific teams token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`TeamsTokenResponse`
+`TeamsToken`
 
 **Example Usage Code Snippet**
 
@@ -661,7 +661,7 @@ Lists all web_push tokens associated with a specific user. This endpoint is avai
 
 **Return Type**
 
-`ArrayOfWebPushTokenResponses`
+`WebPushTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -674,7 +674,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getWebPushUserTokens('user_id', {
-    limit: 3,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -699,7 +699,7 @@ Retrieves a specific web_push token by its ID for a given user. This endpoint is
 
 **Return Type**
 
-`WebPushTokenResponse`
+`WebPushToken`
 
 **Example Usage Code Snippet**
 

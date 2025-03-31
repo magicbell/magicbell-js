@@ -30,11 +30,6 @@ export class Client {
   public readonly users: UsersService;
 
   constructor(public config: SdkConfig) {
-    const baseUrl = config.environment || config.baseUrl || Environment.DEFAULT;
-    this.config = {
-      ...config,
-      baseUrl,
-    };
     this.broadcasts = new BroadcastsService(this.config);
 
     this.channels = new ChannelsService(this.config);

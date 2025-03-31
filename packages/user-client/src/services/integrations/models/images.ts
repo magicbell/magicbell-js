@@ -35,7 +35,11 @@ export const imagesResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const imagesRequest = z.lazy(() => {
-  return z.object({ emptyInboxUrl: z.string() }).transform((data) => ({
-    emptyInboxUrl: data['emptyInboxUrl'],
-  }));
+  return z
+    .object({
+      emptyInboxUrl: z.string(),
+    })
+    .transform((data) => ({
+      emptyInboxUrl: data['emptyInboxUrl'],
+    }));
 });

@@ -25,7 +25,7 @@ Retrieves a paginated list of broadcasts for the project. Returns basic informat
 
 **Return Type**
 
-`ArrayOfBroadcasts`
+`BroadcastCollection`
 
 **Example Usage Code Snippet**
 
@@ -38,7 +38,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 8,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -141,8 +141,8 @@ import { Broadcast, Client } from '@magicbell/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 6,
-    total: 1,
+    failures: 5,
+    total: 5,
   };
 
   const broadcastStatus: BroadcastStatus = {

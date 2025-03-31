@@ -1,3 +1,6 @@
+import { ZodError } from 'zod';
+
+import { ValidationError } from '../errors/validation-error.js';
 import { Request } from '../transport/request.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 
@@ -26,7 +29,15 @@ export class RequestValidationHandler implements RequestHandler {
 
   validateRequest(request: Request): void {
     if (request.requestContentType === ContentType.Json) {
-      request.body = JSON.stringify(request.requestSchema?.parse(request.body));
+      try {
+        const parsedBody = request.requestSchema?.parse(request.body);
+        request.body = JSON.stringify(parsedBody);
+      } catch (error) {
+        if (error instanceof ZodError) {
+          throw new ValidationError(error, request.body);
+        }
+        throw error;
+      }
     } else if (
       request.requestContentType === ContentType.Xml ||
       request.requestContentType === ContentType.Text ||

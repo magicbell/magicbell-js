@@ -39,8 +39,13 @@ export const replyToResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const replyToRequest = z.lazy(() => {
-  return z.object({ email: z.string(), name: z.string().nullable().optional() }).transform((data) => ({
-    email: data['email'],
-    name: data['name'],
-  }));
+  return z
+    .object({
+      email: z.string(),
+      name: z.string().optional().nullable(),
+    })
+    .transform((data) => ({
+      email: data['email'],
+      name: data['name'],
+    }));
 });

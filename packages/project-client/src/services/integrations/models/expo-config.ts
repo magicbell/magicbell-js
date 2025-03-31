@@ -1,17 +1,28 @@
 import { z } from 'zod';
 
+import {
+  ExpoConfigPayload,
+  expoConfigPayload,
+  expoConfigPayloadRequest,
+  expoConfigPayloadResponse,
+} from './expo-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const expoConfig = z.lazy(() => {
   return z.object({
-    accessToken: z.string().min(1),
+    config: expoConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {ExpoConfig} expoConfig
+ * @property {ExpoConfigPayload}
+ * @property {string}
  * @property {string}
  */
 export type ExpoConfig = z.infer<typeof expoConfig>;
@@ -23,10 +34,14 @@ export type ExpoConfig = z.infer<typeof expoConfig>;
 export const expoConfigResponse = z.lazy(() => {
   return z
     .object({
-      access_token: z.string().min(1),
+      config: expoConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      accessToken: data['access_token'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -35,7 +50,15 @@ export const expoConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const expoConfigRequest = z.lazy(() => {
-  return z.object({ accessToken: z.string() }).transform((data) => ({
-    access_token: data['accessToken'],
-  }));
+  return z
+    .object({
+      config: expoConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

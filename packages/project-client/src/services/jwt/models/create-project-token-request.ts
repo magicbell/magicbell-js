@@ -39,8 +39,13 @@ export const createProjectTokenRequestResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const createProjectTokenRequestRequest = z.lazy(() => {
-  return z.object({ expiry: z.number().nullable().optional(), name: z.string() }).transform((data) => ({
-    expiry: data['expiry'],
-    name: data['name'],
-  }));
+  return z
+    .object({
+      expiry: z.number().gte(1).optional().nullable(),
+      name: z.string().max(255),
+    })
+    .transform((data) => ({
+      expiry: data['expiry'],
+      name: data['name'],
+    }));
 });

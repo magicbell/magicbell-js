@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { email, emailRequest, emailResponse } from './email.js';
-import { inApp, inAppRequest, inAppResponse } from './in-app.js';
-import { mobilePush, mobilePushRequest, mobilePushResponse } from './mobile-push.js';
-import { slack, slackRequest, slackResponse } from './slack.js';
-import { sms, smsRequest, smsResponse } from './sms.js';
-import { webPush, webPushRequest, webPushResponse } from './web-push.js';
+import { Email, email, emailRequest, emailResponse } from './email.js';
+import { InApp, inApp, inAppRequest, inAppResponse } from './in-app.js';
+import { MobilePush, mobilePush, mobilePushRequest, mobilePushResponse } from './mobile-push.js';
+import { Slack, slack, slackRequest, slackResponse } from './slack.js';
+import { Sms, sms, smsRequest, smsResponse } from './sms.js';
+import { WebPush, webPush, webPushRequest, webPushResponse } from './web-push.js';
 
 /**
  * The shape of the model inside the application code - what the users use

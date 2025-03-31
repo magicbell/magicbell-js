@@ -5,6 +5,7 @@ import { SerializationStyle } from '../serialization/base-serializer.js';
 import { ContentType, HttpMethod, RequestConfig, RetryOptions, SdkConfig, ValidationOptions } from '../types.js';
 import {
   CreateRequestParameters,
+  ErrorDefinition,
   Request,
   RequestPagination,
   RequestParameter,
@@ -21,6 +22,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
       path: '',
       config: {},
       responses: [],
+      errors: [],
       requestSchema: z.any(),
       requestContentType: ContentType.Json,
       retry: {
@@ -66,9 +68,9 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  setBaseUrl(sdkConfig: SdkConfig): RequestBuilder<Page> {
-    if (sdkConfig?.baseUrl !== undefined) {
-      this.params.baseUrl = sdkConfig.baseUrl;
+  setBaseUrl(baseUrl: string | undefined): RequestBuilder<Page> {
+    if (baseUrl) {
+      this.params.baseUrl = baseUrl;
     }
 
     return this;
@@ -157,6 +159,11 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
 
   addResponse(response: ResponseDefinition): RequestBuilder<Page> {
     this.params.responses.push(response);
+    return this;
+  }
+
+  addError(error: ErrorDefinition): RequestBuilder<Page> {
+    this.params.errors.push(error);
     return this;
   }
 

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { errors, errorsRequest, errorsResponse } from './errors.js';
-import { summary, summaryRequest, summaryResponse } from './summary.js';
+import { Errors, errors, errorsRequest, errorsResponse } from './errors.js';
+import { Summary, summary, summaryRequest, summaryResponse } from './summary.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -47,7 +47,11 @@ export const broadcastStatusResponse = z.lazy(() => {
  */
 export const broadcastStatusRequest = z.lazy(() => {
   return z
-    .object({ errors: z.array(errorsRequest).nullable(), status: z.string(), summary: summaryRequest })
+    .object({
+      errors: z.array(errorsRequest).nullable(),
+      status: z.string(),
+      summary: summaryRequest,
+    })
     .transform((data) => ({
       errors: data['errors'],
       status: data['status'],
