@@ -1,11 +1,12 @@
 import { z } from 'zod';
 
+import { Environment } from '../../http/environment.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
-import { ArrayOfEvents, arrayOfEventsResponse } from './models/array-of-events.js';
 import { Event, eventResponse } from './models/event.js';
+import { EventCollection, eventCollectionResponse } from './models/event-collection.js';
 import { ListEventsParams } from './request-params.js';
 
 export class EventsService extends BaseService {
@@ -15,11 +16,11 @@ export class EventsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfEvents>>} OK
+   * @returns {Promise<HttpResponse<EventCollection>>} OK
    */
-  async listEvents(params?: ListEventsParams, requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfEvents>> {
+  async listEvents(params?: ListEventsParams, requestConfig?: RequestConfig): Promise<HttpResponse<EventCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/events')
@@ -27,7 +28,7 @@ export class EventsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfEventsResponse,
+        schema: eventCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -47,18 +48,18 @@ export class EventsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfEvents>(request);
+    return this.client.call<EventCollection>(request);
   }
 
   /**
-   * Retrieves a paginated list of events for the project.
+   * Retrieves a project event by its ID.
    * @param {string} id -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<Event>>} OK
    */
   async getEvent(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<Event>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/events/{id}')

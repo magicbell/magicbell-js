@@ -22,7 +22,7 @@ A list of all methods in the `UsersService` service. Click on the method name to
 
 **Return Type**
 
-`ArrayOfUsers`
+`UserCollection`
 
 **Example Usage Code Snippet**
 
@@ -35,7 +35,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.users.listUsers({
-    limit: 9,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -54,10 +54,6 @@ import { Client } from '@magicbell/project-client';
 | Name   | Type   | Required | Description |
 | :----- | :----- | :------- | :---------- |
 | userId | string | ✅       |             |
-
-**Return Type**
-
-`UserDiscardResult`
 
 **Example Usage Code Snippet**
 

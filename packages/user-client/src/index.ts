@@ -14,11 +14,6 @@ export class Client {
   public readonly integrations: IntegrationsService;
 
   constructor(public config: SdkConfig) {
-    const baseUrl = config.environment || config.baseUrl || Environment.DEFAULT;
-    this.config = {
-      ...config,
-      baseUrl,
-    };
     this.channels = new ChannelsService(this.config);
 
     this.integrations = new IntegrationsService(this.config);

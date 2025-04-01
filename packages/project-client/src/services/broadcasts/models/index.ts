@@ -1,5 +1,5 @@
-export type { ArrayOfBroadcasts } from './array-of-broadcasts.js';
 export type { Broadcast } from './broadcast.js';
+export type { BroadcastCollection } from './broadcast-collection.js';
 export type { BroadcastStatus } from './broadcast-status.js';
 export type { Email } from './email.js';
 export type { Errors } from './errors.js';

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import {
+  CategoryDeliveryConfigChannels,
   categoryDeliveryConfigChannels,
   categoryDeliveryConfigChannelsRequest,
   categoryDeliveryConfigChannelsResponse,
@@ -59,7 +60,10 @@ export const categoryDeliveryConfigRequest = z.lazy(() => {
     .object({
       channels: z.array(categoryDeliveryConfigChannelsRequest),
       disabled: z.boolean().optional(),
-      key: z.string(),
+      key: z
+        .string()
+        .min(3)
+        .regex(/^[A-Za-z0-9_\.\-:]+$/),
     })
     .transform((data) => ({
       channels: data['channels'],

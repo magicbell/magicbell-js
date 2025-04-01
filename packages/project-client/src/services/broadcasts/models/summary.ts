@@ -39,8 +39,13 @@ export const summaryResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const summaryRequest = z.lazy(() => {
-  return z.object({ failures: z.number(), total: z.number() }).transform((data) => ({
-    failures: data['failures'],
-    total: data['total'],
-  }));
+  return z
+    .object({
+      failures: z.number(),
+      total: z.number(),
+    })
+    .transform((data) => ({
+      failures: data['failures'],
+      total: data['total'],
+    }));
 });

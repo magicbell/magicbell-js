@@ -1,78 +1,100 @@
 import { z } from 'zod';
 
+import { Environment } from '../../http/environment.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
-import { ApnsConfig, apnsConfigRequest, apnsConfigResponse } from './models/apns-config.js';
-import { ArrayOfApnsConfigObjects, arrayOfApnsConfigObjectsResponse } from './models/array-of-apns-config-objects.js';
+import { ApnsConfigCollection, apnsConfigCollectionResponse } from './models/apns-config-collection.js';
 import {
-  ArrayOfAwssnsConfigObjects,
-  arrayOfAwssnsConfigObjectsResponse,
-} from './models/array-of-awssns-config-objects.js';
+  ApnsConfigPayload,
+  apnsConfigPayloadRequest,
+  apnsConfigPayloadResponse,
+} from './models/apns-config-payload.js';
+import { AwssnsConfigCollection, awssnsConfigCollectionResponse } from './models/awssns-config-collection.js';
 import {
-  ArrayOfEventSourceIntegrationConfigObjects,
-  arrayOfEventSourceIntegrationConfigObjectsResponse,
-} from './models/array-of-event-source-integration-config-objects.js';
-import { ArrayOfExpoConfigObjects, arrayOfExpoConfigObjectsResponse } from './models/array-of-expo-config-objects.js';
-import { ArrayOfFcmConfigObjects, arrayOfFcmConfigObjectsResponse } from './models/array-of-fcm-config-objects.js';
+  AwssnsConfigPayload,
+  awssnsConfigPayloadRequest,
+  awssnsConfigPayloadResponse,
+} from './models/awssns-config-payload.js';
 import {
-  ArrayOfGithubConfigObjects,
-  arrayOfGithubConfigObjectsResponse,
-} from './models/array-of-github-config-objects.js';
+  EventSourceConfigCollection,
+  eventSourceConfigCollectionResponse,
+} from './models/event-source-config-collection.js';
 import {
-  ArrayOfInboxConfigObjects,
-  arrayOfInboxConfigObjectsResponse,
-} from './models/array-of-inbox-config-objects.js';
-import { ArrayOfIntegrationObjects, arrayOfIntegrationObjectsResponse } from './models/array-of-integration-objects.js';
+  EventSourceConfigPayload,
+  eventSourceConfigPayloadRequest,
+  eventSourceConfigPayloadResponse,
+} from './models/event-source-config-payload.js';
+import { ExpoConfigCollection, expoConfigCollectionResponse } from './models/expo-config-collection.js';
 import {
-  ArrayOfMailgunConfigObjects,
-  arrayOfMailgunConfigObjectsResponse,
-} from './models/array-of-mailgun-config-objects.js';
-import { ArrayOfPingConfigObjects, arrayOfPingConfigObjectsResponse } from './models/array-of-ping-config-objects.js';
+  ExpoConfigPayload,
+  expoConfigPayloadRequest,
+  expoConfigPayloadResponse,
+} from './models/expo-config-payload.js';
+import { FcmConfigCollection, fcmConfigCollectionResponse } from './models/fcm-config-collection.js';
+import { FcmConfigPayload, fcmConfigPayloadRequest, fcmConfigPayloadResponse } from './models/fcm-config-payload.js';
+import { GithubConfigCollection, githubConfigCollectionResponse } from './models/github-config-collection.js';
 import {
-  ArrayOfSendgridConfigObjects,
-  arrayOfSendgridConfigObjectsResponse,
-} from './models/array-of-sendgrid-config-objects.js';
-import { ArrayOfSesConfigObjects, arrayOfSesConfigObjectsResponse } from './models/array-of-ses-config-objects.js';
+  GithubConfigPayload,
+  githubConfigPayloadRequest,
+  githubConfigPayloadResponse,
+} from './models/github-config-payload.js';
+import { InboxConfigCollection, inboxConfigCollectionResponse } from './models/inbox-config-collection.js';
 import {
-  ArrayOfSlackConfigObjects,
-  arrayOfSlackConfigObjectsResponse,
-} from './models/array-of-slack-config-objects.js';
+  InboxConfigPayload,
+  inboxConfigPayloadRequest,
+  inboxConfigPayloadResponse,
+} from './models/inbox-config-payload.js';
 import {
-  ArrayOfStripeConfigObjects,
-  arrayOfStripeConfigObjectsResponse,
-} from './models/array-of-stripe-config-objects.js';
+  IntegrationConfigCollection,
+  integrationConfigCollectionResponse,
+} from './models/integration-config-collection.js';
+import { MailgunConfigCollection, mailgunConfigCollectionResponse } from './models/mailgun-config-collection.js';
 import {
-  ArrayOfTemplatesConfigObjects,
-  arrayOfTemplatesConfigObjectsResponse,
-} from './models/array-of-templates-config-objects.js';
+  MailgunConfigPayload,
+  mailgunConfigPayloadRequest,
+  mailgunConfigPayloadResponse,
+} from './models/mailgun-config-payload.js';
+import { PingConfigCollection, pingConfigCollectionResponse } from './models/ping-config-collection.js';
 import {
-  ArrayOfTwilioConfigObjects,
-  arrayOfTwilioConfigObjectsResponse,
-} from './models/array-of-twilio-config-objects.js';
+  PingConfigPayload,
+  pingConfigPayloadRequest,
+  pingConfigPayloadResponse,
+} from './models/ping-config-payload.js';
+import { SendgridConfigCollection, sendgridConfigCollectionResponse } from './models/sendgrid-config-collection.js';
 import {
-  ArrayOfWebpushConfigObjects,
-  arrayOfWebpushConfigObjectsResponse,
-} from './models/array-of-webpush-config-objects.js';
-import { AwssnsConfig, awssnsConfigRequest, awssnsConfigResponse } from './models/awssns-config.js';
+  SendgridConfigPayload,
+  sendgridConfigPayloadRequest,
+  sendgridConfigPayloadResponse,
+} from './models/sendgrid-config-payload.js';
+import { SesConfigCollection, sesConfigCollectionResponse } from './models/ses-config-collection.js';
+import { SesConfigPayload, sesConfigPayloadRequest, sesConfigPayloadResponse } from './models/ses-config-payload.js';
+import { SlackConfigCollection, slackConfigCollectionResponse } from './models/slack-config-collection.js';
 import {
-  EventSourceIntegrationConfig,
-  eventSourceIntegrationConfigRequest,
-  eventSourceIntegrationConfigResponse,
-} from './models/event-source-integration-config.js';
-import { ExpoConfig, expoConfigRequest, expoConfigResponse } from './models/expo-config.js';
-import { FcmConfig, fcmConfigRequest, fcmConfigResponse } from './models/fcm-config.js';
-import { GithubConfig, githubConfigRequest, githubConfigResponse } from './models/github-config.js';
-import { InboxConfig, inboxConfigRequest, inboxConfigResponse } from './models/inbox-config.js';
-import { MailgunConfig, mailgunConfigRequest, mailgunConfigResponse } from './models/mailgun-config.js';
-import { PingConfig, pingConfigRequest, pingConfigResponse } from './models/ping-config.js';
-import { SendgridConfig, sendgridConfigRequest, sendgridConfigResponse } from './models/sendgrid-config.js';
-import { SesConfig, sesConfigRequest, sesConfigResponse } from './models/ses-config.js';
-import { SlackConfig, slackConfigRequest, slackConfigResponse } from './models/slack-config.js';
-import { StripeConfig, stripeConfigRequest, stripeConfigResponse } from './models/stripe-config.js';
-import { TwilioConfig, twilioConfigRequest, twilioConfigResponse } from './models/twilio-config.js';
-import { WebpushConfig, webpushConfigRequest, webpushConfigResponse } from './models/webpush-config.js';
+  SlackConfigPayload,
+  slackConfigPayloadRequest,
+  slackConfigPayloadResponse,
+} from './models/slack-config-payload.js';
+import { StripeConfigCollection, stripeConfigCollectionResponse } from './models/stripe-config-collection.js';
+import {
+  StripeConfigPayload,
+  stripeConfigPayloadRequest,
+  stripeConfigPayloadResponse,
+} from './models/stripe-config-payload.js';
+import { TemplatesConfigCollection, templatesConfigCollectionResponse } from './models/templates-config-collection.js';
+import { TwilioConfigCollection, twilioConfigCollectionResponse } from './models/twilio-config-collection.js';
+import {
+  TwilioConfigPayload,
+  twilioConfigPayloadRequest,
+  twilioConfigPayloadResponse,
+} from './models/twilio-config-payload.js';
+import { WebpushConfigCollection, webpushConfigCollectionResponse } from './models/webpush-config-collection.js';
+import {
+  WebpushConfigPayload,
+  webpushConfigPayloadRequest,
+  webpushConfigPayloadResponse,
+} from './models/webpush-config-payload.js';
 import { ListIntegrationsParams } from './request-params.js';
 
 export class IntegrationsService extends BaseService {
@@ -82,14 +104,14 @@ export class IntegrationsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfIntegrationObjects>>} OK
+   * @returns {Promise<HttpResponse<IntegrationConfigCollection>>} OK
    */
   async listIntegrations(
     params?: ListIntegrationsParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfIntegrationObjects>> {
+  ): Promise<HttpResponse<IntegrationConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations')
@@ -97,7 +119,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfIntegrationObjectsResponse,
+        schema: integrationConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -117,17 +139,17 @@ export class IntegrationsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfIntegrationObjects>(request);
+    return this.client.call<IntegrationConfigCollection>(request);
   }
 
   /**
    * Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfApnsConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<ApnsConfigCollection>>} OK
    */
-  async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfApnsConfigObjects>> {
+  async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/apns')
@@ -135,7 +157,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfApnsConfigObjectsResponse,
+        schema: apnsConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -143,25 +165,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfApnsConfigObjects>(request);
+    return this.client.call<ApnsConfigCollection>(request);
   }
 
   /**
    * Creates or updates a apns integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ApnsConfig>>} OK
+   * @returns {Promise<HttpResponse<ApnsConfigPayload>>} OK
    */
-  async saveApnsIntegration(body: ApnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfig>> {
+  async saveApnsIntegration(
+    body: ApnsConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ApnsConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/apns')
-      .setRequestSchema(apnsConfigRequest)
+      .setRequestSchema(apnsConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: apnsConfigResponse,
+        schema: apnsConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -171,7 +196,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<ApnsConfig>(request);
+    return this.client.call<ApnsConfigPayload>(request);
   }
 
   /**
@@ -181,7 +206,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns')
@@ -208,7 +233,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns/{id}')
@@ -234,11 +259,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfAwssnsConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<AwssnsConfigCollection>>} OK
    */
-  async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfAwssnsConfigObjects>> {
+  async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/awssns')
@@ -246,7 +271,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfAwssnsConfigObjectsResponse,
+        schema: awssnsConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -254,25 +279,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfAwssnsConfigObjects>(request);
+    return this.client.call<AwssnsConfigCollection>(request);
   }
 
   /**
    * Creates or updates a awssns integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<AwssnsConfig>>} OK
+   * @returns {Promise<HttpResponse<AwssnsConfigPayload>>} OK
    */
-  async saveAwssnsIntegration(body: AwssnsConfig, requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfig>> {
+  async saveAwssnsIntegration(
+    body: AwssnsConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<AwssnsConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/awssns')
-      .setRequestSchema(awssnsConfigRequest)
+      .setRequestSchema(awssnsConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: awssnsConfigResponse,
+        schema: awssnsConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -282,7 +310,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<AwssnsConfig>(request);
+    return this.client.call<AwssnsConfigPayload>(request);
   }
 
   /**
@@ -292,7 +320,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns')
@@ -319,7 +347,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/awssns/{id}')
@@ -345,13 +373,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfEventSourceIntegrationConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<EventSourceConfigCollection>>} OK
    */
-  async getEventsourceIntegration(
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfEventSourceIntegrationConfigObjects>> {
+  async getEventsourceIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<EventSourceConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/eventsource')
@@ -359,7 +385,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfEventSourceIntegrationConfigObjectsResponse,
+        schema: eventSourceConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -367,28 +393,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfEventSourceIntegrationConfigObjects>(request);
+    return this.client.call<EventSourceConfigCollection>(request);
   }
 
   /**
    * Creates or updates a eventsource integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<EventSourceIntegrationConfig>>} OK
+   * @returns {Promise<HttpResponse<EventSourceConfigPayload>>} OK
    */
   async saveEventsourceIntegration(
-    body: EventSourceIntegrationConfig,
+    body: EventSourceConfigPayload,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<EventSourceIntegrationConfig>> {
+  ): Promise<HttpResponse<EventSourceConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/eventsource')
-      .setRequestSchema(eventSourceIntegrationConfigRequest)
+      .setRequestSchema(eventSourceConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: eventSourceIntegrationConfigResponse,
+        schema: eventSourceConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -398,7 +424,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<EventSourceIntegrationConfig>(request);
+    return this.client.call<EventSourceConfigPayload>(request);
   }
 
   /**
@@ -408,7 +434,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteEventsourceIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/eventsource')
@@ -435,7 +461,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteEventsourceIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/eventsource/{id}')
@@ -461,11 +487,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfExpoConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<ExpoConfigCollection>>} OK
    */
-  async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfExpoConfigObjects>> {
+  async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/expo')
@@ -473,7 +499,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfExpoConfigObjectsResponse,
+        schema: expoConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -481,25 +507,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfExpoConfigObjects>(request);
+    return this.client.call<ExpoConfigCollection>(request);
   }
 
   /**
    * Creates or updates a expo integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ExpoConfig>>} OK
+   * @returns {Promise<HttpResponse<ExpoConfigPayload>>} OK
    */
-  async saveExpoIntegration(body: ExpoConfig, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfig>> {
+  async saveExpoIntegration(
+    body: ExpoConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<ExpoConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/expo')
-      .setRequestSchema(expoConfigRequest)
+      .setRequestSchema(expoConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: expoConfigResponse,
+        schema: expoConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -509,7 +538,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<ExpoConfig>(request);
+    return this.client.call<ExpoConfigPayload>(request);
   }
 
   /**
@@ -519,7 +548,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo')
@@ -546,7 +575,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/expo/{id}')
@@ -572,11 +601,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfFcmConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<FcmConfigCollection>>} OK
    */
-  async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfFcmConfigObjects>> {
+  async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/fcm')
@@ -584,7 +613,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfFcmConfigObjectsResponse,
+        schema: fcmConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -592,25 +621,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfFcmConfigObjects>(request);
+    return this.client.call<FcmConfigCollection>(request);
   }
 
   /**
    * Creates or updates a fcm integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<FcmConfig>>} OK
+   * @returns {Promise<HttpResponse<FcmConfigPayload>>} OK
    */
-  async saveFcmIntegration(body: FcmConfig, requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfig>> {
+  async saveFcmIntegration(
+    body: FcmConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<FcmConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/fcm')
-      .setRequestSchema(fcmConfigRequest)
+      .setRequestSchema(fcmConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: fcmConfigResponse,
+        schema: fcmConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -620,7 +652,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<FcmConfig>(request);
+    return this.client.call<FcmConfigPayload>(request);
   }
 
   /**
@@ -630,7 +662,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm')
@@ -657,7 +689,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm/{id}')
@@ -683,11 +715,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfGithubConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<GithubConfigCollection>>} OK
    */
-  async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfGithubConfigObjects>> {
+  async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/github')
@@ -695,7 +727,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfGithubConfigObjectsResponse,
+        schema: githubConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -703,25 +735,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfGithubConfigObjects>(request);
+    return this.client.call<GithubConfigCollection>(request);
   }
 
   /**
    * Creates or updates a github integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<GithubConfig>>} OK
+   * @returns {Promise<HttpResponse<GithubConfigPayload>>} OK
    */
-  async saveGithubIntegration(body: GithubConfig, requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfig>> {
+  async saveGithubIntegration(
+    body: GithubConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<GithubConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/github')
-      .setRequestSchema(githubConfigRequest)
+      .setRequestSchema(githubConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: githubConfigResponse,
+        schema: githubConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -731,7 +766,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<GithubConfig>(request);
+    return this.client.call<GithubConfigPayload>(request);
   }
 
   /**
@@ -741,7 +776,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github')
@@ -768,7 +803,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/github/{id}')
@@ -794,11 +829,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfInboxConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<InboxConfigCollection>>} OK
    */
-  async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfInboxConfigObjects>> {
+  async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/inbox')
@@ -806,7 +841,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfInboxConfigObjectsResponse,
+        schema: inboxConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -814,25 +849,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfInboxConfigObjects>(request);
+    return this.client.call<InboxConfigCollection>(request);
   }
 
   /**
    * Creates or updates a inbox integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxConfig>>} OK
+   * @returns {Promise<HttpResponse<InboxConfigPayload>>} OK
    */
-  async saveInboxIntegration(body: InboxConfig, requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfig>> {
+  async saveInboxIntegration(
+    body: InboxConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<InboxConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/inbox')
-      .setRequestSchema(inboxConfigRequest)
+      .setRequestSchema(inboxConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: inboxConfigResponse,
+        schema: inboxConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -842,7 +880,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<InboxConfig>(request);
+    return this.client.call<InboxConfigPayload>(request);
   }
 
   /**
@@ -852,7 +890,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox')
@@ -879,7 +917,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/inbox/{id}')
@@ -905,11 +943,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfMailgunConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<MailgunConfigCollection>>} OK
    */
-  async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfMailgunConfigObjects>> {
+  async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<MailgunConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/mailgun')
@@ -917,7 +955,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfMailgunConfigObjectsResponse,
+        schema: mailgunConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -925,28 +963,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfMailgunConfigObjects>(request);
+    return this.client.call<MailgunConfigCollection>(request);
   }
 
   /**
    * Creates or updates a mailgun integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<MailgunConfig>>} OK
+   * @returns {Promise<HttpResponse<MailgunConfigPayload>>} OK
    */
   async saveMailgunIntegration(
-    body: MailgunConfig,
+    body: MailgunConfigPayload,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<MailgunConfig>> {
+  ): Promise<HttpResponse<MailgunConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/mailgun')
-      .setRequestSchema(mailgunConfigRequest)
+      .setRequestSchema(mailgunConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: mailgunConfigResponse,
+        schema: mailgunConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -956,7 +994,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<MailgunConfig>(request);
+    return this.client.call<MailgunConfigPayload>(request);
   }
 
   /**
@@ -966,7 +1004,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun')
@@ -993,7 +1031,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/mailgun/{id}')
@@ -1019,11 +1057,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfPingConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<PingConfigCollection>>} OK
    */
-  async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfPingConfigObjects>> {
+  async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<PingConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ping_email')
@@ -1031,7 +1069,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfPingConfigObjectsResponse,
+        schema: pingConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1039,25 +1077,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfPingConfigObjects>(request);
+    return this.client.call<PingConfigCollection>(request);
   }
 
   /**
    * Creates or updates a ping_email integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<PingConfig>>} OK
+   * @returns {Promise<HttpResponse<PingConfigPayload>>} OK
    */
-  async savePingEmailIntegration(body: PingConfig, requestConfig?: RequestConfig): Promise<HttpResponse<PingConfig>> {
+  async savePingEmailIntegration(
+    body: PingConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<PingConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ping_email')
-      .setRequestSchema(pingConfigRequest)
+      .setRequestSchema(pingConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: pingConfigResponse,
+        schema: pingConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1067,7 +1108,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<PingConfig>(request);
+    return this.client.call<PingConfigPayload>(request);
   }
 
   /**
@@ -1077,7 +1118,7 @@ export class IntegrationsService extends BaseService {
    */
   async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email')
@@ -1104,7 +1145,7 @@ export class IntegrationsService extends BaseService {
    */
   async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ping_email/{id}')
@@ -1130,11 +1171,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfSendgridConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<SendgridConfigCollection>>} OK
    */
-  async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSendgridConfigObjects>> {
+  async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SendgridConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/sendgrid')
@@ -1142,7 +1183,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfSendgridConfigObjectsResponse,
+        schema: sendgridConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1150,28 +1191,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfSendgridConfigObjects>(request);
+    return this.client.call<SendgridConfigCollection>(request);
   }
 
   /**
    * Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SendgridConfig>>} OK
+   * @returns {Promise<HttpResponse<SendgridConfigPayload>>} OK
    */
   async saveSendgridIntegration(
-    body: SendgridConfig,
+    body: SendgridConfigPayload,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<SendgridConfig>> {
+  ): Promise<HttpResponse<SendgridConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/sendgrid')
-      .setRequestSchema(sendgridConfigRequest)
+      .setRequestSchema(sendgridConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: sendgridConfigResponse,
+        schema: sendgridConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1181,7 +1222,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<SendgridConfig>(request);
+    return this.client.call<SendgridConfigPayload>(request);
   }
 
   /**
@@ -1191,7 +1232,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid')
@@ -1218,7 +1259,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/sendgrid/{id}')
@@ -1244,11 +1285,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfSesConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<SesConfigCollection>>} OK
    */
-  async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSesConfigObjects>> {
+  async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SesConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/ses')
@@ -1256,7 +1297,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfSesConfigObjectsResponse,
+        schema: sesConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1264,25 +1305,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfSesConfigObjects>(request);
+    return this.client.call<SesConfigCollection>(request);
   }
 
   /**
    * Creates or updates a ses integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SesConfig>>} OK
+   * @returns {Promise<HttpResponse<SesConfigPayload>>} OK
    */
-  async saveSesIntegration(body: SesConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SesConfig>> {
+  async saveSesIntegration(
+    body: SesConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SesConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/ses')
-      .setRequestSchema(sesConfigRequest)
+      .setRequestSchema(sesConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: sesConfigResponse,
+        schema: sesConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1292,7 +1336,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<SesConfig>(request);
+    return this.client.call<SesConfigPayload>(request);
   }
 
   /**
@@ -1302,7 +1346,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses')
@@ -1329,7 +1373,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/ses/{id}')
@@ -1355,11 +1399,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfSlackConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<SlackConfigCollection>>} OK
    */
-  async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfSlackConfigObjects>> {
+  async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/slack')
@@ -1367,7 +1411,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfSlackConfigObjectsResponse,
+        schema: slackConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1375,25 +1419,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfSlackConfigObjects>(request);
+    return this.client.call<SlackConfigCollection>(request);
   }
 
   /**
    * Creates or updates a slack integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackConfig>>} OK
+   * @returns {Promise<HttpResponse<SlackConfigPayload>>} OK
    */
-  async saveSlackIntegration(body: SlackConfig, requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfig>> {
+  async saveSlackIntegration(
+    body: SlackConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SlackConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/slack')
-      .setRequestSchema(slackConfigRequest)
+      .setRequestSchema(slackConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: slackConfigResponse,
+        schema: slackConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1403,7 +1450,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<SlackConfig>(request);
+    return this.client.call<SlackConfigPayload>(request);
   }
 
   /**
@@ -1413,7 +1460,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack')
@@ -1440,7 +1487,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack/{id}')
@@ -1466,11 +1513,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfStripeConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<StripeConfigCollection>>} OK
    */
-  async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfStripeConfigObjects>> {
+  async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/stripe')
@@ -1478,7 +1525,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfStripeConfigObjectsResponse,
+        schema: stripeConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1486,25 +1533,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfStripeConfigObjects>(request);
+    return this.client.call<StripeConfigCollection>(request);
   }
 
   /**
    * Creates or updates a stripe integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<StripeConfig>>} OK
+   * @returns {Promise<HttpResponse<StripeConfigPayload>>} OK
    */
-  async saveStripeIntegration(body: StripeConfig, requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfig>> {
+  async saveStripeIntegration(
+    body: StripeConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<StripeConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/stripe')
-      .setRequestSchema(stripeConfigRequest)
+      .setRequestSchema(stripeConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: stripeConfigResponse,
+        schema: stripeConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1514,7 +1564,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<StripeConfig>(request);
+    return this.client.call<StripeConfigPayload>(request);
   }
 
   /**
@@ -1524,7 +1574,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe')
@@ -1551,7 +1601,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/stripe/{id}')
@@ -1577,11 +1627,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfTemplatesConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<TemplatesConfigCollection>>} OK
    */
-  async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfTemplatesConfigObjects>> {
+  async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<TemplatesConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/templates')
@@ -1589,7 +1639,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfTemplatesConfigObjectsResponse,
+        schema: templatesConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1597,7 +1647,7 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfTemplatesConfigObjects>(request);
+    return this.client.call<TemplatesConfigCollection>(request);
   }
 
   /**
@@ -1607,7 +1657,7 @@ export class IntegrationsService extends BaseService {
    */
   async saveTemplatesIntegration(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<any>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/templates')
@@ -1635,7 +1685,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates')
@@ -1662,7 +1712,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/templates/{id}')
@@ -1688,11 +1738,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfTwilioConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<TwilioConfigCollection>>} OK
    */
-  async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfTwilioConfigObjects>> {
+  async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/twilio')
@@ -1700,7 +1750,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfTwilioConfigObjectsResponse,
+        schema: twilioConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1708,25 +1758,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfTwilioConfigObjects>(request);
+    return this.client.call<TwilioConfigCollection>(request);
   }
 
   /**
    * Creates or updates a twilio integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TwilioConfig>>} OK
+   * @returns {Promise<HttpResponse<TwilioConfigPayload>>} OK
    */
-  async saveTwilioIntegration(body: TwilioConfig, requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfig>> {
+  async saveTwilioIntegration(
+    body: TwilioConfigPayload,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<TwilioConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/twilio')
-      .setRequestSchema(twilioConfigRequest)
+      .setRequestSchema(twilioConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: twilioConfigResponse,
+        schema: twilioConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1736,7 +1789,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<TwilioConfig>(request);
+    return this.client.call<TwilioConfigPayload>(request);
   }
 
   /**
@@ -1746,7 +1799,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio')
@@ -1773,7 +1826,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/twilio/{id}')
@@ -1799,11 +1852,11 @@ export class IntegrationsService extends BaseService {
   /**
    * Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfWebpushConfigObjects>>} OK
+   * @returns {Promise<HttpResponse<WebpushConfigCollection>>} OK
    */
-  async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ArrayOfWebpushConfigObjects>> {
+  async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<WebpushConfigCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/integrations/web_push')
@@ -1811,7 +1864,7 @@ export class IntegrationsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfWebpushConfigObjectsResponse,
+        schema: webpushConfigCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1819,28 +1872,28 @@ export class IntegrationsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .build();
-    return this.client.call<ArrayOfWebpushConfigObjects>(request);
+    return this.client.call<WebpushConfigCollection>(request);
   }
 
   /**
    * Creates or updates a web_push integration for the project. Only administrators can configure integrations.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebpushConfig>>} OK
+   * @returns {Promise<HttpResponse<WebpushConfigPayload>>} OK
    */
   async saveWebPushIntegration(
-    body: WebpushConfig,
+    body: WebpushConfigPayload,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<WebpushConfig>> {
+  ): Promise<HttpResponse<WebpushConfigPayload>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/integrations/web_push')
-      .setRequestSchema(webpushConfigRequest)
+      .setRequestSchema(webpushConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: webpushConfigResponse,
+        schema: webpushConfigPayloadResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -1850,7 +1903,7 @@ export class IntegrationsService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<WebpushConfig>(request);
+    return this.client.call<WebpushConfigPayload>(request);
   }
 
   /**
@@ -1860,7 +1913,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push')
@@ -1887,7 +1940,7 @@ export class IntegrationsService extends BaseService {
    */
   async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/web_push/{id}')

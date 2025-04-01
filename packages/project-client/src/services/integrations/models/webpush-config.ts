@@ -1,20 +1,29 @@
 import { z } from 'zod';
 
+import {
+  WebpushConfigPayload,
+  webpushConfigPayload,
+  webpushConfigPayloadRequest,
+  webpushConfigPayloadResponse,
+} from './webpush-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const webpushConfig = z.lazy(() => {
   return z.object({
-    privateKey: z.string().min(8).max(128),
-    publicKey: z.string().min(8).max(128),
+    config: webpushConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {WebpushConfig} webpushConfig
- * @property {string} - Your VAPID private key used for web push notifications. You will have generated this yourself.
- * @property {string} - Your VAPID public key used for web push notifications. You will have generated this yourself.
+ * @property {WebpushConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type WebpushConfig = z.infer<typeof webpushConfig>;
 
@@ -25,12 +34,14 @@ export type WebpushConfig = z.infer<typeof webpushConfig>;
 export const webpushConfigResponse = z.lazy(() => {
   return z
     .object({
-      private_key: z.string().min(8).max(128),
-      public_key: z.string().min(8).max(128),
+      config: webpushConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      privateKey: data['private_key'],
-      publicKey: data['public_key'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -39,8 +50,15 @@ export const webpushConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const webpushConfigRequest = z.lazy(() => {
-  return z.object({ privateKey: z.string(), publicKey: z.string() }).transform((data) => ({
-    private_key: data['privateKey'],
-    public_key: data['publicKey'],
-  }));
+  return z
+    .object({
+      config: webpushConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

@@ -1,18 +1,29 @@
 import { z } from 'zod';
 
+import {
+  GithubConfigPayload,
+  githubConfigPayload,
+  githubConfigPayloadRequest,
+  githubConfigPayloadResponse,
+} from './github-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const githubConfig = z.lazy(() => {
   return z.object({
-    webhookSigningSecret: z.string().min(1).max(100),
+    config: githubConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {GithubConfig} githubConfig
- * @property {string} - The signing secret to verify incoming requests from Github
+ * @property {GithubConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type GithubConfig = z.infer<typeof githubConfig>;
 
@@ -23,10 +34,14 @@ export type GithubConfig = z.infer<typeof githubConfig>;
 export const githubConfigResponse = z.lazy(() => {
   return z
     .object({
-      webhook_signing_secret: z.string().min(1).max(100),
+      config: githubConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      webhookSigningSecret: data['webhook_signing_secret'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -35,7 +50,15 @@ export const githubConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const githubConfigRequest = z.lazy(() => {
-  return z.object({ webhookSigningSecret: z.string() }).transform((data) => ({
-    webhook_signing_secret: data['webhookSigningSecret'],
-  }));
+  return z
+    .object({
+      config: githubConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

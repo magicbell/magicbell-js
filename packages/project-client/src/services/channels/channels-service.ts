@@ -1,42 +1,28 @@
 import { z } from 'zod';
 
+import { Environment } from '../../http/environment.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
-import { ApnsTokenResponse, apnsTokenResponseResponse } from './models/apns-token-response.js';
-import {
-  ArrayOfApnsTokenResponses,
-  arrayOfApnsTokenResponsesResponse,
-} from './models/array-of-apns-token-responses.js';
-import {
-  ArrayOfExpoTokenResponses,
-  arrayOfExpoTokenResponsesResponse,
-} from './models/array-of-expo-token-responses.js';
-import { ArrayOfFcmTokenResponses, arrayOfFcmTokenResponsesResponse } from './models/array-of-fcm-token-responses.js';
-import {
-  ArrayOfSlackTokenResponses,
-  arrayOfSlackTokenResponsesResponse,
-} from './models/array-of-slack-token-responses.js';
-import {
-  ArrayOfTeamsTokenResponses,
-  arrayOfTeamsTokenResponsesResponse,
-} from './models/array-of-teams-token-responses.js';
-import {
-  ArrayOfWebPushTokenResponses,
-  arrayOfWebPushTokenResponsesResponse,
-} from './models/array-of-web-push-token-responses.js';
+import { ApnsToken, apnsTokenResponse } from './models/apns-token.js';
+import { ApnsTokenCollection, apnsTokenCollectionResponse } from './models/apns-token-collection.js';
 import {
   CategoryDeliveryConfig,
   categoryDeliveryConfigRequest,
   categoryDeliveryConfigResponse,
 } from './models/category-delivery-config.js';
 import { DiscardResult, discardResultResponse } from './models/discard-result.js';
-import { ExpoTokenResponse, expoTokenResponseResponse } from './models/expo-token-response.js';
-import { FcmTokenResponse, fcmTokenResponseResponse } from './models/fcm-token-response.js';
-import { SlackTokenResponse, slackTokenResponseResponse } from './models/slack-token-response.js';
-import { TeamsTokenResponse, teamsTokenResponseResponse } from './models/teams-token-response.js';
-import { WebPushTokenResponse, webPushTokenResponseResponse } from './models/web-push-token-response.js';
+import { ExpoToken, expoTokenResponse } from './models/expo-token.js';
+import { ExpoTokenCollection, expoTokenCollectionResponse } from './models/expo-token-collection.js';
+import { FcmToken, fcmTokenResponse } from './models/fcm-token.js';
+import { FcmTokenCollection, fcmTokenCollectionResponse } from './models/fcm-token-collection.js';
+import { SlackToken, slackTokenResponse } from './models/slack-token.js';
+import { SlackTokenCollection, slackTokenCollectionResponse } from './models/slack-token-collection.js';
+import { TeamsToken, teamsTokenResponse } from './models/teams-token.js';
+import { TeamsTokenCollection, teamsTokenCollectionResponse } from './models/teams-token-collection.js';
+import { WebPushToken, webPushTokenResponse } from './models/web-push-token.js';
+import { WebPushTokenCollection, webPushTokenCollectionResponse } from './models/web-push-token-collection.js';
 import {
   GetDeliveryconfigParams,
   GetMobilePushApnsUserTokensParams,
@@ -59,7 +45,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<CategoryDeliveryConfig>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/channels/deliveryconfig')
@@ -92,7 +78,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<CategoryDeliveryConfig>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('PUT')
       .setPath('/channels/deliveryconfig')
@@ -120,15 +106,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfApnsTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<ApnsTokenCollection>>} OK
    */
   async getMobilePushApnsUserTokens(
     userId: string,
     params?: GetMobilePushApnsUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfApnsTokenResponses>> {
+  ): Promise<HttpResponse<ApnsTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens')
@@ -136,7 +122,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfApnsTokenResponsesResponse,
+        schema: apnsTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -160,7 +146,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfApnsTokenResponses>(request);
+    return this.client.call<ApnsTokenCollection>(request);
   }
 
   /**
@@ -168,15 +154,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ApnsTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<ApnsToken>>} OK
    */
   async getMobilePushApnsUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ApnsTokenResponse>> {
+  ): Promise<HttpResponse<ApnsToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
@@ -184,7 +170,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: apnsTokenResponseResponse,
+        schema: apnsTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -200,7 +186,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<ApnsTokenResponse>(request);
+    return this.client.call<ApnsToken>(request);
   }
 
   /**
@@ -216,7 +202,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/apns/tokens/{token_id}')
@@ -250,15 +236,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfExpoTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<ExpoTokenCollection>>} OK
    */
   async getMobilePushExpoUserTokens(
     userId: string,
     params?: GetMobilePushExpoUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfExpoTokenResponses>> {
+  ): Promise<HttpResponse<ExpoTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens')
@@ -266,7 +252,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfExpoTokenResponsesResponse,
+        schema: expoTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -290,7 +276,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfExpoTokenResponses>(request);
+    return this.client.call<ExpoTokenCollection>(request);
   }
 
   /**
@@ -298,15 +284,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ExpoTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<ExpoToken>>} OK
    */
   async getMobilePushExpoUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ExpoTokenResponse>> {
+  ): Promise<HttpResponse<ExpoToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}')
@@ -314,7 +300,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: expoTokenResponseResponse,
+        schema: expoTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -330,7 +316,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<ExpoTokenResponse>(request);
+    return this.client.call<ExpoToken>(request);
   }
 
   /**
@@ -346,7 +332,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/expo/tokens/{token_id}')
@@ -380,15 +366,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfFcmTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<FcmTokenCollection>>} OK
    */
   async getMobilePushFcmUserTokens(
     userId: string,
     params?: GetMobilePushFcmUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfFcmTokenResponses>> {
+  ): Promise<HttpResponse<FcmTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens')
@@ -396,7 +382,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfFcmTokenResponsesResponse,
+        schema: fcmTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -420,7 +406,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfFcmTokenResponses>(request);
+    return this.client.call<FcmTokenCollection>(request);
   }
 
   /**
@@ -428,15 +414,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<FcmTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<FcmToken>>} OK
    */
   async getMobilePushFcmUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<FcmTokenResponse>> {
+  ): Promise<HttpResponse<FcmToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
@@ -444,7 +430,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: fcmTokenResponseResponse,
+        schema: fcmTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -460,7 +446,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<FcmTokenResponse>(request);
+    return this.client.call<FcmToken>(request);
   }
 
   /**
@@ -476,7 +462,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/mobile_push/fcm/tokens/{token_id}')
@@ -510,15 +496,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfSlackTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<SlackTokenCollection>>} OK
    */
   async getSlackUserTokens(
     userId: string,
     params?: GetSlackUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfSlackTokenResponses>> {
+  ): Promise<HttpResponse<SlackTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/slack/tokens')
@@ -526,7 +512,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfSlackTokenResponsesResponse,
+        schema: slackTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -550,7 +536,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfSlackTokenResponses>(request);
+    return this.client.call<SlackTokenCollection>(request);
   }
 
   /**
@@ -558,15 +544,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<SlackToken>>} OK
    */
   async getSlackUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<SlackTokenResponse>> {
+  ): Promise<HttpResponse<SlackToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
@@ -574,7 +560,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: slackTokenResponseResponse,
+        schema: slackTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -590,7 +576,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<SlackTokenResponse>(request);
+    return this.client.call<SlackToken>(request);
   }
 
   /**
@@ -606,7 +592,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/slack/tokens/{token_id}')
@@ -640,15 +626,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfTeamsTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<TeamsTokenCollection>>} OK
    */
   async getTeamsUserTokens(
     userId: string,
     params?: GetTeamsUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfTeamsTokenResponses>> {
+  ): Promise<HttpResponse<TeamsTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/teams/tokens')
@@ -656,7 +642,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfTeamsTokenResponsesResponse,
+        schema: teamsTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -680,7 +666,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfTeamsTokenResponses>(request);
+    return this.client.call<TeamsTokenCollection>(request);
   }
 
   /**
@@ -688,15 +674,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TeamsTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<TeamsToken>>} OK
    */
   async getTeamsUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<TeamsTokenResponse>> {
+  ): Promise<HttpResponse<TeamsToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
@@ -704,7 +690,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: teamsTokenResponseResponse,
+        schema: teamsTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -720,7 +706,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<TeamsTokenResponse>(request);
+    return this.client.call<TeamsToken>(request);
   }
 
   /**
@@ -736,7 +722,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/teams/tokens/{token_id}')
@@ -770,15 +756,15 @@ export class ChannelsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfWebPushTokenResponses>>} OK
+   * @returns {Promise<HttpResponse<WebPushTokenCollection>>} OK
    */
   async getWebPushUserTokens(
     userId: string,
     params?: GetWebPushUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfWebPushTokenResponses>> {
+  ): Promise<HttpResponse<WebPushTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/web_push/tokens')
@@ -786,7 +772,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfWebPushTokenResponsesResponse,
+        schema: webPushTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -810,7 +796,7 @@ export class ChannelsService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfWebPushTokenResponses>(request);
+    return this.client.call<WebPushTokenCollection>(request);
   }
 
   /**
@@ -818,15 +804,15 @@ export class ChannelsService extends BaseService {
    * @param {string} userId -
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebPushTokenResponse>>} OK
+   * @returns {Promise<HttpResponse<WebPushToken>>} OK
    */
   async getWebPushUserToken(
     userId: string,
     tokenId: string,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<WebPushTokenResponse>> {
+  ): Promise<HttpResponse<WebPushToken>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')
@@ -834,7 +820,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: webPushTokenResponseResponse,
+        schema: webPushTokenResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -850,7 +836,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<WebPushTokenResponse>(request);
+    return this.client.call<WebPushToken>(request);
   }
 
   /**
@@ -866,7 +852,7 @@ export class ChannelsService extends BaseService {
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/users/{user_id}/channels/web_push/tokens/{token_id}')

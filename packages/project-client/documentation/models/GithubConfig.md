@@ -2,6 +2,8 @@
 
 **Properties**
 
-| Name                 | Type   | Required | Description                                                |
-| :------------------- | :----- | :------- | :--------------------------------------------------------- |
-| webhookSigningSecret | string | ✅       | The signing secret to verify incoming requests from Github |
+| Name   | Type                | Required | Description |
+| :----- | :------------------ | :------- | :---------- |
+| config | GithubConfigPayload | ✅       |             |
+| id     | string              | ✅       |             |
+| name   | string              | ✅       |             |

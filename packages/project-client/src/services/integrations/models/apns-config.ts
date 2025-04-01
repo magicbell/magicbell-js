@@ -1,29 +1,28 @@
 import { z } from 'zod';
 
+import {
+  ApnsConfigPayload,
+  apnsConfigPayload,
+  apnsConfigPayloadRequest,
+  apnsConfigPayloadResponse,
+} from './apns-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const apnsConfig = z.lazy(() => {
   return z.object({
-    appId: z.string().regex(/^[a-zA-Z0-9]+(.[a-zA-Z0-9]+)*$/),
-    badge: z.string(),
-    certificate: z
-      .string()
-      .regex(/^-+?\s?BEGIN PRIVATE KEY-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END PRIVATE KEY+-+\n?$/),
-    keyId: z.string().min(10).max(10),
-    payloadVersion: z.string().optional(),
-    teamId: z.string().min(10).max(10),
+    config: apnsConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {ApnsConfig} apnsConfig
- * @property {string} - The default bundle identifier of the application that is configured with this project. It can be overriden on a per token basis, when registering device tokens.
- * @property {Badge}
- * @property {string} - The APNs certificate in P8 format. Generate it at [developer.apple.com](https://developer.apple.com/account/resources/authkeys/add) with the 'Apple Push Notification service (APNs)' option selected.
+ * @property {ApnsConfigPayload}
  * @property {string}
- * @property {PayloadVersion}
  * @property {string}
  */
 export type ApnsConfig = z.infer<typeof apnsConfig>;
@@ -35,22 +34,14 @@ export type ApnsConfig = z.infer<typeof apnsConfig>;
 export const apnsConfigResponse = z.lazy(() => {
   return z
     .object({
-      app_id: z.string().regex(/^[a-zA-Z0-9]+(.[a-zA-Z0-9]+)*$/),
-      badge: z.string(),
-      certificate: z
-        .string()
-        .regex(/^-+?\s?BEGIN PRIVATE KEY-+\n([A-Za-z0-9+\/\r\n]+={0,2})\n-+\s?END PRIVATE KEY+-+\n?$/),
-      key_id: z.string().min(10).max(10),
-      payload_version: z.string().optional(),
-      team_id: z.string().min(10).max(10),
+      config: apnsConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      appId: data['app_id'],
-      badge: data['badge'],
-      certificate: data['certificate'],
-      keyId: data['key_id'],
-      payloadVersion: data['payload_version'],
-      teamId: data['team_id'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -61,19 +52,13 @@ export const apnsConfigResponse = z.lazy(() => {
 export const apnsConfigRequest = z.lazy(() => {
   return z
     .object({
-      appId: z.string(),
-      badge: z.string(),
-      certificate: z.string(),
-      keyId: z.string(),
-      payloadVersion: z.string().optional(),
-      teamId: z.string(),
+      config: apnsConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      app_id: data['appId'],
-      badge: data['badge'],
-      certificate: data['certificate'],
-      key_id: data['keyId'],
-      payload_version: data['payloadVersion'],
-      team_id: data['teamId'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

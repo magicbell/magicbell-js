@@ -35,7 +35,11 @@ export const unseenHoverResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const unseenHoverRequest = z.lazy(() => {
-  return z.object({ backgroundColor: z.string() }).transform((data) => ({
-    backgroundColor: data['backgroundColor'],
-  }));
+  return z
+    .object({
+      backgroundColor: z.string(),
+    })
+    .transform((data) => ({
+      backgroundColor: data['backgroundColor'],
+    }));
 });
