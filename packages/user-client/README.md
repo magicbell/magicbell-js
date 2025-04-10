@@ -82,8 +82,8 @@ import { Client } from '@magicbell/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 6,
+  const { data } = await client.channels.getInAppInboxTokens({
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -99,10 +99,11 @@ The SDK provides various services to interact with the API.
 <details> 
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
-| Name                                                                 |
-| :------------------------------------------------------------------- |
-| [ChannelsService](documentation/services/ChannelsService.md)         |
-| [IntegrationsService](documentation/services/IntegrationsService.md) |
+| Name                                                                   |
+| :--------------------------------------------------------------------- |
+| [ChannelsService](documentation/services/ChannelsService.md)           |
+| [IntegrationsService](documentation/services/IntegrationsService.md)   |
+| [NotificationsService](documentation/services/NotificationsService.md) |
 
 </details>
 
@@ -115,32 +116,37 @@ The SDK includes several models that represent the data structures used in API r
 
 | Name                                                                                         | Description |
 | :------------------------------------------------------------------------------------------- | :---------- |
-| [ArrayOfApnsTokenResponses](documentation/models/ArrayOfApnsTokenResponses.md)               |             |
-| [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
-| [ApnsTokenResponse1](documentation/models/ApnsTokenResponse1.md)                             |             |
+| [InboxTokenResponseCollection](documentation/models/InboxTokenResponseCollection.md)         |             |
+| [InboxToken](documentation/models/InboxToken.md)                                             |             |
+| [InboxTokenResponse1](documentation/models/InboxTokenResponse1.md)                           |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
-| [ArrayOfExpoTokenResponses](documentation/models/ArrayOfExpoTokenResponses.md)               |             |
+| [ApnsTokenCollection](documentation/models/ApnsTokenCollection.md)                           |             |
+| [ApnsTokenPayload](documentation/models/ApnsTokenPayload.md)                                 |             |
+| [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
+| [ExpoTokenCollection](documentation/models/ExpoTokenCollection.md)                           |             |
+| [ExpoTokenPayload](documentation/models/ExpoTokenPayload.md)                                 |             |
 | [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
-| [ExpoTokenResponse1](documentation/models/ExpoTokenResponse1.md)                             |             |
-| [ArrayOfFcmTokenResponses](documentation/models/ArrayOfFcmTokenResponses.md)                 |             |
+| [FcmTokenCollection](documentation/models/FcmTokenCollection.md)                             |             |
+| [FcmTokenPayload](documentation/models/FcmTokenPayload.md)                                   |             |
 | [FcmToken](documentation/models/FcmToken.md)                                                 |             |
-| [FcmTokenResponse1](documentation/models/FcmTokenResponse1.md)                               |             |
-| [ArrayOfSlackTokenResponses](documentation/models/ArrayOfSlackTokenResponses.md)             |             |
+| [SlackTokenCollection](documentation/models/SlackTokenCollection.md)                         |             |
+| [SlackTokenPayload](documentation/models/SlackTokenPayload.md)                               |             |
 | [SlackToken](documentation/models/SlackToken.md)                                             |             |
-| [SlackTokenResponse1](documentation/models/SlackTokenResponse1.md)                           |             |
-| [ArrayOfTeamsTokenResponses](documentation/models/ArrayOfTeamsTokenResponses.md)             |             |
+| [TeamsTokenCollection](documentation/models/TeamsTokenCollection.md)                         |             |
+| [TeamsTokenPayload](documentation/models/TeamsTokenPayload.md)                               |             |
 | [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
-| [TeamsTokenResponse1](documentation/models/TeamsTokenResponse1.md)                           |             |
-| [ArrayOfWebPushTokenResponses](documentation/models/ArrayOfWebPushTokenResponses.md)         |             |
+| [WebPushTokenCollection](documentation/models/WebPushTokenCollection.md)                     |             |
+| [WebPushTokenPayload](documentation/models/WebPushTokenPayload.md)                           |             |
 | [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
-| [WebPushTokenResponse](documentation/models/WebPushTokenResponse.md)                         |             |
-| [InboxConfig](documentation/models/InboxConfig.md)                                           |             |
+| [InboxConfigPayload](documentation/models/InboxConfigPayload.md)                             |             |
 | [SlackInstallation](documentation/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](documentation/models/SlackFinishInstallResponse.md)             |             |
 | [SlackStartInstall](documentation/models/SlackStartInstall.md)                               |             |
 | [SlackStartInstallResponseContent](documentation/models/SlackStartInstallResponseContent.md) |             |
 | [TemplatesInstallation](documentation/models/TemplatesInstallation.md)                       |             |
 | [WebPushStartInstallationResponse](documentation/models/WebPushStartInstallationResponse.md) |             |
+| [NotificationCollection](documentation/models/NotificationCollection.md)                     |             |
 | [Links](documentation/models/Links.md)                                                       |             |
+| [Notification](documentation/models/Notification.md)                                         |             |
 
 </details>

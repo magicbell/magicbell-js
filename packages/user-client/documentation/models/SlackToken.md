@@ -2,10 +2,14 @@
 
 **Properties**
 
-| Name    | Type              | Required | Description                                                                                         |
-| :------ | :---------------- | :------- | :-------------------------------------------------------------------------------------------------- |
-| oauth   | SlackTokenOauth   | ❌       |                                                                                                     |
-| webhook | SlackTokenWebhook | ❌       | Obtained directly from the incoming_webhook object in the installation response from the Slack API. |
+| Name        | Type              | Required | Description                                                                                         |
+| :---------- | :---------------- | :------- | :-------------------------------------------------------------------------------------------------- |
+| createdAt   | string            | ✅       |                                                                                                     |
+| id          | string            | ✅       |                                                                                                     |
+| discardedAt | string            | ❌       |                                                                                                     |
+| oauth       | SlackTokenOauth   | ❌       |                                                                                                     |
+| updatedAt   | string            | ❌       |                                                                                                     |
+| webhook     | SlackTokenWebhook | ❌       | Obtained directly from the incoming_webhook object in the installation response from the Slack API. |
 
 # SlackTokenOauth
 

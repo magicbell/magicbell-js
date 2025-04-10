@@ -13,6 +13,12 @@ export interface ResponseDefinition {
   status: number;
 }
 
+export interface ErrorDefinition {
+  error: new (...args: any[]) => Error;
+  contentType: ContentType;
+  status: number;
+}
+
 export interface CreateRequestParameters<Page = unknown[]> {
   baseUrl: string;
   method: HttpMethod;
@@ -23,6 +29,7 @@ export interface CreateRequestParameters<Page = unknown[]> {
   path: string;
   config: SdkConfig;
   responses: ResponseDefinition[];
+  errors: ErrorDefinition[];
   requestSchema: ZodType;
   requestContentType: ContentType;
   validation: ValidationOptions;
@@ -65,6 +72,8 @@ export class Request<PageSchema = unknown[]> {
 
   public responses: ResponseDefinition[];
 
+  public errors: ErrorDefinition[];
+
   public requestSchema: ZodType;
 
   public requestContentType: ContentType;
@@ -88,6 +97,7 @@ export class Request<PageSchema = unknown[]> {
     this.headers = params.headers;
     this.queryParams = params.queryParams;
     this.responses = params.responses;
+    this.errors = params.errors;
     this.requestSchema = params.requestSchema;
     this.requestContentType = params.requestContentType;
     this.retry = params.retry;
@@ -181,6 +191,7 @@ export class Request<PageSchema = unknown[]> {
   public copy(overrides?: Partial<CreateRequestParameters>) {
     const createRequestParams: CreateRequestParameters = {
       baseUrl: overrides?.baseUrl ?? this.baseUrl,
+      errors: overrides?.errors ?? this.errors,
       method: overrides?.method ?? this.method,
       path: overrides?.path ?? this.path,
       body: overrides?.body ?? this.body,

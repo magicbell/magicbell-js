@@ -1,22 +1,29 @@
 import { z } from 'zod';
 
+import {
+  MailgunConfigPayload,
+  mailgunConfigPayload,
+  mailgunConfigPayloadRequest,
+  mailgunConfigPayloadResponse,
+} from './mailgun-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const mailgunConfig = z.lazy(() => {
   return z.object({
-    apiKey: z.string().min(1),
-    domain: z.string().min(1),
-    region: z.string(),
+    config: mailgunConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {MailgunConfig} mailgunConfig
+ * @property {MailgunConfigPayload}
  * @property {string}
  * @property {string}
- * @property {Region}
  */
 export type MailgunConfig = z.infer<typeof mailgunConfig>;
 
@@ -27,14 +34,14 @@ export type MailgunConfig = z.infer<typeof mailgunConfig>;
 export const mailgunConfigResponse = z.lazy(() => {
   return z
     .object({
-      api_key: z.string().min(1),
-      domain: z.string().min(1),
-      region: z.string(),
+      config: mailgunConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      apiKey: data['api_key'],
-      domain: data['domain'],
-      region: data['region'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -43,9 +50,15 @@ export const mailgunConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const mailgunConfigRequest = z.lazy(() => {
-  return z.object({ apiKey: z.string(), domain: z.string(), region: z.string() }).transform((data) => ({
-    api_key: data['apiKey'],
-    domain: data['domain'],
-    region: data['region'],
-  }));
+  return z
+    .object({
+      config: mailgunConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

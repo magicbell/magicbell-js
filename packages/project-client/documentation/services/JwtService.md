@@ -28,7 +28,7 @@ Retrieves a list of all active project-level JWT tokens. Returns a paginated lis
 
 **Return Type**
 
-`ArrayOfFetchTokensResponseTokens`
+`AccessTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -41,7 +41,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.jwt.fetchProjectTokens({
-    limit: 5,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -65,7 +65,7 @@ Creates a new project-level JWT token. These tokens provide project-wide access 
 
 **Return Type**
 
-`AccessToken`
+`CreateTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -78,7 +78,7 @@ import { Client, CreateProjectTokenRequest } from '@magicbell/project-client';
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 3,
+    expiry: 2,
     name: 'name',
   };
 
@@ -136,7 +136,7 @@ Issues a new user-specific JWT token. These tokens are scoped to individual user
 
 **Return Type**
 
-`AccessToken`
+`CreateTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -150,7 +150,7 @@ import { Client, CreateUserTokenRequest } from '@magicbell/project-client';
 
   const createUserTokenRequest: CreateUserTokenRequest = {
     email: 'email',
-    expiry: 3,
+    expiry: 9,
     externalId: 'external_id',
     name: 'name',
   };
@@ -212,7 +212,7 @@ Lists all JWT tokens associated with a specific user. Returns token metadata inc
 
 **Return Type**
 
-`ArrayOfFetchTokensResponseTokens`
+`AccessTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -225,7 +225,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.jwt.fetchUserTokens('user_id', {
-    limit: 2,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

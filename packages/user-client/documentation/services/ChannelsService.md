@@ -4,6 +4,10 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 
 | Methods                                                   | Description                                                                                                                                                                                                                                                      |
 | :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [getInAppInboxTokens](#getinappinboxtokens)               | Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
+| [saveInAppInboxToken](#saveinappinboxtoken)               | Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.      |
+| [getInAppInboxToken](#getinappinboxtoken)                 | Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                              |
+| [discardInAppInboxToken](#discardinappinboxtoken)         | Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
 | [getMobilePushApnsTokens](#getmobilepushapnstokens)       | Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                           |
 | [saveMobilePushApnsToken](#savemobilepushapnstoken)       | Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
 | [getMobilePushApnsToken](#getmobilepushapnstoken)         | Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                         |
@@ -29,6 +33,149 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 | [getWebPushToken](#getwebpushtoken)                       | Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                            |
 | [discardWebPushToken](#discardwebpushtoken)               | Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                        |
 
+## getInAppInboxTokens
+
+Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+
+- HTTP Method: `GET`
+- Endpoint: `/channels/in_app/inbox/tokens`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+
+**Return Type**
+
+`InboxTokenResponseCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getInAppInboxTokens({
+    limit: 3,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+  });
+
+  console.log(data);
+})();
+```
+
+## saveInAppInboxToken
+
+Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+
+- HTTP Method: `POST`
+- Endpoint: `/channels/in_app/inbox/tokens`
+
+**Parameters**
+
+| Name | Type                                  | Required | Description       |
+| :--- | :------------------------------------ | :------- | :---------------- |
+| body | [InboxToken](../models/InboxToken.md) | ❌       | The request body. |
+
+**Return Type**
+
+`InboxToken`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, InboxToken } from '@magicbell/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const inboxToken: InboxToken = {
+    connectionId: 'connection_id',
+    token: 'minim ea fugiat',
+  };
+
+  const { data } = await client.channels.saveInAppInboxToken(inboxToken);
+
+  console.log(data);
+})();
+```
+
+## getInAppInboxToken
+
+Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+
+- HTTP Method: `GET`
+- Endpoint: `/channels/in_app/inbox/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`InboxTokenResponse1`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getInAppInboxToken('token_id');
+
+  console.log(data);
+})();
+```
+
+## discardInAppInboxToken
+
+Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/channels/in_app/inbox/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardResult`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.discardInAppInboxToken('token_id');
+
+  console.log(data);
+})();
+```
+
 ## getMobilePushApnsTokens
 
 Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
@@ -46,7 +193,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfApnsTokenResponses`
+`ApnsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -59,7 +206,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 6,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -77,33 +224,33 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [ApnsToken](../models/ApnsToken.md) | ❌       | The request body. |
+| Name | Type                                              | Required | Description       |
+| :--- | :------------------------------------------------ | :------- | :---------------- |
+| body | [ApnsTokenPayload](../models/ApnsTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`ApnsToken`
+`ApnsTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ApnsToken, Client } from '@magicbell/user-client';
+import { ApnsTokenPayload, Client } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const apnsTokenInstallationId = ApnsTokenInstallationId.DEVELOPMENT;
+  const apnsTokenPayloadInstallationId = ApnsTokenPayloadInstallationId.DEVELOPMENT;
 
-  const apnsToken: ApnsToken = {
+  const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'nostrud elit do',
-    installationId: apnsTokenInstallationId,
+    deviceToken: 'pariatur veniam',
+    installationId: apnsTokenPayloadInstallationId,
   };
 
-  const { data } = await client.channels.saveMobilePushApnsToken(apnsToken);
+  const { data } = await client.channels.saveMobilePushApnsToken(apnsTokenPayload);
 
   console.log(data);
 })();
@@ -124,7 +271,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`ApnsTokenResponse1`
+`ApnsToken`
 
 **Example Usage Code Snippet**
 
@@ -192,7 +339,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfExpoTokenResponses`
+`ExpoTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -223,29 +370,29 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [ExpoToken](../models/ExpoToken.md) | ❌       | The request body. |
+| Name | Type                                              | Required | Description       |
+| :--- | :------------------------------------------------ | :------- | :---------------- |
+| body | [ExpoTokenPayload](../models/ExpoTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`ExpoToken`
+`ExpoTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, ExpoToken } from '@magicbell/user-client';
+import { Client, ExpoTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const expoToken: ExpoToken = {
+  const expoTokenPayload: ExpoTokenPayload = {
     deviceToken: 'device_token',
   };
 
-  const { data } = await client.channels.saveMobilePushExpoToken(expoToken);
+  const { data } = await client.channels.saveMobilePushExpoToken(expoTokenPayload);
 
   console.log(data);
 })();
@@ -266,7 +413,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`ExpoTokenResponse1`
+`ExpoToken`
 
 **Example Usage Code Snippet**
 
@@ -334,7 +481,7 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 
 **Return Type**
 
-`ArrayOfFcmTokenResponses`
+`FcmTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -347,7 +494,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    limit: 9,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -365,32 +512,32 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 
 **Parameters**
 
-| Name | Type                              | Required | Description       |
-| :--- | :-------------------------------- | :------- | :---------------- |
-| body | [FcmToken](../models/FcmToken.md) | ❌       | The request body. |
+| Name | Type                                            | Required | Description       |
+| :--- | :---------------------------------------------- | :------- | :---------------- |
+| body | [FcmTokenPayload](../models/FcmTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`FcmToken`
+`FcmTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, FcmToken } from '@magicbell/user-client';
+import { Client, FcmTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const fcmTokenInstallationId = FcmTokenInstallationId.DEVELOPMENT;
+  const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
 
-  const fcmToken: FcmToken = {
-    deviceToken: 'voluptate nulla',
-    installationId: fcmTokenInstallationId,
+  const fcmTokenPayload: FcmTokenPayload = {
+    deviceToken: 'nulla ea nonven',
+    installationId: fcmTokenPayloadInstallationId,
   };
 
-  const { data } = await client.channels.saveMobilePushFcmToken(fcmToken);
+  const { data } = await client.channels.saveMobilePushFcmToken(fcmTokenPayload);
 
   console.log(data);
 })();
@@ -411,7 +558,7 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 
 **Return Type**
 
-`FcmTokenResponse1`
+`FcmToken`
 
 **Example Usage Code Snippet**
 
@@ -479,7 +626,7 @@ Lists all slack tokens belonging to the authenticated user. Returns a paginated 
 
 **Return Type**
 
-`ArrayOfSlackTokenResponses`
+`SlackTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -492,7 +639,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    limit: 3,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -510,40 +657,40 @@ Saves a slack token for the authenticated user. This token serves as a credentia
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [SlackToken](../models/SlackToken.md) | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [SlackTokenPayload](../models/SlackTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`SlackToken`
+`SlackTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, SlackToken } from '@magicbell/user-client';
+import { Client, SlackTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const slackTokenOauth: SlackTokenOauth = {
+  const slackTokenPayloadOauth: SlackTokenPayloadOauth = {
     channelId: 'channel_id',
     installationId: 'installation_id',
     scope: 'scope',
   };
 
-  const slackTokenWebhook: SlackTokenWebhook = {
+  const slackTokenPayloadWebhook: SlackTokenPayloadWebhook = {
     url: 'url',
   };
 
-  const slackToken: SlackToken = {
-    oauth: slackTokenOauth,
-    webhook: slackTokenWebhook,
+  const slackTokenPayload: SlackTokenPayload = {
+    oauth: slackTokenPayloadOauth,
+    webhook: slackTokenPayloadWebhook,
   };
 
-  const { data } = await client.channels.saveSlackToken(slackToken);
+  const { data } = await client.channels.saveSlackToken(slackTokenPayload);
 
   console.log(data);
 })();
@@ -564,7 +711,7 @@ Retrieves details of a specific slack token belonging to the authenticated user.
 
 **Return Type**
 
-`SlackTokenResponse1`
+`SlackToken`
 
 **Example Usage Code Snippet**
 
@@ -632,7 +779,7 @@ Lists all teams tokens belonging to the authenticated user. Returns a paginated 
 
 **Return Type**
 
-`ArrayOfTeamsTokenResponses`
+`TeamsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -645,7 +792,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getTeamsTokens({
-    limit: 2,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -663,33 +810,33 @@ Saves a teams token for the authenticated user. This token serves as a credentia
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [TeamsToken](../models/TeamsToken.md) | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [TeamsTokenPayload](../models/TeamsTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`TeamsToken`
+`TeamsTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, TeamsToken } from '@magicbell/user-client';
+import { Client, TeamsTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const teamsTokenWebhook: TeamsTokenWebhook = {
+  const teamsTokenPayloadWebhook: TeamsTokenPayloadWebhook = {
     url: 'url',
   };
 
-  const teamsToken: TeamsToken = {
-    webhook: teamsTokenWebhook,
+  const teamsTokenPayload: TeamsTokenPayload = {
+    webhook: teamsTokenPayloadWebhook,
   };
 
-  const { data } = await client.channels.saveTeamsToken(teamsToken);
+  const { data } = await client.channels.saveTeamsToken(teamsTokenPayload);
 
   console.log(data);
 })();
@@ -710,7 +857,7 @@ Retrieves details of a specific teams token belonging to the authenticated user.
 
 **Return Type**
 
-`TeamsTokenResponse1`
+`TeamsToken`
 
 **Example Usage Code Snippet**
 
@@ -778,7 +925,7 @@ Lists all web_push tokens belonging to the authenticated user. Returns a paginat
 
 **Return Type**
 
-`ArrayOfWebPushTokenResponses`
+`WebPushTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -791,7 +938,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    limit: 1,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -809,35 +956,35 @@ Saves a web_push token for the authenticated user. This token serves as a creden
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [WebPushTokenPayload](../models/WebPushTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`WebPushToken`
+`WebPushTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, WebPushToken } from '@magicbell/user-client';
+import { Client, WebPushTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const webPushTokenKeys: WebPushTokenKeys = {
+  const webPushTokenPayloadKeys: WebPushTokenPayloadKeys = {
     auth: 'auth',
     p256dh: 'p256dh',
   };
 
-  const webPushToken: WebPushToken = {
+  const webPushTokenPayload: WebPushTokenPayload = {
     endpoint: 'endpoint',
-    keys: webPushTokenKeys,
+    keys: webPushTokenPayloadKeys,
   };
 
-  const { data } = await client.channels.saveWebPushToken(webPushToken);
+  const { data } = await client.channels.saveWebPushToken(webPushTokenPayload);
 
   console.log(data);
 })();
@@ -858,7 +1005,7 @@ Retrieves details of a specific web_push token belonging to the authenticated us
 
 **Return Type**
 
-`WebPushTokenResponse`
+`WebPushToken`
 
 **Example Usage Code Snippet**
 

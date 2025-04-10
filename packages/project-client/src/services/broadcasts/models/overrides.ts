@@ -1,7 +1,12 @@
 import { z } from 'zod';
 
-import { overridesChannels, overridesChannelsRequest, overridesChannelsResponse } from './overrides-channels.js';
-import { providers, providersRequest, providersResponse } from './providers.js';
+import {
+  OverridesChannels,
+  overridesChannels,
+  overridesChannelsRequest,
+  overridesChannelsResponse,
+} from './overrides-channels.js';
+import { Providers, providers, providersRequest, providersResponse } from './providers.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -43,7 +48,10 @@ export const overridesResponse = z.lazy(() => {
  */
 export const overridesRequest = z.lazy(() => {
   return z
-    .object({ channels: overridesChannelsRequest.optional(), providers: providersRequest.optional() })
+    .object({
+      channels: overridesChannelsRequest.optional(),
+      providers: providersRequest.optional(),
+    })
     .transform((data) => ({
       channels: data['channels'],
       providers: data['providers'],

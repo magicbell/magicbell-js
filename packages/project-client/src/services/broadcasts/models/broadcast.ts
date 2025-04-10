@@ -1,7 +1,12 @@
 import { z } from 'zod';
 
-import { broadcastStatus, broadcastStatusRequest, broadcastStatusResponse } from './broadcast-status.js';
-import { overrides, overridesRequest, overridesResponse } from './overrides.js';
+import {
+  BroadcastStatus,
+  broadcastStatus,
+  broadcastStatusRequest,
+  broadcastStatusResponse,
+} from './broadcast-status.js';
+import { Overrides, overrides, overridesRequest, overridesResponse } from './overrides.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -100,17 +105,27 @@ export const broadcastResponse = z.lazy(() => {
 export const broadcastRequest = z.lazy(() => {
   return z
     .object({
-      actionUrl: z.string().nullable().optional(),
-      category: z.string().nullable().optional(),
-      content: z.string().nullable().optional(),
+      actionUrl: z.string().max(2048).optional().nullable(),
+      category: z
+        .string()
+        .max(255)
+        .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+        .optional()
+        .nullable(),
+      content: z.string().max(10485760).optional().nullable(),
       createdAt: z.string().optional(),
-      customAttributes: z.any().nullable().optional(),
+      customAttributes: z.any().optional().nullable(),
       id: z.string().optional(),
-      overrides: overridesRequest.nullable().optional(),
-      recipients: z.array(z.any()).nullable(),
-      status: broadcastStatusRequest.nullable().optional(),
-      title: z.string(),
-      topic: z.string().nullable().optional(),
+      overrides: overridesRequest.optional().nullable(),
+      recipients: z.array(z.any()).min(1).max(1000).nullable(),
+      status: broadcastStatusRequest.optional().nullable(),
+      title: z.string().min(1).max(255),
+      topic: z
+        .string()
+        .max(255)
+        .regex(/^[A-Za-z0-9_\.\-\/:]+$/)
+        .optional()
+        .nullable(),
     })
     .transform((data) => ({
       action_url: data['actionUrl'],

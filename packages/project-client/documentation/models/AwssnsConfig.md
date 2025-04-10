@@ -2,6 +2,8 @@
 
 **Properties**
 
-| Name                 | Type   | Required | Description                          |
-| :------------------- | :----- | :------- | :----------------------------------- |
-| webhookSigningSecret | string | ✅       | The signing certificate from AWS SNS |
+| Name   | Type                | Required | Description |
+| :----- | :------------------ | :------- | :---------- |
+| config | AwssnsConfigPayload | ✅       |             |
+| id     | string              | ✅       |             |
+| name   | string              | ✅       |             |

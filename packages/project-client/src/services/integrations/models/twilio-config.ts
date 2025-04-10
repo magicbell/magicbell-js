@@ -1,28 +1,29 @@
 import { z } from 'zod';
 
+import {
+  TwilioConfigPayload,
+  twilioConfigPayload,
+  twilioConfigPayloadRequest,
+  twilioConfigPayloadResponse,
+} from './twilio-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const twilioConfig = z.lazy(() => {
   return z.object({
-    accountSid: z.string().min(1).max(100),
-    apiKey: z.string().min(1).max(100),
-    apiSecret: z.string().min(1).max(100),
-    from: z
-      .string()
-      .min(1)
-      .max(100)
-      .regex(/^\+[0-9]{1,14}$/),
+    config: twilioConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {TwilioConfig} twilioConfig
- * @property {string} - The SID for your Twilio account
- * @property {string} - A US1 API key for Twilio-  - https://www.twilio.com/docs/iam/api-keys
- * @property {string} - The API Secret for Twilio
- * @property {string} - The phone number to send from, in E.164 format
+ * @property {TwilioConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type TwilioConfig = z.infer<typeof twilioConfig>;
 
@@ -33,20 +34,14 @@ export type TwilioConfig = z.infer<typeof twilioConfig>;
 export const twilioConfigResponse = z.lazy(() => {
   return z
     .object({
-      account_sid: z.string().min(1).max(100),
-      api_key: z.string().min(1).max(100),
-      api_secret: z.string().min(1).max(100),
-      from: z
-        .string()
-        .min(1)
-        .max(100)
-        .regex(/^\+[0-9]{1,14}$/),
+      config: twilioConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      accountSid: data['account_sid'],
-      apiKey: data['api_key'],
-      apiSecret: data['api_secret'],
-      from: data['from'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -56,11 +51,14 @@ export const twilioConfigResponse = z.lazy(() => {
  */
 export const twilioConfigRequest = z.lazy(() => {
   return z
-    .object({ accountSid: z.string(), apiKey: z.string(), apiSecret: z.string(), from: z.string() })
+    .object({
+      config: twilioConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
     .transform((data) => ({
-      account_sid: data['accountSid'],
-      api_key: data['apiKey'],
-      api_secret: data['apiSecret'],
-      from: data['from'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

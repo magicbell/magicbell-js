@@ -22,18 +22,18 @@ Creates a new installation of a inbox integration for a user. This endpoint is u
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [InboxConfig](../models/InboxConfig.md) | ❌       | The request body. |
+| Name | Type                                                  | Required | Description       |
+| :--- | :---------------------------------------------------- | :------- | :---------------- |
+| body | [InboxConfigPayload](../models/InboxConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`InboxConfig`
+`InboxConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, InboxConfig } from '@magicbell/user-client';
+import { Client, InboxConfigPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
@@ -46,7 +46,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 1.63,
+    backgroundOpacity: 9.79,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -126,7 +126,7 @@ import { Client, InboxConfig } from '@magicbell/user-client';
     textColor: 'textColor',
   };
 
-  const notification: Notification = {
+  const themeNotification: ThemeNotification = {
     default: default_,
     unread: unread,
     unseen: unseen,
@@ -142,17 +142,17 @@ import { Client, InboxConfig } from '@magicbell/user-client';
     footer: footer,
     header: header,
     icon: icon,
-    notification: notification,
+    notification: themeNotification,
     unseenBadge: unseenBadge,
   };
 
-  const inboxConfig: InboxConfig = {
+  const inboxConfigPayload: InboxConfigPayload = {
     images: images,
     locale: 'locale',
     theme: theme,
   };
 
-  const { data } = await client.integrations.saveInboxInstallation(inboxConfig);
+  const { data } = await client.integrations.saveInboxInstallation(inboxConfigPayload);
 
   console.log(data);
 })();
@@ -167,7 +167,7 @@ Initiates the installation flow for a inbox integration. This is the first step 
 
 **Return Type**
 
-`InboxConfig`
+`InboxConfigPayload`
 
 **Example Usage Code Snippet**
 
@@ -214,7 +214,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 9,
+    expiresIn: 123,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -243,8 +243,8 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 5,
-    id: 'ZZYOJ3PL',
+    expiresIn: 4,
+    id: 'UO6KXQ6V-',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -386,35 +386,35 @@ Creates a new installation of a web_push integration for a user. This endpoint i
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [WebPushToken](../models/WebPushToken.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [WebPushTokenPayload](../models/WebPushTokenPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`WebPushToken`
+`WebPushTokenPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, WebPushToken } from '@magicbell/user-client';
+import { Client, WebPushTokenPayload } from '@magicbell/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const webPushTokenKeys: WebPushTokenKeys = {
+  const webPushTokenPayloadKeys: WebPushTokenPayloadKeys = {
     auth: 'auth',
     p256dh: 'p256dh',
   };
 
-  const webPushToken: WebPushToken = {
+  const webPushTokenPayload: WebPushTokenPayload = {
     endpoint: 'endpoint',
-    keys: webPushTokenKeys,
+    keys: webPushTokenPayloadKeys,
   };
 
-  const { data } = await client.integrations.saveWebPushInstallation(webPushToken);
+  const { data } = await client.integrations.saveWebPushInstallation(webPushTokenPayload);
 
   console.log(data);
 })();

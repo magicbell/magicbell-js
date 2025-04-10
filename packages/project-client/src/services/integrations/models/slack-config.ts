@@ -1,24 +1,29 @@
 import { z } from 'zod';
 
+import {
+  SlackConfigPayload,
+  slackConfigPayload,
+  slackConfigPayloadRequest,
+  slackConfigPayloadResponse,
+} from './slack-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const slackConfig = z.lazy(() => {
   return z.object({
-    appId: z.string().regex(/^[0-9A-Z]+$/),
-    clientId: z.string().regex(/^[0-9]+\.[0-9]+$/),
-    clientSecret: z.string().min(32).max(32),
-    signingSecret: z.string().min(32).max(32),
+    config: slackConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {SlackConfig} slackConfig
- * @property {string} - The Slack app ID that can be found in the app's settings page of the Slack API dashboard.
- * @property {string} - The Slack client ID that can be found in the app's settings page of the Slack API dashboard.
- * @property {string} - The Slack client secret that can be found in the app's settings page of the Slack API dashboard.
- * @property {string} - The Slack signing secret that can be found in the app's settings page of the Slack API dashboard.
+ * @property {SlackConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type SlackConfig = z.infer<typeof slackConfig>;
 
@@ -29,16 +34,14 @@ export type SlackConfig = z.infer<typeof slackConfig>;
 export const slackConfigResponse = z.lazy(() => {
   return z
     .object({
-      app_id: z.string().regex(/^[0-9A-Z]+$/),
-      client_id: z.string().regex(/^[0-9]+\.[0-9]+$/),
-      client_secret: z.string().min(32).max(32),
-      signing_secret: z.string().min(32).max(32),
+      config: slackConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      appId: data['app_id'],
-      clientId: data['client_id'],
-      clientSecret: data['client_secret'],
-      signingSecret: data['signing_secret'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -48,11 +51,14 @@ export const slackConfigResponse = z.lazy(() => {
  */
 export const slackConfigRequest = z.lazy(() => {
   return z
-    .object({ appId: z.string(), clientId: z.string(), clientSecret: z.string(), signingSecret: z.string() })
+    .object({
+      config: slackConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
     .transform((data) => ({
-      app_id: data['appId'],
-      client_id: data['clientId'],
-      client_secret: data['clientSecret'],
-      signing_secret: data['signingSecret'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

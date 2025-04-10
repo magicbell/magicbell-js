@@ -9,9 +9,8 @@ export type { Footer } from './footer.js';
 export type { Header } from './header.js';
 export type { Icon } from './icon.js';
 export type { Images } from './images.js';
-export type { InboxConfig } from './inbox-config.js';
+export type { InboxConfigPayload } from './inbox-config-payload.js';
 export type { IncomingWebhook } from './incoming-webhook.js';
-export type { Notification } from './notification.js';
 export type { SlackFinishInstallResponse } from './slack-finish-install-response.js';
 export type { SlackInstallation } from './slack-installation.js';
 export type { SlackStartInstall } from './slack-start-install.js';
@@ -19,6 +18,7 @@ export type { SlackStartInstallResponseContent } from './slack-start-install-res
 export type { Team } from './team.js';
 export type { TemplatesInstallation } from './templates-installation.js';
 export type { Theme } from './theme.js';
+export type { ThemeNotification } from './theme-notification.js';
 export type { Unread } from './unread.js';
 export type { UnreadHover } from './unread-hover.js';
 export type { UnreadState } from './unread-state.js';

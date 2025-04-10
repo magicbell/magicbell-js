@@ -1,3 +1,9 @@
+export interface GetInAppInboxTokensParams {
+  limit?: number;
+  startingAfter?: string;
+  endingBefore?: string;
+}
+
 export interface GetMobilePushApnsTokensParams {
   limit?: number;
   startingAfter?: string;

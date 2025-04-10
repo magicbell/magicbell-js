@@ -1,9 +1,14 @@
 import { z } from 'zod';
 
-import { authedUser, authedUserRequest, authedUserResponse } from './authed-user.js';
-import { enterprise, enterpriseRequest, enterpriseResponse } from './enterprise.js';
-import { incomingWebhook, incomingWebhookRequest, incomingWebhookResponse } from './incoming-webhook.js';
-import { team, teamRequest, teamResponse } from './team.js';
+import { AuthedUser, authedUser, authedUserRequest, authedUserResponse } from './authed-user.js';
+import { Enterprise, enterprise, enterpriseRequest, enterpriseResponse } from './enterprise.js';
+import {
+  IncomingWebhook,
+  incomingWebhook,
+  incomingWebhookRequest,
+  incomingWebhookResponse,
+} from './incoming-webhook.js';
+import { Team, team, teamRequest, teamResponse } from './team.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -18,7 +23,7 @@ export const slackInstallation = z.lazy(() => {
     expiresIn: z.number().optional(),
     id: z
       .string()
-      .regex(/^[A-Z0-9\/]*$/)
+      .regex(/^[A-Z0-9]+-.*$/)
       .optional(),
     incomingWebhook: incomingWebhook.optional(),
     isEnterpriseInstall: z.boolean().optional(),
@@ -63,7 +68,7 @@ export const slackInstallationResponse = z.lazy(() => {
       expires_in: z.number().optional(),
       id: z
         .string()
-        .regex(/^[A-Z0-9\/]*$/)
+        .regex(/^[A-Z0-9]+-.*$/)
         .optional(),
       incoming_webhook: incomingWebhookResponse.optional(),
       is_enterprise_install: z.boolean().optional(),
@@ -102,7 +107,10 @@ export const slackInstallationRequest = z.lazy(() => {
       botUserId: z.string().optional(),
       enterprise: enterpriseRequest.optional(),
       expiresIn: z.number().optional(),
-      id: z.string().optional(),
+      id: z
+        .string()
+        .regex(/^[A-Z0-9]+-.*$/)
+        .optional(),
       incomingWebhook: incomingWebhookRequest.optional(),
       isEnterpriseInstall: z.boolean().optional(),
       refreshToken: z.string().optional(),

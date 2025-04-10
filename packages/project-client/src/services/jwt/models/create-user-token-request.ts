@@ -49,10 +49,10 @@ export const createUserTokenRequestResponse = z.lazy(() => {
 export const createUserTokenRequestRequest = z.lazy(() => {
   return z
     .object({
-      email: z.string().nullable().optional(),
-      expiry: z.number().nullable().optional(),
-      externalId: z.string().nullable().optional(),
-      name: z.string().nullable().optional(),
+      email: z.string().max(255).optional().nullable(),
+      expiry: z.number().gte(1).optional().nullable(),
+      externalId: z.string().max(255).optional().nullable(),
+      name: z.string().max(255).optional().nullable(),
     })
     .transform((data) => ({
       email: data['email'],

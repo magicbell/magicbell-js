@@ -6,15 +6,17 @@ import { z } from 'zod';
 export const accessToken = z.lazy(() => {
   return z.object({
     createdAt: z.string(),
-    expiresAt: z.string().optional().nullable(),
-    token: z.string(),
-    tokenId: z.string(),
+    discardedAt: z.string().optional().nullable(),
+    expiresAt: z.string().optional(),
+    id: z.string().optional(),
+    name: z.string().optional().nullable(),
   });
 });
 
 /**
  *
  * @typedef  {AccessToken} accessToken
+ * @property {string}
  * @property {string}
  * @property {string}
  * @property {string}
@@ -30,15 +32,17 @@ export const accessTokenResponse = z.lazy(() => {
   return z
     .object({
       created_at: z.string(),
-      expires_at: z.string().optional().nullable(),
-      token: z.string(),
-      token_id: z.string(),
+      discarded_at: z.string().optional().nullable(),
+      expires_at: z.string().optional(),
+      id: z.string().optional(),
+      name: z.string().optional().nullable(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
+      discardedAt: data['discarded_at'],
       expiresAt: data['expires_at'],
-      token: data['token'],
-      tokenId: data['token_id'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -50,14 +54,16 @@ export const accessTokenRequest = z.lazy(() => {
   return z
     .object({
       createdAt: z.string(),
-      expiresAt: z.string().nullable().optional(),
-      token: z.string(),
-      tokenId: z.string(),
+      discardedAt: z.string().optional().nullable(),
+      expiresAt: z.string().optional(),
+      id: z.string().optional(),
+      name: z.string().optional().nullable(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],
+      discarded_at: data['discardedAt'],
       expires_at: data['expiresAt'],
-      token: data['token'],
-      token_id: data['tokenId'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

@@ -44,7 +44,11 @@ export const dialogResponse = z.lazy(() => {
  */
 export const dialogRequest = z.lazy(() => {
   return z
-    .object({ accentColor: z.string(), backgroundColor: z.string(), textColor: z.string() })
+    .object({
+      accentColor: z.string(),
+      backgroundColor: z.string(),
+      textColor: z.string(),
+    })
     .transform((data) => ({
       accentColor: data['accentColor'],
       backgroundColor: data['backgroundColor'],

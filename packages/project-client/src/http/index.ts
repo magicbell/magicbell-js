@@ -1,5 +1,5 @@
-export type { Environment } from './environment.ts';
-export type { HttpError } from './error.ts';
+export { Environment } from './environment.js';
+export type { HttpError } from './error.js';
 export type {
   HttpMetadata,
   HttpMethod,
@@ -8,4 +8,4 @@ export type {
   RetryOptions,
   SdkConfig,
   ValidationOptions,
-} from './types.ts';
+} from './types.js';
