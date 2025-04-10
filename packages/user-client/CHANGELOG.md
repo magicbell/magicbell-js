@@ -1,5 +1,11 @@
 # @magicbell/user-client
 
+## 0.12.0
+
+### Minor Changes
+
+- [#500](https://github.com/magicbell/magicbell-js/pull/500) [`fad4d68`](https://github.com/magicbell/magicbell-js/commit/fad4d6807f48d2cc93e6b405141bb266e588e4c1) Thanks [@MagicBella](https://github.com/MagicBella)! - Automatic minor version bump for changes in `@magicbell/user-client`.
+
 ## 0.11.0
 
 ### Minor Changes
