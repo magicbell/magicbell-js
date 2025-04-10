@@ -6,6 +6,9 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 | :---------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [getDeliveryconfig](#getdeliveryconfig)                           |                                                                                                                                                                                                                                                                    |
 | [saveDeliveryconfig](#savedeliveryconfig)                         |                                                                                                                                                                                                                                                                    |
+| [getInAppInboxUserTokens](#getinappinboxusertokens)               | Lists all in_app tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                    |
+| [getInAppInboxUserToken](#getinappinboxusertoken)                 | Retrieves a specific in_app token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.      |
+| [discardInAppInboxUserToken](#discardinappinboxusertoken)         | Revokes a specific user's in_app token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.              |
 | [getMobilePushApnsUserTokens](#getmobilepushapnsusertokens)       | Lists all mobile_push tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                               |
 | [getMobilePushApnsUserToken](#getmobilepushapnsusertoken)         | Retrieves a specific mobile_push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata. |
 | [discardMobilePushApnsUserToken](#discardmobilepushapnsusertoken) | Revokes a specific user's mobile_push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.         |
@@ -87,7 +90,7 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 4,
+    delay: 8,
     if: 'if',
   };
 
@@ -98,6 +101,114 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
   };
 
   const { data } = await client.channels.saveDeliveryconfig(categoryDeliveryConfig);
+
+  console.log(data);
+})();
+```
+
+## getInAppInboxUserTokens
+
+Lists all in_app tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/in_app/inbox/tokens`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+
+**Return Type**
+
+`InboxTokenResponseCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getInAppInboxUserTokens('user_id', {
+    limit: 7,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+  });
+
+  console.log(data);
+})();
+```
+
+## getInAppInboxUserToken
+
+Retrieves a specific in_app token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/in_app/inbox/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`InboxTokenResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.getInAppInboxUserToken('user_id', 'token_id');
+
+  console.log(data);
+})();
+```
+
+## discardInAppInboxUserToken
+
+Revokes a specific user's in_app token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/users/{user_id}/channels/in_app/inbox/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardResult`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from '@magicbell/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.discardInAppInboxUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -121,7 +232,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfApnsTokenResponses`
+`ApnsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -134,7 +245,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    limit: 7,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -159,7 +270,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`ApnsTokenResponse`
+`ApnsToken`
 
 **Example Usage Code Snippet**
 
@@ -229,7 +340,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfExpoTokenResponses`
+`ExpoTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -242,7 +353,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
-    limit: 2,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -267,7 +378,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`ExpoTokenResponse`
+`ExpoToken`
 
 **Example Usage Code Snippet**
 
@@ -337,7 +448,7 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 
 **Return Type**
 
-`ArrayOfFcmTokenResponses`
+`FcmTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -350,7 +461,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
-    limit: 2,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -375,7 +486,7 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 
 **Return Type**
 
-`FcmTokenResponse`
+`FcmToken`
 
 **Example Usage Code Snippet**
 
@@ -445,7 +556,7 @@ Lists all slack tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfSlackTokenResponses`
+`SlackTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -458,7 +569,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getSlackUserTokens('user_id', {
-    limit: 8,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -483,7 +594,7 @@ Retrieves a specific slack token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`SlackTokenResponse`
+`SlackToken`
 
 **Example Usage Code Snippet**
 
@@ -553,7 +664,7 @@ Lists all teams tokens associated with a specific user. This endpoint is availab
 
 **Return Type**
 
-`ArrayOfTeamsTokenResponses`
+`TeamsTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -566,7 +677,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -591,7 +702,7 @@ Retrieves a specific teams token by its ID for a given user. This endpoint is av
 
 **Return Type**
 
-`TeamsTokenResponse`
+`TeamsToken`
 
 **Example Usage Code Snippet**
 
@@ -661,7 +772,7 @@ Lists all web_push tokens associated with a specific user. This endpoint is avai
 
 **Return Type**
 
-`ArrayOfWebPushTokenResponses`
+`WebPushTokenCollection`
 
 **Example Usage Code Snippet**
 
@@ -674,7 +785,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getWebPushUserTokens('user_id', {
-    limit: 3,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -699,7 +810,7 @@ Retrieves a specific web_push token by its ID for a given user. This endpoint is
 
 **Return Type**
 
-`WebPushTokenResponse`
+`WebPushToken`
 
 **Example Usage Code Snippet**
 

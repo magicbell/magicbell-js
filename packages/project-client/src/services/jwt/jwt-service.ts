@@ -1,15 +1,13 @@
 import { z } from 'zod';
 
+import { Environment } from '../../http/environment.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
-import { AccessToken, accessTokenResponse } from './models/access-token.js';
-import {
-  ArrayOfFetchTokensResponseTokens,
-  arrayOfFetchTokensResponseTokensResponse,
-} from './models/array-of-fetch-tokens-response-tokens.js';
+import { AccessTokenCollection, accessTokenCollectionResponse } from './models/access-token-collection.js';
 import { CreateProjectTokenRequest, createProjectTokenRequestRequest } from './models/create-project-token-request.js';
+import { CreateTokenResponse, createTokenResponseResponse } from './models/create-token-response.js';
 import { CreateUserTokenRequest, createUserTokenRequestRequest } from './models/create-user-token-request.js';
 import { DiscardTokenResponse, discardTokenResponseResponse } from './models/discard-token-response.js';
 import { FetchProjectTokensParams, FetchUserTokensParams } from './request-params.js';
@@ -21,14 +19,14 @@ export class JwtService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>>} OK
+   * @returns {Promise<HttpResponse<AccessTokenCollection>>} OK
    */
   async fetchProjectTokens(
     params?: FetchProjectTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>> {
+  ): Promise<HttpResponse<AccessTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/project')
@@ -36,7 +34,7 @@ export class JwtService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfFetchTokensResponseTokensResponse,
+        schema: accessTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -56,20 +54,20 @@ export class JwtService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfFetchTokensResponseTokens>(request);
+    return this.client.call<AccessTokenCollection>(request);
   }
 
   /**
    * Creates a new project-level JWT token. These tokens provide project-wide access and should be carefully managed. Only administrators can create project tokens. The returned token should be securely stored as it cannot be retrieved again after creation.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<AccessToken>>} Created
+   * @returns {Promise<HttpResponse<CreateTokenResponse>>} Created
    */
   async createProjectJwt(
     body: CreateProjectTokenRequest,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<AccessToken>> {
+  ): Promise<HttpResponse<CreateTokenResponse>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/project')
@@ -77,7 +75,7 @@ export class JwtService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: accessTokenResponse,
+        schema: createTokenResponseResponse,
         contentType: ContentType.Json,
         status: 201,
       })
@@ -87,7 +85,7 @@ export class JwtService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<AccessToken>(request);
+    return this.client.call<CreateTokenResponse>(request);
   }
 
   /**
@@ -98,7 +96,7 @@ export class JwtService extends BaseService {
    */
   async discardProjectJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/project/{token_id}')
@@ -124,11 +122,14 @@ export class JwtService extends BaseService {
   /**
    * Issues a new user-specific JWT token. These tokens are scoped to individual user permissions and access levels. Only administrators can create user tokens. The token is returned only once at creation time and cannot be retrieved later.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<AccessToken>>} Created
+   * @returns {Promise<HttpResponse<CreateTokenResponse>>} Created
    */
-  async createUserJwt(body: CreateUserTokenRequest, requestConfig?: RequestConfig): Promise<HttpResponse<AccessToken>> {
+  async createUserJwt(
+    body: CreateUserTokenRequest,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<CreateTokenResponse>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/jwt/user')
@@ -136,7 +137,7 @@ export class JwtService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: accessTokenResponse,
+        schema: createTokenResponseResponse,
         contentType: ContentType.Json,
         status: 201,
       })
@@ -146,7 +147,7 @@ export class JwtService extends BaseService {
       .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
       .addBody(body)
       .build();
-    return this.client.call<AccessToken>(request);
+    return this.client.call<CreateTokenResponse>(request);
   }
 
   /**
@@ -157,7 +158,7 @@ export class JwtService extends BaseService {
    */
   async discardUserJwt(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardTokenResponse>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/jwt/user/{token_id}')
@@ -187,15 +188,15 @@ export class JwtService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>>} OK
+   * @returns {Promise<HttpResponse<AccessTokenCollection>>} OK
    */
   async fetchUserTokens(
     userId: string,
     params?: FetchUserTokensParams,
     requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ArrayOfFetchTokensResponseTokens>> {
+  ): Promise<HttpResponse<AccessTokenCollection>> {
     const request = new RequestBuilder()
-      .setBaseUrl(this.config)
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
       .setPath('/jwt/user/{user_id}')
@@ -203,7 +204,7 @@ export class JwtService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: arrayOfFetchTokensResponseTokensResponse,
+        schema: accessTokenCollectionResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -227,6 +228,6 @@ export class JwtService extends BaseService {
         value: params?.endingBefore,
       })
       .build();
-    return this.client.call<ArrayOfFetchTokensResponseTokens>(request);
+    return this.client.call<AccessTokenCollection>(request);
   }
 }

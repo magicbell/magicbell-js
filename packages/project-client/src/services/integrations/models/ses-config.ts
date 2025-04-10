@@ -1,26 +1,29 @@
 import { z } from 'zod';
 
-import { sesConfigFrom, sesConfigFromRequest, sesConfigFromResponse } from './ses-config-from.js';
+import {
+  SesConfigPayload,
+  sesConfigPayload,
+  sesConfigPayloadRequest,
+  sesConfigPayloadResponse,
+} from './ses-config-payload.js';
 
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const sesConfig = z.lazy(() => {
   return z.object({
-    from: sesConfigFrom.optional(),
-    keyId: z.string().min(1),
-    region: z.string().min(1),
-    secretKey: z.string().min(1),
+    config: sesConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {SesConfig} sesConfig
- * @property {SesConfigFrom}
- * @property {string} - AWS Access Key ID
- * @property {string} - AWS Region
- * @property {string} - AWS Secret Key
+ * @property {SesConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type SesConfig = z.infer<typeof sesConfig>;
 
@@ -31,16 +34,14 @@ export type SesConfig = z.infer<typeof sesConfig>;
 export const sesConfigResponse = z.lazy(() => {
   return z
     .object({
-      from: sesConfigFromResponse.optional(),
-      key_id: z.string().min(1),
-      region: z.string().min(1),
-      secret_key: z.string().min(1),
+      config: sesConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      from: data['from'],
-      keyId: data['key_id'],
-      region: data['region'],
-      secretKey: data['secret_key'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -50,11 +51,14 @@ export const sesConfigResponse = z.lazy(() => {
  */
 export const sesConfigRequest = z.lazy(() => {
   return z
-    .object({ from: sesConfigFromRequest.optional(), keyId: z.string(), region: z.string(), secretKey: z.string() })
+    .object({
+      config: sesConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
     .transform((data) => ({
-      from: data['from'],
-      key_id: data['keyId'],
-      region: data['region'],
-      secret_key: data['secretKey'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

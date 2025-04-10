@@ -5,7 +5,7 @@ A list of all methods in the `EventsService` service. Click on the method name t
 | Methods                   | Description                                           |
 | :------------------------ | :---------------------------------------------------- |
 | [listEvents](#listevents) | Retrieves a paginated list of events for the project. |
-| [getEvent](#getevent)     | Retrieves a paginated list of events for the project. |
+| [getEvent](#getevent)     | Retrieves a project event by its ID.                  |
 
 ## listEvents
 
@@ -24,7 +24,7 @@ Retrieves a paginated list of events for the project.
 
 **Return Type**
 
-`ArrayOfEvents`
+`EventCollection`
 
 **Example Usage Code Snippet**
 
@@ -37,7 +37,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.events.listEvents({
-    limit: 9,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -48,7 +48,7 @@ import { Client } from '@magicbell/project-client';
 
 ## getEvent
 
-Retrieves a paginated list of events for the project.
+Retrieves a project event by its ID.
 
 - HTTP Method: `GET`
 - Endpoint: `/events/{id}`

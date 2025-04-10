@@ -2,6 +2,12 @@ export interface GetDeliveryconfigParams {
   key?: string;
 }
 
+export interface GetInAppInboxUserTokensParams {
+  limit?: number;
+  startingAfter?: string;
+  endingBefore?: string;
+}
+
 export interface GetMobilePushApnsUserTokensParams {
   limit?: number;
   startingAfter?: string;

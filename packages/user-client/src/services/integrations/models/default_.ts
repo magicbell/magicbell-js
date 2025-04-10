@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { defaultHover, defaultHoverRequest, defaultHoverResponse } from './default-hover.js';
-import { defaultState, defaultStateRequest, defaultStateResponse } from './default-state.js';
+import { DefaultHover, defaultHover, defaultHoverRequest, defaultHoverResponse } from './default-hover.js';
+import { DefaultState, defaultState, defaultStateRequest, defaultStateResponse } from './default-state.js';
 
 /**
  * The shape of the model inside the application code - what the users use

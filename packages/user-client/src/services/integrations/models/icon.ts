@@ -39,8 +39,13 @@ export const iconResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const iconRequest = z.lazy(() => {
-  return z.object({ borderColor: z.string(), width: z.string() }).transform((data) => ({
-    borderColor: data['borderColor'],
-    width: data['width'],
-  }));
+  return z
+    .object({
+      borderColor: z.string(),
+      width: z.string(),
+    })
+    .transform((data) => ({
+      borderColor: data['borderColor'],
+      width: data['width'],
+    }));
 });

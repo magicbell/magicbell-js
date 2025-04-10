@@ -39,8 +39,13 @@ export const teamResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const teamRequest = z.lazy(() => {
-  return z.object({ id: z.string(), name: z.string().optional() }).transform((data) => ({
-    id: data['id'],
-    name: data['name'],
-  }));
+  return z
+    .object({
+      id: z.string(),
+      name: z.string().optional(),
+    })
+    .transform((data) => ({
+      id: data['id'],
+      name: data['name'],
+    }));
 });

@@ -45,9 +45,9 @@ export const slackResponse = z.lazy(() => {
 export const slackRequest = z.lazy(() => {
   return z
     .object({
-      actionUrl: z.string().nullable().optional(),
-      content: z.string().optional(),
-      title: z.string().optional(),
+      actionUrl: z.string().max(2048).optional().nullable(),
+      content: z.string().max(1048576).optional(),
+      title: z.string().min(1).max(255).optional(),
     })
     .transform((data) => ({
       action_url: data['actionUrl'],

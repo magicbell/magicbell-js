@@ -1,12 +1,17 @@
 import { z } from 'zod';
 
-import { banner, bannerRequest, bannerResponse } from './banner.js';
-import { dialog, dialogRequest, dialogResponse } from './dialog.js';
-import { footer, footerRequest, footerResponse } from './footer.js';
-import { header, headerRequest, headerResponse } from './header.js';
-import { icon, iconRequest, iconResponse } from './icon.js';
-import { notification, notificationRequest, notificationResponse } from './notification.js';
-import { unseenBadge, unseenBadgeRequest, unseenBadgeResponse } from './unseen-badge.js';
+import { Banner, banner, bannerRequest, bannerResponse } from './banner.js';
+import { Dialog, dialog, dialogRequest, dialogResponse } from './dialog.js';
+import { Footer, footer, footerRequest, footerResponse } from './footer.js';
+import { Header, header, headerRequest, headerResponse } from './header.js';
+import { Icon, icon, iconRequest, iconResponse } from './icon.js';
+import {
+  ThemeNotification,
+  themeNotification,
+  themeNotificationRequest,
+  themeNotificationResponse,
+} from './theme-notification.js';
+import { UnseenBadge, unseenBadge, unseenBadgeRequest, unseenBadgeResponse } from './unseen-badge.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -18,7 +23,7 @@ export const theme = z.lazy(() => {
     footer: footer.optional(),
     header: header.optional(),
     icon: icon.optional(),
-    notification: notification.optional(),
+    notification: themeNotification.optional(),
     unseenBadge: unseenBadge.optional(),
   });
 });
@@ -31,7 +36,7 @@ export const theme = z.lazy(() => {
  * @property {Footer}
  * @property {Header}
  * @property {Icon}
- * @property {Notification}
+ * @property {ThemeNotification}
  * @property {UnseenBadge}
  */
 export type Theme = z.infer<typeof theme>;
@@ -48,7 +53,7 @@ export const themeResponse = z.lazy(() => {
       footer: footerResponse.optional(),
       header: headerResponse.optional(),
       icon: iconResponse.optional(),
-      notification: notificationResponse.optional(),
+      notification: themeNotificationResponse.optional(),
       unseenBadge: unseenBadgeResponse.optional(),
     })
     .transform((data) => ({
@@ -74,7 +79,7 @@ export const themeRequest = z.lazy(() => {
       footer: footerRequest.optional(),
       header: headerRequest.optional(),
       icon: iconRequest.optional(),
-      notification: notificationRequest.optional(),
+      notification: themeNotificationRequest.optional(),
       unseenBadge: unseenBadgeRequest.optional(),
     })
     .transform((data) => ({

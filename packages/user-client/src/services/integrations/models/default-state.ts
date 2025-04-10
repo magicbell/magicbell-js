@@ -35,7 +35,11 @@ export const defaultStateResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const defaultStateRequest = z.lazy(() => {
-  return z.object({ color: z.string() }).transform((data) => ({
-    color: data['color'],
-  }));
+  return z
+    .object({
+      color: z.string(),
+    })
+    .transform((data) => ({
+      color: data['color'],
+    }));
 });

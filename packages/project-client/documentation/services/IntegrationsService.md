@@ -87,7 +87,7 @@ Lists all available and configured integrations for the project. Returns a summa
 
 **Return Type**
 
-`ArrayOfIntegrationObjects`
+`IntegrationConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -100,7 +100,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    limit: 8,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -118,7 +118,7 @@ Retrieves the current apns integration configurations for a specific integration
 
 **Return Type**
 
-`ArrayOfApnsConfigObjects`
+`ApnsConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -145,18 +145,18 @@ Creates or updates a apns integration for the project. Only administrators can c
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [ApnsConfig](../models/ApnsConfig.md) | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [ApnsConfigPayload](../models/ApnsConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`ApnsConfig`
+`ApnsConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ApnsConfig, Client } from '@magicbell/project-client';
+import { ApnsConfigPayload, Client } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
@@ -166,20 +166,20 @@ import { ApnsConfig, Client } from '@magicbell/project-client';
 
 const payloadVersion = PayloadVersion._1;
 
-const apnsConfig: ApnsConfig = {
+const apnsConfigPayload: ApnsConfigPayload = {
   appId: "app_id",
   badge: badge,
-  certificate: "BEGIN PRIVATE KEY------
-6vtVF=
--END PRIVATE KEYYYYYYYYYYY---------
+  certificate: "BEGIN PRIVATE KEY---------
+Vz=
+-------- END PRIVATE KEYYYYYY----------
 ",
-  keyId: "commodo ir",
+  keyId: "labore est",
   payloadVersion: payloadVersion,
-  teamId: "cillum ex "
+  teamId: "consequat "
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
-  apnsConfig
+  apnsConfigPayload
 );
 
   console.log(data);
@@ -247,7 +247,7 @@ Retrieves the current awssns integration configurations for a specific integrati
 
 **Return Type**
 
-`ArrayOfAwssnsConfigObjects`
+`AwssnsConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -274,29 +274,29 @@ Creates or updates a awssns integration for the project. Only administrators can
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [AwssnsConfig](../models/AwssnsConfig.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [AwssnsConfigPayload](../models/AwssnsConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`AwssnsConfig`
+`AwssnsConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { AwssnsConfig, Client } from '@magicbell/project-client';
+import { AwssnsConfigPayload, Client } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const awssnsConfig: AwssnsConfig = {
+  const awssnsConfigPayload: AwssnsConfigPayload = {
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await client.integrations.saveAwssnsIntegration(awssnsConfig);
+  const { data } = await client.integrations.saveAwssnsIntegration(awssnsConfigPayload);
 
   console.log(data);
 })();
@@ -363,7 +363,7 @@ Retrieves the current eventsource integration configurations for a specific inte
 
 **Return Type**
 
-`ArrayOfEventSourceIntegrationConfigObjects`
+`EventSourceConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -390,29 +390,29 @@ Creates or updates a eventsource integration for the project. Only administrator
 
 **Parameters**
 
-| Name | Type                                                                      | Required | Description       |
-| :--- | :------------------------------------------------------------------------ | :------- | :---------------- |
-| body | [EventSourceIntegrationConfig](../models/EventSourceIntegrationConfig.md) | ❌       | The request body. |
+| Name | Type                                                              | Required | Description       |
+| :--- | :---------------------------------------------------------------- | :------- | :---------------- |
+| body | [EventSourceConfigPayload](../models/EventSourceConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`EventSourceIntegrationConfig`
+`EventSourceConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, EventSourceIntegrationConfig } from '@magicbell/project-client';
+import { Client, EventSourceConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const eventSourceIntegrationConfig: EventSourceIntegrationConfig = {
+  const eventSourceConfigPayload: EventSourceConfigPayload = {
     source: 'source',
   };
 
-  const { data } = await client.integrations.saveEventsourceIntegration(eventSourceIntegrationConfig);
+  const { data } = await client.integrations.saveEventsourceIntegration(eventSourceConfigPayload);
 
   console.log(data);
 })();
@@ -479,7 +479,7 @@ Retrieves the current expo integration configurations for a specific integration
 
 **Return Type**
 
-`ArrayOfExpoConfigObjects`
+`ExpoConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -506,29 +506,29 @@ Creates or updates a expo integration for the project. Only administrators can c
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [ExpoConfig](../models/ExpoConfig.md) | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [ExpoConfigPayload](../models/ExpoConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`ExpoConfig`
+`ExpoConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, ExpoConfig } from '@magicbell/project-client';
+import { Client, ExpoConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const expoConfig: ExpoConfig = {
+  const expoConfigPayload: ExpoConfigPayload = {
     accessToken: 'access_token',
   };
 
-  const { data } = await client.integrations.saveExpoIntegration(expoConfig);
+  const { data } = await client.integrations.saveExpoIntegration(expoConfigPayload);
 
   console.log(data);
 })();
@@ -595,7 +595,7 @@ Retrieves the current fcm integration configurations for a specific integration 
 
 **Return Type**
 
-`ArrayOfFcmConfigObjects`
+`FcmConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -622,18 +622,18 @@ Creates or updates a fcm integration for the project. Only administrators can co
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [FcmConfig](../models/FcmConfig.md) | ❌       | The request body. |
+| Name | Type                                              | Required | Description       |
+| :--- | :------------------------------------------------ | :------- | :---------------- |
+| body | [FcmConfigPayload](../models/FcmConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`FcmConfig`
+`FcmConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, FcmConfig } from '@magicbell/project-client';
+import { Client, FcmConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
@@ -641,15 +641,15 @@ import { Client, FcmConfig } from '@magicbell/project-client';
 
   const type_ = Type_.SERVICE_ACCOUNT;
 
-const fcmConfig: FcmConfig = {
+const fcmConfigPayload: FcmConfigPayload = {
   authProviderX509CertUrl: "auth_provider_x509_cert_url",
   authUri: "auth_uri",
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "BEGINDRFOCFDP----
-Ax9ayOxb==
----ENDOOCOIEC-----",
+  privateKey: "BEGINPQJURVZ-----------
+U5HMsOeGorl=
+----------- ENDOUM--",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -658,7 +658,7 @@ Ax9ayOxb==
 };
 
   const { data } = await client.integrations.saveFcmIntegration(
-  fcmConfig
+  fcmConfigPayload
 );
 
   console.log(data);
@@ -726,7 +726,7 @@ Retrieves the current github integration configurations for a specific integrati
 
 **Return Type**
 
-`ArrayOfGithubConfigObjects`
+`GithubConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -753,29 +753,29 @@ Creates or updates a github integration for the project. Only administrators can
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [GithubConfig](../models/GithubConfig.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [GithubConfigPayload](../models/GithubConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`GithubConfig`
+`GithubConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, GithubConfig } from '@magicbell/project-client';
+import { Client, GithubConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const githubConfig: GithubConfig = {
+  const githubConfigPayload: GithubConfigPayload = {
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await client.integrations.saveGithubIntegration(githubConfig);
+  const { data } = await client.integrations.saveGithubIntegration(githubConfigPayload);
 
   console.log(data);
 })();
@@ -842,7 +842,7 @@ Retrieves the current inbox integration configurations for a specific integratio
 
 **Return Type**
 
-`ArrayOfInboxConfigObjects`
+`InboxConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -869,18 +869,18 @@ Creates or updates a inbox integration for the project. Only administrators can 
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [InboxConfig](../models/InboxConfig.md) | ❌       | The request body. |
+| Name | Type                                                  | Required | Description       |
+| :--- | :---------------------------------------------------- | :------- | :---------------- |
+| body | [InboxConfigPayload](../models/InboxConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`InboxConfig`
+`InboxConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, InboxConfig } from '@magicbell/project-client';
+import { Client, InboxConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
@@ -893,7 +893,7 @@ import { Client, InboxConfig } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 8.11,
+    backgroundOpacity: 3.09,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -993,13 +993,13 @@ import { Client, InboxConfig } from '@magicbell/project-client';
     unseenBadge: unseenBadge,
   };
 
-  const inboxConfig: InboxConfig = {
+  const inboxConfigPayload: InboxConfigPayload = {
     images: images,
     locale: 'locale',
     theme: theme,
   };
 
-  const { data } = await client.integrations.saveInboxIntegration(inboxConfig);
+  const { data } = await client.integrations.saveInboxIntegration(inboxConfigPayload);
 
   console.log(data);
 })();
@@ -1066,7 +1066,7 @@ Retrieves the current mailgun integration configurations for a specific integrat
 
 **Return Type**
 
-`ArrayOfMailgunConfigObjects`
+`MailgunConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1093,18 +1093,18 @@ Creates or updates a mailgun integration for the project. Only administrators ca
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | [MailgunConfig](../models/MailgunConfig.md) | ❌       | The request body. |
+| Name | Type                                                      | Required | Description       |
+| :--- | :-------------------------------------------------------- | :------- | :---------------- |
+| body | [MailgunConfigPayload](../models/MailgunConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`MailgunConfig`
+`MailgunConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, MailgunConfig } from '@magicbell/project-client';
+import { Client, MailgunConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
@@ -1113,13 +1113,13 @@ import { Client, MailgunConfig } from '@magicbell/project-client';
 
   const region = Region.US;
 
-  const mailgunConfig: MailgunConfig = {
+  const mailgunConfigPayload: MailgunConfigPayload = {
     apiKey: 'api_key',
     domain: 'domain',
     region: region,
   };
 
-  const { data } = await client.integrations.saveMailgunIntegration(mailgunConfig);
+  const { data } = await client.integrations.saveMailgunIntegration(mailgunConfigPayload);
 
   console.log(data);
 })();
@@ -1186,7 +1186,7 @@ Retrieves the current ping_email integration configurations for a specific integ
 
 **Return Type**
 
-`ArrayOfPingConfigObjects`
+`PingConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1213,29 +1213,29 @@ Creates or updates a ping_email integration for the project. Only administrators
 
 **Parameters**
 
-| Name | Type                                  | Required | Description       |
-| :--- | :------------------------------------ | :------- | :---------------- |
-| body | [PingConfig](../models/PingConfig.md) | ❌       | The request body. |
+| Name | Type                                                | Required | Description       |
+| :--- | :-------------------------------------------------- | :------- | :---------------- |
+| body | [PingConfigPayload](../models/PingConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`PingConfig`
+`PingConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, PingConfig } from '@magicbell/project-client';
+import { Client, PingConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const pingConfig: PingConfig = {
+  const pingConfigPayload: PingConfigPayload = {
     url: 'url',
   };
 
-  const { data } = await client.integrations.savePingEmailIntegration(pingConfig);
+  const { data } = await client.integrations.savePingEmailIntegration(pingConfigPayload);
 
   console.log(data);
 })();
@@ -1302,7 +1302,7 @@ Retrieves the current sendgrid integration configurations for a specific integra
 
 **Return Type**
 
-`ArrayOfSendgridConfigObjects`
+`SendgridConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1329,25 +1329,25 @@ Creates or updates a sendgrid integration for the project. Only administrators c
 
 **Parameters**
 
-| Name | Type                                          | Required | Description       |
-| :--- | :-------------------------------------------- | :------- | :---------------- |
-| body | [SendgridConfig](../models/SendgridConfig.md) | ❌       | The request body. |
+| Name | Type                                                        | Required | Description       |
+| :--- | :---------------------------------------------------------- | :------- | :---------------- |
+| body | [SendgridConfigPayload](../models/SendgridConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`SendgridConfig`
+`SendgridConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, SendgridConfig } from '@magicbell/project-client';
+import { Client, SendgridConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const sendgridConfigFrom: SendgridConfigFrom = {
+  const sendgridConfigPayloadFrom: SendgridConfigPayloadFrom = {
     email: 'email',
     name: 'name',
   };
@@ -1357,13 +1357,13 @@ import { Client, SendgridConfig } from '@magicbell/project-client';
     name: 'name',
   };
 
-  const sendgridConfig: SendgridConfig = {
+  const sendgridConfigPayload: SendgridConfigPayload = {
     apiKey: 'api_key',
-    from: sendgridConfigFrom,
+    from: sendgridConfigPayloadFrom,
     replyTo: replyTo,
   };
 
-  const { data } = await client.integrations.saveSendgridIntegration(sendgridConfig);
+  const { data } = await client.integrations.saveSendgridIntegration(sendgridConfigPayload);
 
   console.log(data);
 })();
@@ -1430,7 +1430,7 @@ Retrieves the current ses integration configurations for a specific integration 
 
 **Return Type**
 
-`ArrayOfSesConfigObjects`
+`SesConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1457,37 +1457,37 @@ Creates or updates a ses integration for the project. Only administrators can co
 
 **Parameters**
 
-| Name | Type                                | Required | Description       |
-| :--- | :---------------------------------- | :------- | :---------------- |
-| body | [SesConfig](../models/SesConfig.md) | ❌       | The request body. |
+| Name | Type                                              | Required | Description       |
+| :--- | :------------------------------------------------ | :------- | :---------------- |
+| body | [SesConfigPayload](../models/SesConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`SesConfig`
+`SesConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, SesConfig } from '@magicbell/project-client';
+import { Client, SesConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const sesConfigFrom: SesConfigFrom = {
+  const sesConfigPayloadFrom: SesConfigPayloadFrom = {
     email: 'email',
     name: 'name',
   };
 
-  const sesConfig: SesConfig = {
-    from: sesConfigFrom,
+  const sesConfigPayload: SesConfigPayload = {
+    from: sesConfigPayloadFrom,
     keyId: 'key_id',
     region: 'region',
     secretKey: 'secret_key',
   };
 
-  const { data } = await client.integrations.saveSesIntegration(sesConfig);
+  const { data } = await client.integrations.saveSesIntegration(sesConfigPayload);
 
   console.log(data);
 })();
@@ -1554,7 +1554,7 @@ Retrieves the current slack integration configurations for a specific integratio
 
 **Return Type**
 
-`ArrayOfSlackConfigObjects`
+`SlackConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1581,32 +1581,32 @@ Creates or updates a slack integration for the project. Only administrators can 
 
 **Parameters**
 
-| Name | Type                                    | Required | Description       |
-| :--- | :-------------------------------------- | :------- | :---------------- |
-| body | [SlackConfig](../models/SlackConfig.md) | ❌       | The request body. |
+| Name | Type                                                  | Required | Description       |
+| :--- | :---------------------------------------------------- | :------- | :---------------- |
+| body | [SlackConfigPayload](../models/SlackConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`SlackConfig`
+`SlackConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, SlackConfig } from '@magicbell/project-client';
+import { Client, SlackConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const slackConfig: SlackConfig = {
-    appId: '92SOA',
-    clientId: '85317541010.82133160',
-    clientSecret: 'adaliqua ad laboris animnon do U',
-    signingSecret: 'eunisi ad in incididuntin mollit',
+  const slackConfigPayload: SlackConfigPayload = {
+    appId: 'IJL8J4ZV',
+    clientId: '841268.68347039',
+    clientSecret: 'esse ea ex officia pariaturoccae',
+    signingSecret: 'officia voluptateirure anim aliq',
   };
 
-  const { data } = await client.integrations.saveSlackIntegration(slackConfig);
+  const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
 
   console.log(data);
 })();
@@ -1673,7 +1673,7 @@ Retrieves the current stripe integration configurations for a specific integrati
 
 **Return Type**
 
-`ArrayOfStripeConfigObjects`
+`StripeConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1700,29 +1700,29 @@ Creates or updates a stripe integration for the project. Only administrators can
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [StripeConfig](../models/StripeConfig.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [StripeConfigPayload](../models/StripeConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`StripeConfig`
+`StripeConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, StripeConfig } from '@magicbell/project-client';
+import { Client, StripeConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const stripeConfig: StripeConfig = {
+  const stripeConfigPayload: StripeConfigPayload = {
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await client.integrations.saveStripeIntegration(stripeConfig);
+  const { data } = await client.integrations.saveStripeIntegration(stripeConfigPayload);
 
   console.log(data);
 })();
@@ -1789,7 +1789,7 @@ Retrieves the current templates integration configurations for a specific integr
 
 **Return Type**
 
-`ArrayOfTemplatesConfigObjects`
+`TemplatesConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1903,7 +1903,7 @@ Retrieves the current twilio integration configurations for a specific integrati
 
 **Return Type**
 
-`ArrayOfTwilioConfigObjects`
+`TwilioConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -1930,32 +1930,32 @@ Creates or updates a twilio integration for the project. Only administrators can
 
 **Parameters**
 
-| Name | Type                                      | Required | Description       |
-| :--- | :---------------------------------------- | :------- | :---------------- |
-| body | [TwilioConfig](../models/TwilioConfig.md) | ❌       | The request body. |
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [TwilioConfigPayload](../models/TwilioConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`TwilioConfig`
+`TwilioConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, TwilioConfig } from '@magicbell/project-client';
+import { Client, TwilioConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const twilioConfig: TwilioConfig = {
+  const twilioConfigPayload: TwilioConfigPayload = {
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+8',
+    from: '+0875883',
   };
 
-  const { data } = await client.integrations.saveTwilioIntegration(twilioConfig);
+  const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);
 
   console.log(data);
 })();
@@ -2022,7 +2022,7 @@ Retrieves the current web_push integration configurations for a specific integra
 
 **Return Type**
 
-`ArrayOfWebpushConfigObjects`
+`WebpushConfigCollection`
 
 **Example Usage Code Snippet**
 
@@ -2049,30 +2049,30 @@ Creates or updates a web_push integration for the project. Only administrators c
 
 **Parameters**
 
-| Name | Type                                        | Required | Description       |
-| :--- | :------------------------------------------ | :------- | :---------------- |
-| body | [WebpushConfig](../models/WebpushConfig.md) | ❌       | The request body. |
+| Name | Type                                                      | Required | Description       |
+| :--- | :-------------------------------------------------------- | :------- | :---------------- |
+| body | [WebpushConfigPayload](../models/WebpushConfigPayload.md) | ❌       | The request body. |
 
 **Return Type**
 
-`WebpushConfig`
+`WebpushConfigPayload`
 
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, WebpushConfig } from '@magicbell/project-client';
+import { Client, WebpushConfigPayload } from '@magicbell/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const webpushConfig: WebpushConfig = {
+  const webpushConfigPayload: WebpushConfigPayload = {
     privateKey: 'private_key',
     publicKey: 'public_key',
   };
 
-  const { data } = await client.integrations.saveWebPushIntegration(webpushConfig);
+  const { data } = await client.integrations.saveWebPushIntegration(webpushConfigPayload);
 
   console.log(data);
 })();

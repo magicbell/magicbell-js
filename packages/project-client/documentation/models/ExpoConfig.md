@@ -2,6 +2,8 @@
 
 **Properties**
 
-| Name        | Type   | Required | Description |
-| :---------- | :----- | :------- | :---------- |
-| accessToken | string | ✅       |             |
+| Name   | Type              | Required | Description |
+| :----- | :---------------- | :------- | :---------- |
+| config | ExpoConfigPayload | ✅       |             |
+| id     | string            | ✅       |             |
+| name   | string            | ✅       |             |

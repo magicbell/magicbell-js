@@ -2,11 +2,11 @@
 
 A list of all methods in the `BroadcastsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                             | Description                                                                                                                                                                           |
-| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [listBroadcasts](#listbroadcasts)   | Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status.                                      |
-| [createBroadcast](#createbroadcast) | Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project. Only administrators can create broadcasts. |
-| [fetchBroadcast](#fetchbroadcast)   | Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.                                                       |
+| Methods                             | Description                                                                                                                                      |
+| :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| [listBroadcasts](#listbroadcasts)   | Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status. |
+| [createBroadcast](#createbroadcast) | Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.       |
+| [fetchBroadcast](#fetchbroadcast)   | Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.                  |
 
 ## listBroadcasts
 
@@ -25,7 +25,7 @@ Retrieves a paginated list of broadcasts for the project. Returns basic informat
 
 **Return Type**
 
-`ArrayOfBroadcasts`
+`BroadcastCollection`
 
 **Example Usage Code Snippet**
 
@@ -49,7 +49,7 @@ import { Client } from '@magicbell/project-client';
 
 ## createBroadcast
 
-Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project. Only administrators can create broadcasts.
+Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.
 
 - HTTP Method: `POST`
 - Endpoint: `/broadcasts`
@@ -141,8 +141,8 @@ import { Broadcast, Client } from '@magicbell/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 6,
-    total: 1,
+    failures: 2,
+    total: 9,
   };
 
   const broadcastStatus: BroadcastStatus = {

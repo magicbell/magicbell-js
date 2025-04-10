@@ -1,25 +1,29 @@
 import { z } from 'zod';
 
-import { images, imagesRequest, imagesResponse } from './images.js';
-import { theme, themeRequest, themeResponse } from './theme.js';
+import {
+  InboxConfigPayload,
+  inboxConfigPayload,
+  inboxConfigPayloadRequest,
+  inboxConfigPayloadResponse,
+} from './inbox-config-payload.js';
 
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const inboxConfig = z.lazy(() => {
   return z.object({
-    images: images.nullable(),
-    locale: z.string().min(2).nullable(),
-    theme: theme.nullable(),
+    config: inboxConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {InboxConfig} inboxConfig
- * @property {Images}
+ * @property {InboxConfigPayload}
  * @property {string}
- * @property {Theme}
+ * @property {string}
  */
 export type InboxConfig = z.infer<typeof inboxConfig>;
 
@@ -30,14 +34,14 @@ export type InboxConfig = z.infer<typeof inboxConfig>;
 export const inboxConfigResponse = z.lazy(() => {
   return z
     .object({
-      images: imagesResponse.nullable(),
-      locale: z.string().min(2).nullable(),
-      theme: themeResponse.nullable(),
+      config: inboxConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      images: data['images'],
-      locale: data['locale'],
-      theme: data['theme'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -47,10 +51,14 @@ export const inboxConfigResponse = z.lazy(() => {
  */
 export const inboxConfigRequest = z.lazy(() => {
   return z
-    .object({ images: imagesRequest.nullable(), locale: z.string().nullable(), theme: themeRequest.nullable() })
+    .object({
+      config: inboxConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
     .transform((data) => ({
-      images: data['images'],
-      locale: data['locale'],
-      theme: data['theme'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });

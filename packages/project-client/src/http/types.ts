@@ -61,6 +61,7 @@ export interface Options<T> {
 export interface RequestConfig {
   retry?: RetryOptions;
   validation?: ValidationOptions;
+  baseUrl?: string;
 }
 
 export interface RetryOptions {

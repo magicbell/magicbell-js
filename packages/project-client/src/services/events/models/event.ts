@@ -62,10 +62,10 @@ export const eventRequest = z.lazy(() => {
   return z
     .object({
       code: z.number().optional(),
-      context: z.any().nullable().optional(),
+      context: z.any().optional().nullable(),
       id: z.string(),
       level: z.string().optional(),
-      log: z.string().nullable().optional(),
+      log: z.string().optional().nullable(),
       timestamp: z.string(),
       type: z.string(),
     })

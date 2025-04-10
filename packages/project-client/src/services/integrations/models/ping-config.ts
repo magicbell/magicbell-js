@@ -1,18 +1,29 @@
 import { z } from 'zod';
 
+import {
+  PingConfigPayload,
+  pingConfigPayload,
+  pingConfigPayloadRequest,
+  pingConfigPayloadResponse,
+} from './ping-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const pingConfig = z.lazy(() => {
   return z.object({
-    url: z.string().min(1).max(100),
+    config: pingConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {PingConfig} pingConfig
- * @property {string} - URL to ping
+ * @property {PingConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type PingConfig = z.infer<typeof pingConfig>;
 
@@ -23,10 +34,14 @@ export type PingConfig = z.infer<typeof pingConfig>;
 export const pingConfigResponse = z.lazy(() => {
   return z
     .object({
-      url: z.string().min(1).max(100),
+      config: pingConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      url: data['url'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -35,7 +50,15 @@ export const pingConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const pingConfigRequest = z.lazy(() => {
-  return z.object({ url: z.string() }).transform((data) => ({
-    url: data['url'],
-  }));
+  return z
+    .object({
+      config: pingConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

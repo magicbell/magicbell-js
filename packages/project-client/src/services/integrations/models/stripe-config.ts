@@ -1,18 +1,29 @@
 import { z } from 'zod';
 
+import {
+  StripeConfigPayload,
+  stripeConfigPayload,
+  stripeConfigPayloadRequest,
+  stripeConfigPayloadResponse,
+} from './stripe-config-payload.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const stripeConfig = z.lazy(() => {
   return z.object({
-    webhookSigningSecret: z.string().min(1).max(100),
+    config: stripeConfigPayload,
+    id: z.string(),
+    name: z.string(),
   });
 });
 
 /**
  *
  * @typedef  {StripeConfig} stripeConfig
- * @property {string} - The signing secret to verify incoming requests from Stripe
+ * @property {StripeConfigPayload}
+ * @property {string}
+ * @property {string}
  */
 export type StripeConfig = z.infer<typeof stripeConfig>;
 
@@ -23,10 +34,14 @@ export type StripeConfig = z.infer<typeof stripeConfig>;
 export const stripeConfigResponse = z.lazy(() => {
   return z
     .object({
-      webhook_signing_secret: z.string().min(1).max(100),
+      config: stripeConfigPayloadResponse,
+      id: z.string(),
+      name: z.string(),
     })
     .transform((data) => ({
-      webhookSigningSecret: data['webhook_signing_secret'],
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
     }));
 });
 
@@ -35,7 +50,15 @@ export const stripeConfigResponse = z.lazy(() => {
  * Is equal to application shape if all property names match the api schema
  */
 export const stripeConfigRequest = z.lazy(() => {
-  return z.object({ webhookSigningSecret: z.string() }).transform((data) => ({
-    webhook_signing_secret: data['webhookSigningSecret'],
-  }));
+  return z
+    .object({
+      config: stripeConfigPayloadRequest,
+      id: z.string(),
+      name: z.string(),
+    })
+    .transform((data) => ({
+      config: data['config'],
+      id: data['id'],
+      name: data['name'],
+    }));
 });

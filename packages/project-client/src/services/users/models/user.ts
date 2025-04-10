@@ -5,18 +5,16 @@ import { z } from 'zod';
  */
 export const user = z.lazy(() => {
   return z.object({
-    createdAt: z.string(),
-    customAttributes: z.any(),
+    createdAt: z.string().optional(),
+    customAttributes: z.any().optional(),
     email: z.string().optional(),
     externalId: z.string().optional(),
     firstName: z.string().optional(),
-    id: z.string(),
+    id: z.string().optional(),
     lastName: z.string().optional(),
     lastNotifiedAt: z.string().optional(),
     lastSeenAt: z.string().optional(),
-    phoneNumbers: z.array(z.string()).optional(),
-    projectId: z.number(),
-    updatedAt: z.string(),
+    updatedAt: z.string().optional(),
   });
 });
 
@@ -32,8 +30,6 @@ export const user = z.lazy(() => {
  * @property {string}
  * @property {string}
  * @property {string}
- * @property {string[]}
- * @property {number}
  * @property {string}
  */
 export type User = z.infer<typeof user>;
@@ -45,18 +41,16 @@ export type User = z.infer<typeof user>;
 export const userResponse = z.lazy(() => {
   return z
     .object({
-      created_at: z.string(),
-      custom_attributes: z.any(),
+      created_at: z.string().optional(),
+      custom_attributes: z.any().optional(),
       email: z.string().optional(),
       external_id: z.string().optional(),
       first_name: z.string().optional(),
-      id: z.string(),
+      id: z.string().optional(),
       last_name: z.string().optional(),
       last_notified_at: z.string().optional(),
       last_seen_at: z.string().optional(),
-      phone_numbers: z.array(z.string()).optional(),
-      project_id: z.number(),
-      updated_at: z.string(),
+      updated_at: z.string().optional(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
@@ -68,8 +62,6 @@ export const userResponse = z.lazy(() => {
       lastName: data['last_name'],
       lastNotifiedAt: data['last_notified_at'],
       lastSeenAt: data['last_seen_at'],
-      phoneNumbers: data['phone_numbers'],
-      projectId: data['project_id'],
       updatedAt: data['updated_at'],
     }));
 });
@@ -81,18 +73,16 @@ export const userResponse = z.lazy(() => {
 export const userRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string(),
-      customAttributes: z.any(),
+      createdAt: z.string().optional(),
+      customAttributes: z.any().optional(),
       email: z.string().optional(),
       externalId: z.string().optional(),
       firstName: z.string().optional(),
-      id: z.string(),
+      id: z.string().optional(),
       lastName: z.string().optional(),
       lastNotifiedAt: z.string().optional(),
       lastSeenAt: z.string().optional(),
-      phoneNumbers: z.array(z.string()).optional(),
-      projectId: z.number(),
-      updatedAt: z.string(),
+      updatedAt: z.string().optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],
@@ -104,8 +94,6 @@ export const userRequest = z.lazy(() => {
       last_name: data['lastName'],
       last_notified_at: data['lastNotifiedAt'],
       last_seen_at: data['lastSeenAt'],
-      phone_numbers: data['phoneNumbers'],
-      project_id: data['projectId'],
       updated_at: data['updatedAt'],
     }));
 });
