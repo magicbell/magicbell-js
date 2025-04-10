@@ -36,7 +36,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.notifications.listNotifications({
-    limit: 1,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
