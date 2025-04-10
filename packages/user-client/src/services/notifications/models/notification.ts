@@ -9,6 +9,7 @@ export const notification = z.lazy(() => {
     archivedAt: z.string().optional().nullable(),
     category: z.string().max(100).optional().nullable(),
     content: z.string().max(10485760).optional().nullable(),
+    createdAt: z.string(),
     customAttributes: z.any().optional().nullable(),
     discardedAt: z.string().optional().nullable(),
     id: z.string(),
@@ -17,6 +18,7 @@ export const notification = z.lazy(() => {
     sentAt: z.string().optional().nullable(),
     title: z.string().min(1).max(255),
     topic: z.string().max(100).optional().nullable(),
+    updatedAt: z.string(),
     userId: z.string(),
   });
 });
@@ -28,7 +30,9 @@ export const notification = z.lazy(() => {
  * @property {string}
  * @property {string}
  * @property {string}
+ * @property {string}
  * @property {any}
+ * @property {string}
  * @property {string}
  * @property {string}
  * @property {string}
@@ -51,6 +55,7 @@ export const notificationResponse = z.lazy(() => {
       archived_at: z.string().optional().nullable(),
       category: z.string().max(100).optional().nullable(),
       content: z.string().max(10485760).optional().nullable(),
+      created_at: z.string(),
       custom_attributes: z.any().optional().nullable(),
       discarded_at: z.string().optional().nullable(),
       id: z.string(),
@@ -59,6 +64,7 @@ export const notificationResponse = z.lazy(() => {
       sent_at: z.string().optional().nullable(),
       title: z.string().min(1).max(255),
       topic: z.string().max(100).optional().nullable(),
+      updated_at: z.string(),
       user_id: z.string(),
     })
     .transform((data) => ({
@@ -66,6 +72,7 @@ export const notificationResponse = z.lazy(() => {
       archivedAt: data['archived_at'],
       category: data['category'],
       content: data['content'],
+      createdAt: data['created_at'],
       customAttributes: data['custom_attributes'],
       discardedAt: data['discarded_at'],
       id: data['id'],
@@ -74,6 +81,7 @@ export const notificationResponse = z.lazy(() => {
       sentAt: data['sent_at'],
       title: data['title'],
       topic: data['topic'],
+      updatedAt: data['updated_at'],
       userId: data['user_id'],
     }));
 });
@@ -89,6 +97,7 @@ export const notificationRequest = z.lazy(() => {
       archivedAt: z.string().optional().nullable(),
       category: z.string().max(100).optional().nullable(),
       content: z.string().max(10485760).optional().nullable(),
+      createdAt: z.string(),
       customAttributes: z.any().optional().nullable(),
       discardedAt: z.string().optional().nullable(),
       id: z.string(),
@@ -97,6 +106,7 @@ export const notificationRequest = z.lazy(() => {
       sentAt: z.string().optional().nullable(),
       title: z.string().min(1).max(255),
       topic: z.string().max(100).optional().nullable(),
+      updatedAt: z.string(),
       userId: z.string(),
     })
     .transform((data) => ({
@@ -104,6 +114,7 @@ export const notificationRequest = z.lazy(() => {
       archived_at: data['archivedAt'],
       category: data['category'],
       content: data['content'],
+      created_at: data['createdAt'],
       custom_attributes: data['customAttributes'],
       discarded_at: data['discardedAt'],
       id: data['id'],
@@ -112,6 +123,7 @@ export const notificationRequest = z.lazy(() => {
       sent_at: data['sentAt'],
       title: data['title'],
       topic: data['topic'],
+      updated_at: data['updatedAt'],
       user_id: data['userId'],
     }));
 });

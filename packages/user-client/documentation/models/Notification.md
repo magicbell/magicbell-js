@@ -4,8 +4,10 @@
 
 | Name             | Type   | Required | Description |
 | :--------------- | :----- | :------- | :---------- |
+| createdAt        | string | ✅       |             |
 | id               | string | ✅       |             |
 | title            | string | ✅       |             |
+| updatedAt        | string | ✅       |             |
 | userId           | string | ✅       |             |
 | actionUrl        | string | ❌       |             |
 | archivedAt       | string | ❌       |             |
