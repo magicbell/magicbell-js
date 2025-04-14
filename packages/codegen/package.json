@@ -7,7 +7,6 @@
     "Stephan Meijer <stephan.meijer@gmail.com>"
   ],
   "license": "SEE LICENSE IN LICENSE",
-  "source": "./src/index.ts",
   "module": "./dist/esm/index.js",
   "typings": "dist/index.d.ts",
   "sideEffects": false,

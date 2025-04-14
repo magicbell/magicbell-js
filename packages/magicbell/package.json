@@ -11,7 +11,6 @@
     "project": "./tsconfig.build.json",
     "exports": "./src/*.ts"
   },
-  "source": "./src/index.ts",
   "main": "./dist/commonjs/index.js",
   "module": "./dist/esm/index.js",
   "exports": {
