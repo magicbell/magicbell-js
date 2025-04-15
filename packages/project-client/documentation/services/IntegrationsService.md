@@ -100,7 +100,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    limit: 7,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -169,13 +169,12 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfigPayload: ApnsConfigPayload = {
   appId: "app_id",
   badge: badge,
-  certificate: "BEGIN PRIVATE KEY---------
-Vz=
--------- END PRIVATE KEYYYYYY----------
-",
-  keyId: "labore est",
+  certificate: " BEGIN PRIVATE KEY-----
+FX=
+------END PRIVATE KEYYYYY---",
+  keyId: "velit nisi",
   payloadVersion: payloadVersion,
-  teamId: "consequat "
+  teamId: "ipsum ut U"
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
@@ -647,9 +646,9 @@ const fcmConfigPayload: FcmConfigPayload = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "BEGINPQJURVZ-----------
-U5HMsOeGorl=
------------ ENDOUM--",
+  privateKey: "-------BEGINS---------
+yNX=
+--- ENDG-----",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -893,7 +892,7 @@ import { Client, InboxConfigPayload } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 3.09,
+    backgroundOpacity: 8.58,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1600,10 +1599,10 @@ import { Client, SlackConfigPayload } from '@magicbell/project-client';
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: 'IJL8J4ZV',
-    clientId: '841268.68347039',
-    clientSecret: 'esse ea ex officia pariaturoccae',
-    signingSecret: 'officia voluptateirure anim aliq',
+    appId: '5M9QRWG',
+    clientId: '98240.73933056318',
+    clientSecret: 'reprehenderit voluptate aliquipm',
+    signingSecret: 'irure voluptate Duis dolor Excep',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
@@ -1952,7 +1951,7 @@ import { Client, TwilioConfigPayload } from '@magicbell/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+0875883',
+    from: '+22261',
   };
 
   const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);

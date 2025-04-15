@@ -5,16 +5,16 @@ import { z } from 'zod';
  */
 export const user = z.lazy(() => {
   return z.object({
-    createdAt: z.string().optional(),
-    customAttributes: z.any().optional(),
-    email: z.string().optional(),
-    externalId: z.string().optional(),
-    firstName: z.string().optional(),
+    createdAt: z.string().optional().nullable(),
+    customAttributes: z.any().optional().nullable(),
+    email: z.string().optional().nullable(),
+    externalId: z.string().optional().nullable(),
+    firstName: z.string().optional().nullable(),
     id: z.string().optional(),
-    lastName: z.string().optional(),
-    lastNotifiedAt: z.string().optional(),
-    lastSeenAt: z.string().optional(),
-    updatedAt: z.string().optional(),
+    lastName: z.string().optional().nullable(),
+    lastNotifiedAt: z.string().optional().nullable(),
+    lastSeenAt: z.string().optional().nullable(),
+    updatedAt: z.string().optional().nullable(),
   });
 });
 
@@ -41,16 +41,16 @@ export type User = z.infer<typeof user>;
 export const userResponse = z.lazy(() => {
   return z
     .object({
-      created_at: z.string().optional(),
-      custom_attributes: z.any().optional(),
-      email: z.string().optional(),
-      external_id: z.string().optional(),
-      first_name: z.string().optional(),
+      created_at: z.string().optional().nullable(),
+      custom_attributes: z.any().optional().nullable(),
+      email: z.string().optional().nullable(),
+      external_id: z.string().optional().nullable(),
+      first_name: z.string().optional().nullable(),
       id: z.string().optional(),
-      last_name: z.string().optional(),
-      last_notified_at: z.string().optional(),
-      last_seen_at: z.string().optional(),
-      updated_at: z.string().optional(),
+      last_name: z.string().optional().nullable(),
+      last_notified_at: z.string().optional().nullable(),
+      last_seen_at: z.string().optional().nullable(),
+      updated_at: z.string().optional().nullable(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
@@ -73,16 +73,16 @@ export const userResponse = z.lazy(() => {
 export const userRequest = z.lazy(() => {
   return z
     .object({
-      createdAt: z.string().optional(),
-      customAttributes: z.any().optional(),
-      email: z.string().optional(),
-      externalId: z.string().optional(),
-      firstName: z.string().optional(),
+      createdAt: z.string().optional().nullable(),
+      customAttributes: z.any().optional().nullable(),
+      email: z.string().optional().nullable(),
+      externalId: z.string().optional().nullable(),
+      firstName: z.string().optional().nullable(),
       id: z.string().optional(),
-      lastName: z.string().optional(),
-      lastNotifiedAt: z.string().optional(),
-      lastSeenAt: z.string().optional(),
-      updatedAt: z.string().optional(),
+      lastName: z.string().optional().nullable(),
+      lastNotifiedAt: z.string().optional().nullable(),
+      lastSeenAt: z.string().optional().nullable(),
+      updatedAt: z.string().optional().nullable(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],
