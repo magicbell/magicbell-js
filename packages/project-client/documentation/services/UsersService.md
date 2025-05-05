@@ -36,7 +36,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.users.listUsers({
-    limit: 1,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

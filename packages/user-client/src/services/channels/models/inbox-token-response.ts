@@ -3,7 +3,7 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const inboxTokenResponse1 = z.lazy(() => {
+export const inboxTokenResponse = z.lazy(() => {
   return z.object({
     connectionId: z.string().optional().nullable(),
     createdAt: z.string(),
@@ -16,7 +16,7 @@ export const inboxTokenResponse1 = z.lazy(() => {
 
 /**
  *
- * @typedef  {InboxTokenResponse1} inboxTokenResponse1
+ * @typedef  {InboxTokenResponse} inboxTokenResponse
  * @property {string}
  * @property {string}
  * @property {string}
@@ -24,13 +24,13 @@ export const inboxTokenResponse1 = z.lazy(() => {
  * @property {string}
  * @property {string}
  */
-export type InboxTokenResponse1 = z.infer<typeof inboxTokenResponse1>;
+export type InboxTokenResponse = z.infer<typeof inboxTokenResponse>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const inboxTokenResponse1Response = z.lazy(() => {
+export const inboxTokenResponseResponse = z.lazy(() => {
   return z
     .object({
       connection_id: z.string().optional().nullable(),
@@ -54,7 +54,7 @@ export const inboxTokenResponse1Response = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const inboxTokenResponse1Request = z.lazy(() => {
+export const inboxTokenResponseRequest = z.lazy(() => {
   return z
     .object({
       connectionId: z.string().optional().nullable(),

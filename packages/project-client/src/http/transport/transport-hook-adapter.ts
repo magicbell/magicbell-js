@@ -2,7 +2,8 @@ import { CustomHook } from '../hooks/custom-hook.js';
 import { HttpError, HttpRequest } from '../hooks/hook.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
 import { HttpResponse } from '../types.js';
-import { Request, RequestParameter } from './request.js';
+import { Request } from './request.js';
+import { RequestParameter } from './types.js';
 
 export class TransportHookAdapter<T> {
   private hook: CustomHook = new CustomHook();

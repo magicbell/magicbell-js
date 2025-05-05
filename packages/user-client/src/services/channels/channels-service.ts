@@ -20,8 +20,8 @@ import { ExpoTokenPayload, expoTokenPayloadRequest, expoTokenPayloadResponse } f
 import { FcmToken, fcmTokenResponse } from './models/fcm-token.js';
 import { FcmTokenCollection, fcmTokenCollectionResponse } from './models/fcm-token-collection.js';
 import { FcmTokenPayload, fcmTokenPayloadRequest, fcmTokenPayloadResponse } from './models/fcm-token-payload.js';
-import { InboxToken, inboxTokenRequest, inboxTokenResponse } from './models/inbox-token.js';
-import { InboxTokenResponse1, inboxTokenResponse1Response } from './models/inbox-token-response-1.js';
+import { InboxToken, inboxTokenRequest, inboxTokenResponse1 } from './models/inbox-token.js';
+import { InboxTokenResponse, inboxTokenResponseResponse } from './models/inbox-token-response.js';
 import {
   InboxTokenResponseCollection,
   inboxTokenResponseCollectionResponse,
@@ -112,7 +112,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: inboxTokenResponse,
+        schema: inboxTokenResponse1,
         contentType: ContentType.Json,
         status: 201,
       })
@@ -129,9 +129,9 @@ export class ChannelsService extends BaseService {
    * Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxTokenResponse1>>} OK
+   * @returns {Promise<HttpResponse<InboxTokenResponse>>} OK
    */
-  async getInAppInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<InboxTokenResponse1>> {
+  async getInAppInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<InboxTokenResponse>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -141,7 +141,7 @@ export class ChannelsService extends BaseService {
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
       .addResponse({
-        schema: inboxTokenResponse1Response,
+        schema: inboxTokenResponseResponse,
         contentType: ContentType.Json,
         status: 200,
       })
@@ -153,7 +153,7 @@ export class ChannelsService extends BaseService {
         value: tokenId,
       })
       .build();
-    return this.client.call<InboxTokenResponse1>(request);
+    return this.client.call<InboxTokenResponse>(request);
   }
 
   /**

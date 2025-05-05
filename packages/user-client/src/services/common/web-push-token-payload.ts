@@ -5,7 +5,7 @@ import {
   webPushTokenPayloadKeys,
   webPushTokenPayloadKeysRequest,
   webPushTokenPayloadKeysResponse,
-} from './web-push-token-payload-keys.js';
+} from '../channels/models/web-push-token-payload-keys.js';
 
 /**
  * The shape of the model inside the application code - what the users use
