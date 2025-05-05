@@ -52,4 +52,128 @@ export class NotificationsService extends BaseService {
       .build();
     return this.client.call<NotificationCollection>(request);
   }
+
+  /**
+   * Archives a notification.
+   * @param {string} notificationId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async archiveNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/{notification_id}/archive')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Marks a notification as read.
+   * @param {string} notificationId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async markNotificationRead(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/{notification_id}/read')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Unarchives a notification.
+   * @param {string} notificationId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async unarchiveNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/{notification_id}/unarchive')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Marks a notification as unread.
+   * @param {string} notificationId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async markNotificationUnread(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/{notification_id}/unread')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
 }

@@ -3,14 +3,14 @@ import z, { ZodType } from 'zod';
 import { Environment } from '../environment.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
 import { ContentType, HttpMethod, RequestConfig, RetryOptions, SdkConfig, ValidationOptions } from '../types.js';
+import { Request } from './request.js';
 import {
   CreateRequestParameters,
   ErrorDefinition,
-  Request,
   RequestPagination,
   RequestParameter,
   ResponseDefinition,
-} from './request.js';
+} from './types.js';
 
 export class RequestBuilder<Page extends unknown[] = unknown[]> {
   private params: CreateRequestParameters<Page>;
@@ -145,8 +145,8 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
       return this;
     }
 
-    this.params.headers.set(keyName ?? 'X-API-Key', {
-      key: keyName ?? 'X-API-Key',
+    this.params.headers.set(keyName ?? 'X-API-KEY', {
+      key: keyName ?? 'X-API-KEY',
       value: apiKey,
       explode: false,
       style: SerializationStyle.SIMPLE,
