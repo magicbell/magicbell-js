@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
-      - uses: rharkor/caching-for-turbo@v1.6
+      - uses: rharkor/caching-for-turbo@v1.8
       - name: Build
         run: yarn build
 
@@ -55,7 +55,7 @@ jobs:
           node-version: 20
       - uses: bahmutov/npm-install@v1
         # we need to upgrade to Node16 module resolution so TSC can use package.json#exports
-      - uses: rharkor/caching-for-turbo@v1.6
+      - uses: rharkor/caching-for-turbo@v1.8
       - name: Build
         run: yarn build
       - name: TypeScript
@@ -72,7 +72,7 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
-      - uses: rharkor/caching-for-turbo@v1.6
+      - uses: rharkor/caching-for-turbo@v1.8
       - name: Build
         run: yarn build
       # playwright needs to be re-enabled when we're including in-app tests in ci
@@ -91,7 +91,7 @@ jobs:
         with:
           node-version: 20
       - uses: bahmutov/npm-install@v1
-      - uses: rharkor/caching-for-turbo@v1.6
+      - uses: rharkor/caching-for-turbo@v1.8
       - name: Build
         run: yarn build
       - name: publish preview release
