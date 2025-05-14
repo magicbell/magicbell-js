@@ -17,7 +17,7 @@ export const categoryDeliveryConfig = z.lazy(() => {
     key: z
       .string()
       .min(3)
-      .regex(/^[A-Za-z0-9_\.\-:]+$/),
+      .regex(/^[A-Za-z0-9_.\-:\/]+$/),
   });
 });
 
@@ -42,7 +42,7 @@ export const categoryDeliveryConfigResponse = z.lazy(() => {
       key: z
         .string()
         .min(3)
-        .regex(/^[A-Za-z0-9_\.\-:]+$/),
+        .regex(/^[A-Za-z0-9_.\-:\/]+$/),
     })
     .transform((data) => ({
       channels: data['channels'],
@@ -63,7 +63,7 @@ export const categoryDeliveryConfigRequest = z.lazy(() => {
       key: z
         .string()
         .min(3)
-        .regex(/^[A-Za-z0-9_\.\-:]+$/),
+        .regex(/^[A-Za-z0-9_.\-:\/]+$/),
     })
     .transform((data) => ({
       channels: data['channels'],

@@ -83,7 +83,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 5,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -122,9 +122,11 @@ The SDK includes several models that represent the data structures used in API r
 | :----------------------------------------------------------------------------------- | :---------- |
 | [BroadcastCollection](documentation/models/BroadcastCollection.md)                   |             |
 | [Broadcast](documentation/models/Broadcast.md)                                       |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [CategoryDeliveryConfig](documentation/models/CategoryDeliveryConfig.md)             |             |
 | [InboxTokenResponseCollection](documentation/models/InboxTokenResponseCollection.md) |             |
 | [InboxTokenResponse](documentation/models/InboxTokenResponse.md)                     |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                               |             |
 | [ApnsTokenCollection](documentation/models/ApnsTokenCollection.md)                   |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                       |             |
@@ -140,65 +142,69 @@ The SDK includes several models that represent the data structures used in API r
 | [WebPushToken](documentation/models/WebPushToken.md)                                 |             |
 | [EventCollection](documentation/models/EventCollection.md)                           |             |
 | [Event](documentation/models/Event.md)                                               |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [IntegrationConfigCollection](documentation/models/IntegrationConfigCollection.md)   |             |
+| [IntegrationConfig](documentation/models/IntegrationConfig.md)                       |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [ApnsConfigCollection](documentation/models/ApnsConfigCollection.md)                 |             |
+| [ApnsConfig](documentation/models/ApnsConfig.md)                                     |             |
 | [ApnsConfigPayload](documentation/models/ApnsConfigPayload.md)                       |             |
 | [AwssnsConfigCollection](documentation/models/AwssnsConfigCollection.md)             |             |
+| [AwssnsConfig](documentation/models/AwssnsConfig.md)                                 |             |
 | [AwssnsConfigPayload](documentation/models/AwssnsConfigPayload.md)                   |             |
 | [EventSourceConfigCollection](documentation/models/EventSourceConfigCollection.md)   |             |
+| [EventSourceConfig](documentation/models/EventSourceConfig.md)                       |             |
 | [EventSourceConfigPayload](documentation/models/EventSourceConfigPayload.md)         |             |
 | [ExpoConfigCollection](documentation/models/ExpoConfigCollection.md)                 |             |
+| [ExpoConfig](documentation/models/ExpoConfig.md)                                     |             |
 | [ExpoConfigPayload](documentation/models/ExpoConfigPayload.md)                       |             |
 | [FcmConfigCollection](documentation/models/FcmConfigCollection.md)                   |             |
+| [FcmConfig](documentation/models/FcmConfig.md)                                       |             |
 | [FcmConfigPayload](documentation/models/FcmConfigPayload.md)                         |             |
 | [GithubConfigCollection](documentation/models/GithubConfigCollection.md)             |             |
+| [GithubConfig](documentation/models/GithubConfig.md)                                 |             |
 | [GithubConfigPayload](documentation/models/GithubConfigPayload.md)                   |             |
 | [InboxConfigCollection](documentation/models/InboxConfigCollection.md)               |             |
+| [InboxConfig](documentation/models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](documentation/models/InboxConfigPayload.md)                     |             |
 | [MailgunConfigCollection](documentation/models/MailgunConfigCollection.md)           |             |
+| [MailgunConfig](documentation/models/MailgunConfig.md)                               |             |
 | [MailgunConfigPayload](documentation/models/MailgunConfigPayload.md)                 |             |
 | [PingConfigCollection](documentation/models/PingConfigCollection.md)                 |             |
+| [PingConfig](documentation/models/PingConfig.md)                                     |             |
 | [PingConfigPayload](documentation/models/PingConfigPayload.md)                       |             |
 | [SendgridConfigCollection](documentation/models/SendgridConfigCollection.md)         |             |
+| [SendgridConfig](documentation/models/SendgridConfig.md)                             |             |
 | [SendgridConfigPayload](documentation/models/SendgridConfigPayload.md)               |             |
 | [SesConfigCollection](documentation/models/SesConfigCollection.md)                   |             |
+| [SesConfig](documentation/models/SesConfig.md)                                       |             |
 | [SesConfigPayload](documentation/models/SesConfigPayload.md)                         |             |
 | [SlackConfigCollection](documentation/models/SlackConfigCollection.md)               |             |
+| [SlackConfig](documentation/models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](documentation/models/SlackConfigPayload.md)                     |             |
 | [StripeConfigCollection](documentation/models/StripeConfigCollection.md)             |             |
+| [StripeConfig](documentation/models/StripeConfig.md)                                 |             |
 | [StripeConfigPayload](documentation/models/StripeConfigPayload.md)                   |             |
 | [TemplatesConfigCollection](documentation/models/TemplatesConfigCollection.md)       |             |
+| [TemplatesConfig](documentation/models/TemplatesConfig.md)                           |             |
 | [TwilioConfigCollection](documentation/models/TwilioConfigCollection.md)             |             |
+| [TwilioConfig](documentation/models/TwilioConfig.md)                                 |             |
 | [TwilioConfigPayload](documentation/models/TwilioConfigPayload.md)                   |             |
 | [WebpushConfigCollection](documentation/models/WebpushConfigCollection.md)           |             |
+| [WebpushConfig](documentation/models/WebpushConfig.md)                               |             |
 | [WebpushConfigPayload](documentation/models/WebpushConfigPayload.md)                 |             |
 | [AccessTokenCollection](documentation/models/AccessTokenCollection.md)               |             |
+| [AccessToken](documentation/models/AccessToken.md)                                   |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [CreateProjectTokenRequest](documentation/models/CreateProjectTokenRequest.md)       |             |
 | [CreateTokenResponse](documentation/models/CreateTokenResponse.md)                   |             |
 | [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                 |             |
 | [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)             |             |
 | [DeliveryPlanCollection](documentation/models/DeliveryPlanCollection.md)             |             |
+| [DeliveryPlan](documentation/models/DeliveryPlan.md)                                 |             |
+| [Links](documentation/models/Links.md)                                               |             |
 | [UserCollection](documentation/models/UserCollection.md)                             |             |
 | [User](documentation/models/User.md)                                                 |             |
 | [Links](documentation/models/Links.md)                                               |             |
-| [IntegrationConfig](documentation/models/IntegrationConfig.md)                       |             |
-| [ApnsConfig](documentation/models/ApnsConfig.md)                                     |             |
-| [AwssnsConfig](documentation/models/AwssnsConfig.md)                                 |             |
-| [EventSourceConfig](documentation/models/EventSourceConfig.md)                       |             |
-| [ExpoConfig](documentation/models/ExpoConfig.md)                                     |             |
-| [FcmConfig](documentation/models/FcmConfig.md)                                       |             |
-| [GithubConfig](documentation/models/GithubConfig.md)                                 |             |
-| [InboxConfig](documentation/models/InboxConfig.md)                                   |             |
-| [MailgunConfig](documentation/models/MailgunConfig.md)                               |             |
-| [PingConfig](documentation/models/PingConfig.md)                                     |             |
-| [SendgridConfig](documentation/models/SendgridConfig.md)                             |             |
-| [SesConfig](documentation/models/SesConfig.md)                                       |             |
-| [SlackConfig](documentation/models/SlackConfig.md)                                   |             |
-| [StripeConfig](documentation/models/StripeConfig.md)                                 |             |
-| [TemplatesConfig](documentation/models/TemplatesConfig.md)                           |             |
-| [TwilioConfig](documentation/models/TwilioConfig.md)                                 |             |
-| [WebpushConfig](documentation/models/WebpushConfig.md)                               |             |
-| [AccessToken](documentation/models/AccessToken.md)                                   |             |
-| [DeliveryPlan](documentation/models/DeliveryPlan.md)                                 |             |
 
 </details>

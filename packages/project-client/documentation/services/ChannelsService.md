@@ -90,7 +90,7 @@ import { CategoryDeliveryConfig, Client } from '@magicbell/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 8,
+    delay: 9,
     if: 'if',
   };
 
@@ -137,7 +137,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getInAppInboxUserTokens('user_id', {
-    limit: 6,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -245,7 +245,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
-    limit: 7,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -353,7 +353,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
-    limit: 3,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -461,7 +461,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
-    limit: 10,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -569,7 +569,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getSlackUserTokens('user_id', {
-    limit: 6,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -677,7 +677,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getTeamsUserTokens('user_id', {
-    limit: 3,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -785,7 +785,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.channels.getWebPushUserTokens('user_id', {
-    limit: 3,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

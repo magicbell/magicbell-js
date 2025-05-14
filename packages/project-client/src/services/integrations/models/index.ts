@@ -34,6 +34,7 @@ export type { IntegrationConfigCollection } from './integration-config-collectio
 export type { MailgunConfig } from './mailgun-config.js';
 export type { MailgunConfigCollection } from './mailgun-config-collection.js';
 export type { MailgunConfigPayload } from './mailgun-config-payload.js';
+export type { MailgunConfigPayloadFrom } from './mailgun-config-payload-from.js';
 export type { Notification } from './notification.js';
 export { PayloadVersion } from './payload-version.js';
 export type { PingConfig } from './ping-config.js';

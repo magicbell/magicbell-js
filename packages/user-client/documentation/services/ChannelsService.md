@@ -63,7 +63,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 3,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -101,7 +101,7 @@ import { Client, InboxToken } from '@magicbell/user-client';
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'minim ea fugiat',
+    token: 'enim reprehende',
   };
 
   const { data } = await client.channels.saveInAppInboxToken(inboxToken);
@@ -125,7 +125,7 @@ Retrieves details of a specific in_app token belonging to the authenticated user
 
 **Return Type**
 
-`InboxTokenResponse1`
+`InboxTokenResponse`
 
 **Example Usage Code Snippet**
 
@@ -206,7 +206,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 7,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -246,7 +246,7 @@ import { ApnsTokenPayload, Client } from '@magicbell/user-client';
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'pariatur veniam',
+    deviceToken: 'Duis dolore com',
     installationId: apnsTokenPayloadInstallationId,
   };
 
@@ -352,7 +352,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    limit: 10,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -494,7 +494,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    limit: 8,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -533,7 +533,7 @@ import { Client, FcmTokenPayload } from '@magicbell/user-client';
   const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
 
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'nulla ea nonven',
+    deviceToken: 'laborum esse co',
     installationId: fcmTokenPayloadInstallationId,
   };
 
@@ -639,7 +639,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    limit: 1,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -792,7 +792,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getTeamsTokens({
-    limit: 10,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -938,7 +938,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    limit: 7,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

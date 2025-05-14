@@ -20,6 +20,7 @@ A list of all methods in the `UsersService` service. Click on the method name to
 | limit         | number | ❌       |             |
 | startingAfter | string | ❌       |             |
 | endingBefore  | string | ❌       |             |
+| query         | string | ❌       |             |
 
 **Return Type**
 
@@ -36,9 +37,10 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.users.listUsers({
-    limit: 1,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
+    query: 'query',
   });
 
   console.log(data);
