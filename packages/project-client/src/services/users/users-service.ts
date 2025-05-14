@@ -15,6 +15,7 @@ export class UsersService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
+   * @param {string} [params.query] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<UserCollection>>} OK
    */
@@ -46,6 +47,10 @@ export class UsersService extends BaseService {
       .addQueryParam({
         key: 'ending_before',
         value: params?.endingBefore,
+      })
+      .addQueryParam({
+        key: 'query',
+        value: params?.query,
       })
       .build();
     return this.client.call<UserCollection>(request);

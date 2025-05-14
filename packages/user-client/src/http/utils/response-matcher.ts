@@ -1,4 +1,4 @@
-import { ResponseDefinition } from '../transport/request.js';
+import { ResponseDefinition } from '../transport/types.js';
 import { ContentType, HttpResponse } from '../types.js';
 import { getContentTypeDefinition } from './content-type.js';
 

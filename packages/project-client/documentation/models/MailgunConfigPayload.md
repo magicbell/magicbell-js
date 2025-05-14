@@ -2,11 +2,12 @@
 
 **Properties**
 
-| Name   | Type   | Required | Description |
-| :----- | :----- | :------- | :---------- |
-| apiKey | string | ✅       |             |
-| domain | string | ✅       |             |
-| region | Region | ✅       |             |
+| Name   | Type                     | Required | Description |
+| :----- | :----------------------- | :------- | :---------- |
+| apiKey | string                   | ✅       |             |
+| domain | string                   | ✅       |             |
+| region | Region                   | ✅       |             |
+| from   | MailgunConfigPayloadFrom | ❌       |             |
 
 # Region
 
@@ -16,3 +17,12 @@
 | :--- | :----- | :------- | :---------- |
 | US   | string | ✅       | "us"        |
 | EU   | string | ✅       | "eu"        |
+
+# MailgunConfigPayloadFrom
+
+**Properties**
+
+| Name  | Type   | Required | Description                    |
+| :---- | :----- | :------- | :----------------------------- |
+| email | string | ✅       | The email address to send from |
+| name  | string | ❌       | The name to send from          |

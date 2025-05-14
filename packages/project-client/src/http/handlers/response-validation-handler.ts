@@ -1,6 +1,7 @@
 import { ZodUndefined } from 'zod';
 
-import { Request, ResponseDefinition } from '../transport/request.js';
+import { Request } from '../transport/request.js';
+import { ResponseDefinition } from '../transport/types.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 import { ResponseMatcher } from '../utils/response-matcher.js';
 

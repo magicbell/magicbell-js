@@ -83,7 +83,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 3,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -117,36 +117,38 @@ The SDK includes several models that represent the data structures used in API r
 | Name                                                                                         | Description |
 | :------------------------------------------------------------------------------------------- | :---------- |
 | [InboxTokenResponseCollection](documentation/models/InboxTokenResponseCollection.md)         |             |
+| [InboxTokenResponse](documentation/models/InboxTokenResponse.md)                             |             |
+| [Links](documentation/models/Links.md)                                                       |             |
 | [InboxToken](documentation/models/InboxToken.md)                                             |             |
-| [InboxTokenResponse1](documentation/models/InboxTokenResponse1.md)                           |             |
 | [DiscardResult](documentation/models/DiscardResult.md)                                       |             |
 | [ApnsTokenCollection](documentation/models/ApnsTokenCollection.md)                           |             |
-| [ApnsTokenPayload](documentation/models/ApnsTokenPayload.md)                                 |             |
 | [ApnsToken](documentation/models/ApnsToken.md)                                               |             |
+| [ApnsTokenPayload](documentation/models/ApnsTokenPayload.md)                                 |             |
 | [ExpoTokenCollection](documentation/models/ExpoTokenCollection.md)                           |             |
-| [ExpoTokenPayload](documentation/models/ExpoTokenPayload.md)                                 |             |
 | [ExpoToken](documentation/models/ExpoToken.md)                                               |             |
+| [ExpoTokenPayload](documentation/models/ExpoTokenPayload.md)                                 |             |
 | [FcmTokenCollection](documentation/models/FcmTokenCollection.md)                             |             |
-| [FcmTokenPayload](documentation/models/FcmTokenPayload.md)                                   |             |
 | [FcmToken](documentation/models/FcmToken.md)                                                 |             |
+| [FcmTokenPayload](documentation/models/FcmTokenPayload.md)                                   |             |
 | [SlackTokenCollection](documentation/models/SlackTokenCollection.md)                         |             |
-| [SlackTokenPayload](documentation/models/SlackTokenPayload.md)                               |             |
 | [SlackToken](documentation/models/SlackToken.md)                                             |             |
+| [SlackTokenPayload](documentation/models/SlackTokenPayload.md)                               |             |
 | [TeamsTokenCollection](documentation/models/TeamsTokenCollection.md)                         |             |
-| [TeamsTokenPayload](documentation/models/TeamsTokenPayload.md)                               |             |
 | [TeamsToken](documentation/models/TeamsToken.md)                                             |             |
+| [TeamsTokenPayload](documentation/models/TeamsTokenPayload.md)                               |             |
 | [WebPushTokenCollection](documentation/models/WebPushTokenCollection.md)                     |             |
-| [WebPushTokenPayload](documentation/models/WebPushTokenPayload.md)                           |             |
 | [WebPushToken](documentation/models/WebPushToken.md)                                         |             |
+| [WebPushTokenPayload](documentation/models/WebPushTokenPayload.md)                           |             |
 | [InboxConfigPayload](documentation/models/InboxConfigPayload.md)                             |             |
 | [SlackInstallation](documentation/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](documentation/models/SlackFinishInstallResponse.md)             |             |
 | [SlackStartInstall](documentation/models/SlackStartInstall.md)                               |             |
 | [SlackStartInstallResponseContent](documentation/models/SlackStartInstallResponseContent.md) |             |
 | [TemplatesInstallation](documentation/models/TemplatesInstallation.md)                       |             |
+| [WebPushTokenPayload](documentation/models/WebPushTokenPayload.md)                           |             |
 | [WebPushStartInstallationResponse](documentation/models/WebPushStartInstallationResponse.md) |             |
 | [NotificationCollection](documentation/models/NotificationCollection.md)                     |             |
-| [Links](documentation/models/Links.md)                                                       |             |
 | [Notification](documentation/models/Notification.md)                                         |             |
+| [Links](documentation/models/Links.md)                                                       |             |
 
 </details>

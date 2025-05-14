@@ -9,7 +9,6 @@
 | id             | string | ❌       |             |
 | nextStep       | number | ❌       |             |
 | notificationId | string | ❌       |             |
-| scheduledAt    | string | ❌       |             |
 | startedAt      | string | ❌       |             |
 | status         | string | ❌       |             |
 | topic          | string | ❌       |             |

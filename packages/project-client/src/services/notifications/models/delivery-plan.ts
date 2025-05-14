@@ -10,7 +10,6 @@ export const deliveryPlan = z.lazy(() => {
     id: z.string().optional(),
     nextStep: z.number().optional(),
     notificationId: z.string().optional(),
-    scheduledAt: z.string().optional(),
     startedAt: z.string().optional().nullable(),
     status: z.string().optional(),
     topic: z.string().optional().nullable(),
@@ -25,7 +24,6 @@ export const deliveryPlan = z.lazy(() => {
  * @property {string}
  * @property {string}
  * @property {number}
- * @property {string}
  * @property {string}
  * @property {string}
  * @property {string}
@@ -46,7 +44,6 @@ export const deliveryPlanResponse = z.lazy(() => {
       id: z.string().optional(),
       next_step: z.number().optional(),
       notification_id: z.string().optional(),
-      scheduled_at: z.string().optional(),
       started_at: z.string().optional().nullable(),
       status: z.string().optional(),
       topic: z.string().optional().nullable(),
@@ -58,7 +55,6 @@ export const deliveryPlanResponse = z.lazy(() => {
       id: data['id'],
       nextStep: data['next_step'],
       notificationId: data['notification_id'],
-      scheduledAt: data['scheduled_at'],
       startedAt: data['started_at'],
       status: data['status'],
       topic: data['topic'],
@@ -78,7 +74,6 @@ export const deliveryPlanRequest = z.lazy(() => {
       id: z.string().optional(),
       nextStep: z.number().optional(),
       notificationId: z.string().optional(),
-      scheduledAt: z.string().optional(),
       startedAt: z.string().optional().nullable(),
       status: z.string().optional(),
       topic: z.string().optional().nullable(),
@@ -90,7 +85,6 @@ export const deliveryPlanRequest = z.lazy(() => {
       id: data['id'],
       next_step: data['nextStep'],
       notification_id: data['notificationId'],
-      scheduled_at: data['scheduledAt'],
       started_at: data['startedAt'],
       status: data['status'],
       topic: data['topic'],

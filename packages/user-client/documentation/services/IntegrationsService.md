@@ -46,7 +46,7 @@ import { Client, InboxConfigPayload } from '@magicbell/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 9.79,
+    backgroundOpacity: 6.57,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -214,7 +214,7 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 123,
+    expiresIn: 8,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -243,8 +243,8 @@ import { Client, SlackInstallation } from '@magicbell/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 4,
-    id: 'UO6KXQ6V-',
+    expiresIn: 2,
+    id: '1QDFZ-h/5vDSBD',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',

@@ -1,4 +1,4 @@
-import { RequestParameter } from '../transport/request.js';
+import { RequestParameter } from '../transport/types.js';
 
 export type SerializationOptions = {
   explode: boolean;

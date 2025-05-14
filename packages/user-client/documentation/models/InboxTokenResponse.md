@@ -1,4 +1,4 @@
-# InboxTokenResponse1
+# InboxTokenResponse
 
 **Properties**
 

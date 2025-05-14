@@ -2,18 +2,18 @@ import { z } from 'zod';
 
 import { Links, links, linksRequest, linksResponse } from '../../common/links.js';
 import {
-  InboxTokenResponse1,
-  inboxTokenResponse1,
-  inboxTokenResponse1Request,
-  inboxTokenResponse1Response,
-} from './inbox-token-response-1.js';
+  InboxTokenResponse,
+  inboxTokenResponse,
+  inboxTokenResponseRequest,
+  inboxTokenResponseResponse,
+} from './inbox-token-response.js';
 
 /**
  * The shape of the model inside the application code - what the users use
  */
 export const inboxTokenResponseCollection = z.lazy(() => {
   return z.object({
-    data: z.array(inboxTokenResponse1).optional(),
+    data: z.array(inboxTokenResponse).optional(),
     links: links.optional(),
   });
 });
@@ -21,7 +21,7 @@ export const inboxTokenResponseCollection = z.lazy(() => {
 /**
  *
  * @typedef  {InboxTokenResponseCollection} inboxTokenResponseCollection
- * @property {InboxTokenResponse1[]}
+ * @property {InboxTokenResponse[]}
  * @property {Links}
  */
 export type InboxTokenResponseCollection = z.infer<typeof inboxTokenResponseCollection>;
@@ -33,7 +33,7 @@ export type InboxTokenResponseCollection = z.infer<typeof inboxTokenResponseColl
 export const inboxTokenResponseCollectionResponse = z.lazy(() => {
   return z
     .object({
-      data: z.array(inboxTokenResponse1Response).optional(),
+      data: z.array(inboxTokenResponseResponse).optional(),
       links: linksResponse.optional(),
     })
     .transform((data) => ({
@@ -49,7 +49,7 @@ export const inboxTokenResponseCollectionResponse = z.lazy(() => {
 export const inboxTokenResponseCollectionRequest = z.lazy(() => {
   return z
     .object({
-      data: z.array(inboxTokenResponse1Request).optional(),
+      data: z.array(inboxTokenResponseRequest).optional(),
       links: linksRequest.optional(),
     })
     .transform((data) => ({
