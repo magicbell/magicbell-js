@@ -5,6 +5,7 @@
   "specFilePath": "./magicbell-client.swagger.json",
   "languages": ["typescript"],
   "auth": ["bearer"],
+  "docs": ["snippets"],
   "customizations": {
     "includeOptionalSnippetParameters": true,
     "authentication": {
@@ -25,6 +26,11 @@
       "enabled": true,
       "maxAttempts": 3,
       "retryDelay": 150
+    },
+    "documentation": {
+      "snippets": {
+        "format": "json"
+      }
     }
   },
   "languageOptions": {
