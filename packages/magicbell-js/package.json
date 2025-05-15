@@ -1,0 +1,84 @@
+{
+  "name": "magicbell-js",
+  "version": "0.0.1",
+  "description": "OpenAPI 3.1.0 Specification for MagicBell API.",
+  "keywords": [
+    "typescript",
+    "sdk",
+    "api",
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magicbell/magicbell-js.git",
+    "directory": "packages/magicbell-js"
+  },
+  "author": "MagicBell",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./project-client": {
+      "import": {
+        "types": "./dist/esm/project-client.d.ts",
+        "default": "./dist/esm/project-client.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/project-client.d.ts",
+        "default": "./dist/commonjs/project-client.js"
+      }
+    },
+    "./user-client": {
+      "import": {
+        "types": "./dist/esm/user-client.d.ts",
+        "default": "./dist/esm/user-client.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/user-client.d.ts",
+        "default": "./dist/commonjs/user-client.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "/project-client/package.json",
+    "/user-client/package.json"
+  ],
+  "scripts": {
+    "build": "run-s build:bundle build:node10 build:docs build:attw",
+    "build:attw": "attw -P --profile node16",
+    "build:bundle": "tshy",
+    "build:docs": "./scripts/liblab-docs.ts",
+    "build:node10": "./scripts/fix-node10.ts",
+    "codegen": "run-s codegen:user-client codegen:project-client",
+    "codegen:project-client": "./scripts/liblab-gen.ts --spec https://www.magicbell.com/docs/api/openapi.project.json --target project-client",
+    "codegen:user-client": "./scripts/liblab-gen.ts --spec https://www.magicbell.com/docs/api/openapi.user.json --target user-client",
+    "start": "tshy --watch"
+  },
+  "dependencies": {
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  },
+  "docs": {
+    "name": "JavaScript SDK"
+  },
+  "tshy": {
+    "project": "./tsconfig.build.json",
+    "exports": "./src/*.ts"
+  }
+}

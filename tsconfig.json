@@ -31,6 +31,7 @@
       "@magicbell/utils": ["packages/utils/src"],
       "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
+      "magicbell-js": ["packages/magicbell-js/src"],
       "playground": ["packages/playground/src"]
     }
   }

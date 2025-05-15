@@ -1,0 +1,194 @@
+LICENSE AGREEMENT
+
+By downloading or using this software made available by MagicBell, Inc.
+("MagicBell") or any documentation that accompanies it (collectively, the
+"Software"), you and the company or entity that you represent (collectively,
+"you" or "your") are consenting to be bound by and are becoming a party to this
+License Agreement (this "Agreement").  You hereby represent and warrant that you
+are authorized and lawfully able to bind such company or entity that you
+represent to this Agreement.  If you do not have such authority or do not agree
+to all of the terms of this Agreement, you may not download or use the Software.  
+
+LICENSE GRANT.  Subject to your compliance with and the terms and conditions of
+this Agreement, MagicBell, Inc. ("MagicBell") hereby grants you a limited,
+personal, non-exclusive, non-sublicensable, non-transferable license to (a) use,
+install, and run the Software solely to create and display a customized user
+interface in connection with your internal use of MagicBell’s embeddable
+notification inbox product (the "MagicBell Product"); and (b) modify the
+Software (the results thereof, "Modifications") solely to customize your user
+interface in connection with your use of the MagicBell Product; (c) compile and
+execute object code versions of the Software (including as incorporating your
+Modifications) solely to use internally your customized MagicBell Product user
+interface; and (d) make electronic copies of the Software and any Modifications
+as required for backup or archival purposes.  You acknowledge that your use of
+any components provided with the Software that are licensed under an open source
+software license ("Open Source Components") are not part of the Software
+licensed hereunder and are subject to and governed solely by the terms of the
+applicable license(s) for that software, and not by this Agreement.
+
+RESTRICTIONS.  You are responsible for all activities that occur in connection
+with the Software.  Except as otherwise expressly authorized by MagicBell, you
+may not directly or indirectly: (a) sublicense, sell, assign, distribute,
+modify, make derivative works of, make any commercial use of, use on a timeshare
+or service bureau basis, use for the benefit of a third party or otherwise
+commercialize the Software (or any Modifications); (b) allow third parties to
+access or use the source code of the Software (or any Modifications); use the
+Software (or any Modifications) to create or facilitate the creation of, or
+otherwise incorporate any portion of the Software (or any Modifications) in,
+any product or service that is competitive with the MagicBell Product; (c) use
+the Software (or any Modifications) to perform comparisons or other
+"benchmarking" activities; (d) remove any proprietary notices or branding from
+the Software; and/or (e) use the Software (or any Modifications) in violation
+of any applicable laws or regulations or outside of the scope of the license
+granted in Section 1.  You shall ensure that there is no direct or indirect use
+of, or sharing of, the Software (or any Modifications), or other information
+based upon or derived from the Software (or any Modifications) to develop such
+competitive products.  Without derogating the generality of the foregoing,
+development of any competitive product shall include having direct or indirect
+access to, supervising, consulting or assisting in the development of, or
+product any specifications, documentations, object code or source code for, all
+or part of any competitive product.
+
+AUTHORIZED USERS.  Subject to the rights granted to you under this Agreement,
+you may permit your employees, contractors and agents to exercise the rights
+granted herein in accordance with the Agreement solely on behalf of you to
+provide services to you, provided that you are liable for all acts and omissions
+thereof to the extent that any such acts and omissions, if performed by you,
+would constitute a breach or, or otherwise giver right to liability to you,
+under this Agreement.  You represent and warrant that you shall not permit any
+third party to access or use the Software (or any Modifications) except as
+expressly permitted under this Agreement.
+
+OPEN SOURCE COMPONENTS.  You and your authorized users shall not use any Open
+Source Components in connection with the Software or any Modifications or in any
+way that could subject the Software to an open source license.
+
+OWNERSHIP.  As between MagicBell and you, MagicBell or its licensors shall own
+and retain all proprietary rights, including all patent, copyright, trade
+secret, trademark and other intellectual property rights, in and to the Software
+and any Modifications and you hereby irrevocably transfer, convey and assign to
+MagicBell all right, title, and interest in any Modifications regardless of
+whether such Modifications are actually delivered to MagicBell.  MagicBell shall
+have the exclusive right to apply for or register any patents, mask work rights,
+copyrights, and such other proprietary protections with respect thereto. You
+acknowledge that the license granted under Section 2 of this Agreement does not
+provide you with title or ownership to the Software or any such Modifications,
+but only a right of limited use under the terms and conditions of this
+Agreement.
+
+You represent and warrant to MagicBell that you have the full right, and have
+obtained all consents, approvals, authorizations, permits and licenses required
+or necessary, to allow you to grant to MagicBell the assignments and rights
+provided for herein and otherwise fully perform this Agreement (and have written
+enforceable agreements with all persons necessary to give you the rights to do
+the foregoing).
+
+LIMITATIONS ON MODIFICATIONS TO SOFTWARE.  Notwithstanding any provision in this
+Agreement, Modifications may only be created and used by you as permitted by
+this Agreement.  You are solely responsible for all use of Modifications and,
+without limiting anything herein, MagicBell will have no liability with respect
+to Modifications.  You will not assert against MagicBell, its affiliates or
+their customers, direct or indirect, agents and contractors, in any way, any
+intellectual property rights that you may obtain relating to any Modifications
+for the Software.
+
+SUPPORT AND UPGRADES.  If MagicBell provides you with any upgrades, patches,
+enhancements or fixes for the Software that it makes generally available free
+of charge in connection with the Software, then the items that are provided will
+become part of the Software and subject to this Agreement.  MagicBell shall have
+no obligation, however, under this Agreement or otherwise to provide any
+upgrades, patches, enhancements, fixes or any other support to you for the
+Software. 
+
+WARRANTY AND DISCLAIMER.  USE OF THE SOFTWARE IS ENTIRELY AT YOUR OWN RISK.
+MAGICBELL PROVIDES THE SOFTWARE "AS IS" AND "AS AVAILABLE" WITHOUT ANY WARRANTY
+OF ANY KIND AND HEREBY DISCLAIMS, FOR ITSELF AND ITS LICENSORS AND SUPPLIERS,
+ALL EXPRESS AND IMPLIED WARRANTIES, INCLUDING WITHOUT LIMITATION WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, PERFORMANCE, ACCURACY,
+RELIABILITY, NON-INFRINGEMENT, AND WARRANTIES ARISING OUT OF COURSE OF
+PERFORMANCE, COURSE OF DEALING OR USAGE IN TRADE.  MAGICBELL DOES NOT WARRANT
+THAT THE SOFTWARE IS ERROR-FREE, WILL FUNCTION WITHOUT INTERRUPTION, WILL MEET
+ANY SPECIFIC NEED THAT YOU MAY HAVE, THAT ALL DEFECTS WILL BE CORRECTED OR THAT
+IT IS SUFFICIENTLY DOCUMENTED TO BE USEABLE BY YOU.  THIS DISCLAIMER OF WARRANTY
+CONSTITUTES AN ESSENTIAL PART OF THE AGREEMENT.
+
+LIMITATION OF LIABILITY.  NOTWITHSTANDING ANYTHING ELSE, UNDER NO CIRCUMSTANCES
+SHALL MAGICBELL OR ITS LICENSORS OR SUPPLIERS, BE LIABLE TO YOU OR ANY OTHER
+PERSON WITH RESPECT TO THE SUBJECT MATTER OF THIS AGREEMENT UNDER ANY CONTRACT,
+TORT, NEGLIGENCE, STRICT LIABILITY, WARRANTY OR OTHER LEGAL OR EQUITABLE THEORY,
+FOR ANY INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES OF ANY KIND
+INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOST PROFITS, LOSS OF GOODWILL,
+LOSS OF DATA, COSTS OF PROCUREMENT OF SUBSTITUTE GOODS, SERVICES, TECHNOLOGY OR
+RIGHTS, INTERRUPTION OF BUSINESS, ACCURACY OF RESULTS, COMPUTER FAILURE OR
+MALFUNCTION, OR OTHER DAMAGES IN EXCESS OF ONE HUNDRED DOLLARS (US$100), EVEN IF
+AWARE OF THE POSSIBILITY OF SUCH DAMAGES.
+
+BASIS OF BARGAIN.  YOU AND MAGICBELL EACH RECOGNIZE AND AGREE THAT THE WARRANTY
+DISCLAIMERS AND LIABILITY AND REMEDY LIMITATIONS IN THIS AGREEMENT ARE MATERIAL,
+BARGAINED FOR BASES FOR THIS AGREEMENT AND THAT THEY HAVE BEEN TAKEN INTO
+ACCOUNT AND REFLECTED IN DETERMINING THE CONSIDERATION TO BE GIVEN BY EACH PARTY
+UNDER THIS AGREEMENT AND IN THE DECISION BY EACH PARTY TO ENTER INTO THIS
+AGREEMENT.
+
+TERM AND TERMINATION.  The term of this Agreement will begin when the Software
+is downloaded or accessed and shall continue until terminated pursuant to this
+section. Either party may terminate this Agreement and the licenses granted
+herein at any time.  MagicBell may terminate this Agreement and the licenses
+granted in this Agreement immediately if you breach any provision of this
+Agreement, including but not limited to, if you are or become a competitor of
+the MagicBell or make or sell any competitive products, in additional to all
+other available remedies.  Upon termination, all of your rights and licenses
+under this Agreement cease to exist, including, for the avoidance of doubt, any
+rights in any Modifications you may have developed; you must cease exercise of
+the licensed rights herein; you must destroy or remove from all hard drives,
+networks, and storage media, all copies and extracts of the Software and all
+Modifications in your possession or control; and this sentence, all remedies for
+breach, and Sections 2 through 10 and 12 through 14 shall survive any
+termination of this Agreement.  Any continued use of the Software by you or
+attempt by you to exercise any rights under this Agreement after this Agreement
+has been terminated will be considered copyright infringement and you will be
+subject to all applicable remedies.  
+
+FEEDBACK.  You agree that MagicBell may collect or you may provide to MagicBell
+comments, feedback, suggestions or other information related to the Software, or
+modifications, corrections, improvements, derivatives and extensions to the
+Software (collectively, "Feedback"), and you hereby grant MagicBell the
+perpetual and irrevocable right (and the perpetual and irrevocable right to
+permit others) to use and fully exercise and exploit the Feedback in any manner
+to improve, develop and otherwise exploit applications, services or technology,
+and otherwise in connection with its business during and after the term of this
+Agreement. 
+
+GOVERNMENT RESTRICTED RIGHTS.  All software, technology, and accompanying
+documentation are deemed to be "commercial computer software" and "commercial
+computer software documentation," respectively, pursuant to DFAR Section
+227.7202 and FAR Section 12.212, as applicable. Any use, modification,
+reproduction, release, performance, display, transfer or disclosure of the
+Software and accompanying documentation by any agency, department or other
+entity of any government, shall be governed solely by the terms of this
+Agreement and shall be prohibited except to the extent expressly permitted by
+the terms herein or in a writing signed by an authorized signatory on behalf of
+MagicBell. No other rights are granted. 
+
+MISCELLANEOUS.  You may not assign or transfer this Agreement, by operation of
+law or otherwise, or any of your rights under this Agreement (including any
+license rights granted to you), to any third party without MagicBell’s prior
+written consent, which consent will not be unreasonably withheld or delayed.
+
+MagicBell may assign this Agreement, without consent, including, but not limited
+to, affiliates or any successor to all or substantially all of its business or
+assets to which this Agreement relates, whether by merger, sale of assets, sale
+of stock, reorganization or otherwise.  Any attempted assignment or transfer in
+violation of the foregoing will be null and void.  This Agreement contains the
+complete agreement between you and MagicBell regarding the Software and
+supersedes all prior agreements and representations between you and MagicBell
+regarding the Software.  This Agreement may only be amended and any provision
+may only be waived by a writing executed by both parties.  You agree to promptly
+provide MagicBell with all information and documentation that MagicBell requests
+to verify your compliance with this Agreement.  If any provision of this
+Agreement is held to be invalid or unenforceable, it shall be reformed to the
+limited extent necessary to make it enforceable.  This Agreement shall be
+governed by and construed in accordance with the laws of California, without
+regard to its conflicts of laws provisions.  California will have exclusive
+jurisdiction and venue under this Agreement.  The United Nations Convention on
+Contracts for the International Sale of Goods does not apply to this Agreement.

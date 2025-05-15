@@ -28,6 +28,7 @@
     "@magicbell/utils": "../packages/utils",
     "@magicbell/webpush": "../packages/webpush",
     "magicbell": "../packages/magicbell",
+    "magicbell-js": "../packages/magicbell-js",
     "playground": "../packages/playground"
   },
   "devDependencies": {

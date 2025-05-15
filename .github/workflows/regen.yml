@@ -29,6 +29,11 @@ jobs:
       - name: Regen `@magicbell/cli`
         run: yarn --cwd packages/cli codegen
 
+      - name: Regen `magicbell-js`
+        run: yarn --cwd packages/magicbell-js codegen
+        env:
+          LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
+
       - name: Regen `@magicbell/project-client`
         run: yarn --cwd packages/project-client codegen
         env:

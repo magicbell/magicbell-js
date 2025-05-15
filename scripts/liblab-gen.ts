@@ -58,7 +58,7 @@ async function build(specfile) {
   const swaggerJSON = await readFile(specfile);
   await writeJSON(liblabConfig.specFilePath, swaggerJSON);
 
-  execSync('npx -y liblab@latest build -y --skip-validation', { stdio: 'inherit' });
+  execSync('npx -y liblab@latest build --skip-validation --approve-docs', { stdio: 'inherit' });
   await fs.rm(liblabConfig.specFilePath);
 
   await move('output/typescript/src', './src');
