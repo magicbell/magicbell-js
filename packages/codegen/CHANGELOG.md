@@ -1,5 +1,11 @@
 # @magicbell/codegen
 
+## 0.4.0
+
+### Minor Changes
+
+- [#515](https://github.com/magicbell/magicbell-js/pull/515) [`c61d0a2`](https://github.com/magicbell/magicbell-js/commit/c61d0a205383095b4888a0af56a2571f0e6657bb) Thanks [@smeijer](https://github.com/smeijer)! - add markdown replaceBlock and replaceText fns
+
 ## 0.3.0
 
 ### Minor Changes
