@@ -113,7 +113,7 @@
     }
   ],
   "devDependencies": {
-    "@magicbell/codegen": "^0.3.0",
+    "@magicbell/codegen": "^0.4.0",
     "@magicbell/utils": "^0.2.1",
     "@size-limit/preset-small-lib": "^11.1.4",
     "ast-types": "^0.14.2",

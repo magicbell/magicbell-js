@@ -50,7 +50,7 @@
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "@magicbell/codegen": "0.3.0",
+    "@magicbell/codegen": "0.4.0",
     "@types/configstore": "^6.0.2",
     "tsx": "^4.19.0"
   },
