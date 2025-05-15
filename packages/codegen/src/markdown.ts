@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fs from 'fs/promises';
-import type { Heading, Link, Node, Parent, Root } from 'mdast';
+import type { Heading, Link, Node, Parent, Root, RootContent } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter';
 import { toMarkdown } from 'mdast-util-to-markdown';
@@ -65,6 +65,14 @@ export function removeAllBeforeHeading(tree: Tree, title: string) {
   });
 }
 
+export function replaceText(tree: Tree, text: string | RegExp, replacement: string): void {
+  return visit(tree, (node: Node) => {
+    if ('value' in node && typeof node.value === 'string') {
+      node.value = node.value.replace(text, replacement);
+    }
+  });
+}
+
 export function reIndentHeadings(tree: Node, lowestLevel: number): void {
   let lowest = 99;
 
@@ -103,6 +111,38 @@ export async function write(tree: Tree, filename: string) {
   await fs.mkdir(path.dirname(filename), { recursive: true });
   const md = toMarkdown(tree, { extensions: [frontmatterToMarkdown(['yaml', 'toml'])] });
   return await fs.writeFile(filename, md, { encoding: 'utf-8' });
+}
+
+export function replaceBlock(tree: Node, block: string, replacement: RootContent | Node | Node[]): void {
+  const startComment = `<!-- AUTO-GENERATED-CONTENT:START (${block}) -->`;
+  const endComment = `<!-- AUTO-GENERATED-CONTENT:END (${block}) -->`;
+
+  const nodes = (tree as Parent).children;
+  if (!nodes) return;
+
+  let startIdx: number | null = null;
+  let endIdx: number | null = null;
+
+  nodes.forEach((node, idx) => {
+    if (node.type === 'html') {
+      if (node.value === startComment) startIdx = idx;
+      if (node.value === endComment) endIdx = idx;
+    }
+  });
+
+  const newNodes: any =
+    (replacement as any).type === 'root'
+      ? (replacement as any).children
+      : Array.isArray(replacement)
+      ? replacement
+      : [replacement];
+
+  if (startIdx === null || endIdx === null) {
+    nodes.push({ type: 'html', value: startComment }, ...newNodes, { type: 'html', value: endComment });
+    return;
+  }
+
+  nodes.splice(startIdx + 1, endIdx - startIdx - 1, ...newNodes);
 }
 
 export function getDirs(paths) {
