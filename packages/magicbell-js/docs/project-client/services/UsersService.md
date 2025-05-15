@@ -1,0 +1,121 @@
+# UsersService
+
+A list of all methods in the `UsersService` service. Click on the method name to view detailed information about that method.
+
+| Methods                   | Description                                                                                                              |
+| :------------------------ | :----------------------------------------------------------------------------------------------------------------------- |
+| [listUsers](#listusers)   |                                                                                                                          |
+| [createUser](#createuser) | Creates a user with the provided details. The user will be associated with the project specified in the request context. |
+| [deleteUser](#deleteuser) |                                                                                                                          |
+
+## listUsers
+
+- HTTP Method: `GET`
+- Endpoint: `/users`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+| query         | string | ❌       |             |
+
+**Return Type**
+
+`UserCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.users.listUsers({
+    limit: 3,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+    query: 'query',
+  });
+
+  console.log(data);
+})();
+```
+
+## createUser
+
+Creates a user with the provided details. The user will be associated with the project specified in the request context.
+
+- HTTP Method: `POST`
+- Endpoint: `/users`
+
+**Parameters**
+
+| Name | Type                      | Required | Description       |
+| :--- | :------------------------ | :------- | :---------------- |
+| body | [User](../models/User.md) | ❌       | The request body. |
+
+**Return Type**
+
+`User`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient, User } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const user: User = {
+    createdAt: 'created_at',
+    customAttributes: {},
+    email: 'email',
+    externalId: 'external_id',
+    firstName: 'first_name',
+    id: 'id',
+    lastName: 'last_name',
+    lastNotifiedAt: 'last_notified_at',
+    lastSeenAt: 'last_seen_at',
+    updatedAt: 'updated_at',
+  };
+
+  const { data } = await projectClient.users.createUser(user);
+
+  console.log(data);
+})();
+```
+
+## deleteUser
+
+- HTTP Method: `DELETE`
+- Endpoint: `/users/{user_id}`
+
+**Parameters**
+
+| Name   | Type   | Required | Description |
+| :----- | :----- | :------- | :---------- |
+| userId | string | ✅       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.users.deleteUser('user_id');
+
+  console.log(data);
+})();
+```

@@ -1,0 +1,235 @@
+# JwtService
+
+A list of all methods in the `JwtService` service. Click on the method name to view detailed information about that method.
+
+| Methods                                   | Description                                                                                                                                                                                                                                                                                        |
+| :---------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [fetchProjectTokens](#fetchprojecttokens) | Retrieves a list of all active project-level JWT tokens. Returns a paginated list showing token metadata including creation date, last used date, and expiration time. For security reasons, the actual token values are not included in the response.                                             |
+| [createProjectJwt](#createprojectjwt)     | Creates a new project-level JWT token. These tokens provide project-wide access and should be carefully managed. Only administrators can create project tokens. The returned token should be securely stored as it cannot be retrieved again after creation.                                       |
+| [discardProjectJwt](#discardprojectjwt)   | Immediately revokes a project-level JWT token. Once revoked, any requests using this token will be rejected. This action is immediate and cannot be undone. Active sessions using this token will be terminated.                                                                                   |
+| [createUserJwt](#createuserjwt)           | Issues a new user-specific JWT token. These tokens are scoped to individual user permissions and access levels. Only administrators can create user tokens. The token is returned only once at creation time and cannot be retrieved later.                                                        |
+| [discardUserJwt](#discarduserjwt)         | Revokes a specific user's JWT token. This immediately invalidates the token and terminates any active sessions using it. This action cannot be undone. Administrators should use this to revoke access when needed for security purposes.                                                          |
+| [fetchUserTokens](#fetchusertokens)       | Lists all JWT tokens associated with a specific user. Returns token metadata including creation time, last access time, and expiration date. Administrators can use this to audit user token usage and manage active sessions. Token values are not included in the response for security reasons. |
+
+## fetchProjectTokens
+
+Retrieves a list of all active project-level JWT tokens. Returns a paginated list showing token metadata including creation date, last used date, and expiration time. For security reasons, the actual token values are not included in the response.
+
+- HTTP Method: `GET`
+- Endpoint: `/jwt/project`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+
+**Return Type**
+
+`AccessTokenCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.jwt.fetchProjectTokens({
+    limit: 5,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+  });
+
+  console.log(data);
+})();
+```
+
+## createProjectJwt
+
+Creates a new project-level JWT token. These tokens provide project-wide access and should be carefully managed. Only administrators can create project tokens. The returned token should be securely stored as it cannot be retrieved again after creation.
+
+- HTTP Method: `POST`
+- Endpoint: `/jwt/project`
+
+**Parameters**
+
+| Name | Type                                                                | Required | Description       |
+| :--- | :------------------------------------------------------------------ | :------- | :---------------- |
+| body | [CreateProjectTokenRequest](../models/CreateProjectTokenRequest.md) | ❌       | The request body. |
+
+**Return Type**
+
+`CreateTokenResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { CreateProjectTokenRequest, ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const createProjectTokenRequest: CreateProjectTokenRequest = {
+    expiry: 2,
+    name: 'name',
+  };
+
+  const { data } = await projectClient.jwt.createProjectJwt(createProjectTokenRequest);
+
+  console.log(data);
+})();
+```
+
+## discardProjectJwt
+
+Immediately revokes a project-level JWT token. Once revoked, any requests using this token will be rejected. This action is immediate and cannot be undone. Active sessions using this token will be terminated.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/jwt/project/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardTokenResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.jwt.discardProjectJwt('token_id');
+
+  console.log(data);
+})();
+```
+
+## createUserJwt
+
+Issues a new user-specific JWT token. These tokens are scoped to individual user permissions and access levels. Only administrators can create user tokens. The token is returned only once at creation time and cannot be retrieved later.
+
+- HTTP Method: `POST`
+- Endpoint: `/jwt/user`
+
+**Parameters**
+
+| Name | Type                                                          | Required | Description       |
+| :--- | :------------------------------------------------------------ | :------- | :---------------- |
+| body | [CreateUserTokenRequest](../models/CreateUserTokenRequest.md) | ❌       | The request body. |
+
+**Return Type**
+
+`CreateTokenResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { CreateUserTokenRequest, ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const createUserTokenRequest: CreateUserTokenRequest = {
+    email: 'email',
+    expiry: 8,
+    externalId: 'external_id',
+    name: 'name',
+  };
+
+  const { data } = await projectClient.jwt.createUserJwt(createUserTokenRequest);
+
+  console.log(data);
+})();
+```
+
+## discardUserJwt
+
+Revokes a specific user's JWT token. This immediately invalidates the token and terminates any active sessions using it. This action cannot be undone. Administrators should use this to revoke access when needed for security purposes.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/jwt/user/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardTokenResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.jwt.discardUserJwt('token_id');
+
+  console.log(data);
+})();
+```
+
+## fetchUserTokens
+
+Lists all JWT tokens associated with a specific user. Returns token metadata including creation time, last access time, and expiration date. Administrators can use this to audit user token usage and manage active sessions. Token values are not included in the response for security reasons.
+
+- HTTP Method: `GET`
+- Endpoint: `/jwt/user/{user_id}`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+
+**Return Type**
+
+`AccessTokenCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { ProjectClient } from 'magicbell-js/project-client';
+
+(async () => {
+  const projectClient = new ProjectClient({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await projectClient.jwt.fetchUserTokens('user_id', {
+    limit: 1,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+  });
+
+  console.log(data);
+})();
+```
