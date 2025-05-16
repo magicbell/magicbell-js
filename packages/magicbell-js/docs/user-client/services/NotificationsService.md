@@ -34,15 +34,15 @@ Lists all notifications for a user.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.notifications.listNotifications({
-    limit: 8,
+  const { data } = await client.notifications.listNotifications({
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     status: 'status',
@@ -69,14 +69,14 @@ Archives a notification.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.notifications.archiveNotification('notification_id');
+  const { data } = await client.notifications.archiveNotification('notification_id');
 
   console.log(data);
 })();
@@ -98,14 +98,14 @@ Marks a notification as read.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.notifications.markNotificationRead('notification_id');
+  const { data } = await client.notifications.markNotificationRead('notification_id');
 
   console.log(data);
 })();
@@ -127,14 +127,14 @@ Unarchives a notification.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.notifications.unarchiveNotification('notification_id');
+  const { data } = await client.notifications.unarchiveNotification('notification_id');
 
   console.log(data);
 })();
@@ -156,14 +156,14 @@ Marks a notification as unread.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.notifications.markNotificationUnread('notification_id');
+  const { data } = await client.notifications.markNotificationUnread('notification_id');
 
   console.log(data);
 })();

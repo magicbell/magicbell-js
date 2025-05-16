@@ -1,5 +1,5 @@
 {
-  "sdkName": "ProjectClient",
+  "sdkName": "Client",
   "apiVersion": "2.0.0",
   "apiName": "magicbell",
   "specFilePath": "./openapi.project.json",

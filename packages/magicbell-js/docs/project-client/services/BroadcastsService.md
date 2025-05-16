@@ -30,15 +30,15 @@ Retrieves a paginated list of broadcasts for the project. Returns basic informat
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.broadcasts.listBroadcasts({
-    limit: 7,
+  const { data } = await client.broadcasts.listBroadcasts({
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -67,10 +67,10 @@ Creates a new broadcast message. When a broadcast is created, it generates indiv
 **Example Usage Code Snippet**
 
 ```typescript
-import { Broadcast, ProjectClient } from 'magicbell-js/project-client';
+import { Broadcast, Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -141,8 +141,8 @@ import { Broadcast, ProjectClient } from 'magicbell-js/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 9,
-    total: 7,
+    failures: 123,
+    total: 8,
   };
 
   const broadcastStatus: BroadcastStatus = {
@@ -165,7 +165,7 @@ import { Broadcast, ProjectClient } from 'magicbell-js/project-client';
     topic: 'topic',
   };
 
-  const { data } = await projectClient.broadcasts.createBroadcast(broadcast);
+  const { data } = await client.broadcasts.createBroadcast(broadcast);
 
   console.log(data);
 })();
@@ -191,14 +191,14 @@ Retrieves detailed information about a specific broadcast by its ID. Includes th
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.broadcasts.fetchBroadcast('broadcast_id');
+  const { data } = await client.broadcasts.fetchBroadcast('broadcast_id');
 
   console.log(data);
 })();

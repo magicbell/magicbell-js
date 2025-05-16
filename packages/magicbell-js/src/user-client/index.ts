@@ -11,7 +11,7 @@ export * from './services/common/index.js';
 export * from './services/integrations/index.js';
 export * from './services/notifications/index.js';
 
-export class UserClient {
+export class Client {
   public readonly channels: ChannelsService;
 
   public readonly integrations: IntegrationsService;

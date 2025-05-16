@@ -55,15 +55,15 @@ Lists all in_app tokens belonging to the authenticated user. Returns a paginated
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getInAppInboxTokens({
-    limit: 3,
+  const { data } = await client.channels.getInAppInboxTokens({
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -92,19 +92,19 @@ Saves a in_app token for the authenticated user. This token serves as a credenti
 **Example Usage Code Snippet**
 
 ```typescript
-import { InboxToken, UserClient } from 'magicbell-js/user-client';
+import { Client, InboxToken } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'ut ut cillum es',
+    token: 'ipsum nulla mag',
   };
 
-  const { data } = await userClient.channels.saveInAppInboxToken(inboxToken);
+  const { data } = await client.channels.saveInAppInboxToken(inboxToken);
 
   console.log(data);
 })();
@@ -130,14 +130,14 @@ Retrieves details of a specific in_app token belonging to the authenticated user
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getInAppInboxToken('token_id');
+  const { data } = await client.channels.getInAppInboxToken('token_id');
 
   console.log(data);
 })();
@@ -163,14 +163,14 @@ Revokes one of the authenticated user's in_app tokens. This permanently invalida
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardInAppInboxToken('token_id');
+  const { data } = await client.channels.discardInAppInboxToken('token_id');
 
   console.log(data);
 })();
@@ -198,15 +198,15 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushApnsTokens({
-    limit: 3,
+  const { data } = await client.channels.getMobilePushApnsTokens({
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -235,10 +235,10 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 **Example Usage Code Snippet**
 
 ```typescript
-import { ApnsTokenPayload, UserClient } from 'magicbell-js/user-client';
+import { ApnsTokenPayload, Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -246,11 +246,11 @@ import { ApnsTokenPayload, UserClient } from 'magicbell-js/user-client';
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'dolor sunt repr',
+    deviceToken: 'sit culpa incid',
     installationId: apnsTokenPayloadInstallationId,
   };
 
-  const { data } = await userClient.channels.saveMobilePushApnsToken(apnsTokenPayload);
+  const { data } = await client.channels.saveMobilePushApnsToken(apnsTokenPayload);
 
   console.log(data);
 })();
@@ -276,14 +276,14 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushApnsToken('token_id');
+  const { data } = await client.channels.getMobilePushApnsToken('token_id');
 
   console.log(data);
 })();
@@ -309,14 +309,14 @@ Revokes one of the authenticated user's mobile_push tokens. This permanently inv
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardMobilePushApnsToken('token_id');
+  const { data } = await client.channels.discardMobilePushApnsToken('token_id');
 
   console.log(data);
 })();
@@ -344,15 +344,15 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushExpoTokens({
-    limit: 3,
+  const { data } = await client.channels.getMobilePushExpoTokens({
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -381,10 +381,10 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 **Example Usage Code Snippet**
 
 ```typescript
-import { ExpoTokenPayload, UserClient } from 'magicbell-js/user-client';
+import { Client, ExpoTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -392,7 +392,7 @@ import { ExpoTokenPayload, UserClient } from 'magicbell-js/user-client';
     deviceToken: 'device_token',
   };
 
-  const { data } = await userClient.channels.saveMobilePushExpoToken(expoTokenPayload);
+  const { data } = await client.channels.saveMobilePushExpoToken(expoTokenPayload);
 
   console.log(data);
 })();
@@ -418,14 +418,14 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushExpoToken('token_id');
+  const { data } = await client.channels.getMobilePushExpoToken('token_id');
 
   console.log(data);
 })();
@@ -451,14 +451,14 @@ Revokes one of the authenticated user's mobile_push tokens. This permanently inv
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardMobilePushExpoToken('token_id');
+  const { data } = await client.channels.discardMobilePushExpoToken('token_id');
 
   console.log(data);
 })();
@@ -486,15 +486,15 @@ Lists all mobile_push tokens belonging to the authenticated user. Returns a pagi
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushFcmTokens({
-    limit: 4,
+  const { data } = await client.channels.getMobilePushFcmTokens({
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -523,21 +523,21 @@ Saves a mobile_push token for the authenticated user. This token serves as a cre
 **Example Usage Code Snippet**
 
 ```typescript
-import { FcmTokenPayload, UserClient } from 'magicbell-js/user-client';
+import { Client, FcmTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
 
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'officia consequ',
+    deviceToken: 'estminim adipis',
     installationId: fcmTokenPayloadInstallationId,
   };
 
-  const { data } = await userClient.channels.saveMobilePushFcmToken(fcmTokenPayload);
+  const { data } = await client.channels.saveMobilePushFcmToken(fcmTokenPayload);
 
   console.log(data);
 })();
@@ -563,14 +563,14 @@ Retrieves details of a specific mobile_push token belonging to the authenticated
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getMobilePushFcmToken('token_id');
+  const { data } = await client.channels.getMobilePushFcmToken('token_id');
 
   console.log(data);
 })();
@@ -596,14 +596,14 @@ Revokes one of the authenticated user's mobile_push tokens. This permanently inv
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardMobilePushFcmToken('token_id');
+  const { data } = await client.channels.discardMobilePushFcmToken('token_id');
 
   console.log(data);
 })();
@@ -631,15 +631,15 @@ Lists all slack tokens belonging to the authenticated user. Returns a paginated 
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getSlackTokens({
-    limit: 5,
+  const { data } = await client.channels.getSlackTokens({
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -668,10 +668,10 @@ Saves a slack token for the authenticated user. This token serves as a credentia
 **Example Usage Code Snippet**
 
 ```typescript
-import { SlackTokenPayload, UserClient } from 'magicbell-js/user-client';
+import { Client, SlackTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -690,7 +690,7 @@ import { SlackTokenPayload, UserClient } from 'magicbell-js/user-client';
     webhook: slackTokenPayloadWebhook,
   };
 
-  const { data } = await userClient.channels.saveSlackToken(slackTokenPayload);
+  const { data } = await client.channels.saveSlackToken(slackTokenPayload);
 
   console.log(data);
 })();
@@ -716,14 +716,14 @@ Retrieves details of a specific slack token belonging to the authenticated user.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getSlackToken('token_id');
+  const { data } = await client.channels.getSlackToken('token_id');
 
   console.log(data);
 })();
@@ -749,14 +749,14 @@ Revokes one of the authenticated user's slack tokens. This permanently invalidat
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardSlackToken('token_id');
+  const { data } = await client.channels.discardSlackToken('token_id');
 
   console.log(data);
 })();
@@ -784,15 +784,15 @@ Lists all teams tokens belonging to the authenticated user. Returns a paginated 
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getTeamsTokens({
-    limit: 6,
+  const { data } = await client.channels.getTeamsTokens({
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -821,10 +821,10 @@ Saves a teams token for the authenticated user. This token serves as a credentia
 **Example Usage Code Snippet**
 
 ```typescript
-import { TeamsTokenPayload, UserClient } from 'magicbell-js/user-client';
+import { Client, TeamsTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -836,7 +836,7 @@ import { TeamsTokenPayload, UserClient } from 'magicbell-js/user-client';
     webhook: teamsTokenPayloadWebhook,
   };
 
-  const { data } = await userClient.channels.saveTeamsToken(teamsTokenPayload);
+  const { data } = await client.channels.saveTeamsToken(teamsTokenPayload);
 
   console.log(data);
 })();
@@ -862,14 +862,14 @@ Retrieves details of a specific teams token belonging to the authenticated user.
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getTeamsToken('token_id');
+  const { data } = await client.channels.getTeamsToken('token_id');
 
   console.log(data);
 })();
@@ -895,14 +895,14 @@ Revokes one of the authenticated user's teams tokens. This permanently invalidat
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardTeamsToken('token_id');
+  const { data } = await client.channels.discardTeamsToken('token_id');
 
   console.log(data);
 })();
@@ -930,15 +930,15 @@ Lists all web_push tokens belonging to the authenticated user. Returns a paginat
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getWebPushTokens({
-    limit: 9,
+  const { data } = await client.channels.getWebPushTokens({
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -967,10 +967,10 @@ Saves a web_push token for the authenticated user. This token serves as a creden
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient, WebPushTokenPayload } from 'magicbell-js/user-client';
+import { Client, WebPushTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -984,7 +984,7 @@ import { UserClient, WebPushTokenPayload } from 'magicbell-js/user-client';
     keys: webPushTokenPayloadKeys,
   };
 
-  const { data } = await userClient.channels.saveWebPushToken(webPushTokenPayload);
+  const { data } = await client.channels.saveWebPushToken(webPushTokenPayload);
 
   console.log(data);
 })();
@@ -1010,14 +1010,14 @@ Retrieves details of a specific web_push token belonging to the authenticated us
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getWebPushToken('token_id');
+  const { data } = await client.channels.getWebPushToken('token_id');
 
   console.log(data);
 })();
@@ -1043,14 +1043,14 @@ Revokes one of the authenticated user's web_push tokens. This permanently invali
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.discardWebPushToken('token_id');
+  const { data } = await client.channels.discardWebPushToken('token_id');
 
   console.log(data);
 })();

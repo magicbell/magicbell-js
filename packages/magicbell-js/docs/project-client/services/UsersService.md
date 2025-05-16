@@ -29,15 +29,15 @@ A list of all methods in the `UsersService` service. Click on the method name to
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.users.listUsers({
-    limit: 3,
+  const { data } = await client.users.listUsers({
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     query: 'query',
@@ -67,10 +67,10 @@ Creates a user with the provided details. The user will be associated with the p
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, User } from 'magicbell-js/project-client';
+import { Client, User } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -87,7 +87,7 @@ import { ProjectClient, User } from 'magicbell-js/project-client';
     updatedAt: 'updated_at',
   };
 
-  const { data } = await projectClient.users.createUser(user);
+  const { data } = await client.users.createUser(user);
 
   console.log(data);
 })();
@@ -107,14 +107,14 @@ import { ProjectClient, User } from 'magicbell-js/project-client';
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.users.deleteUser('user_id');
+  const { data } = await client.users.deleteUser('user_id');
 
   console.log(data);
 })();

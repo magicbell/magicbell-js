@@ -46,14 +46,14 @@ A list of all methods in the `ChannelsService` service. Click on the method name
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getDeliveryconfig({
+  const { data } = await client.channels.getDeliveryconfig({
     key: 'key',
   });
 
@@ -79,10 +79,10 @@ import { ProjectClient } from 'magicbell-js/project-client';
 **Example Usage Code Snippet**
 
 ```typescript
-import { CategoryDeliveryConfig, ProjectClient } from 'magicbell-js/project-client';
+import { CategoryDeliveryConfig, Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -90,7 +90,7 @@ import { CategoryDeliveryConfig, ProjectClient } from 'magicbell-js/project-clie
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 10,
+    delay: 8,
     if: 'if',
   };
 
@@ -100,7 +100,7 @@ import { CategoryDeliveryConfig, ProjectClient } from 'magicbell-js/project-clie
     key: 'key',
   };
 
-  const { data } = await projectClient.channels.saveDeliveryconfig(categoryDeliveryConfig);
+  const { data } = await client.channels.saveDeliveryconfig(categoryDeliveryConfig);
 
   console.log(data);
 })();
@@ -129,14 +129,14 @@ Lists all in_app tokens associated with a specific user. This endpoint is availa
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getInAppInboxUserTokens('user_id', {
+  const { data } = await client.channels.getInAppInboxUserTokens('user_id', {
     limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
@@ -167,14 +167,14 @@ Retrieves a specific in_app token by its ID for a given user. This endpoint is a
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getInAppInboxUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getInAppInboxUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -201,14 +201,14 @@ Revokes a specific user's in_app token. This endpoint is available to project ad
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardInAppInboxUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardInAppInboxUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -237,15 +237,15 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushApnsUserTokens('user_id', {
-    limit: 7,
+  const { data } = await client.channels.getMobilePushApnsUserTokens('user_id', {
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -275,14 +275,14 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushApnsUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getMobilePushApnsUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -309,14 +309,14 @@ Revokes a specific user's mobile_push token. This endpoint is available to proje
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardMobilePushApnsUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardMobilePushApnsUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -345,15 +345,15 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushExpoUserTokens('user_id', {
-    limit: 8,
+  const { data } = await client.channels.getMobilePushExpoUserTokens('user_id', {
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -383,14 +383,14 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushExpoUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getMobilePushExpoUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -417,14 +417,14 @@ Revokes a specific user's mobile_push token. This endpoint is available to proje
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardMobilePushExpoUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardMobilePushExpoUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -453,15 +453,15 @@ Lists all mobile_push tokens associated with a specific user. This endpoint is a
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushFcmUserTokens('user_id', {
-    limit: 3,
+  const { data } = await client.channels.getMobilePushFcmUserTokens('user_id', {
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -491,14 +491,14 @@ Retrieves a specific mobile_push token by its ID for a given user. This endpoint
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getMobilePushFcmUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getMobilePushFcmUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -525,14 +525,14 @@ Revokes a specific user's mobile_push token. This endpoint is available to proje
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardMobilePushFcmUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardMobilePushFcmUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -561,15 +561,15 @@ Lists all slack tokens associated with a specific user. This endpoint is availab
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getSlackUserTokens('user_id', {
-    limit: 9,
+  const { data } = await client.channels.getSlackUserTokens('user_id', {
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -599,14 +599,14 @@ Retrieves a specific slack token by its ID for a given user. This endpoint is av
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getSlackUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getSlackUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -633,14 +633,14 @@ Revokes a specific user's slack token. This endpoint is available to project adm
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardSlackUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardSlackUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -669,15 +669,15 @@ Lists all teams tokens associated with a specific user. This endpoint is availab
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getTeamsUserTokens('user_id', {
-    limit: 123,
+  const { data } = await client.channels.getTeamsUserTokens('user_id', {
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -707,14 +707,14 @@ Retrieves a specific teams token by its ID for a given user. This endpoint is av
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getTeamsUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getTeamsUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -741,14 +741,14 @@ Revokes a specific user's teams token. This endpoint is available to project adm
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardTeamsUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardTeamsUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -777,15 +777,15 @@ Lists all web_push tokens associated with a specific user. This endpoint is avai
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getWebPushUserTokens('user_id', {
-    limit: 123,
+  const { data } = await client.channels.getWebPushUserTokens('user_id', {
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -815,14 +815,14 @@ Retrieves a specific web_push token by its ID for a given user. This endpoint is
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.getWebPushUserToken('user_id', 'token_id');
+  const { data } = await client.channels.getWebPushUserToken('user_id', 'token_id');
 
   console.log(data);
 })();
@@ -849,14 +849,14 @@ Revokes a specific user's web_push token. This endpoint is available to project 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.channels.discardWebPushUserToken('user_id', 'token_id');
+  const { data } = await client.channels.discardWebPushUserToken('user_id', 'token_id');
 
   console.log(data);
 })();

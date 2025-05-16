@@ -20,7 +20,7 @@ npm install magicbell-js
 
 ### Access Token Authentication
 
-The UserClient API uses an Access Token for authentication.
+The Client API uses an Access Token for authentication.
 
 This token must be provided to authenticate your requests to the API.
 
@@ -29,13 +29,13 @@ This token must be provided to authenticate your requests to the API.
 When you initialize the SDK, you can set the access token as follows:
 
 ```ts
-const sdk = new UserClient({ token: 'YOUR_TOKEN' });
+const sdk = new Client({ token: 'YOUR_TOKEN' });
 ```
 
 If you need to set or update the access token after initializing the SDK, you can use:
 
 ```ts
-const sdk = new UserClient();
+const sdk = new Client();
 sdk.token = 'YOUR_TOKEN';
 ```
 
@@ -44,7 +44,7 @@ sdk.token = 'YOUR_TOKEN';
 You can set a custom timeout for the SDK's HTTP requests as follows:
 
 ```ts
-const userClient = new UserClient({ timeout: 10000 });
+const client = new Client({ timeout: 10000 });
 ```
 
 # Sample Usage
@@ -52,15 +52,15 @@ const userClient = new UserClient({ timeout: 10000 });
 Below is a comprehensive example demonstrating how to authenticate and call a simple endpoint:
 
 ```ts
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.channels.getInAppInboxTokens({
-    limit: 3,
+  const { data } = await client.channels.getInAppInboxTokens({
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

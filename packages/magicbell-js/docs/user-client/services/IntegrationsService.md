@@ -33,10 +33,10 @@ Creates a new installation of a inbox integration for a user. This endpoint is u
 **Example Usage Code Snippet**
 
 ```typescript
-import { InboxConfigPayload, UserClient } from 'magicbell-js/user-client';
+import { Client, InboxConfigPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -46,7 +46,7 @@ import { InboxConfigPayload, UserClient } from 'magicbell-js/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 6.35,
+    backgroundOpacity: 7.11,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -152,7 +152,7 @@ import { InboxConfigPayload, UserClient } from 'magicbell-js/user-client';
     theme: theme,
   };
 
-  const { data } = await userClient.integrations.saveInboxInstallation(inboxConfigPayload);
+  const { data } = await client.integrations.saveInboxInstallation(inboxConfigPayload);
 
   console.log(data);
 })();
@@ -172,14 +172,14 @@ Initiates the installation flow for a inbox integration. This is the first step 
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.integrations.startInboxInstallation();
+  const { data } = await client.integrations.startInboxInstallation();
 
   console.log(data);
 })();
@@ -205,16 +205,16 @@ Creates a new installation of a slack integration for a user. This endpoint is u
 **Example Usage Code Snippet**
 
 ```typescript
-import { SlackInstallation, UserClient } from 'magicbell-js/user-client';
+import { Client, SlackInstallation } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 5,
+    expiresIn: 9,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -243,8 +243,8 @@ import { SlackInstallation, UserClient } from 'magicbell-js/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 8,
-    id: '7-Xd%=]tW:J',
+    expiresIn: 7,
+    id: 'HH-g|[g~J]11',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -253,7 +253,7 @@ import { SlackInstallation, UserClient } from 'magicbell-js/user-client';
     tokenType: 'token_type',
   };
 
-  const { data } = await userClient.integrations.saveSlackInstallation(slackInstallation);
+  const { data } = await client.integrations.saveSlackInstallation(slackInstallation);
 
   console.log(data);
 })();
@@ -279,10 +279,10 @@ Completes the installation flow for a slack integration. This endpoint is typica
 **Example Usage Code Snippet**
 
 ```typescript
-import { SlackFinishInstallResponse, UserClient } from 'magicbell-js/user-client';
+import { Client, SlackFinishInstallResponse } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -292,7 +292,7 @@ import { SlackFinishInstallResponse, UserClient } from 'magicbell-js/user-client
     redirectUrl: 'redirect_url',
   };
 
-  const { data } = await userClient.integrations.finishSlackInstallation(slackFinishInstallResponse);
+  const { data } = await client.integrations.finishSlackInstallation(slackFinishInstallResponse);
 
   console.log(data);
 })();
@@ -318,10 +318,10 @@ Initiates the installation flow for a slack integration. This is the first step 
 **Example Usage Code Snippet**
 
 ```typescript
-import { SlackStartInstall, UserClient } from 'magicbell-js/user-client';
+import { Client, SlackStartInstall } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -332,7 +332,7 @@ import { SlackStartInstall, UserClient } from 'magicbell-js/user-client';
     redirectUrl: 'redirect_url',
   };
 
-  const { data } = await userClient.integrations.startSlackInstallation(slackStartInstall);
+  const { data } = await client.integrations.startSlackInstallation(slackStartInstall);
 
   console.log(data);
 })();
@@ -358,10 +358,10 @@ Creates a new installation of a templates integration for a user. This endpoint 
 **Example Usage Code Snippet**
 
 ```typescript
-import { TemplatesInstallation, UserClient } from 'magicbell-js/user-client';
+import { Client, TemplatesInstallation } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -371,7 +371,7 @@ import { TemplatesInstallation, UserClient } from 'magicbell-js/user-client';
     text: 'text',
   };
 
-  const { data } = await userClient.integrations.saveTemplatesInstallation(templatesInstallation);
+  const { data } = await client.integrations.saveTemplatesInstallation(templatesInstallation);
 
   console.log(data);
 })();
@@ -397,10 +397,10 @@ Creates a new installation of a web_push integration for a user. This endpoint i
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient, WebPushTokenPayload } from 'magicbell-js/user-client';
+import { Client, WebPushTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -414,7 +414,7 @@ import { UserClient, WebPushTokenPayload } from 'magicbell-js/user-client';
     keys: webPushTokenPayloadKeys,
   };
 
-  const { data } = await userClient.integrations.saveWebPushInstallation(webPushTokenPayload);
+  const { data } = await client.integrations.saveWebPushInstallation(webPushTokenPayload);
 
   console.log(data);
 })();
@@ -434,14 +434,14 @@ Initiates the installation flow for a web_push integration. This is the first st
 **Example Usage Code Snippet**
 
 ```typescript
-import { UserClient } from 'magicbell-js/user-client';
+import { Client } from 'magicbell-js/user-client';
 
 (async () => {
-  const userClient = new UserClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await userClient.integrations.startWebPushInstallation();
+  const { data } = await client.integrations.startWebPushInstallation();
 
   console.log(data);
 })();

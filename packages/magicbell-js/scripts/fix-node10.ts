@@ -26,7 +26,8 @@ for (const file of files) {
   pkgPaths.push(`/${pkgPath}`);
 }
 
-fs.writeFileSync(path.join(__dirname, '..', '.gitignore'), pkgPaths.join('\n') + '\n', 'utf-8');
+const ignores = ['docs-dist', 'out'];
+fs.writeFileSync(path.join(__dirname, '..', '.gitignore'), [...ignores, ...pkgPaths].join('\n') + '\n', 'utf-8');
 
 for (const file of pkgPaths) {
   if (pkgJson.files.includes(file)) continue;

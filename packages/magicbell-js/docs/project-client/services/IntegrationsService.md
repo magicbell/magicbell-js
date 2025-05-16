@@ -92,15 +92,15 @@ Lists all available and configured integrations for the project. Returns a summa
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.listIntegrations({
-    limit: 8,
+  const { data } = await client.integrations.listIntegrations({
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -123,14 +123,14 @@ Retrieves the current apns integration configurations for a specific integration
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getApnsIntegration();
+  const { data } = await client.integrations.getApnsIntegration();
 
   console.log(data);
 })();
@@ -156,10 +156,10 @@ Creates or updates a apns integration for the project. Only administrators can c
 **Example Usage Code Snippet**
 
 ```typescript
-import { ApnsConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { ApnsConfigPayload, Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
 	token: 'YOUR_TOKEN'});
 
   const badge = Badge.UNREAD;
@@ -169,15 +169,15 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfigPayload: ApnsConfigPayload = {
   appId: "app_id",
   badge: badge,
-  certificate: "- BEGIN PRIVATE KEY-----------
-+KMovN
----------END PRIVATE KEYYYYYYY---------",
-  keyId: "voluptaten",
+  certificate: "BEGIN PRIVATE KEY----
+7tahhm84==
+----------- END PRIVATE KEYYYYYYY----------",
+  keyId: "exercitati",
   payloadVersion: payloadVersion,
-  teamId: "dolorfugia"
+  teamId: "reprehende"
 };
 
-  const { data } = await projectClient.integrations.saveApnsIntegration(
+  const { data } = await client.integrations.saveApnsIntegration(
   apnsConfigPayload
 );
 
@@ -195,14 +195,14 @@ Removes a apns integration configuration from the project. This will disable the
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteApnsIntegration();
+  const { data } = await client.integrations.deleteApnsIntegration();
 
   console.log(data);
 })();
@@ -224,14 +224,14 @@ Removes a specific apns integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteApnsIntegrationById('id');
+  const { data } = await client.integrations.deleteApnsIntegrationById('id');
 
   console.log(data);
 })();
@@ -251,14 +251,14 @@ Retrieves the current awssns integration configurations for a specific integrati
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getAwssnsIntegration();
+  const { data } = await client.integrations.getAwssnsIntegration();
 
   console.log(data);
 })();
@@ -284,10 +284,10 @@ Creates or updates a awssns integration for the project. Only administrators can
 **Example Usage Code Snippet**
 
 ```typescript
-import { AwssnsConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { AwssnsConfigPayload, Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -295,7 +295,7 @@ import { AwssnsConfigPayload, ProjectClient } from 'magicbell-js/project-client'
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await projectClient.integrations.saveAwssnsIntegration(awssnsConfigPayload);
+  const { data } = await client.integrations.saveAwssnsIntegration(awssnsConfigPayload);
 
   console.log(data);
 })();
@@ -311,14 +311,14 @@ Removes a awssns integration configuration from the project. This will disable t
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteAwssnsIntegration();
+  const { data } = await client.integrations.deleteAwssnsIntegration();
 
   console.log(data);
 })();
@@ -340,14 +340,14 @@ Removes a specific awssns integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteAwssnsIntegrationById('id');
+  const { data } = await client.integrations.deleteAwssnsIntegrationById('id');
 
   console.log(data);
 })();
@@ -367,14 +367,14 @@ Retrieves the current eventsource integration configurations for a specific inte
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getEventsourceIntegration();
+  const { data } = await client.integrations.getEventsourceIntegration();
 
   console.log(data);
 })();
@@ -400,10 +400,10 @@ Creates or updates a eventsource integration for the project. Only administrator
 **Example Usage Code Snippet**
 
 ```typescript
-import { EventSourceConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, EventSourceConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -411,7 +411,7 @@ import { EventSourceConfigPayload, ProjectClient } from 'magicbell-js/project-cl
     source: 'source',
   };
 
-  const { data } = await projectClient.integrations.saveEventsourceIntegration(eventSourceConfigPayload);
+  const { data } = await client.integrations.saveEventsourceIntegration(eventSourceConfigPayload);
 
   console.log(data);
 })();
@@ -427,14 +427,14 @@ Removes a eventsource integration configuration from the project. This will disa
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteEventsourceIntegration();
+  const { data } = await client.integrations.deleteEventsourceIntegration();
 
   console.log(data);
 })();
@@ -456,14 +456,14 @@ Removes a specific eventsource integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteEventsourceIntegrationById('id');
+  const { data } = await client.integrations.deleteEventsourceIntegrationById('id');
 
   console.log(data);
 })();
@@ -483,14 +483,14 @@ Retrieves the current expo integration configurations for a specific integration
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getExpoIntegration();
+  const { data } = await client.integrations.getExpoIntegration();
 
   console.log(data);
 })();
@@ -516,10 +516,10 @@ Creates or updates a expo integration for the project. Only administrators can c
 **Example Usage Code Snippet**
 
 ```typescript
-import { ExpoConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, ExpoConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -527,7 +527,7 @@ import { ExpoConfigPayload, ProjectClient } from 'magicbell-js/project-client';
     accessToken: 'access_token',
   };
 
-  const { data } = await projectClient.integrations.saveExpoIntegration(expoConfigPayload);
+  const { data } = await client.integrations.saveExpoIntegration(expoConfigPayload);
 
   console.log(data);
 })();
@@ -543,14 +543,14 @@ Removes a expo integration configuration from the project. This will disable the
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteExpoIntegration();
+  const { data } = await client.integrations.deleteExpoIntegration();
 
   console.log(data);
 })();
@@ -572,14 +572,14 @@ Removes a specific expo integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteExpoIntegrationById('id');
+  const { data } = await client.integrations.deleteExpoIntegrationById('id');
 
   console.log(data);
 })();
@@ -599,14 +599,14 @@ Retrieves the current fcm integration configurations for a specific integration 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getFcmIntegration();
+  const { data } = await client.integrations.getFcmIntegration();
 
   console.log(data);
 })();
@@ -632,10 +632,10 @@ Creates or updates a fcm integration for the project. Only administrators can co
 **Example Usage Code Snippet**
 
 ```typescript
-import { FcmConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, FcmConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
 	token: 'YOUR_TOKEN'});
 
   const type_ = Type_.SERVICE_ACCOUNT;
@@ -646,9 +646,10 @@ const fcmConfigPayload: FcmConfigPayload = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "----------- BEGINLWUTSS---
-Z/yRHoY
---- ENDMKQETWCLJB-",
+  privateKey: "----------BEGINOQ-------
+OqZWZ=
+-- ENDNCDMDD--------
+",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -656,7 +657,7 @@ Z/yRHoY
   universeDomain: "universe_domain"
 };
 
-  const { data } = await projectClient.integrations.saveFcmIntegration(
+  const { data } = await client.integrations.saveFcmIntegration(
   fcmConfigPayload
 );
 
@@ -674,14 +675,14 @@ Removes a fcm integration configuration from the project. This will disable the 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteFcmIntegration();
+  const { data } = await client.integrations.deleteFcmIntegration();
 
   console.log(data);
 })();
@@ -703,14 +704,14 @@ Removes a specific fcm integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteFcmIntegrationById('id');
+  const { data } = await client.integrations.deleteFcmIntegrationById('id');
 
   console.log(data);
 })();
@@ -730,14 +731,14 @@ Retrieves the current github integration configurations for a specific integrati
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getGithubIntegration();
+  const { data } = await client.integrations.getGithubIntegration();
 
   console.log(data);
 })();
@@ -763,10 +764,10 @@ Creates or updates a github integration for the project. Only administrators can
 **Example Usage Code Snippet**
 
 ```typescript
-import { GithubConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, GithubConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -774,7 +775,7 @@ import { GithubConfigPayload, ProjectClient } from 'magicbell-js/project-client'
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await projectClient.integrations.saveGithubIntegration(githubConfigPayload);
+  const { data } = await client.integrations.saveGithubIntegration(githubConfigPayload);
 
   console.log(data);
 })();
@@ -790,14 +791,14 @@ Removes a github integration configuration from the project. This will disable t
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteGithubIntegration();
+  const { data } = await client.integrations.deleteGithubIntegration();
 
   console.log(data);
 })();
@@ -819,14 +820,14 @@ Removes a specific github integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteGithubIntegrationById('id');
+  const { data } = await client.integrations.deleteGithubIntegrationById('id');
 
   console.log(data);
 })();
@@ -846,14 +847,14 @@ Retrieves the current inbox integration configurations for a specific integratio
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getInboxIntegration();
+  const { data } = await client.integrations.getInboxIntegration();
 
   console.log(data);
 })();
@@ -879,10 +880,10 @@ Creates or updates a inbox integration for the project. Only administrators can 
 **Example Usage Code Snippet**
 
 ```typescript
-import { InboxConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, InboxConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -892,7 +893,7 @@ import { InboxConfigPayload, ProjectClient } from 'magicbell-js/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 2.74,
+    backgroundOpacity: 3.3,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -998,7 +999,7 @@ import { InboxConfigPayload, ProjectClient } from 'magicbell-js/project-client';
     theme: theme,
   };
 
-  const { data } = await projectClient.integrations.saveInboxIntegration(inboxConfigPayload);
+  const { data } = await client.integrations.saveInboxIntegration(inboxConfigPayload);
 
   console.log(data);
 })();
@@ -1014,14 +1015,14 @@ Removes a inbox integration configuration from the project. This will disable th
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteInboxIntegration();
+  const { data } = await client.integrations.deleteInboxIntegration();
 
   console.log(data);
 })();
@@ -1043,14 +1044,14 @@ Removes a specific inbox integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteInboxIntegrationById('id');
+  const { data } = await client.integrations.deleteInboxIntegrationById('id');
 
   console.log(data);
 })();
@@ -1070,14 +1071,14 @@ Retrieves the current mailgun integration configurations for a specific integrat
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getMailgunIntegration();
+  const { data } = await client.integrations.getMailgunIntegration();
 
   console.log(data);
 })();
@@ -1103,10 +1104,10 @@ Creates or updates a mailgun integration for the project. Only administrators ca
 **Example Usage Code Snippet**
 
 ```typescript
-import { MailgunConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, MailgunConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1124,7 +1125,7 @@ import { MailgunConfigPayload, ProjectClient } from 'magicbell-js/project-client
     region: region,
   };
 
-  const { data } = await projectClient.integrations.saveMailgunIntegration(mailgunConfigPayload);
+  const { data } = await client.integrations.saveMailgunIntegration(mailgunConfigPayload);
 
   console.log(data);
 })();
@@ -1140,14 +1141,14 @@ Removes a mailgun integration configuration from the project. This will disable 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteMailgunIntegration();
+  const { data } = await client.integrations.deleteMailgunIntegration();
 
   console.log(data);
 })();
@@ -1169,14 +1170,14 @@ Removes a specific mailgun integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteMailgunIntegrationById('id');
+  const { data } = await client.integrations.deleteMailgunIntegrationById('id');
 
   console.log(data);
 })();
@@ -1196,14 +1197,14 @@ Retrieves the current ping_email integration configurations for a specific integ
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getPingEmailIntegration();
+  const { data } = await client.integrations.getPingEmailIntegration();
 
   console.log(data);
 })();
@@ -1229,10 +1230,10 @@ Creates or updates a ping_email integration for the project. Only administrators
 **Example Usage Code Snippet**
 
 ```typescript
-import { PingConfigPayload, ProjectClient } from 'magicbell-js/project-client';
+import { Client, PingConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1240,7 +1241,7 @@ import { PingConfigPayload, ProjectClient } from 'magicbell-js/project-client';
     url: 'url',
   };
 
-  const { data } = await projectClient.integrations.savePingEmailIntegration(pingConfigPayload);
+  const { data } = await client.integrations.savePingEmailIntegration(pingConfigPayload);
 
   console.log(data);
 })();
@@ -1256,14 +1257,14 @@ Removes a ping_email integration configuration from the project. This will disab
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deletePingEmailIntegration();
+  const { data } = await client.integrations.deletePingEmailIntegration();
 
   console.log(data);
 })();
@@ -1285,14 +1286,14 @@ Removes a specific ping_email integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deletePingEmailIntegrationById('id');
+  const { data } = await client.integrations.deletePingEmailIntegrationById('id');
 
   console.log(data);
 })();
@@ -1312,14 +1313,14 @@ Retrieves the current sendgrid integration configurations for a specific integra
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getSendgridIntegration();
+  const { data } = await client.integrations.getSendgridIntegration();
 
   console.log(data);
 })();
@@ -1345,10 +1346,10 @@ Creates or updates a sendgrid integration for the project. Only administrators c
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, SendgridConfigPayload } from 'magicbell-js/project-client';
+import { Client, SendgridConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1368,7 +1369,7 @@ import { ProjectClient, SendgridConfigPayload } from 'magicbell-js/project-clien
     replyTo: replyTo,
   };
 
-  const { data } = await projectClient.integrations.saveSendgridIntegration(sendgridConfigPayload);
+  const { data } = await client.integrations.saveSendgridIntegration(sendgridConfigPayload);
 
   console.log(data);
 })();
@@ -1384,14 +1385,14 @@ Removes a sendgrid integration configuration from the project. This will disable
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSendgridIntegration();
+  const { data } = await client.integrations.deleteSendgridIntegration();
 
   console.log(data);
 })();
@@ -1413,14 +1414,14 @@ Removes a specific sendgrid integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSendgridIntegrationById('id');
+  const { data } = await client.integrations.deleteSendgridIntegrationById('id');
 
   console.log(data);
 })();
@@ -1440,14 +1441,14 @@ Retrieves the current ses integration configurations for a specific integration 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getSesIntegration();
+  const { data } = await client.integrations.getSesIntegration();
 
   console.log(data);
 })();
@@ -1473,10 +1474,10 @@ Creates or updates a ses integration for the project. Only administrators can co
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, SesConfigPayload } from 'magicbell-js/project-client';
+import { Client, SesConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1492,7 +1493,7 @@ import { ProjectClient, SesConfigPayload } from 'magicbell-js/project-client';
     secretKey: 'secret_key',
   };
 
-  const { data } = await projectClient.integrations.saveSesIntegration(sesConfigPayload);
+  const { data } = await client.integrations.saveSesIntegration(sesConfigPayload);
 
   console.log(data);
 })();
@@ -1508,14 +1509,14 @@ Removes a ses integration configuration from the project. This will disable the 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSesIntegration();
+  const { data } = await client.integrations.deleteSesIntegration();
 
   console.log(data);
 })();
@@ -1537,14 +1538,14 @@ Removes a specific ses integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSesIntegrationById('id');
+  const { data } = await client.integrations.deleteSesIntegrationById('id');
 
   console.log(data);
 })();
@@ -1564,14 +1565,14 @@ Retrieves the current slack integration configurations for a specific integratio
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getSlackIntegration();
+  const { data } = await client.integrations.getSlackIntegration();
 
   console.log(data);
 })();
@@ -1597,21 +1598,21 @@ Creates or updates a slack integration for the project. Only administrators can 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, SlackConfigPayload } from 'magicbell-js/project-client';
+import { Client, SlackConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: 'EMY',
-    clientId: '70.75502767692',
-    clientSecret: 'reprehenderit animaliqua suntins',
-    signingSecret: 'sint Loremsitofficiaoccaecat Lor',
+    appId: 'PDF3SO6JI9',
+    clientId: '091109.871',
+    clientSecret: 'ad aute doaliquip aliqua dolor n',
+    signingSecret: 'dolor eiusmodofficia nulla eain ',
   };
 
-  const { data } = await projectClient.integrations.saveSlackIntegration(slackConfigPayload);
+  const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
 
   console.log(data);
 })();
@@ -1627,14 +1628,14 @@ Removes a slack integration configuration from the project. This will disable th
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSlackIntegration();
+  const { data } = await client.integrations.deleteSlackIntegration();
 
   console.log(data);
 })();
@@ -1656,14 +1657,14 @@ Removes a specific slack integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteSlackIntegrationById('id');
+  const { data } = await client.integrations.deleteSlackIntegrationById('id');
 
   console.log(data);
 })();
@@ -1683,14 +1684,14 @@ Retrieves the current stripe integration configurations for a specific integrati
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getStripeIntegration();
+  const { data } = await client.integrations.getStripeIntegration();
 
   console.log(data);
 })();
@@ -1716,10 +1717,10 @@ Creates or updates a stripe integration for the project. Only administrators can
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, StripeConfigPayload } from 'magicbell-js/project-client';
+import { Client, StripeConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1727,7 +1728,7 @@ import { ProjectClient, StripeConfigPayload } from 'magicbell-js/project-client'
     webhookSigningSecret: 'webhook_signing_secret',
   };
 
-  const { data } = await projectClient.integrations.saveStripeIntegration(stripeConfigPayload);
+  const { data } = await client.integrations.saveStripeIntegration(stripeConfigPayload);
 
   console.log(data);
 })();
@@ -1743,14 +1744,14 @@ Removes a stripe integration configuration from the project. This will disable t
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteStripeIntegration();
+  const { data } = await client.integrations.deleteStripeIntegration();
 
   console.log(data);
 })();
@@ -1772,14 +1773,14 @@ Removes a specific stripe integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteStripeIntegrationById('id');
+  const { data } = await client.integrations.deleteStripeIntegrationById('id');
 
   console.log(data);
 })();
@@ -1799,14 +1800,14 @@ Retrieves the current templates integration configurations for a specific integr
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getTemplatesIntegration();
+  const { data } = await client.integrations.getTemplatesIntegration();
 
   console.log(data);
 })();
@@ -1832,16 +1833,16 @@ Creates or updates a templates integration for the project. Only administrators 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const input = {};
 
-  const { data } = await projectClient.integrations.saveTemplatesIntegration();
+  const { data } = await client.integrations.saveTemplatesIntegration();
 
   console.log(data);
 })();
@@ -1857,14 +1858,14 @@ Removes a templates integration configuration from the project. This will disabl
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteTemplatesIntegration();
+  const { data } = await client.integrations.deleteTemplatesIntegration();
 
   console.log(data);
 })();
@@ -1886,14 +1887,14 @@ Removes a specific templates integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteTemplatesIntegrationById('id');
+  const { data } = await client.integrations.deleteTemplatesIntegrationById('id');
 
   console.log(data);
 })();
@@ -1913,14 +1914,14 @@ Retrieves the current twilio integration configurations for a specific integrati
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getTwilioIntegration();
+  const { data } = await client.integrations.getTwilioIntegration();
 
   console.log(data);
 })();
@@ -1946,10 +1947,10 @@ Creates or updates a twilio integration for the project. Only administrators can
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, TwilioConfigPayload } from 'magicbell-js/project-client';
+import { Client, TwilioConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -1957,10 +1958,10 @@ import { ProjectClient, TwilioConfigPayload } from 'magicbell-js/project-client'
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+7',
+    from: '+830067292871',
   };
 
-  const { data } = await projectClient.integrations.saveTwilioIntegration(twilioConfigPayload);
+  const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);
 
   console.log(data);
 })();
@@ -1976,14 +1977,14 @@ Removes a twilio integration configuration from the project. This will disable t
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteTwilioIntegration();
+  const { data } = await client.integrations.deleteTwilioIntegration();
 
   console.log(data);
 })();
@@ -2005,14 +2006,14 @@ Removes a specific twilio integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteTwilioIntegrationById('id');
+  const { data } = await client.integrations.deleteTwilioIntegrationById('id');
 
   console.log(data);
 })();
@@ -2032,14 +2033,14 @@ Retrieves the current web_push integration configurations for a specific integra
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.getWebPushIntegration();
+  const { data } = await client.integrations.getWebPushIntegration();
 
   console.log(data);
 })();
@@ -2065,10 +2066,10 @@ Creates or updates a web_push integration for the project. Only administrators c
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient, WebpushConfigPayload } from 'magicbell-js/project-client';
+import { Client, WebpushConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
@@ -2077,7 +2078,7 @@ import { ProjectClient, WebpushConfigPayload } from 'magicbell-js/project-client
     publicKey: 'public_key',
   };
 
-  const { data } = await projectClient.integrations.saveWebPushIntegration(webpushConfigPayload);
+  const { data } = await client.integrations.saveWebPushIntegration(webpushConfigPayload);
 
   console.log(data);
 })();
@@ -2093,14 +2094,14 @@ Removes a web_push integration configuration from the project. This will disable
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteWebPushIntegration();
+  const { data } = await client.integrations.deleteWebPushIntegration();
 
   console.log(data);
 })();
@@ -2122,14 +2123,14 @@ Removes a specific web_push integration instance by ID from the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.integrations.deleteWebPushIntegrationById('id');
+  const { data } = await client.integrations.deleteWebPushIntegrationById('id');
 
   console.log(data);
 })();

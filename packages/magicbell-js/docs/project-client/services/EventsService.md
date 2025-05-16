@@ -29,15 +29,15 @@ Retrieves a paginated list of events for the project.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.events.listEvents({
-    limit: 8,
+  const { data } = await client.events.listEvents({
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -66,14 +66,14 @@ Retrieves a project event by its ID.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.events.getEvent('id');
+  const { data } = await client.events.getEvent('id');
 
   console.log(data);
 })();

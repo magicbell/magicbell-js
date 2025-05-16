@@ -26,14 +26,14 @@ Get the delivery plan for a notification.
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.notifications.getDeliveryplan('notification_id');
+  const { data } = await client.notifications.getDeliveryplan('notification_id');
 
   console.log(data);
 })();

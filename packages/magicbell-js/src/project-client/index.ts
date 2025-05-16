@@ -19,7 +19,7 @@ export * from './services/jwt/index.js';
 export * from './services/notifications/index.js';
 export * from './services/users/index.js';
 
-export class ProjectClient {
+export class Client {
   public readonly broadcasts: BroadcastsService;
 
   public readonly channels: ChannelsService;

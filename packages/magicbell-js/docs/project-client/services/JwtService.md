@@ -33,15 +33,15 @@ Retrieves a list of all active project-level JWT tokens. Returns a paginated lis
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.jwt.fetchProjectTokens({
-    limit: 5,
+  const { data } = await client.jwt.fetchProjectTokens({
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -70,19 +70,19 @@ Creates a new project-level JWT token. These tokens provide project-wide access 
 **Example Usage Code Snippet**
 
 ```typescript
-import { CreateProjectTokenRequest, ProjectClient } from 'magicbell-js/project-client';
+import { Client, CreateProjectTokenRequest } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const createProjectTokenRequest: CreateProjectTokenRequest = {
-    expiry: 2,
+    expiry: 5,
     name: 'name',
   };
 
-  const { data } = await projectClient.jwt.createProjectJwt(createProjectTokenRequest);
+  const { data } = await client.jwt.createProjectJwt(createProjectTokenRequest);
 
   console.log(data);
 })();
@@ -108,14 +108,14 @@ Immediately revokes a project-level JWT token. Once revoked, any requests using 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.jwt.discardProjectJwt('token_id');
+  const { data } = await client.jwt.discardProjectJwt('token_id');
 
   console.log(data);
 })();
@@ -141,21 +141,21 @@ Issues a new user-specific JWT token. These tokens are scoped to individual user
 **Example Usage Code Snippet**
 
 ```typescript
-import { CreateUserTokenRequest, ProjectClient } from 'magicbell-js/project-client';
+import { Client, CreateUserTokenRequest } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
   const createUserTokenRequest: CreateUserTokenRequest = {
     email: 'email',
-    expiry: 8,
+    expiry: 4,
     externalId: 'external_id',
     name: 'name',
   };
 
-  const { data } = await projectClient.jwt.createUserJwt(createUserTokenRequest);
+  const { data } = await client.jwt.createUserJwt(createUserTokenRequest);
 
   console.log(data);
 })();
@@ -181,14 +181,14 @@ Revokes a specific user's JWT token. This immediately invalidates the token and 
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.jwt.discardUserJwt('token_id');
+  const { data } = await client.jwt.discardUserJwt('token_id');
 
   console.log(data);
 })();
@@ -217,15 +217,15 @@ Lists all JWT tokens associated with a specific user. Returns token metadata inc
 **Example Usage Code Snippet**
 
 ```typescript
-import { ProjectClient } from 'magicbell-js/project-client';
+import { Client } from 'magicbell-js/project-client';
 
 (async () => {
-  const projectClient = new ProjectClient({
+  const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await projectClient.jwt.fetchUserTokens('user_id', {
-    limit: 1,
+  const { data } = await client.jwt.fetchUserTokens('user_id', {
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

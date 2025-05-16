@@ -28,7 +28,7 @@ md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 md.reIndentHeadings(readmeAst, 1);
 md.mapLinks(readmeAst, rewriteHref);
 md.insertFrontMatter(readmeAst, {
-  title: pkg.docs?.name || pkg.name,
+  title: 'MagicBell JavaScript SDK',
 });
 
 await md.write(readmeAst, path.join(outdir, 'index.mdx'));
