@@ -1,4 +1,4 @@
-#! /usr/bin/env node --experimental-strip-types
+#! /usr/bin/env -S node --experimental-strip-types
 import { fileURLToPath } from 'node:url';
 
 import fs from 'fs';
