@@ -1,11 +1,11 @@
 #! /usr/bin/env node --experimental-strip-types
-/* eslint-disable no-console */
+/* eslint-disable no-console,@typescript-eslint/ban-ts-comment */
 import { execSync } from 'node:child_process';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { parseArgs } from 'node:util';
 
-// @ts-expect-error node16 mod resolution
+// @ts-ignore
 import * as md from '@magicbell/codegen/markdown';
 import { sortPackageJson } from 'sort-package-json';
 
