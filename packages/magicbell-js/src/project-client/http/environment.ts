@@ -1,3 +1,3 @@
 export enum Environment {
-  DEFAULT = 'https://petstore.swagger.io/v2',
+  DEFAULT = 'https://api.magicbell.com/v2',
 }
