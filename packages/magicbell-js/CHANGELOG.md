@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 0.0.4
+
+### Patch Changes
+
+- [#523](https://github.com/magicbell/magicbell-js/pull/523) [`a884670`](https://github.com/magicbell/magicbell-js/commit/a884670a1ab809c743410b44610b2a41771000ff) Thanks [@smeijer](https://github.com/smeijer)! - fix: set correct environment url
+
 ## 0.0.3
 
 ### Patch Changes
