@@ -1,5 +1,6 @@
 import { ZodType } from 'zod';
 
+import { ThrowableError } from '../errors/throwable-error.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
 import { ContentType, HttpMethod, RetryOptions, SdkConfig, ValidationOptions } from '../types.js';
 
@@ -10,7 +11,7 @@ export interface ResponseDefinition {
 }
 
 export interface ErrorDefinition {
-  error: new (...args: any[]) => Error;
+  error: new (...args: any[]) => ThrowableError;
   contentType: ContentType;
   status: number;
 }

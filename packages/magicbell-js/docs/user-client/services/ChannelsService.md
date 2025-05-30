@@ -63,7 +63,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 8,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -101,7 +101,7 @@ import { Client, InboxToken } from 'magicbell-js/user-client';
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'ipsum nulla mag',
+    token: 'consequat utani',
   };
 
   const { data } = await client.channels.saveInAppInboxToken(inboxToken);
@@ -206,7 +206,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getMobilePushApnsTokens({
-    limit: 7,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -246,7 +246,7 @@ import { ApnsTokenPayload, Client } from 'magicbell-js/user-client';
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'sit culpa incid',
+    deviceToken: 'ut pariatur tem',
     installationId: apnsTokenPayloadInstallationId,
   };
 
@@ -352,7 +352,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getMobilePushExpoTokens({
-    limit: 8,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -494,7 +494,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getMobilePushFcmTokens({
-    limit: 6,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -533,7 +533,7 @@ import { Client, FcmTokenPayload } from 'magicbell-js/user-client';
   const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
 
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'estminim adipis',
+    deviceToken: 'eiusmod ametpar',
     installationId: fcmTokenPayloadInstallationId,
   };
 
@@ -639,7 +639,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getSlackTokens({
-    limit: 7,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -938,7 +938,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getWebPushTokens({
-    limit: 4,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

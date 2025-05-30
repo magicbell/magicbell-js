@@ -83,7 +83,7 @@ import { Client } from '@magicbell/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 10,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -199,7 +199,6 @@ The SDK includes several models that represent the data structures used in API r
 | [CreateProjectTokenRequest](documentation/models/CreateProjectTokenRequest.md)       |             |
 | [CreateTokenResponse](documentation/models/CreateTokenResponse.md)                   |             |
 | [DiscardTokenResponse](documentation/models/DiscardTokenResponse.md)                 |             |
-| [CreateUserTokenRequest](documentation/models/CreateUserTokenRequest.md)             |             |
 | [DeliveryPlanCollection](documentation/models/DeliveryPlanCollection.md)             |             |
 | [DeliveryPlan](documentation/models/DeliveryPlan.md)                                 |             |
 | [Links](documentation/models/Links.md)                                               |             |

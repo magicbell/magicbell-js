@@ -169,12 +169,13 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfigPayload: ApnsConfigPayload = {
   appId: "app_id",
   badge: badge,
-  certificate: "---BEGIN PRIVATE KEY-------
-dSIhbNOmQGa
-- END PRIVATE KEYYYYYYYYY------",
-  keyId: "sit esse d",
+  certificate: "-----BEGIN PRIVATE KEY--------
+fkCylscd=
+------END PRIVATE KEYYYYY--------
+",
+  keyId: "eiusmod nu",
   payloadVersion: payloadVersion,
-  teamId: "qui enim m"
+  teamId: "ut nisilab"
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
@@ -646,9 +647,9 @@ const fcmConfigPayload: FcmConfigPayload = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "------ BEGINOD ----------
-2aJRpz==
--------- ENDTBK O-----------
+  privateKey: "BEGINZORXM--
+VX==
+---------ENDXBSTK TZDD-------
 ",
   privateKeyId: "private_key_id",
   projectId: "project_id",
@@ -893,7 +894,7 @@ import { Client, InboxConfigPayload } from '@magicbell/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 6.22,
+    backgroundOpacity: 4.25,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1606,10 +1607,10 @@ import { Client, SlackConfigPayload } from '@magicbell/project-client';
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: '25',
-    clientId: '1869975198.032422558',
-    clientSecret: 'irure nulla Lorem exercitation d',
-    signingSecret: 'quismollit ex irureeaconsequatdo',
+    appId: 'UH8WIDI5U0',
+    clientId: '06630.088650',
+    clientSecret: 'dolor minimsunt dolore adipisici',
+    signingSecret: 'ad labore velit et reprehenderit',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
@@ -1958,7 +1959,7 @@ import { Client, TwilioConfigPayload } from '@magicbell/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+590058476',
+    from: '+948',
   };
 
   const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);

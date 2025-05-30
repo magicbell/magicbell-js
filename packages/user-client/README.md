@@ -83,7 +83,7 @@ import { Client } from '@magicbell/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 1,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 8,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
