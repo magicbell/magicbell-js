@@ -1,12 +1,14 @@
 import { z } from 'zod';
 
 import { Environment } from '../../http/environment.js';
+import { ThrowableError } from '../../http/errors/throwable-error.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
+import { Notification, notificationResponse } from './models/notification.js';
 import { NotificationCollection, notificationCollectionResponse } from './models/notification-collection.js';
-import { ListNotificationsParams } from './request-params.js';
+import { ArchiveNotificationsParams, ListNotificationsParams, MarkNotificationsReadParams } from './request-params.js';
 
 export class NotificationsService extends BaseService {
   /**
@@ -15,6 +17,7 @@ export class NotificationsService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {string} [params.status] -
+   * @param {string} [params.category] -
    * @param {string} [params.topic] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<NotificationCollection>>} OK
@@ -56,11 +59,124 @@ export class NotificationsService extends BaseService {
         value: params?.status,
       })
       .addQueryParam({
+        key: 'category',
+        value: params?.category,
+      })
+      .addQueryParam({
         key: 'topic',
         value: params?.topic,
       })
       .build();
     return this.client.call<NotificationCollection>(request);
+  }
+
+  /**
+   * Archives all notifications.
+   * @param {string} [params.category] -
+   * @param {string} [params.topic] -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async archiveNotifications(
+    params?: ArchiveNotificationsParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/archive')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addQueryParam({
+        key: 'category',
+        value: params?.category,
+      })
+      .addQueryParam({
+        key: 'topic',
+        value: params?.topic,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Marks all notifications as read.
+   * @param {string} [params.category] -
+   * @param {string} [params.topic] -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async markNotificationsRead(
+    params?: MarkNotificationsReadParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/read')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addQueryParam({
+        key: 'category',
+        value: params?.category,
+      })
+      .addQueryParam({
+        key: 'topic',
+        value: params?.topic,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Gets a notification by ID.
+   * @param {string} notificationId -
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<Notification>>} OK
+   */
+  async getNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Notification>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/notifications/{notification_id}')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: notificationResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<Notification>(request);
   }
 
   /**

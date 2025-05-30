@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { Environment } from '../../http/environment.js';
+import { ThrowableError } from '../../http/errors/throwable-error.js';
 import { SerializationStyle } from '../../http/serialization/base-serializer.js';
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';

@@ -46,7 +46,7 @@ import { Client, InboxConfigPayload } from 'magicbell-js/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 7.11,
+    backgroundOpacity: 4.39,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -243,8 +243,8 @@ import { Client, SlackInstallation } from 'magicbell-js/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 7,
-    id: 'HH-g|[g~J]11',
+    expiresIn: 5,
+    id: 'WFZ3D-@%%!',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',

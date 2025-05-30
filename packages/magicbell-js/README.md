@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 5,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -176,7 +176,6 @@ The SDK includes several models that represent the data structures used in API r
 | [CreateProjectTokenRequest](docs/project-client/models/CreateProjectTokenRequest.md)       |             |
 | [CreateTokenResponse](docs/project-client/models/CreateTokenResponse.md)                   |             |
 | [DiscardTokenResponse](docs/project-client/models/DiscardTokenResponse.md)                 |             |
-| [CreateUserTokenRequest](docs/project-client/models/CreateUserTokenRequest.md)             |             |
 | [DeliveryPlanCollection](docs/project-client/models/DeliveryPlanCollection.md)             |             |
 | [DeliveryPlan](docs/project-client/models/DeliveryPlan.md)                                 |             |
 | [Links](docs/project-client/models/Links.md)                                               |             |
@@ -236,7 +235,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.getInAppInboxTokens({
-    limit: 8,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

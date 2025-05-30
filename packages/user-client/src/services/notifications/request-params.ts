@@ -3,5 +3,16 @@ export interface ListNotificationsParams {
   startingAfter?: string;
   endingBefore?: string;
   status?: string;
+  category?: string;
+  topic?: string;
+}
+
+export interface ArchiveNotificationsParams {
+  category?: string;
+  topic?: string;
+}
+
+export interface MarkNotificationsReadParams {
+  category?: string;
   topic?: string;
 }
