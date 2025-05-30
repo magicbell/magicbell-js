@@ -23,6 +23,9 @@ jobs:
           node-version: 22
       - uses: bahmutov/npm-install@v1
 
+      - name: Build codegen
+        run: yarn --cwd packages/codegen build
+
       - name: Regen `magicbell`
         run: yarn --cwd packages/magicbell codegen
 
