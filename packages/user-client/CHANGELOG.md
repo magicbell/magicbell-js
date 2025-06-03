@@ -1,5 +1,19 @@
 # @magicbell/user-client
 
+## 0.14.1
+
+### Patch Changes
+
+- [#530](https://github.com/magicbell/magicbell-js/pull/530) [`ef6bacd`](https://github.com/magicbell/magicbell-js/commit/ef6bacd77028ae472a06f68cfe956a61b968eda5) Thanks [@smeijer](https://github.com/smeijer)! - The `@magicbell/project-client` and `@magicbell/user-client` packages are now deprecated. Please migrate to `magicbell-js` instead. Migration is trivial, and should be as simple as updating your import statements.
+
+  ```diff
+  - import { Client } from '@magicbell/project-client';
+  + import { Client } from 'magicbell-js/project-client';
+
+  - import { Client } from '@magicbell/project-client';
+  + import { Client } from 'magicbell-js/project-client';
+  ```
+
 ## 0.14.0
 
 ### Minor Changes
