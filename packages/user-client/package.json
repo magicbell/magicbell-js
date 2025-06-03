@@ -8,10 +8,10 @@
     "api",
     "client"
   ],
+  "homepage": "https://www.magicbell.com/docs/libraries/magicbell-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/magicbell/magicbell-js.git",
-    "directory": "packages/user-client"
+    "url": "https://github.com/magicbell/magicbell-js.git"
   },
   "author": "MagicBell",
   "type": "module",
