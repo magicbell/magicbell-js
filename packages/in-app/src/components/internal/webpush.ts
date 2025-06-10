@@ -33,7 +33,7 @@ export class WebPushClient {
    * Checks if the current user has an active push subscription that is registered by MagicBell.
    */
   async isSubscribed(): Promise<boolean> {
-    const tokens = await this.#client.channels.getWebPushTokens();
+    const tokens = await this.#client.channels.listWebPushTokens();
     const registration = await this.#getServiceWorker();
     const activeSubscription = await registration?.pushManager?.getSubscription();
 
@@ -90,11 +90,11 @@ export class WebPushClient {
     // we're just purging an old subscription, MagicBell backend will also do that on the next broadcast
     // so any error here, is non-critical
     void this.#client.channels
-      .getWebPushTokens()
+      .listWebPushTokens()
       .then(({ data }) => {
         const token = data?.data?.find((token) => token.endpoint === endpoint);
         if (!token) return;
-        return this.#client.channels.discardWebPushToken(String(token.id));
+        return this.#client.channels.deleteWebPushToken(String(token.id));
       })
       .catch(() => void 0);
 
