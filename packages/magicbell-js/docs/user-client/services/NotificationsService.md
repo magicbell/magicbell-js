@@ -2,16 +2,16 @@
 
 A list of all methods in the `NotificationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                           | Description                         |
-| :------------------------------------------------ | :---------------------------------- |
-| [listNotifications](#listnotifications)           | Lists all notifications for a user. |
-| [archiveNotifications](#archivenotifications)     | Archives all notifications.         |
-| [markNotificationsRead](#marknotificationsread)   | Marks all notifications as read.    |
-| [getNotification](#getnotification)               | Gets a notification by ID.          |
-| [archiveNotification](#archivenotification)       | Archives a notification.            |
-| [markNotificationRead](#marknotificationread)     | Marks a notification as read.       |
-| [unarchiveNotification](#unarchivenotification)   | Unarchives a notification.          |
-| [markNotificationUnread](#marknotificationunread) | Marks a notification as unread.     |
+| Methods                                               | Description                         |
+| :---------------------------------------------------- | :---------------------------------- |
+| [listNotifications](#listnotifications)               | Lists all notifications for a user. |
+| [archiveAllNotifications](#archiveallnotifications)   | Archive all notifications.          |
+| [markAllNotificationsRead](#markallnotificationsread) | Marks all notifications as read.    |
+| [fetchNotification](#fetchnotification)               | Gets a notification by ID.          |
+| [archiveNotification](#archivenotification)           | Archive a notification.             |
+| [markNotificationRead](#marknotificationread)         | Marks a notification as read.       |
+| [unarchiveNotification](#unarchivenotification)       | Unarchives a notification.          |
+| [markNotificationUnread](#marknotificationunread)     | Marks a notification as unread.     |
 
 ## listNotifications
 
@@ -46,7 +46,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.notifications.listNotifications({
-    limit: 2,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     status: 'status',
@@ -58,9 +58,9 @@ import { Client } from 'magicbell-js/user-client';
 })();
 ```
 
-## archiveNotifications
+## archiveAllNotifications
 
-Archives all notifications.
+Archive all notifications.
 
 - HTTP Method: `POST`
 - Endpoint: `/notifications/archive`
@@ -82,7 +82,7 @@ import { Client } from 'magicbell-js/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.notifications.archiveNotifications({
+  const { data } = await client.notifications.archiveAllNotifications({
     category: 'category',
     topic: 'topic',
   });
@@ -91,7 +91,7 @@ import { Client } from 'magicbell-js/user-client';
 })();
 ```
 
-## markNotificationsRead
+## markAllNotificationsRead
 
 Marks all notifications as read.
 
@@ -115,7 +115,7 @@ import { Client } from 'magicbell-js/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.notifications.markNotificationsRead({
+  const { data } = await client.notifications.markAllNotificationsRead({
     category: 'category',
     topic: 'topic',
   });
@@ -124,7 +124,7 @@ import { Client } from 'magicbell-js/user-client';
 })();
 ```
 
-## getNotification
+## fetchNotification
 
 Gets a notification by ID.
 
@@ -151,7 +151,7 @@ import { Client } from 'magicbell-js/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.notifications.getNotification('notification_id');
+  const { data } = await client.notifications.fetchNotification('notification_id');
 
   console.log(data);
 })();
@@ -159,7 +159,7 @@ import { Client } from 'magicbell-js/user-client';
 
 ## archiveNotification
 
-Archives a notification.
+Archive a notification.
 
 - HTTP Method: `POST`
 - Endpoint: `/notifications/{notification_id}/archive`

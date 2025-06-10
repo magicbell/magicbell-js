@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 4,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -76,15 +76,13 @@ The SDK provides various services to interact with the API.
 <details> 
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
-| Name                                                     |
-| :------------------------------------------------------- |
-| [BroadcastsService](services/BroadcastsService.md)       |
-| [ChannelsService](services/ChannelsService.md)           |
-| [EventsService](services/EventsService.md)               |
-| [IntegrationsService](services/IntegrationsService.md)   |
-| [JwtService](services/JwtService.md)                     |
-| [NotificationsService](services/NotificationsService.md) |
-| [UsersService](services/UsersService.md)                 |
+| Name                                                   |
+| :----------------------------------------------------- |
+| [BroadcastsService](services/BroadcastsService.md)     |
+| [ChannelsService](services/ChannelsService.md)         |
+| [EventsService](services/EventsService.md)             |
+| [IntegrationsService](services/IntegrationsService.md) |
+| [UsersService](services/UsersService.md)               |
 
 </details>
 
@@ -99,6 +97,7 @@ The SDK includes several models that represent the data structures used in API r
 | :--------------------------------------------------------------------- | :---------- |
 | [BroadcastCollection](models/BroadcastCollection.md)                   |             |
 | [Broadcast](models/Broadcast.md)                                       |             |
+| [User](models/User.md)                                                 |             |
 | [Links](models/Links.md)                                               |             |
 | [CategoryDeliveryConfig](models/CategoryDeliveryConfig.md)             |             |
 | [InboxTokenResponseCollection](models/InboxTokenResponseCollection.md) |             |
@@ -170,15 +169,6 @@ The SDK includes several models that represent the data structures used in API r
 | [WebpushConfigCollection](models/WebpushConfigCollection.md)           |             |
 | [WebpushConfig](models/WebpushConfig.md)                               |             |
 | [WebpushConfigPayload](models/WebpushConfigPayload.md)                 |             |
-| [AccessTokenCollection](models/AccessTokenCollection.md)               |             |
-| [AccessToken](models/AccessToken.md)                                   |             |
-| [Links](models/Links.md)                                               |             |
-| [CreateProjectTokenRequest](models/CreateProjectTokenRequest.md)       |             |
-| [CreateTokenResponse](models/CreateTokenResponse.md)                   |             |
-| [DiscardTokenResponse](models/DiscardTokenResponse.md)                 |             |
-| [DeliveryPlanCollection](models/DeliveryPlanCollection.md)             |             |
-| [DeliveryPlan](models/DeliveryPlan.md)                                 |             |
-| [Links](models/Links.md)                                               |             |
 | [UserCollection](models/UserCollection.md)                             |             |
 | [User](models/User.md)                                                 |             |
 | [Links](models/Links.md)                                               |             |

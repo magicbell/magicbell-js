@@ -53,17 +53,17 @@ export class EventsService extends BaseService {
   }
 
   /**
-   * Retrieves a project event by its ID.
-   * @param {string} id -
+   * Fetches a project event by its ID.
+   * @param {string} eventId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<Event>>} OK
    */
-  async getEvent(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<Event>> {
+  async fetchEvent(eventId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Event>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
       .setMethod('GET')
-      .setPath('/events/{id}')
+      .setPath('/events/{event_id}')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
@@ -76,8 +76,8 @@ export class EventsService extends BaseService {
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
       .addPathParam({
-        key: 'id',
-        value: id,
+        key: 'event_id',
+        value: eventId,
       })
       .build();
     return this.client.call<Event>(request);

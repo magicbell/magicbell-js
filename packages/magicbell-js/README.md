@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 4,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -76,15 +76,13 @@ The SDK provides various services to interact with the API.
 <details> 
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
-| Name                                                                         |
-| :--------------------------------------------------------------------------- |
-| [BroadcastsService](docs/project-client/services/BroadcastsService.md)       |
-| [ChannelsService](docs/project-client/services/ChannelsService.md)           |
-| [EventsService](docs/project-client/services/EventsService.md)               |
-| [IntegrationsService](docs/project-client/services/IntegrationsService.md)   |
-| [JwtService](docs/project-client/services/JwtService.md)                     |
-| [NotificationsService](docs/project-client/services/NotificationsService.md) |
-| [UsersService](docs/project-client/services/UsersService.md)                 |
+| Name                                                                       |
+| :------------------------------------------------------------------------- |
+| [BroadcastsService](docs/project-client/services/BroadcastsService.md)     |
+| [ChannelsService](docs/project-client/services/ChannelsService.md)         |
+| [EventsService](docs/project-client/services/EventsService.md)             |
+| [IntegrationsService](docs/project-client/services/IntegrationsService.md) |
+| [UsersService](docs/project-client/services/UsersService.md)               |
 
 </details>
 
@@ -99,6 +97,7 @@ The SDK includes several models that represent the data structures used in API r
 | :----------------------------------------------------------------------------------------- | :---------- |
 | [BroadcastCollection](docs/project-client/models/BroadcastCollection.md)                   |             |
 | [Broadcast](docs/project-client/models/Broadcast.md)                                       |             |
+| [User](docs/project-client/models/User.md)                                                 |             |
 | [Links](docs/project-client/models/Links.md)                                               |             |
 | [CategoryDeliveryConfig](docs/project-client/models/CategoryDeliveryConfig.md)             |             |
 | [InboxTokenResponseCollection](docs/project-client/models/InboxTokenResponseCollection.md) |             |
@@ -170,15 +169,6 @@ The SDK includes several models that represent the data structures used in API r
 | [WebpushConfigCollection](docs/project-client/models/WebpushConfigCollection.md)           |             |
 | [WebpushConfig](docs/project-client/models/WebpushConfig.md)                               |             |
 | [WebpushConfigPayload](docs/project-client/models/WebpushConfigPayload.md)                 |             |
-| [AccessTokenCollection](docs/project-client/models/AccessTokenCollection.md)               |             |
-| [AccessToken](docs/project-client/models/AccessToken.md)                                   |             |
-| [Links](docs/project-client/models/Links.md)                                               |             |
-| [CreateProjectTokenRequest](docs/project-client/models/CreateProjectTokenRequest.md)       |             |
-| [CreateTokenResponse](docs/project-client/models/CreateTokenResponse.md)                   |             |
-| [DiscardTokenResponse](docs/project-client/models/DiscardTokenResponse.md)                 |             |
-| [DeliveryPlanCollection](docs/project-client/models/DeliveryPlanCollection.md)             |             |
-| [DeliveryPlan](docs/project-client/models/DeliveryPlan.md)                                 |             |
-| [Links](docs/project-client/models/Links.md)                                               |             |
 | [UserCollection](docs/project-client/models/UserCollection.md)                             |             |
 | [User](docs/project-client/models/User.md)                                                 |             |
 | [Links](docs/project-client/models/Links.md)                                               |             |
@@ -234,8 +224,8 @@ import { Client } from 'magicbell-js/user-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.channels.getInAppInboxTokens({
-    limit: 4,
+  const { data } = await client.channels.listInboxTokens({
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

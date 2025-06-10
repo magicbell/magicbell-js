@@ -8,8 +8,6 @@ export type { MobilePush } from './mobile-push.js';
 export type { Overrides } from './overrides.js';
 export type { OverridesChannels } from './overrides-channels.js';
 export type { Providers } from './providers.js';
-export type { Slack } from './slack.js';
 export type { Sms } from './sms.js';
 export { StatusStatus } from './status-status.js';
 export type { Summary } from './summary.js';
-export type { WebPush } from './web-push.js';

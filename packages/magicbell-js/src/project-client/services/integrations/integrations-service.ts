@@ -96,7 +96,25 @@ import {
   webpushConfigPayloadRequest,
   webpushConfigPayloadResponse,
 } from './models/webpush-config-payload.js';
-import { ListIntegrationsParams } from './request-params.js';
+import {
+  DeleteApnsIntegrationParams,
+  DeleteAwssnsIntegrationParams,
+  DeleteEventsourceIntegrationParams,
+  DeleteExpoIntegrationParams,
+  DeleteFcmIntegrationParams,
+  DeleteGithubIntegrationParams,
+  DeleteInboxIntegrationParams,
+  DeleteMailgunIntegrationParams,
+  DeletePingEmailIntegrationParams,
+  DeleteSendgridIntegrationParams,
+  DeleteSesIntegrationParams,
+  DeleteSlackIntegrationParams,
+  DeleteStripeIntegrationParams,
+  DeleteTemplatesIntegrationParams,
+  DeleteTwilioIntegrationParams,
+  DeleteWebPushIntegrationParams,
+  ListIntegrationsParams,
+} from './request-params.js';
 
 export class IntegrationsService extends BaseService {
   /**
@@ -144,11 +162,11 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current APNs integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ApnsConfigCollection>>} OK
    */
-  async getApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfigCollection>> {
+  async listApnsIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<ApnsConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -170,7 +188,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a apns integration for the project. Only administrators can configure integrations.
+   * Updates or creates the APNs integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ApnsConfigPayload>>} OK
    */
@@ -201,11 +219,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the APNs integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteApnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteApnsIntegration(
+    params?: DeleteApnsIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -222,47 +244,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific apns integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteApnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/apns/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Amazon SNS integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<AwssnsConfigCollection>>} OK
    */
-  async getAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfigCollection>> {
+  async listAwssnsIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -284,7 +279,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a awssns integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Amazon SNS integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<AwssnsConfigPayload>>} OK
    */
@@ -315,11 +310,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Amazon SNS integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteAwssnsIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteAwssnsIntegration(
+    params?: DeleteAwssnsIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -336,47 +335,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific awssns integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteAwssnsIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/awssns/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current EventSource integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<EventSourceConfigCollection>>} OK
    */
-  async getEventsourceIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<EventSourceConfigCollection>> {
+  async listEventsourceIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<EventSourceConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -398,7 +370,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a eventsource integration for the project. Only administrators can configure integrations.
+   * Updates or creates the EventSource integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<EventSourceConfigPayload>>} OK
    */
@@ -429,11 +401,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a eventsource integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the EventSource integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteEventsourceIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteEventsourceIntegration(
+    params?: DeleteEventsourceIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -450,47 +426,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific eventsource integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteEventsourceIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/eventsource/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Expo integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ExpoConfigCollection>>} OK
    */
-  async getExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfigCollection>> {
+  async listExpoIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<ExpoConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -512,7 +461,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a expo integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Expo integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ExpoConfigPayload>>} OK
    */
@@ -543,11 +492,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Expo integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteExpoIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteExpoIntegration(
+    params?: DeleteExpoIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -564,47 +517,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific expo integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteExpoIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/expo/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current FCM integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<FcmConfigCollection>>} OK
    */
-  async getFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfigCollection>> {
+  async listFcmIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<FcmConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -626,7 +552,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a fcm integration for the project. Only administrators can configure integrations.
+   * Updates or creates the FCM integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<FcmConfigPayload>>} OK
    */
@@ -657,11 +583,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the FCM integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteFcmIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteFcmIntegration(
+    params?: DeleteFcmIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -678,47 +608,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific fcm integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteFcmIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/fcm/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<GithubConfigCollection>>} OK
    */
-  async getGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfigCollection>> {
+  async listGithubIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -740,7 +643,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a github integration for the project. Only administrators can configure integrations.
+   * Updates or creates the GitHub integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<GithubConfigPayload>>} OK
    */
@@ -771,11 +674,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a github integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteGithubIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteGithubIntegration(
+    params?: DeleteGithubIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -792,47 +699,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific github integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteGithubIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/github/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxConfigCollection>>} OK
    */
-  async getInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfigCollection>> {
+  async listInboxIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<InboxConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -854,7 +734,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a inbox integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Inbox integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxConfigPayload>>} OK
    */
@@ -885,11 +765,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Inbox integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteInboxIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteInboxIntegration(
+    params?: DeleteInboxIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -906,47 +790,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific inbox integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteInboxIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/inbox/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<MailgunConfigCollection>>} OK
    */
-  async getMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<MailgunConfigCollection>> {
+  async listMailgunIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<MailgunConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -968,7 +825,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a mailgun integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Mailgun integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<MailgunConfigPayload>>} OK
    */
@@ -999,11 +856,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Mailgun integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteMailgunIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteMailgunIntegration(
+    params?: DeleteMailgunIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1020,47 +881,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific mailgun integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteMailgunIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/mailgun/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Ping Email integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<PingConfigCollection>>} OK
    */
-  async getPingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<PingConfigCollection>> {
+  async listPingEmailIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<PingConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1082,7 +916,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a ping_email integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Ping Email integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<PingConfigPayload>>} OK
    */
@@ -1113,11 +947,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Ping Email integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deletePingEmailIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deletePingEmailIntegration(
+    params?: DeletePingEmailIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1134,47 +972,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific ping_email integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deletePingEmailIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/ping_email/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current SendGrid integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SendgridConfigCollection>>} OK
    */
-  async getSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SendgridConfigCollection>> {
+  async listSendgridIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<SendgridConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1196,7 +1007,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.
+   * Updates or creates the SendGrid integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SendgridConfigPayload>>} OK
    */
@@ -1227,11 +1038,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the SendGrid integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSendgridIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteSendgridIntegration(
+    params?: DeleteSendgridIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1248,47 +1063,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific sendgrid integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteSendgridIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/sendgrid/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Amazon SES integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SesConfigCollection>>} OK
    */
-  async getSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SesConfigCollection>> {
+  async listSesIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<SesConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1310,7 +1098,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a ses integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Amazon SES integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SesConfigPayload>>} OK
    */
@@ -1341,11 +1129,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Amazon SES integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteSesIntegration(
+    params?: DeleteSesIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1362,47 +1154,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific ses integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteSesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/ses/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Slack integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackConfigCollection>>} OK
    */
-  async getSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfigCollection>> {
+  async listSlackIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<SlackConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1424,7 +1189,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a slack integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Slack integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackConfigPayload>>} OK
    */
@@ -1455,11 +1220,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Slack integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteSlackIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteSlackIntegration(
+    params?: DeleteSlackIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1476,47 +1245,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific slack integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteSlackIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/slack/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<StripeConfigCollection>>} OK
    */
-  async getStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfigCollection>> {
+  async listStripeIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1538,7 +1280,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a stripe integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Stripe integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<StripeConfigPayload>>} OK
    */
@@ -1569,11 +1311,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteStripeIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteStripeIntegration(
+    params?: DeleteStripeIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1590,47 +1336,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific stripe integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteStripeIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/stripe/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TemplatesConfigCollection>>} OK
    */
-  async getTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<TemplatesConfigCollection>> {
+  async listTemplatesIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<TemplatesConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1652,7 +1371,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a templates integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Templates integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} OK
    */
@@ -1680,11 +1399,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Templates integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTemplatesIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteTemplatesIntegration(
+    params?: DeleteTemplatesIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1701,47 +1424,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific templates integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteTemplatesIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/templates/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TwilioConfigCollection>>} OK
    */
-  async getTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfigCollection>> {
+  async listTwilioIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<TwilioConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1763,7 +1459,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a twilio integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Twilio integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TwilioConfigPayload>>} OK
    */
@@ -1794,11 +1490,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Twilio integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteTwilioIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteTwilioIntegration(
+    params?: DeleteTwilioIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1815,47 +1515,20 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific twilio integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteTwilioIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/twilio/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);
   }
 
   /**
-   * Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.
+   * Retrieves the current Web Push integration configurations for a specific integration type in the project. Returns configuration details and status information.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebpushConfigCollection>>} OK
    */
-  async getWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<WebpushConfigCollection>> {
+  async listWebPushIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<WebpushConfigCollection>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1877,7 +1550,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates or updates a web_push integration for the project. Only administrators can configure integrations.
+   * Updates or creates the Web Push integration for the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebpushConfigPayload>>} OK
    */
@@ -1908,11 +1581,15 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.
+   * Deletes the Web Push integration configuration from the project. This will disable the integration's functionality within the project.
+   * @param {string} [params.id] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async deleteWebPushIntegration(requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+  async deleteWebPushIntegration(
+    params?: DeleteWebPushIntegrationParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -1929,36 +1606,9 @@ export class IntegrationsService extends BaseService {
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
       .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Removes a specific web_push integration instance by ID from the project.
-   * @param {string} id -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteWebPushIntegrationById(id: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/web_push/{id}')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addPathParam({
+      .addQueryParam({
         key: 'id',
-        value: id,
+        value: params?.id,
       })
       .build();
     return this.client.call<void>(request);

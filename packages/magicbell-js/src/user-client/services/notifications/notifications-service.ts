@@ -8,7 +8,11 @@ import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
 import { Notification, notificationResponse } from './models/notification.js';
 import { NotificationCollection, notificationCollectionResponse } from './models/notification-collection.js';
-import { ArchiveNotificationsParams, ListNotificationsParams, MarkNotificationsReadParams } from './request-params.js';
+import {
+  ArchiveAllNotificationsParams,
+  ListNotificationsParams,
+  MarkAllNotificationsReadParams,
+} from './request-params.js';
 
 export class NotificationsService extends BaseService {
   /**
@@ -71,14 +75,14 @@ export class NotificationsService extends BaseService {
   }
 
   /**
-   * Archives all notifications.
+   * Archive all notifications.
    * @param {string} [params.category] -
    * @param {string} [params.topic] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async archiveNotifications(
-    params?: ArchiveNotificationsParams,
+  async archiveAllNotifications(
+    params?: ArchiveAllNotificationsParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
@@ -116,8 +120,8 @@ export class NotificationsService extends BaseService {
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
    */
-  async markNotificationsRead(
-    params?: MarkNotificationsReadParams,
+  async markAllNotificationsRead(
+    params?: MarkAllNotificationsReadParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
@@ -154,7 +158,7 @@ export class NotificationsService extends BaseService {
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<Notification>>} OK
    */
-  async getNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Notification>> {
+  async fetchNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Notification>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -180,7 +184,7 @@ export class NotificationsService extends BaseService {
   }
 
   /**
-   * Archives a notification.
+   * Archive a notification.
    * @param {string} notificationId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content
