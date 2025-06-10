@@ -14,9 +14,7 @@ moduleNameMapper['(.+/.*)\\.js'] = '$1';
 // { '@magicbell/core': '<rootDir>/packages/core/src' } > [['@magicbell/core', '<rootDir>/packages/core']]
 const packages = Object.entries(moduleNameMapper)
   .map(([pkg, dir]) => [pkg, dir.split('/').slice(0, 3).join('/')])
-  .sort(([a], [b]) => a.localeCompare(b))
-  // this package has a non-jest test runner
-  .filter((x) => x[0] !== '@magicbell/in-app');
+  .sort(([a], [b]) => a.localeCompare(b));
 
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 const commonConfig = {

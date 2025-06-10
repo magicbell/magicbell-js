@@ -22,7 +22,6 @@
       "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/core": ["packages/core/src"],
       "@magicbell/embeddable": ["packages/embeddable/src"],
-      "@magicbell/in-app": ["packages/in-app/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
       "@magicbell/service-worker": ["packages/service-worker/src"],

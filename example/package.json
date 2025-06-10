@@ -19,7 +19,6 @@
     "@magicbell/codegen": "../packages/codegen",
     "@magicbell/core": "../packages/core",
     "@magicbell/embeddable": "../packages/embeddable",
-    "@magicbell/in-app": "../packages/in-app",
     "@magicbell/magicbell-react": "../packages/react",
     "@magicbell/react-headless": "../packages/react-headless",
     "@magicbell/service-worker": "../packages/service-worker",

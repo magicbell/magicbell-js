@@ -87,7 +87,7 @@ export default defineConfig(async ({ mode, command }) => {
       isolate: true,
       threads: false,
       reporters: isTest && process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
-      exclude: [...configDefaults.exclude, 'packages/in-app/*'],
+      exclude: configDefaults.exclude,
     },
   };
 });

@@ -64,17 +64,6 @@ module.exports = {
       },
     },
     {
-      files: './packages/in-app/**/*.{js,ts,tsx}',
-      settings: {
-        react: {
-          version: '18.2.0',
-        },
-      },
-      rules: {
-        '@typescript-eslint/no-namespace': 'off',
-      },
-    },
-    {
       files: ['**/*.vue'],
       extends: ['plugin:vue/vue3-recommended'],
       rules: {
