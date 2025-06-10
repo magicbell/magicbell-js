@@ -1,4 +1,4 @@
-import { Client, WebPushToken } from '@magicbell/user-client';
+import { Client, WebPushToken } from 'magicbell-js/user-client';
 
 export type WebPushClientOptions = {
   serviceWorkerPath?: string;

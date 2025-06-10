@@ -55,7 +55,7 @@
   "license": "MIT",
   "dependencies": {
     "@lit/react": "^1.0.5",
-    "@magicbell/user-client": "0.14.1",
+    "magicbell-js": "^0.1.0",
     "lit": "^3.3.0"
   },
   "devDependencies": {

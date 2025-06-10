@@ -37,16 +37,6 @@ jobs:
         env:
           LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
 
-      - name: Regen `@magicbell/project-client`
-        run: yarn --cwd packages/project-client codegen
-        env:
-          LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
-
-      - name: Regen `@magicbell/user-client`
-        run: yarn --cwd packages/user-client codegen
-        env:
-          LIBLAB_TOKEN: ${{ secrets.LIBLAB_ACTION_TOKEN }}
-
       - name: Generate Changesets
         shell: bash
         run: |
