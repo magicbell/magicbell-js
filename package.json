@@ -20,8 +20,6 @@
     "build:example": "yarn --cwd example && yarn --cwd example build",
     "build:storybook": "build-storybook",
     "build:docs": "yarn --cwd packages/codegen build && run-s build:docs:*",
-    "build:docs:project-client": "yarn --cwd packages/project-client build:docs",
-    "build:docs:user-client": "yarn --cwd packages/user-client build:docs",
     "build:docs:magicbell-js": "yarn --cwd packages/magicbell-js build:docs",
     "lint": "run-s lint:*",
     "lint:typescript": "tsc --noEmit",

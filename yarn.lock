@@ -2609,6 +2609,13 @@
   dependencies:
     "@braidai/lang" "^1.0.0"
 
+"@magicbell/user-client@0.14.1":
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/@magicbell/user-client/-/user-client-0.14.1.tgz#f1eac1585f066c82a12594281c22fd3b68084688"
+  integrity sha512-5jLUmDVY53ZhDLDYA6TUfLr9s42duZfUndTQGe1DJqSHLpuY2iUUITJW1O8D4MBe5PAVYRy+I+mrG4owSHmnkw==
+  dependencies:
+    zod "3.25.7"
+
 "@manypkg/cli@^0.23.0":
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.23.0.tgz#abc6915c59160f1556f081b96857adba55f3f68b"
