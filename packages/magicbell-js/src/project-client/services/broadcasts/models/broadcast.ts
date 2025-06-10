@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { User, user, userRequest, userResponse } from '../../common/user.js';
 import {
   BroadcastStatus,
   broadcastStatus,
@@ -25,8 +26,8 @@ export const broadcast = z.lazy(() => {
     customAttributes: z.any().optional().nullable(),
     id: z.string().optional(),
     overrides: overrides.optional().nullable(),
-    recipients: z.array(z.any()).min(1).max(1000).nullable(),
-    status: broadcastStatus.optional().nullable(),
+    recipients: z.array(user).min(1).max(1000),
+    status: broadcastStatus.optional(),
     title: z.string().min(1).max(255),
     topic: z
       .string()
@@ -47,7 +48,7 @@ export const broadcast = z.lazy(() => {
  * @property {any}
  * @property {string} - The unique id for this broadcast.
  * @property {Overrides}
- * @property {any[]}
+ * @property {User[]}
  * @property {BroadcastStatus}
  * @property {string}
  * @property {string}
@@ -73,8 +74,8 @@ export const broadcastResponse = z.lazy(() => {
       custom_attributes: z.any().optional().nullable(),
       id: z.string().optional(),
       overrides: overridesResponse.optional().nullable(),
-      recipients: z.array(z.any()).min(1).max(1000).nullable(),
-      status: broadcastStatusResponse.optional().nullable(),
+      recipients: z.array(userResponse).min(1).max(1000),
+      status: broadcastStatusResponse.optional(),
       title: z.string().min(1).max(255),
       topic: z
         .string()
@@ -117,8 +118,8 @@ export const broadcastRequest = z.lazy(() => {
       customAttributes: z.any().optional().nullable(),
       id: z.string().optional(),
       overrides: overridesRequest.optional().nullable(),
-      recipients: z.array(z.any()).min(1).max(1000).nullable(),
-      status: broadcastStatusRequest.optional().nullable(),
+      recipients: z.array(userRequest).min(1).max(1000),
+      status: broadcastStatusRequest.optional(),
       title: z.string().min(1).max(255),
       topic: z
         .string()

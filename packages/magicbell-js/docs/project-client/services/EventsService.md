@@ -5,7 +5,7 @@ A list of all methods in the `EventsService` service. Click on the method name t
 | Methods                   | Description                                           |
 | :------------------------ | :---------------------------------------------------- |
 | [listEvents](#listevents) | Retrieves a paginated list of events for the project. |
-| [getEvent](#getevent)     | Retrieves a project event by its ID.                  |
+| [fetchEvent](#fetchevent) | Fetches a project event by its ID.                    |
 
 ## listEvents
 
@@ -37,7 +37,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.events.listEvents({
-    limit: 123,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -46,18 +46,18 @@ import { Client } from 'magicbell-js/project-client';
 })();
 ```
 
-## getEvent
+## fetchEvent
 
-Retrieves a project event by its ID.
+Fetches a project event by its ID.
 
 - HTTP Method: `GET`
-- Endpoint: `/events/{id}`
+- Endpoint: `/events/{event_id}`
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| eventId | string | ✅       |             |
 
 **Return Type**
 
@@ -73,7 +73,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.events.getEvent('id');
+  const { data } = await client.events.fetchEvent('event_id');
 
   console.log(data);
 })();

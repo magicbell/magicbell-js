@@ -6,13 +6,13 @@ import { SerializationStyle } from '../../http/serialization/base-serializer.js'
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
-import { User, userRequest, userResponse } from './models/user.js';
+import { User, userRequest, userResponse } from '../common/user.js';
 import { UserCollection, userCollectionResponse } from './models/user-collection.js';
 import { ListUsersParams } from './request-params.js';
 
 export class UsersService extends BaseService {
   /**
-   *
+   * Lists all users in the project.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
@@ -58,15 +58,15 @@ export class UsersService extends BaseService {
   }
 
   /**
-   * Creates a user with the provided details. The user will be associated with the project specified in the request context.
+   * Creates or updates a user with the provided details. The user will be associated with the project specified in the request context.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<User>>} Created
+   * @returns {Promise<HttpResponse<User>>} OK
    */
-  async createUser(body: User, requestConfig?: RequestConfig): Promise<HttpResponse<User>> {
+  async saveUser(body: User, requestConfig?: RequestConfig): Promise<HttpResponse<User>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/users')
       .setRequestSchema(userRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -74,7 +74,7 @@ export class UsersService extends BaseService {
       .addResponse({
         schema: userResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -86,7 +86,7 @@ export class UsersService extends BaseService {
   }
 
   /**
-   *
+   * Removes a user and all associated data from the project.
    * @param {string} userId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} No Content

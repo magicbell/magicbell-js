@@ -5,19 +5,25 @@ import { z } from 'zod';
  */
 export const providers = z.lazy(() => {
   return z.object({
-    amazonSes: z.any().optional(),
-    android: z.any().optional(),
-    ios: z.any().optional(),
+    apns: z.any().optional(),
+    expo: z.any().optional(),
+    fcm: z.any().optional(),
     mailgun: z.any().optional(),
-    postmark: z.any().optional(),
     sendgrid: z.any().optional(),
+    ses: z.any().optional(),
     slack: z.any().optional(),
+    teams: z.any().optional(),
+    twilio: z.any().optional(),
+    webPush: z.any().optional(),
   });
 });
 
 /**
  *
  * @typedef  {Providers} providers
+ * @property {any}
+ * @property {any}
+ * @property {any}
  * @property {any}
  * @property {any}
  * @property {any}
@@ -35,22 +41,28 @@ export type Providers = z.infer<typeof providers>;
 export const providersResponse = z.lazy(() => {
   return z
     .object({
-      amazon_ses: z.any().optional(),
-      android: z.any().optional(),
-      ios: z.any().optional(),
+      apns: z.any().optional(),
+      expo: z.any().optional(),
+      fcm: z.any().optional(),
       mailgun: z.any().optional(),
-      postmark: z.any().optional(),
       sendgrid: z.any().optional(),
+      ses: z.any().optional(),
       slack: z.any().optional(),
+      teams: z.any().optional(),
+      twilio: z.any().optional(),
+      web_push: z.any().optional(),
     })
     .transform((data) => ({
-      amazonSes: data['amazon_ses'],
-      android: data['android'],
-      ios: data['ios'],
+      apns: data['apns'],
+      expo: data['expo'],
+      fcm: data['fcm'],
       mailgun: data['mailgun'],
-      postmark: data['postmark'],
       sendgrid: data['sendgrid'],
+      ses: data['ses'],
       slack: data['slack'],
+      teams: data['teams'],
+      twilio: data['twilio'],
+      webPush: data['web_push'],
     }));
 });
 
@@ -61,21 +73,27 @@ export const providersResponse = z.lazy(() => {
 export const providersRequest = z.lazy(() => {
   return z
     .object({
-      amazonSes: z.any().optional(),
-      android: z.any().optional(),
-      ios: z.any().optional(),
+      apns: z.any().optional(),
+      expo: z.any().optional(),
+      fcm: z.any().optional(),
       mailgun: z.any().optional(),
-      postmark: z.any().optional(),
       sendgrid: z.any().optional(),
+      ses: z.any().optional(),
       slack: z.any().optional(),
+      teams: z.any().optional(),
+      twilio: z.any().optional(),
+      webPush: z.any().optional(),
     })
     .transform((data) => ({
-      amazon_ses: data['amazonSes'],
-      android: data['android'],
-      ios: data['ios'],
+      apns: data['apns'],
+      expo: data['expo'],
+      fcm: data['fcm'],
       mailgun: data['mailgun'],
-      postmark: data['postmark'],
       sendgrid: data['sendgrid'],
+      ses: data['ses'],
       slack: data['slack'],
+      teams: data['teams'],
+      twilio: data['twilio'],
+      web_push: data['webPush'],
     }));
 });

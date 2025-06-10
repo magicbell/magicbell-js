@@ -56,7 +56,7 @@ export class BroadcastsService extends BaseService {
   }
 
   /**
-   * Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.
+   * Creates a new broadcast. When a broadcast is created, it generates individual notifications for relevant users within the project.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<Broadcast>>} Created
    */
