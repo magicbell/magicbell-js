@@ -77,6 +77,11 @@ async function mergeReadme(source: string, dest: string, block: string) {
   await md.write(mainAst, dest);
 }
 
+function run(cmd: string) {
+  console.log(`run: ${cmd}`);
+  execSync(cmd, { stdio: 'inherit' });
+}
+
 async function build(options: typeof args) {
   if (!options.spec) {
     console.log(`error: missing required argument '--spec <file>'`);
@@ -103,6 +108,9 @@ async function build(options: typeof args) {
   execSync(`npx -y liblab@latest build --skip-validation --approve-docs --liblab-config=${liblabCfgFile}`, {
     stdio: 'inherit',
   });
+
+  run(`npx -y liblab@latest validate --nonInteractive --liblab-config=${liblabCfgFile}`);
+  run(`npx -y liblab@latest build --skip-validation --approve-docs --liblab-config=${liblabCfgFile}`);
   await fs.rm(liblabConfig.specFilePath);
 
   await move('output/typescript/src', dest);
