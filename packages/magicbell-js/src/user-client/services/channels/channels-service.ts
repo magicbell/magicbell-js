@@ -44,26 +44,26 @@ import {
 import { WebPushToken, webPushTokenResponse } from './models/web-push-token.js';
 import { WebPushTokenCollection, webPushTokenCollectionResponse } from './models/web-push-token-collection.js';
 import {
-  GetInAppInboxTokensParams,
-  GetMobilePushApnsTokensParams,
-  GetMobilePushExpoTokensParams,
-  GetMobilePushFcmTokensParams,
-  GetSlackTokensParams,
-  GetTeamsTokensParams,
-  GetWebPushTokensParams,
+  ListApnsTokensParams,
+  ListExpoTokensParams,
+  ListFcmTokensParams,
+  ListInboxTokensParams,
+  ListSlackTokensParams,
+  ListTeamsTokensParams,
+  ListWebPushTokensParams,
 } from './request-params.js';
 
 export class ChannelsService extends BaseService {
   /**
-   * Lists all in_app tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxTokenResponseCollection>>} OK
    */
-  async getInAppInboxTokens(
-    params?: GetInAppInboxTokensParams,
+  async listInboxTokens(
+    params?: ListInboxTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<InboxTokenResponseCollection>> {
     const request = new RequestBuilder()
@@ -99,15 +99,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a in_app token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxToken>>} Created
+   * @returns {Promise<HttpResponse<InboxToken>>} OK
    */
-  async saveInAppInboxToken(body: InboxToken, requestConfig?: RequestConfig): Promise<HttpResponse<InboxToken>> {
+  async saveInboxToken(body: InboxToken, requestConfig?: RequestConfig): Promise<HttpResponse<InboxToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/in_app/inbox/tokens')
       .setRequestSchema(inboxTokenRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -115,7 +115,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: inboxTokenResponse1,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -127,12 +127,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific in_app token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxTokenResponse>>} OK
    */
-  async getInAppInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<InboxTokenResponse>> {
+  async fetchInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<InboxTokenResponse>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -158,12 +158,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's in_app tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardInAppInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
+  async deleteInboxToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -189,15 +189,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ApnsTokenCollection>>} OK
    */
-  async getMobilePushApnsTokens(
-    params?: GetMobilePushApnsTokensParams,
+  async listApnsTokens(
+    params?: ListApnsTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ApnsTokenCollection>> {
     const request = new RequestBuilder()
@@ -233,18 +233,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ApnsTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<ApnsTokenPayload>>} OK
    */
-  async saveMobilePushApnsToken(
-    body: ApnsTokenPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ApnsTokenPayload>> {
+  async saveApnsToken(body: ApnsTokenPayload, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsTokenPayload>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/mobile_push/apns/tokens')
       .setRequestSchema(apnsTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -252,7 +249,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: apnsTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -264,12 +261,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ApnsToken>>} OK
    */
-  async getMobilePushApnsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsToken>> {
+  async fetchApnsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<ApnsToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -295,15 +292,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardMobilePushApnsToken(
-    tokenId: string,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<DiscardResult>> {
+  async deleteApnsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -329,15 +323,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ExpoTokenCollection>>} OK
    */
-  async getMobilePushExpoTokens(
-    params?: GetMobilePushExpoTokensParams,
+  async listExpoTokens(
+    params?: ListExpoTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<ExpoTokenCollection>> {
     const request = new RequestBuilder()
@@ -373,18 +367,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ExpoTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<ExpoTokenPayload>>} OK
    */
-  async saveMobilePushExpoToken(
-    body: ExpoTokenPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<ExpoTokenPayload>> {
+  async saveExpoToken(body: ExpoTokenPayload, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoTokenPayload>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/mobile_push/expo/tokens')
       .setRequestSchema(expoTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -392,7 +383,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: expoTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -404,12 +395,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ExpoToken>>} OK
    */
-  async getMobilePushExpoToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoToken>> {
+  async fetchExpoToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<ExpoToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -435,15 +426,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardMobilePushExpoToken(
-    tokenId: string,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<DiscardResult>> {
+  async deleteExpoToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -469,15 +457,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all mobile_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<FcmTokenCollection>>} OK
    */
-  async getMobilePushFcmTokens(
-    params?: GetMobilePushFcmTokensParams,
+  async listFcmTokens(
+    params?: ListFcmTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<FcmTokenCollection>> {
     const request = new RequestBuilder()
@@ -513,18 +501,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a mobile_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<FcmTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<FcmTokenPayload>>} OK
    */
-  async saveMobilePushFcmToken(
-    body: FcmTokenPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<FcmTokenPayload>> {
+  async saveFcmToken(body: FcmTokenPayload, requestConfig?: RequestConfig): Promise<HttpResponse<FcmTokenPayload>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/mobile_push/fcm/tokens')
       .setRequestSchema(fcmTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -532,7 +517,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: fcmTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -544,12 +529,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific mobile_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<FcmToken>>} OK
    */
-  async getMobilePushFcmToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<FcmToken>> {
+  async fetchFcmToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<FcmToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -575,15 +560,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's mobile_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardMobilePushFcmToken(
-    tokenId: string,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<DiscardResult>> {
+  async deleteFcmToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -609,15 +591,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackTokenCollection>>} OK
    */
-  async getSlackTokens(
-    params?: GetSlackTokensParams,
+  async listSlackTokens(
+    params?: ListSlackTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<SlackTokenCollection>> {
     const request = new RequestBuilder()
@@ -653,9 +635,9 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<SlackTokenPayload>>} OK
    */
   async saveSlackToken(
     body: SlackTokenPayload,
@@ -664,7 +646,7 @@ export class ChannelsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/slack/tokens')
       .setRequestSchema(slackTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -672,7 +654,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: slackTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -684,12 +666,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackToken>>} OK
    */
-  async getSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<SlackToken>> {
+  async fetchSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<SlackToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -715,12 +697,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
+  async deleteSlackToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -746,15 +728,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TeamsTokenCollection>>} OK
    */
-  async getTeamsTokens(
-    params?: GetTeamsTokensParams,
+  async listTeamsTokens(
+    params?: ListTeamsTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<TeamsTokenCollection>> {
     const request = new RequestBuilder()
@@ -790,9 +772,9 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TeamsTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<TeamsTokenPayload>>} OK
    */
   async saveTeamsToken(
     body: TeamsTokenPayload,
@@ -801,7 +783,7 @@ export class ChannelsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/teams/tokens')
       .setRequestSchema(teamsTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -809,7 +791,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: teamsTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -821,12 +803,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TeamsToken>>} OK
    */
-  async getTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<TeamsToken>> {
+  async fetchTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<TeamsToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -852,12 +834,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
+  async deleteTeamsToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -883,15 +865,15 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Lists all web_push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
+   * Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebPushTokenCollection>>} OK
    */
-  async getWebPushTokens(
-    params?: GetWebPushTokensParams,
+  async listWebPushTokens(
+    params?: ListWebPushTokensParams,
     requestConfig?: RequestConfig,
   ): Promise<HttpResponse<WebPushTokenCollection>> {
     const request = new RequestBuilder()
@@ -927,9 +909,9 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Saves a web_push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
+   * Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebPushTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<WebPushTokenPayload>>} OK
    */
   async saveWebPushToken(
     body: WebPushTokenPayload,
@@ -938,7 +920,7 @@ export class ChannelsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/channels/web_push/tokens')
       .setRequestSchema(webPushTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -946,7 +928,7 @@ export class ChannelsService extends BaseService {
       .addResponse({
         schema: webPushTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -958,12 +940,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Retrieves details of a specific web_push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
+   * Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebPushToken>>} OK
    */
-  async getWebPushToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<WebPushToken>> {
+  async fetchWebPushToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<WebPushToken>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
@@ -989,12 +971,12 @@ export class ChannelsService extends BaseService {
   }
 
   /**
-   * Revokes one of the authenticated user's web_push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
+   * Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.
    * @param {string} tokenId -
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<DiscardResult>>} OK
    */
-  async discardWebPushToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
+  async deleteWebPushToken(tokenId: string, requestConfig?: RequestConfig): Promise<HttpResponse<DiscardResult>> {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)

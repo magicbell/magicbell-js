@@ -7,12 +7,12 @@ export interface ListNotificationsParams {
   topic?: string;
 }
 
-export interface ArchiveNotificationsParams {
+export interface ArchiveAllNotificationsParams {
   category?: string;
   topic?: string;
 }
 
-export interface MarkNotificationsReadParams {
+export interface MarkAllNotificationsReadParams {
   category?: string;
   topic?: string;
 }

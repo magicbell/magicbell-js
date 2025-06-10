@@ -2,73 +2,57 @@
 
 A list of all methods in the `IntegrationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                               | Description                                                                                                                                                             |
-| :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [listIntegrations](#listintegrations)                                 | Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information. |
-| [getApnsIntegration](#getapnsintegration)                             | Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
-| [saveApnsIntegration](#saveapnsintegration)                           | Creates or updates a apns integration for the project. Only administrators can configure integrations.                                                                  |
-| [deleteApnsIntegration](#deleteapnsintegration)                       | Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.                                        |
-| [deleteApnsIntegrationById](#deleteapnsintegrationbyid)               | Removes a specific apns integration instance by ID from the project.                                                                                                    |
-| [getAwssnsIntegration](#getawssnsintegration)                         | Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveAwssnsIntegration](#saveawssnsintegration)                       | Creates or updates a awssns integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteAwssnsIntegration](#deleteawssnsintegration)                   | Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteAwssnsIntegrationById](#deleteawssnsintegrationbyid)           | Removes a specific awssns integration instance by ID from the project.                                                                                                  |
-| [getEventsourceIntegration](#geteventsourceintegration)               | Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.      |
-| [saveEventsourceIntegration](#saveeventsourceintegration)             | Creates or updates a eventsource integration for the project. Only administrators can configure integrations.                                                           |
-| [deleteEventsourceIntegration](#deleteeventsourceintegration)         | Removes a eventsource integration configuration from the project. This will disable the integration's functionality within the project.                                 |
-| [deleteEventsourceIntegrationById](#deleteeventsourceintegrationbyid) | Removes a specific eventsource integration instance by ID from the project.                                                                                             |
-| [getExpoIntegration](#getexpointegration)                             | Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
-| [saveExpoIntegration](#saveexpointegration)                           | Creates or updates a expo integration for the project. Only administrators can configure integrations.                                                                  |
-| [deleteExpoIntegration](#deleteexpointegration)                       | Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.                                        |
-| [deleteExpoIntegrationById](#deleteexpointegrationbyid)               | Removes a specific expo integration instance by ID from the project.                                                                                                    |
-| [getFcmIntegration](#getfcmintegration)                               | Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
-| [saveFcmIntegration](#savefcmintegration)                             | Creates or updates a fcm integration for the project. Only administrators can configure integrations.                                                                   |
-| [deleteFcmIntegration](#deletefcmintegration)                         | Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.                                         |
-| [deleteFcmIntegrationById](#deletefcmintegrationbyid)                 | Removes a specific fcm integration instance by ID from the project.                                                                                                     |
-| [getGithubIntegration](#getgithubintegration)                         | Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveGithubIntegration](#savegithubintegration)                       | Creates or updates a github integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteGithubIntegration](#deletegithubintegration)                   | Removes a github integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteGithubIntegrationById](#deletegithubintegrationbyid)           | Removes a specific github integration instance by ID from the project.                                                                                                  |
-| [getInboxIntegration](#getinboxintegration)                           | Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
-| [saveInboxIntegration](#saveinboxintegration)                         | Creates or updates a inbox integration for the project. Only administrators can configure integrations.                                                                 |
-| [deleteInboxIntegration](#deleteinboxintegration)                     | Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.                                       |
-| [deleteInboxIntegrationById](#deleteinboxintegrationbyid)             | Removes a specific inbox integration instance by ID from the project.                                                                                                   |
-| [getMailgunIntegration](#getmailgunintegration)                       | Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.          |
-| [saveMailgunIntegration](#savemailgunintegration)                     | Creates or updates a mailgun integration for the project. Only administrators can configure integrations.                                                               |
-| [deleteMailgunIntegration](#deletemailgunintegration)                 | Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.                                     |
-| [deleteMailgunIntegrationById](#deletemailgunintegrationbyid)         | Removes a specific mailgun integration instance by ID from the project.                                                                                                 |
-| [getPingEmailIntegration](#getpingemailintegration)                   | Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
-| [savePingEmailIntegration](#savepingemailintegration)                 | Creates or updates a ping_email integration for the project. Only administrators can configure integrations.                                                            |
-| [deletePingEmailIntegration](#deletepingemailintegration)             | Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.                                  |
-| [deletePingEmailIntegrationById](#deletepingemailintegrationbyid)     | Removes a specific ping_email integration instance by ID from the project.                                                                                              |
-| [getSendgridIntegration](#getsendgridintegration)                     | Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
-| [saveSendgridIntegration](#savesendgridintegration)                   | Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.                                                              |
-| [deleteSendgridIntegration](#deletesendgridintegration)               | Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.                                    |
-| [deleteSendgridIntegrationById](#deletesendgridintegrationbyid)       | Removes a specific sendgrid integration instance by ID from the project.                                                                                                |
-| [getSesIntegration](#getsesintegration)                               | Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
-| [saveSesIntegration](#savesesintegration)                             | Creates or updates a ses integration for the project. Only administrators can configure integrations.                                                                   |
-| [deleteSesIntegration](#deletesesintegration)                         | Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.                                         |
-| [deleteSesIntegrationById](#deletesesintegrationbyid)                 | Removes a specific ses integration instance by ID from the project.                                                                                                     |
-| [getSlackIntegration](#getslackintegration)                           | Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
-| [saveSlackIntegration](#saveslackintegration)                         | Creates or updates a slack integration for the project. Only administrators can configure integrations.                                                                 |
-| [deleteSlackIntegration](#deleteslackintegration)                     | Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.                                       |
-| [deleteSlackIntegrationById](#deleteslackintegrationbyid)             | Removes a specific slack integration instance by ID from the project.                                                                                                   |
-| [getStripeIntegration](#getstripeintegration)                         | Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveStripeIntegration](#savestripeintegration)                       | Creates or updates a stripe integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteStripeIntegration](#deletestripeintegration)                   | Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteStripeIntegrationById](#deletestripeintegrationbyid)           | Removes a specific stripe integration instance by ID from the project.                                                                                                  |
-| [getTemplatesIntegration](#gettemplatesintegration)                   | Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.        |
-| [saveTemplatesIntegration](#savetemplatesintegration)                 | Creates or updates a templates integration for the project. Only administrators can configure integrations.                                                             |
-| [deleteTemplatesIntegration](#deletetemplatesintegration)             | Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.                                   |
-| [deleteTemplatesIntegrationById](#deletetemplatesintegrationbyid)     | Removes a specific templates integration instance by ID from the project.                                                                                               |
-| [getTwilioIntegration](#gettwiliointegration)                         | Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
-| [saveTwilioIntegration](#savetwiliointegration)                       | Creates or updates a twilio integration for the project. Only administrators can configure integrations.                                                                |
-| [deleteTwilioIntegration](#deletetwiliointegration)                   | Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.                                      |
-| [deleteTwilioIntegrationById](#deletetwiliointegrationbyid)           | Removes a specific twilio integration instance by ID from the project.                                                                                                  |
-| [getWebPushIntegration](#getwebpushintegration)                       | Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
-| [saveWebPushIntegration](#savewebpushintegration)                     | Creates or updates a web_push integration for the project. Only administrators can configure integrations.                                                              |
-| [deleteWebPushIntegration](#deletewebpushintegration)                 | Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.                                    |
-| [deleteWebPushIntegrationById](#deletewebpushintegrationbyid)         | Removes a specific web_push integration instance by ID from the project.                                                                                                |
+| Methods                                                       | Description                                                                                                                                                             |
+| :------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [listIntegrations](#listintegrations)                         | Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information. |
+| [listApnsIntegrations](#listapnsintegrations)                 | Retrieves the current APNs integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
+| [saveApnsIntegration](#saveapnsintegration)                   | Updates or creates the APNs integration for the project.                                                                                                                |
+| [deleteApnsIntegration](#deleteapnsintegration)               | Deletes the APNs integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [listAwssnsIntegrations](#listawssnsintegrations)             | Retrieves the current Amazon SNS integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
+| [saveAwssnsIntegration](#saveawssnsintegration)               | Updates or creates the Amazon SNS integration for the project.                                                                                                          |
+| [deleteAwssnsIntegration](#deleteawssnsintegration)           | Deletes the Amazon SNS integration configuration from the project. This will disable the integration's functionality within the project.                                |
+| [listEventsourceIntegrations](#listeventsourceintegrations)   | Retrieves the current EventSource integration configurations for a specific integration type in the project. Returns configuration details and status information.      |
+| [saveEventsourceIntegration](#saveeventsourceintegration)     | Updates or creates the EventSource integration for the project.                                                                                                         |
+| [deleteEventsourceIntegration](#deleteeventsourceintegration) | Deletes the EventSource integration configuration from the project. This will disable the integration's functionality within the project.                               |
+| [listExpoIntegrations](#listexpointegrations)                 | Retrieves the current Expo integration configurations for a specific integration type in the project. Returns configuration details and status information.             |
+| [saveExpoIntegration](#saveexpointegration)                   | Updates or creates the Expo integration for the project.                                                                                                                |
+| [deleteExpoIntegration](#deleteexpointegration)               | Deletes the Expo integration configuration from the project. This will disable the integration's functionality within the project.                                      |
+| [listFcmIntegrations](#listfcmintegrations)                   | Retrieves the current FCM integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
+| [saveFcmIntegration](#savefcmintegration)                     | Updates or creates the FCM integration for the project.                                                                                                                 |
+| [deleteFcmIntegration](#deletefcmintegration)                 | Deletes the FCM integration configuration from the project. This will disable the integration's functionality within the project.                                       |
+| [listGithubIntegrations](#listgithubintegrations)             | Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveGithubIntegration](#savegithubintegration)               | Updates or creates the GitHub integration for the project.                                                                                                              |
+| [deleteGithubIntegration](#deletegithubintegration)           | Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.                                    |
+| [listInboxIntegrations](#listinboxintegrations)               | Retrieves the current Inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
+| [saveInboxIntegration](#saveinboxintegration)                 | Updates or creates the Inbox integration for the project.                                                                                                               |
+| [deleteInboxIntegration](#deleteinboxintegration)             | Deletes the Inbox integration configuration from the project. This will disable the integration's functionality within the project.                                     |
+| [listMailgunIntegrations](#listmailgunintegrations)           | Retrieves the current Mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.          |
+| [saveMailgunIntegration](#savemailgunintegration)             | Updates or creates the Mailgun integration for the project.                                                                                                             |
+| [deleteMailgunIntegration](#deletemailgunintegration)         | Deletes the Mailgun integration configuration from the project. This will disable the integration's functionality within the project.                                   |
+| [listPingEmailIntegrations](#listpingemailintegrations)       | Retrieves the current Ping Email integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
+| [savePingEmailIntegration](#savepingemailintegration)         | Updates or creates the Ping Email integration for the project.                                                                                                          |
+| [deletePingEmailIntegration](#deletepingemailintegration)     | Deletes the Ping Email integration configuration from the project. This will disable the integration's functionality within the project.                                |
+| [listSendgridIntegrations](#listsendgridintegrations)         | Retrieves the current SendGrid integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
+| [saveSendgridIntegration](#savesendgridintegration)           | Updates or creates the SendGrid integration for the project.                                                                                                            |
+| [deleteSendgridIntegration](#deletesendgridintegration)       | Deletes the SendGrid integration configuration from the project. This will disable the integration's functionality within the project.                                  |
+| [listSesIntegrations](#listsesintegrations)                   | Retrieves the current Amazon SES integration configurations for a specific integration type in the project. Returns configuration details and status information.       |
+| [saveSesIntegration](#savesesintegration)                     | Updates or creates the Amazon SES integration for the project.                                                                                                          |
+| [deleteSesIntegration](#deletesesintegration)                 | Deletes the Amazon SES integration configuration from the project. This will disable the integration's functionality within the project.                                |
+| [listSlackIntegrations](#listslackintegrations)               | Retrieves the current Slack integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
+| [saveSlackIntegration](#saveslackintegration)                 | Updates or creates the Slack integration for the project.                                                                                                               |
+| [deleteSlackIntegration](#deleteslackintegration)             | Deletes the Slack integration configuration from the project. This will disable the integration's functionality within the project.                                     |
+| [listStripeIntegrations](#liststripeintegrations)             | Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveStripeIntegration](#savestripeintegration)               | Updates or creates the Stripe integration for the project.                                                                                                              |
+| [deleteStripeIntegration](#deletestripeintegration)           | Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.                                    |
+| [listTemplatesIntegrations](#listtemplatesintegrations)       | Retrieves the current Templates integration configurations for a specific integration type in the project. Returns configuration details and status information.        |
+| [saveTemplatesIntegration](#savetemplatesintegration)         | Updates or creates the Templates integration for the project.                                                                                                           |
+| [deleteTemplatesIntegration](#deletetemplatesintegration)     | Deletes the Templates integration configuration from the project. This will disable the integration's functionality within the project.                                 |
+| [listTwilioIntegrations](#listtwiliointegrations)             | Retrieves the current Twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveTwilioIntegration](#savetwiliointegration)               | Updates or creates the Twilio integration for the project.                                                                                                              |
+| [deleteTwilioIntegration](#deletetwiliointegration)           | Deletes the Twilio integration configuration from the project. This will disable the integration's functionality within the project.                                    |
+| [listWebPushIntegrations](#listwebpushintegrations)           | Retrieves the current Web Push integration configurations for a specific integration type in the project. Returns configuration details and status information.         |
+| [saveWebPushIntegration](#savewebpushintegration)             | Updates or creates the Web Push integration for the project.                                                                                                            |
+| [deleteWebPushIntegration](#deletewebpushintegration)         | Deletes the Web Push integration configuration from the project. This will disable the integration's functionality within the project.                                  |
 
 ## listIntegrations
 
@@ -100,7 +84,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    limit: 8,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -109,9 +93,9 @@ import { Client } from 'magicbell-js/project-client';
 })();
 ```
 
-## getApnsIntegration
+## listApnsIntegrations
 
-Retrieves the current apns integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current APNs integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/apns`
@@ -130,7 +114,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getApnsIntegration();
+  const { data } = await client.integrations.listApnsIntegrations();
 
   console.log(data);
 })();
@@ -138,7 +122,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveApnsIntegration
 
-Creates or updates a apns integration for the project. Only administrators can configure integrations.
+Updates or creates the APNs integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/apns`
@@ -169,12 +153,12 @@ const payloadVersion = PayloadVersion._1;
 const apnsConfigPayload: ApnsConfigPayload = {
   appId: "app_id",
   badge: badge,
-  certificate: "-------BEGIN PRIVATE KEY---
-otr+O0Yv
-------- END PRIVATE KEYY--",
-  keyId: "deserunt c",
+  certificate: "--- BEGIN PRIVATE KEY--------
+2/CWf==
+-------END PRIVATE KEYYYYYY-----",
+  keyId: "nostrud id",
   payloadVersion: payloadVersion,
-  teamId: "elitnonsun"
+  teamId: "adipisicin"
 };
 
   const { data } = await client.integrations.saveApnsIntegration(
@@ -187,39 +171,16 @@ otr+O0Yv
 
 ## deleteApnsIntegration
 
-Removes a apns integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the APNs integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/apns`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteApnsIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteApnsIntegrationById
-
-Removes a specific apns integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/apns/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -231,15 +192,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteApnsIntegrationById('id');
+  const { data } = await client.integrations.deleteApnsIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getAwssnsIntegration
+## listAwssnsIntegrations
 
-Retrieves the current awssns integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Amazon SNS integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/awssns`
@@ -258,7 +221,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getAwssnsIntegration();
+  const { data } = await client.integrations.listAwssnsIntegrations();
 
   console.log(data);
 })();
@@ -266,7 +229,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveAwssnsIntegration
 
-Creates or updates a awssns integration for the project. Only administrators can configure integrations.
+Updates or creates the Amazon SNS integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/awssns`
@@ -303,39 +266,16 @@ import { AwssnsConfigPayload, Client } from 'magicbell-js/project-client';
 
 ## deleteAwssnsIntegration
 
-Removes a awssns integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Amazon SNS integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/awssns`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteAwssnsIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteAwssnsIntegrationById
-
-Removes a specific awssns integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/awssns/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -347,15 +287,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteAwssnsIntegrationById('id');
+  const { data } = await client.integrations.deleteAwssnsIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getEventsourceIntegration
+## listEventsourceIntegrations
 
-Retrieves the current eventsource integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current EventSource integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/eventsource`
@@ -374,7 +316,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getEventsourceIntegration();
+  const { data } = await client.integrations.listEventsourceIntegrations();
 
   console.log(data);
 })();
@@ -382,7 +324,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveEventsourceIntegration
 
-Creates or updates a eventsource integration for the project. Only administrators can configure integrations.
+Updates or creates the EventSource integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/eventsource`
@@ -419,39 +361,16 @@ import { Client, EventSourceConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteEventsourceIntegration
 
-Removes a eventsource integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the EventSource integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/eventsource`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteEventsourceIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteEventsourceIntegrationById
-
-Removes a specific eventsource integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/eventsource/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -463,15 +382,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteEventsourceIntegrationById('id');
+  const { data } = await client.integrations.deleteEventsourceIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getExpoIntegration
+## listExpoIntegrations
 
-Retrieves the current expo integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Expo integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/expo`
@@ -490,7 +411,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getExpoIntegration();
+  const { data } = await client.integrations.listExpoIntegrations();
 
   console.log(data);
 })();
@@ -498,7 +419,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveExpoIntegration
 
-Creates or updates a expo integration for the project. Only administrators can configure integrations.
+Updates or creates the Expo integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/expo`
@@ -535,39 +456,16 @@ import { Client, ExpoConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteExpoIntegration
 
-Removes a expo integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Expo integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/expo`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteExpoIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteExpoIntegrationById
-
-Removes a specific expo integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/expo/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -579,15 +477,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteExpoIntegrationById('id');
+  const { data } = await client.integrations.deleteExpoIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getFcmIntegration
+## listFcmIntegrations
 
-Retrieves the current fcm integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current FCM integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/fcm`
@@ -606,7 +506,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getFcmIntegration();
+  const { data } = await client.integrations.listFcmIntegrations();
 
   console.log(data);
 })();
@@ -614,7 +514,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveFcmIntegration
 
-Creates or updates a fcm integration for the project. Only administrators can configure integrations.
+Updates or creates the FCM integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/fcm`
@@ -646,10 +546,9 @@ const fcmConfigPayload: FcmConfigPayload = {
   clientEmail: "client_email",
   clientId: "client_id",
   clientX509CertUrl: "client_x509_cert_url",
-  privateKey: " BEGINEZEIAUVTW-----
-hpBWeGkiyQF==
----- ENDEHCDUZLZSC-------
-",
+  privateKey: "BEGINTLSMV----
+QkpOzwuwIT==
+-------- ENDVJYSOHGEZVJ-------",
   privateKeyId: "private_key_id",
   projectId: "project_id",
   tokenUri: "token_uri",
@@ -667,39 +566,16 @@ hpBWeGkiyQF==
 
 ## deleteFcmIntegration
 
-Removes a fcm integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the FCM integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/fcm`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteFcmIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteFcmIntegrationById
-
-Removes a specific fcm integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/fcm/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -711,15 +587,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteFcmIntegrationById('id');
+  const { data } = await client.integrations.deleteFcmIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getGithubIntegration
+## listGithubIntegrations
 
-Retrieves the current github integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/github`
@@ -738,7 +616,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getGithubIntegration();
+  const { data } = await client.integrations.listGithubIntegrations();
 
   console.log(data);
 })();
@@ -746,7 +624,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveGithubIntegration
 
-Creates or updates a github integration for the project. Only administrators can configure integrations.
+Updates or creates the GitHub integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/github`
@@ -783,39 +661,16 @@ import { Client, GithubConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteGithubIntegration
 
-Removes a github integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/github`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteGithubIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteGithubIntegrationById
-
-Removes a specific github integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/github/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -827,15 +682,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteGithubIntegrationById('id');
+  const { data } = await client.integrations.deleteGithubIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getInboxIntegration
+## listInboxIntegrations
 
-Retrieves the current inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/inbox`
@@ -854,7 +711,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getInboxIntegration();
+  const { data } = await client.integrations.listInboxIntegrations();
 
   console.log(data);
 })();
@@ -862,7 +719,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveInboxIntegration
 
-Creates or updates a inbox integration for the project. Only administrators can configure integrations.
+Updates or creates the Inbox integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/inbox`
@@ -893,7 +750,7 @@ import { Client, InboxConfigPayload } from 'magicbell-js/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 9.57,
+    backgroundOpacity: 3.32,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1007,39 +864,16 @@ import { Client, InboxConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteInboxIntegration
 
-Removes a inbox integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Inbox integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/inbox`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteInboxIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteInboxIntegrationById
-
-Removes a specific inbox integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/inbox/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1051,15 +885,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteInboxIntegrationById('id');
+  const { data } = await client.integrations.deleteInboxIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getMailgunIntegration
+## listMailgunIntegrations
 
-Retrieves the current mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Mailgun integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/mailgun`
@@ -1078,7 +914,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getMailgunIntegration();
+  const { data } = await client.integrations.listMailgunIntegrations();
 
   console.log(data);
 })();
@@ -1086,7 +922,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveMailgunIntegration
 
-Creates or updates a mailgun integration for the project. Only administrators can configure integrations.
+Updates or creates the Mailgun integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/mailgun`
@@ -1133,39 +969,16 @@ import { Client, MailgunConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteMailgunIntegration
 
-Removes a mailgun integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Mailgun integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/mailgun`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteMailgunIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteMailgunIntegrationById
-
-Removes a specific mailgun integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/mailgun/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1177,15 +990,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteMailgunIntegrationById('id');
+  const { data } = await client.integrations.deleteMailgunIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getPingEmailIntegration
+## listPingEmailIntegrations
 
-Retrieves the current ping_email integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Ping Email integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/ping_email`
@@ -1204,7 +1019,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getPingEmailIntegration();
+  const { data } = await client.integrations.listPingEmailIntegrations();
 
   console.log(data);
 })();
@@ -1212,7 +1027,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## savePingEmailIntegration
 
-Creates or updates a ping_email integration for the project. Only administrators can configure integrations.
+Updates or creates the Ping Email integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/ping_email`
@@ -1249,39 +1064,16 @@ import { Client, PingConfigPayload } from 'magicbell-js/project-client';
 
 ## deletePingEmailIntegration
 
-Removes a ping_email integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Ping Email integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ping_email`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deletePingEmailIntegration();
-
-  console.log(data);
-})();
-```
-
-## deletePingEmailIntegrationById
-
-Removes a specific ping_email integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/ping_email/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1293,15 +1085,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deletePingEmailIntegrationById('id');
+  const { data } = await client.integrations.deletePingEmailIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getSendgridIntegration
+## listSendgridIntegrations
 
-Retrieves the current sendgrid integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current SendGrid integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/sendgrid`
@@ -1320,7 +1114,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getSendgridIntegration();
+  const { data } = await client.integrations.listSendgridIntegrations();
 
   console.log(data);
 })();
@@ -1328,7 +1122,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveSendgridIntegration
 
-Creates or updates a sendgrid integration for the project. Only administrators can configure integrations.
+Updates or creates the SendGrid integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/sendgrid`
@@ -1377,39 +1171,16 @@ import { Client, SendgridConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteSendgridIntegration
 
-Removes a sendgrid integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the SendGrid integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/sendgrid`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteSendgridIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteSendgridIntegrationById
-
-Removes a specific sendgrid integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/sendgrid/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1421,15 +1192,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteSendgridIntegrationById('id');
+  const { data } = await client.integrations.deleteSendgridIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getSesIntegration
+## listSesIntegrations
 
-Retrieves the current ses integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Amazon SES integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/ses`
@@ -1448,7 +1221,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getSesIntegration();
+  const { data } = await client.integrations.listSesIntegrations();
 
   console.log(data);
 })();
@@ -1456,7 +1229,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveSesIntegration
 
-Creates or updates a ses integration for the project. Only administrators can configure integrations.
+Updates or creates the Amazon SES integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/ses`
@@ -1501,39 +1274,16 @@ import { Client, SesConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteSesIntegration
 
-Removes a ses integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Amazon SES integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/ses`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteSesIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteSesIntegrationById
-
-Removes a specific ses integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/ses/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1545,15 +1295,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteSesIntegrationById('id');
+  const { data } = await client.integrations.deleteSesIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getSlackIntegration
+## listSlackIntegrations
 
-Retrieves the current slack integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Slack integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/slack`
@@ -1572,7 +1324,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getSlackIntegration();
+  const { data } = await client.integrations.listSlackIntegrations();
 
   console.log(data);
 })();
@@ -1580,7 +1332,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveSlackIntegration
 
-Creates or updates a slack integration for the project. Only administrators can configure integrations.
+Updates or creates the Slack integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/slack`
@@ -1606,10 +1358,10 @@ import { Client, SlackConfigPayload } from 'magicbell-js/project-client';
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: 'C5ECHJO',
-    clientId: '75446.70',
-    clientSecret: 'dolor dosint officia cupidatatip',
-    signingSecret: 'quiseu adipisicingaute anim inci',
+    appId: 'PAX',
+    clientId: '27.04979228181',
+    clientSecret: 'velit pariaturdeserunt aliqualab',
+    signingSecret: 'nulla sed non laboriscupidatat e',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
@@ -1620,39 +1372,16 @@ import { Client, SlackConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteSlackIntegration
 
-Removes a slack integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Slack integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/slack`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteSlackIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteSlackIntegrationById
-
-Removes a specific slack integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/slack/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1664,15 +1393,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteSlackIntegrationById('id');
+  const { data } = await client.integrations.deleteSlackIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getStripeIntegration
+## listStripeIntegrations
 
-Retrieves the current stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/stripe`
@@ -1691,7 +1422,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getStripeIntegration();
+  const { data } = await client.integrations.listStripeIntegrations();
 
   console.log(data);
 })();
@@ -1699,7 +1430,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveStripeIntegration
 
-Creates or updates a stripe integration for the project. Only administrators can configure integrations.
+Updates or creates the Stripe integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/stripe`
@@ -1736,39 +1467,16 @@ import { Client, StripeConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteStripeIntegration
 
-Removes a stripe integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/stripe`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteStripeIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteStripeIntegrationById
-
-Removes a specific stripe integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/stripe/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1780,15 +1488,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteStripeIntegrationById('id');
+  const { data } = await client.integrations.deleteStripeIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getTemplatesIntegration
+## listTemplatesIntegrations
 
-Retrieves the current templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/templates`
@@ -1807,7 +1517,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getTemplatesIntegration();
+  const { data } = await client.integrations.listTemplatesIntegrations();
 
   console.log(data);
 })();
@@ -1815,7 +1525,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveTemplatesIntegration
 
-Creates or updates a templates integration for the project. Only administrators can configure integrations.
+Updates or creates the Templates integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/templates`
@@ -1850,39 +1560,16 @@ import { Client } from 'magicbell-js/project-client';
 
 ## deleteTemplatesIntegration
 
-Removes a templates integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Templates integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/templates`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteTemplatesIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteTemplatesIntegrationById
-
-Removes a specific templates integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/templates/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -1894,15 +1581,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteTemplatesIntegrationById('id');
+  const { data } = await client.integrations.deleteTemplatesIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getTwilioIntegration
+## listTwilioIntegrations
 
-Retrieves the current twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/twilio`
@@ -1921,7 +1610,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getTwilioIntegration();
+  const { data } = await client.integrations.listTwilioIntegrations();
 
   console.log(data);
 })();
@@ -1929,7 +1618,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveTwilioIntegration
 
-Creates or updates a twilio integration for the project. Only administrators can configure integrations.
+Updates or creates the Twilio integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/twilio`
@@ -1958,7 +1647,7 @@ import { Client, TwilioConfigPayload } from 'magicbell-js/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+87590162868',
+    from: '+67',
   };
 
   const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);
@@ -1969,39 +1658,16 @@ import { Client, TwilioConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteTwilioIntegration
 
-Removes a twilio integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Twilio integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/twilio`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteTwilioIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteTwilioIntegrationById
-
-Removes a specific twilio integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/twilio/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -2013,15 +1679,17 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteTwilioIntegrationById('id');
+  const { data } = await client.integrations.deleteTwilioIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();
 ```
 
-## getWebPushIntegration
+## listWebPushIntegrations
 
-Retrieves the current web_push integration configurations for a specific integration type in the project. Returns configuration details and status information.
+Retrieves the current Web Push integration configurations for a specific integration type in the project. Returns configuration details and status information.
 
 - HTTP Method: `GET`
 - Endpoint: `/integrations/web_push`
@@ -2040,7 +1708,7 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.getWebPushIntegration();
+  const { data } = await client.integrations.listWebPushIntegrations();
 
   console.log(data);
 })();
@@ -2048,7 +1716,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## saveWebPushIntegration
 
-Creates or updates a web_push integration for the project. Only administrators can configure integrations.
+Updates or creates the Web Push integration for the project.
 
 - HTTP Method: `PUT`
 - Endpoint: `/integrations/web_push`
@@ -2086,39 +1754,16 @@ import { Client, WebpushConfigPayload } from 'magicbell-js/project-client';
 
 ## deleteWebPushIntegration
 
-Removes a web_push integration configuration from the project. This will disable the integration's functionality within the project.
+Deletes the Web Push integration configuration from the project. This will disable the integration's functionality within the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/integrations/web_push`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client } from 'magicbell-js/project-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const { data } = await client.integrations.deleteWebPushIntegration();
-
-  console.log(data);
-})();
-```
-
-## deleteWebPushIntegrationById
-
-Removes a specific web_push integration instance by ID from the project.
-
-- HTTP Method: `DELETE`
-- Endpoint: `/integrations/web_push/{id}`
 
 **Parameters**
 
 | Name | Type   | Required | Description |
 | :--- | :----- | :------- | :---------- |
-| id   | string | ✅       |             |
+| id   | string | ❌       |             |
 
 **Example Usage Code Snippet**
 
@@ -2130,7 +1775,9 @@ import { Client } from 'magicbell-js/project-client';
     token: 'YOUR_TOKEN',
   });
 
-  const { data } = await client.integrations.deleteWebPushIntegrationById('id');
+  const { data } = await client.integrations.deleteWebPushIntegration({
+    id: 'id',
+  });
 
   console.log(data);
 })();

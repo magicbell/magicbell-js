@@ -2,13 +2,15 @@
 
 A list of all methods in the `UsersService` service. Click on the method name to view detailed information about that method.
 
-| Methods                   | Description                                                                                                              |
-| :------------------------ | :----------------------------------------------------------------------------------------------------------------------- |
-| [listUsers](#listusers)   |                                                                                                                          |
-| [createUser](#createuser) | Creates a user with the provided details. The user will be associated with the project specified in the request context. |
-| [deleteUser](#deleteuser) |                                                                                                                          |
+| Methods                   | Description                                                                                                                         |
+| :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------- |
+| [listUsers](#listusers)   | Lists all users in the project.                                                                                                     |
+| [saveUser](#saveuser)     | Creates or updates a user with the provided details. The user will be associated with the project specified in the request context. |
+| [deleteUser](#deleteuser) | Removes a user and all associated data from the project.                                                                            |
 
 ## listUsers
+
+Lists all users in the project.
 
 - HTTP Method: `GET`
 - Endpoint: `/users`
@@ -37,7 +39,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.users.listUsers({
-    limit: 9,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     query: 'query',
@@ -47,11 +49,11 @@ import { Client } from 'magicbell-js/project-client';
 })();
 ```
 
-## createUser
+## saveUser
 
-Creates a user with the provided details. The user will be associated with the project specified in the request context.
+Creates or updates a user with the provided details. The user will be associated with the project specified in the request context.
 
-- HTTP Method: `POST`
+- HTTP Method: `PUT`
 - Endpoint: `/users`
 
 **Parameters**
@@ -87,13 +89,15 @@ import { Client, User } from 'magicbell-js/project-client';
     updatedAt: 'updated_at',
   };
 
-  const { data } = await client.users.createUser(user);
+  const { data } = await client.users.saveUser(user);
 
   console.log(data);
 })();
 ```
 
 ## deleteUser
+
+Removes a user and all associated data from the project.
 
 - HTTP Method: `DELETE`
 - Endpoint: `/users/{user_id}`

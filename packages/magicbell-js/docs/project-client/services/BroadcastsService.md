@@ -5,7 +5,7 @@ A list of all methods in the `BroadcastsService` service. Click on the method na
 | Methods                             | Description                                                                                                                                      |
 | :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | [listBroadcasts](#listbroadcasts)   | Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status. |
-| [createBroadcast](#createbroadcast) | Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.       |
+| [createBroadcast](#createbroadcast) | Creates a new broadcast. When a broadcast is created, it generates individual notifications for relevant users within the project.               |
 | [fetchBroadcast](#fetchbroadcast)   | Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.                  |
 
 ## listBroadcasts
@@ -38,7 +38,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 4,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -49,7 +49,7 @@ import { Client } from 'magicbell-js/project-client';
 
 ## createBroadcast
 
-Creates a new broadcast message. When a broadcast is created, it generates individual notifications for relevant users within the project.
+Creates a new broadcast. When a broadcast is created, it generates individual notifications for relevant users within the project.
 
 - HTTP Method: `POST`
 - Endpoint: `/broadcasts`
@@ -67,7 +67,7 @@ Creates a new broadcast message. When a broadcast is created, it generates indiv
 **Example Usage Code Snippet**
 
 ```typescript
-import { Broadcast, Client } from 'magicbell-js/project-client';
+import { Broadcast, Client, User } from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
@@ -92,19 +92,7 @@ import { Broadcast, Client } from 'magicbell-js/project-client';
     title: 'title',
   };
 
-  const slack: Slack = {
-    actionUrl: 'action_url',
-    content: 'content',
-    title: 'title',
-  };
-
   const sms: Sms = {
-    actionUrl: 'action_url',
-    content: 'content',
-    title: 'title',
-  };
-
-  const webPush: WebPush = {
     actionUrl: 'action_url',
     content: 'content',
     title: 'title',
@@ -114,24 +102,38 @@ import { Broadcast, Client } from 'magicbell-js/project-client';
     email: email,
     inApp: inApp,
     mobilePush: mobilePush,
-    slack: slack,
     sms: sms,
-    webPush: webPush,
   };
 
   const providers: Providers = {
-    amazonSes: {},
-    android: {},
-    ios: {},
+    apns: {},
+    expo: {},
+    fcm: {},
     mailgun: {},
-    postmark: {},
     sendgrid: {},
+    ses: {},
     slack: {},
+    teams: {},
+    twilio: {},
+    webPush: {},
   };
 
   const overrides: Overrides = {
     channels: overridesChannels,
     providers: providers,
+  };
+
+  const user: User = {
+    createdAt: 'created_at',
+    customAttributes: {},
+    email: 'email',
+    externalId: 'external_id',
+    firstName: 'first_name',
+    id: 'id',
+    lastName: 'last_name',
+    lastNotifiedAt: 'last_notified_at',
+    lastSeenAt: 'last_seen_at',
+    updatedAt: 'updated_at',
   };
 
   const errors: Errors = {
@@ -141,8 +143,8 @@ import { Broadcast, Client } from 'magicbell-js/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 6,
-    total: 10,
+    failures: 10,
+    total: 8,
   };
 
   const broadcastStatus: BroadcastStatus = {
@@ -159,7 +161,7 @@ import { Broadcast, Client } from 'magicbell-js/project-client';
     customAttributes: {},
     id: 'id',
     overrides: overrides,
-    recipients: [{}],
+    recipients: [user],
     status: broadcastStatus,
     title: 'title',
     topic: 'topic',

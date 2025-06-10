@@ -1,40 +1,40 @@
-export interface GetInAppInboxTokensParams {
+export interface ListInboxTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetMobilePushApnsTokensParams {
+export interface ListApnsTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetMobilePushExpoTokensParams {
+export interface ListExpoTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetMobilePushFcmTokensParams {
+export interface ListFcmTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetSlackTokensParams {
+export interface ListSlackTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetTeamsTokensParams {
+export interface ListTeamsTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;
 }
 
-export interface GetWebPushTokensParams {
+export interface ListWebPushTokensParams {
   limit?: number;
   startingAfter?: string;
   endingBefore?: string;

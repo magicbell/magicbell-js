@@ -38,9 +38,9 @@ import {
 
 export class IntegrationsService extends BaseService {
   /**
-   * Creates a new installation of a inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+   * Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxConfigPayload>>} Created
+   * @returns {Promise<HttpResponse<InboxConfigPayload>>} OK
    */
   async saveInboxInstallation(
     body: InboxConfigPayload,
@@ -49,7 +49,7 @@ export class IntegrationsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/integrations/inbox/installations')
       .setRequestSchema(inboxConfigPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -57,7 +57,7 @@ export class IntegrationsService extends BaseService {
       .addResponse({
         schema: inboxConfigPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -69,7 +69,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Initiates the installation flow for a inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+   * Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxConfigPayload>>} Created
    */
@@ -95,9 +95,9 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates a new installation of a slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+   * Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackInstallation>>} Created
+   * @returns {Promise<HttpResponse<SlackInstallation>>} OK
    */
   async saveSlackInstallation(
     body: SlackInstallation,
@@ -106,7 +106,7 @@ export class IntegrationsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/integrations/slack/installations')
       .setRequestSchema(slackInstallationRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -114,7 +114,7 @@ export class IntegrationsService extends BaseService {
       .addResponse({
         schema: slackInstallationResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -126,7 +126,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Completes the installation flow for a slack integration. This endpoint is typically called after the user has completed any required authorization steps with slack.
+   * Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackInstallation>>} Created
    */
@@ -157,7 +157,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Initiates the installation flow for a slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+   * Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackStartInstallResponseContent>>} Created
    */
@@ -188,9 +188,9 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates a new installation of a templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+   * Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TemplatesInstallation>>} Created
+   * @returns {Promise<HttpResponse<TemplatesInstallation>>} OK
    */
   async saveTemplatesInstallation(
     body: TemplatesInstallation,
@@ -199,7 +199,7 @@ export class IntegrationsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/integrations/templates/installations')
       .setRequestSchema(templatesInstallationRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -207,7 +207,7 @@ export class IntegrationsService extends BaseService {
       .addResponse({
         schema: templatesInstallationResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -219,9 +219,9 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Creates a new installation of a web_push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
+   * Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebPushTokenPayload>>} Created
+   * @returns {Promise<HttpResponse<WebPushTokenPayload>>} OK
    */
   async saveWebPushInstallation(
     body: WebPushTokenPayload,
@@ -230,7 +230,7 @@ export class IntegrationsService extends BaseService {
     const request = new RequestBuilder()
       .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
       .setConfig(this.config)
-      .setMethod('POST')
+      .setMethod('PUT')
       .setPath('/integrations/web_push/installations')
       .setRequestSchema(webPushTokenPayloadRequest)
       .addAccessTokenAuth(this.config.token, 'Bearer')
@@ -238,7 +238,7 @@ export class IntegrationsService extends BaseService {
       .addResponse({
         schema: webPushTokenPayloadResponse,
         contentType: ContentType.Json,
-        status: 201,
+        status: 200,
       })
       .setRetryAttempts(this.config, requestConfig)
       .setRetryDelayMs(this.config, requestConfig)
@@ -250,7 +250,7 @@ export class IntegrationsService extends BaseService {
   }
 
   /**
-   * Initiates the installation flow for a web_push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
+   * Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.
    * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebPushStartInstallationResponse>>} Created
    */

@@ -57,7 +57,7 @@
     "start": "tshy --watch"
   },
   "dependencies": {
-    "zod": "3.25.7"
+    "zod": "3.22.0"
   },
   "devDependencies": {
     "@magicbell/codegen": "^0.4.0",
