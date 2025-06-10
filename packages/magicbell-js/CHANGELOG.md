@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 0.2.0
+
+### Minor Changes
+
+- [`cbe76c3`](https://github.com/magicbell/magicbell-js/commit/cbe76c37af4f910059ed4c5187c5490225e0ff77) Thanks [@smeijer](https://github.com/smeijer)! - regenerated to match updated spec
+
 ## 0.1.0
 
 ### Minor Changes
