@@ -40,10 +40,10 @@ export default function Badge({ count }: Props) {
   `;
 
   return (
-    <span css={[cleanslate, style]}>
+    <div css={[cleanslate, style]}>
       <div aria-label={`${count} unread items`} aria-live="polite" role="status">
-        {count}
+        {count > 99 ? '99+' : count}
       </div>
-    </span>
+    </div>
   );
 }
