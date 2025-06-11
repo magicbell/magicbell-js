@@ -1,5 +1,11 @@
 # @magicbell/magicbell-react
 
+## 11.4.0
+
+### Minor Changes
+
+- [#536](https://github.com/magicbell/magicbell-js/pull/536) [`0e64ac5`](https://github.com/magicbell/magicbell-js/commit/0e64ac5677350f8b336830f7e15e795b98d8f9b1) Thanks [@smeijer](https://github.com/smeijer)! - The Badge is now capped at showing '99+' when there are 100 or more unread notifications.
+
 ## 11.3.2
 
 ### Patch Changes
