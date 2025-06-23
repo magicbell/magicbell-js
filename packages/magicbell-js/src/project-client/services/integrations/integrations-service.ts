@@ -12,21 +12,6 @@ import {
   apnsConfigPayloadRequest,
   apnsConfigPayloadResponse,
 } from './models/apns-config-payload.js';
-import { AwssnsConfigCollection, awssnsConfigCollectionResponse } from './models/awssns-config-collection.js';
-import {
-  AwssnsConfigPayload,
-  awssnsConfigPayloadRequest,
-  awssnsConfigPayloadResponse,
-} from './models/awssns-config-payload.js';
-import {
-  EventSourceConfigCollection,
-  eventSourceConfigCollectionResponse,
-} from './models/event-source-config-collection.js';
-import {
-  EventSourceConfigPayload,
-  eventSourceConfigPayloadRequest,
-  eventSourceConfigPayloadResponse,
-} from './models/event-source-config-payload.js';
 import { ExpoConfigCollection, expoConfigCollectionResponse } from './models/expo-config-collection.js';
 import {
   ExpoConfigPayload,
@@ -35,12 +20,6 @@ import {
 } from './models/expo-config-payload.js';
 import { FcmConfigCollection, fcmConfigCollectionResponse } from './models/fcm-config-collection.js';
 import { FcmConfigPayload, fcmConfigPayloadRequest, fcmConfigPayloadResponse } from './models/fcm-config-payload.js';
-import { GithubConfigCollection, githubConfigCollectionResponse } from './models/github-config-collection.js';
-import {
-  GithubConfigPayload,
-  githubConfigPayloadRequest,
-  githubConfigPayloadResponse,
-} from './models/github-config-payload.js';
 import { InboxConfigCollection, inboxConfigCollectionResponse } from './models/inbox-config-collection.js';
 import {
   InboxConfigPayload,
@@ -77,13 +56,6 @@ import {
   slackConfigPayloadRequest,
   slackConfigPayloadResponse,
 } from './models/slack-config-payload.js';
-import { StripeConfigCollection, stripeConfigCollectionResponse } from './models/stripe-config-collection.js';
-import {
-  StripeConfigPayload,
-  stripeConfigPayloadRequest,
-  stripeConfigPayloadResponse,
-} from './models/stripe-config-payload.js';
-import { TemplatesConfigCollection, templatesConfigCollectionResponse } from './models/templates-config-collection.js';
 import { TwilioConfigCollection, twilioConfigCollectionResponse } from './models/twilio-config-collection.js';
 import {
   TwilioConfigPayload,
@@ -98,19 +70,14 @@ import {
 } from './models/webpush-config-payload.js';
 import {
   DeleteApnsIntegrationParams,
-  DeleteAwssnsIntegrationParams,
-  DeleteEventsourceIntegrationParams,
   DeleteExpoIntegrationParams,
   DeleteFcmIntegrationParams,
-  DeleteGithubIntegrationParams,
   DeleteInboxIntegrationParams,
   DeleteMailgunIntegrationParams,
   DeletePingEmailIntegrationParams,
   DeleteSendgridIntegrationParams,
   DeleteSesIntegrationParams,
   DeleteSlackIntegrationParams,
-  DeleteStripeIntegrationParams,
-  DeleteTemplatesIntegrationParams,
   DeleteTwilioIntegrationParams,
   DeleteWebPushIntegrationParams,
   ListIntegrationsParams,
@@ -233,188 +200,6 @@ export class IntegrationsService extends BaseService {
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/apns')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addQueryParam({
-        key: 'id',
-        value: params?.id,
-      })
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Retrieves the current Amazon SNS integration configurations for a specific integration type in the project. Returns configuration details and status information.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<AwssnsConfigCollection>>} OK
-   */
-  async listAwssnsIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<AwssnsConfigCollection>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('GET')
-      .setPath('/integrations/awssns')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: awssnsConfigCollectionResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<AwssnsConfigCollection>(request);
-  }
-
-  /**
-   * Updates or creates the Amazon SNS integration for the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<AwssnsConfigPayload>>} OK
-   */
-  async saveAwssnsIntegration(
-    body: AwssnsConfigPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<AwssnsConfigPayload>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/awssns')
-      .setRequestSchema(awssnsConfigPayloadRequest)
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: awssnsConfigPayloadResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<AwssnsConfigPayload>(request);
-  }
-
-  /**
-   * Deletes the Amazon SNS integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteAwssnsIntegration(
-    params?: DeleteAwssnsIntegrationParams,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/awssns')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addQueryParam({
-        key: 'id',
-        value: params?.id,
-      })
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Retrieves the current EventSource integration configurations for a specific integration type in the project. Returns configuration details and status information.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<EventSourceConfigCollection>>} OK
-   */
-  async listEventsourceIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<EventSourceConfigCollection>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('GET')
-      .setPath('/integrations/eventsource')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: eventSourceConfigCollectionResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<EventSourceConfigCollection>(request);
-  }
-
-  /**
-   * Updates or creates the EventSource integration for the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<EventSourceConfigPayload>>} OK
-   */
-  async saveEventsourceIntegration(
-    body: EventSourceConfigPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<EventSourceConfigPayload>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/eventsource')
-      .setRequestSchema(eventSourceConfigPayloadRequest)
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: eventSourceConfigPayloadResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<EventSourceConfigPayload>(request);
-  }
-
-  /**
-   * Deletes the EventSource integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteEventsourceIntegration(
-    params?: DeleteEventsourceIntegrationParams,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/eventsource')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
@@ -597,97 +382,6 @@ export class IntegrationsService extends BaseService {
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/fcm')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addQueryParam({
-        key: 'id',
-        value: params?.id,
-      })
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<GithubConfigCollection>>} OK
-   */
-  async listGithubIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<GithubConfigCollection>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('GET')
-      .setPath('/integrations/github')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: githubConfigCollectionResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<GithubConfigCollection>(request);
-  }
-
-  /**
-   * Updates or creates the GitHub integration for the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<GithubConfigPayload>>} OK
-   */
-  async saveGithubIntegration(
-    body: GithubConfigPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<GithubConfigPayload>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/github')
-      .setRequestSchema(githubConfigPayloadRequest)
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: githubConfigPayloadResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<GithubConfigPayload>(request);
-  }
-
-  /**
-   * Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteGithubIntegration(
-    params?: DeleteGithubIntegrationParams,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/github')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
@@ -1234,185 +928,6 @@ export class IntegrationsService extends BaseService {
       .setConfig(this.config)
       .setMethod('DELETE')
       .setPath('/integrations/slack')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addQueryParam({
-        key: 'id',
-        value: params?.id,
-      })
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<StripeConfigCollection>>} OK
-   */
-  async listStripeIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<StripeConfigCollection>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('GET')
-      .setPath('/integrations/stripe')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: stripeConfigCollectionResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<StripeConfigCollection>(request);
-  }
-
-  /**
-   * Updates or creates the Stripe integration for the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<StripeConfigPayload>>} OK
-   */
-  async saveStripeIntegration(
-    body: StripeConfigPayload,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<StripeConfigPayload>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/stripe')
-      .setRequestSchema(stripeConfigPayloadRequest)
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: stripeConfigPayloadResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<StripeConfigPayload>(request);
-  }
-
-  /**
-   * Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteStripeIntegration(
-    params?: DeleteStripeIntegrationParams,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/stripe')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.undefined(),
-        contentType: ContentType.NoContent,
-        status: 204,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addQueryParam({
-        key: 'id',
-        value: params?.id,
-      })
-      .build();
-    return this.client.call<void>(request);
-  }
-
-  /**
-   * Retrieves the current Templates integration configurations for a specific integration type in the project. Returns configuration details and status information.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TemplatesConfigCollection>>} OK
-   */
-  async listTemplatesIntegrations(requestConfig?: RequestConfig): Promise<HttpResponse<TemplatesConfigCollection>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('GET')
-      .setPath('/integrations/templates')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: templatesConfigCollectionResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .build();
-    return this.client.call<TemplatesConfigCollection>(request);
-  }
-
-  /**
-   * Updates or creates the Templates integration for the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} OK
-   */
-  async saveTemplatesIntegration(body: any, requestConfig?: RequestConfig): Promise<HttpResponse<any>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/templates')
-      .setRequestSchema(z.any())
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: z.any(),
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<any>(request);
-  }
-
-  /**
-   * Deletes the Templates integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
-   */
-  async deleteTemplatesIntegration(
-    params?: DeleteTemplatesIntegrationParams,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<void>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('DELETE')
-      .setPath('/integrations/templates')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)

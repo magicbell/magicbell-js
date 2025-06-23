@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 6,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -125,21 +125,12 @@ The SDK includes several models that represent the data structures used in API r
 | [ApnsConfigCollection](docs/project-client/models/ApnsConfigCollection.md)                 |             |
 | [ApnsConfig](docs/project-client/models/ApnsConfig.md)                                     |             |
 | [ApnsConfigPayload](docs/project-client/models/ApnsConfigPayload.md)                       |             |
-| [AwssnsConfigCollection](docs/project-client/models/AwssnsConfigCollection.md)             |             |
-| [AwssnsConfig](docs/project-client/models/AwssnsConfig.md)                                 |             |
-| [AwssnsConfigPayload](docs/project-client/models/AwssnsConfigPayload.md)                   |             |
-| [EventSourceConfigCollection](docs/project-client/models/EventSourceConfigCollection.md)   |             |
-| [EventSourceConfig](docs/project-client/models/EventSourceConfig.md)                       |             |
-| [EventSourceConfigPayload](docs/project-client/models/EventSourceConfigPayload.md)         |             |
 | [ExpoConfigCollection](docs/project-client/models/ExpoConfigCollection.md)                 |             |
 | [ExpoConfig](docs/project-client/models/ExpoConfig.md)                                     |             |
 | [ExpoConfigPayload](docs/project-client/models/ExpoConfigPayload.md)                       |             |
 | [FcmConfigCollection](docs/project-client/models/FcmConfigCollection.md)                   |             |
 | [FcmConfig](docs/project-client/models/FcmConfig.md)                                       |             |
 | [FcmConfigPayload](docs/project-client/models/FcmConfigPayload.md)                         |             |
-| [GithubConfigCollection](docs/project-client/models/GithubConfigCollection.md)             |             |
-| [GithubConfig](docs/project-client/models/GithubConfig.md)                                 |             |
-| [GithubConfigPayload](docs/project-client/models/GithubConfigPayload.md)                   |             |
 | [InboxConfigCollection](docs/project-client/models/InboxConfigCollection.md)               |             |
 | [InboxConfig](docs/project-client/models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](docs/project-client/models/InboxConfigPayload.md)                     |             |
@@ -158,11 +149,6 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](docs/project-client/models/SlackConfigCollection.md)               |             |
 | [SlackConfig](docs/project-client/models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](docs/project-client/models/SlackConfigPayload.md)                     |             |
-| [StripeConfigCollection](docs/project-client/models/StripeConfigCollection.md)             |             |
-| [StripeConfig](docs/project-client/models/StripeConfig.md)                                 |             |
-| [StripeConfigPayload](docs/project-client/models/StripeConfigPayload.md)                   |             |
-| [TemplatesConfigCollection](docs/project-client/models/TemplatesConfigCollection.md)       |             |
-| [TemplatesConfig](docs/project-client/models/TemplatesConfig.md)                           |             |
 | [TwilioConfigCollection](docs/project-client/models/TwilioConfigCollection.md)             |             |
 | [TwilioConfig](docs/project-client/models/TwilioConfig.md)                                 |             |
 | [TwilioConfigPayload](docs/project-client/models/TwilioConfigPayload.md)                   |             |
@@ -225,7 +211,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 10,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -286,7 +272,6 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackFinishInstallResponse](docs/user-client/models/SlackFinishInstallResponse.md)             |             |
 | [SlackStartInstall](docs/user-client/models/SlackStartInstall.md)                               |             |
 | [SlackStartInstallResponseContent](docs/user-client/models/SlackStartInstallResponseContent.md) |             |
-| [TemplatesInstallation](docs/user-client/models/TemplatesInstallation.md)                       |             |
 | [WebPushTokenPayload](docs/user-client/models/WebPushTokenPayload.md)                           |             |
 | [WebPushStartInstallationResponse](docs/user-client/models/WebPushStartInstallationResponse.md) |             |
 | [NotificationCollection](docs/user-client/models/NotificationCollection.md)                     |             |

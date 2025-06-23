@@ -26,7 +26,7 @@ export const broadcast = z.lazy(() => {
     customAttributes: z.any().optional().nullable(),
     id: z.string().optional(),
     overrides: overrides.optional().nullable(),
-    recipients: z.array(user).min(1).max(1000),
+    recipients: z.array(user).min(1).max(1000).nullable(),
     status: broadcastStatus.optional(),
     title: z.string().min(1).max(255),
     topic: z
@@ -74,7 +74,7 @@ export const broadcastResponse = z.lazy(() => {
       custom_attributes: z.any().optional().nullable(),
       id: z.string().optional(),
       overrides: overridesResponse.optional().nullable(),
-      recipients: z.array(userResponse).min(1).max(1000),
+      recipients: z.array(userResponse).min(1).max(1000).nullable(),
       status: broadcastStatusResponse.optional(),
       title: z.string().min(1).max(255),
       topic: z
@@ -118,7 +118,7 @@ export const broadcastRequest = z.lazy(() => {
       customAttributes: z.any().optional().nullable(),
       id: z.string().optional(),
       overrides: overridesRequest.optional().nullable(),
-      recipients: z.array(userRequest).min(1).max(1000),
+      recipients: z.array(userRequest).min(1).max(1000).nullable(),
       status: broadcastStatusRequest.optional(),
       title: z.string().min(1).max(255),
       topic: z

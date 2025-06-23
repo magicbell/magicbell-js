@@ -8,23 +8,11 @@ export interface DeleteApnsIntegrationParams {
   id?: string;
 }
 
-export interface DeleteAwssnsIntegrationParams {
-  id?: string;
-}
-
-export interface DeleteEventsourceIntegrationParams {
-  id?: string;
-}
-
 export interface DeleteExpoIntegrationParams {
   id?: string;
 }
 
 export interface DeleteFcmIntegrationParams {
-  id?: string;
-}
-
-export interface DeleteGithubIntegrationParams {
   id?: string;
 }
 
@@ -49,14 +37,6 @@ export interface DeleteSesIntegrationParams {
 }
 
 export interface DeleteSlackIntegrationParams {
-  id?: string;
-}
-
-export interface DeleteStripeIntegrationParams {
-  id?: string;
-}
-
-export interface DeleteTemplatesIntegrationParams {
   id?: string;
 }
 

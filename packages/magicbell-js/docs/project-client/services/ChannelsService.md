@@ -59,7 +59,7 @@ import { CategoryDeliveryConfig, Client } from 'magicbell-js/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 2,
+    delay: 1,
     if: 'if',
   };
 
@@ -247,7 +247,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserApnsTokens('user_id', {
-    limit: 7,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -355,7 +355,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserExpoTokens('user_id', {
-    limit: 7,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -463,7 +463,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserFcmTokens('user_id', {
-    limit: 7,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -787,7 +787,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserWebPushTokens('user_id', {
-    limit: 4,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
