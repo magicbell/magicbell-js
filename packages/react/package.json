@@ -76,7 +76,7 @@
     "humps": "^2.0.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "ramda": "^0.28.0",
+    "ramda": "^0.31.3",
     "react-infinite-scroll-component": "^6.1.0",
     "react-use": "^17.6.0",
     "timeago.js": "^4.0.2",
