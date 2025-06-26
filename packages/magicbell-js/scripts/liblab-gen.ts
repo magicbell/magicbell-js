@@ -54,6 +54,12 @@ async function writeReadme(source: string, dest: string, npmName: string, pkg: s
   md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
   md.reIndentHeadings(readmeAst, 1);
   md.replaceText(readmeAst, `npm install ${npmName}`, `npm install ${pkg}`);
+
+  // fix heading levels
+  md.replaceText(readmeAst, /^# Sample Usage/gm, '## Sample Usage');
+  md.replaceText(readmeAst, /^## Services/gm, '### Services');
+  md.replaceText(readmeAst, /^## Models/gm, '### Models');
+
   md.mapLinks(readmeAst, (url) => {
     if (!url.startsWith('documentation/')) return;
     return url.replace('documentation/', '');
