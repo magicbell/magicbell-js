@@ -56,9 +56,7 @@ async function writeReadme(source: string, dest: string, npmName: string, pkg: s
   md.replaceText(readmeAst, `npm install ${npmName}`, `npm install ${pkg}`);
 
   // fix heading levels
-  md.replaceText(readmeAst, /^# Sample Usage/gm, '## Sample Usage');
-  md.replaceText(readmeAst, /^## Services/gm, '### Services');
-  md.replaceText(readmeAst, /^## Models/gm, '### Models');
+  md.reIndentSection(readmeAst, 'Sample Usage', 1);
 
   md.mapLinks(readmeAst, (url) => {
     if (!url.startsWith('documentation/')) return;

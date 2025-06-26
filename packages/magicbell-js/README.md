@@ -47,7 +47,7 @@ You can set a custom timeout for the SDK's HTTP requests as follows:
 const client = new Client({ timeout: 10000 });
 ```
 
-# Sample Usage
+## Sample Usage
 
 Below is a comprehensive example demonstrating how to authenticate and call a simple endpoint:
 
@@ -69,7 +69,7 @@ import { Client } from 'magicbell-js/project-client';
 })();
 ```
 
-## Services
+### Services
 
 The SDK provides various services to interact with the API.
 
@@ -86,7 +86,7 @@ The SDK provides various services to interact with the API.
 
 </details>
 
-## Models
+### Models
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
@@ -198,7 +198,7 @@ You can set a custom timeout for the SDK's HTTP requests as follows:
 const client = new Client({ timeout: 10000 });
 ```
 
-# Sample Usage
+## Sample Usage
 
 Below is a comprehensive example demonstrating how to authenticate and call a simple endpoint:
 
@@ -220,7 +220,7 @@ import { Client } from 'magicbell-js/user-client';
 })();
 ```
 
-## Services
+### Services
 
 The SDK provides various services to interact with the API.
 
@@ -235,7 +235,7 @@ The SDK provides various services to interact with the API.
 
 </details>
 
-## Models
+### Models
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
