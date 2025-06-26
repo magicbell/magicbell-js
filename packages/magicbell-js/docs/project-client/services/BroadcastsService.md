@@ -38,7 +38,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 6,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -143,8 +143,8 @@ import { Broadcast, Client, User } from 'magicbell-js/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 10,
-    total: 8,
+    failures: 3,
+    total: 4,
   };
 
   const broadcastStatus: BroadcastStatus = {

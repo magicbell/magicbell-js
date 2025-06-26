@@ -27,11 +27,6 @@ import {
   slackStartInstallResponseContentResponse,
 } from './models/slack-start-install-response-content.js';
 import {
-  TemplatesInstallation,
-  templatesInstallationRequest,
-  templatesInstallationResponse,
-} from './models/templates-installation.js';
-import {
   WebPushStartInstallationResponse,
   webPushStartInstallationResponseResponse,
 } from './models/web-push-start-installation-response.js';
@@ -185,37 +180,6 @@ export class IntegrationsService extends BaseService {
       .addBody(body)
       .build();
     return this.client.call<SlackStartInstallResponseContent>(request);
-  }
-
-  /**
-   * Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TemplatesInstallation>>} OK
-   */
-  async saveTemplatesInstallation(
-    body: TemplatesInstallation,
-    requestConfig?: RequestConfig,
-  ): Promise<HttpResponse<TemplatesInstallation>> {
-    const request = new RequestBuilder()
-      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
-      .setConfig(this.config)
-      .setMethod('PUT')
-      .setPath('/integrations/templates/installations')
-      .setRequestSchema(templatesInstallationRequest)
-      .addAccessTokenAuth(this.config.token, 'Bearer')
-      .setRequestContentType(ContentType.Json)
-      .addResponse({
-        schema: templatesInstallationResponse,
-        contentType: ContentType.Json,
-        status: 200,
-      })
-      .setRetryAttempts(this.config, requestConfig)
-      .setRetryDelayMs(this.config, requestConfig)
-      .setResponseValidation(this.config, requestConfig)
-      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
-      .addBody(body)
-      .build();
-    return this.client.call<TemplatesInstallation>(request);
   }
 
   /**

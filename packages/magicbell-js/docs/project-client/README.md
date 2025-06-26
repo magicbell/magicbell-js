@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 6,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -125,21 +125,12 @@ The SDK includes several models that represent the data structures used in API r
 | [ApnsConfigCollection](models/ApnsConfigCollection.md)                 |             |
 | [ApnsConfig](models/ApnsConfig.md)                                     |             |
 | [ApnsConfigPayload](models/ApnsConfigPayload.md)                       |             |
-| [AwssnsConfigCollection](models/AwssnsConfigCollection.md)             |             |
-| [AwssnsConfig](models/AwssnsConfig.md)                                 |             |
-| [AwssnsConfigPayload](models/AwssnsConfigPayload.md)                   |             |
-| [EventSourceConfigCollection](models/EventSourceConfigCollection.md)   |             |
-| [EventSourceConfig](models/EventSourceConfig.md)                       |             |
-| [EventSourceConfigPayload](models/EventSourceConfigPayload.md)         |             |
 | [ExpoConfigCollection](models/ExpoConfigCollection.md)                 |             |
 | [ExpoConfig](models/ExpoConfig.md)                                     |             |
 | [ExpoConfigPayload](models/ExpoConfigPayload.md)                       |             |
 | [FcmConfigCollection](models/FcmConfigCollection.md)                   |             |
 | [FcmConfig](models/FcmConfig.md)                                       |             |
 | [FcmConfigPayload](models/FcmConfigPayload.md)                         |             |
-| [GithubConfigCollection](models/GithubConfigCollection.md)             |             |
-| [GithubConfig](models/GithubConfig.md)                                 |             |
-| [GithubConfigPayload](models/GithubConfigPayload.md)                   |             |
 | [InboxConfigCollection](models/InboxConfigCollection.md)               |             |
 | [InboxConfig](models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](models/InboxConfigPayload.md)                     |             |
@@ -158,11 +149,6 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](models/SlackConfigCollection.md)               |             |
 | [SlackConfig](models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](models/SlackConfigPayload.md)                     |             |
-| [StripeConfigCollection](models/StripeConfigCollection.md)             |             |
-| [StripeConfig](models/StripeConfig.md)                                 |             |
-| [StripeConfigPayload](models/StripeConfigPayload.md)                   |             |
-| [TemplatesConfigCollection](models/TemplatesConfigCollection.md)       |             |
-| [TemplatesConfig](models/TemplatesConfig.md)                           |             |
 | [TwilioConfigCollection](models/TwilioConfigCollection.md)             |             |
 | [TwilioConfig](models/TwilioConfig.md)                                 |             |
 | [TwilioConfigPayload](models/TwilioConfigPayload.md)                   |             |

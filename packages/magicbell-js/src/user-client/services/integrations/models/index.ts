@@ -16,7 +16,6 @@ export type { SlackInstallation } from './slack-installation.js';
 export type { SlackStartInstall } from './slack-start-install.js';
 export type { SlackStartInstallResponseContent } from './slack-start-install-response-content.js';
 export type { Team } from './team.js';
-export type { TemplatesInstallation } from './templates-installation.js';
 export type { Theme } from './theme.js';
 export type { ThemeNotification } from './theme-notification.js';
 export type { Unread } from './unread.js';

@@ -2,16 +2,15 @@
 
 A list of all methods in the `IntegrationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                                 | Description                                                                                                                                                                                         |
-| :------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [saveInboxInstallation](#saveinboxinstallation)         | Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
-| [startInboxInstallation](#startinboxinstallation)       | Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.   |
-| [saveSlackInstallation](#saveslackinstallation)         | Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
-| [finishSlackInstallation](#finishslackinstallation)     | Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.                              |
-| [startSlackInstallation](#startslackinstallation)       | Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.    |
-| [saveTemplatesInstallation](#savetemplatesinstallation) | Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                     |
-| [saveWebPushInstallation](#savewebpushinstallation)     | Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                      |
-| [startWebPushInstallation](#startwebpushinstallation)   | Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required. |
+| Methods                                               | Description                                                                                                                                                                                         |
+| :---------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [saveInboxInstallation](#saveinboxinstallation)       | Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
+| [startInboxInstallation](#startinboxinstallation)     | Initiates the installation flow for an Inbox integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.   |
+| [saveSlackInstallation](#saveslackinstallation)       | Creates a new installation of a Slack integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                         |
+| [finishSlackInstallation](#finishslackinstallation)   | Completes the installation flow for the Slack integration. This endpoint is typically called after the user has completed any required authorization steps with Slack.                              |
+| [startSlackInstallation](#startslackinstallation)     | Initiates the installation flow for a Slack integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required.    |
+| [saveWebPushInstallation](#savewebpushinstallation)   | Creates a new installation of a Web Push integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.                      |
+| [startWebPushInstallation](#startwebpushinstallation) | Initiates the installation flow for a Web Push integration. This is the first step in a multi-step installation process where user authorization or external service configuration may be required. |
 
 ## saveInboxInstallation
 
@@ -46,7 +45,7 @@ import { Client, InboxConfigPayload } from 'magicbell-js/user-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 0.63,
+    backgroundOpacity: 6.63,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -214,7 +213,7 @@ import { Client, SlackInstallation } from 'magicbell-js/user-client';
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 10,
+    expiresIn: 2,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -243,8 +242,8 @@ import { Client, SlackInstallation } from 'magicbell-js/user-client';
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 3,
-    id: 'XT6QZ4-E;t.3bGl(',
+    expiresIn: 5,
+    id: 'VPOA-WAxLE2I',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -333,45 +332,6 @@ import { Client, SlackStartInstall } from 'magicbell-js/user-client';
   };
 
   const { data } = await client.integrations.startSlackInstallation(slackStartInstall);
-
-  console.log(data);
-})();
-```
-
-## saveTemplatesInstallation
-
-Creates a new installation of a Templates integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.
-
-- HTTP Method: `PUT`
-- Endpoint: `/integrations/templates/installations`
-
-**Parameters**
-
-| Name | Type                                                        | Required | Description       |
-| :--- | :---------------------------------------------------------- | :------- | :---------------- |
-| body | [TemplatesInstallation](../models/TemplatesInstallation.md) | ❌       | The request body. |
-
-**Return Type**
-
-`TemplatesInstallation`
-
-**Example Usage Code Snippet**
-
-```typescript
-import { Client, TemplatesInstallation } from 'magicbell-js/user-client';
-
-(async () => {
-  const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
-
-  const templatesInstallation: TemplatesInstallation = {
-    category: 'category',
-    channel: 'channel',
-    text: 'text',
-  };
-
-  const { data } = await client.integrations.saveTemplatesInstallation(templatesInstallation);
 
   console.log(data);
 })();
