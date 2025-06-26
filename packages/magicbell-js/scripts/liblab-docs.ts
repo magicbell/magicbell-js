@@ -27,7 +27,7 @@ const readmeAst = await md.read(readme);
 md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 md.reIndentHeadings(readmeAst, 1);
 md.mapLinks(readmeAst, rewriteHref);
-md.insertFrontMatter(readmeAst, { title: 'MagicBell JavaScript SDK' });
+md.insertFrontMatter(readmeAst, { title: 'JavaScript SDK' });
 await md.write(readmeAst, path.join(outdir, 'index.mdx'));
 
 // copy snippets

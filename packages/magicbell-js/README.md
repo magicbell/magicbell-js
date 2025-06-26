@@ -12,7 +12,7 @@ To get started with the SDK, we recommend installing using `npm`:
 npm install magicbell-js
 ```
 
-# MagicBell JavaScript ProjectClient
+# ProjectClient
 
 <!-- AUTO-GENERATED-CONTENT:START (project-client) -->
 
@@ -177,7 +177,7 @@ The SDK includes several models that represent the data structures used in API r
 
 <!-- AUTO-GENERATED-CONTENT:END (project-client) -->
 
-# MagicBell JavaScript UserClient
+# UserClient
 
 <!-- AUTO-GENERATED-CONTENT:START (user-client) -->
 
