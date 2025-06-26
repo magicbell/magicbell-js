@@ -28,7 +28,7 @@ md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 md.reIndentHeadings(readmeAst, 1);
 md.mapLinks(readmeAst, rewriteHref);
 md.insertFrontMatter(readmeAst, { title: 'JavaScript SDK' });
-await md.write(readmeAst, path.join(outdir, 'index.mdx'));
+await md.write(readmeAst, path.join(outdir, 'README.md'));
 
 // copy snippets
 await fs.copyFile(
