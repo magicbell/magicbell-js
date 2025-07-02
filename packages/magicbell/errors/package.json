@@ -1,4 +1,0 @@
-{
-  "main": "../dist/commonjs/errors.js",
-  "types": "../dist/commonjs/errors.d.ts"
-}
