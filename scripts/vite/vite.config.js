@@ -88,6 +88,7 @@ export default defineConfig(async ({ mode, command }) => {
       threads: false,
       reporters: isTest && process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
       exclude: configDefaults.exclude,
+      passWithNoTests: true,
     },
   };
 });
