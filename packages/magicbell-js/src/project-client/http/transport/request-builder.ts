@@ -20,7 +20,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
       baseUrl: Environment.DEFAULT,
       method: 'GET',
       path: '',
-      config: {},
+      config: {} as SdkConfig,
       responses: [],
       errors: [],
       requestSchema: z.any(),
