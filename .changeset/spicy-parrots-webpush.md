@@ -1,5 +1,5 @@
 ---
-'@magicbell/react-headless': minor
+'@magicbell/webpush': minor
 ---
 
 This package is deprecated. Please use the `webpush-button` from one of [our frontend libraries](https://www.magicbell.com/docs/libraries) instead.
