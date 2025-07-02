@@ -1,5 +1,26 @@
 # @magicbell/embeddable
 
+## 3.5.0
+
+### Minor Changes
+
+- [#549](https://github.com/magicbell/magicbell-js/pull/549) [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use one of [our frontend libraries](https://www.magicbell.com/docs/libraries) instead.
+
+  At the time of writing, we recommend:
+
+  - [`@magicbell/react`](https://www.magicbell.com/docs/libraries/magicbell-react)
+  - [`@magicbell/preact`](https://www.magicbell.com/docs/libraries/magicbell-preact)
+  - [`@magicbell/svelte`](https://www.magicbell.com/docs/libraries/magicbell-svelte)
+
+  Or just plain js if you want to wire up the UI yourself
+
+  - [`magicbell-js`](https://www.magicbell.com/docs/libraries/magicbell-js)
+
+### Patch Changes
+
+- Updated dependencies [[`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94)]:
+  - @magicbell/magicbell-react@11.5.0
+
 ## 3.4.9
 
 ### Patch Changes

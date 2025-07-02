@@ -1,5 +1,34 @@
 # @magicbell/magicbell-react
 
+## 11.5.0
+
+### Minor Changes
+
+- [#549](https://github.com/magicbell/magicbell-js/pull/549) [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use [`@magicbell/react`](https://www.magicbell.com/docs/libraries/magicbell-react) instead.
+
+  ```diff
+  - import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
+  + import Provider from "@magicbell/react/context-provider";
+  + import FloatingInbox from "@magicbell/react/floating-inbox";
+
+  function App(props: any) {
+    return (
+  -   <MagicBell apiKey={MAGICBELL_API_KEY} userEmail="john@example.com">
+  -     {(props) => <FloatingNotificationInbox height={300} {...props} />}
+  -   </MagicBell>,
+  +   <Provider token="abc123">
+  +     <FloatingInbox height={500} />
+  +   </Provider>
+    );
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94), [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94)]:
+  - @magicbell/react-headless@5.5.0
+  - @magicbell/webpush@2.2.0
+
 ## 11.4.0
 
 ### Minor Changes
