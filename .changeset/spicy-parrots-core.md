@@ -1,4 +1,6 @@
-# `@magicbell/core`
+---
+'@magicbell/core': minor
+---
 
 This package is deprecated. Please use [`magicbell-js`](https://www.magicbell.com/docs/libraries/magicbell-js) instead.
 

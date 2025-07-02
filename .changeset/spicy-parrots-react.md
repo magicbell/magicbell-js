@@ -1,4 +1,6 @@
-# `@magicbell/magicbell-react`
+---
+'@magicbell/magicbell-react': minor
+---
 
 This package is deprecated. Please use [`@magicbell/react`](https://www.magicbell.com/docs/libraries/magicbell-react) instead.
 

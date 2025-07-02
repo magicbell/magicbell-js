@@ -1,4 +1,6 @@
-# `@magicbell/embeddable`
+---
+'@magicbell/embeddable': minor
+---
 
 This package is deprecated. Please use one of [our frontend libraries](https://www.magicbell.com/docs/libraries) instead.
 

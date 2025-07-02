@@ -75,7 +75,6 @@
     "/project-client/package.json",
     "/user-client/package.json"
   ],
-  "homepage": "https://magicbell.com",
   "keywords": [
     "magicbell",
     "notifications",
@@ -83,13 +82,10 @@
     "notification inbox",
     "api"
   ],
+  "homepage": "https://www.magicbell.com/docs/libraries",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell/magicbell-js.git",
-    "directory": "packages/magicbell"
-  },
-  "bugs": {
-    "url": "https://github.com/magicbell/magicbell-js/issues"
+    "url": "https://github.com/magicbell/magicbell-js.git"
   },
   "scripts": {
     "clean": "rimraf dist",

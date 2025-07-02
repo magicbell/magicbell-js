@@ -5,10 +5,10 @@
   "esmodule": "dist/magicbell.esm.js",
   "module": "dist/magicbell.esm.js",
   "unpkg": "dist/magicbell.esm.min.js",
+  "homepage": "https://www.magicbell.com/docs/libraries",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell/magicbell-js.git",
-    "directory": "packages/embeddable"
+    "url": "https://github.com/magicbell/magicbell-js.git"
   },
   "author": "MagicBell <bot@magicbell.io> (https://magicbell.com/)",
   "contributors": [
