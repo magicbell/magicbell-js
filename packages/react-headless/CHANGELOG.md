@@ -1,5 +1,16 @@
 # @magicbell/react-headless
 
+## 5.5.0
+
+### Minor Changes
+
+- [#549](https://github.com/magicbell/magicbell-js/pull/549) [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use [`@magicbell/react`](https://www.magicbell.com/docs/libraries/magicbell-react) or [`magicbell-js`](https://www.magicbell.com/docs/libraries/magicbell-js) instead.
+
+### Patch Changes
+
+- Updated dependencies [[`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94)]:
+  - magicbell@4.5.0
+
 ## 5.4.2
 
 ### Patch Changes

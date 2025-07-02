@@ -1,5 +1,43 @@
 # magicbell
 
+## 4.5.0
+
+### Minor Changes
+
+- [#549](https://github.com/magicbell/magicbell-js/pull/549) [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use [`magicbell-js`](https://www.magicbell.com/docs/libraries/magicbell-js) instead.
+
+  **Project Client**
+
+  ```diff
+  - import { ProjectClient } from 'magicbell/project-client';
+  + import { Client } from 'magicbell-js/project-client';
+
+  - const magicbell = new ProjectClient({
+  -  apiKey: 'your-api-key',
+  -  apiSecret: 'your-api-secret',
+  - });
+
+  + const client = new Client({
+  +   token: 'your-access-token',
+  + });
+  ```
+
+  **User Client**
+
+  ```diff
+  - import { Userclient } from 'magicbell/user-client';
+  + import { Client } from 'magicbell-js/project-client';
+
+  - const magicbell = new Userclient({
+  -  apiKey: 'your-api-key',
+  -  apiSecret: 'your-api-secret',
+  - });
+
+  + const client = new Client({
+  +   token: 'your-user-jwt',
+  + });
+  ```
+
 ## 4.4.1
 
 ### Patch Changes

@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "@angular/core": "^19.2.11",
-    "@magicbell/embeddable": "3.4.9",
-    "@magicbell/magicbell-react": "11.4.0",
-    "@magicbell/react-headless": "5.4.2",
+    "@magicbell/embeddable": "3.5.0",
+    "@magicbell/magicbell-react": "11.5.0",
+    "@magicbell/react-headless": "5.5.0",
     "@types/react": "^18.2.42",
     "eslint-config-next": "12.3.4",
     "eslint-plugin-jsx-a11y": "^6.8.0",

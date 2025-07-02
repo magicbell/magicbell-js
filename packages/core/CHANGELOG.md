@@ -1,5 +1,25 @@
 # @magicbell/core
 
+## 5.4.0
+
+### Minor Changes
+
+- [#549](https://github.com/magicbell/magicbell-js/pull/549) [`f710971`](https://github.com/magicbell/magicbell-js/commit/f7109713acf554c82921a94d722a43c06befee94) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use [`magicbell-js`](https://www.magicbell.com/docs/libraries/magicbell-js) instead.
+
+  ```diff
+  - import MagicBellClient from '@magicbell/core';
+  + import { Client } from 'magicbell-js/project-client';
+
+  - const client = await MagicBellClient.createInstance({
+  -   apiKey: 'MAGICBELL_API_KEY',
+  -   userEmail: 'customer@example.com',
+  - });
+
+  + const client = new Client({
+  +   token: 'your-access-token',
+  + });
+  ```
+
 ## 5.3.0
 
 ### Minor Changes
