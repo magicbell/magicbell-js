@@ -13,7 +13,6 @@
     "/src",
     "LICENSE"
   ],
-  "homepage": "https://magicbell.com",
   "keywords": [
     "magicbell",
     "notifications",
@@ -21,13 +20,10 @@
     "notification inbox",
     "api"
   ],
+  "homepage": "https://www.magicbell.com/docs/libraries",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell/magicbell-js.git",
-    "directory": "packages/webpush"
-  },
-  "bugs": {
-    "url": "https://github.com/magicbell/magicbell-js/issues"
+    "url": "https://github.com/magicbell/magicbell-js.git"
   },
   "tshy": {
     "project": "./tsconfig.build.json",

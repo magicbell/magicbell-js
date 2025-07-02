@@ -15,7 +15,6 @@
     "/src",
     "LICENSE"
   ],
-  "homepage": "https://magicbell.com",
   "keywords": [
     "bell",
     "magicbell",
@@ -28,13 +27,10 @@
     "typescript",
     "react"
   ],
+  "homepage": "https://www.magicbell.com/docs/libraries",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magicbell/magicbell-js.git",
-    "directory": "packages/react-headless"
-  },
-  "bugs": {
-    "url": "https://github.com/magicbell/magicbell-js/issues"
+    "url": "https://github.com/magicbell/magicbell-js.git"
   },
   "scripts": {
     "clean": "rimraf dist",
