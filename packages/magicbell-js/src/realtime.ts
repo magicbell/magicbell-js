@@ -153,7 +153,7 @@ export function WithRealtime<TBaseConstructor extends ClientConstructor>(BaseCla
     async #getToken() {
       if (this.#inboxToken) return this.#inboxToken;
 
-      const { data, metadata: res } = await this.#channels.saveInboxToken({
+      const { data, metadata: res } = await this.channels.saveInboxToken({
         token: getSessionId(),
       });
 
