@@ -26,6 +26,16 @@
         "default": "./dist/commonjs/project-client.js"
       }
     },
+    "./realtime": {
+      "import": {
+        "types": "./dist/esm/realtime.d.ts",
+        "default": "./dist/esm/realtime.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/realtime.d.ts",
+        "default": "./dist/commonjs/realtime.js"
+      }
+    },
     "./user-client": {
       "import": {
         "types": "./dist/esm/user-client.d.ts",
@@ -43,7 +53,8 @@
     "src",
     "README.md",
     "/project-client/package.json",
-    "/user-client/package.json"
+    "/user-client/package.json",
+    "/realtime/package.json"
   ],
   "scripts": {
     "build": "run-s build:bundle build:node10 build:docs build:attw",

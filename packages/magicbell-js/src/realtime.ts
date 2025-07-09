@@ -1,12 +1,8 @@
 import invariant from 'tiny-invariant';
 
-import { type Notification, Client } from './user-client';
+import { type Notification, Client } from './user-client.js';
 
-type Constructor<TInstance = {}> = new (...args: any[]) => TInstance;
-
-type ClientConstructor = Constructor<Client>;
-
-export function WithRealtime<TBaseConstructor extends ClientConstructor>(BaseClass: TBaseConstructor) {
+export function WithRealtime(BaseClass: typeof Client) {
   return class RealtimeClient extends BaseClass {
     #socketUrl = 'wss://ws.magicbell.com';
     #inboxToken: string | undefined;
