@@ -58,7 +58,7 @@
     "/socket/package.json"
   ],
   "scripts": {
-    "build": "run-s build:bundle build:node10 build:attw",
+    "build": "run-s build:bundle build:node10 build:docs build:attw",
     "build:attw": "attw -P --profile node16",
     "build:bundle": "tshy",
     "build:docs": "./scripts/liblab-docs.ts",
