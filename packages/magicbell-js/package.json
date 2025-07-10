@@ -54,7 +54,6 @@
     "README.md",
     "/project-client/package.json",
     "/user-client/package.json",
-    "/realtime/package.json",
     "/socket/package.json"
   ],
   "scripts": {
