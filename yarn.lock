@@ -48,10 +48,10 @@
   resolved "https://registry.yarnpkg.com/@andrewbranch/untar.js/-/untar.js-1.0.3.tgz#ba9494f85eb83017c5c855763969caf1d0adea00"
   integrity sha512-Jh15/qVmrLGhkKJBdXlK1+9tY4lZruYjsgkDFj08ZmDiWVBLJcqkok7Z0/R0In+i1rScBpJlSvrTS2Lm41Pbnw==
 
-"@angular/core@^19.2.11":
-  version "19.2.14"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-19.2.14.tgz#af9135afa795ea455de1031d89efe5e7d9fb7de2"
-  integrity sha512-EVErpW9tGqJ/wNcAN3G/ErH8pHCJ8mM1E6bsJ8UJIpDTZkpqqYjBMtZS9YWH5n3KwUd1tAkAB2w8FK125AjDUQ==
+"@angular/core@^20.1.0":
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-20.1.0.tgz#30fe19d422fbfa816ebcd5a7cb27a0d486216705"
+  integrity sha512-/dJooZi+OAACkjWgGMPrOOGikdtlTJXwdeXPJTgZSUD5L8oQMbhZFG0XW/1Hldvsti87wPjZPz67ivB7zR86VA==
   dependencies:
     tslib "^2.3.0"
 
