@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.1.0
+
+### Minor Changes
+
+- [#553](https://github.com/magicbell/magicbell-js/pull/553) [`fc604f4`](https://github.com/magicbell/magicbell-js/commit/fc604f49dde7e98ea4e203f4137f85a56c711a10) Thanks [@moxley01](https://github.com/moxley01)! - add 'socket' client for realtime notification listening
+
 ## 1.0.0
 
 ### Major Changes
