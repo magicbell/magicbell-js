@@ -1,5 +1,5 @@
 docs-dist
 out
 /project-client/package.json
-/realtime/package.json
+/socket/package.json
 /user-client/package.json

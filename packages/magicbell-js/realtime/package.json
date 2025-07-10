@@ -1,0 +1,4 @@
+{
+  "main": "../dist/commonjs/realtime.js",
+  "types": "../dist/commonjs/realtime.d.ts"
+}
