@@ -12,6 +12,10 @@ To get started with the SDK, we recommend installing using `npm`:
 npm install magicbell-js
 ```
 
+## Authentication
+
+Both the ProjectClient and the UserClient require authentication. Please read more about authentication and generation of tokens in our [Authentication docs](https://www.magicbell.com/docs/api/authentication).
+
 # ProjectClient
 
 <!-- AUTO-GENERATED-CONTENT:START (project-client) -->
