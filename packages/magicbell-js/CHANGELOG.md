@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.1.1
+
+### Patch Changes
+
+- [#557](https://github.com/magicbell/magicbell-js/pull/557) [`46b321f`](https://github.com/magicbell/magicbell-js/commit/46b321f4366d9abc8af94a6af17e2c60a23158b1) Thanks [@moxley01](https://github.com/moxley01)! - Fixes invariant import error
+
 ## 1.1.0
 
 ### Minor Changes
