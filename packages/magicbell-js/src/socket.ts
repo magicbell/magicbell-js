@@ -1,5 +1,3 @@
-import invariant from 'tiny-invariant';
-
 import { type Notification, Client } from './user-client.js';
 
 export class Socket {
@@ -165,12 +163,18 @@ export class Socket {
     invariant(data?.token, 'Unexpected server response, missing token');
 
     this.#inboxToken = data.token;
-    return this.#inboxToken;
+    return data.token;
   }
 }
 
 function isOK(response: { status: number }) {
   return response.status >= 200 && response.status < 300;
+}
+
+function invariant(condition: any, message: string): asserts condition {
+  if (!condition) {
+    throw new Error(message);
+  }
 }
 
 function getSessionId() {
