@@ -1,5 +1,3 @@
-import invariant from 'tiny-invariant';
-
 import { type Notification, Client } from './user-client.js';
 
 export class Socket {
@@ -171,6 +169,12 @@ export class Socket {
 
 function isOK(response: { status: number }) {
   return response.status >= 200 && response.status < 300;
+}
+
+function invariant(condition: any, message: string) {
+  if (!condition) {
+    throw new Error(message);
+  }
 }
 
 function getSessionId() {
