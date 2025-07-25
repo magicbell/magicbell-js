@@ -285,3 +285,57 @@ The SDK includes several models that represent the data structures used in API r
 </details>
 
 <!-- AUTO-GENERATED-CONTENT:END (user-client) -->
+
+# Realtime
+
+The Realtime client enables real-time notification delivery through WebSocket connections. When new notifications are created for a user, they are instantly pushed to connected clients without requiring polling.
+
+## Authentication
+
+The Realtime client requires a user access token for authentication. This can be provided either directly or through an existing `UserClient` instance.
+
+## Sample Usage
+
+```ts
+import { Realtime } from 'magicbell-js/realtime';
+
+const realtime = new Realtime({ token: 'USER_ACCESS_TOKEN' });
+
+realtime.listen((notification) => {
+  console.log('New notification received:', notification.title);
+  // Handle the notification (update UI, show toast, etc.)
+});
+
+// When done listening
+realtime.disconnect();
+```
+
+## Using with UserClient
+
+You can also initialize the Realtime client with an existing `UserClient`:
+
+```ts
+import { Client } from 'magicbell-js/user-client';
+import { Realtime } from 'magicbell-js/realtime';
+
+const userClient = new Client({ token: 'USER_ACCESS_TOKEN' });
+const realtime = new Realtime(userClient);
+
+realtime.listen((notification) => {
+  console.log('New notification:', notification);
+});
+```
+
+## Connection Management
+
+The Realtime client automatically handles connection management, including reconnection attempts when the connection is lost:
+
+```ts
+// Check if currently connected
+if (realtime.isListening()) {
+  console.log('Connected to real-time notifications');
+}
+
+// Disconnect when no longer needed
+realtime.disconnect();
+```
