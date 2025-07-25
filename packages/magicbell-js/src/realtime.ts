@@ -1,6 +1,6 @@
 import { type Notification, Client } from './user-client.js';
 
-export class Socket {
+export class Realtime {
   #client: Client;
   #socketUrl = 'wss://ws.magicbell.com';
   #inboxToken: string | undefined;
