@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.2.0
+
+### Minor Changes
+
+- [#560](https://github.com/magicbell/magicbell-js/pull/560) [`d83c331`](https://github.com/magicbell/magicbell-js/commit/d83c331d852394e9fecc53f9e414736618a14238) Thanks [@moxley01](https://github.com/moxley01)! - feat!: rename Socket class to Realtime for better discoverability, and add documentation
+
 ## 1.1.1
 
 ### Patch Changes
