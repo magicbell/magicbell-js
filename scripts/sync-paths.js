@@ -32,13 +32,13 @@ function writePathsToTsConfig(pkgs) {
 }
 
 function writeAliasToExamplePackageJson(pkgs) {
-  const pkgJson = readJSON('./example/package.json');
+  const pkgJson = readJSON('./example/floating-inbox/package.json');
 
   const others = Object.entries(pkgJson.alias).filter(([, v]) => !v.startsWith('../packages/'));
 
   const locals = pkgs.map(([k, v]) => [k, `../${v}`]);
   pkgJson.alias = Object.fromEntries([...others, ...locals]);
-  writeJson('./example/package.json', pkgJson);
+  writeJson('./example/floating-inbox/package.json', pkgJson);
 }
 
 function distributeFiles(pkgs, files) {
