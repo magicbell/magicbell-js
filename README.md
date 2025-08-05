@@ -46,13 +46,15 @@ After that, visit http://localhost:6006. Storybook will hot-reload on any change
 
 ### Example
 
-There is a vite based example application located in the /example folder. This gives one the opportunity to try out use cases in a production like environment. Run it with:
+There is a vite based example application located in the /example/floating-inbox folder. This gives one the opportunity to try out use cases in a production like environment. Run it with:
 
 ```
 yarn start:example
 ```
 
 After that, visit http://localhost:3000. The example app will hot-reload on any change that you make in `/packages`. Make sure that you're running `yarn start` in another terminal, when you have the feeling that you're dealing with stale data.
+
+The /example folder contains more examples like a Next.js Web Push app as well.
 
 ## Contribute
 
