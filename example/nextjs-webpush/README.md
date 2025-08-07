@@ -6,6 +6,7 @@
 
 <a href="https://magicbell.com/docs"><img alt="Read the MagicBell Docs" src="https://img.shields.io/badge/Read%20the%20docs-23283B.svg?style=for-the-badge"></a>
 <a href="https://magicbell.to/community"><img alt="Discuss on GitHub" src="https://img.shields.io/badge/Discuss%20on%20GitHub-black.svg?style=for-the-badge&logo=github&labelColor=000000&logoWidth=20"></a>
+<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmagicbell%2Fmagicbell-js%2Ftree%2Fmain%2Fexample%2Fnextjs-webpush&env=MAGICBELL_API_KEY,MAGICBELL_SECRET_KEY,MAGICBELL_PROJECT_TOKEN&envDescription=The%20template%20requires%20MagicBell%20API%20and%20Secret%20key%20for%20user%20authentication%20and%20the%20MagicBell%20Project%20Token%20for%20sending%20notifications.&envLink=https%3A%2F%2Fwww.magicbell.com%2Fdocs%2Fapi%2Fauthentication"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
 
 </div>
 
