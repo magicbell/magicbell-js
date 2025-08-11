@@ -37,7 +37,7 @@ export class ResponseValidationHandler implements RequestHandler {
       .filter((line) => line.startsWith('data: '))
       .map((part) => ({
         ...response,
-        raw: encoder.encode(part),
+        raw: encoder.encode(part).buffer,
       }));
   }
 
