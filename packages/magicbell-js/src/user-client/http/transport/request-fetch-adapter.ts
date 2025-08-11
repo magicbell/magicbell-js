@@ -65,7 +65,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
       for (const line of lineDecoder.splitLines(value)) {
         yield {
           metadata,
-          raw: line,
+          raw: line.buffer,
         };
       }
     }
@@ -73,7 +73,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     for (const line of lineDecoder.flush()) {
       yield {
         metadata,
-        raw: line,
+        raw: line.buffer,
       };
     }
   }

@@ -7,11 +7,11 @@ export class LineDecoder {
    * Splits the given chunk into lines.
    * Stores incomplete lines in a buffer and returns them when the next chunk arrives.
    */
-  public splitLines(chunk: Uint8Array): Uint8Array[] {
+  public splitLines(chunk: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>[] {
     this.lineBuffer += this.decoder.decode(chunk);
 
     let lineEndIndex;
-    const lines: Uint8Array[] = [];
+    const lines: Uint8Array<ArrayBuffer>[] = [];
     while ((lineEndIndex = this.lineBuffer.indexOf('\n')) >= 0) {
       const line = this.lineBuffer.slice(0, lineEndIndex + 1); // Include the newline character
       this.lineBuffer = this.lineBuffer.slice(lineEndIndex + 1);
@@ -24,7 +24,7 @@ export class LineDecoder {
   }
 
   /** Returns the remaining lines in the buffer. */
-  public flush(): Uint8Array[] {
+  public flush(): Uint8Array<ArrayBuffer>[] {
     if (this.lineBuffer.length === 0) {
       return [];
     }
