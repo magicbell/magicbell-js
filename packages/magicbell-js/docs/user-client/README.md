@@ -60,7 +60,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -73,7 +73,7 @@ import { Client } from 'magicbell-js/user-client';
 
 The SDK provides various services to interact with the API.
 
-<details> 
+<details>
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
 | Name                                                     |
@@ -88,7 +88,7 @@ The SDK provides various services to interact with the API.
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
-<details> 
+<details>
 <summary>Below is a list of all available models with links to their detailed documentation:</summary>
 
 | Name                                                                           | Description |
@@ -113,6 +113,7 @@ The SDK includes several models that represent the data structures used in API r
 | [TeamsTokenCollection](models/TeamsTokenCollection.md)                         |             |
 | [TeamsToken](models/TeamsToken.md)                                             |             |
 | [TeamsTokenPayload](models/TeamsTokenPayload.md)                               |             |
+| [UserPreferences](models/UserPreferences.md)                                   |             |
 | [WebPushTokenCollection](models/WebPushTokenCollection.md)                     |             |
 | [WebPushToken](models/WebPushToken.md)                                         |             |
 | [WebPushTokenPayload](models/WebPushTokenPayload.md)                           |             |

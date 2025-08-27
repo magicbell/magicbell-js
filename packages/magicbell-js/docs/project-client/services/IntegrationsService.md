@@ -14,6 +14,9 @@ A list of all methods in the `IntegrationsService` service. Click on the method 
 | [listFcmIntegrations](#listfcmintegrations)               | Retrieves the current FCM integration configurations for a specific integration type in the project. Returns configuration details and status information.              |
 | [saveFcmIntegration](#savefcmintegration)                 | Updates or creates the FCM integration for the project.                                                                                                                 |
 | [deleteFcmIntegration](#deletefcmintegration)             | Deletes the FCM integration configuration from the project. This will disable the integration's functionality within the project.                                       |
+| [listGithubIntegrations](#listgithubintegrations)         | Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveGithubIntegration](#savegithubintegration)           | Updates or creates the GitHub integration for the project.                                                                                                              |
+| [deleteGithubIntegration](#deletegithubintegration)       | Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.                                    |
 | [listInboxIntegrations](#listinboxintegrations)           | Retrieves the current Inbox integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
 | [saveInboxIntegration](#saveinboxintegration)             | Updates or creates the Inbox integration for the project.                                                                                                               |
 | [deleteInboxIntegration](#deleteinboxintegration)         | Deletes the Inbox integration configuration from the project. This will disable the integration's functionality within the project.                                     |
@@ -32,6 +35,9 @@ A list of all methods in the `IntegrationsService` service. Click on the method 
 | [listSlackIntegrations](#listslackintegrations)           | Retrieves the current Slack integration configurations for a specific integration type in the project. Returns configuration details and status information.            |
 | [saveSlackIntegration](#saveslackintegration)             | Updates or creates the Slack integration for the project.                                                                                                               |
 | [deleteSlackIntegration](#deleteslackintegration)         | Deletes the Slack integration configuration from the project. This will disable the integration's functionality within the project.                                     |
+| [listStripeIntegrations](#liststripeintegrations)         | Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
+| [saveStripeIntegration](#savestripeintegration)           | Updates or creates the Stripe integration for the project.                                                                                                              |
+| [deleteStripeIntegration](#deletestripeintegration)       | Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.                                    |
 | [listTwilioIntegrations](#listtwiliointegrations)         | Retrieves the current Twilio integration configurations for a specific integration type in the project. Returns configuration details and status information.           |
 | [saveTwilioIntegration](#savetwiliointegration)           | Updates or creates the Twilio integration for the project.                                                                                                              |
 | [deleteTwilioIntegration](#deletetwiliointegration)       | Deletes the Twilio integration configuration from the project. This will disable the integration's functionality within the project.                                    |
@@ -129,27 +135,25 @@ import { ApnsConfigPayload, Client } from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
-	token: 'YOUR_TOKEN'});
+	token: 'YOUR_TOKEN',
+});
 
   const badge = Badge.UNREAD;
 
-const payloadVersion = PayloadVersion._1;
+  const payloadVersion = PayloadVersion._1;
 
-const apnsConfigPayload: ApnsConfigPayload = {
-  appId: "app_id",
-  badge: badge,
-  certificate: "BEGIN PRIVATE KEY---
-/5
-------- END PRIVATE KEYYYY-----
-",
-  keyId: "et reprehe",
-  payloadVersion: payloadVersion,
-  teamId: "do pariatu"
-};
+  const apnsConfigPayload: ApnsConfigPayload = {
+    appId: "app_id",
+    badge: badge,
+    certificate: "BEGIN PRIVATE KEY--------
+  hAfVaNwLMD==
+  -----END PRIVATE KEY-----------",
+    keyId: "ex dolore ",
+    payloadVersion: payloadVersion,
+    teamId: "nostrudqui"
+  };
 
-  const { data } = await client.integrations.saveApnsIntegration(
-  apnsConfigPayload
-);
+  const { data } = await client.integrations.saveApnsIntegration(apnsConfigPayload);
 
   console.log(data);
 })();
@@ -332,29 +336,28 @@ import { Client, FcmConfigPayload } from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
-	token: 'YOUR_TOKEN'});
+	token: 'YOUR_TOKEN',
+});
 
   const type_ = Type_.SERVICE_ACCOUNT;
 
-const fcmConfigPayload: FcmConfigPayload = {
-  authProviderX509CertUrl: "auth_provider_x509_cert_url",
-  authUri: "auth_uri",
-  clientEmail: "client_email",
-  clientId: "client_id",
-  clientX509CertUrl: "client_x509_cert_url",
-  privateKey: "---------- BEGINBLZFVIIV-----------
-BrvpB2GEoNB=
---- ENDIQVIQTLC---",
-  privateKeyId: "private_key_id",
-  projectId: "project_id",
-  tokenUri: "token_uri",
-  type: type_,
-  universeDomain: "universe_domain"
-};
+  const fcmConfigPayload: FcmConfigPayload = {
+    authProviderX509CertUrl: "auth_provider_x509_cert_url",
+    authUri: "auth_uri",
+    clientEmail: "client_email",
+    clientId: "client_id",
+    clientX509CertUrl: "client_x509_cert_url",
+    privateKey: "BEGINOYAOGTL---------
+  Z3XYlIQ
+  -------- ENDGDWPSV--------",
+    privateKeyId: "private_key_id",
+    projectId: "project_id",
+    tokenUri: "token_uri",
+    type: type_,
+    universeDomain: "universe_domain"
+  };
 
-  const { data } = await client.integrations.saveFcmIntegration(
-  fcmConfigPayload
-);
+  const { data } = await client.integrations.saveFcmIntegration(fcmConfigPayload);
 
   console.log(data);
 })();
@@ -384,6 +387,101 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.integrations.deleteFcmIntegration({
+    id: 'id',
+  });
+
+  console.log(data);
+})();
+```
+
+## listGithubIntegrations
+
+Retrieves the current GitHub integration configurations for a specific integration type in the project. Returns configuration details and status information.
+
+- HTTP Method: `GET`
+- Endpoint: `/integrations/github`
+
+**Return Type**
+
+`GithubConfigCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.listGithubIntegrations();
+
+  console.log(data);
+})();
+```
+
+## saveGithubIntegration
+
+Updates or creates the GitHub integration for the project.
+
+- HTTP Method: `PUT`
+- Endpoint: `/integrations/github`
+
+**Parameters**
+
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [GithubConfigPayload](../models/GithubConfigPayload.md) | ❌       | The request body. |
+
+**Return Type**
+
+`GithubConfigPayload`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, GithubConfigPayload } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const githubConfigPayload: GithubConfigPayload = {
+    webhookSigningSecret: 'webhook_signing_secret',
+  };
+
+  const { data } = await client.integrations.saveGithubIntegration(githubConfigPayload);
+
+  console.log(data);
+})();
+```
+
+## deleteGithubIntegration
+
+Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/github`
+
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| id   | string | ❌       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteGithubIntegration({
     id: 'id',
   });
 
@@ -451,7 +549,7 @@ import { Client, InboxConfigPayload } from 'magicbell-js/project-client';
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 8.02,
+    backgroundOpacity: 2.69,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -1059,10 +1157,10 @@ import { Client, SlackConfigPayload } from 'magicbell-js/project-client';
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: 'VDHAC',
-    clientId: '27521046.35070406',
-    clientSecret: 'in laboris ullamco nulla aliquip',
-    signingSecret: 'esse exercitation etdolore aute ',
+    appId: 'OAZKV',
+    clientId: '10505693160.5484621',
+    clientSecret: 'consectetur voluptate exercitati',
+    signingSecret: 'consequat excupidatat velit dolo',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
@@ -1095,6 +1193,101 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.integrations.deleteSlackIntegration({
+    id: 'id',
+  });
+
+  console.log(data);
+})();
+```
+
+## listStripeIntegrations
+
+Retrieves the current Stripe integration configurations for a specific integration type in the project. Returns configuration details and status information.
+
+- HTTP Method: `GET`
+- Endpoint: `/integrations/stripe`
+
+**Return Type**
+
+`StripeConfigCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.listStripeIntegrations();
+
+  console.log(data);
+})();
+```
+
+## saveStripeIntegration
+
+Updates or creates the Stripe integration for the project.
+
+- HTTP Method: `PUT`
+- Endpoint: `/integrations/stripe`
+
+**Parameters**
+
+| Name | Type                                                    | Required | Description       |
+| :--- | :------------------------------------------------------ | :------- | :---------------- |
+| body | [StripeConfigPayload](../models/StripeConfigPayload.md) | ❌       | The request body. |
+
+**Return Type**
+
+`StripeConfigPayload`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, StripeConfigPayload } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const stripeConfigPayload: StripeConfigPayload = {
+    webhookSigningSecret: 'webhook_signing_secret',
+  };
+
+  const { data } = await client.integrations.saveStripeIntegration(stripeConfigPayload);
+
+  console.log(data);
+})();
+```
+
+## deleteStripeIntegration
+
+Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/integrations/stripe`
+
+**Parameters**
+
+| Name | Type   | Required | Description |
+| :--- | :----- | :------- | :---------- |
+| id   | string | ❌       |             |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.integrations.deleteStripeIntegration({
     id: 'id',
   });
 
@@ -1160,7 +1353,7 @@ import { Client, TwilioConfigPayload } from 'magicbell-js/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+43543',
+    from: '+9863',
   };
 
   const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);

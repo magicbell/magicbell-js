@@ -41,6 +41,7 @@ import {
   teamsTokenPayloadRequest,
   teamsTokenPayloadResponse,
 } from './models/teams-token-payload.js';
+import { UserPreferences, userPreferencesRequest, userPreferencesResponse } from './models/user-preferences.js';
 import { WebPushToken, webPushTokenResponse } from './models/web-push-token.js';
 import { WebPushTokenCollection, webPushTokenCollectionResponse } from './models/web-push-token-collection.js';
 import {
@@ -862,6 +863,60 @@ export class ChannelsService extends BaseService {
       })
       .build();
     return this.client.call<DiscardResult>(request);
+  }
+
+  /**
+   * Fetch a user's channel delivery preferences.
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<UserPreferences>>} OK
+   */
+  async fetchUserPreferences(requestConfig?: RequestConfig): Promise<HttpResponse<UserPreferences>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/channels/user_preferences')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: userPreferencesResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<UserPreferences>(request);
+  }
+
+  /**
+   * Save a user's channel preferences.
+   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} No Content
+   */
+  async saveUserPreferences(body: UserPreferences, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('PUT')
+      .setPath('/channels/user_preferences')
+      .setRequestSchema(userPreferencesRequest)
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addHeaderParam({ key: 'Content-Type', value: 'application/json' })
+      .addBody(body)
+      .build();
+    return this.client.call<void>(request);
   }
 
   /**
