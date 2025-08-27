@@ -143,8 +143,8 @@ import { Broadcast, Client, User } from 'magicbell-js/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 3,
-    total: 4,
+    failures: 5,
+    total: 10,
   };
 
   const broadcastStatus: BroadcastStatus = {

@@ -77,7 +77,7 @@ import { Client } from 'magicbell-js/project-client';
 
 The SDK provides various services to interact with the API.
 
-<details> 
+<details>
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
 | Name                                                                       |
@@ -94,7 +94,7 @@ The SDK provides various services to interact with the API.
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
-<details> 
+<details>
 <summary>Below is a list of all available models with links to their detailed documentation:</summary>
 
 | Name                                                                                       | Description |
@@ -135,6 +135,9 @@ The SDK includes several models that represent the data structures used in API r
 | [FcmConfigCollection](docs/project-client/models/FcmConfigCollection.md)                   |             |
 | [FcmConfig](docs/project-client/models/FcmConfig.md)                                       |             |
 | [FcmConfigPayload](docs/project-client/models/FcmConfigPayload.md)                         |             |
+| [GithubConfigCollection](docs/project-client/models/GithubConfigCollection.md)             |             |
+| [GithubConfig](docs/project-client/models/GithubConfig.md)                                 |             |
+| [GithubConfigPayload](docs/project-client/models/GithubConfigPayload.md)                   |             |
 | [InboxConfigCollection](docs/project-client/models/InboxConfigCollection.md)               |             |
 | [InboxConfig](docs/project-client/models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](docs/project-client/models/InboxConfigPayload.md)                     |             |
@@ -153,6 +156,9 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](docs/project-client/models/SlackConfigCollection.md)               |             |
 | [SlackConfig](docs/project-client/models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](docs/project-client/models/SlackConfigPayload.md)                     |             |
+| [StripeConfigCollection](docs/project-client/models/StripeConfigCollection.md)             |             |
+| [StripeConfig](docs/project-client/models/StripeConfig.md)                                 |             |
+| [StripeConfigPayload](docs/project-client/models/StripeConfigPayload.md)                   |             |
 | [TwilioConfigCollection](docs/project-client/models/TwilioConfigCollection.md)             |             |
 | [TwilioConfig](docs/project-client/models/TwilioConfig.md)                                 |             |
 | [TwilioConfigPayload](docs/project-client/models/TwilioConfigPayload.md)                   |             |
@@ -215,7 +221,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -228,7 +234,7 @@ import { Client } from 'magicbell-js/user-client';
 
 The SDK provides various services to interact with the API.
 
-<details> 
+<details>
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
 | Name                                                                      |
@@ -243,7 +249,7 @@ The SDK provides various services to interact with the API.
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
-<details> 
+<details>
 <summary>Below is a list of all available models with links to their detailed documentation:</summary>
 
 | Name                                                                                            | Description |
@@ -268,6 +274,7 @@ The SDK includes several models that represent the data structures used in API r
 | [TeamsTokenCollection](docs/user-client/models/TeamsTokenCollection.md)                         |             |
 | [TeamsToken](docs/user-client/models/TeamsToken.md)                                             |             |
 | [TeamsTokenPayload](docs/user-client/models/TeamsTokenPayload.md)                               |             |
+| [UserPreferences](docs/user-client/models/UserPreferences.md)                                   |             |
 | [WebPushTokenCollection](docs/user-client/models/WebPushTokenCollection.md)                     |             |
 | [WebPushToken](docs/user-client/models/WebPushToken.md)                                         |             |
 | [WebPushTokenPayload](docs/user-client/models/WebPushTokenPayload.md)                           |             |

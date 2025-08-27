@@ -73,7 +73,7 @@ import { Client } from 'magicbell-js/project-client';
 
 The SDK provides various services to interact with the API.
 
-<details> 
+<details>
 <summary>Below is a list of all available services with links to their detailed documentation:</summary>
 
 | Name                                                   |
@@ -90,7 +90,7 @@ The SDK provides various services to interact with the API.
 
 The SDK includes several models that represent the data structures used in API requests and responses. These models help in organizing and managing the data efficiently.
 
-<details> 
+<details>
 <summary>Below is a list of all available models with links to their detailed documentation:</summary>
 
 | Name                                                                   | Description |
@@ -131,6 +131,9 @@ The SDK includes several models that represent the data structures used in API r
 | [FcmConfigCollection](models/FcmConfigCollection.md)                   |             |
 | [FcmConfig](models/FcmConfig.md)                                       |             |
 | [FcmConfigPayload](models/FcmConfigPayload.md)                         |             |
+| [GithubConfigCollection](models/GithubConfigCollection.md)             |             |
+| [GithubConfig](models/GithubConfig.md)                                 |             |
+| [GithubConfigPayload](models/GithubConfigPayload.md)                   |             |
 | [InboxConfigCollection](models/InboxConfigCollection.md)               |             |
 | [InboxConfig](models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](models/InboxConfigPayload.md)                     |             |
@@ -149,6 +152,9 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](models/SlackConfigCollection.md)               |             |
 | [SlackConfig](models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](models/SlackConfigPayload.md)                     |             |
+| [StripeConfigCollection](models/StripeConfigCollection.md)             |             |
+| [StripeConfig](models/StripeConfig.md)                                 |             |
+| [StripeConfigPayload](models/StripeConfigPayload.md)                   |             |
 | [TwilioConfigCollection](models/TwilioConfigCollection.md)             |             |
 | [TwilioConfig](models/TwilioConfig.md)                                 |             |
 | [TwilioConfigPayload](models/TwilioConfigPayload.md)                   |             |

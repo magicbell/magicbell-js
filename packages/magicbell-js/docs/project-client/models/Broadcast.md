@@ -103,14 +103,6 @@
 | status  | StatusStatus | ✅       |             |
 | summary | Summary      | ✅       |             |
 
-# Errors
-
-**Properties**
-
-| Name    | Type   | Required | Description |
-| :------ | :----- | :------- | :---------- |
-| message | string | ❌       |             |
-
 # StatusStatus
 
 **Properties**

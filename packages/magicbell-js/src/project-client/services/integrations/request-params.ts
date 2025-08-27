@@ -16,6 +16,10 @@ export interface DeleteFcmIntegrationParams {
   id?: string;
 }
 
+export interface DeleteGithubIntegrationParams {
+  id?: string;
+}
+
 export interface DeleteInboxIntegrationParams {
   id?: string;
 }
@@ -37,6 +41,10 @@ export interface DeleteSesIntegrationParams {
 }
 
 export interface DeleteSlackIntegrationParams {
+  id?: string;
+}
+
+export interface DeleteStripeIntegrationParams {
   id?: string;
 }
 

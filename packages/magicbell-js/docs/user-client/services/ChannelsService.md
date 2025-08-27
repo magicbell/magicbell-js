@@ -2,36 +2,38 @@
 
 A list of all methods in the `ChannelsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                   | Description                                                                                                                                                                                                                                                     |
-| :---------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [listInboxTokens](#listinboxtokens)       | Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
-| [saveInboxToken](#saveinboxtoken)         | Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
-| [fetchInboxToken](#fetchinboxtoken)       | Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
-| [deleteInboxToken](#deleteinboxtoken)     | Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
-| [listApnsTokens](#listapnstokens)         | Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
-| [saveApnsToken](#saveapnstoken)           | Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.     |
-| [fetchApnsToken](#fetchapnstoken)         | Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                 |
-| [deleteApnsToken](#deleteapnstoken)       | Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
-| [listExpoTokens](#listexpotokens)         | Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
-| [saveExpoToken](#saveexpotoken)           | Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.     |
-| [fetchExpoToken](#fetchexpotoken)         | Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                 |
-| [deleteExpoToken](#deleteexpotoken)       | Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
-| [listFcmTokens](#listfcmtokens)           | Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                  |
-| [saveFcmToken](#savefcmtoken)             | Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.      |
-| [fetchFcmToken](#fetchfcmtoken)           | Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                  |
-| [deleteFcmToken](#deletefcmtoken)         | Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                            |
-| [listSlackTokens](#listslacktokens)       | Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
-| [saveSlackToken](#saveslacktoken)         | Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
-| [fetchSlackToken](#fetchslacktoken)       | Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
-| [deleteSlackToken](#deleteslacktoken)     | Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
-| [listTeamsTokens](#listteamstokens)       | Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
-| [saveTeamsToken](#saveteamstoken)         | Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
-| [fetchTeamsToken](#fetchteamstoken)       | Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
-| [deleteTeamsToken](#deleteteamstoken)     | Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
-| [listWebPushTokens](#listwebpushtokens)   | Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                             |
-| [saveWebPushToken](#savewebpushtoken)     | Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
-| [fetchWebPushToken](#fetchwebpushtoken)   | Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                             |
-| [deleteWebPushToken](#deletewebpushtoken) | Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                       |
+| Methods                                       | Description                                                                                                                                                                                                                                                     |
+| :-------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [listInboxTokens](#listinboxtokens)           | Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
+| [saveInboxToken](#saveinboxtoken)             | Saves the Inbox token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
+| [fetchInboxToken](#fetchinboxtoken)           | Fetches details of a specific Inbox token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
+| [deleteInboxToken](#deleteinboxtoken)         | Deletes one of the authenticated user's Inbox tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
+| [listApnsTokens](#listapnstokens)             | Lists all APNs tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
+| [saveApnsToken](#saveapnstoken)               | Saves the APNs token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.     |
+| [fetchApnsToken](#fetchapnstoken)             | Fetches details of a specific APNs token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                 |
+| [deleteApnsToken](#deleteapnstoken)           | Deletes one of the authenticated user's APNs tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
+| [listExpoTokens](#listexpotokens)             | Lists all Expo tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                 |
+| [saveExpoToken](#saveexpotoken)               | Saves the Expo token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.     |
+| [fetchExpoToken](#fetchexpotoken)             | Fetches details of a specific Expo token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                 |
+| [deleteExpoToken](#deleteexpotoken)           | Deletes one of the authenticated user's Expo tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                           |
+| [listFcmTokens](#listfcmtokens)               | Lists all FCM tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                  |
+| [saveFcmToken](#savefcmtoken)                 | Saves the FCM token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.      |
+| [fetchFcmToken](#fetchfcmtoken)               | Fetches details of a specific FCM token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                  |
+| [deleteFcmToken](#deletefcmtoken)             | Deletes one of the authenticated user's FCM tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                            |
+| [listSlackTokens](#listslacktokens)           | Lists all Slack tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
+| [saveSlackToken](#saveslacktoken)             | Saves the Slack token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
+| [fetchSlackToken](#fetchslacktoken)           | Fetches details of a specific Slack token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
+| [deleteSlackToken](#deleteslacktoken)         | Deletes one of the authenticated user's Slack tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
+| [listTeamsTokens](#listteamstokens)           | Lists all Teams tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                                |
+| [saveTeamsToken](#saveteamstoken)             | Saves the Teams token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel.    |
+| [fetchTeamsToken](#fetchteamstoken)           | Fetches details of a specific Teams token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                                |
+| [deleteTeamsToken](#deleteteamstoken)         | Deletes one of the authenticated user's Teams tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                          |
+| [fetchUserPreferences](#fetchuserpreferences) | Fetch a user's channel delivery preferences.                                                                                                                                                                                                                    |
+| [saveUserPreferences](#saveuserpreferences)   | Save a user's channel preferences.                                                                                                                                                                                                                              |
+| [listWebPushTokens](#listwebpushtokens)       | Lists all Web Push tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.                                                                                             |
+| [saveWebPushToken](#savewebpushtoken)         | Saves the Web Push token for the authenticated user. This token serves as a credential for accessing channel-specific functionality. Each token is unique to the user and channel combination, allowing for direct communication with the user via the channel. |
+| [fetchWebPushToken](#fetchwebpushtoken)       | Fetches details of a specific Web Push token belonging to the authenticated user. Returns information about the token's status, creation date, and any associated metadata. Users can only access their own tokens.                                             |
+| [deleteWebPushToken](#deletewebpushtoken)     | Deletes one of the authenticated user's Web Push tokens. This permanently invalidates the specified token, preventing it from being used for future channel access. This action cannot be undone. Users can only revoke their own tokens.                       |
 
 ## listInboxTokens
 
@@ -63,7 +65,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -101,7 +103,7 @@ import { Client, InboxToken } from 'magicbell-js/user-client';
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'consecteturadip',
+    token: 'deserunt nulla ',
   };
 
   const { data } = await client.channels.saveInboxToken(inboxToken);
@@ -206,7 +208,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listApnsTokens({
-    limit: 8,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -246,7 +248,7 @@ import { ApnsTokenPayload, Client } from 'magicbell-js/user-client';
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'reprehenderit o',
+    deviceToken: 'adipisicingoffi',
     installationId: apnsTokenPayloadInstallationId,
   };
 
@@ -352,7 +354,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listExpoTokens({
-    limit: 7,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -494,7 +496,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listFcmTokens({
-    limit: 8,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -533,7 +535,7 @@ import { Client, FcmTokenPayload } from 'magicbell-js/user-client';
   const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
 
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'sit officiaaliq',
+    deviceToken: 'exeuin pariatur',
     installationId: fcmTokenPayloadInstallationId,
   };
 
@@ -639,7 +641,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listSlackTokens({
-    limit: 123,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -792,7 +794,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listTeamsTokens({
-    limit: 8,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -903,6 +905,77 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.deleteTeamsToken('token_id');
+
+  console.log(data);
+})();
+```
+
+## fetchUserPreferences
+
+Fetch a user's channel delivery preferences.
+
+- HTTP Method: `GET`
+- Endpoint: `/channels/user_preferences`
+
+**Return Type**
+
+`UserPreferences`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.fetchUserPreferences();
+
+  console.log(data);
+})();
+```
+
+## saveUserPreferences
+
+Save a user's channel preferences.
+
+- HTTP Method: `PUT`
+- Endpoint: `/channels/user_preferences`
+
+**Parameters**
+
+| Name | Type                                            | Required | Description       |
+| :--- | :---------------------------------------------- | :------- | :---------------- |
+| body | [UserPreferences](../models/UserPreferences.md) | ❌       | The request body. |
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client, UserPreferences } from 'magicbell-js/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const channels: Channels = {
+    enabled: true,
+    name: 'name',
+  };
+
+  const categories: Categories = {
+    channels: [channels],
+    key: 'key',
+    label: 'label',
+  };
+
+  const userPreferences: UserPreferences = {
+    categories: [categories],
+  };
+
+  const { data } = await client.channels.saveUserPreferences(userPreferences);
 
   console.log(data);
 })();
