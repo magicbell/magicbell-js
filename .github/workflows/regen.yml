@@ -26,9 +26,6 @@ jobs:
       - name: Build codegen
         run: yarn --cwd packages/codegen build
 
-      - name: Regen `@magicbell/cli`
-        run: yarn --cwd packages/cli codegen
-
       - name: Regen `magicbell-js`
         run: yarn --cwd packages/magicbell-js codegen
         env:
