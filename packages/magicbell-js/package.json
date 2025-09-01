@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@magicbell/codegen": "^0.4.0",
-    "typescript": "5.7.3"
+    "typescript": "5.9.2"
   },
   "docs": {
     "name": "JavaScript SDK"
