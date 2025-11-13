@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name   | Type                  | Required | Description |
-| :----- | :-------------------- | :------- | :---------- |
-| config | SendgridConfigPayload | ✅       |             |
-| id     | string                | ✅       |             |
-| name   | string                | ✅       |             |
+| Name   | Type                                              | Required | Description |
+| :----- | :------------------------------------------------ | :------- | :---------- |
+| config | [SendgridConfigPayload](SendgridConfigPayload.md) | ✅       |             |
+| id     | string                                            | ✅       |             |
+| name   | string                                            | ✅       |             |

@@ -84,6 +84,7 @@ export class TransportHookAdapter<T> {
         explode: requestParam?.explode ?? false,
         isLimit: requestParam?.isLimit ?? false,
         isOffset: requestParam?.isOffset ?? false,
+        isCursor: requestParam?.isCursor ?? false,
       });
     });
     return transportParams;

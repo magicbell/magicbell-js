@@ -48,7 +48,7 @@ export class RequestValidationHandler implements RequestHandler {
     } else if (request.requestContentType === ContentType.FormUrlEncoded) {
       request.body = this.toFormUrlEncoded(request);
     } else if (request.requestContentType === ContentType.MultipartFormData) {
-      request.body = this.toFormData(request.body);
+      request.body = this.toFormData(request.body, request.filename, request.filenames);
     } else {
       request.body = JSON.stringify(request.requestSchema?.parse(request.body));
     }
@@ -92,15 +92,25 @@ export class RequestValidationHandler implements RequestHandler {
     return '';
   }
 
-  toFormData(body: Record<string, any>): FormData | undefined {
+  toFormData(body: Record<string, any>, filename?: string, filenames?: string[]): FormData {
     const formData = new FormData();
 
     Object.keys(body).forEach((key: any) => {
       const value: any = body[key];
       if (Array.isArray(value)) {
-        value.forEach((v, i) => formData.append(`${key}[${i}]`, v));
+        value.forEach((v, i) => {
+          if (v instanceof ArrayBuffer) {
+            // For arrays of files, use the corresponding filename from filenames array
+            const fileFilename = filenames && filenames[i] ? filenames[i] : `${key}[${i}]`;
+            formData.append(`${key}[${i}]`, new Blob([v]), fileFilename);
+          } else {
+            formData.append(`${key}[${i}]`, v);
+          }
+        });
       } else if (value instanceof ArrayBuffer) {
-        formData.append(key, new Blob([value]));
+        // For single files, use the provided filename or fallback to the key name
+        const fileFilename = filename || key;
+        formData.append(key, new Blob([value]), fileFilename);
       } else {
         formData.append(key, value);
       }

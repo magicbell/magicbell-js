@@ -34,6 +34,7 @@ import {
   ListUserExpoTokensParams,
   ListUserFcmTokensParams,
   ListUserInboxTokensParams,
+  ListUserMagicbellSlackbotTokensParams,
   ListUserSlackTokensParams,
   ListUserTeamsTokensParams,
   ListUserWebPushTokensParams,
@@ -42,8 +43,8 @@ import {
 export class ChannelsService extends BaseService {
   /**
    * Save the channels configuration for a given key.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<CategoryDeliveryConfig>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<CategoryDeliveryConfig>>} - OK
    */
   async saveChannelsConfig(
     body: CategoryDeliveryConfig,
@@ -74,8 +75,8 @@ export class ChannelsService extends BaseService {
   /**
    * Fetches the channels config for a given key.
    * @param {string} key -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<CategoryDeliveryConfig>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<CategoryDeliveryConfig>>} - OK
    */
   async fetchChannelsConfig(key: string, requestConfig?: RequestConfig): Promise<HttpResponse<CategoryDeliveryConfig>> {
     const request = new RequestBuilder()
@@ -108,8 +109,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxTokenResponseCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<InboxTokenResponseCollection>>} - OK
    */
   async listUserInboxTokens(
     userId: string,
@@ -156,8 +157,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific Inbox token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<InboxTokenResponse>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<InboxTokenResponse>>} - OK
    */
   async fetchUserInboxToken(
     userId: string,
@@ -196,8 +197,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's Inbox token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserInboxToken(
     userId: string,
@@ -238,8 +239,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ApnsTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<ApnsTokenCollection>>} - OK
    */
   async listUserApnsTokens(
     userId: string,
@@ -286,8 +287,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific APNs token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ApnsToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<ApnsToken>>} - OK
    */
   async fetchUserApnsToken(
     userId: string,
@@ -326,8 +327,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's APNs token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserApnsToken(
     userId: string,
@@ -368,8 +369,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ExpoTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<ExpoTokenCollection>>} - OK
    */
   async listUserExpoTokens(
     userId: string,
@@ -416,8 +417,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific Expo token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<ExpoToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<ExpoToken>>} - OK
    */
   async fetchUserExpoToken(
     userId: string,
@@ -456,8 +457,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's Expo token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserExpoToken(
     userId: string,
@@ -498,8 +499,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<FcmTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<FcmTokenCollection>>} - OK
    */
   async listUserFcmTokens(
     userId: string,
@@ -546,8 +547,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific FCM token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<FcmToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<FcmToken>>} - OK
    */
   async fetchUserFcmToken(
     userId: string,
@@ -586,8 +587,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's FCM token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserFcmToken(
     userId: string,
@@ -623,13 +624,143 @@ export class ChannelsService extends BaseService {
   }
 
   /**
+   * Lists all MagicBell SlackBot tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
+   * @param {string} userId -
+   * @param {number} [params.limit] -
+   * @param {string} [params.startingAfter] -
+   * @param {string} [params.endingBefore] -
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<SlackTokenCollection>>} - OK
+   */
+  async listUserMagicbellSlackbotTokens(
+    userId: string,
+    params?: ListUserMagicbellSlackbotTokensParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SlackTokenCollection>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/slack/magicbell_slackbot/tokens')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: slackTokenCollectionResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addQueryParam({
+        key: 'limit',
+        value: params?.limit,
+      })
+      .addQueryParam({
+        key: 'starting_after',
+        value: params?.startingAfter,
+      })
+      .addQueryParam({
+        key: 'ending_before',
+        value: params?.endingBefore,
+      })
+      .build();
+    return this.client.call<SlackTokenCollection>(request);
+  }
+
+  /**
+   * Fetches a specific MagicBell SlackBot token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<SlackToken>>} - OK
+   */
+  async fetchUserMagicbellSlackbotToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<SlackToken>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/users/{user_id}/channels/slack/magicbell_slackbot/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: slackTokenResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<SlackToken>(request);
+  }
+
+  /**
+   * Deletes a specific user's MagicBell SlackBot token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
+   * @param {string} userId -
+   * @param {string} tokenId -
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
+   */
+  async deleteUserMagicbellSlackbotToken(
+    userId: string,
+    tokenId: string,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<DiscardResult>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('DELETE')
+      .setPath('/users/{user_id}/channels/slack/magicbell_slackbot/tokens/{token_id}')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: discardResultResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'user_id',
+        value: userId,
+      })
+      .addPathParam({
+        key: 'token_id',
+        value: tokenId,
+      })
+      .build();
+    return this.client.call<DiscardResult>(request);
+  }
+
+  /**
    * Lists all Slack tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<SlackTokenCollection>>} - OK
    */
   async listUserSlackTokens(
     userId: string,
@@ -676,8 +807,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific Slack token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<SlackToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<SlackToken>>} - OK
    */
   async fetchUserSlackToken(
     userId: string,
@@ -716,8 +847,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's Slack token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserSlackToken(
     userId: string,
@@ -758,8 +889,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TeamsTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<TeamsTokenCollection>>} - OK
    */
   async listUserTeamsTokens(
     userId: string,
@@ -806,8 +937,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific Teams token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<TeamsToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<TeamsToken>>} - OK
    */
   async fetchUserTeamsToken(
     userId: string,
@@ -846,8 +977,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's Teams token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserTeamsToken(
     userId: string,
@@ -888,8 +1019,8 @@ export class ChannelsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebPushTokenCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<WebPushTokenCollection>>} - OK
    */
   async listUserWebPushTokens(
     userId: string,
@@ -936,8 +1067,8 @@ export class ChannelsService extends BaseService {
    * Fetches a specific Web Push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<WebPushToken>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<WebPushToken>>} - OK
    */
   async fetchUserWebPushToken(
     userId: string,
@@ -976,8 +1107,8 @@ export class ChannelsService extends BaseService {
    * Deletes a specific user's Web Push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
    * @param {string} userId -
    * @param {string} tokenId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<DiscardResult>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<DiscardResult>>} - OK
    */
   async deleteUserWebPushToken(
     userId: string,

@@ -16,8 +16,8 @@ export class BroadcastsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<BroadcastCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<BroadcastCollection>>} - OK
    */
   async listBroadcasts(
     params?: ListBroadcastsParams,
@@ -57,8 +57,8 @@ export class BroadcastsService extends BaseService {
 
   /**
    * Creates a new broadcast. When a broadcast is created, it generates individual notifications for relevant users within the project.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<Broadcast>>} Created
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<Broadcast>>} - Created
    */
   async createBroadcast(body: Broadcast, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
     const request = new RequestBuilder()
@@ -86,8 +86,8 @@ export class BroadcastsService extends BaseService {
   /**
    * Retrieves detailed information about a specific broadcast by its ID. Includes the broadcast's configuration and current status.
    * @param {string} broadcastId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<Broadcast>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<Broadcast>>} - OK
    */
   async fetchBroadcast(broadcastId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Broadcast>> {
     const request = new RequestBuilder()

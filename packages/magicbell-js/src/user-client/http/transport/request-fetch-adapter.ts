@@ -65,7 +65,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
       for (const line of lineDecoder.splitLines(value)) {
         yield {
           metadata,
-          raw: line,
+          raw: this.toArrayBuffer(line),
         };
       }
     }
@@ -73,7 +73,7 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     for (const line of lineDecoder.flush()) {
       yield {
         metadata,
-        raw: line,
+        raw: this.toArrayBuffer(line),
       };
     }
   }
@@ -127,5 +127,9 @@ export class RequestFetchAdapter<T> implements HttpAdapter {
     });
 
     return headers;
+  }
+
+  private toArrayBuffer(uint8Array: Uint8Array): ArrayBuffer {
+    return uint8Array.buffer.slice(uint8Array.byteOffset, uint8Array.byteOffset + uint8Array.byteLength);
   }
 }

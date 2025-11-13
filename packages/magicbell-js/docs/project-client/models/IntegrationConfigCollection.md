@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type                | Required | Description |
-| :---- | :------------------ | :------- | :---------- |
-| data  | IntegrationConfig[] | ❌       |             |
-| links | Links               | ❌       |             |
+| Name  | Type                                        | Required | Description |
+| :---- | :------------------------------------------ | :------- | :---------- |
+| data  | [IntegrationConfig](IntegrationConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)                           | ❌       |             |

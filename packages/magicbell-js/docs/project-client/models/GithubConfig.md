@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name   | Type                | Required | Description |
-| :----- | :------------------ | :------- | :---------- |
-| config | GithubConfigPayload | ✅       |             |
-| id     | string              | ✅       |             |
-| name   | string              | ✅       |             |
+| Name   | Type                                          | Required | Description |
+| :----- | :-------------------------------------------- | :------- | :---------- |
+| config | [GithubConfigPayload](GithubConfigPayload.md) | ✅       |             |
+| id     | string                                        | ✅       |             |
+| name   | string                                        | ✅       |             |

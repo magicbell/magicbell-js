@@ -2,19 +2,19 @@
 
 **Properties**
 
-| Name             | Type            | Required | Description                                   |
-| :--------------- | :-------------- | :------- | :-------------------------------------------- |
-| recipients       | User[]          | ✅       |                                               |
-| title            | string          | ✅       |                                               |
-| actionUrl        | string          | ❌       |                                               |
-| category         | string          | ❌       |                                               |
-| content          | string          | ❌       |                                               |
-| createdAt        | string          | ❌       | The timestamp when the broadcast was created. |
-| customAttributes | any             | ❌       |                                               |
-| id               | string          | ❌       | The unique id for this broadcast.             |
-| overrides        | Overrides       | ❌       |                                               |
-| status           | BroadcastStatus | ❌       |                                               |
-| topic            | string          | ❌       |                                               |
+| Name             | Type              | Required | Description                                   |
+| :--------------- | :---------------- | :------- | :-------------------------------------------- |
+| recipients       | [User](User.md)[] | ✅       |                                               |
+| title            | string            | ✅       |                                               |
+| actionUrl        | string            | ❌       |                                               |
+| category         | string            | ❌       |                                               |
+| content          | string            | ❌       |                                               |
+| createdAt        | string            | ❌       | The timestamp when the broadcast was created. |
+| customAttributes | any               | ❌       |                                               |
+| id               | string            | ❌       | The unique id for this broadcast.             |
+| overrides        | Overrides         | ❌       |                                               |
+| status           | BroadcastStatus   | ❌       |                                               |
+| topic            | string            | ❌       |                                               |
 
 # Overrides
 
@@ -97,11 +97,11 @@
 
 **Properties**
 
-| Name    | Type         | Required | Description |
-| :------ | :----------- | :------- | :---------- |
-| errors  | Errors[]     | ✅       |             |
-| status  | StatusStatus | ✅       |             |
-| summary | Summary      | ✅       |             |
+| Name    | Type                  | Required | Description |
+| :------ | :-------------------- | :------- | :---------- |
+| errors  | [Errors](Errors.md)[] | ✅       |             |
+| status  | StatusStatus          | ✅       |             |
+| summary | Summary               | ✅       |             |
 
 # StatusStatus
 

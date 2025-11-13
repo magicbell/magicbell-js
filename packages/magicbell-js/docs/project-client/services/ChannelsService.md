@@ -2,31 +2,34 @@
 
 A list of all methods in the `ChannelsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                           | Description                                                                                                                                                                                                                                                   |
-| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [saveChannelsConfig](#savechannelsconfig)         | Save the channels configuration for a given key.                                                                                                                                                                                                              |
-| [fetchChannelsConfig](#fetchchannelsconfig)       | Fetches the channels config for a given key.                                                                                                                                                                                                                  |
-| [listUserInboxTokens](#listuserinboxtokens)       | Lists all Inbox tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                |
-| [fetchUserInboxToken](#fetchuserinboxtoken)       | Fetches a specific Inbox token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.    |
-| [deleteUserInboxToken](#deleteuserinboxtoken)     | Deletes a specific user's Inbox token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.          |
-| [listUserApnsTokens](#listuserapnstokens)         | Lists all APNs tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                 |
-| [fetchUserApnsToken](#fetchuserapnstoken)         | Fetches a specific APNs token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.     |
-| [deleteUserApnsToken](#deleteuserapnstoken)       | Deletes a specific user's APNs token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.           |
-| [listUserExpoTokens](#listuserexpotokens)         | Lists all Expo tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                 |
-| [fetchUserExpoToken](#fetchuserexpotoken)         | Fetches a specific Expo token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.     |
-| [deleteUserExpoToken](#deleteuserexpotoken)       | Deletes a specific user's Expo token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.           |
-| [listUserFcmTokens](#listuserfcmtokens)           | Lists all FCM tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                  |
-| [fetchUserFcmToken](#fetchuserfcmtoken)           | Fetches a specific FCM token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.      |
-| [deleteUserFcmToken](#deleteuserfcmtoken)         | Deletes a specific user's FCM token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.            |
-| [listUserSlackTokens](#listuserslacktokens)       | Lists all Slack tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                |
-| [fetchUserSlackToken](#fetchuserslacktoken)       | Fetches a specific Slack token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.    |
-| [deleteUserSlackToken](#deleteuserslacktoken)     | Deletes a specific user's Slack token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.          |
-| [listUserTeamsTokens](#listuserteamstokens)       | Lists all Teams tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                |
-| [fetchUserTeamsToken](#fetchuserteamstoken)       | Fetches a specific Teams token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.    |
-| [deleteUserTeamsToken](#deleteuserteamstoken)     | Deletes a specific user's Teams token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.          |
-| [listUserWebPushTokens](#listuserwebpushtokens)   | Lists all Web Push tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                             |
-| [fetchUserWebPushToken](#fetchuserwebpushtoken)   | Fetches a specific Web Push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata. |
-| [deleteUserWebPushToken](#deleteuserwebpushtoken) | Deletes a specific user's Web Push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.       |
+| Methods                                                               | Description                                                                                                                                                                                                                                                             |
+| :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [saveChannelsConfig](#savechannelsconfig)                             | Save the channels configuration for a given key.                                                                                                                                                                                                                        |
+| [fetchChannelsConfig](#fetchchannelsconfig)                           | Fetches the channels config for a given key.                                                                                                                                                                                                                            |
+| [listUserInboxTokens](#listuserinboxtokens)                           | Lists all Inbox tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                          |
+| [fetchUserInboxToken](#fetchuserinboxtoken)                           | Fetches a specific Inbox token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.              |
+| [deleteUserInboxToken](#deleteuserinboxtoken)                         | Deletes a specific user's Inbox token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                    |
+| [listUserApnsTokens](#listuserapnstokens)                             | Lists all APNs tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                           |
+| [fetchUserApnsToken](#fetchuserapnstoken)                             | Fetches a specific APNs token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.               |
+| [deleteUserApnsToken](#deleteuserapnstoken)                           | Deletes a specific user's APNs token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                     |
+| [listUserExpoTokens](#listuserexpotokens)                             | Lists all Expo tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                           |
+| [fetchUserExpoToken](#fetchuserexpotoken)                             | Fetches a specific Expo token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.               |
+| [deleteUserExpoToken](#deleteuserexpotoken)                           | Deletes a specific user's Expo token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                     |
+| [listUserFcmTokens](#listuserfcmtokens)                               | Lists all FCM tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                            |
+| [fetchUserFcmToken](#fetchuserfcmtoken)                               | Fetches a specific FCM token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.                |
+| [deleteUserFcmToken](#deleteuserfcmtoken)                             | Deletes a specific user's FCM token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                      |
+| [listUserMagicbellSlackbotTokens](#listusermagicbellslackbottokens)   | Lists all MagicBell SlackBot tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                             |
+| [fetchUserMagicbellSlackbotToken](#fetchusermagicbellslackbottoken)   | Fetches a specific MagicBell SlackBot token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata. |
+| [deleteUserMagicbellSlackbotToken](#deleteusermagicbellslackbottoken) | Deletes a specific user's MagicBell SlackBot token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.       |
+| [listUserSlackTokens](#listuserslacktokens)                           | Lists all Slack tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                          |
+| [fetchUserSlackToken](#fetchuserslacktoken)                           | Fetches a specific Slack token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.              |
+| [deleteUserSlackToken](#deleteuserslacktoken)                         | Deletes a specific user's Slack token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                    |
+| [listUserTeamsTokens](#listuserteamstokens)                           | Lists all Teams tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                          |
+| [fetchUserTeamsToken](#fetchuserteamstoken)                           | Fetches a specific Teams token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.              |
+| [deleteUserTeamsToken](#deleteuserteamstoken)                         | Deletes a specific user's Teams token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                    |
+| [listUserWebPushTokens](#listuserwebpushtokens)                       | Lists all Web Push tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.                                                                       |
+| [fetchUserWebPushToken](#fetchuserwebpushtoken)                       | Fetches a specific Web Push token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.           |
+| [deleteUserWebPushToken](#deleteuserwebpushtoken)                     | Deletes a specific user's Web Push token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.                 |
 
 ## saveChannelsConfig
 
@@ -48,7 +51,7 @@ Save the channels configuration for a given key.
 **Example Usage Code Snippet**
 
 ```typescript
-import { CategoryDeliveryConfig, Client } from 'magicbell-js/project-client';
+import { CategoryDeliveryConfig, CategoryDeliveryConfigChannels, Channel, Client } from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
@@ -59,7 +62,7 @@ import { CategoryDeliveryConfig, Client } from 'magicbell-js/project-client';
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 8,
+    delay: 9,
     if: 'if',
   };
 
@@ -139,7 +142,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserInboxTokens('user_id', {
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -247,7 +250,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserApnsTokens('user_id', {
-    limit: 10,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -355,7 +358,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserExpoTokens('user_id', {
-    limit: 10,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -463,7 +466,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserFcmTokens('user_id', {
-    limit: 8,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -540,6 +543,114 @@ import { Client } from 'magicbell-js/project-client';
 })();
 ```
 
+## listUserMagicbellSlackbotTokens
+
+Lists all MagicBell SlackBot tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/slack/magicbell_slackbot/tokens`
+
+**Parameters**
+
+| Name          | Type   | Required | Description |
+| :------------ | :----- | :------- | :---------- |
+| userId        | string | ✅       |             |
+| limit         | number | ❌       |             |
+| startingAfter | string | ❌       |             |
+| endingBefore  | string | ❌       |             |
+
+**Return Type**
+
+`SlackTokenCollection`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.listUserMagicbellSlackbotTokens('user_id', {
+    limit: 8,
+    startingAfter: 'starting_after',
+    endingBefore: 'ending_before',
+  });
+
+  console.log(data);
+})();
+```
+
+## fetchUserMagicbellSlackbotToken
+
+Fetches a specific MagicBell SlackBot token by its ID for a given user. This endpoint is available to project administrators and requires project-level authentication. Use this to inspect token details including its status, creation date, and associated metadata.
+
+- HTTP Method: `GET`
+- Endpoint: `/users/{user_id}/channels/slack/magicbell_slackbot/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`SlackToken`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.fetchUserMagicbellSlackbotToken('user_id', 'token_id');
+
+  console.log(data);
+})();
+```
+
+## deleteUserMagicbellSlackbotToken
+
+Deletes a specific user's MagicBell SlackBot token. This endpoint is available to project administrators and permanently invalidates the specified token. Once revoked, the token can no longer be used to access channel features. This action cannot be undone.
+
+- HTTP Method: `DELETE`
+- Endpoint: `/users/{user_id}/channels/slack/magicbell_slackbot/tokens/{token_id}`
+
+**Parameters**
+
+| Name    | Type   | Required | Description |
+| :------ | :----- | :------- | :---------- |
+| userId  | string | ✅       |             |
+| tokenId | string | ✅       |             |
+
+**Return Type**
+
+`DiscardResult`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.channels.deleteUserMagicbellSlackbotToken('user_id', 'token_id');
+
+  console.log(data);
+})();
+```
+
 ## listUserSlackTokens
 
 Lists all Slack tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
@@ -571,7 +682,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserSlackTokens('user_id', {
-    limit: 1,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -679,7 +790,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserTeamsTokens('user_id', {
-    limit: 2,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -787,7 +898,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserWebPushTokens('user_id', {
-    limit: 8,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

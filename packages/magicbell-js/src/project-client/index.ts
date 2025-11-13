@@ -5,6 +5,7 @@ import { ChannelsService } from './services/channels/index.js';
 import { EventsService } from './services/events/index.js';
 import { IntegrationsService } from './services/integrations/index.js';
 import { UsersService } from './services/users/index.js';
+import { WorkflowsService } from './services/workflows/index.js';
 
 export { Environment } from './http/environment.js';
 export * from './http/index.js';
@@ -14,6 +15,7 @@ export * from './services/common/index.js';
 export * from './services/events/index.js';
 export * from './services/integrations/index.js';
 export * from './services/users/index.js';
+export * from './services/workflows/index.js';
 
 export class Client {
   public readonly broadcasts: BroadcastsService;
@@ -26,6 +28,8 @@ export class Client {
 
   public readonly users: UsersService;
 
+  public readonly workflows: WorkflowsService;
+
   constructor(public config: SdkConfig) {
     this.broadcasts = new BroadcastsService(this.config);
 
@@ -36,6 +40,8 @@ export class Client {
     this.integrations = new IntegrationsService(this.config);
 
     this.users = new UsersService(this.config);
+
+    this.workflows = new WorkflowsService(this.config);
   }
 
   set baseUrl(baseUrl: string) {
@@ -44,6 +50,7 @@ export class Client {
     this.events.baseUrl = baseUrl;
     this.integrations.baseUrl = baseUrl;
     this.users.baseUrl = baseUrl;
+    this.workflows.baseUrl = baseUrl;
   }
 
   set environment(environment: Environment) {
@@ -52,6 +59,7 @@ export class Client {
     this.events.baseUrl = environment;
     this.integrations.baseUrl = environment;
     this.users.baseUrl = environment;
+    this.workflows.baseUrl = environment;
   }
 
   set timeoutMs(timeoutMs: number) {
@@ -60,6 +68,7 @@ export class Client {
     this.events.timeoutMs = timeoutMs;
     this.integrations.timeoutMs = timeoutMs;
     this.users.timeoutMs = timeoutMs;
+    this.workflows.timeoutMs = timeoutMs;
   }
 
   set token(token: string) {
@@ -68,6 +77,7 @@ export class Client {
     this.events.token = token;
     this.integrations.token = token;
     this.users.token = token;
+    this.workflows.token = token;
   }
 }
 

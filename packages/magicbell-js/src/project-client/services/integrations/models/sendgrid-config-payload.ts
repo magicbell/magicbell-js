@@ -1,12 +1,17 @@
 import { z } from 'zod';
 
-import { ReplyTo, replyTo, replyToRequest, replyToResponse } from './reply-to.js';
 import {
   SendgridConfigPayloadFrom,
   sendgridConfigPayloadFrom,
   sendgridConfigPayloadFromRequest,
   sendgridConfigPayloadFromResponse,
 } from './sendgrid-config-payload-from.js';
+import {
+  SendgridConfigPayloadReplyTo,
+  sendgridConfigPayloadReplyTo,
+  sendgridConfigPayloadReplyToRequest,
+  sendgridConfigPayloadReplyToResponse,
+} from './sendgrid-config-payload-reply-to.js';
 
 /**
  * The shape of the model inside the application code - what the users use
@@ -15,7 +20,7 @@ export const sendgridConfigPayload = z.lazy(() => {
   return z.object({
     apiKey: z.string(),
     from: sendgridConfigPayloadFrom.optional(),
-    replyTo: replyTo.optional(),
+    replyTo: sendgridConfigPayloadReplyTo.optional(),
   });
 });
 
@@ -24,7 +29,7 @@ export const sendgridConfigPayload = z.lazy(() => {
  * @typedef  {SendgridConfigPayload} sendgridConfigPayload
  * @property {string} - The API key for Sendgrid
  * @property {SendgridConfigPayloadFrom}
- * @property {ReplyTo}
+ * @property {SendgridConfigPayloadReplyTo}
  */
 export type SendgridConfigPayload = z.infer<typeof sendgridConfigPayload>;
 
@@ -37,7 +42,7 @@ export const sendgridConfigPayloadResponse = z.lazy(() => {
     .object({
       api_key: z.string(),
       from: sendgridConfigPayloadFromResponse.optional(),
-      reply_to: replyToResponse.optional(),
+      reply_to: sendgridConfigPayloadReplyToResponse.optional(),
     })
     .transform((data) => ({
       apiKey: data['api_key'],
@@ -55,7 +60,7 @@ export const sendgridConfigPayloadRequest = z.lazy(() => {
     .object({
       apiKey: z.string(),
       from: sendgridConfigPayloadFromRequest.optional(),
-      replyTo: replyToRequest.optional(),
+      replyTo: sendgridConfigPayloadReplyToRequest.optional(),
     })
     .transform((data) => ({
       api_key: data['apiKey'],

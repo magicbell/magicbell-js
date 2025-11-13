@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type          | Required | Description |
-| :---- | :------------ | :------- | :---------- |
-| data  | SlackConfig[] | ❌       |             |
-| links | Links         | ❌       |             |
+| Name  | Type                            | Required | Description |
+| :---- | :------------------------------ | :------- | :---------- |
+| data  | [SlackConfig](SlackConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)               | ❌       |             |

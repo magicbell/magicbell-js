@@ -10,10 +10,16 @@ This SDK is compatible with the following versions: `TypeScript >= 4.8.4`
 
 ## Installation
 
-To get started with the SDK, we recommend installing using `npm`:
+To get started with the SDK, we recommend installing using `npm` or `yarn`:
 
 ```bash
 npm install magicbell-js
+```
+
+or
+
+```bash
+yarn add magicbell-js/user-client
 ```
 
 ## Authentication
@@ -60,7 +66,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 3,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

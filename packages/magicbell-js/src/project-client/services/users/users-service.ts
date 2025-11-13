@@ -17,8 +17,8 @@ export class UsersService extends BaseService {
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
    * @param {string} [params.query] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<UserCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<UserCollection>>} - OK
    */
   async listUsers(params?: ListUsersParams, requestConfig?: RequestConfig): Promise<HttpResponse<UserCollection>> {
     const request = new RequestBuilder()
@@ -59,8 +59,8 @@ export class UsersService extends BaseService {
 
   /**
    * Creates or updates a user with the provided details. The user will be associated with the project specified in the request context.
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<User>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<User>>} - OK
    */
   async saveUser(body: User, requestConfig?: RequestConfig): Promise<HttpResponse<User>> {
     const request = new RequestBuilder()
@@ -88,8 +88,8 @@ export class UsersService extends BaseService {
   /**
    * Removes a user and all associated data from the project.
    * @param {string} userId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async deleteUser(userId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()

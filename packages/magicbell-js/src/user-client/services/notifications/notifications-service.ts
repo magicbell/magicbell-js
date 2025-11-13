@@ -23,8 +23,8 @@ export class NotificationsService extends BaseService {
    * @param {string} [params.status] -
    * @param {string} [params.category] -
    * @param {string} [params.topic] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<NotificationCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<NotificationCollection>>} - OK
    */
   async listNotifications(
     params?: ListNotificationsParams,
@@ -78,8 +78,8 @@ export class NotificationsService extends BaseService {
    * Archive all notifications.
    * @param {string} [params.category] -
    * @param {string} [params.topic] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async archiveAllNotifications(
     params?: ArchiveAllNotificationsParams,
@@ -117,8 +117,8 @@ export class NotificationsService extends BaseService {
    * Marks all notifications as read.
    * @param {string} [params.category] -
    * @param {string} [params.topic] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async markAllNotificationsRead(
     params?: MarkAllNotificationsReadParams,
@@ -155,8 +155,8 @@ export class NotificationsService extends BaseService {
   /**
    * Gets a notification by ID.
    * @param {string} notificationId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<Notification>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<Notification>>} - OK
    */
   async fetchNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Notification>> {
     const request = new RequestBuilder()
@@ -186,8 +186,8 @@ export class NotificationsService extends BaseService {
   /**
    * Archive a notification.
    * @param {string} notificationId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async archiveNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
@@ -217,8 +217,8 @@ export class NotificationsService extends BaseService {
   /**
    * Marks a notification as read.
    * @param {string} notificationId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async markNotificationRead(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
@@ -248,8 +248,8 @@ export class NotificationsService extends BaseService {
   /**
    * Unarchives a notification.
    * @param {string} notificationId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async unarchiveNotification(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()
@@ -279,8 +279,8 @@ export class NotificationsService extends BaseService {
   /**
    * Marks a notification as unread.
    * @param {string} notificationId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<any>>} No Content
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
    */
   async markNotificationUnread(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
     const request = new RequestBuilder()

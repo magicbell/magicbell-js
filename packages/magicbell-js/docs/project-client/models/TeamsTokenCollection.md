@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type         | Required | Description |
-| :---- | :----------- | :------- | :---------- |
-| data  | TeamsToken[] | ❌       |             |
-| links | Links        | ❌       |             |
+| Name  | Type                          | Required | Description |
+| :---- | :---------------------------- | :------- | :---------- |
+| data  | [TeamsToken](TeamsToken.md)[] | ❌       |             |
+| links | [Links](Links.md)             | ❌       |             |

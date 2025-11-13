@@ -22,6 +22,12 @@ export interface ListFcmTokensParams {
   endingBefore?: string;
 }
 
+export interface ListMagicbellSlackbotTokensParams {
+  limit?: number;
+  startingAfter?: string;
+  endingBefore?: string;
+}
+
 export interface ListSlackTokensParams {
   limit?: number;
   startingAfter?: string;

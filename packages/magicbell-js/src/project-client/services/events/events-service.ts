@@ -16,8 +16,8 @@ export class EventsService extends BaseService {
    * @param {number} [params.limit] -
    * @param {string} [params.startingAfter] -
    * @param {string} [params.endingBefore] -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<EventCollection>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<EventCollection>>} - OK
    */
   async listEvents(params?: ListEventsParams, requestConfig?: RequestConfig): Promise<HttpResponse<EventCollection>> {
     const request = new RequestBuilder()
@@ -55,8 +55,8 @@ export class EventsService extends BaseService {
   /**
    * Fetches a project event by its ID.
    * @param {string} eventId -
-   * @param {RequestConfig} requestConfig - (Optional) The request configuration for retry and validation.
-   * @returns {Promise<HttpResponse<Event>>} OK
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<Event>>} - OK
    */
   async fetchEvent(eventId: string, requestConfig?: RequestConfig): Promise<HttpResponse<Event>> {
     const request = new RequestBuilder()

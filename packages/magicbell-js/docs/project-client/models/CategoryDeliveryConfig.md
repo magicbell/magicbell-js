@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name     | Type                             | Required | Description |
-| :------- | :------------------------------- | :------- | :---------- |
-| channels | CategoryDeliveryConfigChannels[] | ✅       |             |
-| key      | string                           | ✅       |             |
-| disabled | boolean                          | ❌       |             |
+| Name     | Type                                                                  | Required | Description |
+| :------- | :-------------------------------------------------------------------- | :------- | :---------- |
+| channels | [CategoryDeliveryConfigChannels](CategoryDeliveryConfigChannels.md)[] | ✅       |             |
+| key      | string                                                                | ✅       |             |
+| disabled | boolean                                                               | ❌       |             |

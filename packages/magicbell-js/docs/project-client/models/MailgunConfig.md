@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name   | Type                 | Required | Description |
-| :----- | :------------------- | :------- | :---------- |
-| config | MailgunConfigPayload | ✅       |             |
-| id     | string               | ✅       |             |
-| name   | string               | ✅       |             |
+| Name   | Type                                            | Required | Description |
+| :----- | :---------------------------------------------- | :------- | :---------- |
+| config | [MailgunConfigPayload](MailgunConfigPayload.md) | ✅       |             |
+| id     | string                                          | ✅       |             |
+| name   | string                                          | ✅       |             |

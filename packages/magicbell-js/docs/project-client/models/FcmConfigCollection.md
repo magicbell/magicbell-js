@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type        | Required | Description |
-| :---- | :---------- | :------- | :---------- |
-| data  | FcmConfig[] | ❌       |             |
-| links | Links       | ❌       |             |
+| Name  | Type                        | Required | Description |
+| :---- | :-------------------------- | :------- | :---------- |
+| data  | [FcmConfig](FcmConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)           | ❌       |             |
