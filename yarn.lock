@@ -2522,12 +2522,12 @@
   resolved "https://registry.yarnpkg.com/@magicbell/webpush/-/webpush-2.2.0.tgz#85b345b7becae0ee623776c6dfa160c15c8a7bc9"
   integrity sha512-a8pMzNt0fjZ2UVEDmjwXqwBFcdLEFR2t1d0B62OUbIYq54UeoCfIimTqjE9fv25dFuHygNWgsRPL8prfK6LxWQ==
 
-"@manypkg/cli@^0.24.0":
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.24.0.tgz#712c10af466da094dd21799a348ddfdda868d812"
-  integrity sha512-O1vbx4TnwaeeDXlNaa+N0LIKg3JmI2gEG8JaGn97UuXgiXJIYlAhfepJTykICV0i0oQHvb0xNfNmvYhwJ/cGgA==
+"@manypkg/cli@^0.25.1":
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.25.1.tgz#fdafb679ee26697589cd2e19e0d9387c4dbe59da"
+  integrity sha512-lag906FyiNxzZjsRErkUD5/to174I2JzPk5bZubuJp6loMKKJn73zrtqeU7nHlVkHBg3tgXDTJj22HxUDxLRXw==
   dependencies:
-    "@manypkg/get-packages" "^3.0.0"
+    "@manypkg/get-packages" "^3.1.0"
     detect-indent "^7.0.1"
     normalize-path "^3.0.0"
     p-limit "^6.2.0"
@@ -2568,7 +2568,7 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@manypkg/get-packages@^3.0.0":
+"@manypkg/get-packages@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@manypkg/get-packages/-/get-packages-3.1.0.tgz#c97510b6386cab9c4a59e4a7fc2757753ef18865"
   integrity sha512-0TbBVyvPrP7xGYBI/cP8UP+yl/z+HtbTttAD7FMAJgn/kXOTwh5/60TsqP9ZYY710forNfyV0N8P/IE/ujGZJg==
