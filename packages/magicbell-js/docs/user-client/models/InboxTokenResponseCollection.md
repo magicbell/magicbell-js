@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type                 | Required | Description |
-| :---- | :------------------- | :------- | :---------- |
-| data  | InboxTokenResponse[] | ❌       |             |
-| links | Links                | ❌       |             |
+| Name  | Type                                          | Required | Description |
+| :---- | :-------------------------------------------- | :------- | :---------- |
+| data  | [InboxTokenResponse](InboxTokenResponse.md)[] | ❌       |             |
+| links | [Links](Links.md)                             | ❌       |             |

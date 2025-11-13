@@ -64,7 +64,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 5,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -87,6 +87,7 @@ The SDK provides various services to interact with the API.
 | [EventsService](docs/project-client/services/EventsService.md)             |
 | [IntegrationsService](docs/project-client/services/IntegrationsService.md) |
 | [UsersService](docs/project-client/services/UsersService.md)               |
+| [WorkflowsService](docs/project-client/services/WorkflowsService.md)       |
 
 </details>
 
@@ -129,6 +130,9 @@ The SDK includes several models that represent the data structures used in API r
 | [ApnsConfigCollection](docs/project-client/models/ApnsConfigCollection.md)                 |             |
 | [ApnsConfig](docs/project-client/models/ApnsConfig.md)                                     |             |
 | [ApnsConfigPayload](docs/project-client/models/ApnsConfigPayload.md)                       |             |
+| [EventSourceConfigCollection](docs/project-client/models/EventSourceConfigCollection.md)   |             |
+| [EventSourceConfig](docs/project-client/models/EventSourceConfig.md)                       |             |
+| [EventSourceConfigPayload](docs/project-client/models/EventSourceConfigPayload.md)         |             |
 | [ExpoConfigCollection](docs/project-client/models/ExpoConfigCollection.md)                 |             |
 | [ExpoConfig](docs/project-client/models/ExpoConfig.md)                                     |             |
 | [ExpoConfigPayload](docs/project-client/models/ExpoConfigPayload.md)                       |             |
@@ -141,6 +145,9 @@ The SDK includes several models that represent the data structures used in API r
 | [InboxConfigCollection](docs/project-client/models/InboxConfigCollection.md)               |             |
 | [InboxConfig](docs/project-client/models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](docs/project-client/models/InboxConfigPayload.md)                     |             |
+| [SlackBotConfigCollection](docs/project-client/models/SlackBotConfigCollection.md)         |             |
+| [SlackBotConfig](docs/project-client/models/SlackBotConfig.md)                             |             |
+| [SlackBotConfigPayload](docs/project-client/models/SlackBotConfigPayload.md)               |             |
 | [MailgunConfigCollection](docs/project-client/models/MailgunConfigCollection.md)           |             |
 | [MailgunConfig](docs/project-client/models/MailgunConfig.md)                               |             |
 | [MailgunConfigPayload](docs/project-client/models/MailgunConfigPayload.md)                 |             |
@@ -156,6 +163,9 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](docs/project-client/models/SlackConfigCollection.md)               |             |
 | [SlackConfig](docs/project-client/models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](docs/project-client/models/SlackConfigPayload.md)                     |             |
+| [SmtpConfigObjectCollection](docs/project-client/models/SmtpConfigObjectCollection.md)     |             |
+| [SmtpConfigObject](docs/project-client/models/SmtpConfigObject.md)                         |             |
+| [SmtpConfig](docs/project-client/models/SmtpConfig.md)                                     |             |
 | [StripeConfigCollection](docs/project-client/models/StripeConfigCollection.md)             |             |
 | [StripeConfig](docs/project-client/models/StripeConfig.md)                                 |             |
 | [StripeConfigPayload](docs/project-client/models/StripeConfigPayload.md)                   |             |
@@ -167,6 +177,13 @@ The SDK includes several models that represent the data structures used in API r
 | [WebpushConfigPayload](docs/project-client/models/WebpushConfigPayload.md)                 |             |
 | [UserCollection](docs/project-client/models/UserCollection.md)                             |             |
 | [User](docs/project-client/models/User.md)                                                 |             |
+| [Links](docs/project-client/models/Links.md)                                               |             |
+| [WorkflowDefinition](docs/project-client/models/WorkflowDefinition.md)                     |             |
+| [ExecuteWorkflowRequest](docs/project-client/models/ExecuteWorkflowRequest.md)             |             |
+| [CreateRunResponse](docs/project-client/models/CreateRunResponse.md)                       |             |
+| [GetRunResponse](docs/project-client/models/GetRunResponse.md)                             |             |
+| [WorkflowRunCollection](docs/project-client/models/WorkflowRunCollection.md)               |             |
+| [WorkflowRun](docs/project-client/models/WorkflowRun.md)                                   |             |
 | [Links](docs/project-client/models/Links.md)                                               |             |
 
 </details>
@@ -221,7 +238,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 3,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

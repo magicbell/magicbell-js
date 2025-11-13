@@ -10,6 +10,11 @@ export class QuerySerializer extends Serializer {
     const query: string[] = [];
 
     queryParams.forEach((param) => {
+      // Skip parameters with undefined values
+      if (param.value === undefined) {
+        return;
+      }
+
       return query.push(`${this.serializeValue(param)}`);
     });
 

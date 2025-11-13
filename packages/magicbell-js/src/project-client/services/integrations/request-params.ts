@@ -8,6 +8,10 @@ export interface DeleteApnsIntegrationParams {
   id?: string;
 }
 
+export interface DeleteEventsourceIntegrationParams {
+  id?: string;
+}
+
 export interface DeleteExpoIntegrationParams {
   id?: string;
 }
@@ -21,6 +25,10 @@ export interface DeleteGithubIntegrationParams {
 }
 
 export interface DeleteInboxIntegrationParams {
+  id?: string;
+}
+
+export interface DeleteMagicbellSlackbotIntegrationParams {
   id?: string;
 }
 
@@ -41,6 +49,10 @@ export interface DeleteSesIntegrationParams {
 }
 
 export interface DeleteSlackIntegrationParams {
+  id?: string;
+}
+
+export interface DeleteSmtpIntegrationParams {
   id?: string;
 }
 

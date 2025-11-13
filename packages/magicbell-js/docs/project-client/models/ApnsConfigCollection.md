@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type         | Required | Description |
-| :---- | :----------- | :------- | :---------- |
-| data  | ApnsConfig[] | ❌       |             |
-| links | Links        | ❌       |             |
+| Name  | Type                          | Required | Description |
+| :---- | :---------------------------- | :------- | :---------- |
+| data  | [ApnsConfig](ApnsConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)             | ❌       |             |

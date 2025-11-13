@@ -29,6 +29,9 @@ export class HookHandler implements RequestHandler {
       return await hook.afterResponse(nextRequest, response, hookParams);
     }
 
+    // Handle error responses
+    const arrayBuffer = response.raw;
+
     const rawContentType = response.metadata.headers['content-type']?.toLocaleLowerCase() || '';
     const contentType = getContentTypeDefinition(rawContentType);
     const statusCode = response.metadata.status;
@@ -38,15 +41,15 @@ export class HookHandler implements RequestHandler {
     });
 
     if (error) {
-      const decodedBody = new TextDecoder().decode(response.raw);
+      const decodedBody = new TextDecoder().decode(arrayBuffer);
       const json = JSON.parse(decodedBody);
       new error.error((json as any)?.message || '', json).throw();
     }
 
-    const decodedBody = new TextDecoder().decode(response.raw);
+    const decodedBody = new TextDecoder().decode(arrayBuffer);
     throw new HttpError(
       response.metadata,
-      response.raw,
+      arrayBuffer,
       `Unexpected response body for error status.\nStatusCode: ${response.metadata.status}\nBody: ${decodedBody}`,
     );
   }

@@ -2,8 +2,8 @@
 
 **Properties**
 
-| Name   | Type                | Required | Description |
-| :----- | :------------------ | :------- | :---------- |
-| config | StripeConfigPayload | ✅       |             |
-| id     | string              | ✅       |             |
-| name   | string              | ✅       |             |
+| Name   | Type                                          | Required | Description |
+| :----- | :-------------------------------------------- | :------- | :---------- |
+| config | [StripeConfigPayload](StripeConfigPayload.md) | ✅       |             |
+| id     | string                                        | ✅       |             |
+| name   | string                                        | ✅       |             |

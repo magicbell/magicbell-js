@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type           | Required | Description |
-| :---- | :------------- | :------- | :---------- |
-| data  | TwilioConfig[] | ❌       |             |
-| links | Links          | ❌       |             |
+| Name  | Type                              | Required | Description |
+| :---- | :-------------------------------- | :------- | :---------- |
+| data  | [TwilioConfig](TwilioConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)                 | ❌       |             |

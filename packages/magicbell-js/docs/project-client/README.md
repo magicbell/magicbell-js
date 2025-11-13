@@ -10,10 +10,16 @@ This SDK is compatible with the following versions: `TypeScript >= 4.8.4`
 
 ## Installation
 
-To get started with the SDK, we recommend installing using `npm`:
+To get started with the SDK, we recommend installing using `npm` or `yarn`:
 
 ```bash
 npm install magicbell-js
+```
+
+or
+
+```bash
+yarn add magicbell-js/project-client
 ```
 
 ## Authentication
@@ -60,7 +66,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 5,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -83,6 +89,7 @@ The SDK provides various services to interact with the API.
 | [EventsService](services/EventsService.md)             |
 | [IntegrationsService](services/IntegrationsService.md) |
 | [UsersService](services/UsersService.md)               |
+| [WorkflowsService](services/WorkflowsService.md)       |
 
 </details>
 
@@ -125,6 +132,9 @@ The SDK includes several models that represent the data structures used in API r
 | [ApnsConfigCollection](models/ApnsConfigCollection.md)                 |             |
 | [ApnsConfig](models/ApnsConfig.md)                                     |             |
 | [ApnsConfigPayload](models/ApnsConfigPayload.md)                       |             |
+| [EventSourceConfigCollection](models/EventSourceConfigCollection.md)   |             |
+| [EventSourceConfig](models/EventSourceConfig.md)                       |             |
+| [EventSourceConfigPayload](models/EventSourceConfigPayload.md)         |             |
 | [ExpoConfigCollection](models/ExpoConfigCollection.md)                 |             |
 | [ExpoConfig](models/ExpoConfig.md)                                     |             |
 | [ExpoConfigPayload](models/ExpoConfigPayload.md)                       |             |
@@ -137,6 +147,9 @@ The SDK includes several models that represent the data structures used in API r
 | [InboxConfigCollection](models/InboxConfigCollection.md)               |             |
 | [InboxConfig](models/InboxConfig.md)                                   |             |
 | [InboxConfigPayload](models/InboxConfigPayload.md)                     |             |
+| [SlackBotConfigCollection](models/SlackBotConfigCollection.md)         |             |
+| [SlackBotConfig](models/SlackBotConfig.md)                             |             |
+| [SlackBotConfigPayload](models/SlackBotConfigPayload.md)               |             |
 | [MailgunConfigCollection](models/MailgunConfigCollection.md)           |             |
 | [MailgunConfig](models/MailgunConfig.md)                               |             |
 | [MailgunConfigPayload](models/MailgunConfigPayload.md)                 |             |
@@ -152,6 +165,9 @@ The SDK includes several models that represent the data structures used in API r
 | [SlackConfigCollection](models/SlackConfigCollection.md)               |             |
 | [SlackConfig](models/SlackConfig.md)                                   |             |
 | [SlackConfigPayload](models/SlackConfigPayload.md)                     |             |
+| [SmtpConfigObjectCollection](models/SmtpConfigObjectCollection.md)     |             |
+| [SmtpConfigObject](models/SmtpConfigObject.md)                         |             |
+| [SmtpConfig](models/SmtpConfig.md)                                     |             |
 | [StripeConfigCollection](models/StripeConfigCollection.md)             |             |
 | [StripeConfig](models/StripeConfig.md)                                 |             |
 | [StripeConfigPayload](models/StripeConfigPayload.md)                   |             |
@@ -163,6 +179,13 @@ The SDK includes several models that represent the data structures used in API r
 | [WebpushConfigPayload](models/WebpushConfigPayload.md)                 |             |
 | [UserCollection](models/UserCollection.md)                             |             |
 | [User](models/User.md)                                                 |             |
+| [Links](models/Links.md)                                               |             |
+| [WorkflowDefinition](models/WorkflowDefinition.md)                     |             |
+| [ExecuteWorkflowRequest](models/ExecuteWorkflowRequest.md)             |             |
+| [CreateRunResponse](models/CreateRunResponse.md)                       |             |
+| [GetRunResponse](models/GetRunResponse.md)                             |             |
+| [WorkflowRunCollection](models/WorkflowRunCollection.md)               |             |
+| [WorkflowRun](models/WorkflowRun.md)                                   |             |
 | [Links](models/Links.md)                                               |             |
 
 </details>

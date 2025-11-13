@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type         | Required | Description |
-| :---- | :----------- | :------- | :---------- |
-| data  | ExpoConfig[] | ❌       |             |
-| links | Links        | ❌       |             |
+| Name  | Type                          | Required | Description |
+| :---- | :---------------------------- | :------- | :---------- |
+| data  | [ExpoConfig](ExpoConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)             | ❌       |             |

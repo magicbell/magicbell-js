@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type        | Required | Description |
-| :---- | :---------- | :------- | :---------- |
-| data  | ExpoToken[] | ❌       |             |
-| links | Links       | ❌       |             |
+| Name  | Type                        | Required | Description |
+| :---- | :-------------------------- | :------- | :---------- |
+| data  | [ExpoToken](ExpoToken.md)[] | ❌       |             |
+| links | [Links](Links.md)           | ❌       |             |

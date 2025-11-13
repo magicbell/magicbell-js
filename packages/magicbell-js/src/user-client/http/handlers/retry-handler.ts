@@ -45,7 +45,10 @@ export class RetryHandler implements RequestHandler {
   }
 
   private shouldRetry(error: Error): boolean {
-    return error instanceof HttpError && (error.metadata.status >= 500 || error.metadata.status === 408);
+    return (
+      error instanceof HttpError &&
+      (error.metadata.status >= 500 || error.metadata.status === 408 || error.metadata.status === 429)
+    );
   }
 
   private delay(delayMs: number | undefined): Promise<void> {

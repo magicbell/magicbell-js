@@ -37,7 +37,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.events.listEvents({
-    limit: 10,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

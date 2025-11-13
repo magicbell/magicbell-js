@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type            | Required | Description |
-| :---- | :-------------- | :------- | :---------- |
-| data  | MailgunConfig[] | ❌       |             |
-| links | Links           | ❌       |             |
+| Name  | Type                                | Required | Description |
+| :---- | :---------------------------------- | :------- | :---------- |
+| data  | [MailgunConfig](MailgunConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)                   | ❌       |             |

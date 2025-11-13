@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type    | Required | Description |
-| :---- | :------ | :------- | :---------- |
-| data  | Event[] | ❌       |             |
-| links | Links   | ❌       |             |
+| Name  | Type                | Required | Description |
+| :---- | :------------------ | :------- | :---------- |
+| data  | [Event](Event.md)[] | ❌       |             |
+| links | [Links](Links.md)   | ❌       |             |

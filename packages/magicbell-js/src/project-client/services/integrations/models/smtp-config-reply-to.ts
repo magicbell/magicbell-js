@@ -3,30 +3,30 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const replyTo = z.lazy(() => {
+export const smtpConfigReplyTo = z.lazy(() => {
   return z.object({
     email: z.string(),
-    name: z.string().optional().nullable(),
+    name: z.string().optional(),
   });
 });
 
 /**
- *
- * @typedef  {ReplyTo} replyTo
- * @property {string} - The email address to reply to
- * @property {string} - The name to reply to
+ * Reply-to email address
+ * @typedef  {SmtpConfigReplyTo} smtpConfigReplyTo - Reply-to email address - Reply-to email address
+ * @property {string} - Reply-to email address
+ * @property {string} - Reply-to name
  */
-export type ReplyTo = z.infer<typeof replyTo>;
+export type SmtpConfigReplyTo = z.infer<typeof smtpConfigReplyTo>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const replyToResponse = z.lazy(() => {
+export const smtpConfigReplyToResponse = z.lazy(() => {
   return z
     .object({
       email: z.string(),
-      name: z.string().optional().nullable(),
+      name: z.string().optional(),
     })
     .transform((data) => ({
       email: data['email'],
@@ -38,11 +38,11 @@ export const replyToResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const replyToRequest = z.lazy(() => {
+export const smtpConfigReplyToRequest = z.lazy(() => {
   return z
     .object({
       email: z.string(),
-      name: z.string().optional().nullable(),
+      name: z.string().optional(),
     })
     .transform((data) => ({
       email: data['email'],

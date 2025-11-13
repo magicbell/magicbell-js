@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type           | Required | Description |
-| :---- | :------------- | :------- | :---------- |
-| data  | Notification[] | ❌       |             |
-| links | Links          | ❌       |             |
+| Name  | Type                              | Required | Description |
+| :---- | :-------------------------------- | :------- | :---------- |
+| data  | [Notification](Notification.md)[] | ❌       |             |
+| links | [Links](Links.md)                 | ❌       |             |

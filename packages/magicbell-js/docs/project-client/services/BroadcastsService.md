@@ -38,7 +38,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 5,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -67,7 +67,22 @@ Creates a new broadcast. When a broadcast is created, it generates individual no
 **Example Usage Code Snippet**
 
 ```typescript
-import { Broadcast, Client, User } from 'magicbell-js/project-client';
+import {
+  Broadcast,
+  BroadcastStatus,
+  Client,
+  Email,
+  Errors,
+  InApp,
+  MobilePush,
+  Overrides,
+  OverridesChannels,
+  Providers,
+  Sms,
+  StatusStatus,
+  Summary,
+  User,
+} from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
@@ -143,8 +158,8 @@ import { Broadcast, Client, User } from 'magicbell-js/project-client';
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 5,
-    total: 10,
+    failures: 7,
+    total: 5,
   };
 
   const broadcastStatus: BroadcastStatus = {

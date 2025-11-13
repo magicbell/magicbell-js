@@ -5,6 +5,7 @@ import { z } from 'zod';
  */
 export const stripeConfigPayload = z.lazy(() => {
   return z.object({
+    id: z.string().optional(),
     webhookSigningSecret: z.string().min(1).max(100),
   });
 });
@@ -12,6 +13,7 @@ export const stripeConfigPayload = z.lazy(() => {
 /**
  *
  * @typedef  {StripeConfigPayload} stripeConfigPayload
+ * @property {string} - The unique identifier for this configuration
  * @property {string} - The signing secret to verify incoming requests from Stripe
  */
 export type StripeConfigPayload = z.infer<typeof stripeConfigPayload>;
@@ -23,9 +25,11 @@ export type StripeConfigPayload = z.infer<typeof stripeConfigPayload>;
 export const stripeConfigPayloadResponse = z.lazy(() => {
   return z
     .object({
+      id: z.string().optional(),
       webhook_signing_secret: z.string().min(1).max(100),
     })
     .transform((data) => ({
+      id: data['id'],
       webhookSigningSecret: data['webhook_signing_secret'],
     }));
 });
@@ -37,9 +41,11 @@ export const stripeConfigPayloadResponse = z.lazy(() => {
 export const stripeConfigPayloadRequest = z.lazy(() => {
   return z
     .object({
+      id: z.string().optional(),
       webhookSigningSecret: z.string().min(1).max(100),
     })
     .transform((data) => ({
+      id: data['id'],
       webhook_signing_secret: data['webhookSigningSecret'],
     }));
 });

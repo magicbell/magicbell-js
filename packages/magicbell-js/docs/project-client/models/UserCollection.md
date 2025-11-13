@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type   | Required | Description |
-| :---- | :----- | :------- | :---------- |
-| data  | User[] | ❌       |             |
-| links | Links  | ❌       |             |
+| Name  | Type              | Required | Description |
+| :---- | :---------------- | :------- | :---------- |
+| data  | [User](User.md)[] | ❌       |             |
+| links | [Links](Links.md) | ❌       |             |

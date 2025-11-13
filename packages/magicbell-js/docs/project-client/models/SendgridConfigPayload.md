@@ -2,11 +2,11 @@
 
 **Properties**
 
-| Name    | Type                      | Required | Description              |
-| :------ | :------------------------ | :------- | :----------------------- |
-| apiKey  | string                    | ✅       | The API key for Sendgrid |
-| from    | SendgridConfigPayloadFrom | ❌       |                          |
-| replyTo | ReplyTo                   | ❌       |                          |
+| Name    | Type                         | Required | Description              |
+| :------ | :--------------------------- | :------- | :----------------------- |
+| apiKey  | string                       | ✅       | The API key for Sendgrid |
+| from    | SendgridConfigPayloadFrom    | ❌       |                          |
+| replyTo | SendgridConfigPayloadReplyTo | ❌       |                          |
 
 # SendgridConfigPayloadFrom
 
@@ -17,7 +17,7 @@
 | email | string | ✅       | The email address to send from |
 | name  | string | ❌       | The name to send from          |
 
-# ReplyTo
+# SendgridConfigPayloadReplyTo
 
 **Properties**
 

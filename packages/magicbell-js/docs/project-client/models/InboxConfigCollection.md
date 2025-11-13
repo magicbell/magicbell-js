@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type          | Required | Description |
-| :---- | :------------ | :------- | :---------- |
-| data  | InboxConfig[] | ❌       |             |
-| links | Links         | ❌       |             |
+| Name  | Type                            | Required | Description |
+| :---- | :------------------------------ | :------- | :---------- |
+| data  | [InboxConfig](InboxConfig.md)[] | ❌       |             |
+| links | [Links](Links.md)               | ❌       |             |

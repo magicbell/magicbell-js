@@ -2,7 +2,7 @@
 
 **Properties**
 
-| Name  | Type         | Required | Description |
-| :---- | :----------- | :------- | :---------- |
-| data  | SlackToken[] | ❌       |             |
-| links | Links        | ❌       |             |
+| Name  | Type                          | Required | Description |
+| :---- | :---------------------------- | :------- | :---------- |
+| data  | [SlackToken](SlackToken.md)[] | ❌       |             |
+| links | [Links](Links.md)             | ❌       |             |
