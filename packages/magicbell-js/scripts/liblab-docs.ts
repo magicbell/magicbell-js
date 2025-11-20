@@ -39,6 +39,9 @@ const readmeAst = (await md.read(readme)) as Root;
 md.removeAllBeforeHeading(readmeAst, 'Setup & Configuration');
 await inlineSections(readmeAst, inlineSectionConfigs);
 md.reIndentHeadings(readmeAst, 2);
+md.reIndentSection(readmeAst, 'Services', -1);
+md.reIndentSection(readmeAst, 'Models', -1);
+
 md.mapLinks(readmeAst, rewriteHref);
 md.insertFrontMatter(readmeAst, { title: 'JavaScript SDK' });
 await md.write(readmeAst, path.join(outdir, 'README.md'));

@@ -86,23 +86,32 @@ export function reIndentHeadings(tree: Node, lowestLevel: number): void {
 }
 
 export function reIndentSection(tree: Node, match: string, diff: number): void {
-  let found = false;
-  let minLevel = 0;
+  let inSection = false;
+  let baseDepth = 0;
+  let targetDepth: number | null = null;
 
   visit(tree, 'heading', (node: Heading) => {
-    if (!found) {
-      if (!node.children?.some((c) => c.type === 'text' && c.value === match)) return;
+    const isMatch = !!node.children?.some((c: any) => c.type === 'text' && c.value === match);
 
-      found = true;
-      minLevel = node.depth;
+    if (inSection) {
+      if (node.depth <= baseDepth) {
+        inSection = false;
+      } else {
+        node.depth = Math.min(6, node.depth + diff) as Heading['depth'];
+        return;
+      }
     }
 
-    if (node.depth < minLevel) {
-      found = false;
-      minLevel = 0;
-      return;
+    if (isMatch) {
+      if (targetDepth == null) targetDepth = node.depth;
+
+      if (node.depth === targetDepth) {
+        inSection = true;
+        baseDepth = node.depth;
+        node.depth = Math.min(6, node.depth + diff) as Heading['depth'];
+        return;
+      }
     }
-    node.depth += diff;
   });
 }
 
