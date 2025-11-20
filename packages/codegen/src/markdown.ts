@@ -7,7 +7,7 @@ import { toMarkdown } from 'mdast-util-to-markdown';
 import { frontmatter } from 'micromark-extension-frontmatter';
 import path from 'path';
 import { remove } from 'unist-util-remove';
-import { EXIT, visit } from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 
 type Tree = ReturnType<typeof fromMarkdown>;
 
@@ -97,7 +97,11 @@ export function reIndentSection(tree: Node, match: string, diff: number): void {
       minLevel = node.depth;
     }
 
-    if (node.depth < minLevel) return EXIT;
+    if (node.depth < minLevel) {
+      found = false;
+      minLevel = 0;
+      return;
+    }
     node.depth += diff;
   });
 }
