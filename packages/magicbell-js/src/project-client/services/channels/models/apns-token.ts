@@ -26,7 +26,7 @@ export const apnsToken = z.lazy(() => {
  * @property {string}
  * @property {string}
  * @property {string}
- * @property {ApnsTokenInstallationId} - (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+ * @property {InstallationId} - (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
  * @property {string}
  */
 export type ApnsToken = z.infer<typeof apnsToken>;

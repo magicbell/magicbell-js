@@ -1,6 +1,5 @@
 export type { ApnsToken } from './apns-token.js';
 export type { ApnsTokenCollection } from './apns-token-collection.js';
-export { ApnsTokenInstallationId } from './apns-token-installation-id.js';
 export type { CategoryDeliveryConfig } from './category-delivery-config.js';
 export type { CategoryDeliveryConfigChannels } from './category-delivery-config-channels.js';
 export { Channel } from './channel.js';
@@ -9,9 +8,9 @@ export type { ExpoToken } from './expo-token.js';
 export type { ExpoTokenCollection } from './expo-token-collection.js';
 export type { FcmToken } from './fcm-token.js';
 export type { FcmTokenCollection } from './fcm-token-collection.js';
-export { FcmTokenInstallationId } from './fcm-token-installation-id.js';
 export type { InboxTokenResponse } from './inbox-token-response.js';
 export type { InboxTokenResponseCollection } from './inbox-token-response-collection.js';
+export { InstallationId } from './installation-id.js';
 export type { Keys } from './keys.js';
 export type { Oauth } from './oauth.js';
 export type { SlackToken } from './slack-token.js';

@@ -9,7 +9,6 @@ export const fcmToken = z.lazy(() => {
     deviceToken: z.string().min(64),
     discardedAt: z.string().optional().nullable(),
     id: z.string(),
-    installationId: z.string().optional(),
     updatedAt: z.string().optional().nullable(),
   });
 });
@@ -21,7 +20,6 @@ export const fcmToken = z.lazy(() => {
  * @property {string}
  * @property {string}
  * @property {string}
- * @property {FcmTokenInstallationId}
  * @property {string}
  */
 export type FcmToken = z.infer<typeof fcmToken>;
@@ -37,7 +35,6 @@ export const fcmTokenResponse = z.lazy(() => {
       device_token: z.string().min(64),
       discarded_at: z.string().optional().nullable(),
       id: z.string(),
-      installation_id: z.string().optional(),
       updated_at: z.string().optional().nullable(),
     })
     .transform((data) => ({
@@ -45,7 +42,6 @@ export const fcmTokenResponse = z.lazy(() => {
       deviceToken: data['device_token'],
       discardedAt: data['discarded_at'],
       id: data['id'],
-      installationId: data['installation_id'],
       updatedAt: data['updated_at'],
     }));
 });
@@ -61,7 +57,6 @@ export const fcmTokenRequest = z.lazy(() => {
       deviceToken: z.string().min(64),
       discardedAt: z.string().optional().nullable(),
       id: z.string(),
-      installationId: z.string().optional(),
       updatedAt: z.string().optional().nullable(),
     })
     .transform((data) => ({
@@ -69,7 +64,6 @@ export const fcmTokenRequest = z.lazy(() => {
       device_token: data['deviceToken'],
       discarded_at: data['discardedAt'],
       id: data['id'],
-      installation_id: data['installationId'],
       updated_at: data['updatedAt'],
     }));
 });

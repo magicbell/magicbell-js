@@ -62,7 +62,7 @@ import { CategoryDeliveryConfig, CategoryDeliveryConfigChannels, Channel, Client
 
   const categoryDeliveryConfigChannels: CategoryDeliveryConfigChannels = {
     channel: channel,
-    delay: 9,
+    delay: 1,
     if: 'if',
   };
 
@@ -250,7 +250,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserApnsTokens('user_id', {
-    limit: 9,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -358,7 +358,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserExpoTokens('user_id', {
-    limit: 4,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -466,7 +466,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserFcmTokens('user_id', {
-    limit: 1,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -682,7 +682,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserSlackTokens('user_id', {
-    limit: 2,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -790,7 +790,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserTeamsTokens('user_id', {
-    limit: 10,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -898,7 +898,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.channels.listUserWebPushTokens('user_id', {
-    limit: 9,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
