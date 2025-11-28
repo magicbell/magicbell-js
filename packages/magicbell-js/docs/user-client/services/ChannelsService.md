@@ -69,7 +69,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 4,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -107,7 +107,7 @@ import { Client, InboxToken } from 'magicbell-js/user-client';
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'veniam ipsum ex',
+    token: 'insint adipisic',
   };
 
   const { data } = await client.channels.saveInboxToken(inboxToken);
@@ -212,7 +212,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listApnsTokens({
-    limit: 1,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -252,7 +252,7 @@ import { ApnsTokenPayload, ApnsTokenPayloadInstallationId, Client } from 'magicb
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'aliqua sintut e',
+    deviceToken: 'doea occaecat q',
     installationId: apnsTokenPayloadInstallationId,
   };
 
@@ -358,7 +358,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listExpoTokens({
-    limit: 1,
+    limit: 8,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -500,7 +500,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listFcmTokens({
-    limit: 5,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -529,18 +529,15 @@ Saves the FCM token for the authenticated user. This token serves as a credentia
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, FcmTokenPayload, FcmTokenPayloadInstallationId } from 'magicbell-js/user-client';
+import { Client, FcmTokenPayload } from 'magicbell-js/user-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const fcmTokenPayloadInstallationId = FcmTokenPayloadInstallationId.DEVELOPMENT;
-
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'velit fugiatsin',
-    installationId: fcmTokenPayloadInstallationId,
+    deviceToken: 'voluptate incid',
   };
 
   const { data } = await client.channels.saveFcmToken(fcmTokenPayload);
@@ -645,7 +642,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listMagicbellSlackbotTokens({
-    limit: 1,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -798,7 +795,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listSlackTokens({
-    limit: 123,
+    limit: 4,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -951,7 +948,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listTeamsTokens({
-    limit: 4,
+    limit: 123,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -1168,7 +1165,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listWebPushTokens({
-    limit: 8,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

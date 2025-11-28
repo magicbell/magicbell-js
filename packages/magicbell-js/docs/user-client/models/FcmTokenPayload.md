@@ -2,16 +2,6 @@
 
 **Properties**
 
-| Name           | Type                          | Required | Description |
-| :------------- | :---------------------------- | :------- | :---------- |
-| deviceToken    | string                        | ✅       |             |
-| installationId | FcmTokenPayloadInstallationId | ❌       |             |
-
-# FcmTokenPayloadInstallationId
-
-**Properties**
-
-| Name        | Type   | Required | Description   |
-| :---------- | :----- | :------- | :------------ |
-| DEVELOPMENT | string | ✅       | "development" |
-| PRODUCTION  | string | ✅       | "production"  |
+| Name        | Type   | Required | Description |
+| :---------- | :----- | :------- | :---------- |
+| deviceToken | string | ✅       |             |

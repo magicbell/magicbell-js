@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export enum FcmTokenPayloadInstallationId {
+export enum InstallationId {
   DEVELOPMENT = 'development',
   PRODUCTION = 'production',
 }
