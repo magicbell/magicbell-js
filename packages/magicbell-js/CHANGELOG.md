@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.5.0
+
+### Minor Changes
+
+- [#580](https://github.com/magicbell/magicbell-js/pull/580) [`982937b`](https://github.com/magicbell/magicbell-js/commit/982937b0a947a6ec09b88a3d5b2847b97e4e38a1) Thanks [@MagicBella](https://github.com/MagicBella)! - Automatic minor version bump for changes in `magicbell-js`.
+
 ## 1.4.0
 
 ### Minor Changes
