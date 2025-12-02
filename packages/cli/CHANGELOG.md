@@ -1,5 +1,16 @@
 # @magicbell/cli
 
+## 4.3.0
+
+### Minor Changes
+
+- [`d0519c3`](https://github.com/magicbell/magicbell-js/commit/d0519c36919be840f096b094acd2fda378a650b1) Thanks [@smeijer](https://github.com/smeijer)! - This package is deprecated. Please use [`magicbell-cli`](https://www.magicbell.com/docs/libraries/magicbell-cli) instead.
+
+  ```diff
+  - npm install @magicbell/cli
+  + npm install magicbell-cli
+  ```
+
 ## 4.2.5
 
 ### Patch Changes
