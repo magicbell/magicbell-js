@@ -26,21 +26,21 @@ export const notification = z.lazy(() => {
 /**
  *
  * @typedef  {Notification} notification
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {any}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The link associated with the notification.
+ * @property {string} - The timestamp when the notification was archived.
+ * @property {string} - The category grouping for the notification.
+ * @property {string} - The body content of the notification.
+ * @property {string} - The timestamp when the notification was created.
+ * @property {any} - The custom data stored with the notification.
+ * @property {string} - The timestamp when the notification was discarded.
+ * @property {string} - The unique identifier for the notification.
+ * @property {string} - The timestamp when the notification was marked as read.
+ * @property {string} - The timestamp when the notification was seen.
+ * @property {string} - The timestamp when the notification was sent.
+ * @property {string} - The title that is displayed to recipients.
+ * @property {string} - The topic for additional classification.
+ * @property {string} - The timestamp when the notification was last updated.
+ * @property {string} - The user that should receive the notification.
  */
 export type Notification = z.infer<typeof notification>;
 

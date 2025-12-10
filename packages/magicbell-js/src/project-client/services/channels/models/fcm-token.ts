@@ -16,11 +16,11 @@ export const fcmToken = z.lazy(() => {
 /**
  *
  * @typedef  {FcmToken} fcmToken
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The Firebase Cloud Messaging device registration token to associate with the user.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
+ * @property {string} - The timestamp when the token metadata last changed.
  */
 export type FcmToken = z.infer<typeof fcmToken>;
 

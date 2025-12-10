@@ -1,32 +1,34 @@
 import { z } from 'zod';
 
+import { Items, items, itemsRequest, itemsResponse } from './items.js';
+
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const unseenState = z.lazy(() => {
+export const workflowList = z.lazy(() => {
   return z.object({
-    color: z.string(),
+    items: z.array(items).optional(),
   });
 });
 
 /**
- * State indicator styling for unseen notifications.
- * @typedef  {UnseenState} unseenState - State indicator styling for unseen notifications. - State indicator styling for unseen notifications.
- * @property {string} - Color for the unseen state indicator.
+ *
+ * @typedef  {WorkflowList} workflowList
+ * @property {Items[]}
  */
-export type UnseenState = z.infer<typeof unseenState>;
+export type WorkflowList = z.infer<typeof workflowList>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const unseenStateResponse = z.lazy(() => {
+export const workflowListResponse = z.lazy(() => {
   return z
     .object({
-      color: z.string(),
+      items: z.array(itemsResponse).optional(),
     })
     .transform((data) => ({
-      color: data['color'],
+      items: data['items'],
     }));
 });
 
@@ -34,12 +36,12 @@ export const unseenStateResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const unseenStateRequest = z.lazy(() => {
+export const workflowListRequest = z.lazy(() => {
   return z
     .object({
-      color: z.string(),
+      items: z.array(itemsRequest).optional(),
     })
     .transform((data) => ({
-      color: data['color'],
+      items: data['items'],
     }));
 });

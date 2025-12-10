@@ -17,12 +17,12 @@ import {
 export class NotificationsService extends BaseService {
   /**
    * Lists all notifications for a user.
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
-   * @param {string} [params.status] -
-   * @param {string} [params.category] -
-   * @param {string} [params.topic] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
+   * @param {string} [params.status] - filter notifications by their read state, one of 'unread' | 'read' | 'archived'
+   * @param {string} [params.category] - filter notifications by their category
+   * @param {string} [params.topic] - filter notifications by their topic
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<NotificationCollection>>} - OK
    */
@@ -76,8 +76,8 @@ export class NotificationsService extends BaseService {
 
   /**
    * Archive all notifications.
-   * @param {string} [params.category] -
-   * @param {string} [params.topic] -
+   * @param {string} [params.category] - filter notifications by their category
+   * @param {string} [params.topic] - filter notifications by their topic
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -115,8 +115,8 @@ export class NotificationsService extends BaseService {
 
   /**
    * Marks all notifications as read.
-   * @param {string} [params.category] -
-   * @param {string} [params.topic] -
+   * @param {string} [params.category] - filter notifications by their category
+   * @param {string} [params.topic] - filter notifications by their topic
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */

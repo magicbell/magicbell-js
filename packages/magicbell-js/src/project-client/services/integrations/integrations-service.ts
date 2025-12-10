@@ -123,9 +123,9 @@ import {
 export class IntegrationsService extends BaseService {
   /**
    * Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information.
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<IntegrationConfigCollection>>} - OK
    */
@@ -224,7 +224,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the APNs integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -315,7 +315,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the EventSource integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -406,7 +406,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Expo integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -497,7 +497,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the FCM integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -588,7 +588,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the GitHub integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -679,7 +679,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Inbox integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -772,7 +772,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the MagicBell SlackBot integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -863,7 +863,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Mailgun integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -954,7 +954,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Ping Email integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1045,7 +1045,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the SendGrid integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1136,7 +1136,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Amazon SES integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1227,7 +1227,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Slack integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1315,7 +1315,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the SMTP integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1406,7 +1406,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Stripe integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1497,7 +1497,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Twilio integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */
@@ -1588,7 +1588,7 @@ export class IntegrationsService extends BaseService {
 
   /**
    * Deletes the Web Push integration configuration from the project. This will disable the integration's functionality within the project.
-   * @param {string} [params.id] -
+   * @param {string} [params.id] - the unique identifier of the integration to be deleted
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<any>>} - No Content
    */

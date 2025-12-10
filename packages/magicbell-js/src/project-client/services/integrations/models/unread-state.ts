@@ -10,9 +10,9 @@ export const unreadState = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {UnreadState} unreadState
- * @property {string}
+ * State indicator styling for unread notifications.
+ * @typedef  {UnreadState} unreadState - State indicator styling for unread notifications. - State indicator styling for unread notifications.
+ * @property {string} - Color for the unread state indicator.
  */
 export type UnreadState = z.infer<typeof unreadState>;
 

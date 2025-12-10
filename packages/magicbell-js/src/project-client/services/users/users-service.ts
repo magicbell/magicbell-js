@@ -13,10 +13,10 @@ import { ListUsersParams } from './request-params.js';
 export class UsersService extends BaseService {
   /**
    * Lists all users in the project.
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
-   * @param {string} [params.query] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
+   * @param {string} [params.query] - filter users by their email address or external ID
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<UserCollection>>} - OK
    */

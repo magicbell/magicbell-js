@@ -10,9 +10,9 @@ export const unseenBadge = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {UnseenBadge} unseenBadge
- * @property {string}
+ * Badge styling for unseen notification counts.
+ * @typedef  {UnseenBadge} unseenBadge - Badge styling for unseen notification counts. - Badge styling for unseen notification counts.
+ * @property {string} - Badge background color.
  */
 export type UnseenBadge = z.infer<typeof unseenBadge>;
 

@@ -17,9 +17,9 @@ export const inboxConfigPayload = z.lazy(() => {
 /**
  *
  * @typedef  {InboxConfigPayload} inboxConfigPayload
- * @property {Images}
- * @property {string}
- * @property {Theme}
+ * @property {Images} - Image overrides for assets used in the inbox UI.
+ * @property {string} - Locale code (ISO language tag) used to localize built-in strings.
+ * @property {Theme} - Visual customization options for the hosted inbox widget.
  */
 export type InboxConfigPayload = z.infer<typeof inboxConfigPayload>;
 

@@ -16,11 +16,11 @@ export const notification = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Notification} notification
- * @property {Default_}
- * @property {Unread}
- * @property {Unseen}
+ * Styling overrides for notification list items.
+ * @typedef  {Notification} notification - Styling overrides for notification list items. - Styling overrides for notification list items.
+ * @property {Default_} - Base styles applied to every notification item.
+ * @property {Unread} - Overrides for unread notifications.
+ * @property {Unseen} - Overrides for unseen notifications.
  */
 export type Notification = z.infer<typeof notification>;
 

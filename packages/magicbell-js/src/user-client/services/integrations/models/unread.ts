@@ -16,12 +16,12 @@ export const unread = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Unread} unread
- * @property {string}
- * @property {UnreadHover}
- * @property {UnreadState}
- * @property {string}
+ * Overrides for unread notifications.
+ * @typedef  {Unread} unread - Overrides for unread notifications. - Overrides for unread notifications.
+ * @property {string} - Background color applied to unread notifications.
+ * @property {UnreadHover} - Hover styles for unread notifications.
+ * @property {UnreadState} - State indicator styling for unread notifications.
+ * @property {string} - Text color used when a notification is unread.
  */
 export type Unread = z.infer<typeof unread>;
 

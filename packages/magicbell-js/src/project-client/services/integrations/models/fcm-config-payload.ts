@@ -22,17 +22,17 @@ export const fcmConfigPayload = z.lazy(() => {
 /**
  *
  * @typedef  {FcmConfigPayload} fcmConfigPayload
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {Type_}
- * @property {string}
+ * @property {string} - URL for Google's OAuth provider x509 certificates used to validate tokens.
+ * @property {string} - OAuth authorization endpoint used when exchanging Firebase credentials.
+ * @property {string} - The client email address from the Firebase service account.
+ * @property {string} - The numeric client identifier for the Firebase service account.
+ * @property {string} - URL to the public x509 certificate for this service account.
+ * @property {string} - The PEM encoded service account private key used to sign Firebase credentials.
+ * @property {string} - Identifier of the private key inside the downloaded service account JSON.
+ * @property {string} - The Firebase project ID associated with this service account.
+ * @property {string} - OAuth token endpoint used to mint access tokens for FCM.
+ * @property {Type_} - Indicates the kind of Google credential. Service accounts always use the `service_account` type.
+ * @property {string} - The Google Cloud universe domain hosting the Firebase APIs.
  */
 export type FcmConfigPayload = z.infer<typeof fcmConfigPayload>;
 

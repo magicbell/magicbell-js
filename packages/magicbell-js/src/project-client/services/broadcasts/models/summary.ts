@@ -11,8 +11,8 @@ export const summary = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Summary} summary
+ * The summary counts for total recipients and failures.
+ * @typedef  {Summary} summary - The summary counts for total recipients and failures. - The summary counts for total recipients and failures.
  * @property {number} - The number of failures while processing the broadcast.
  * @property {number} - The number of recipients that the broadcast was sent to.
  */

@@ -13,8 +13,8 @@ export const executeWorkflowRequest = z.lazy(() => {
 /**
  *
  * @typedef  {ExecuteWorkflowRequest} executeWorkflowRequest
- * @property {any}
- * @property {string}
+ * @property {any} - Optional JSON payload that will be passed as the workflow input context.
+ * @property {string} - The unique workflow key to execute (e.g. integration.stripe.charge.succeeded).
  */
 export type ExecuteWorkflowRequest = z.infer<typeof executeWorkflowRequest>;
 

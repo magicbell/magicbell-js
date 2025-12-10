@@ -23,10 +23,10 @@ export const teamsToken = z.lazy(() => {
 /**
  *
  * @typedef  {TeamsToken} teamsToken
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
+ * @property {string} - The timestamp when the token metadata last changed.
  * @property {TeamsTokenWebhook}
  */
 export type TeamsToken = z.infer<typeof teamsToken>;

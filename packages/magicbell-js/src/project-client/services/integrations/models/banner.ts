@@ -13,12 +13,12 @@ export const banner = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Banner} banner
- * @property {string}
- * @property {number}
- * @property {string}
- * @property {string}
+ * Top banner styling options.
+ * @typedef  {Banner} banner - Top banner styling options. - Top banner styling options.
+ * @property {string} - Banner background color.
+ * @property {number} - Opacity applied to the banner background.
+ * @property {string} - Font size for banner text.
+ * @property {string} - Banner text color.
  */
 export type Banner = z.infer<typeof banner>;
 

@@ -10,9 +10,9 @@ export const defaultHover = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {DefaultHover} defaultHover
- * @property {string}
+ * Styles applied when a notification is hovered.
+ * @typedef  {DefaultHover} defaultHover - Styles applied when a notification is hovered. - Styles applied when a notification is hovered.
+ * @property {string} - Background color on hover.
  */
 export type DefaultHover = z.infer<typeof defaultHover>;
 

@@ -12,7 +12,7 @@ export const errors = z.lazy(() => {
 /**
  *
  * @typedef  {Errors} errors
- * @property {string}
+ * @property {string} - The details about the processing error.
  */
 export type Errors = z.infer<typeof errors>;
 

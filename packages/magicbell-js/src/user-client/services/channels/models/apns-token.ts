@@ -21,13 +21,13 @@ export const apnsToken = z.lazy(() => {
 /**
  *
  * @typedef  {ApnsToken} apnsToken
- * @property {string} - (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration.
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {ApnsTokenInstallationId} - (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
- * @property {string}
+ * @property {string} - The bundle identifier of the application registering this token. Use this to override the default identifier configured on the APNs integration.
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The APNs device token to register with MagicBell.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
+ * @property {ApnsTokenInstallationId} - The APNs environment this token belongs to. If omitted we assume it targets `production`.
+ * @property {string} - The timestamp when the token metadata last changed.
  */
 export type ApnsToken = z.infer<typeof apnsToken>;
 

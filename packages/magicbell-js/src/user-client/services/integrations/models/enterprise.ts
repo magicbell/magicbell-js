@@ -13,8 +13,8 @@ export const enterprise = z.lazy(() => {
 /**
  *
  * @typedef  {Enterprise} enterprise
- * @property {string}
- * @property {string}
+ * @property {string} - Enterprise grid identifier.
+ * @property {string} - Enterprise grid name.
  */
 export type Enterprise = z.infer<typeof enterprise>;
 

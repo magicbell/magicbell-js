@@ -14,9 +14,9 @@ export const categoryDeliveryConfigChannels = z.lazy(() => {
 /**
  *
  * @typedef  {CategoryDeliveryConfigChannels} categoryDeliveryConfigChannels
- * @property {Channel}
- * @property {number}
- * @property {string}
+ * @property {Channel} - Name of the channel used for this step.
+ * @property {number} - Delay in seconds to wait after the previous step.
+ * @property {string} - Conditional expression evaluated before running the step.
  */
 export type CategoryDeliveryConfigChannels = z.infer<typeof categoryDeliveryConfigChannels>;
 

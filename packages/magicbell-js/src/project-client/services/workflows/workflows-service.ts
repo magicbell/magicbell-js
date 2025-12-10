@@ -14,9 +14,36 @@ import {
   workflowDefinitionRequest,
   workflowDefinitionResponse,
 } from './models/workflow-definition.js';
+import { WorkflowList, workflowListResponse } from './models/workflow-list.js';
 import { WorkflowRunCollection, workflowRunCollectionResponse } from './models/workflow-run-collection.js';
 
 export class WorkflowsService extends BaseService {
+  /**
+   * Retrieves all workflow definitions for the project
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<WorkflowList>>} - OK
+   */
+  async fetchWorkflows(requestConfig?: RequestConfig): Promise<HttpResponse<WorkflowList>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/workflows')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: workflowListResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .build();
+    return this.client.call<WorkflowList>(request);
+  }
+
   /**
    * Creates or updates a workflow definition for the project
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.

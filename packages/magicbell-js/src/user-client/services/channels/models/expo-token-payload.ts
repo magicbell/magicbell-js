@@ -12,7 +12,7 @@ export const expoTokenPayload = z.lazy(() => {
 /**
  *
  * @typedef  {ExpoTokenPayload} expoTokenPayload
- * @property {string}
+ * @property {string} - The Expo push token returned by the Expo client.
  */
 export type ExpoTokenPayload = z.infer<typeof expoTokenPayload>;
 

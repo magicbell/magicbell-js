@@ -12,11 +12,11 @@ export const sms = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Sms} sms
- * @property {string}
- * @property {string}
- * @property {string}
+ * Overrides for SMS notifications.
+ * @typedef  {Sms} sms - Overrides for SMS notifications. - Overrides for SMS notifications.
+ * @property {string} - The link associated with the channel-specific notification.
+ * @property {string} - The channel-specific content.
+ * @property {string} - The channel-specific title.
  */
 export type Sms = z.infer<typeof sms>;
 

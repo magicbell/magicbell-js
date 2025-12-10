@@ -12,7 +12,7 @@ export const fcmTokenPayload = z.lazy(() => {
 /**
  *
  * @typedef  {FcmTokenPayload} fcmTokenPayload
- * @property {string}
+ * @property {string} - The Firebase Cloud Messaging device registration token to associate with the user.
  */
 export type FcmTokenPayload = z.infer<typeof fcmTokenPayload>;
 

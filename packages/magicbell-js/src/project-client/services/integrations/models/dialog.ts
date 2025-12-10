@@ -12,11 +12,11 @@ export const dialog = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Dialog} dialog
- * @property {string}
- * @property {string}
- * @property {string}
+ * Styling for confirmation and action dialogs.
+ * @typedef  {Dialog} dialog - Styling for confirmation and action dialogs. - Styling for confirmation and action dialogs.
+ * @property {string} - Accent color for dialog buttons and highlights.
+ * @property {string} - Dialog background color.
+ * @property {string} - Dialog text color.
  */
 export type Dialog = z.infer<typeof dialog>;
 

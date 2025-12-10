@@ -13,8 +13,8 @@ export const inboxToken = z.lazy(() => {
 /**
  *
  * @typedef  {InboxToken} inboxToken
- * @property {string}
- * @property {string}
+ * @property {string} - Realtime connection ID to restrict delivery to a specific Ably connection.
+ * @property {string} - The in-app inbox token generated for this user.
  */
 export type InboxToken = z.infer<typeof inboxToken>;
 

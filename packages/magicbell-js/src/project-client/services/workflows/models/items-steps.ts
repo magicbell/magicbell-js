@@ -3,9 +3,9 @@ import { z } from 'zod';
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const steps = z.lazy(() => {
+export const itemsSteps = z.lazy(() => {
   return z.object({
-    command: z.string().regex(/^[A-Za-z0-9\_\:]+$/),
+    command: z.string().regex(/^[a-z_]+$/),
     if: z.string().optional().nullable(),
     input: z.any().optional().nullable(),
   });
@@ -13,21 +13,21 @@ export const steps = z.lazy(() => {
 
 /**
  *
- * @typedef  {Steps} steps
- * @property {string}
+ * @typedef  {ItemsSteps} itemsSteps
+ * @property {string} - Command to execute (e.g., broadcast, pause, wait, abort)
  * @property {string}
  * @property {any}
  */
-export type Steps = z.infer<typeof steps>;
+export type ItemsSteps = z.infer<typeof itemsSteps>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const stepsResponse = z.lazy(() => {
+export const itemsStepsResponse = z.lazy(() => {
   return z
     .object({
-      command: z.string().regex(/^[A-Za-z0-9\_\:]+$/),
+      command: z.string().regex(/^[a-z_]+$/),
       if: z.string().optional().nullable(),
       input: z.any().optional().nullable(),
     })
@@ -42,10 +42,10 @@ export const stepsResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const stepsRequest = z.lazy(() => {
+export const itemsStepsRequest = z.lazy(() => {
   return z
     .object({
-      command: z.string().regex(/^[A-Za-z0-9\_\:]+$/),
+      command: z.string().regex(/^[a-z_]+$/),
       if: z.string().optional().nullable(),
       input: z.any().optional().nullable(),
     })

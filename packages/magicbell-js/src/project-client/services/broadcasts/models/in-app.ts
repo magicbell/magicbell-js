@@ -12,11 +12,11 @@ export const inApp = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {InApp} inApp
- * @property {string}
- * @property {string}
- * @property {string}
+ * Overrides for in-app notifications.
+ * @typedef  {InApp} inApp - Overrides for in-app notifications. - Overrides for in-app notifications.
+ * @property {string} - The link associated with the channel-specific notification.
+ * @property {string} - The channel-specific content.
+ * @property {string} - The channel-specific title.
  */
 export type InApp = z.infer<typeof inApp>;
 

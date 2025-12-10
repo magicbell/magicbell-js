@@ -12,7 +12,7 @@ export const slackTokenWebhook = z.lazy(() => {
 /**
  * Obtained directly from the incoming_webhook object in the installation response from the Slack API.
  * @typedef  {SlackTokenWebhook} slackTokenWebhook - Obtained directly from the incoming_webhook object in the installation response from the Slack API. - Obtained directly from the incoming_webhook object in the installation response from the Slack API.
- * @property {string}
+ * @property {string} - The URL for the incoming webhook from Slack
  */
 export type SlackTokenWebhook = z.infer<typeof slackTokenWebhook>;
 

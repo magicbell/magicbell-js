@@ -48,11 +48,11 @@ Lists all Inbox tokens belonging to the authenticated user. Returns a paginated 
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -69,7 +69,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 123,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -107,7 +107,7 @@ import { Client, InboxToken } from 'magicbell-js/user-client';
 
   const inboxToken: InboxToken = {
     connectionId: 'connection_id',
-    token: 'insint adipisic',
+    token: 'ut sint volupta',
   };
 
   const { data } = await client.channels.saveInboxToken(inboxToken);
@@ -191,11 +191,11 @@ Lists all APNs tokens belonging to the authenticated user. Returns a paginated l
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -252,7 +252,7 @@ import { ApnsTokenPayload, ApnsTokenPayloadInstallationId, Client } from 'magicb
 
   const apnsTokenPayload: ApnsTokenPayload = {
     appId: 'app_id',
-    deviceToken: 'doea occaecat q',
+    deviceToken: 'ipsumlaboreaute',
     installationId: apnsTokenPayloadInstallationId,
   };
 
@@ -337,11 +337,11 @@ Lists all Expo tokens belonging to the authenticated user. Returns a paginated l
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -358,7 +358,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listExpoTokens({
-    limit: 8,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -479,11 +479,11 @@ Lists all FCM tokens belonging to the authenticated user. Returns a paginated li
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -500,7 +500,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listFcmTokens({
-    limit: 3,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -537,7 +537,7 @@ import { Client, FcmTokenPayload } from 'magicbell-js/user-client';
   });
 
   const fcmTokenPayload: FcmTokenPayload = {
-    deviceToken: 'voluptate incid',
+    deviceToken: 'eu amet incidid',
   };
 
   const { data } = await client.channels.saveFcmToken(fcmTokenPayload);
@@ -621,11 +621,11 @@ Lists all MagicBell SlackBot tokens belonging to the authenticated user. Returns
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -642,7 +642,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listMagicbellSlackbotTokens({
-    limit: 2,
+    limit: 5,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -774,11 +774,11 @@ Lists all Slack tokens belonging to the authenticated user. Returns a paginated 
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -927,11 +927,11 @@ Lists all Teams tokens belonging to the authenticated user. Returns a paginated 
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -948,7 +948,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listTeamsTokens({
-    limit: 123,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -1144,11 +1144,11 @@ Lists all Web Push tokens belonging to the authenticated user. Returns a paginat
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -1165,7 +1165,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listWebPushTokens({
-    limit: 1,
+    limit: 7,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

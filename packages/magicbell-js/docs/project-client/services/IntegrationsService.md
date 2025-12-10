@@ -63,11 +63,11 @@ Lists all available and configured integrations for the project. Returns a summa
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -84,7 +84,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.integrations.listIntegrations({
-    limit: 2,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -154,13 +154,12 @@ import { ApnsConfigPayload, Badge, Client, PayloadVersion } from 'magicbell-js/p
   const apnsConfigPayload: ApnsConfigPayload = {
     appId: "app_id",
     badge: badge,
-    certificate: " BEGIN PRIVATE KEY--
-  2tSdsGz=
-  --------- END PRIVATE KEYYYYYYYYYYY--------
-  ",
-    keyId: "proident s",
+    certificate: "BEGIN PRIVATE KEY-------
+  gFxJylwSefd=
+  ---------- END PRIVATE KEYYY-------",
+    keyId: "reprehende",
     payloadVersion: payloadVersion,
-    teamId: "laborum ut"
+    teamId: "incididunt"
   };
 
   const { data } = await client.integrations.saveApnsIntegration(apnsConfigPayload);
@@ -178,9 +177,9 @@ Deletes the APNs integration configuration from the project. This will disable t
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -273,9 +272,9 @@ Deletes the EventSource integration configuration from the project. This will di
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -368,9 +367,9 @@ Deletes the Expo integration configuration from the project. This will disable t
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -452,9 +451,10 @@ import { Client, FcmConfigPayload, Type_ } from 'magicbell-js/project-client';
     clientEmail: "client_email",
     clientId: "client_id",
     clientX509CertUrl: "client_x509_cert_url",
-    privateKey: "----BEGINZZASTRAXC-
-  NBdNmSp
-  ------- ENDTLCHMVK----------",
+    privateKey: "---------- BEGINYE----------
+  HvohQopACH
+  ---- ENDVQKST--
+  ",
     privateKeyId: "private_key_id",
     projectId: "project_id",
     tokenUri: "token_uri",
@@ -477,9 +477,9 @@ Deletes the FCM integration configuration from the project. This will disable th
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -572,9 +572,9 @@ Deletes the GitHub integration configuration from the project. This will disable
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -675,7 +675,7 @@ import {
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 4.93,
+    backgroundOpacity: 9.35,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -796,9 +796,9 @@ Deletes the Inbox integration configuration from the project. This will disable 
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -891,9 +891,9 @@ Deletes the MagicBell SlackBot integration configuration from the project. This 
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -996,9 +996,9 @@ Deletes the Mailgun integration configuration from the project. This will disabl
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1091,9 +1091,9 @@ Deletes the Ping Email integration configuration from the project. This will dis
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1203,9 +1203,9 @@ Deletes the SendGrid integration configuration from the project. This will disab
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1306,9 +1306,9 @@ Deletes the Amazon SES integration configuration from the project. This will dis
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1383,10 +1383,10 @@ import { Client, SlackConfigPayload } from 'magicbell-js/project-client';
   });
 
   const slackConfigPayload: SlackConfigPayload = {
-    appId: 'O7RI',
-    clientId: '104.7350704',
-    clientSecret: 'officia fugiat nostrud Excepteur',
-    signingSecret: 'non sit exanim ad enim eaexlabor',
+    appId: 'ZL',
+    clientId: '0354.1286',
+    clientSecret: 'voluptatenulla anim consequat ve',
+    signingSecret: 'inirureconsequat Ut nisiexercita',
   };
 
   const { data } = await client.integrations.saveSlackIntegration(slackConfigPayload);
@@ -1404,9 +1404,9 @@ Deletes the Slack integration configuration from the project. This will disable 
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1517,9 +1517,9 @@ Deletes the SMTP integration configuration from the project. This will disable t
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1613,9 +1613,9 @@ Deletes the Stripe integration configuration from the project. This will disable
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1693,7 +1693,7 @@ import { Client, TwilioConfigPayload } from 'magicbell-js/project-client';
     accountSid: 'account_sid',
     apiKey: 'api_key',
     apiSecret: 'api_secret',
-    from: '+28378825295343',
+    from: '+59052747',
   };
 
   const { data } = await client.integrations.saveTwilioIntegration(twilioConfigPayload);
@@ -1711,9 +1711,9 @@ Deletes the Twilio integration configuration from the project. This will disable
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 
@@ -1807,9 +1807,9 @@ Deletes the Web Push integration configuration from the project. This will disab
 
 **Parameters**
 
-| Name | Type   | Required | Description |
-| :--- | :----- | :------- | :---------- |
-| id   | string | ❌       |             |
+| Name | Type   | Required | Description                                            |
+| :--- | :----- | :------- | :----------------------------------------------------- |
+| id   | string | ❌       | the unique identifier of the integration to be deleted |
 
 **Example Usage Code Snippet**
 

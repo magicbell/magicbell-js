@@ -10,9 +10,9 @@ export const unseenHover = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {UnseenHover} unseenHover
- * @property {string}
+ * Hover styles for unseen notifications.
+ * @typedef  {UnseenHover} unseenHover - Hover styles for unseen notifications. - Hover styles for unseen notifications.
+ * @property {string} - Background color on hover for unseen notifications.
  */
 export type UnseenHover = z.infer<typeof unseenHover>;
 

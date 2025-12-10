@@ -14,9 +14,9 @@ export const oauth = z.lazy(() => {
 /**
  *
  * @typedef  {Oauth} oauth
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The ID of the Slack channel this installation is associated with
+ * @property {string} - A unique identifier for this Slack workspace installation
+ * @property {string} - The OAuth scope granted during installation
  */
 export type Oauth = z.infer<typeof oauth>;
 

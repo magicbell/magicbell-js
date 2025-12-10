@@ -17,12 +17,12 @@ export const authedUser = z.lazy(() => {
 /**
  *
  * @typedef  {AuthedUser} authedUser
- * @property {string}
- * @property {number}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - User token returned from the OAuth exchange.
+ * @property {number} - Seconds until the user token expires.
+ * @property {string} - Slack user ID for the installer.
+ * @property {string} - Refresh token for the authed user.
+ * @property {string} - Space-delimited OAuth scopes granted to the user token.
+ * @property {string} - Token type value provided by Slack.
  */
 export type AuthedUser = z.infer<typeof authedUser>;
 

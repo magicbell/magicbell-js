@@ -12,7 +12,7 @@ export const expoConfigPayload = z.lazy(() => {
 /**
  *
  * @typedef  {ExpoConfigPayload} expoConfigPayload
- * @property {string}
+ * @property {string} - The Expo access token used to authenticate push notifications.
  */
 export type ExpoConfigPayload = z.infer<typeof expoConfigPayload>;
 

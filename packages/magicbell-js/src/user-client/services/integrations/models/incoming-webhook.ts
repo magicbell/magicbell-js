@@ -14,9 +14,9 @@ export const incomingWebhook = z.lazy(() => {
 /**
  *
  * @typedef  {IncomingWebhook} incomingWebhook
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - Human readable name for the webhook channel.
+ * @property {string} - URL users can visit to manage the webhook.
+ * @property {string} - Webhook URL that Slack posts events to.
  */
 export type IncomingWebhook = z.infer<typeof incomingWebhook>;
 
