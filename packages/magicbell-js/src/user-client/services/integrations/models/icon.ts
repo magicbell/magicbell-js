@@ -11,10 +11,10 @@ export const icon = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Icon} icon
- * @property {string}
- * @property {string}
+ * Launcher icon styling overrides.
+ * @typedef  {Icon} icon - Launcher icon styling overrides. - Launcher icon styling overrides.
+ * @property {string} - CSS color used for the icon border.
+ * @property {string} - Width of the launcher icon (any CSS length).
  */
 export type Icon = z.infer<typeof icon>;
 

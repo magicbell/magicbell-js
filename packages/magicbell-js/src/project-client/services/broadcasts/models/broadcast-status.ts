@@ -15,11 +15,11 @@ export const broadcastStatus = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {BroadcastStatus} broadcastStatus
- * @property {Errors[]}
- * @property {StatusStatus}
- * @property {Summary}
+ * The runtime state of the broadcast execution.
+ * @typedef  {BroadcastStatus} broadcastStatus - The runtime state of the broadcast execution. - The runtime state of the broadcast execution.
+ * @property {Errors[]} - A list of errors encountered while processing the broadcast.
+ * @property {StatusStatus} - The overall processing status of the broadcast.
+ * @property {Summary} - The summary counts for total recipients and failures.
  */
 export type BroadcastStatus = z.infer<typeof broadcastStatus>;
 

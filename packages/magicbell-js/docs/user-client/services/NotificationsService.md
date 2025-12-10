@@ -22,14 +22,14 @@ Lists all notifications for a user.
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
-| status        | string | ❌       |             |
-| category      | string | ❌       |             |
-| topic         | string | ❌       |             |
+| Name          | Type   | Required | Description                                                                       |
+| :------------ | :----- | :------- | :-------------------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)              |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page            |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page               |
+| status        | string | ❌       | filter notifications by their read state, one of 'unread' \| 'read' \| 'archived' |
+| category      | string | ❌       | filter notifications by their category                                            |
+| topic         | string | ❌       | filter notifications by their topic                                               |
 
 **Return Type**
 
@@ -46,7 +46,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.notifications.listNotifications({
-    limit: 5,
+    limit: 1,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     status: 'status',
@@ -67,10 +67,10 @@ Archive all notifications.
 
 **Parameters**
 
-| Name     | Type   | Required | Description |
-| :------- | :----- | :------- | :---------- |
-| category | string | ❌       |             |
-| topic    | string | ❌       |             |
+| Name     | Type   | Required | Description                            |
+| :------- | :----- | :------- | :------------------------------------- |
+| category | string | ❌       | filter notifications by their category |
+| topic    | string | ❌       | filter notifications by their topic    |
 
 **Example Usage Code Snippet**
 
@@ -100,10 +100,10 @@ Marks all notifications as read.
 
 **Parameters**
 
-| Name     | Type   | Required | Description |
-| :------- | :----- | :------- | :---------- |
-| category | string | ❌       |             |
-| topic    | string | ❌       |             |
+| Name     | Type   | Required | Description                            |
+| :------- | :----- | :------- | :------------------------------------- |
+| category | string | ❌       | filter notifications by their category |
+| topic    | string | ❌       | filter notifications by their topic    |
 
 **Example Usage Code Snippet**
 

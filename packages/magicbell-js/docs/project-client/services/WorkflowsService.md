@@ -4,11 +4,39 @@ A list of all methods in the `WorkflowsService` service. Click on the method nam
 
 | Methods                                 | Description                                              |
 | :-------------------------------------- | :------------------------------------------------------- |
+| [fetchWorkflows](#fetchworkflows)       | Retrieves all workflow definitions for the project       |
 | [saveWorkflow](#saveworkflow)           | Creates or updates a workflow definition for the project |
 | [fetchWorkflow](#fetchworkflow)         | Retrieves a workflow definition by key                   |
 | [createWorkflowRun](#createworkflowrun) | Executes a workflow with the provided input parameters   |
 | [fetchWorkflowRun](#fetchworkflowrun)   | Retrieves the status and details of a workflow run       |
 | [listWorkflowRuns](#listworkflowruns)   | Retrieves all runs for a specific workflow               |
+
+## fetchWorkflows
+
+Retrieves all workflow definitions for the project
+
+- HTTP Method: `GET`
+- Endpoint: `/workflows`
+
+**Return Type**
+
+`WorkflowList`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/project-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.workflows.fetchWorkflows();
+
+  console.log(data);
+})();
+```
 
 ## saveWorkflow
 
@@ -30,14 +58,14 @@ Creates or updates a workflow definition for the project
 **Example Usage Code Snippet**
 
 ```typescript
-import { Client, Steps, WorkflowDefinition } from 'magicbell-js/project-client';
+import { Client, WorkflowDefinition, WorkflowDefinitionSteps } from 'magicbell-js/project-client';
 
 (async () => {
   const client = new Client({
     token: 'YOUR_TOKEN',
   });
 
-  const steps: Steps = {
+  const workflowDefinitionSteps: WorkflowDefinitionSteps = {
     command: 'command',
     if: 'if',
     input: {},
@@ -46,7 +74,7 @@ import { Client, Steps, WorkflowDefinition } from 'magicbell-js/project-client';
   const workflowDefinition: WorkflowDefinition = {
     disabled: true,
     key: 'key',
-    steps: [steps],
+    steps: [workflowDefinitionSteps],
   };
 
   const { data } = await client.workflows.saveWorkflow(workflowDefinition);

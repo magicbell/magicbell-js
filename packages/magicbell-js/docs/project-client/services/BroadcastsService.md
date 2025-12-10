@@ -17,11 +17,11 @@ Retrieves a paginated list of broadcasts for the project. Returns basic informat
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -38,7 +38,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 1,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -158,8 +158,8 @@ import {
   const statusStatus = StatusStatus.ENQUEUED;
 
   const summary: Summary = {
-    failures: 4,
-    total: 5,
+    failures: 3,
+    total: 7,
   };
 
   const broadcastStatus: BroadcastStatus = {

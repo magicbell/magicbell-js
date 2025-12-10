@@ -17,12 +17,12 @@ export const inboxTokenResponse = z.lazy(() => {
 /**
  *
  * @typedef  {InboxTokenResponse} inboxTokenResponse
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - Realtime connection ID to restrict delivery to a specific Ably connection.
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
+ * @property {string} - The in-app inbox token generated for this user.
+ * @property {string} - The timestamp when the token metadata last changed.
  */
 export type InboxTokenResponse = z.infer<typeof inboxTokenResponse>;
 

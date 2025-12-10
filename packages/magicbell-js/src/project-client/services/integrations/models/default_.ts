@@ -20,16 +20,16 @@ export const default_ = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Default_} default_
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {DefaultHover}
- * @property {string}
- * @property {DefaultState}
- * @property {string}
+ * Base styles applied to every notification item.
+ * @typedef  {Default_} default_ - Base styles applied to every notification item. - Base styles applied to every notification item.
+ * @property {string} - Background color for notifications in their default state.
+ * @property {string} - Border radius applied to each notification card.
+ * @property {string} - Font family for notification text.
+ * @property {string} - Font size for notification text.
+ * @property {DefaultHover} - Styles applied when a notification is hovered.
+ * @property {string} - CSS margin applied around each notification card.
+ * @property {DefaultState} - Accent colors for notification state indicators.
+ * @property {string} - Default text color for notifications.
  */
 export type Default_ = z.infer<typeof default_>;
 

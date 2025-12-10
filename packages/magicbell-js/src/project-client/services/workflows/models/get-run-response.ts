@@ -14,6 +14,7 @@ export const getRunResponse = z.lazy(() => {
   return z.object({
     createdAt: z.string().optional(),
     id: z.string().optional(),
+    input: z.any().optional(),
     status: getRunResponseStatus.optional(),
     workflowKey: z.string().optional(),
   });
@@ -24,6 +25,7 @@ export const getRunResponse = z.lazy(() => {
  * @typedef  {GetRunResponse} getRunResponse
  * @property {string}
  * @property {string}
+ * @property {any}
  * @property {GetRunResponseStatus}
  * @property {string}
  */
@@ -38,12 +40,14 @@ export const getRunResponseResponse = z.lazy(() => {
     .object({
       created_at: z.string().optional(),
       id: z.string().optional(),
+      input: z.any().optional(),
       status: getRunResponseStatusResponse.optional(),
       workflow_key: z.string().optional(),
     })
     .transform((data) => ({
       createdAt: data['created_at'],
       id: data['id'],
+      input: data['input'],
       status: data['status'],
       workflowKey: data['workflow_key'],
     }));
@@ -58,12 +62,14 @@ export const getRunResponseRequest = z.lazy(() => {
     .object({
       createdAt: z.string().optional(),
       id: z.string().optional(),
+      input: z.any().optional(),
       status: getRunResponseStatusRequest.optional(),
       workflowKey: z.string().optional(),
     })
     .transform((data) => ({
       created_at: data['createdAt'],
       id: data['id'],
+      input: data['input'],
       status: data['status'],
       workflow_key: data['workflowKey'],
     }));

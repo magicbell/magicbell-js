@@ -24,15 +24,15 @@ export const theme = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Theme} theme
- * @property {Banner}
- * @property {Dialog}
- * @property {Footer}
- * @property {Header}
- * @property {Icon}
- * @property {Notification}
- * @property {UnseenBadge}
+ * Visual customization options for the hosted inbox widget.
+ * @typedef  {Theme} theme - Visual customization options for the hosted inbox widget. - Visual customization options for the hosted inbox widget.
+ * @property {Banner} - Top banner styling options.
+ * @property {Dialog} - Styling for confirmation and action dialogs.
+ * @property {Footer} - Footer styling for the inbox modal.
+ * @property {Header} - Header styling for the inbox modal.
+ * @property {Icon} - Launcher icon styling overrides.
+ * @property {Notification} - Styling overrides for notification list items.
+ * @property {UnseenBadge} - Badge styling for unseen notification counts.
  */
 export type Theme = z.infer<typeof theme>;
 

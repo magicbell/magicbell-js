@@ -2,15 +2,15 @@
 
 **Properties**
 
-| Name           | Type                           | Required | Description                                                                                                                                                                       |
-| :------------- | :----------------------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| deviceToken    | string                         | ✅       |                                                                                                                                                                                   |
-| appId          | string                         | ❌       | (Optional) The bundle identifier of the application that is registering this token. Use this field to override the default identifier specified in the projects APNs integration. |
-| installationId | ApnsTokenPayloadInstallationId | ❌       | (Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.                                                     |
+| Name           | Type                           | Required | Description                                                                                                                                      |
+| :------------- | :----------------------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| deviceToken    | string                         | ✅       | The APNs device token to register with MagicBell.                                                                                                |
+| appId          | string                         | ❌       | The bundle identifier of the application registering this token. Use this to override the default identifier configured on the APNs integration. |
+| installationId | ApnsTokenPayloadInstallationId | ❌       | The APNs environment this token belongs to. If omitted we assume it targets `production`.                                                        |
 
 # ApnsTokenPayloadInstallationId
 
-(Optional) The APNs environment the token is registered for. If none is provided we assume the token is used in `production`.
+The APNs environment this token belongs to. If omitted we assume it targets `production`.
 
 **Properties**
 

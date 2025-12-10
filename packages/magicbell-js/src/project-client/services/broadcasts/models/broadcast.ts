@@ -41,17 +41,17 @@ export const broadcast = z.lazy(() => {
 /**
  *
  * @typedef  {Broadcast} broadcast
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The URL recipients will be directed to when interacting with the broadcast.
+ * @property {string} - The label used to group broadcasts.
+ * @property {string} - The body content delivered with the broadcast.
  * @property {string} - The timestamp when the broadcast was created.
- * @property {any}
+ * @property {any} - Arbitrary custom data associated with the broadcast.
  * @property {string} - The unique id for this broadcast.
- * @property {Overrides}
- * @property {User[]}
- * @property {BroadcastStatus}
- * @property {string}
- * @property {string}
+ * @property {Overrides} - Channel- or provider-specific values that override the defaults.
+ * @property {User[]} - A collection of users or filters that determine who receives the broadcast.
+ * @property {BroadcastStatus} - The runtime state of the broadcast execution.
+ * @property {string} - The subject or headline that will be shown to recipients.
+ * @property {string} - The topic that further classifies the broadcast.
  */
 export type Broadcast = z.infer<typeof broadcast>;
 

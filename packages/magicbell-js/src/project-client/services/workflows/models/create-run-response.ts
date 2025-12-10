@@ -12,7 +12,7 @@ export const createRunResponse = z.lazy(() => {
 /**
  *
  * @typedef  {CreateRunResponse} createRunResponse
- * @property {string}
+ * @property {string} - Identifier of the workflow run that was created.
  */
 export type CreateRunResponse = z.infer<typeof createRunResponse>;
 

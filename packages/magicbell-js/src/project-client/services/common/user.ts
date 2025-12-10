@@ -21,16 +21,16 @@ export const user = z.lazy(() => {
 /**
  *
  * @typedef  {User} user
- * @property {string}
- * @property {any}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the user was created.
+ * @property {any} - Arbitrary custom values stored on the user.
+ * @property {string} - The primary email address of the user.
+ * @property {string} - The user identifier from an external system.
+ * @property {string} - The first name of the user.
+ * @property {string} - The unique identifier for the user.
+ * @property {string} - The last name of the user.
+ * @property {string} - The timestamp when the user last received a notification.
+ * @property {string} - The timestamp when the user last opened the inbox.
+ * @property {string} - The timestamp when the user was last updated.
  */
 export type User = z.infer<typeof user>;
 

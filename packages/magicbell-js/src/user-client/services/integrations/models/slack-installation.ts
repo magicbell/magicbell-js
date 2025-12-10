@@ -37,19 +37,19 @@ export const slackInstallation = z.lazy(() => {
 /**
  *
  * @typedef  {SlackInstallation} slackInstallation
- * @property {string}
- * @property {string}
+ * @property {string} - Bot token returned from the Slack OAuth exchange.
+ * @property {string} - Slack app identifier for the installed app.
  * @property {AuthedUser}
- * @property {string}
+ * @property {string} - Slack user ID of the installed bot.
  * @property {Enterprise}
- * @property {number}
- * @property {string}
+ * @property {number} - Seconds until the bot access token expires.
+ * @property {string} - Unique identifier MagicBell assigns to the Slack installation.
  * @property {IncomingWebhook}
- * @property {boolean}
- * @property {string}
- * @property {string}
+ * @property {boolean} - Indicates whether the installation occurred on an enterprise grid.
+ * @property {string} - Refresh token for regenerating the bot access token.
+ * @property {string} - Space-delimited OAuth scopes granted to the bot token.
  * @property {Team}
- * @property {string}
+ * @property {string} - Type of bot token returned by Slack.
  */
 export type SlackInstallation = z.infer<typeof slackInstallation>;
 

@@ -10,9 +10,9 @@ export const unseenState = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {UnseenState} unseenState
- * @property {string}
+ * State indicator styling for unseen notifications.
+ * @typedef  {UnseenState} unseenState - State indicator styling for unseen notifications. - State indicator styling for unseen notifications.
+ * @property {string} - Color for the unseen state indicator.
  */
 export type UnseenState = z.infer<typeof unseenState>;
 

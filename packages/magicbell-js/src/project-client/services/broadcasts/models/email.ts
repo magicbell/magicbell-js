@@ -12,11 +12,11 @@ export const email = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Email} email
- * @property {string}
- * @property {string}
- * @property {string}
+ * Overrides for email notifications.
+ * @typedef  {Email} email - Overrides for email notifications. - Overrides for email notifications.
+ * @property {string} - The link associated with the channel-specific notification.
+ * @property {string} - The channel-specific content.
+ * @property {string} - The channel-specific title.
  */
 export type Email = z.infer<typeof email>;
 

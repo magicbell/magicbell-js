@@ -66,7 +66,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 1,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -180,6 +180,7 @@ The SDK includes several models that represent the data structures used in API r
 | [UserCollection](models/UserCollection.md)                             |             |
 | [User](models/User.md)                                                 |             |
 | [Links](models/Links.md)                                               |             |
+| [WorkflowList](models/WorkflowList.md)                                 |             |
 | [WorkflowDefinition](models/WorkflowDefinition.md)                     |             |
 | [ExecuteWorkflowRequest](models/ExecuteWorkflowRequest.md)             |             |
 | [CreateRunResponse](models/CreateRunResponse.md)                       |             |

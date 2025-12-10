@@ -16,12 +16,12 @@ export const unseen = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Unseen} unseen
- * @property {string}
- * @property {UnseenHover}
- * @property {UnseenState}
- * @property {string}
+ * Overrides for unseen notifications.
+ * @typedef  {Unseen} unseen - Overrides for unseen notifications. - Overrides for unseen notifications.
+ * @property {string} - Background color applied to unseen notifications.
+ * @property {UnseenHover} - Hover styles for unseen notifications.
+ * @property {UnseenState} - State indicator styling for unseen notifications.
+ * @property {string} - Text color used when a notification is unseen.
  */
 export type Unseen = z.infer<typeof unseen>;
 

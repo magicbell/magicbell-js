@@ -106,9 +106,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all Inbox tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<InboxTokenResponseCollection>>} - OK
    */
@@ -236,9 +236,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all APNs tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ApnsTokenCollection>>} - OK
    */
@@ -366,9 +366,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all Expo tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<ExpoTokenCollection>>} - OK
    */
@@ -496,9 +496,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all FCM tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<FcmTokenCollection>>} - OK
    */
@@ -626,9 +626,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all MagicBell SlackBot tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackTokenCollection>>} - OK
    */
@@ -756,9 +756,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all Slack tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<SlackTokenCollection>>} - OK
    */
@@ -886,9 +886,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all Teams tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<TeamsTokenCollection>>} - OK
    */
@@ -1016,9 +1016,9 @@ export class ChannelsService extends BaseService {
   /**
    * Lists all Web Push tokens associated with a specific user. This endpoint is available to project administrators and returns a paginated list of tokens, including both active and revoked tokens.
    * @param {string} userId -
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<WebPushTokenCollection>>} - OK
    */

@@ -24,9 +24,9 @@ export const categoryDeliveryConfig = z.lazy(() => {
 /**
  *
  * @typedef  {CategoryDeliveryConfig} categoryDeliveryConfig
- * @property {CategoryDeliveryConfigChannels[]}
- * @property {boolean}
- * @property {string}
+ * @property {CategoryDeliveryConfigChannels[]} - Ordered channel steps the delivery planner should execute.
+ * @property {boolean} - Disables the plan so it cannot be executed.
+ * @property {string} - Unique identifier for this delivery plan.
  */
 export type CategoryDeliveryConfig = z.infer<typeof categoryDeliveryConfig>;
 

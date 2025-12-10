@@ -20,11 +20,11 @@ export const apnsConfigPayload = z.lazy(() => {
  *
  * @typedef  {ApnsConfigPayload} apnsConfigPayload
  * @property {string} - The default bundle identifier of the application that is configured with this project. It can be overriden on a per token basis, when registering device tokens.
- * @property {Badge}
+ * @property {Badge} - Controls whether the app icon badge counts unread or unseen notifications.
  * @property {string} - The APNs certificate in P8 format. Generate it at [developer.apple.com](https://developer.apple.com/account/resources/authkeys/add) with the 'Apple Push Notification service (APNs)' option selected.
- * @property {string}
- * @property {PayloadVersion}
- * @property {string}
+ * @property {string} - The 10-character Key ID from your Apple Developer account used with the P8 certificate.
+ * @property {PayloadVersion} - Internal payload format version used by MagicBell.
+ * @property {string} - The Apple Developer Team ID that owns the configured key.
  */
 export type ApnsConfigPayload = z.infer<typeof apnsConfigPayload>;
 

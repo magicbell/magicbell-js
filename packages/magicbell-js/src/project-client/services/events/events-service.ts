@@ -13,9 +13,9 @@ import { ListEventsParams } from './request-params.js';
 export class EventsService extends BaseService {
   /**
    * Retrieves a paginated list of events for the project.
-   * @param {number} [params.limit] -
-   * @param {string} [params.startingAfter] -
-   * @param {string} [params.endingBefore] -
+   * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
+   * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
+   * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
    * @returns {Promise<HttpResponse<EventCollection>>} - OK
    */

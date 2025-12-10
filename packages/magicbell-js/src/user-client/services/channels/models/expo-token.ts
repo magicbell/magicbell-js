@@ -16,11 +16,11 @@ export const expoToken = z.lazy(() => {
 /**
  *
  * @typedef  {ExpoToken} expoToken
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The Expo push token returned by the Expo client.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
+ * @property {string} - The timestamp when the token metadata last changed.
  */
 export type ExpoToken = z.infer<typeof expoToken>;
 

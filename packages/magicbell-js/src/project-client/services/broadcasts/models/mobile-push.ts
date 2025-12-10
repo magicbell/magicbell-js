@@ -12,11 +12,11 @@ export const mobilePush = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {MobilePush} mobilePush
- * @property {string}
- * @property {string}
- * @property {string}
+ * Overrides for mobile push notifications.
+ * @typedef  {MobilePush} mobilePush - Overrides for mobile push notifications. - Overrides for mobile push notifications.
+ * @property {string} - The link associated with the channel-specific notification.
+ * @property {string} - The channel-specific content.
+ * @property {string} - The channel-specific title.
  */
 export type MobilePush = z.infer<typeof mobilePush>;
 

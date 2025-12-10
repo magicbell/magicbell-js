@@ -30,11 +30,11 @@ export const slackToken = z.lazy(() => {
 /**
  *
  * @typedef  {SlackToken} slackToken
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the token was created.
+ * @property {string} - The timestamp when the token was discarded, if applicable.
+ * @property {string} - The unique identifier for the token.
  * @property {SlackTokenOauth}
- * @property {string}
+ * @property {string} - The timestamp when the token metadata last changed.
  * @property {SlackTokenWebhook} - Obtained directly from the incoming_webhook object in the installation response from the Slack API.
  */
 export type SlackToken = z.infer<typeof slackToken>;

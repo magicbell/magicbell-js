@@ -1,40 +1,35 @@
 import { z } from 'zod';
 
-import {
-  WorkflowDefinitionSteps,
-  workflowDefinitionSteps,
-  workflowDefinitionStepsRequest,
-  workflowDefinitionStepsResponse,
-} from './workflow-definition-steps.js';
+import { ItemsSteps, itemsSteps, itemsStepsRequest, itemsStepsResponse } from './items-steps.js';
 
 /**
  * The shape of the model inside the application code - what the users use
  */
-export const workflowDefinition = z.lazy(() => {
+export const items = z.lazy(() => {
   return z.object({
     disabled: z.boolean().optional(),
     key: z
       .string()
       .min(3)
       .regex(/^[A-Za-z0-9\_\.\-\:]+$/),
-    steps: z.array(workflowDefinitionSteps),
+    steps: z.array(itemsSteps),
   });
 });
 
 /**
  *
- * @typedef  {WorkflowDefinition} workflowDefinition
- * @property {boolean} - When true, prevents the workflow from being triggered.
- * @property {string} - Unique identifier for this workflow definition.
- * @property {WorkflowDefinitionSteps[]} - Ordered list describing each action that will run inside the workflow.
+ * @typedef  {Items} items
+ * @property {boolean}
+ * @property {string}
+ * @property {ItemsSteps[]}
  */
-export type WorkflowDefinition = z.infer<typeof workflowDefinition>;
+export type Items = z.infer<typeof items>;
 
 /**
  * The shape of the model mapping from the api schema into the application shape.
  * Is equal to application shape if all property names match the api schema
  */
-export const workflowDefinitionResponse = z.lazy(() => {
+export const itemsResponse = z.lazy(() => {
   return z
     .object({
       disabled: z.boolean().optional(),
@@ -42,7 +37,7 @@ export const workflowDefinitionResponse = z.lazy(() => {
         .string()
         .min(3)
         .regex(/^[A-Za-z0-9\_\.\-\:]+$/),
-      steps: z.array(workflowDefinitionStepsResponse),
+      steps: z.array(itemsStepsResponse),
     })
     .transform((data) => ({
       disabled: data['disabled'],
@@ -55,7 +50,7 @@ export const workflowDefinitionResponse = z.lazy(() => {
  * The shape of the model mapping from the application shape into the api schema.
  * Is equal to application shape if all property names match the api schema
  */
-export const workflowDefinitionRequest = z.lazy(() => {
+export const itemsRequest = z.lazy(() => {
   return z
     .object({
       disabled: z.boolean().optional(),
@@ -63,7 +58,7 @@ export const workflowDefinitionRequest = z.lazy(() => {
         .string()
         .min(3)
         .regex(/^[A-Za-z0-9\_\.\-\:]+$/),
-      steps: z.array(workflowDefinitionStepsRequest),
+      steps: z.array(itemsStepsRequest),
     })
     .transform((data) => ({
       disabled: data['disabled'],

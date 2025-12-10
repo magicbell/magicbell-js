@@ -18,12 +18,12 @@ export const overridesChannels = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {OverridesChannels} overridesChannels
- * @property {Email}
- * @property {InApp}
- * @property {MobilePush}
- * @property {Sms}
+ * Overrides that are scoped to individual delivery channels.
+ * @typedef  {OverridesChannels} overridesChannels - Overrides that are scoped to individual delivery channels. - Overrides that are scoped to individual delivery channels.
+ * @property {Email} - Overrides for email notifications.
+ * @property {InApp} - Overrides for in-app notifications.
+ * @property {MobilePush} - Overrides for mobile push notifications.
+ * @property {Sms} - Overrides for SMS notifications.
  */
 export type OverridesChannels = z.infer<typeof overridesChannels>;
 

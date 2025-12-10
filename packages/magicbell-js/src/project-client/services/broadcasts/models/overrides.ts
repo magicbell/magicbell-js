@@ -19,10 +19,10 @@ export const overrides = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Overrides} overrides
- * @property {OverridesChannels}
- * @property {Providers}
+ * Channel- or provider-specific values that override the defaults.
+ * @typedef  {Overrides} overrides - Channel- or provider-specific values that override the defaults. - Channel- or provider-specific values that override the defaults.
+ * @property {OverridesChannels} - Overrides that are scoped to individual delivery channels.
+ * @property {Providers} - Overrides that are scoped to specific providers for a channel.
  */
 export type Overrides = z.infer<typeof overrides>;
 

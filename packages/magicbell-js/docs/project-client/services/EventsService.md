@@ -16,11 +16,11 @@ Retrieves a paginated list of events for the project.
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
 
 **Return Type**
 
@@ -37,7 +37,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.events.listEvents({
-    limit: 1,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

@@ -15,10 +15,10 @@ export const slackStartInstall = z.lazy(() => {
 /**
  *
  * @typedef  {SlackStartInstall} slackStartInstall
- * @property {string}
- * @property {string}
- * @property {string[]}
- * @property {string}
+ * @property {string} - Slack app ID that the installation flow should use.
+ * @property {string} - Optional override for the authorization URL returned to the client.
+ * @property {string[]} - Additional OAuth scopes to request during installation.
+ * @property {string} - Custom redirect URL to use after OAuth completes.
  */
 export type SlackStartInstall = z.infer<typeof slackStartInstall>;
 

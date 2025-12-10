@@ -13,8 +13,8 @@ export const webPushStartInstallationResponse = z.lazy(() => {
 /**
  *
  * @typedef  {WebPushStartInstallationResponse} webPushStartInstallationResponse
- * @property {string}
- * @property {string}
+ * @property {string} - Auth secret returned from PushSubscription.getKey('auth').
+ * @property {string} - VAPID public key generated for this web push installation.
  */
 export type WebPushStartInstallationResponse = z.infer<typeof webPushStartInstallationResponse>;
 

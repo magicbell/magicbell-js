@@ -10,9 +10,9 @@ export const images = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Images} images
- * @property {string}
+ * Image overrides for assets used in the inbox UI.
+ * @typedef  {Images} images - Image overrides for assets used in the inbox UI. - Image overrides for assets used in the inbox UI.
+ * @property {string} - URL for the illustration shown when the inbox is empty.
  */
 export type Images = z.infer<typeof images>;
 

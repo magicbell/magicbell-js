@@ -69,7 +69,7 @@ import {
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 8.51,
+    backgroundOpacity: 8.17,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -232,48 +232,52 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
 
 (async () => {
   const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
+	token: 'YOUR_TOKEN',
+});
+
 
   const authedUser: AuthedUser = {
-    accessToken: 'access_token',
-    expiresIn: 123,
-    id: 'id',
-    refreshToken: 'refresh_token',
-    scope: 'scope',
-    tokenType: 'token_type',
+    accessToken: "access_token",
+    expiresIn: 1,
+    id: "id",
+    refreshToken: "refresh_token",
+    scope: "scope",
+    tokenType: "token_type"
   };
+
 
   const enterprise: Enterprise = {
-    id: 'id',
-    name: 'name',
+    id: "id",
+    name: "name"
   };
+
 
   const incomingWebhook: IncomingWebhook = {
-    channel: 'channel',
-    configurationUrl: 'configuration_url',
-    url: 'url',
+    channel: "channel",
+    configurationUrl: "configuration_url",
+    url: "url"
   };
 
+
   const team: Team = {
-    id: 'id',
-    name: 'name',
+    id: "id",
+    name: "name"
   };
 
   const slackInstallation: SlackInstallation = {
-    accessToken: 'access_token',
-    appId: 'app_id',
+    accessToken: "access_token",
+    appId: "app_id",
     authedUser: authedUser,
-    botUserId: 'bot_user_id',
+    botUserId: "bot_user_id",
     enterprise: enterprise,
-    expiresIn: 1,
-    id: '8-P^R',
+    expiresIn: 4,
+    id: "CCAJ-G\",
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
-    refreshToken: 'refresh_token',
-    scope: 'scope',
+    refreshToken: "refresh_token",
+    scope: "scope",
     team: team,
-    tokenType: 'token_type',
+    tokenType: "token_type"
   };
 
   const { data } = await client.integrations.saveMagicbellSlackbotInstallation(slackInstallation);
@@ -385,48 +389,52 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
 
 (async () => {
   const client = new Client({
-    token: 'YOUR_TOKEN',
-  });
+	token: 'YOUR_TOKEN',
+});
+
 
   const authedUser: AuthedUser = {
-    accessToken: 'access_token',
-    expiresIn: 123,
-    id: 'id',
-    refreshToken: 'refresh_token',
-    scope: 'scope',
-    tokenType: 'token_type',
+    accessToken: "access_token",
+    expiresIn: 1,
+    id: "id",
+    refreshToken: "refresh_token",
+    scope: "scope",
+    tokenType: "token_type"
   };
+
 
   const enterprise: Enterprise = {
-    id: 'id',
-    name: 'name',
+    id: "id",
+    name: "name"
   };
+
 
   const incomingWebhook: IncomingWebhook = {
-    channel: 'channel',
-    configurationUrl: 'configuration_url',
-    url: 'url',
+    channel: "channel",
+    configurationUrl: "configuration_url",
+    url: "url"
   };
 
+
   const team: Team = {
-    id: 'id',
-    name: 'name',
+    id: "id",
+    name: "name"
   };
 
   const slackInstallation: SlackInstallation = {
-    accessToken: 'access_token',
-    appId: 'app_id',
+    accessToken: "access_token",
+    appId: "app_id",
     authedUser: authedUser,
-    botUserId: 'bot_user_id',
+    botUserId: "bot_user_id",
     enterprise: enterprise,
-    expiresIn: 1,
-    id: '8-P^R',
+    expiresIn: 4,
+    id: "CCAJ-G\",
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
-    refreshToken: 'refresh_token',
-    scope: 'scope',
+    refreshToken: "refresh_token",
+    scope: "scope",
     team: team,
-    tokenType: 'token_type',
+    tokenType: "token_type"
   };
 
   const { data } = await client.integrations.saveSlackInstallation(slackInstallation);

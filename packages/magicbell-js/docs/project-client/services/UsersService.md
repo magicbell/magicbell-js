@@ -17,12 +17,12 @@ Lists all users in the project.
 
 **Parameters**
 
-| Name          | Type   | Required | Description |
-| :------------ | :----- | :------- | :---------- |
-| limit         | number | ❌       |             |
-| startingAfter | string | ❌       |             |
-| endingBefore  | string | ❌       |             |
-| query         | string | ❌       |             |
+| Name          | Type   | Required | Description                                                            |
+| :------------ | :----- | :------- | :--------------------------------------------------------------------- |
+| limit         | number | ❌       | defines the maximum number of items to return per page (default: 50)   |
+| startingAfter | string | ❌       | a cursor for use in pagination, points to the last ID in previous page |
+| endingBefore  | string | ❌       | a cursor for use in pagination, points to the first ID in next page    |
+| query         | string | ❌       | filter users by their email address or external ID                     |
 
 **Return Type**
 
@@ -39,7 +39,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.users.listUsers({
-    limit: 1,
+    limit: 6,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
     query: 'query',

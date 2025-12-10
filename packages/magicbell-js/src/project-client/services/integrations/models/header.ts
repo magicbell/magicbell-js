@@ -14,13 +14,13 @@ export const header = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Header} header
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * Header styling for the inbox modal.
+ * @typedef  {Header} header - Header styling for the inbox modal. - Header styling for the inbox modal.
+ * @property {string} - Header background color.
+ * @property {string} - Border radius applied to the header container.
+ * @property {string} - CSS font family for the header title.
+ * @property {string} - Font size used in the header.
+ * @property {string} - Header text color.
  */
 export type Header = z.infer<typeof header>;
 

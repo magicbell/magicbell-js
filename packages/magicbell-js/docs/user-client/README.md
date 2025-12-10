@@ -66,7 +66,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 123,
+    limit: 10,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

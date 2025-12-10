@@ -10,6 +10,7 @@ export const event = z.lazy(() => {
     id: z.string(),
     level: z.string().optional(),
     log: z.string().optional().nullable(),
+    payload: z.any().optional().nullable(),
     timestamp: z.string(),
     type: z.string(),
   });
@@ -18,13 +19,14 @@ export const event = z.lazy(() => {
 /**
  *
  * @typedef  {Event} event
- * @property {number}
- * @property {any}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * @property {number} - The numeric code that categorizes the event.
+ * @property {any} - Additional contextual attributes for the event.
+ * @property {string} - The unique identifier for the event.
+ * @property {string} - The severity level assigned to the event.
+ * @property {string} - A human-readable log message.
+ * @property {any} - The raw payload delivered by the event source.
+ * @property {string} - The time at which the event was recorded.
+ * @property {string} - The type of event that occurred.
  */
 export type Event = z.infer<typeof event>;
 
@@ -40,6 +42,7 @@ export const eventResponse = z.lazy(() => {
       id: z.string(),
       level: z.string().optional(),
       log: z.string().optional().nullable(),
+      payload: z.any().optional().nullable(),
       timestamp: z.string(),
       type: z.string(),
     })
@@ -49,6 +52,7 @@ export const eventResponse = z.lazy(() => {
       id: data['id'],
       level: data['level'],
       log: data['log'],
+      payload: data['payload'],
       timestamp: data['timestamp'],
       type: data['type'],
     }));
@@ -66,6 +70,7 @@ export const eventRequest = z.lazy(() => {
       id: z.string(),
       level: z.string().optional(),
       log: z.string().optional().nullable(),
+      payload: z.any().optional().nullable(),
       timestamp: z.string(),
       type: z.string(),
     })
@@ -75,6 +80,7 @@ export const eventRequest = z.lazy(() => {
       id: data['id'],
       level: data['level'],
       log: data['log'],
+      payload: data['payload'],
       timestamp: data['timestamp'],
       type: data['type'],
     }));

@@ -6,6 +6,7 @@
 | :---------- | :------------------- | :------- | :---------- |
 | createdAt   | string               | ❌       |             |
 | id          | string               | ❌       |             |
+| input       | any                  | ❌       |             |
 | status      | GetRunResponseStatus | ❌       |             |
 | workflowKey | string               | ❌       |             |
 

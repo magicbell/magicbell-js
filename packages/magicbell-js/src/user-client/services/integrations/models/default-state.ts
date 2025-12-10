@@ -10,9 +10,9 @@ export const defaultState = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {DefaultState} defaultState
- * @property {string}
+ * Accent colors for notification state indicators.
+ * @typedef  {DefaultState} defaultState - Accent colors for notification state indicators. - Accent colors for notification state indicators.
+ * @property {string} - Color used for the state indicator.
  */
 export type DefaultState = z.infer<typeof defaultState>;
 

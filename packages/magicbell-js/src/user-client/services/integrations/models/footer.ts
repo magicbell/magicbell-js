@@ -13,12 +13,12 @@ export const footer = z.lazy(() => {
 });
 
 /**
- *
- * @typedef  {Footer} footer
- * @property {string}
- * @property {string}
- * @property {string}
- * @property {string}
+ * Footer styling for the inbox modal.
+ * @typedef  {Footer} footer - Footer styling for the inbox modal. - Footer styling for the inbox modal.
+ * @property {string} - Footer background color.
+ * @property {string} - Border radius applied to the footer container.
+ * @property {string} - Font size used in the footer.
+ * @property {string} - Footer text color.
  */
 export type Footer = z.infer<typeof footer>;
 

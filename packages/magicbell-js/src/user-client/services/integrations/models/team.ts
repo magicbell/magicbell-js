@@ -13,8 +13,8 @@ export const team = z.lazy(() => {
 /**
  *
  * @typedef  {Team} team
- * @property {string}
- * @property {string}
+ * @property {string} - Workspace ID where the app was installed.
+ * @property {string} - Workspace name where the app was installed.
  */
 export type Team = z.infer<typeof team>;
 

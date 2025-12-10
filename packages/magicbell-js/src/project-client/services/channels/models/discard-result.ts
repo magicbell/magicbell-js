@@ -13,8 +13,8 @@ export const discardResult = z.lazy(() => {
 /**
  *
  * @typedef  {DiscardResult} discardResult
- * @property {string}
- * @property {string}
+ * @property {string} - The timestamp when the token was discarded.
+ * @property {string} - The unique identifier for the discarded token.
  */
 export type DiscardResult = z.infer<typeof discardResult>;
 
