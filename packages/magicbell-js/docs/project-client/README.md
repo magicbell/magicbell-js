@@ -66,7 +66,7 @@ import { Client } from 'magicbell-js/project-client';
   });
 
   const { data } = await client.broadcasts.listBroadcasts({
-    limit: 9,
+    limit: 2,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });

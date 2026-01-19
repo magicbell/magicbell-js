@@ -14,7 +14,7 @@ export const webpushConfigPayload = z.lazy(() => {
  *
  * @typedef  {WebpushConfigPayload} webpushConfigPayload
  * @property {string} - VAPID private key - from the pair you generated.
- * @property {string} - VAPID public key - generate one at https://magicbell.com/web-push/vapid-keys.
+ * @property {string} - VAPID public key - generate one at https://magicbell.com/tools/vapid-keys.
  */
 export type WebpushConfigPayload = z.infer<typeof webpushConfigPayload>;
 
