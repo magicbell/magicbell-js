@@ -7,11 +7,24 @@ import { ErrorDefinition } from '../transport/types.js';
 import { ContentType, HttpResponse, RequestHandler } from '../types.js';
 import { getContentTypeDefinition } from '../utils/content-type.js';
 
+/**
+ * Request handler that invokes custom hooks before requests and after responses.
+ * Enables request/response interception and custom error handling.
+ */
 export class HookHandler implements RequestHandler {
+  /** Next handler in the chain */
   next?: RequestHandler;
 
   constructor(private readonly hook: Hook) {}
 
+  /**
+   * Handles a standard HTTP request with hook invocation.
+   * Calls beforeRequest hook, processes the request, and calls afterResponse or onError hooks.
+   * @template T - The expected response data type
+   * @param request - The HTTP request to process
+   * @returns A promise that resolves to the HTTP response
+   * @throws Error if no next handler is set, or if error handling fails
+   */
   async handle<T>(request: Request): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in hook handler.');
@@ -54,6 +67,14 @@ export class HookHandler implements RequestHandler {
     );
   }
 
+  /**
+   * Handles a streaming HTTP request with hook invocation.
+   * Calls beforeRequest hook and afterResponse/onError hooks for each chunk.
+   * @template T - The expected response data type for each chunk
+   * @param request - The HTTP request to process
+   * @returns An async generator that yields HTTP responses
+   * @throws Error if no next handler is set, or if error handling fails
+   */
   async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in hook handler.');
@@ -76,6 +97,12 @@ export class HookHandler implements RequestHandler {
     }
   }
 
+  /**
+   * Extracts hook parameters from the request configuration.
+   * @template T - The response data type
+   * @param request - The HTTP request
+   * @returns A map of hook parameter names to values
+   */
   private getHookParams<T>(_request: Request): Map<string, string> {
     const hookParams: Map<string, string> = new Map();
     return hookParams;

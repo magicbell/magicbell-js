@@ -8,7 +8,9 @@ import {
 } from './mailgun-config-payload.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the MailgunConfig model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const mailgunConfig = z.lazy(() => {
   return z.object({
@@ -28,8 +30,9 @@ export const mailgunConfig = z.lazy(() => {
 export type MailgunConfig = z.infer<typeof mailgunConfig>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the MailgunConfig application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const mailgunConfigResponse = z.lazy(() => {
   return z
@@ -46,8 +49,9 @@ export const mailgunConfigResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the MailgunConfig application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const mailgunConfigRequest = z.lazy(() => {
   return z

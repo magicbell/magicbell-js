@@ -55,6 +55,11 @@ import {
   ListWebPushTokensParams,
 } from './request-params.js';
 
+/**
+ * Service class for ChannelsService operations.
+ * Provides methods to interact with ChannelsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class ChannelsService extends BaseService {
   /**
    * Lists all Inbox tokens belonging to the authenticated user. Returns a paginated list of tokens, including their status, creation dates, and associated metadata.

@@ -14,7 +14,9 @@ import {
 import { UnseenBadge, unseenBadge, unseenBadgeRequest, unseenBadgeResponse } from './unseen-badge.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the Theme model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const theme = z.lazy(() => {
   return z.object({
@@ -42,8 +44,9 @@ export const theme = z.lazy(() => {
 export type Theme = z.infer<typeof theme>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the Theme application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const themeResponse = z.lazy(() => {
   return z
@@ -68,8 +71,9 @@ export const themeResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the Theme application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const themeRequest = z.lazy(() => {
   return z

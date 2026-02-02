@@ -10,6 +10,11 @@ import { Broadcast, broadcastRequest, broadcastResponse } from './models/broadca
 import { BroadcastCollection, broadcastCollectionResponse } from './models/broadcast-collection.js';
 import { ListBroadcastsParams } from './request-params.js';
 
+/**
+ * Service class for BroadcastsService operations.
+ * Provides methods to interact with BroadcastsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class BroadcastsService extends BaseService {
   /**
    * Retrieves a paginated list of broadcasts for the project. Returns basic information about each broadcast including its creation time and status.

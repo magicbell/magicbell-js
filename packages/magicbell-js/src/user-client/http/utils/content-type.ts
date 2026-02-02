@@ -1,5 +1,12 @@
 import { ContentType } from '../types.js';
 
+/**
+ * Determines the ContentType enum value from a MIME type string.
+ * Maps HTTP Content-Type header values to the SDK's ContentType enum.
+ * Handles special cases like text/json (parsed as JSON), image/svg+xml (text), and wildcards.
+ * @param contentType - The Content-Type header value (e.g., "application/json", "text/plain")
+ * @returns The corresponding ContentType enum value
+ */
 export function getContentTypeDefinition(contentType: string): ContentType {
   const ct = contentType.toLowerCase();
 

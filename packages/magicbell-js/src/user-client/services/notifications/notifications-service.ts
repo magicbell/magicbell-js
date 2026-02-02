@@ -14,6 +14,11 @@ import {
   MarkAllNotificationsReadParams,
 } from './request-params.js';
 
+/**
+ * Service class for NotificationsService operations.
+ * Provides methods to interact with NotificationsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class NotificationsService extends BaseService {
   /**
    * Lists all notifications for a user.

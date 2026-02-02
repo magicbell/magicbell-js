@@ -4,7 +4,9 @@ import { Links, links, linksRequest, linksResponse } from '../../common/links.js
 import { Broadcast, broadcast, broadcastRequest, broadcastResponse } from './broadcast.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the BroadcastCollection model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const broadcastCollection = z.lazy(() => {
   return z.object({
@@ -22,8 +24,9 @@ export const broadcastCollection = z.lazy(() => {
 export type BroadcastCollection = z.infer<typeof broadcastCollection>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the BroadcastCollection application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const broadcastCollectionResponse = z.lazy(() => {
   return z
@@ -38,8 +41,9 @@ export const broadcastCollectionResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the BroadcastCollection application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const broadcastCollectionRequest = z.lazy(() => {
   return z

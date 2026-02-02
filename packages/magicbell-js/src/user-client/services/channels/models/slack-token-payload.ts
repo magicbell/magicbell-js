@@ -14,7 +14,9 @@ import {
 } from './slack-token-payload-webhook.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the SlackTokenPayload model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const slackTokenPayload = z.lazy(() => {
   return z.object({
@@ -32,8 +34,9 @@ export const slackTokenPayload = z.lazy(() => {
 export type SlackTokenPayload = z.infer<typeof slackTokenPayload>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the SlackTokenPayload application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const slackTokenPayloadResponse = z.lazy(() => {
   return z
@@ -48,8 +51,9 @@ export const slackTokenPayloadResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the SlackTokenPayload application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const slackTokenPayloadRequest = z.lazy(() => {
   return z

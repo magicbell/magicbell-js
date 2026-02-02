@@ -120,6 +120,11 @@ import {
   ListIntegrationsParams,
 } from './request-params.js';
 
+/**
+ * Service class for IntegrationsService operations.
+ * Provides methods to interact with IntegrationsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class IntegrationsService extends BaseService {
   /**
    * Lists all available and configured integrations for the project. Returns a summary of each integration including its type, status, and basic configuration information.

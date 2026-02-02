@@ -4,7 +4,9 @@ import { Links, links, linksRequest, linksResponse } from '../../common/links.js
 import { User, user, userRequest, userResponse } from '../../common/user.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the UserCollection model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const userCollection = z.lazy(() => {
   return z.object({
@@ -22,8 +24,9 @@ export const userCollection = z.lazy(() => {
 export type UserCollection = z.infer<typeof userCollection>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the UserCollection application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const userCollectionResponse = z.lazy(() => {
   return z
@@ -38,8 +41,9 @@ export const userCollectionResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the UserCollection application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const userCollectionRequest = z.lazy(() => {
   return z
