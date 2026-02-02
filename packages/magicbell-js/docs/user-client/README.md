@@ -66,7 +66,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 10,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -126,8 +126,8 @@ The SDK includes several models that represent the data structures used in API r
 | [InboxConfigPayload](models/InboxConfigPayload.md)                             |             |
 | [SlackInstallation](models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](models/SlackFinishInstallResponse.md)             |             |
-| [SlackStartInstall](models/SlackStartInstall.md)                               |             |
 | [SlackStartInstallResponseContent](models/SlackStartInstallResponseContent.md) |             |
+| [SlackStartInstall](models/SlackStartInstall.md)                               |             |
 | [WebPushTokenPayload](models/WebPushTokenPayload.md)                           |             |
 | [WebPushStartInstallationResponse](models/WebPushStartInstallationResponse.md) |             |
 | [NotificationCollection](models/NotificationCollection.md)                     |             |

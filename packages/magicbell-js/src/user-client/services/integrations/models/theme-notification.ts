@@ -5,7 +5,9 @@ import { Unread, unread, unreadRequest, unreadResponse } from './unread.js';
 import { Unseen, unseen, unseenRequest, unseenResponse } from './unseen.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the ThemeNotification model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const themeNotification = z.lazy(() => {
   return z.object({
@@ -25,8 +27,9 @@ export const themeNotification = z.lazy(() => {
 export type ThemeNotification = z.infer<typeof themeNotification>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the ThemeNotification application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const themeNotificationResponse = z.lazy(() => {
   return z
@@ -43,8 +46,9 @@ export const themeNotificationResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the ThemeNotification application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const themeNotificationRequest = z.lazy(() => {
   return z

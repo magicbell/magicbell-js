@@ -17,6 +17,11 @@ import {
 import { WorkflowList, workflowListResponse } from './models/workflow-list.js';
 import { WorkflowRunCollection, workflowRunCollectionResponse } from './models/workflow-run-collection.js';
 
+/**
+ * Service class for WorkflowsService operations.
+ * Provides methods to interact with WorkflowsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class WorkflowsService extends BaseService {
   /**
    * Retrieves all workflow definitions for the project

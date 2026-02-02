@@ -31,6 +31,11 @@ import {
   webPushStartInstallationResponseResponse,
 } from './models/web-push-start-installation-response.js';
 
+/**
+ * Service class for IntegrationsService operations.
+ * Provides methods to interact with IntegrationsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class IntegrationsService extends BaseService {
   /**
    * Creates a new installation of a Inbox integration for a user. This endpoint is used when an integration needs to be set up with user-specific credentials or configuration.

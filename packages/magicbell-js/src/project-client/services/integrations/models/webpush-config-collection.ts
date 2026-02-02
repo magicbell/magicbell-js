@@ -4,7 +4,9 @@ import { Links, links, linksRequest, linksResponse } from '../../common/links.js
 import { WebpushConfig, webpushConfig, webpushConfigRequest, webpushConfigResponse } from './webpush-config.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the WebpushConfigCollection model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const webpushConfigCollection = z.lazy(() => {
   return z.object({
@@ -22,8 +24,9 @@ export const webpushConfigCollection = z.lazy(() => {
 export type WebpushConfigCollection = z.infer<typeof webpushConfigCollection>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the WebpushConfigCollection application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const webpushConfigCollectionResponse = z.lazy(() => {
   return z
@@ -38,8 +41,9 @@ export const webpushConfigCollectionResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the WebpushConfigCollection application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const webpushConfigCollectionRequest = z.lazy(() => {
   return z

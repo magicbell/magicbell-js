@@ -180,8 +180,8 @@ The SDK includes several models that represent the data structures used in API r
 | [Links](docs/project-client/models/Links.md)                                               |             |
 | [WorkflowList](docs/project-client/models/WorkflowList.md)                                 |             |
 | [WorkflowDefinition](docs/project-client/models/WorkflowDefinition.md)                     |             |
-| [ExecuteWorkflowRequest](docs/project-client/models/ExecuteWorkflowRequest.md)             |             |
 | [CreateRunResponse](docs/project-client/models/CreateRunResponse.md)                       |             |
+| [ExecuteWorkflowRequest](docs/project-client/models/ExecuteWorkflowRequest.md)             |             |
 | [GetRunResponse](docs/project-client/models/GetRunResponse.md)                             |             |
 | [WorkflowRunCollection](docs/project-client/models/WorkflowRunCollection.md)               |             |
 | [WorkflowRun](docs/project-client/models/WorkflowRun.md)                                   |             |
@@ -239,7 +239,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 10,
+    limit: 3,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -299,8 +299,8 @@ The SDK includes several models that represent the data structures used in API r
 | [InboxConfigPayload](docs/user-client/models/InboxConfigPayload.md)                             |             |
 | [SlackInstallation](docs/user-client/models/SlackInstallation.md)                               |             |
 | [SlackFinishInstallResponse](docs/user-client/models/SlackFinishInstallResponse.md)             |             |
-| [SlackStartInstall](docs/user-client/models/SlackStartInstall.md)                               |             |
 | [SlackStartInstallResponseContent](docs/user-client/models/SlackStartInstallResponseContent.md) |             |
+| [SlackStartInstall](docs/user-client/models/SlackStartInstall.md)                               |             |
 | [WebPushTokenPayload](docs/user-client/models/WebPushTokenPayload.md)                           |             |
 | [WebPushStartInstallationResponse](docs/user-client/models/WebPushStartInstallationResponse.md) |             |
 | [NotificationCollection](docs/user-client/models/NotificationCollection.md)                     |             |

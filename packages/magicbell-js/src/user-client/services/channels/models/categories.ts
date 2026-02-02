@@ -3,7 +3,9 @@ import { z } from 'zod';
 import { Channels, channels, channelsRequest, channelsResponse } from './channels.js';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the Categories model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const categories = z.lazy(() => {
   return z.object({
@@ -27,8 +29,9 @@ export const categories = z.lazy(() => {
 export type Categories = z.infer<typeof categories>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the Categories application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const categoriesResponse = z.lazy(() => {
   return z
@@ -49,8 +52,9 @@ export const categoriesResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the Categories application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const categoriesRequest = z.lazy(() => {
   return z

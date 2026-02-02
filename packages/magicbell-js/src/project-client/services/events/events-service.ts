@@ -10,6 +10,11 @@ import { Event, eventResponse } from './models/event.js';
 import { EventCollection, eventCollectionResponse } from './models/event-collection.js';
 import { ListEventsParams } from './request-params.js';
 
+/**
+ * Service class for EventsService operations.
+ * Provides methods to interact with EventsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class EventsService extends BaseService {
   /**
    * Retrieves a paginated list of events for the project.

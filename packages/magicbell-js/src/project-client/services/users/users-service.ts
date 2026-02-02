@@ -10,6 +10,11 @@ import { User, userRequest, userResponse } from '../common/user.js';
 import { UserCollection, userCollectionResponse } from './models/user-collection.js';
 import { ListUsersParams } from './request-params.js';
 
+/**
+ * Service class for UsersService operations.
+ * Provides methods to interact with UsersService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class UsersService extends BaseService {
   /**
    * Lists all users in the project.

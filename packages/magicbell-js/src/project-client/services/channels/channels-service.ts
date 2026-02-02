@@ -40,6 +40,11 @@ import {
   ListUserWebPushTokensParams,
 } from './request-params.js';
 
+/**
+ * Service class for ChannelsService operations.
+ * Provides methods to interact with ChannelsService-related API endpoints.
+ * All methods return promises and handle request/response serialization automatically.
+ */
 export class ChannelsService extends BaseService {
   /**
    * Save the channels configuration for a given key.

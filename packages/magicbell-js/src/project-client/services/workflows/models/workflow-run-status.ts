@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
 /**
- * The shape of the model inside the application code - what the users use
+ * Zod schema for the WorkflowRunStatus model.
+ * Defines the structure and validation rules for this data type.
+ * This is the shape used in application code - what developers interact with.
  */
 export const workflowRunStatus = z.lazy(() => {
   return z.object({
@@ -25,8 +27,9 @@ export const workflowRunStatus = z.lazy(() => {
 export type WorkflowRunStatus = z.infer<typeof workflowRunStatus>;
 
 /**
- * The shape of the model mapping from the api schema into the application shape.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping API responses to the WorkflowRunStatus application shape.
+ * Handles any property name transformations from the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const workflowRunStatusResponse = z.lazy(() => {
   return z
@@ -47,8 +50,9 @@ export const workflowRunStatusResponse = z.lazy(() => {
 });
 
 /**
- * The shape of the model mapping from the application shape into the api schema.
- * Is equal to application shape if all property names match the api schema
+ * Zod schema for mapping the WorkflowRunStatus application shape to API requests.
+ * Handles any property name transformations required by the API schema.
+ * If property names match the API schema exactly, this is identical to the application shape.
  */
 export const workflowRunStatusRequest = z.lazy(() => {
   return z
