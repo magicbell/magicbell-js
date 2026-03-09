@@ -10,7 +10,7 @@
   "packageManager": "yarn@1.22.22",
   "type": "module",
   "scripts": {
-    "clean": "manypkg exec yarn clean",
+    "clean": "turbo run clean",
     "start": "turbo run start --parallel --no-cache --filter=!playground",
     "start:example": "yarn --cwd example && yarn --cwd example start",
     "start:storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
