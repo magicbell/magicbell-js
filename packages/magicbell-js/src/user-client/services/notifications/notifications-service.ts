@@ -6,10 +6,12 @@ import { SerializationStyle } from '../../http/serialization/base-serializer.js'
 import { RequestBuilder } from '../../http/transport/request-builder.js';
 import { ContentType, HttpResponse, RequestConfig } from '../../http/types.js';
 import { BaseService } from '../base-service.js';
+import { CountResponse, countResponseResponse } from './models/count-response.js';
 import { Notification, notificationResponse } from './models/notification.js';
 import { NotificationCollection, notificationCollectionResponse } from './models/notification-collection.js';
 import {
   ArchiveAllNotificationsParams,
+  FetchUnreadNotificationsCountParams,
   ListNotificationsParams,
   MarkAllNotificationsReadParams,
 } from './request-params.js';
@@ -155,6 +157,45 @@ export class NotificationsService extends BaseService {
       })
       .build();
     return this.client.call<void>(request);
+  }
+
+  /**
+   * Returns the count of unread notifications for a user. Supports filtering by category and topic.
+   * @param {string} [params.category] - filter notifications by their category
+   * @param {string} [params.topic] - filter notifications by their topic
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<CountResponse>>} - OK
+   */
+  async fetchUnreadNotificationsCount(
+    params?: FetchUnreadNotificationsCountParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<CountResponse>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('GET')
+      .setPath('/notifications/unread/count')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: countResponseResponse,
+        contentType: ContentType.Json,
+        status: 200,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addQueryParam({
+        key: 'category',
+        value: params?.category,
+      })
+      .addQueryParam({
+        key: 'topic',
+        value: params?.topic,
+      })
+      .build();
+    return this.client.call<CountResponse>(request);
   }
 
   /**

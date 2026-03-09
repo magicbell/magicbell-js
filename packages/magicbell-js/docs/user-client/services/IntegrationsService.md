@@ -69,7 +69,7 @@ import {
 
   const banner: Banner = {
     backgroundColor: 'backgroundColor',
-    backgroundOpacity: 0.28,
+    backgroundOpacity: 4.02,
     fontSize: 'fontSize',
     textColor: 'textColor',
   };
@@ -237,7 +237,7 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 10,
+    expiresIn: 6,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -266,8 +266,8 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 2,
-    id: 'W-|?~ #C"&(',
+    expiresIn: 3,
+    id: 'TK2IA6VH8->"',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',
@@ -390,7 +390,7 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
 
   const authedUser: AuthedUser = {
     accessToken: 'access_token',
-    expiresIn: 10,
+    expiresIn: 6,
     id: 'id',
     refreshToken: 'refresh_token',
     scope: 'scope',
@@ -419,8 +419,8 @@ import { AuthedUser, Client, Enterprise, IncomingWebhook, SlackInstallation, Tea
     authedUser: authedUser,
     botUserId: 'bot_user_id',
     enterprise: enterprise,
-    expiresIn: 2,
-    id: 'W-|?~ #C"&(',
+    expiresIn: 3,
+    id: 'TK2IA6VH8->"',
     incomingWebhook: incomingWebhook,
     isEnterpriseInstall: true,
     refreshToken: 'refresh_token',

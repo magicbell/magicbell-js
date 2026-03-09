@@ -16,3 +16,8 @@ export interface MarkAllNotificationsReadParams {
   category?: string;
   topic?: string;
 }
+
+export interface FetchUnreadNotificationsCountParams {
+  category?: string;
+  topic?: string;
+}

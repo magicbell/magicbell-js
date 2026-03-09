@@ -2,16 +2,17 @@
 
 A list of all methods in the `NotificationsService` service. Click on the method name to view detailed information about that method.
 
-| Methods                                               | Description                         |
-| :---------------------------------------------------- | :---------------------------------- |
-| [listNotifications](#listnotifications)               | Lists all notifications for a user. |
-| [archiveAllNotifications](#archiveallnotifications)   | Archive all notifications.          |
-| [markAllNotificationsRead](#markallnotificationsread) | Marks all notifications as read.    |
-| [fetchNotification](#fetchnotification)               | Gets a notification by ID.          |
-| [archiveNotification](#archivenotification)           | Archive a notification.             |
-| [markNotificationRead](#marknotificationread)         | Marks a notification as read.       |
-| [unarchiveNotification](#unarchivenotification)       | Unarchives a notification.          |
-| [markNotificationUnread](#marknotificationunread)     | Marks a notification as unread.     |
+| Methods                                                         | Description                                                                                     |
+| :-------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- |
+| [listNotifications](#listnotifications)                         | Lists all notifications for a user.                                                             |
+| [archiveAllNotifications](#archiveallnotifications)             | Archive all notifications.                                                                      |
+| [markAllNotificationsRead](#markallnotificationsread)           | Marks all notifications as read.                                                                |
+| [fetchUnreadNotificationsCount](#fetchunreadnotificationscount) | Returns the count of unread notifications for a user. Supports filtering by category and topic. |
+| [fetchNotification](#fetchnotification)                         | Gets a notification by ID.                                                                      |
+| [archiveNotification](#archivenotification)                     | Archive a notification.                                                                         |
+| [markNotificationRead](#marknotificationread)                   | Marks a notification as read.                                                                   |
+| [unarchiveNotification](#unarchivenotification)                 | Unarchives a notification.                                                                      |
+| [markNotificationUnread](#marknotificationunread)               | Marks a notification as unread.                                                                 |
 
 ## listNotifications
 
@@ -116,6 +117,43 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.notifications.markAllNotificationsRead({
+    category: 'category',
+    topic: 'topic',
+  });
+
+  console.log(data);
+})();
+```
+
+## fetchUnreadNotificationsCount
+
+Returns the count of unread notifications for a user. Supports filtering by category and topic.
+
+- HTTP Method: `GET`
+- Endpoint: `/notifications/unread/count`
+
+**Parameters**
+
+| Name     | Type   | Required | Description                            |
+| :------- | :----- | :------- | :------------------------------------- |
+| category | string | ❌       | filter notifications by their category |
+| topic    | string | ❌       | filter notifications by their topic    |
+
+**Return Type**
+
+`CountResponse`
+
+**Example Usage Code Snippet**
+
+```typescript
+import { Client } from 'magicbell-js/user-client';
+
+(async () => {
+  const client = new Client({
+    token: 'YOUR_TOKEN',
+  });
+
+  const { data } = await client.notifications.fetchUnreadNotificationsCount({
     category: 'category',
     topic: 'topic',
   });

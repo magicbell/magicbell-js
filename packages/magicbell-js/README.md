@@ -239,7 +239,7 @@ import { Client } from 'magicbell-js/user-client';
   });
 
   const { data } = await client.channels.listInboxTokens({
-    limit: 3,
+    limit: 9,
     startingAfter: 'starting_after',
     endingBefore: 'ending_before',
   });
@@ -306,6 +306,7 @@ The SDK includes several models that represent the data structures used in API r
 | [NotificationCollection](docs/user-client/models/NotificationCollection.md)                     |             |
 | [Notification](docs/user-client/models/Notification.md)                                         |             |
 | [Links](docs/user-client/models/Links.md)                                                       |             |
+| [CountResponse](docs/user-client/models/CountResponse.md)                                       |             |
 
 </details>
 
