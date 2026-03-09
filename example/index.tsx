@@ -35,9 +35,10 @@ function App() {
       }}
     >
       <MagicBell
-        serverURL="https://api.magicbell.dev"
-        apiKey="024b10085bb148d918afe3d92f42b1eba16ad0bd"
+        serverURL="https://api.magicbell.cloud"
+        apiKey="pk_rid7264AZft56l353669_88230023"
         userEmail="stephan@example.com"
+        userKey="aM/Z9j8bgFTYiWGZvA/RZ9huX/L9lj+/vS6OaKHvHJU="
         locale={customLocale}
         defaultIsOpen={true}
         stores={[
