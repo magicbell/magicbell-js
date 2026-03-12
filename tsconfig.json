@@ -24,7 +24,6 @@
       "@magicbell/embeddable": ["packages/embeddable/src"],
       "@magicbell/magicbell-react": ["packages/react/src"],
       "@magicbell/react-headless": ["packages/react-headless/src"],
-      "@magicbell/service-worker": ["packages/service-worker/src"],
       "@magicbell/utils": ["packages/utils/src"],
       "@magicbell/webpush": ["packages/webpush/src"],
       "magicbell": ["packages/magicbell/src"],
