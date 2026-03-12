@@ -2,16 +2,19 @@ name: Release
 on:
   push:
     branches:
-      - main
-      - next
+      - legacy
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.BELLA_ACTION_TOKEN }}
 
@@ -20,10 +23,22 @@ jobs:
           git config --global user.email '${{ secrets.BELLA_EMAIL_ADDRESS }}'
           git config --global user.name 'MagicBella'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24.x
+          registry-url: https://registry.npmjs.org
       - uses: bahmutov/npm-install@v1
+
+      - name: Block major releases on legacy
+        run: |
+          if yarn changeset status --output=release.json; then
+            if jq -e '.releases[] | select(.type == "major")' release.json > /dev/null; then
+              echo "Major releases are not allowed from the legacy branch."
+              exit 1
+            fi
+          else
+            echo "No pending changesets; continuing"
+          fi
 
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
@@ -34,11 +49,4 @@ jobs:
           title: 'next release'
         env:
           GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to brew tap
-        if: steps.changesets.outputs.published == 'true'
-        shell: bash
-        run: "npx -y brew-formula github @magicbell/cli magicbell/homebrew-tap --test-command 'magicbell logout' --test-output '/you are not logged in/i'"
-        env:
-          GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
