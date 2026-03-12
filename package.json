@@ -31,7 +31,7 @@
     "postinstall": "husky && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
     "changeset:version": "changeset version",
-    "changeset:release": "yarn build && changeset publish",
+    "changeset:release": "turbo build && changeset publish",
     "console": "ts-node"
   },
   "lint-staged": {
@@ -45,8 +45,8 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.0",
     "@babel/core": "^7.27.1",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.1",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
     "@manypkg/cli": "^0.25.1",
     "@octokit/rest": "^22.0.0",
     "@size-limit/preset-small-lib": "^11.1.4",
