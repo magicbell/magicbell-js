@@ -308,7 +308,7 @@ function createResource(scope: 'user' | 'project', resource: Resource, children:
   return recast.print(ast);
 }
 
-function createDocs(resource: Resource) {
+async function createDocs(resource: Resource) {
   const lines: Array<string> = [];
   const startLevel = 3;
 

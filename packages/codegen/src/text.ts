@@ -4,7 +4,7 @@ import prettier from 'prettier';
 
 import { prettyMarkdown } from './polyfills/prettier-module.js';
 
-export function formatMarkdown(document) {
+export async function formatMarkdown(document) {
   return prettier.format(document, {
     parser: 'markdown',
     plugins: [prettyMarkdown],

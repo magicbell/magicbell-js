@@ -312,7 +312,7 @@ await magicbell.${camelCase(resource.path.replaceAll('/', '.'))}.${method.name}(
   return String(formatMarkdown(lines.join('\n')));
 }
 
-function createFeatureFlagTable(methods: Method[]) {
+async function createFeatureFlagTable(methods: Method[]) {
   if (!methods.some((x) => x.beta)) return '_There are no features in beta at this time._';
 
   const lines: Array<string> = [];

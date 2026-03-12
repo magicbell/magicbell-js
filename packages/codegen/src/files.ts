@@ -23,8 +23,12 @@ export function replaceBlock(contents: string, block: string, replacement: strin
   return lines.join('\n');
 }
 
-export async function updateReadme(filePath: string, blockName: string, content: string | string[]) {
+export async function updateReadme(
+  filePath: string,
+  blockName: string,
+  content: string | string[] | Promise<string | string[]>,
+) {
   let readme = await fs.readFile(filePath, 'utf-8').catch(() => '');
-  readme = replaceBlock(readme, blockName, content);
+  readme = replaceBlock(readme, blockName, await content);
   return fs.writeFile(filePath, readme, 'utf-8');
 }
