@@ -7,12 +7,13 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write # Required for OIDC
-      contents: write
     steps:
       - uses: actions/checkout@v6
         with:
@@ -29,11 +30,17 @@ jobs:
           registry-url: https://registry.npmjs.org
       - uses: bahmutov/npm-install@v1
 
+      - name: Debug npm config
+        run: |
+          npm config get registry
+          npm config get provenance
+          npm config get userconfig
+
       - name: Create Release Pull Request or Publish to npm
         uses: changesets/action@v1
         id: changesets
         with:
-          publish: yarn changeset:release
+          publish: npm run changeset:release
           commit: 'chore: version packages'
           title: 'next release'
         env:

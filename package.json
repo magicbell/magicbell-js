@@ -31,7 +31,7 @@
     "postinstall": "husky && node scripts/sync-paths.js && manypkg check",
     "changeset": "changeset",
     "changeset:version": "changeset version",
-    "changeset:release": "yarn build && changeset publish",
+    "changeset:release": "turbo build && changeset publish",
     "console": "ts-node"
   },
   "lint-staged": {

@@ -10,8 +10,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/magicbell/magicbell-js.git",
+    "url": "git+https://github.com/magicbell/magicbell-js.git",
     "directory": "packages/magicbell-js"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "author": "MagicBell",
   "type": "module",
