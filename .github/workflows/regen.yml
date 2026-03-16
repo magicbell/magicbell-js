@@ -34,7 +34,11 @@ jobs:
       - name: Generate Changesets
         shell: bash
         run: |
-          CHANGED_PACKAGES=$(git diff --name-only | grep '^packages/' | awk -F/ '{print $2}' | sort -u)
+          CHANGED_PACKAGES=$(git diff --name-only | grep '^packages/' | awk -F/ '{print $2}' | sort -u || true)
+          if [ -z "$CHANGED_PACKAGES" ]; then
+            echo "No package changes detected; skipping changeset generation."
+            exit 0
+          fi
           TIMESTAMP=$(date +%s)
           mkdir -p .changeset
           for PACKAGE in $CHANGED_PACKAGES; do
