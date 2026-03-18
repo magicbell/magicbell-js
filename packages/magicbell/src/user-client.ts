@@ -2,7 +2,7 @@ import { Client } from './client/client.js';
 import { assertHasRequiredOptions } from './client/options.js';
 import { ClientOptions, WithRequired } from './client/types.js';
 import { isString } from './lib/utils.js';
-import { createListener } from './resources/listen.js';
+import { createListener, Listener } from './resources/listen.js';
 import { NotificationPreferences } from './user-resources/notification-preferences.js';
 import { Notifications } from './user-resources/notifications.js';
 import { PushSubscriptions } from './user-resources/push-subscriptions.js';
@@ -14,14 +14,15 @@ export type UserClientOptions =
   | WithRequired<Omit<ClientOptions, 'apiSecret' | 'apikey' | 'userEmail' | 'userExternalId'>, 'token'>;
 
 export class UserClient extends Client {
-  listen = createListener(this);
+  listen: Listener;
 
   notificationPreferences = new NotificationPreferences(this);
   notifications = new Notifications(this);
   pushSubscriptions = new PushSubscriptions(this);
   subscriptions = new Subscriptions(this);
+  socketURL = 'wss://ws.magicbell.com';
 
-  constructor(options: UserClientOptions) {
+  constructor({ socketURL, ...options }: UserClientOptions & { socketURL?: string }) {
     if (!('token' in options) || !isString(options.token)) {
       assertHasRequiredOptions(options, ['apiKey']);
     }
@@ -31,5 +32,10 @@ export class UserClient extends Client {
     }
 
     super(options);
+
+    this.listen = createListener(this, {
+      apiKey: options.apiKey,
+      socketURL: socketURL,
+    });
   }
 }

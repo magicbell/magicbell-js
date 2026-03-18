@@ -18,6 +18,7 @@ export type MagicBellProviderProps = {
   children: React.ReactElement | React.ReactElement[];
   stores?: StoreConfig[];
   serverURL?: string;
+  socketURL?: string;
   disableRealtime?: boolean;
   network?: {
     cacheTTL?: number;

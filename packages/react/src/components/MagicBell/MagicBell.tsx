@@ -37,6 +37,7 @@ export type Props = {
     emptyInboxUrl: string;
   }>;
   serverURL?: string;
+  socketURL?: string;
   disableRealtime?: boolean;
   onNewNotification?: (notification: IRemoteNotification) => void;
   onToggle?: (isOpen: boolean) => void;

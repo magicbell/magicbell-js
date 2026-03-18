@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import useMagicBellEvent from '../hooks/useMagicBellEvent.js';
-import { handleAblyEvent } from '../lib/realtime.js';
+import { handleSocketEvent } from '../lib/realtime.js';
 import clientSettings from '../stores/clientSettings.js';
 import { useNotificationStoresCollection } from '../stores/notifications/index.js';
 import IRemoteNotification from '../types/IRemoteNotification.js';
@@ -34,7 +34,7 @@ export default function RealtimeListener() {
 
     listen.forEach((event) => {
       if (!event) return;
-      void handleAblyEvent(event);
+      void handleSocketEvent(event);
     });
 
     return () => listen.close();

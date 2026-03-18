@@ -1,28 +1,17 @@
 import '../lib/signal-polyfill.js';
 
-import ky from '@smeijer/ky';
+import WebSocket from 'reconnecting-websocket';
 
-import { Cache } from '../client/cache.js';
 import { Client } from '../client/client.js';
-import { debug } from '../client/log.js';
+import * as log from '../client/log.js';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';
 import { RequestOptions } from '../client/types.js';
-
-type AuthResponse = {
-  keyName: string;
-  timestamp: number;
-  nonce: string;
-  ttl: number;
-  mac: string;
-};
+import { generateID } from '../lib/crypto';
 
 type TokenResponse = {
-  token: string;
-  keyName: string;
-  issued: number;
-  expires: number;
-  capability: string;
-  userClaims: string;
+  'in_app/inbox': {
+    token: string;
+  };
 };
 
 type Event = {
@@ -47,16 +36,49 @@ type IterableEventSource<TNode> = {
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
-export function createListener(client: InstanceType<typeof Client>): Listener {
-  let eventSource: EventSource;
-  let channels: string;
-  let lastEvent: string;
-  let configPromise;
-  const cache = new Cache();
+function getWebSocket(): typeof WebSocket {
+  if (typeof WebSocket === 'function') return WebSocket;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore - wrong typings - https://github.com/pladaria/reconnecting-websocket/issues/196
+  if ('default' in WebSocket && typeof WebSocket.default === 'function') {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return WebSocket.default;
+  }
+
+  throw Error('WebSocket is not defined');
+}
+
+type ListenerOptions = {
+  apiKey: string;
+  socketURL?: string;
+};
+
+export function getSessionId() {
+  if (typeof sessionStorage === 'undefined') {
+    return generateID(64);
+  }
+
+  // sessionStorage gets cleared when the page session ends. A page
+  // session lasts for as long as the browser is open and survives
+  // over page reloads and restores. Opening a page in a new tab or
+  // window will cause a new session to be initiated. This gives us
+  // a stable ID per tab, and different ID's across tabs.
+  const stored = sessionStorage.getItem('magicbell--realtime-token');
+  if (stored) return stored;
+
+  const id = generateID(64);
+  sessionStorage.setItem('magicbell--realtime-token', id);
+  return id;
+}
+
+export function createListener(client: InstanceType<typeof Client>, options: ListenerOptions): Listener {
+  let socket: WebSocket | null = null;
+  let origin: string | null = null;
+  const socketURL = options.socketURL || 'wss://ws.magicbell.com';
 
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
-  let activeCount = 0;
 
   const pushMessage = (p) => {
     messages.push(p);
@@ -67,93 +89,93 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
     }
   };
 
+  async function getToken(requestOptions: RequestOptions) {
+    const data = { inbox: { token: getSessionId() } };
+    const res = await client.request<TokenResponse>(
+      { method: 'POST', path: '/channels/in_app/inbox/tokens', data },
+      requestOptions,
+    );
+
+    return res['in_app/inbox'].token;
+  }
+
+  async function getUrl(requestOptions: RequestOptions) {
+    const token = await getToken(requestOptions);
+    const url = new URL(socketURL);
+    url.searchParams.set('api_key', options.apiKey);
+    url.searchParams.set('token', token);
+    origin = url.origin;
+    return url.toString();
+  }
+
   // accept callback or yield
-  async function connect(options?: RequestOptions) {
-    activeCount++;
-
-    // invoke config request in the background, as we only need it after the ably authentication
-    if (!channels && !configPromise) {
-      configPromise = client
-        .request({ method: 'GET', path: '/config' }, options)
-        .then((x) => (channels = x.ws.channel));
+  async function connect(requestOptions?: RequestOptions) {
+    if (socket) {
+      socket.close();
     }
 
-    const auth = await client.request<AuthResponse>({ method: 'POST', path: '/ws/auth' }, options);
-    const tokenUrl = new URL(`https://rest.ably.io/keys/${auth.keyName}/requestToken`);
-
-    // authenticate against ably
-    const cacheKey = cache.getRequestKey({ url: tokenUrl, method: 'POST', data: auth });
-    let authRequest = cache.get(cacheKey);
-    if (!authRequest) {
-      authRequest = ky(tokenUrl, {
-        method: 'POST',
-        json: auth,
-      }).then((x) => x.json<TokenResponse>());
-      cache.set(cacheKey, authRequest);
-    }
-
-    const { token } = await authRequest;
-
-    // make sure that the config request has finished
-    await configPromise;
-
-    // establish a connection with that token
-    const url = new URL('https://realtime.ably.io/sse');
-    url.searchParams.append('v', '1.1');
-    url.searchParams.append('accessToken', token);
-    url.searchParams.append('channels', channels);
-    url.searchParams.append('heartbeats', 'true');
-
-    if (lastEvent) {
-      url.searchParams.append('lastEvent', lastEvent);
-    }
-
-    if (eventSource) {
-      eventSource.close();
-    }
-
-    // dispose could've been called while we were waiting for the config request to finish
-    if (activeCount < 1) return;
-
-    // new eventsource, flush all messages so we don't auto close this immediately
+    // new connection, flush all messages so we don't auto close this immediately
     // because of stuck { done: true } messages in React.StrictMode
     messages.length = 0;
-    eventSource = new EventSource(url.toString());
+    const WS = getWebSocket();
 
-    // handle incoming messages
-    eventSource.addEventListener('message', (event) => {
-      // event.origin can be undefined in react-native (devmode?)
-      if (event.origin && event.origin !== url.origin) return;
-
-      lastEvent = event.lastEventId;
-      if (!('data' in event)) return;
-
-      const message = JSON.parse(event.data);
-      if (message.type === 'close') {
-        return pushMessage({ value: null, done: true });
-      }
-
-      message.data = message.encoding === 'json' ? JSON.parse(message.data) : message.data;
-      pushMessage({ value: message, done: false });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    socket = new WS(() => getUrl(requestOptions), [], {
+      startClosed: typeof window === 'undefined' || typeof document === 'undefined',
     });
 
-    // handle close
-    eventSource.addEventListener('close', () => {
+    socket.addEventListener('open', () => {
+      log.info('socket: open');
+    });
+
+    socket.addEventListener('message', (event) => {
+      if (event.origin !== origin) return;
+      if (!('data' in event)) return;
+
+      // todo: handle 'error'
+      if (event.type !== 'message') return;
+
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === 'close') {
+          return pushMessage({ value: null, done: true });
+        }
+
+        log.debug('socket: received message', data);
+        pushMessage({ value: data, done: false });
+      } catch (e) {
+        log.error('socket: failed to parse message', {
+          data: event.data,
+          error: e,
+        });
+      }
+    });
+
+    socket.addEventListener('close', () => {
+      log.info('socket: close');
       return pushMessage({ value: null, done: true });
     });
 
+    socket.addEventListener('error', (err) => {
+      err.type;
+    });
+
     // handle connection errors
-    eventSource.addEventListener('error', (msg) => {
-      const err = 'data' in msg ? JSON.parse((msg as any).data) : {};
+    socket.addEventListener('error', (event) => {
+      log.error('socket: error', event);
+
+      const err = 'data' in event ? JSON.parse((event as any).data) : {};
       const isTokenErr = err.code >= 40140 && err.code < 40150;
+
       if (isTokenErr) {
-        eventSource.close();
-        connect(options);
+        socket.close();
+        connect(requestOptions);
       } else if (/invalid channel id/i.test(err.message)) {
-        eventSource.close();
+        socket.close();
         pushMessage({ value: null, done: true });
       } else {
-        debug('sse error', msg);
+        console.error('socket: error', err);
       }
     });
   }
@@ -164,24 +186,23 @@ export function createListener(client: InstanceType<typeof Client>): Listener {
     const asyncIteratorNext = async () => {
       let event: (typeof messages)[number] | null = null;
 
-      // It's weird that `event` can be undefined? We don't push empty messages
-      // This happens when running in <React.StrictMode />. I guess there are
-      // two instances resolving the promise above, the second resolve results
-      // in no content. See this github pr for more context:
-      // https://github.com/magicbell/magicbell-js/pull/189
       while (!event) {
         if (!messages.length) await new Promise((r) => (resolve = r));
         event = messages.pop();
       }
 
+      // It's weird that `event` can be undefined? We don't push empty messages
+      // This happens when running in <React.StrictMode />. I guess there are
+      // two instances resolving the promise above, the second resolve results
+      // in no content. See this github pr for more context:
+      // https://github.com/magicbell/magicbell-js/pull/189
       if (!event) return { done: false, value: '' };
-      if (event.done && eventSource) eventSource.close();
+      if (event.done && socket) socket.close();
       return event;
     };
 
     const dispose = () => {
-      activeCount--;
-      eventSource?.close();
+      socket?.close();
       // push to resolve async iterators, return for sync ones
       pushMessage({ done: true, value: undefined });
       return { done: true, value: undefined };

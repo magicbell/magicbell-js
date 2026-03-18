@@ -11,6 +11,7 @@ export type ClientSettings = {
   token?: string;
   clientId: string;
   serverURL: string;
+  socketURL: string;
   getClient(): InstanceType<typeof UserClient>;
   appInfo?: { name: string; version: string };
   network?: {
@@ -38,6 +39,7 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
     token: undefined,
     clientId: Math.random().toString(36).substring(2) + Date.now(),
     serverURL: 'https://api.magicbell.com',
+    socketURL: 'wss://ws.magicbell.com',
     appInfo: undefined,
     network: {},
 
@@ -54,6 +56,7 @@ const clientSettings = createStore<ClientSettings>((set, get) => {
           apiKey: state.apiKey,
           token: state.token,
           host: state.serverURL,
+          socketURL: state.socketURL,
           appInfo: state.appInfo || {
             name: pkg.name,
             version: pkg.version,

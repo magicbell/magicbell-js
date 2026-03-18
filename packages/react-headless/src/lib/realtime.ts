@@ -55,32 +55,25 @@ export function emitEvent(event: string, data: unknown, source: EventSource) {
 }
 
 /**
- * Publish an ably event to the push event emitter. If the push event contains
+ * Publish an socket event to the push event emitter. If the push event contains
  * the ID of a notification, this is fetched before emitting the event.
  *
  * @param event The realtime event
  */
-export function handleAblyEvent(event: { name: string; data: Record<string, unknown> }) {
-  const { clientId } = clientSettings.getState();
+export async function handleSocketEvent(event: { name: string; data: Record<string, unknown> }) {
   const eventName = event.name.replace(/\//gi, '.');
   const eventData = event.data;
-  const isLoopbackEvent = eventData.client_id && eventData.client_id === clientId;
-
-  if (isLoopbackEvent) return Promise.resolve(false);
 
   if (typeof eventData.id === 'string') {
     if (eventName === 'notifications.delete') {
       emitEvent(eventName, eventData, 'remote');
-      return Promise.resolve(true);
+      return;
     } else {
       const repository = new NotificationRepository();
-      return repository.get(eventData.id).then((data) => {
-        emitEvent(eventName, data.notification, 'remote');
-        return true;
-      });
+      const data = await repository.get(eventData.id);
+      emitEvent(eventName, data.notification, 'remote');
     }
   }
 
   emitEvent(eventName, eventData, 'remote');
-  return Promise.resolve(true);
 }

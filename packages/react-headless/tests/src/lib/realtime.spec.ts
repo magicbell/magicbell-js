@@ -2,7 +2,7 @@ import faker from '@faker-js/faker';
 import { mockHandlers, setupMockServer } from '@magicbell/utils';
 
 import * as ajax from '../../../src/lib/ajax';
-import { emitEvent, eventAggregator, handleAblyEvent, pushEventAggregator } from '../../../src/lib/realtime';
+import { emitEvent, eventAggregator, handleSocketEvent, pushEventAggregator } from '../../../src/lib/realtime';
 import clientSettings from '../../../src/stores/clientSettings';
 import { sampleNotification } from '../../factories/NotificationFactory';
 
@@ -52,7 +52,7 @@ describe('.handleAblyEvent', () => {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
     };
-    handleAblyEvent(event);
+    handleSocketEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith('notification.new', event.data);
@@ -65,7 +65,7 @@ describe('.handleAblyEvent', () => {
       name: 'notification/new',
       data: { [faker.lorem.word()]: faker.lorem.word() },
     };
-    handleAblyEvent(event);
+    handleSocketEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith('notification.new', { data: event.data, source: 'remote' });
@@ -77,7 +77,7 @@ describe('.handleAblyEvent', () => {
 
     const spy = vi.spyOn(pushEventAggregator, 'emit');
     const event = { name: 'notification/new', data: { id: 'uuid' } };
-    await handleAblyEvent(event);
+    await handleSocketEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith('notification.new', sampleNotification);
@@ -87,7 +87,7 @@ describe('.handleAblyEvent', () => {
   it('does not fetch from the server for delete events', async () => {
     const spy = vi.spyOn(ajax, 'fetchAPI');
     const event = { name: 'notifications/delete', data: { id: 'uuid' } };
-    await handleAblyEvent(event);
+    await handleSocketEvent(event);
 
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
@@ -96,7 +96,7 @@ describe('.handleAblyEvent', () => {
   it('emits the event with the notification', async () => {
     const spy = vi.spyOn(pushEventAggregator, 'emit');
     const event = { name: 'notifications/delete', data: { id: 'uuid' } };
-    await handleAblyEvent(event);
+    await handleSocketEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith('notifications.delete', { id: 'uuid' });
@@ -110,7 +110,7 @@ describe('.handleAblyEvent', () => {
       name: 'notification/new',
       data: { id: 'uuid', client_id: getState().clientId },
     };
-    await handleAblyEvent(event);
+    await handleSocketEvent(event);
 
     expect(spy).not.toHaveBeenCalled();
     spy.mockRestore();
@@ -122,7 +122,7 @@ describe('.handleAblyEvent', () => {
       name: 'notification/seen/all',
       data: { client_id: faker.random.alphaNumeric(10) },
     };
-    await handleAblyEvent(event);
+    await handleSocketEvent(event);
 
     expect(spy).toHaveBeenCalledTimes(1);
     spy.mockRestore();
@@ -148,7 +148,7 @@ describe('.handleAblyEvent', () => {
     const publicEmitter = vi.spyOn(eventAggregator, 'emit');
     const clientId = faker.random.alphaNumeric(10);
 
-    await handleAblyEvent({
+    await handleSocketEvent({
       name: 'notifications/seen/all',
       data: { client_id: clientId },
     });

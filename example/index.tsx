@@ -36,6 +36,7 @@ function App() {
     >
       <MagicBell
         serverURL="https://api.magicbell.cloud"
+        socketURL="wss://ws.magicbell.cloud/staging"
         apiKey="pk_rid7264AZft56l353669_88230023"
         userEmail="stephan@example.com"
         userKey="aM/Z9j8bgFTYiWGZvA/RZ9huX/L9lj+/vS6OaKHvHJU="
