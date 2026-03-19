@@ -80,6 +80,7 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
   let activeCount = 0;
+  let reconnecting = false;
 
   const pushMessage = (p) => {
     messages.push(p);
@@ -130,15 +131,39 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
       log.info('socket: open');
     });
 
+    const handleError = (err: any) => {
+      const isTokenErr = err?.code >= 40140 && err.code < 40150;
+
+      if (isTokenErr) {
+        reconnecting = true;
+        socket?.close();
+        socket = null;
+        void connect(requestOptions);
+        return;
+      }
+
+      if (/invalid channel id/i.test(err?.message)) {
+        socket?.close();
+        socket = null;
+        pushMessage({ value: null, done: true });
+        return;
+      }
+
+      log.error('socket: error', err);
+    };
+
     socket.addEventListener('message', (event) => {
       if (event.origin !== origin) return;
       if (!('data' in event)) return;
 
-      // todo: handle 'error'
       if (event.type !== 'message') return;
 
       try {
         const data = JSON.parse(event.data);
+        if (data.type === 'error') {
+          handleError(data);
+          return;
+        }
         if (data.type === 'close') {
           return pushMessage({ value: null, done: true });
         }
@@ -155,28 +180,25 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
 
     socket.addEventListener('close', () => {
       log.info('socket: close');
+      if (reconnecting) {
+        reconnecting = false;
+        return;
+      }
       return pushMessage({ value: null, done: true });
-    });
-
-    socket.addEventListener('error', (err) => {
-      err.type;
     });
 
     // handle connection errors
     socket.addEventListener('error', (event) => {
-      log.error('socket: error', event);
+      if (!('data' in event)) {
+        log.error('socket: error', event);
+        return;
+      }
 
-      const err = 'data' in event ? JSON.parse((event as any).data) : {};
-      const isTokenErr = err.code >= 40140 && err.code < 40150;
-
-      if (isTokenErr) {
-        socket.close();
-        connect(requestOptions);
-      } else if (/invalid channel id/i.test(err.message)) {
-        socket.close();
-        pushMessage({ value: null, done: true });
-      } else {
-        console.error('socket: error', err);
+      try {
+        const err = JSON.parse((event as any).data);
+        handleError(err);
+      } catch (error) {
+        log.error('socket: error', { error, event });
       }
     });
   }
