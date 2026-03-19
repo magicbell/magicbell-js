@@ -79,6 +79,7 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
 
   const messages: { value: Event; done: boolean }[] = [];
   let resolve;
+  let activeCount = 0;
 
   const pushMessage = (p) => {
     messages.push(p);
@@ -110,14 +111,16 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
 
   // accept callback or yield
   async function connect(requestOptions?: RequestOptions) {
-    if (socket) {
-      socket.close();
+    if (activeCount < 1) return;
+
+    const WS = getWebSocket();
+    if (socket && socket.readyState !== WS.CLOSED) {
+      return;
     }
 
     // new connection, flush all messages so we don't auto close this immediately
     // because of stuck { done: true } messages in React.StrictMode
     messages.length = 0;
-    const WS = getWebSocket();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -179,6 +182,7 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
   }
 
   function listen(options?: RequestOptions): IterableEventSource<Event> {
+    activeCount++;
     void connect(options);
 
     const asyncIteratorNext = async () => {
@@ -200,7 +204,11 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
     };
 
     const dispose = () => {
-      socket?.close();
+      activeCount--;
+      if (activeCount < 1) {
+        socket?.close();
+        socket = null;
+      }
       // push to resolve async iterators, return for sync ones
       pushMessage({ done: true, value: undefined });
       return { done: true, value: undefined };
