@@ -6,7 +6,7 @@ import { Client } from '../client/client.js';
 import * as log from '../client/log.js';
 import { ASYNC_ITERATOR_SYMBOL, makeForEach } from '../client/paginate.js';
 import { RequestOptions } from '../client/types.js';
-import { generateID } from '../lib/crypto';
+import { generateID } from '../lib/crypto.js';
 
 type TokenResponse = {
   'in_app/inbox': {
@@ -36,14 +36,16 @@ type IterableEventSource<TNode> = {
 
 export type Listener = (options?: RequestOptions) => IterableEventSource<Event>;
 
-function getWebSocket(): typeof WebSocket {
-  if (typeof WebSocket === 'function') return WebSocket;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore - wrong typings - https://github.com/pladaria/reconnecting-websocket/issues/196
-  if ('default' in WebSocket && typeof WebSocket.default === 'function') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return WebSocket.default;
+type WebSocketCtor = typeof import('reconnecting-websocket').default;
+
+function getWebSocket(): WebSocketCtor {
+  if (typeof WebSocket === 'function') {
+    return WebSocket as WebSocketCtor;
+  }
+
+  const moduleDefault = (WebSocket as unknown as { default?: WebSocketCtor }).default;
+  if (typeof moduleDefault === 'function') {
+    return moduleDefault;
   }
 
   throw Error('WebSocket is not defined');
