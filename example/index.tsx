@@ -64,6 +64,7 @@ function App() {
             arrowPadding={16}
             hideArrow
             isOpen
+            closeOnClickOutside={false}
           />
         )}
       </MagicBell>
