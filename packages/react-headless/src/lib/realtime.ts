@@ -63,6 +63,11 @@ export function emitEvent(event: string, data: unknown, source: EventSource) {
 export async function handleSocketEvent(event: { name: string; data: Record<string, unknown> }) {
   const eventName = event.name.replace(/\//gi, '.');
   const eventData = event.data;
+  const clientId = clientSettings.getState().clientId;
+
+  if (eventData.client_id === clientId) {
+    return;
+  }
 
   if (typeof eventData.id === 'string') {
     if (eventName === 'notifications.delete') {
@@ -73,6 +78,7 @@ export async function handleSocketEvent(event: { name: string; data: Record<stri
       const data = await repository.get(eventData.id);
       if (!data?.notification) return;
       emitEvent(eventName, data.notification, 'remote');
+      return;
     }
   }
 

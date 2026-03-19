@@ -28,6 +28,9 @@ async function updateNotificationPreferences(req) {
 export const mockHandlers = [
   mockHandler('get', '/config', config),
   mockHandler('post', '/ws/auth', wsAuth),
+  mockHandler('post', '/channels/in_app/inbox/tokens', {
+    'in_app/inbox': { token: '14x9g6z1b81qs51brvke91pa89l7rtszif1n7jucvndf66s1lvdrbvtbw65i1hs1' },
+  }),
   mockHandler('get', '/notification_preferences', { notification_preferences: notificationPreferences }),
   mockHandler('put', '/notification_preferences', updateNotificationPreferences),
   mockHandler('post', 'https://api.magicbell.com/ably/auth', ablyAuth),
