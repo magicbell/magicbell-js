@@ -1,5 +1,11 @@
 # magicbell
 
+## 4.5.1
+
+### Patch Changes
+
+- [#587](https://github.com/magicbell/magicbell-js/pull/587) [`3bd586c`](https://github.com/magicbell/magicbell-js/commit/3bd586cae7dd953c7033bf224f166b07a2c208e6) Thanks [@MagicBella](https://github.com/MagicBella)! - Switch realtime listening to MagicBell websockets and improve listener resiliency.
+
 ## 4.5.0
 
 ### Minor Changes
