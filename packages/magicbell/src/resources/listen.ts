@@ -121,9 +121,7 @@ export function createListener(client: InstanceType<typeof Client>, options: Lis
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    socket = new WS(() => getUrl(requestOptions), [], {
-      startClosed: typeof window === 'undefined' || typeof document === 'undefined',
-    });
+    socket = new WS(() => getUrl(requestOptions));
 
     socket.addEventListener('open', () => {
       log.info('socket: open');
