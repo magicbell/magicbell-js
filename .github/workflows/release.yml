@@ -31,8 +31,8 @@ jobs:
 
       - name: Block major releases on legacy
         run: |
-          if yarn changeset status --output=release.json; then
-            if jq -e '.releases[] | select(.type == "major")' release.json > /dev/null; then
+          if yarn changeset status --output="$RUNNER_TEMP/release.json"; then
+            if jq -e '.releases[] | select(.type == "major")' "$RUNNER_TEMP/release.json" > /dev/null; then
               echo "Major releases are not allowed from the legacy branch."
               exit 1
             fi
