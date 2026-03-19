@@ -177,3 +177,101 @@ it('notifications.delete does not remove anything from the store that doesnt exi
     expect(result.current.stores['default'].notifications).toHaveLength(0);
   });
 });
+
+const makeListener = () => ({
+  forEach: vi.fn().mockReturnValue(new Promise(() => {})),
+  close: vi.fn(),
+});
+
+describe('RealtimeListener visibility', () => {
+  let listenMock: ReturnType<typeof makeListener>;
+  let client: { listen: () => ReturnType<typeof makeListener> };
+  let fetchAllSpy: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    listenMock = makeListener();
+    client = { listen: vi.fn(() => listenMock) };
+
+    clientSettings.setState({
+      apiKey: 'fake-key',
+      userEmail: 'user@example.com',
+      getClient: () => client,
+    } as any);
+
+    fetchAllSpy = vi.fn().mockResolvedValue(undefined);
+    useNotificationStoresCollection.setState({ fetchAllStores: fetchAllSpy } as any);
+
+    Object.defineProperty(document, 'hidden', { value: false, configurable: true });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  test('connects and disconnects with visibility changes', () => {
+    render(<RealtimeListener />);
+    expect(client.listen).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      Object.defineProperty(document, 'hidden', { value: true, configurable: true });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+
+    expect(listenMock.close).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      Object.defineProperty(document, 'hidden', { value: false, configurable: true });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+
+    expect(client.listen).toHaveBeenCalledTimes(2);
+    expect(fetchAllSpy).toHaveBeenCalledWith({ page: 1 }, { reset: true });
+  });
+
+  test('focus refresh is throttled', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(20000));
+    render(<RealtimeListener />);
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    act(() => {
+      window.dispatchEvent(new Event('focus'));
+    });
+
+    expect(fetchAllSpy).toHaveBeenCalledWith({ page: 1 }, { prepend: true });
+
+    vi.setSystemTime(new Date(25000));
+    act(() => {
+      window.dispatchEvent(new Event('focus'));
+    });
+
+    expect(fetchAllSpy).toHaveBeenCalledTimes(1);
+
+    vi.setSystemTime(new Date(40000));
+    act(() => {
+      window.dispatchEvent(new Event('focus'));
+    });
+
+    expect(fetchAllSpy).toHaveBeenCalledTimes(2);
+  });
+
+  test('focus refresh does not run while hidden', async () => {
+    render(<RealtimeListener />);
+    await act(async () => {
+      await Promise.resolve();
+    });
+
+    act(() => {
+      Object.defineProperty(document, 'hidden', { value: true, configurable: true });
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+
+    act(() => {
+      window.dispatchEvent(new Event('focus'));
+    });
+
+    expect(fetchAllSpy).not.toHaveBeenCalled();
+  });
+});
