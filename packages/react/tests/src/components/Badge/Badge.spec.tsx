@@ -7,7 +7,7 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 
 setupMockServer(...mockHandlers);
 
-test('renders the notification count', () => {
-  render(<UnseenBadge count={3} />);
+test('renders the notification count', async () => {
+  await render(<UnseenBadge count={3} />);
   screen.getByRole('status', { name: /3 unread items/i });
 });

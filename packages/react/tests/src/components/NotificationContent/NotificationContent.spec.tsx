@@ -17,7 +17,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-test('renders the content as returned from the API, without sanitizing', () => {
+test('renders the content as returned from the API, without sanitizing', async () => {
   const { result } = renderHook(() =>
     useNotificationFactory({
       ...sampleNotification,
@@ -28,7 +28,7 @@ test('renders the content as returned from the API, without sanitizing', () => {
     }),
   );
 
-  render(<NotificationContent notification={result.current} />);
+  await render(<NotificationContent notification={result.current} />);
 
   screen.getByText(/hello,/i);
   screen.getByRole('link', {
@@ -47,7 +47,7 @@ test('replaces the content of time elements with a relative datetime', async () 
     }),
   );
 
-  render(<NotificationContent notification={result.current} />);
+  await render(<NotificationContent notification={result.current} />);
 
   // Ideally, we would be checking by display value, but for some reason the textContent is not
   // updated in this test. However, we can still verify that timeAgo does its thing, by checking for
@@ -66,7 +66,7 @@ test('does not replace time elements in upper scopes', async () => {
     }),
   );
 
-  render(
+  await render(
     <div>
       <time dateTime="" data-testid="out-of-scope">
         on March 10
@@ -92,7 +92,7 @@ test('time elements without dateTime attribute are ignored by timeAgo', async ()
     }),
   );
 
-  render(<NotificationContent notification={result.current} />);
+  await render(<NotificationContent notification={result.current} />);
 
   const time = screen.getByTestId('in-scope');
   expect(time).not.toHaveAttribute('timeago-id');

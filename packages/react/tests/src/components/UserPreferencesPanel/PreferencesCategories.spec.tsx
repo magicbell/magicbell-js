@@ -12,8 +12,8 @@ setupMockServer(...mockHandlers);
 
 describe('PreferencesCategories component', () => {
   describe('no categories', () => {
-    test('it displays nothing when there are no categories', () => {
-      const { container } = render(<PreferencesCategories />);
+    test('it displays nothing when there are no categories', async () => {
+      const { container } = await render(<PreferencesCategories />);
       expect(container.firstChild).toBeNull();
     });
   });
@@ -30,35 +30,35 @@ describe('PreferencesCategories component', () => {
 
     // Note: It is also important that these are physically ordered correctly.
     // How do we check for this using @testing-library/react?
-    test('it displays headings', () => {
-      render(<PreferencesCategories />);
+    test('it displays headings', async () => {
+      await render(<PreferencesCategories />);
       screen.getByText(/in app/i);
       screen.getByText(/web push/i);
       screen.getByText(/email/i);
     });
 
-    test('it displays category names', () => {
-      render(<PreferencesCategories />);
+    test('it displays category names', async () => {
+      await render(<PreferencesCategories />);
       screen.getByText(/Comments Label/i);
       screen.getByText(/New Reply/i);
     });
 
-    test('it only displays selected channels', () => {
-      render(<PreferencesCategories channels={['in_app', 'web_push']} />);
+    test('it only displays selected channels', async () => {
+      await render(<PreferencesCategories channels={['in_app', 'web_push']} />);
       screen.getByText(/in app/i);
       screen.getByText(/web push/i);
 
       expect(screen.queryByText(/email/i)).not.toBeInTheDocument();
     });
 
-    test('it only displays selected categories', () => {
-      render(<PreferencesCategories categories={['comments']} />);
+    test('it only displays selected categories', async () => {
+      await render(<PreferencesCategories categories={['comments']} />);
       screen.getByText(/Comments Label/i);
       expect(screen.queryByText(/New Reply/i)).not.toBeInTheDocument();
     });
 
-    test('it only displays selected channels and categories', () => {
-      render(<PreferencesCategories channels={['in_app']} categories={['comments']} />);
+    test('it only displays selected channels and categories', async () => {
+      await render(<PreferencesCategories channels={['in_app']} categories={['comments']} />);
 
       screen.getByText(/in app/i);
       expect(screen.queryByText(/email/i)).not.toBeInTheDocument();
@@ -69,7 +69,7 @@ describe('PreferencesCategories component', () => {
 
     test.skip('it calls the onChange callback when preferences are changed', async () => {
       const onChangeSpy = vi.fn();
-      render(<PreferencesCategories onChange={onChangeSpy} />);
+      await render(<PreferencesCategories onChange={onChangeSpy} />);
 
       const checkboxes = screen.getAllByRole('checkbox');
       const commentInApp = checkboxes.find((x) => x.getAttribute('id') === 'comments-in_app') as HTMLElement;

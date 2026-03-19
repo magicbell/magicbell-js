@@ -17,11 +17,10 @@ beforeEach(() => {
     network: { cacheTTL: 0, maxRetries: 0 },
   });
 
-  const { result } = renderHook(() => useNotificationStoresCollection());
-  const notifications = NotificationFactory.buildList(3, { seenAt: null });
-
   act(() => {
-    result.current?.setStore('default', {}, { notifications });
+    useNotificationStoresCollection.setState({ stores: {} });
+    const notifications = NotificationFactory.buildList(3, { seenAt: null });
+    useNotificationStoresCollection.getState().setStore('default', {}, { notifications });
   });
 });
 
@@ -40,8 +39,11 @@ test('returns the store with props and helper methods', () => {
   expect(result.current?.markAllAsSeen).toBeDefined();
 });
 
-test('returns null when store with given ID does not exist', () => {
+test('returns null when store with given ID does not exist', async () => {
   const { result } = renderHook(() => useBell({ storeId: 'non-existing' }));
+  await act(async () => {
+    await Promise.resolve();
+  });
   expect(result.current).toBeNull();
 });
 

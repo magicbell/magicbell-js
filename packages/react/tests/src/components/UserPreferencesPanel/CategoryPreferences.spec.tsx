@@ -29,16 +29,16 @@ beforeEach(() => {
   });
 });
 
-test('it renders the category label', () => {
-  render(<CategoryPreferences category={sampleNotificationPreferences.categories[0]} />);
+test('it renders the category label', async () => {
+  await render(<CategoryPreferences category={sampleNotificationPreferences.categories[0]} />);
   screen.getByText('Comments Label');
 
-  render(<CategoryPreferences category={sampleNotificationPreferences.categories[1]} />);
+  await render(<CategoryPreferences category={sampleNotificationPreferences.categories[1]} />);
   screen.getByText('New Reply');
 });
 
-test('when preferences has two channels, it only renders a checkbox for each of those channels', () => {
-  render(<CategoryPreferences category={twoChannelPreference.categories[0]} />);
+test('when preferences has two channels, it only renders a checkbox for each of those channels', async () => {
+  await render(<CategoryPreferences category={twoChannelPreference.categories[0]} />);
 
   const checkboxes = screen.getAllByRole('checkbox');
   expect(checkboxes).toHaveLength(2);
@@ -46,8 +46,8 @@ test('when preferences has two channels, it only renders a checkbox for each of 
   expect((checkboxes[1] as HTMLInputElement).checked).toBe(false); // web-push
 });
 
-test('when preferences has three channels, it only renders a checkbox for each of those channels', () => {
-  render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
+test('when preferences has three channels, it only renders a checkbox for each of those channels', async () => {
+  await render(<CategoryPreferences category={threeChannelPreference.categories[0]} />);
   const checkboxes = screen.getAllByRole('checkbox');
   expect(checkboxes).toHaveLength(3);
   expect((checkboxes[0] as HTMLInputElement).checked).toBe(true); // in-app
@@ -55,20 +55,20 @@ test('when preferences has three channels, it only renders a checkbox for each o
   expect((checkboxes[2] as HTMLInputElement).checked).toBe(false); // email
 });
 
-test('when preferences has no channels, it successfully renders no checkboxes without crashing', () => {
+test('when preferences has no channels, it successfully renders no checkboxes without crashing', async () => {
   const emptyChannels: CategoryChannelPreference = {
     label: '',
     slug: '',
     channels: [],
   };
-  render(<CategoryPreferences category={emptyChannels} />);
+  await render(<CategoryPreferences category={emptyChannels} />);
   const checkboxes = screen.queryAllByRole('checkbox');
   expect(checkboxes).toHaveLength(0);
 });
 
 // skipping, this fails but we have a better one testing notification_preferences using msw
 test.skip('updates the preferences for the inbox channel of the Comments category', async () => {
-  render(<CategoryPreferences category={sampleNotificationPreferences.categories[0]} />);
+  await render(<CategoryPreferences category={sampleNotificationPreferences.categories[0]} />);
   const { result } = renderHook(() => useNotificationPreferences());
 
   const inAppCheckbox = screen.getAllByRole('checkbox')[0];

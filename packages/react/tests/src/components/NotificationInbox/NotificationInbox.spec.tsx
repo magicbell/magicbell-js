@@ -28,7 +28,7 @@ beforeEach(() => {
 });
 
 test('renders a header, the list of notifications and a footer if the notifications are fetched', async () => {
-  render(<NotificationInbox height={300} />);
+  await render(<NotificationInbox height={300} />);
 
   // header
   await screen.findByRole('heading', { name: /Notifications/ });
@@ -40,8 +40,8 @@ test('renders a header, the list of notifications and a footer if the notificati
   screen.getByRole('button', { name: /Notification preferences/ });
 });
 
-test('renders nothing if the notification store does not exist', () => {
-  const { container } = render(
+test('renders nothing if the notification store does not exist', async () => {
+  const { container } = await render(
     <MagicBellProvider theme={{}} locale="en" images={{}} apiKey="-" userEmail="-">
       <NotificationInbox height={300} storeId="non-existing" />
     </MagicBellProvider>,
@@ -53,7 +53,7 @@ test('renders nothing if the notification store does not exist', () => {
 test('clicking the mark-all-read button invokes the onAllRead callback', async () => {
   const onAllRead = vi.fn();
 
-  render(<NotificationInbox onAllRead={onAllRead} height={300} />);
+  await render(<NotificationInbox onAllRead={onAllRead} height={300} />);
 
   const button = await screen.findByRole('button', { name: /Mark all read/ });
   await userEvent.click(button);
@@ -64,7 +64,7 @@ test('clicking the mark-all-read button invokes the onAllRead callback', async (
 test('the mark-all-read button is not visible when there are no notifications', async () => {
   server.intercept('get', '/notifications', fake.notificationPage);
 
-  render(<NotificationInbox />);
+  await render(<NotificationInbox />);
 
   expect(screen.queryByRole('button', { name: /Mark all read/ })).not.toBeInTheDocument();
 });
@@ -72,7 +72,7 @@ test('the mark-all-read button is not visible when there are no notifications', 
 test('renders a message and a image if there are no notifications', async () => {
   server.intercept('get', '/notifications', fake.notificationPage);
 
-  render(<NotificationInbox />);
+  await render(<NotificationInbox />);
 
   await waitFor(() => screen.getByText(/We'll let you know when there's more./));
   screen.getByRole('img', { name: /No notifications/ });
@@ -82,7 +82,7 @@ test('can render with a custom no-notifications placeholder if there are no noti
   server.intercept('get', '/notifications', fake.notificationPage);
 
   const EmptyInboxPlaceholder = () => <div data-testid="empty-inbox-placeholder" />;
-  render(<NotificationInbox EmptyInboxPlaceholder={EmptyInboxPlaceholder} />, { locale: 'en' });
+  await render(<NotificationInbox EmptyInboxPlaceholder={EmptyInboxPlaceholder} />, { locale: 'en' });
 
   await waitFor(() => screen.findByTestId('empty-inbox-placeholder'));
   expect(screen.queryByText(/We'll let you know when there's more./)).not.toBeInTheDocument();
@@ -90,7 +90,7 @@ test('can render with a custom no-notifications placeholder if there are no noti
 });
 
 test('can render the inbox in Spanish', async () => {
-  render(<NotificationInbox />, { locale: 'es' });
+  await render(<NotificationInbox />, { locale: 'es' });
   await screen.findByRole('heading', { name: /Notificaciones/ });
   screen.getByRole('button', { name: /Preferencias/ });
   await screen.findByRole('button', { name: /Marcar todo como leído/ });
@@ -98,31 +98,31 @@ test('can render the inbox in Spanish', async () => {
 
 test('invokes the onAllRead callback when clicking the `mark all read` button', async () => {
   const onAllRead = vi.fn();
-  render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
+  await render(<NotificationInbox onAllRead={onAllRead} />, { locale: 'en' });
 
   const markAllReadButton = await screen.findByRole('button', { name: /Mark all read/ });
   await userEvent.click(markAllReadButton);
   await waitFor(() => expect(onAllRead).toBeCalledTimes(1));
 });
 
-test('notification preferences can be disabled trough property', () => {
-  render(<NotificationInbox notificationPreferencesEnabled={false} />, { locale: 'en' });
+test('notification preferences can be disabled trough property', async () => {
+  await render(<NotificationInbox notificationPreferencesEnabled={false} />, { locale: 'en' });
   expect(screen.queryByRole('button', { name: /Notification preferences/ })).not.toBeInTheDocument();
 });
 
-test('notification preferences can be disabled trough useConfig hook', () => {
+test('notification preferences can be disabled trough useConfig hook', async () => {
   act(() => {
     useConfig.setState(ConfigFactory.build({ inbox: { features: { notificationPreferences: { enabled: false } } } }));
   });
 
-  render(<NotificationInbox />, { locale: 'en' });
+  await render(<NotificationInbox />, { locale: 'en' });
   expect(screen.queryByRole('button', { name: /Notification preferences/ })).not.toBeInTheDocument();
 });
 
 test('shows the user preferences panel when the preferences button is clicked', async () => {
   useNotificationPreferences.setState({ lastFetchedAt: undefined });
 
-  render(<NotificationInbox />, { locale: 'en' });
+  await render(<NotificationInbox />, { locale: 'en' });
   const preferencesButton = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(preferencesButton);
 
@@ -137,7 +137,7 @@ test('shows the user preferences panel when the preferences button is clicked', 
 test('the notifications panel contains a close button', async () => {
   useNotificationPreferences.setState({ lastFetchedAt: undefined });
 
-  render(<NotificationInbox />, { locale: 'en' });
+  await render(<NotificationInbox />, { locale: 'en' });
   const preferencesButton = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(preferencesButton);
 
@@ -153,7 +153,7 @@ test('the notifications panel contains a close button', async () => {
 test('can render with a custom notification preferences component', async () => {
   const NotificationPreferences = () => <div data-testid="notification-preferences" />;
 
-  render(<NotificationInbox NotificationPreferences={NotificationPreferences} />, { locale: 'en' });
+  await render(<NotificationInbox NotificationPreferences={NotificationPreferences} />, { locale: 'en' });
   const button = await screen.findByRole('button', { name: /Notification preferences/ });
   await userEvent.click(button);
 
@@ -173,7 +173,7 @@ test('can render with multiple inbox tabs, and active tab changes when clicked',
     { storeId: 'billing', label: 'Billing' },
   ];
 
-  render(<NotificationInbox tabs={tabs} />, { stores });
+  await render(<NotificationInbox tabs={tabs} />, { stores });
   const feedTab = await screen.findByRole('tab', { name: /feed/i });
   const commentsTab = screen.getByRole('tab', { name: /comments/i });
 
@@ -207,7 +207,7 @@ test('renders notifications matching selected tab', async () => {
     ],
   }));
 
-  render(<NotificationInbox tabs={tabs} />, { stores });
+  await render(<NotificationInbox tabs={tabs} />, { stores });
   const feedTab = await screen.findByRole('tab', { name: /feed/i });
   const commentsTab = screen.getByRole('tab', { name: /comments/i });
 

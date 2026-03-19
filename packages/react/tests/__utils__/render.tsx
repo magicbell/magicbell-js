@@ -1,4 +1,4 @@
-import { render as TLRender } from '@testing-library/react';
+import { act, render as TLRender } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 
 import MagicBellProvider from '../../src/components/MagicBellProvider';
@@ -19,10 +19,10 @@ const defaultOptions: RenderWithProvidersOptions = {
   images: {},
 };
 
-export function renderWithProviders(node: ReactElement, options?: Partial<RenderWithProvidersOptions>) {
+export async function renderWithProviders(node: ReactElement, options?: Partial<RenderWithProvidersOptions>) {
   const { apiKey, locale, theme, images, stores } = Object.assign(defaultOptions, options);
 
-  return TLRender(
+  const result = TLRender(
     <MagicBellProvider
       apiKey={apiKey}
       userEmail="-"
@@ -36,4 +36,10 @@ export function renderWithProviders(node: ReactElement, options?: Partial<Render
       {node}
     </MagicBellProvider>,
   );
+
+  await act(async () => {
+    await Promise.resolve();
+  });
+
+  return result;
 }

@@ -10,7 +10,7 @@ setupMockServer(...mockHandlers);
 
 test('renders a close button', async () => {
   const onClick = vi.fn();
-  render(<CloseBannerButton onClick={onClick} />);
+  await render(<CloseBannerButton onClick={onClick} />);
   const closeButton = screen.getByRole('button', { name: /close notification/i });
   await userEvent.click(closeButton);
   expect(onClick).toHaveBeenCalledTimes(1);

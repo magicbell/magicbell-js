@@ -17,8 +17,8 @@ afterEach(() => {
 });
 
 test('renders the relative date', async () => {
-  renderWithProviders(<Timestamp date={new Date()} delay={0} />);
-  act(() => {
+  await renderWithProviders(<Timestamp date={new Date()} delay={0} />);
+  await act(async () => {
     vi.advanceTimersByTime(60_000);
   });
 
@@ -26,8 +26,8 @@ test('renders the relative date', async () => {
 });
 
 test('updates the relative date text', async () => {
-  renderWithProviders(<Timestamp date={new Date()} delay={0} />);
-  act(() => {
+  await renderWithProviders(<Timestamp date={new Date()} delay={0} />);
+  await act(async () => {
     vi.advanceTimersByTime(180_000);
   });
 

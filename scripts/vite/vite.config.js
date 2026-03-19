@@ -47,9 +47,20 @@ export default defineConfig(async ({ mode, command }) => {
           }
         : {}),
     },
-    esbuild: {
-      jsx: 'automatic',
-    },
+    ...(isTest
+      ? {
+          oxc: {
+            jsx: {
+              runtime: 'automatic',
+              importSource: '@emotion/react',
+            },
+          },
+        }
+      : {
+          esbuild: {
+            jsx: 'automatic',
+          },
+        }),
     resolve: {
       alias: isTest ? getPackageAliases(true) : {},
     },
@@ -86,8 +97,9 @@ export default defineConfig(async ({ mode, command }) => {
       clearMocks: true,
       isolate: true,
       threads: false,
+      tsconfig: resolve(cwd, 'tsconfig.test.json'),
       reporters: isTest && process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default',
-      exclude: configDefaults.exclude,
+      exclude: [...configDefaults.exclude, '**/cypress/**'],
     },
   };
 });

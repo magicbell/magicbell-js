@@ -34,16 +34,16 @@ beforeEach(() => {
   });
 });
 
-test('does not render the inbox on load', () => {
-  render(<FloatingNotificationInbox isOpen={false} launcherRef={{ current: null }} />);
+test('does not render the inbox on load', async () => {
+  await render(<FloatingNotificationInbox isOpen={false} launcherRef={{ current: null }} />);
   expect(screen.queryByRole('heading', { name: /notifications/i })).not.toBeInTheDocument();
 });
 
 // Skip, this test won't work with happy-dom or recent jsdom versions
-test.skip('renders the tooltip in the correct place', () => {
+test.skip('renders the tooltip in the correct place', async () => {
   const ref = React.createRef<any>();
 
-  const bottomEnd = render(
+  const bottomEnd = await render(
     <>
       <div data-testid="ref" ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} placement="bottom-end" isOpen />
@@ -53,7 +53,7 @@ test.skip('renders the tooltip in the correct place', () => {
   const tippyBottom = bottomEnd.container.querySelector<HTMLDivElement>('[data-tippy-root]');
   expect(tippyBottom!.style.transform).toEqual('translate(0px, 10px)');
 
-  const topCenter = render(
+  const topCenter = await render(
     <>
       <div data-testid="ref" ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} placement="top-end" isOpen />
@@ -64,10 +64,10 @@ test.skip('renders the tooltip in the correct place', () => {
   expect(tippyTop!.style.transform).toEqual('translate(0px, -10px)');
 });
 
-test('does not render the pointing arrow if hideArrow is provided', () => {
+test('does not render the pointing arrow if hideArrow is provided', async () => {
   const ref = React.createRef<any>();
 
-  const view = render(
+  const view = await render(
     <>
       <div data-testid="ref" ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} hideArrow isOpen />
@@ -80,7 +80,7 @@ test('does not render the pointing arrow if hideArrow is provided', () => {
 test('can render the inbox with a custom layout', async () => {
   const ref = React.createRef<any>();
 
-  render(
+  await render(
     <>
       <div ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} layout={['footer', 'content', 'header']} isOpen />
@@ -103,7 +103,7 @@ test('toggles the notification inbox', async () => {
   const ref = React.createRef<any>();
   const onClick = vi.fn();
 
-  render(
+  await render(
     <>
       <div ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} isOpen toggle={onClick} />
@@ -120,7 +120,7 @@ test('calls the onNotificationClick callback', async () => {
   const ref = React.createRef<any>();
   const onClick = vi.fn();
 
-  render(
+  await render(
     <>
       <div ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} isOpen onNotificationClick={onClick} />
@@ -139,7 +139,7 @@ test('opens the action url in the same window', async () => {
   const onClick = vi.fn();
   global.open = vi.fn();
 
-  render(
+  await render(
     <>
       <div ref={ref} />
       <FloatingNotificationInbox launcherRef={ref} height={350} isOpen onNotificationClick={onClick} />

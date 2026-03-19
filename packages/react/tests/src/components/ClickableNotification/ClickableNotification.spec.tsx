@@ -9,8 +9,8 @@ import { sampleNotification } from '../../../factories/NotificationFactory';
 
 const server = setupMockServer(...mockHandlers);
 
-test('renders the title and content of the notification', () => {
-  render(
+test('renders the title and content of the notification', async () => {
+  await render(
     <ClickableNotification
       notification={{
         ...sampleNotification,
@@ -25,8 +25,8 @@ test('renders the title and content of the notification', () => {
   screen.getByText(/sample notification content/i);
 });
 
-test('renders the title when no content is provided', () => {
-  render(
+test('renders the title when no content is provided', async () => {
+  await render(
     <ClickableNotification
       notification={{ ...sampleNotification, title: 'sample notification title' }}
       onClick={vi.fn()}
@@ -37,8 +37,8 @@ test('renders the title when no content is provided', () => {
 });
 
 // Skip, this test won't work with happy-dom or recent jsdom versions
-test.skip('renders the notification with seen/unseen background variation', () => {
-  render(
+test.skip('renders the notification with seen/unseen background variation', async () => {
+  await render(
     <>
       <ClickableNotification
         notification={{
@@ -73,7 +73,7 @@ test.skip('renders the notification with seen/unseen background variation', () =
 });
 
 test('renders the notification with the read/unread svg color variation', async () => {
-  render(
+  await render(
     <>
       <ClickableNotification
         notification={{ ...sampleNotification, id: '1', title: 'new notification', seenAt: null }}
@@ -104,7 +104,7 @@ test('passes the notification object to the onClick callback', async () => {
   const onClick = vi.fn();
   const notification = { ...sampleNotification, title: 'notification' };
 
-  render(<ClickableNotification notification={notification} onClick={onClick} />);
+  await render(<ClickableNotification notification={notification} onClick={onClick} />);
 
   const notificationButton = screen.getByRole('button', { name: /notification/i });
 
@@ -124,7 +124,7 @@ test('opens the action url in the same tab', async () => {
 
   server.intercept('post', '/notifications/:id/read', { status: 204 });
 
-  render(
+  await render(
     <ClickableNotification
       notification={{
         ...sampleNotification,
@@ -151,7 +151,7 @@ test('does not invoke the click handler when clicking on a link in the notificat
     content: 'Some text <a href="#">browse the docs</a> and more text',
   };
 
-  render(<ClickableNotification notification={notification} onClick={onClick} />);
+  await render(<ClickableNotification notification={notification} onClick={onClick} />);
   const link = screen.getByRole('link', { name: /browse the docs/i });
   await userEvent.click(link);
 
@@ -170,7 +170,7 @@ test('does not invoke the action url when clicking on a link in the notification
     actionUrl: 'https://example.com/action-url',
   };
 
-  render(<ClickableNotification notification={notification} onClick={onClick} />);
+  await render(<ClickableNotification notification={notification} onClick={onClick} />);
   const link = screen.getByRole('link', { name: /browse other docs/i });
   await userEvent.click(link);
 

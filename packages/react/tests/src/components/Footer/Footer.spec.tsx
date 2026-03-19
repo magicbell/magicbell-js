@@ -8,8 +8,8 @@ import { renderWithProviders as render } from '../../../__utils__/render';
 import ConfigFactory from '../../../factories/ConfigFactory';
 
 setupMockServer(...mockHandlers);
-test('renders a link to the magicbell site', () => {
-  render(<Footer />);
+test('renders a link to the magicbell site', async () => {
+  await render(<Footer />);
   screen.getByRole('img', { name: 'MagicBell logo' });
 });
 
@@ -26,7 +26,7 @@ test('branding can be disabled', async () => {
     );
   });
 
-  render(<Footer />);
+  await render(<Footer />);
 
   expect(screen.queryByRole('img', { name: 'MagicBell logo' })).not.toBeInTheDocument();
 });

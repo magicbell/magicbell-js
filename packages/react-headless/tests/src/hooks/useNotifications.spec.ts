@@ -23,13 +23,13 @@ describe('hooks', () => {
   describe('useNotifications', () => {
     describe('a store with the given ID exists', () => {
       beforeEach(() => {
-        const { result } = renderHook(() => useNotificationStoresCollection());
-
         act(() => {
           // @TODO: Rest all stores after specs
           useConfig.setState({ lastFetchedAt: undefined });
-          result.current.setStore('default', {});
-          result.current.setStore('archive', { read: true });
+          useNotificationStoresCollection.setState({ stores: {} });
+          const store = useNotificationStoresCollection.getState();
+          store.setStore('default', {});
+          store.setStore('archive', { read: true });
         });
       });
 
@@ -77,7 +77,10 @@ describe('hooks', () => {
           expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenCalledWith('/notifications', { page: 1 });
 
-          rerender({ storeId: 'archive' });
+          await act(async () => {
+            rerender({ storeId: 'archive' });
+            await Promise.resolve();
+          });
           expect(spy).toHaveBeenCalled();
           expect(spy).toHaveBeenLastCalledWith('/notifications', { page: 1, read: true });
 
@@ -97,8 +100,11 @@ describe('hooks', () => {
     });
 
     describe('there is not store with the given ID', () => {
-      it('returns null', () => {
+      it('returns null', async () => {
         const { result } = renderHook(() => useNotifications('non-existing'));
+        await act(async () => {
+          await Promise.resolve();
+        });
         expect(result.current).toBeNull();
       });
     });

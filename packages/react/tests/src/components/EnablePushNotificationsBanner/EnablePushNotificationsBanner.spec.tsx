@@ -20,19 +20,19 @@ beforeEach(() => {
   });
 });
 
-test("renders a button to enable push notifications if the user hasn't enabled them", () => {
-  render(<EnablePushNotificationsBanner />);
+test("renders a button to enable push notifications if the user hasn't enabled them", async () => {
+  await render(<EnablePushNotificationsBanner />);
   screen.getByRole('button', { name: /enable now/i });
 });
 
-test('does not render anything if push notifications are enabled', () => {
+test('does not render anything if push notifications are enabled', async () => {
   localStorage.setItem('magicbell:cf63e9f2fcb30bcd58eb:web-push-requested-at', JSON.stringify(Date.now()));
 
-  render(<EnablePushNotificationsBanner />, { apiKey: 'cf63e9f2fcb30bcd58eb' });
+  await render(<EnablePushNotificationsBanner />, { apiKey: 'cf63e9f2fcb30bcd58eb' });
   expect(screen.queryByRole('button', { name: /enable now/i })).not.toBeInTheDocument();
 });
 
-test('does not render anything if web push channel is disabled', () => {
+test('does not render anything if web push channel is disabled', async () => {
   act(() => {
     useConfig.setState({
       ...ConfigFactory.build({ channels: { webPush: { enabled: false } } }),
@@ -40,13 +40,13 @@ test('does not render anything if web push channel is disabled', () => {
     });
   });
 
-  render(<EnablePushNotificationsBanner />);
+  await render(<EnablePushNotificationsBanner />);
   expect(screen.queryByRole('button', { name: /enable now/i })).not.toBeInTheDocument();
 });
 
 test('clicking the `enable now` button opens a new window to create the push subscription', async () => {
   const spy = vi.spyOn(window, 'open');
-  render(<EnablePushNotificationsBanner />);
+  await render(<EnablePushNotificationsBanner />);
 
   const enableButton = screen.getByRole('button', { name: /enable now/i });
   await userEvent.click(enableButton);
@@ -54,7 +54,7 @@ test('clicking the `enable now` button opens a new window to create the push sub
 });
 
 test('closes the banner when clicking the close button', async () => {
-  render(<EnablePushNotificationsBanner />);
+  await render(<EnablePushNotificationsBanner />);
 
   const closeButton = screen.getByRole('button', { name: /close notification/i });
 

@@ -12,27 +12,27 @@ import { sampleNotification } from '../../../factories/NotificationFactory';
 setupMockServer(...mockHandlers);
 
 test('renders the notification button', async () => {
-  render(<Bell onClick={vi.fn()} />);
+  await render(<Bell onClick={vi.fn()} />);
   await screen.findByRole('button', { name: /notifications/i });
 });
 
 test('the notification button has a namespaced data attribute', async () => {
-  render(<Bell onClick={vi.fn()} />);
+  await render(<Bell onClick={vi.fn()} />);
   const button = await screen.findByRole('button', { name: /notifications/i });
   expect(button).toHaveAttribute('data-magicbell-bell');
 });
 
-test('does not render the notification count if there are no notifications', () => {
+test('does not render the notification count if there are no notifications', async () => {
   act(() => {
     useConfig.setState({ lastFetchedAt: undefined });
   });
 
-  render(<Bell onClick={vi.fn()} />);
+  await render(<Bell onClick={vi.fn()} />);
   expect(screen.queryByRole('status', { name: /1 unread items/i })).not.toBeInTheDocument();
 });
 
 test('renders the number of notifications if there are some', async () => {
-  render(<Bell onClick={vi.fn()} />);
+  await render(<Bell onClick={vi.fn()} />);
 
   await screen.findByRole('status');
 
@@ -46,7 +46,7 @@ test('renders the number of notifications if there are some', async () => {
 });
 
 test('shows the number of unread notifications if counter is set to unread', async () => {
-  render(<Bell onClick={vi.fn()} counter="unread" />);
+  await render(<Bell onClick={vi.fn()} counter="unread" />);
 
   await screen.findByRole('status');
 
@@ -61,7 +61,7 @@ test('shows the number of unread notifications if counter is set to unread', asy
 
 test('can render the bell icon with the custom color and size', async () => {
   const theme = { ...defaultTheme, icon: { borderColor: 'red', width: '14px' } };
-  render(<Bell onClick={vi.fn()} />, { theme });
+  await render(<Bell onClick={vi.fn()} />, { theme });
   const button = await screen.findByRole('button', { name: /notifications/i });
   const icon = button.querySelector('path');
   expect(icon).toHaveAttribute('fill', 'red');
@@ -69,7 +69,7 @@ test('can render the bell icon with the custom color and size', async () => {
 
 test('calls the onClick callback when the button is clicked', async () => {
   const onClick = vi.fn();
-  render(<Bell onClick={onClick} />);
+  await render(<Bell onClick={onClick} />);
 
   const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
@@ -80,7 +80,7 @@ test('calls the onClick callback when the button is clicked', async () => {
 
 test('marks all notifications as seen', async () => {
   const onClick = vi.fn();
-  render(<Bell onClick={onClick} />);
+  await render(<Bell onClick={onClick} />);
 
   const button = await screen.findByRole('button', { name: /notifications/i });
   await userEvent.click(button);
