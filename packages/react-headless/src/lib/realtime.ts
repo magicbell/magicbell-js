@@ -71,6 +71,7 @@ export async function handleSocketEvent(event: { name: string; data: Record<stri
     } else {
       const repository = new NotificationRepository();
       const data = await repository.get(eventData.id);
+      if (!data?.notification) return;
       emitEvent(eventName, data.notification, 'remote');
     }
   }
