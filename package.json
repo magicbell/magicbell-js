@@ -13,6 +13,8 @@
     "clean": "turbo run clean",
     "start": "turbo run start --parallel --no-cache --filter=!playground",
     "start:example": "yarn --cwd example && yarn --cwd example start",
+    "start:example:esm": "yarn --cwd examples/esm-vite && yarn --cwd examples/esm-vite start",
+    "start:example:cjs": "yarn --cwd examples/cjs-webpack && yarn --cwd examples/cjs-webpack start",
     "start:storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "start:playground": "yarn --cwd packages/playground start",
     "codegen": "turbo run codegen --concurrency 1 --no-cache",

@@ -1,0 +1,18 @@
+{
+  "name": "example-esm-vite",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite --port 5173"
+  },
+  "dependencies": {
+    "@magicbell/magicbell-react": "https://pkg.pr.new/magicbell/magicbell-js/@magicbell/magicbell-react@6657afa",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "example-cjs-webpack",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "webpack serve --config webpack.config.cjs --mode development --port 5174"
+  },
+  "dependencies": {
+    "@magicbell/magicbell-react": "https://pkg.pr.new/magicbell/magicbell-js/@magicbell/magicbell-react@6657afa",
+    "os-browserify": "^0.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tty-browserify": "^0.0.1",
+    "util": "^0.12.5"
+  },
+  "devDependencies": {
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
