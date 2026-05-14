@@ -57,7 +57,7 @@
     "prettier": "^2.8.8",
     "recast": "^0.23.4",
     "unist-util-remove": "^4.0.0",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@types/json-schema-merge-allof": "^0.6.5"
