@@ -18,7 +18,7 @@ jobs:
         with:
           token: ${{ secrets.BELLA_ACTION_TOKEN }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24.16.0
       - uses: bahmutov/npm-install@v1
