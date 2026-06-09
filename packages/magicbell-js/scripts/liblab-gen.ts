@@ -7,6 +7,7 @@ import { parseArgs } from 'node:util';
 
 // @ts-ignore
 import * as md from '@magicbell/codegen/markdown';
+import { compare } from 'semver';
 import { sortPackageJson } from 'sort-package-json';
 
 async function move(oldPath: string, newPath: string) {
@@ -130,9 +131,24 @@ async function build(options: typeof args) {
   await writeReadme('output/typescript/README.md', `./docs/${args.target}/README.md`, npmName, pkgJson.name);
   await mergeReadme(`./docs/${args.target}/README.md`, './README.md', args.target);
 
-  // patch package.json
+  // Patch package.json
   const { dependencies } = JSON.parse(await fs.readFile('./output/typescript/package.json', { encoding: 'utf-8' }));
-  pkgJson = sortPackageJson({ ...pkgJson, dependencies });
+
+  // Maintain the latest version of each dep. Liblab tends to ship older versions,
+  // while we auto bump deps using dependabot
+  const deps: Record<string, string> = {};
+  for (const dep of Object.keys(dependencies)) {
+    const liblabVersion = dependencies[dep];
+    const currentVersion = pkgJson.dependencies?.[dep];
+
+    if (!currentVersion || compare(liblabVersion, currentVersion) > 0) {
+      deps[dep] = liblabVersion;
+    } else {
+      deps[dep] = currentVersion;
+    }
+  }
+
+  pkgJson = sortPackageJson({ ...pkgJson, dependencies: deps });
 
   await fs.writeFile('./package.json', JSON.stringify(pkgJson, null, 2) + '\n');
   await fs.rm('output', { recursive: true, force: true });
