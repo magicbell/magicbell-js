@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.7.1
+
+### Patch Changes
+
+- [`8074090`](https://github.com/magicbell/magicbell-js/commit/8074090f15b44a84d428a75772b01be64dd8f713) Thanks [@smeijer](https://github.com/smeijer)! - update dependency `zod` to `v3.25.76`
+
 ## 1.7.0
 
 ### Minor Changes
