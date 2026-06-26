@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.7.2
+
+### Patch Changes
+
+- [`f7684e9`](https://github.com/magicbell/magicbell-js/commit/f7684e9f8c4d8524acbe4a34a1a73e2fa0042417) Thanks [@smeijer](https://github.com/smeijer)! - drop `max-length` from `Notification` model
+
 ## 1.7.1
 
 ### Patch Changes
