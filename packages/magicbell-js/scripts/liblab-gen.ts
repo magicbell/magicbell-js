@@ -110,13 +110,12 @@ async function build(options: typeof args) {
   const openapiJSON = await readFile(options.spec);
   await writeJSON(liblabConfig.specFilePath, openapiJSON);
 
-  execSync(`npx -y liblab@latest build --skip-validation --approve-docs --liblab-config=${liblabCfgFile}`, {
-    stdio: 'inherit',
-  });
-
-  run(`npx -y liblab@latest validate --nonInteractive --liblab-config=${liblabCfgFile}`);
-  run(`npx -y liblab@latest build --skip-validation --approve-docs --liblab-config=${liblabCfgFile}`);
-  await fs.rm(liblabConfig.specFilePath);
+  try {
+    run(`npx -y liblab@latest validate --nonInteractive --liblab-config=${liblabCfgFile}`);
+    run(`npx -y liblab@latest build --skip-validation --approve-docs --liblab-config=${liblabCfgFile}`);
+  } finally {
+    await fs.rm(liblabConfig.specFilePath, { force: true });
+  }
 
   await move('output/typescript/src', dest);
   execSync(`npx fix-esm-import-path ${dest}`);
@@ -156,4 +155,14 @@ async function build(options: typeof args) {
   execSync('yarn --cwd ../.. manypkg fix', { stdio: 'inherit' });
 }
 
-void build(args).finally(() => fs.rm('output', { recursive: true, force: true }));
+try {
+  await build(args);
+} catch (error) {
+  if (error && typeof error === 'object' && 'status' in error && typeof error.status === 'number') {
+    process.exitCode = error.status;
+  } else {
+    throw error;
+  }
+} finally {
+  await fs.rm('output', { recursive: true, force: true });
+}
