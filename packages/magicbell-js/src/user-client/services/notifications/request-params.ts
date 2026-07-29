@@ -17,6 +17,11 @@ export interface MarkAllNotificationsReadParams {
   topic?: string;
 }
 
+export interface MarkAllNotificationsSeenParams {
+  category?: string;
+  topic?: string;
+}
+
 export interface FetchUnreadNotificationsCountParams {
   category?: string;
   topic?: string;

@@ -14,6 +14,7 @@ import {
   FetchUnreadNotificationsCountParams,
   ListNotificationsParams,
   MarkAllNotificationsReadParams,
+  MarkAllNotificationsSeenParams,
 } from './request-params.js';
 
 /**
@@ -27,7 +28,7 @@ export class NotificationsService extends BaseService {
    * @param {number} [params.limit] - defines the maximum number of items to return per page (default: 50)
    * @param {string} [params.startingAfter] - a cursor for use in pagination, points to the last ID in previous page
    * @param {string} [params.endingBefore] - a cursor for use in pagination, points to the first ID in next page
-   * @param {string} [params.status] - filter notifications by their read state, one of 'unread' | 'read' | 'archived'
+   * @param {string} [params.status] - filter notifications by their status, one of 'unseen' | 'unread' | 'read' | 'archived'
    * @param {string} [params.category] - filter notifications by their category
    * @param {string} [params.topic] - filter notifications by their topic
    * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
@@ -136,6 +137,45 @@ export class NotificationsService extends BaseService {
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/notifications/read')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addQueryParam({
+        key: 'category',
+        value: params?.category,
+      })
+      .addQueryParam({
+        key: 'topic',
+        value: params?.topic,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Marks all unseen notifications as seen.
+   * @param {string} [params.category] - filter notifications by their category
+   * @param {string} [params.topic] - filter notifications by their topic
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
+   */
+  async markAllNotificationsSeen(
+    params?: MarkAllNotificationsSeenParams,
+    requestConfig?: RequestConfig,
+  ): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/seen')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
@@ -272,6 +312,37 @@ export class NotificationsService extends BaseService {
       .setConfig(this.config)
       .setMethod('POST')
       .setPath('/notifications/{notification_id}/read')
+      .setRequestSchema(z.any())
+      .addAccessTokenAuth(this.config.token, 'Bearer')
+      .setRequestContentType(ContentType.Json)
+      .addResponse({
+        schema: z.undefined(),
+        contentType: ContentType.NoContent,
+        status: 204,
+      })
+      .setRetryAttempts(this.config, requestConfig)
+      .setRetryDelayMs(this.config, requestConfig)
+      .setResponseValidation(this.config, requestConfig)
+      .addPathParam({
+        key: 'notification_id',
+        value: notificationId,
+      })
+      .build();
+    return this.client.call<void>(request);
+  }
+
+  /**
+   * Marks a notification as seen.
+   * @param {string} notificationId -
+   * @param {RequestConfig} [requestConfig] - The request configuration for retry and validation.
+   * @returns {Promise<HttpResponse<any>>} - No Content
+   */
+  async markNotificationSeen(notificationId: string, requestConfig?: RequestConfig): Promise<HttpResponse<void>> {
+    const request = new RequestBuilder()
+      .setBaseUrl(requestConfig?.baseUrl || this.config.baseUrl || this.config.environment || Environment.DEFAULT)
+      .setConfig(this.config)
+      .setMethod('POST')
+      .setPath('/notifications/{notification_id}/seen')
       .setRequestSchema(z.any())
       .addAccessTokenAuth(this.config.token, 'Bearer')
       .setRequestContentType(ContentType.Json)
