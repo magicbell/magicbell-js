@@ -108,7 +108,7 @@
       "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.markAllNotificationsRead({\n      category: \"category\",\n      topic: \"topic\",\n  });\n\n  console.log(data);\n})();\n"
     },
     "/notifications/seen": {
-      "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n    token: 'YOUR_TOKEN',\n  });\n\n  const { data } = await client.notifications.markAllNotificationsSeen({\n  \"category\": \"category\",\n  \"topic\": \"topic\"\n});\n\n  console.log(data);\n})();\n"
+      "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.markAllNotificationsSeen({\n      category: \"category\",\n      topic: \"topic\"\n   });\n\n  console.log(data);\n})();\n"
     },
     "/notifications/unread/count": {
       "get": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.fetchUnreadNotificationsCount({\n      category: \"category\",\n      topic: \"topic\",\n  });\n\n  console.log(data);\n})();\n"
@@ -123,7 +123,7 @@
       "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.markNotificationRead(\"notification_id\");\n\n  console.log(data);\n})();\n"
     },
     "/notifications/{notification_id}/seen": {
-      "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n    token: 'YOUR_TOKEN',\n  });\n\n  const { data } = await client.notifications.markNotificationSeen(\"notification_id\");\n\n  console.log(data);\n})();\n"
+      "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.markNotificationSeen(\"notification_id\");\n\n  console.log(data);\n})();\n"
     },
     "/notifications/{notification_id}/unarchive": {
       "post": "import { Client } from 'magicbell-js/user-client';\n\n(async () => {\n  const client = new Client({\n\ttoken: 'YOUR_TOKEN',\n});\n\n  const { data } = await client.notifications.unarchiveNotification(\"notification_id\");\n\n  console.log(data);\n})();\n"
