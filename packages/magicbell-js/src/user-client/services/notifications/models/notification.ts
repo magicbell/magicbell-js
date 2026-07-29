@@ -18,6 +18,7 @@ export const notification = z.lazy(() => {
     readAt: z.string().optional().nullable(),
     seenAt: z.string().optional().nullable(),
     sentAt: z.string().optional().nullable(),
+    status: z.string(),
     title: z.string(),
     topic: z.string().max(100).optional().nullable(),
     updatedAt: z.string(),
@@ -39,6 +40,7 @@ export const notification = z.lazy(() => {
  * @property {string} - The timestamp when the notification was marked as read.
  * @property {string} - The timestamp when the notification was seen.
  * @property {string} - The timestamp when the notification was sent.
+ * @property {String} - The current status of the notification.
  * @property {string} - The title that is displayed to recipients.
  * @property {string} - The topic for additional classification.
  * @property {string} - The timestamp when the notification was last updated.
@@ -65,6 +67,7 @@ export const notificationResponse = z.lazy(() => {
       read_at: z.string().optional().nullable(),
       seen_at: z.string().optional().nullable(),
       sent_at: z.string().optional().nullable(),
+      status: z.string(),
       title: z.string(),
       topic: z.string().max(100).optional().nullable(),
       updated_at: z.string(),
@@ -82,6 +85,7 @@ export const notificationResponse = z.lazy(() => {
       readAt: data['read_at'],
       seenAt: data['seen_at'],
       sentAt: data['sent_at'],
+      status: data['status'],
       title: data['title'],
       topic: data['topic'],
       updatedAt: data['updated_at'],
@@ -108,6 +112,7 @@ export const notificationRequest = z.lazy(() => {
       readAt: z.string().optional().nullable(),
       seenAt: z.string().optional().nullable(),
       sentAt: z.string().optional().nullable(),
+      status: z.string(),
       title: z.string(),
       topic: z.string().max(100).optional().nullable(),
       updatedAt: z.string(),
@@ -125,6 +130,7 @@ export const notificationRequest = z.lazy(() => {
       read_at: data['readAt'],
       seen_at: data['seenAt'],
       sent_at: data['sentAt'],
+      status: data['status'],
       title: data['title'],
       topic: data['topic'],
       updated_at: data['updatedAt'],
