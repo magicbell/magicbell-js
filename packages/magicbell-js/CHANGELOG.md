@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 1.8.0
+
+### Minor Changes
+
+- [#611](https://github.com/magicbell/magicbell-js/pull/611) [`762c4f4`](https://github.com/magicbell/magicbell-js/commit/762c4f4480c18c2491b9693fad6410c1de4af08a) Thanks [@smeijer](https://github.com/smeijer)! - add `notifications.markAllNotificationsSeen` and `notifications.markNotificationSeen`
+
 ## 1.7.2
 
 ### Patch Changes
