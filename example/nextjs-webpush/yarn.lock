@@ -331,16 +331,16 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@magicbell/react@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@magicbell/react/-/react-1.13.0.tgz#0fa937a1acf7d4a30e1b0a13183b48a1b0bcb5a4"
-  integrity sha512-c7MYiuecDB0MOLrAPpyg7AIr1hMfUuosnzzV7VuJU3owdYuWpcEeoXTRg2vxl+7U5f98QNMp6EBUeN0a0JCoEw==
+"@magicbell/react@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@magicbell/react/-/react-1.14.0.tgz#451d58985b9fb0769747809d7f4264c59a5d24ca"
+  integrity sha512-bfKLPI3HzlFZROgyHwslDPF6g7YcJ31+2F4P678AV/W6dBU3puFfCYW+0E72gGB0DGmbbsA8KuaZMIIX0PziPQ==
   dependencies:
     "@floating-ui/dom" "^1.6.13"
     clsx "^2.1.1"
     debug "^4.4.1"
     ensured "^1.0.0"
-    magicbell-js "^1.7.0"
+    magicbell-js "^1.8.0"
     reconnecting-websocket "^4.4.0"
     robot3 "^1.1.1"
     tinycoll "^1.3.0"
@@ -2325,12 +2325,12 @@ magic-string@^0.30.17:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.5.5"
 
-magicbell-js@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/magicbell-js/-/magicbell-js-1.7.0.tgz#a66c32a34ee7e6a439619a9831a8b04de49eb87b"
-  integrity sha512-aQbA9CT6H5Fifnylk6fwXZQZ4jg76mhzRbBsjQDULHfhelPrestshkWtjlUPYzrHmtCAHpTqogcWyKxhLdw6JQ==
+magicbell-js@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/magicbell-js/-/magicbell-js-1.8.0.tgz#ccdbf098a0164ea9cde4cc28027da35bf656c25f"
+  integrity sha512-7/Tu23VGfNRdjFvKbvneb5wbKJf64OFHGqLoc1aA1L6Zy2z3K5w52C5WIET9Qy3E6LxsRFktbXGu94TkBIOXSQ==
   dependencies:
-    zod "3.22.0"
+    zod "3.25.76"
 
 math-intrinsics@^1.1.0:
   version "1.1.0"
@@ -3285,7 +3285,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@3.22.0:
-  version "3.22.0"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.0.tgz#2478211a9bf477eb2d7d2ce031b5f8ff0d596407"
-  integrity sha512-y5KZY/ssf5n7hCGDGGtcJO/EBJEm5Pa+QQvFBeyMOtnFYOSflalxIFFvdaYevPhePcmcKC4aTbFkCcXN7D0O8Q==
+zod@3.25.76:
+  version "3.25.76"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
+  integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==

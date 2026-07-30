@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@magicbell/react": "^1.13.0",
+    "@magicbell/react": "^1.14.0",
     "jsonwebtoken": "^9.0.2",
     "next": "16.2.9",
     "react": "19.1.0",
