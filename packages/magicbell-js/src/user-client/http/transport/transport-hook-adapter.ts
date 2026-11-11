@@ -23,7 +23,7 @@ export class TransportHookAdapter<T> {
    * @param params - Additional parameters to pass to the hook
    * @returns The modified Request after hook processing
    */
-  public async beforeRequest(request: Request, params: Map<string, string>): Promise<Request> {
+  public async beforeRequest(request: Request<unknown, T>, params: Map<string, string>): Promise<Request<unknown, T>> {
     const hookRequest = this.requestToHookRequest(request);
 
     const newRequest = await this.hook.beforeRequest(hookRequest, params);
@@ -51,7 +51,7 @@ export class TransportHookAdapter<T> {
    * @returns The potentially modified response after hook processing
    */
   public async afterResponse(
-    request: Request,
+    request: Request<unknown, T>,
     response: HttpResponse<T>,
     params: Map<string, string>,
   ): Promise<HttpResponse<T>> {
@@ -68,7 +68,11 @@ export class TransportHookAdapter<T> {
    * @param params - Additional parameters to pass to the hook
    * @returns The HttpError from the hook
    */
-  public async onError(request: Request, response: HttpResponse<T>, params: Map<string, string>): Promise<HttpError> {
+  public async onError(
+    request: Request<unknown, T>,
+    response: HttpResponse<T>,
+    params: Map<string, string>,
+  ): Promise<HttpError> {
     const hookRequest = this.requestToHookRequest(request);
     return this.hook.onError(hookRequest, response, params);
   }
@@ -80,7 +84,7 @@ export class TransportHookAdapter<T> {
    * @param request - The internal Request object
    * @returns An HttpRequest object for hook processing
    */
-  private requestToHookRequest(request: Request): HttpRequest {
+  private requestToHookRequest(request: Request<unknown, T>): HttpRequest {
     const hookHeaders: Map<string, unknown> = new Map();
     request.headers.forEach((header, key) => {
       hookHeaders.set(key, header.value);

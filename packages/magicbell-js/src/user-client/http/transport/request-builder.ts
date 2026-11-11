@@ -18,16 +18,16 @@ import {
  * Provides a fluent interface for configuring all aspects of an API request.
  * @template Page - The type for paginated response pages
  */
-export class RequestBuilder<Page extends unknown[] = unknown[]> {
+export class RequestBuilder<Page extends unknown[] = unknown[], Output = never> {
   /** Internal request parameters being built */
-  private params: CreateRequestParameters<Page>;
+  private params: CreateRequestParameters<Page, Output>;
 
   /**
    * Creates a new request builder with default configuration.
    * Initializes retry settings, validation options, and empty parameter collections.
    */
-  constructor() {
-    this.params = {
+  constructor(params?: CreateRequestParameters<Page, Output>) {
+    this.params = params ?? {
       baseUrl: Environment.DEFAULT,
       method: 'GET',
       path: '',
@@ -50,7 +50,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     };
   }
 
-  setRetryAttempts(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page> {
+  setRetryAttempts(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page, Output> {
     if (requestConfig?.retry?.attempts !== undefined) {
       this.params.retry.attempts = requestConfig.retry.attempts;
     } else if (sdkConfig?.retry?.attempts !== undefined) {
@@ -60,7 +60,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  setRetryDelayMs(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page> {
+  setRetryDelayMs(sdkConfig?: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page, Output> {
     if (requestConfig?.retry?.delayMs !== undefined) {
       this.params.retry.delayMs = requestConfig.retry.delayMs;
     } else if (sdkConfig?.retry?.delayMs !== undefined) {
@@ -70,7 +70,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  setResponseValidation(sdkConfig: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page> {
+  setResponseValidation(sdkConfig: SdkConfig, requestConfig?: RequestConfig): RequestBuilder<Page, Output> {
     if (requestConfig?.validation?.responseValidation !== undefined) {
       this.params.validation.responseValidation = requestConfig.validation.responseValidation;
     } else if (sdkConfig?.validation?.responseValidation !== undefined) {
@@ -80,7 +80,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  setBaseUrl(baseUrl: string | undefined): RequestBuilder<Page> {
+  setBaseUrl(baseUrl: string | undefined): RequestBuilder<Page, Output> {
     if (baseUrl) {
       this.params.baseUrl = baseUrl;
     }
@@ -88,56 +88,56 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  setMethod(method: HttpMethod): RequestBuilder<Page> {
+  setMethod(method: HttpMethod): RequestBuilder<Page, Output> {
     this.params.method = method;
     return this;
   }
 
-  setPath(path: string): RequestBuilder<Page> {
+  setPath(path: string): RequestBuilder<Page, Output> {
     this.params.path = path;
     return this;
   }
 
-  setConfig(config: SdkConfig): RequestBuilder<Page> {
+  setConfig(config: SdkConfig): RequestBuilder<Page, Output> {
     this.params.config = config;
     return this;
   }
 
-  setRequestContentType(contentType: ContentType): RequestBuilder<Page> {
+  setRequestContentType(contentType: ContentType): RequestBuilder<Page, Output> {
     this.params.requestContentType = contentType;
     return this;
   }
 
-  setRequestSchema(requestSchema: ZodType): RequestBuilder<Page> {
+  setRequestSchema(requestSchema: ZodType): RequestBuilder<Page, Output> {
     this.params.requestSchema = requestSchema;
     return this;
   }
 
-  setFilename(filename?: string): RequestBuilder<Page> {
+  setFilename(filename?: string): RequestBuilder<Page, Output> {
     if (filename !== undefined) {
       this.params.filename = filename;
     }
     return this;
   }
 
-  setFilenames(filenames?: string[]): RequestBuilder<Page> {
+  setFilenames(filenames?: string[]): RequestBuilder<Page, Output> {
     if (filenames !== undefined) {
       this.params.filenames = filenames;
     }
     return this;
   }
 
-  setPagination(pagination: RequestPagination<Page>): RequestBuilder<Page> {
+  setPagination(pagination: RequestPagination<Page>): RequestBuilder<Page, Output> {
     this.params.pagination = pagination;
     return this;
   }
 
-  setCursorPagination(pagination: RequestCursorPagination<Page>): RequestBuilder<Page> {
+  setCursorPagination(pagination: RequestCursorPagination<Page>): RequestBuilder<Page, Output> {
     this.params.pagination = pagination;
     return this;
   }
 
-  addAccessTokenAuth(accessToken?: string, prefix?: string): RequestBuilder<Page> {
+  addAccessTokenAuth(accessToken?: string, prefix?: string): RequestBuilder<Page, Output> {
     if (accessToken === undefined) {
       return this;
     }
@@ -155,7 +155,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addBasicAuth(username?: string, password?: string): RequestBuilder<Page> {
+  addBasicAuth(username?: string, password?: string): RequestBuilder<Page, Output> {
     if (username === undefined || password === undefined) {
       return this;
     }
@@ -173,7 +173,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addApiKeyAuth(apiKey?: string, keyName?: string): RequestBuilder<Page> {
+  addApiKeyAuth(apiKey?: string, keyName?: string): RequestBuilder<Page, Output> {
     if (apiKey === undefined) {
       return this;
     }
@@ -191,24 +191,27 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addResponse(response: ResponseDefinition): RequestBuilder<Page> {
-    this.params.responses.push(response);
-    return this;
+  /** Return a new builder carrying the added schema's output type. */
+  addResponse<Response>(response: ResponseDefinition<Response>): RequestBuilder<Page, Output | Response> {
+    return new RequestBuilder<Page, Output | Response>({
+      ...this.params,
+      responses: [...this.params.responses, response],
+    });
   }
 
-  addError(error: ErrorDefinition): RequestBuilder<Page> {
+  addError(error: ErrorDefinition): RequestBuilder<Page, Output> {
     this.params.errors.push(error);
     return this;
   }
 
-  addBody(body?: any): RequestBuilder<Page> {
+  addBody(body?: any): RequestBuilder<Page, Output> {
     if (body !== undefined) {
       this.params.body = body;
     }
     return this;
   }
 
-  addPathParam(param: Partial<RequestParameter>): RequestBuilder<Page> {
+  addPathParam(param: Partial<RequestParameter>): RequestBuilder<Page, Output> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -227,7 +230,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addQueryParam(param: Partial<RequestParameter>): RequestBuilder<Page> {
+  addQueryParam(param: Partial<RequestParameter>): RequestBuilder<Page, Output> {
     if (param.key === undefined) {
       return this;
     }
@@ -246,7 +249,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addHeaderParam(param: Partial<RequestParameter>): RequestBuilder<Page> {
+  addHeaderParam(param: Partial<RequestParameter>): RequestBuilder<Page, Output> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -265,7 +268,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
     return this;
   }
 
-  addCookieParam(param: Partial<RequestParameter>): RequestBuilder<Page> {
+  addCookieParam(param: Partial<RequestParameter>): RequestBuilder<Page, Output> {
     if (param.value === undefined || param.key === undefined) {
       return this;
     }
@@ -289,8 +292,8 @@ export class RequestBuilder<Page extends unknown[] = unknown[]> {
    * Call this method after configuring all request parameters.
    * @returns A new Request instance with all configured parameters
    */
-  public build(): Request<Page> {
-    return new Request<Page>(this.params);
+  public build(): Request<Page, Output> {
+    return new Request<Page, Output>(this.params);
   }
 
   /**

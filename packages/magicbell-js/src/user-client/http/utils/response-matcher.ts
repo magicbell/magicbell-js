@@ -6,12 +6,12 @@ import { getContentTypeDefinition } from './content-type.js';
  * Matches HTTP responses to their expected response definitions.
  * Determines which response schema to use based on status code and content type.
  */
-export class ResponseMatcher {
+export class ResponseMatcher<Output = unknown> {
   /**
    * Creates a new response matcher.
    * @param responses - Array of possible response definitions for an endpoint
    */
-  constructor(private responses: ResponseDefinition[]) {}
+  constructor(private responses: ResponseDefinition<Output>[]) {}
 
   /**
    * Finds the matching response definition for an HTTP response.
@@ -19,7 +19,7 @@ export class ResponseMatcher {
    * @param response - The HTTP response to match
    * @returns The matching response definition, or undefined if no match found
    */
-  public getResponseDefinition(response: HttpResponse): ResponseDefinition | undefined {
+  public getResponseDefinition(response: HttpResponse): ResponseDefinition<Output> | undefined {
     const rawContentType = response.metadata.headers['content-type']?.toLocaleLowerCase() || '';
     const contentType = getContentTypeDefinition(rawContentType);
     const statusCode = response.metadata.status;

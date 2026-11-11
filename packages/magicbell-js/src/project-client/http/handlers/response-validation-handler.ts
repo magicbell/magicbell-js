@@ -19,7 +19,7 @@ export class ResponseValidationHandler implements RequestHandler {
    * @param request - The HTTP request to process
    * @returns A promise that resolves to the validated HTTP response
    */
-  async handle<T>(request: Request): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     const response = await this.next!.handle<T>(request);
 
     return this.decodeBody<T>(request, response);
@@ -32,7 +32,7 @@ export class ResponseValidationHandler implements RequestHandler {
    * @returns An async generator that yields validated HTTP responses
    * @throws Error if response headers are enabled (streaming not supported with headers)
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     const stream = this.next!.stream<T>(request);
 
     for await (const response of stream) {
@@ -59,8 +59,8 @@ export class ResponseValidationHandler implements RequestHandler {
       }));
   }
 
-  private decodeBody<T>(request: Request, response: HttpResponse<T>): HttpResponse<T> {
-    const responseMatcher = new ResponseMatcher(request.responses);
+  private decodeBody<T>(request: Request<unknown, T>, response: HttpResponse<T>): HttpResponse<T> {
+    const responseMatcher = new ResponseMatcher<T>(request.responses);
     const responseDefinition = responseMatcher.getResponseDefinition(response);
 
     if (!responseDefinition || !this.hasContent(responseDefinition, response)) {
@@ -69,7 +69,7 @@ export class ResponseValidationHandler implements RequestHandler {
 
     const contentType = responseDefinition.contentType;
     const contentTypeHandlers: {
-      [key: string]: (req: Request, resDef: ResponseDefinition, res: HttpResponse<T>) => HttpResponse<T>;
+      [key: string]: (req: Request<unknown, T>, resDef: ResponseDefinition<T>, res: HttpResponse<T>) => HttpResponse<T>;
     } = {
       [ContentType.Binary]: this.decodeFile,
       [ContentType.Image]: this.decodeFile,
@@ -92,8 +92,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeFile<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     return {
@@ -103,8 +103,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeMultipartFormData<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     const formData = this.fromFormData(response.raw);
@@ -115,8 +115,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeText<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     const decodedBody = new TextDecoder().decode(response.raw);
@@ -127,8 +127,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeFormUrlEncoded<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     const decodedBody = new TextDecoder().decode(response.raw);
@@ -140,8 +140,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeEventStream<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     let decodedBody = new TextDecoder().decode(response.raw);
@@ -157,8 +157,8 @@ export class ResponseValidationHandler implements RequestHandler {
   }
 
   private decodeJson<T>(
-    request: Request,
-    responseDefinition: ResponseDefinition,
+    request: Request<unknown, T>,
+    responseDefinition: ResponseDefinition<T>,
     response: HttpResponse<T>,
   ): HttpResponse<T> {
     const decodedBody = new TextDecoder().decode(response.raw);
@@ -177,9 +177,9 @@ export class ResponseValidationHandler implements RequestHandler {
    * @param data - The data to validate
    * @returns The validated data (parsed if validation enabled, raw otherwise)
    */
-  private validate<T>(request: Request, response: ResponseDefinition, data: any): T {
+  private validate<T>(request: Request<unknown, T>, response: ResponseDefinition<T>, data: any): T {
     if (request.validation?.responseValidation) {
-      return response.schema.parse(data) as T;
+      return response.schema.parse(data);
     }
     return data;
   }
@@ -191,7 +191,7 @@ export class ResponseValidationHandler implements RequestHandler {
    * @param response - The HTTP response
    * @returns True if the response should have content, false otherwise
    */
-  private hasContent<T>(responseDefinition: ResponseDefinition, response: HttpResponse<T>): boolean {
+  private hasContent<T>(responseDefinition: ResponseDefinition<T>, response: HttpResponse<T>): boolean {
     return (
       !!responseDefinition.schema &&
       !(responseDefinition.schema instanceof ZodUndefined) &&

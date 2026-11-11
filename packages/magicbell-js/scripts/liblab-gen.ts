@@ -10,6 +10,8 @@ import * as md from '@magicbell/codegen/markdown';
 import { compare } from 'semver';
 import { sortPackageJson } from 'sort-package-json';
 
+import { installGeneratedClient } from './install-generated-client.js';
+
 async function move(oldPath: string, newPath: string) {
   await fs.rm(newPath, { recursive: true, force: true });
   await fs.mkdir(path.dirname(newPath), { recursive: true });
@@ -87,26 +89,6 @@ function run(cmd: string) {
   execSync(cmd, { stdio: 'inherit' });
 }
 
-async function adaptZodHandlers(dest: string) {
-  const replacements = {
-    'request-validation-handler.ts': [
-      "typeof validatedBody === 'object' && !Array.isArray(validatedBody)",
-      "validatedBody !== null && typeof validatedBody === 'object' && !Array.isArray(validatedBody)",
-    ],
-    'response-validation-handler.ts': [
-      'return response.schema.parse(data);',
-      'return response.schema.parse(data) as T;',
-    ],
-  };
-
-  // Liblab's handlers assume Zod 3's default `any` output; Zod 4 defaults to `unknown`.
-  for (const [file, [before, after]] of Object.entries(replacements)) {
-    const filePath = path.join(dest, 'http/handlers', file);
-    const source = await fs.readFile(filePath, 'utf-8');
-    await fs.writeFile(filePath, source.replace(before, after));
-  }
-}
-
 async function build(options: typeof args) {
   if (!options.spec) {
     console.log(`error: missing required argument '--spec <file>'`);
@@ -137,8 +119,8 @@ async function build(options: typeof args) {
     await fs.rm(liblabConfig.specFilePath, { force: true });
   }
 
-  await move('output/typescript/src', dest);
-  await adaptZodHandlers(dest);
+  // The HTTP runtime is maintained separately; only API bindings are regenerated.
+  await installGeneratedClient('output/typescript/src', dest);
   execSync(`npx fix-esm-import-path ${dest}`);
   execSync(`yarn --cwd ../.. eslint --fix ${path.join(pkgPath, dest)}`, { stdio: 'inherit' });
 
