@@ -1,7 +1,9 @@
 // @vitest-environment node
+import { execFile } from 'node:child_process';
 import * as fs from 'node:fs/promises';
 import * as os from 'node:os';
 import * as path from 'node:path';
+import { promisify } from 'node:util';
 
 import { afterEach, expect, it } from 'vitest';
 
@@ -38,7 +40,14 @@ it('regenerates API bindings while preserving the maintained HTTP runtime', asyn
   await fs.writeFile(path.join(destination, 'http', 'client.ts'), 'maintained Zod 4 runtime');
   await fs.writeFile(path.join(destination, 'removed-api.ts'), 'old API bindings');
 
-  await installGeneratedClient(source, destination);
+  await promisify(execFile)(process.execPath, [
+    '--input-type=module',
+    '--eval',
+    'const { installGeneratedClient } = await import(process.argv[1]); await installGeneratedClient(process.argv[2], process.argv[3]);',
+    new URL('../scripts/install-generated-client.js', import.meta.url).href,
+    source,
+    destination,
+  ]);
 
   expect(await fs.readFile(path.join(destination, 'index.ts'), 'utf-8')).toBe('new API bindings');
   expect(await fs.readFile(path.join(destination, 'http', 'client.ts'), 'utf-8')).toBe('maintained Zod 4 runtime');
