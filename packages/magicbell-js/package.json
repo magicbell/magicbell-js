@@ -57,7 +57,7 @@
     "/realtime/package.json"
   ],
   "scripts": {
-    "build": "run-s build:bundle build:node10 build:docs build:attw",
+    "build": "run-s build:bundle test:types build:node10 build:docs build:attw",
     "build:attw": "attw -P --profile node16",
     "build:bundle": "tshy",
     "build:docs": "./scripts/liblab-docs.ts",
@@ -65,10 +65,11 @@
     "codegen": "run-s codegen:user-client codegen:project-client",
     "codegen:project-client": "./scripts/liblab-gen.ts --spec https://www.magicbell.com/docs/api/openapi.project.json --target project-client",
     "codegen:user-client": "./scripts/liblab-gen.ts --spec https://www.magicbell.com/docs/api/openapi.user.json --target user-client",
-    "start": "tshy --watch"
+    "start": "tshy --watch",
+    "test:types": "tsc --project test/tsconfig.json"
   },
   "dependencies": {
-    "zod": "3.25.76"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@magicbell/codegen": "^0.4.0",

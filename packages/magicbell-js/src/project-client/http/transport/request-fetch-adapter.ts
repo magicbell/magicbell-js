@@ -22,7 +22,7 @@ interface HttpAdapter {
 export class RequestFetchAdapter<T> implements HttpAdapter {
   private requestInit: RequestInit = {};
 
-  constructor(private request: Request) {
+  constructor(private request: Request<unknown>) {
     this.setMethod(request.method);
     this.setHeaders(request.getHeaders());
     this.setCookies(request.getCookies());

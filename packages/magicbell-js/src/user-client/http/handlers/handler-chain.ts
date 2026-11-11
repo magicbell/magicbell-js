@@ -29,7 +29,7 @@ export class RequestHandlerChain {
    * @returns A promise that resolves to the HTTP response
    * @throws Error if no handlers are added to the chain
    */
-  async callChain<T>(request: Request): Promise<HttpResponse<T>> {
+  async callChain<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     if (!this.handlers.length) {
       throw new Error('No handlers added to the chain');
     }
@@ -44,7 +44,7 @@ export class RequestHandlerChain {
    * @returns An async generator that yields HTTP responses
    * @throws Error if no handlers are added to the chain
    */
-  async *streamChain<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *streamChain<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     if (!this.handlers.length) {
       throw new Error('No handlers added to the chain');
     }

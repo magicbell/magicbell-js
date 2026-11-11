@@ -19,7 +19,7 @@ export class RequestValidationHandler implements RequestHandler {
    * @returns A promise that resolves to the HTTP response
    * @throws Error if no next handler is set
    */
-  async handle<T>(request: Request): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
@@ -36,7 +36,7 @@ export class RequestValidationHandler implements RequestHandler {
    * @returns An async generator that yields HTTP responses
    * @throws Error if no next handler is set
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in ContentTypeHandler.');
     }
@@ -51,7 +51,7 @@ export class RequestValidationHandler implements RequestHandler {
    * @param request - The HTTP request to validate
    * @throws ValidationError if Zod schema validation fails
    */
-  validateRequest(request: Request): void {
+  validateRequest(request: Request<unknown>): void {
     if (request.requestContentType === ContentType.Json) {
       try {
         const parsedBody = request.requestSchema?.parse(request.body);
@@ -83,7 +83,7 @@ export class RequestValidationHandler implements RequestHandler {
    * @param request - The HTTP request with body to convert
    * @returns URL-encoded string representation of the body
    */
-  toFormUrlEncoded(request: Request): string {
+  toFormUrlEncoded(request: Request<unknown>): string {
     if (request.body === undefined) {
       return '';
     }
@@ -108,7 +108,7 @@ export class RequestValidationHandler implements RequestHandler {
       return params.toString();
     }
 
-    if (typeof validatedBody === 'object' && !Array.isArray(validatedBody)) {
+    if (validatedBody !== null && typeof validatedBody === 'object' && !Array.isArray(validatedBody)) {
       const params = new URLSearchParams();
       for (const [key, value] of Object.entries(validatedBody)) {
         if (value != null) {

@@ -8,9 +8,9 @@ import { ContentType, HttpMethod, RetryOptions, SdkConfig, ValidationOptions } f
  * Defines an expected response format with schema validation.
  * Used to match and validate responses based on content type and status code.
  */
-export interface ResponseDefinition {
+export interface ResponseDefinition<Output = unknown> {
   /** Zod schema for validating the response body */
-  schema: ZodType;
+  schema: ZodType<Output>;
   /** The content type of this response (e.g., 'application/json') */
   contentType: ContentType;
   /** The HTTP status code this definition applies to */
@@ -36,7 +36,7 @@ export interface ErrorDefinition {
  *
  * @template Page - The type of paginated data items
  */
-export interface CreateRequestParameters<Page = unknown[]> {
+export interface CreateRequestParameters<Page = unknown[], Output = unknown> {
   baseUrl: string;
   method: HttpMethod;
   body?: any;
@@ -46,7 +46,7 @@ export interface CreateRequestParameters<Page = unknown[]> {
   cookies: Map<string, RequestParameter>;
   path: string;
   config: SdkConfig;
-  responses: ResponseDefinition[];
+  responses: ResponseDefinition<Output>[];
   errors: ErrorDefinition[];
   requestSchema: ZodType;
   requestContentType: ContentType;
@@ -92,7 +92,7 @@ export interface RequestPagination<Page> {
   /** JSON path to extract page data from response */
   pagePath: string[];
   /** Zod schema for validating page data */
-  pageSchema?: ZodType<Page, any, any>;
+  pageSchema?: ZodType<Page>;
 }
 
 /**
@@ -105,7 +105,7 @@ export interface RequestCursorPagination<Page> {
   /** JSON path to extract page data from response */
   pagePath: string[];
   /** Zod schema for validating page data */
-  pageSchema?: ZodType<Page, any, any>;
+  pageSchema?: ZodType<Page>;
   /** JSON path to extract next cursor from response */
   cursorPath: string[];
   /** Zod schema for validating cursor value */

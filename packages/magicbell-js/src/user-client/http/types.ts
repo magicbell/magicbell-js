@@ -80,7 +80,7 @@ export interface RequestHandler {
    * @param request - The HTTP request to process
    * @returns A promise that resolves to the HTTP response
    */
-  handle<T>(request: Request): Promise<HttpResponse<T>>;
+  handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>>;
 
   /**
    * Handles a streaming HTTP request.
@@ -88,7 +88,7 @@ export interface RequestHandler {
    * @param request - The HTTP request to process
    * @returns An async generator that yields HTTP responses
    */
-  stream<T>(request: Request): AsyncGenerator<HttpResponse<T>>;
+  stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>>;
 }
 
 /**
@@ -121,7 +121,7 @@ export enum ContentType {
 }
 
 export interface Options<T> {
-  responseSchema: ZodType<T, any, any>;
+  responseSchema: ZodType<T>;
   requestSchema?: ZodType;
   body?: any;
   requestContentType?: ContentType;

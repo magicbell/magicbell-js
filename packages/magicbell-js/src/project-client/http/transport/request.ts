@@ -24,7 +24,7 @@ import {
  *
  * @template PageSchema - The type of paginated data returned by this request
  */
-export class Request<PageSchema = unknown[]> {
+export class Request<PageSchema = unknown[], Output = unknown> {
   public baseUrl = '';
 
   public headers: Map<string, RequestParameter> = new Map();
@@ -43,7 +43,7 @@ export class Request<PageSchema = unknown[]> {
 
   public config: SdkConfig;
 
-  public responses: ResponseDefinition[];
+  public responses: ResponseDefinition<Output>[];
 
   public errors: ErrorDefinition[];
 
@@ -63,7 +63,7 @@ export class Request<PageSchema = unknown[]> {
 
   private readonly pathPattern: string;
 
-  constructor(params: CreateRequestParameters<PageSchema>) {
+  constructor(params: CreateRequestParameters<PageSchema, Output>) {
     this.baseUrl = params.baseUrl;
     this.method = params.method;
     this.pathPattern = params.path;
@@ -210,8 +210,8 @@ export class Request<PageSchema = unknown[]> {
    * @param overrides - Optional parameters to override in the copied request
    * @returns A new Request instance with the specified overrides
    */
-  public copy(overrides?: Partial<CreateRequestParameters>) {
-    const createRequestParams: CreateRequestParameters = {
+  public copy(overrides?: Partial<CreateRequestParameters<PageSchema, Output>>) {
+    const createRequestParams: CreateRequestParameters<PageSchema, Output> = {
       baseUrl: overrides?.baseUrl ?? this.baseUrl,
       errors: overrides?.errors ?? this.errors,
       method: overrides?.method ?? this.method,
@@ -230,7 +230,7 @@ export class Request<PageSchema = unknown[]> {
       filename: overrides?.filename ?? this.filename,
       filenames: overrides?.filenames ?? this.filenames,
     };
-    return new Request({
+    return new Request<PageSchema, Output>({
       ...createRequestParams,
       ...overrides,
     });
