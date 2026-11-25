@@ -1,7 +1,0 @@
-{
-  "name": "magicbell-project",
-  "description": "Using the default, light theme. Clean, simple, friendly and round.",
-  "dependencies": {
-    "@magicbell/magicbell-react": "10.7.5"
-  }
-}
