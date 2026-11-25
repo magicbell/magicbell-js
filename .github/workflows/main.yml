@@ -59,7 +59,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: TypeScript
-        run: tsc -v && yarn lint:typescript
+        run: yarn tsc -v && yarn lint:typescript
 
   test:
     name: Test
