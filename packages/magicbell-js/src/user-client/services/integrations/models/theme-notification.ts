@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Default_, default_, defaultRequest, defaultResponse } from './default_.js';
 import { Unread, unread, unreadRequest, unreadResponse } from './unread.js';

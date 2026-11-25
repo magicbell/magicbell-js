@@ -10,6 +10,8 @@ import * as md from '@magicbell/codegen/markdown';
 import { compare } from 'semver';
 import { sortPackageJson } from 'sort-package-json';
 
+import { installGeneratedClient } from './install-generated-client.js';
+
 async function move(oldPath: string, newPath: string) {
   await fs.rm(newPath, { recursive: true, force: true });
   await fs.mkdir(path.dirname(newPath), { recursive: true });
@@ -117,7 +119,8 @@ async function build(options: typeof args) {
     await fs.rm(liblabConfig.specFilePath, { force: true });
   }
 
-  await move('output/typescript/src', dest);
+  // The HTTP runtime is maintained separately; only API bindings are regenerated.
+  await installGeneratedClient('output/typescript/src', dest);
   execSync(`npx fix-esm-import-path ${dest}`);
   execSync(`yarn --cwd ../.. eslint --fix ${path.join(pkgPath, dest)}`, { stdio: 'inherit' });
 

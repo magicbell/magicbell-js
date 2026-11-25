@@ -25,7 +25,7 @@ export class HookHandler implements RequestHandler {
    * @returns A promise that resolves to the HTTP response
    * @throws Error if no next handler is set, or if error handling fails
    */
-  async handle<T>(request: Request): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in hook handler.');
     }
@@ -75,7 +75,7 @@ export class HookHandler implements RequestHandler {
    * @returns An async generator that yields HTTP responses
    * @throws Error if no next handler is set, or if error handling fails
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in hook handler.');
     }
@@ -103,7 +103,7 @@ export class HookHandler implements RequestHandler {
    * @param request - The HTTP request
    * @returns A map of hook parameter names to values
    */
-  private getHookParams<T>(_request: Request): Map<string, string> {
+  private getHookParams<T>(_request: Request<unknown, T>): Map<string, string> {
     const hookParams: Map<string, string> = new Map();
     return hookParams;
   }

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Email, email, emailRequest, emailResponse } from './email.js';
 import { InApp, inApp, inAppRequest, inAppResponse } from './in-app.js';

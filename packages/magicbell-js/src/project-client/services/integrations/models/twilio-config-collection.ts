@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Links, links, linksRequest, linksResponse } from '../../common/links.js';
 import { TwilioConfig, twilioConfig, twilioConfigRequest, twilioConfigResponse } from './twilio-config.js';

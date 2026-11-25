@@ -336,6 +336,17 @@ realtime.listen((notification) => {
 realtime.disconnect();
 ```
 
+# SDK Development
+
+Liblab generates the API bindings in `src/project-client` and `src/user-client`.
+The `http` directory in each client is maintained by hand and uses Zod 4 directly.
+The generation script preserves these runtime directories when replacing the API bindings;
+runtime changes from Liblab must be reviewed and incorporated separately.
+
+Run `yarn workspace magicbell-js build` to rebuild both module formats and check the
+published declaration types. Run `yarn test packages/magicbell-js/test` for validation
+and generation-preservation tests.
+
 ## Using with UserClient
 
 You can also initialize the Realtime client with an existing `UserClient`:

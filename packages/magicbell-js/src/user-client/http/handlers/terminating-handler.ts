@@ -14,7 +14,7 @@ export class TerminatingHandler implements RequestHandler {
    * @param request - The HTTP request to execute
    * @returns A promise that resolves to the HTTP response
    */
-  async handle<T>(request: Request): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     return new RequestFetchAdapter<T>(request).send();
   }
 
@@ -24,7 +24,7 @@ export class TerminatingHandler implements RequestHandler {
    * @param request - The HTTP request to execute
    * @returns An async generator that yields HTTP responses
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     yield* new RequestFetchAdapter<T>(request).stream();
   }
 }

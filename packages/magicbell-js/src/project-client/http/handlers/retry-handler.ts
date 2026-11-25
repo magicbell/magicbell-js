@@ -18,7 +18,7 @@ export class RetryHandler implements RequestHandler {
    * @returns A promise that resolves to the HTTP response
    * @throws Error if no next handler is set, or if all retry attempts fail
    */
-  async handle<T>(request: Request): Promise<HttpResponse<T>> {
+  async handle<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in retry handler.');
     }
@@ -44,7 +44,7 @@ export class RetryHandler implements RequestHandler {
    * @returns An async generator that yields HTTP responses
    * @throws Error if no next handler is set, or if all retry attempts fail
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     if (!this.next) {
       throw new Error('No next handler set in retry handler.');
     }

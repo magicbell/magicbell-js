@@ -36,7 +36,7 @@ export class HttpClient {
    * @param request - The HTTP request to execute
    * @returns A promise that resolves to the HTTP response
    */
-  call<T>(request: Request): Promise<HttpResponse<T>> {
+  call<T>(request: Request<unknown, T>): Promise<HttpResponse<T>> {
     return this.requestHandlerChain.callChain(request);
   }
 
@@ -46,7 +46,7 @@ export class HttpClient {
    * @param request - The HTTP request to execute
    * @returns An async generator that yields HTTP responses
    */
-  async *stream<T>(request: Request): AsyncGenerator<HttpResponse<T>> {
+  async *stream<T>(request: Request<unknown, T>): AsyncGenerator<HttpResponse<T>> {
     yield* this.requestHandlerChain.streamChain(request);
   }
 
@@ -58,8 +58,10 @@ export class HttpClient {
    * @returns A promise that resolves to the paginated HTTP response
    * @throws Error if the response contains no data to paginate through
    */
-  public async callPaginated<FullResponse, Page>(request: Request<Page>): Promise<PaginatedHttpResponse<Page>> {
-    const response = await this.call<FullResponse>(request as any);
+  public async callPaginated<FullResponse, Page>(
+    request: Request<Page, FullResponse>,
+  ): Promise<PaginatedHttpResponse<Page>> {
+    const response = await this.call<FullResponse>(request);
 
     if (!response.data) {
       throw new Error('no response data to paginate through');
@@ -82,9 +84,9 @@ export class HttpClient {
    * @throws Error if the response contains no data to paginate through
    */
   public async callCursorPaginated<FullResponse, Page>(
-    request: Request<Page>,
+    request: Request<Page, FullResponse>,
   ): Promise<CursorPaginatedHttpResponse<Page>> {
-    const response = await this.call<FullResponse>(request as any);
+    const response = await this.call<FullResponse>(request);
 
     if (!response.data) {
       throw new Error('no response data to paginate through');
@@ -125,7 +127,7 @@ export class HttpClient {
    * @returns The extracted and parsed page data
    * @throws Error if pagination is not configured or page extraction fails
    */
-  private getPage<FullResponse, Page>(request: Request<Page>, data: FullResponse): Page {
+  private getPage<FullResponse, Page>(request: Request<Page, FullResponse>, data: FullResponse): Page {
     if (!request.pagination) {
       throw new Error('getPage called for request without pagination property');
     }
@@ -154,7 +156,10 @@ export class HttpClient {
    * @param data - The full response data to extract the cursor from
    * @returns The next cursor string, null if no more pages, or undefined if not cursor pagination
    */
-  private getNextCursor<FullResponse, Page>(request: Request<Page>, data: FullResponse): string | null | undefined {
+  private getNextCursor<FullResponse, Page>(
+    request: Request<Page, FullResponse>,
+    data: FullResponse,
+  ): string | null | undefined {
     if (!isRequestCursorPagination(request.pagination)) {
       return undefined;
     }

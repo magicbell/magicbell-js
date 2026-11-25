@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { SmtpConfigFrom, smtpConfigFrom, smtpConfigFromRequest, smtpConfigFromResponse } from './smtp-config-from.js';
 import {

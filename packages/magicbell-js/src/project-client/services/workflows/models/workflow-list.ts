@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Items, items, itemsRequest, itemsResponse } from './items.js';
 
