@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 2.0.0
+
+### Major Changes
+
+- [#621](https://github.com/magicbell/magicbell-js/pull/621) [`63a7cbe`](https://github.com/magicbell/magicbell-js/commit/63a7cbe63a0bb010fe84c6ee30d70c6bf8be1470) Thanks [@unamashana](https://github.com/unamashana)! - Upgrade to Zod 4.6.7 to address CVE-2023-54404. Bounded collections now reject oversized inputs before validating their elements. The SDK's declarations now use Zod 4, which requires TypeScript 5.0 or newer, and TypeScript 5.4 or newer unless `skipLibCheck` is enabled. Validation issue details and default error messages follow Zod 4's format. Zod 4 uses modern JavaScript syntax and cannot run on Node.js 10.
+
 ## 1.8.0
 
 ### Minor Changes
