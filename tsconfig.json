@@ -22,8 +22,7 @@
       "@magicbell/codegen": ["packages/codegen/src"],
       "@magicbell/service-worker": ["packages/service-worker/src"],
       "@magicbell/utils": ["packages/utils/src"],
-      "magicbell-js": ["packages/magicbell-js/src"],
-      "playground": ["packages/playground/src"]
+      "magicbell-js": ["packages/magicbell-js/src"]
     }
   }
 }

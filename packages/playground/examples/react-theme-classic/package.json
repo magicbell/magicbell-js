@@ -1,7 +1,0 @@
-{
-  "name": "magicbell-project",
-  "description": "Using the classic theme and bell icon, inspired on v9 and earlier.",
-  "dependencies": {
-    "@magicbell/magicbell-react": "10.7.5"
-  }
-}

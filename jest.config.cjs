@@ -30,11 +30,7 @@ const commonConfig = {
   },
   resolver: './jest.resolver.cjs',
   moduleFileExtensions: ['ts', 'tsx', 'cts', 'js', 'json'],
-  modulePathIgnorePatterns: [
-    '<rootDir>/packages/magicbell/dist',
-    '<rootDir>/packages/playground',
-    '<rootDir>/packages/embeddable/cypress',
-  ],
+  modulePathIgnorePatterns: ['<rootDir>/packages/magicbell/dist', '<rootDir>/packages/embeddable/cypress'],
   globals: {
     __PACKAGE_NAME__: 'TEST',
     __PACKAGE_VERSION__: '0.0.0',

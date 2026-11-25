@@ -9,6 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@magicbell/magicbell-react": "11.5.0",
     "react-app-polyfill": "^3.0.0"
   },
   "alias": {
@@ -19,14 +20,13 @@
     "@magicbell/codegen": "../packages/codegen",
     "@magicbell/service-worker": "../packages/service-worker",
     "@magicbell/utils": "../packages/utils",
-    "magicbell-js": "../packages/magicbell-js",
-    "playground": "../packages/playground"
+    "magicbell-js": "../packages/magicbell-js"
   },
   "devDependencies": {
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
+    "typescript": "5.7.3",
     "vite": "latest",
-    "vite-preset-react": "latest",
-    "typescript": "5.7.3"
+    "vite-preset-react": "latest"
   }
 }
