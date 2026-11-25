@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Links, links, linksRequest, linksResponse } from '../../common/links.js';
 import { SlackToken, slackToken, slackTokenRequest, slackTokenResponse } from './slack-token.js';

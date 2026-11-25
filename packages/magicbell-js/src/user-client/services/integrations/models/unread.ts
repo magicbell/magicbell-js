@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { UnreadHover, unreadHover, unreadHoverRequest, unreadHoverResponse } from './unread-hover.js';
 import { UnreadState, unreadState, unreadStateRequest, unreadStateResponse } from './unread-state.js';

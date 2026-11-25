@@ -54,3 +54,25 @@ it('regenerates API bindings while preserving the maintained HTTP runtime', asyn
   await expect(fs.access(path.join(destination, 'http', 'obsolete.ts'))).rejects.toThrow();
   await expect(fs.access(path.join(destination, 'removed-api.ts'))).rejects.toThrow();
 });
+
+it('rewrites generated Zod imports to namespace imports', async () => {
+  directory = await fs.mkdtemp(path.join(os.tmpdir(), 'magicbell-codegen-'));
+  const source = path.join(directory, 'generated');
+  const destination = path.join(directory, 'client');
+  await fs.mkdir(path.join(source, 'services', 'models'), { recursive: true });
+  await fs.mkdir(path.join(destination, 'http'), { recursive: true });
+  await fs.writeFile(path.join(source, 'services', 'models', 'user.ts'), "import { z } from 'zod';\nz.string();\n");
+  await fs.writeFile(
+    path.join(source, 'services', 'service.ts'),
+    "import z from 'zod';\nimport { ZodError } from 'zod';\n",
+  );
+
+  await installGeneratedClient(source, destination);
+
+  expect(await fs.readFile(path.join(destination, 'services', 'models', 'user.ts'), 'utf-8')).toBe(
+    "import * as z from 'zod';\nz.string();\n",
+  );
+  expect(await fs.readFile(path.join(destination, 'services', 'service.ts'), 'utf-8')).toBe(
+    "import * as z from 'zod';\nimport { ZodError } from 'zod';\n",
+  );
+});

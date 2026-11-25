@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { UnseenHover, unseenHover, unseenHoverRequest, unseenHoverResponse } from './unseen-hover.js';
 import { UnseenState, unseenState, unseenStateRequest, unseenStateResponse } from './unseen-state.js';

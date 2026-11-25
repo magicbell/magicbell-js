@@ -1,4 +1,4 @@
-import z, { ZodType } from 'zod';
+import * as z from 'zod';
 
 import { Environment } from '../environment.js';
 import { SerializationStyle } from '../serialization/base-serializer.js';
@@ -108,7 +108,7 @@ export class RequestBuilder<Page extends unknown[] = unknown[], Output = never> 
     return this;
   }
 
-  setRequestSchema(requestSchema: ZodType): RequestBuilder<Page, Output> {
+  setRequestSchema(requestSchema: z.ZodType): RequestBuilder<Page, Output> {
     this.params.requestSchema = requestSchema;
     return this;
   }

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Environment } from '../../http/environment.js';
 import { ThrowableError } from '../../http/errors/throwable-error.js';

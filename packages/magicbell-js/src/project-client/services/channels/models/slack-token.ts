@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Oauth, oauth, oauthRequest, oauthResponse } from './oauth.js';
 import {

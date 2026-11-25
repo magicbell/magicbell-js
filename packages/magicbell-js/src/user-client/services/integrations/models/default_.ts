@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { DefaultHover, defaultHover, defaultHoverRequest, defaultHoverResponse } from './default-hover.js';
 import { DefaultState, defaultState, defaultStateRequest, defaultStateResponse } from './default-state.js';

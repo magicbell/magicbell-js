@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Links, links, linksRequest, linksResponse } from '../../common/links.js';
 import { TeamsToken, teamsToken, teamsTokenRequest, teamsTokenResponse } from './teams-token.js';

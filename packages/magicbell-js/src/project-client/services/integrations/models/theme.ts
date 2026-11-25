@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Banner, banner, bannerRequest, bannerResponse } from './banner.js';
 import { Dialog, dialog, dialogRequest, dialogResponse } from './dialog.js';

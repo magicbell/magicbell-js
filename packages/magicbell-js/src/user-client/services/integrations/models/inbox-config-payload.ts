@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Images, images, imagesRequest, imagesResponse } from './images.js';
 import { Theme, theme, themeRequest, themeResponse } from './theme.js';

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { AuthedUser, authedUser, authedUserRequest, authedUserResponse } from './authed-user.js';
 import { Enterprise, enterprise, enterpriseRequest, enterpriseResponse } from './enterprise.js';

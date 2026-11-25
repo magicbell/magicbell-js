@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Keys, keys, keysRequest, keysResponse } from './keys.js';
 

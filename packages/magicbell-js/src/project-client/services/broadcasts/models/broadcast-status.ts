@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { Errors, errors, errorsRequest, errorsResponse } from './errors.js';
 import { Summary, summary, summaryRequest, summaryResponse } from './summary.js';
