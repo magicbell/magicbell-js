@@ -13,8 +13,8 @@ step() {
   echo "<== $label ($((SECONDS - start))s)"
 }
 
-# Keep in sync with node-version in .github/workflows/*.yml and packageManager in package.json.
-NODE_VERSION=24.18.0
+# Use the Node version CI pins (Renovate keeps it current) and the Yarn version packageManager names.
+NODE_VERSION=$(sed -n 's/^ *node-version: *//p' .github/workflows/main.yml | head -n 1)
 YARN_VERSION=$(sed -n 's/.*"packageManager": "yarn@\([^"]*\)".*/\1/p' package.json)
 NODE_DIR="$HOME/.local/opt/node-v$NODE_VERSION"
 
@@ -41,10 +41,13 @@ install_yarn() {
 }
 
 # Put the pinned Node first on PATH for Amp and supervised services, which start in login shells.
+# The profile points at a symlink, so a Node bump only has to move the link.
 persist_path() {
-  local marker="# magicbell-js: pinned Node toolchain"
+  local current="$HOME/.local/opt/node-current"
+  local marker="# magicbell-js: current pinned Node toolchain"
+  ln -sfn "$NODE_DIR" "$current"
   if ! grep -Fqx "$marker" "$HOME/.bash_profile" 2>/dev/null; then
-    printf '\n%s\nexport PATH="%s/bin:$PATH"\n' "$marker" "$NODE_DIR" >> "$HOME/.bash_profile"
+    printf '\n%s\nexport PATH="%s/bin:$PATH"\n' "$marker" "$current" >> "$HOME/.bash_profile"
   fi
 }
 
