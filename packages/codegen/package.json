@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^12.1.0",
+    "@babel/parser": "^7.29.8",
     "ast-types": "^0.14.2",
     "axios": "^1.19.0",
     "eslint": "^8.57.0",

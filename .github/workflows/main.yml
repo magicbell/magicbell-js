@@ -80,9 +80,27 @@ jobs:
       - run: yarn test:ci
         timeout-minutes: 10
 
+  packages:
+    name: Packages
+    needs: [setup]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.22.3
+      - uses: bahmutov/npm-install@v1
+      - uses: rharkor/caching-for-turbo@v2.5.0
+      - name: Build
+        run: yarn build
+      - name: Load each published package outside the monorepo
+        run: node scripts/check-packages.js
+        timeout-minutes: 10
+
   preview-release:
     name: Preview Release
-    needs: [eslint, typescript, test]
+    needs: [eslint, typescript, test, packages]
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
