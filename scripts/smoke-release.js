@@ -160,11 +160,11 @@ if (notificationId) {
 await check('cli: --version', () => execFileSync('node', [cliBin, '--version'], { encoding: 'utf8' }).trim());
 
 await check('cli: broadcasts list', () => {
-  const out = execFileSync(
-    'node',
-    [cliBin, '--no-color', '--token', env.MAGICBELL_PROJECT_TOKEN, 'broadcasts', 'list', '--per-page', '1'],
-    { encoding: 'utf8', env: { ...process.env, MAGICBELL_PROFILE: 'smoke-test' } },
-  );
+  // The token goes through MAGICBELL_TOKEN, not --token: a failed command's error message includes its arguments.
+  const out = execFileSync('node', [cliBin, '--no-color', 'broadcasts', 'list', '--per-page', '1'], {
+    encoding: 'utf8',
+    env: { ...process.env, MAGICBELL_PROFILE: 'smoke-test', MAGICBELL_TOKEN: env.MAGICBELL_PROJECT_TOKEN },
+  });
   JSON.parse(out);
 });
 
