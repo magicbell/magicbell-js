@@ -69,6 +69,7 @@
     "test:types": "tsc --project test/tsconfig.json"
   },
   "dependencies": {
+    "tslib": "^2.8.0",
     "zod": "4.6.7"
   },
   "devDependencies": {
