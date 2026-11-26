@@ -1,5 +1,11 @@
 # @magicbell/codegen
 
+## 0.4.1
+
+### Patch Changes
+
+- [#626](https://github.com/magicbell/magicbell-js/pull/626) [`ed601cb`](https://github.com/magicbell/magicbell-js/commit/ed601cb13602d26e643b478c6c80a37f0fb9a20b) Thanks [@unamashana](https://github.com/unamashana)! - Add the missing `@babel/parser` dependency, which recast's TypeScript parser needs. Without it, importing `@magicbell/codegen`, `@magicbell/codegen/builders` or `@magicbell/codegen/recast` threw "Install @babel/parser".
+
 ## 0.4.0
 
 ### Minor Changes

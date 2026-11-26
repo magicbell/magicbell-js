@@ -1,5 +1,11 @@
 # magicbell-js
 
+## 2.0.1
+
+### Patch Changes
+
+- [#626](https://github.com/magicbell/magicbell-js/pull/626) [`ed601cb`](https://github.com/magicbell/magicbell-js/commit/ed601cb13602d26e643b478c6c80a37f0fb9a20b) Thanks [@unamashana](https://github.com/unamashana)! - Add the missing `tslib` dependency. Without it, `require('magicbell-js/project-client')`, `require('magicbell-js/user-client')` and both forms of `magicbell-js/realtime` failed with "Cannot find module 'tslib'" unless another package happened to install it.
+
 ## 2.0.0
 
 ### Major Changes
