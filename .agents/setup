@@ -49,9 +49,10 @@ persist_path() {
 }
 
 step "Install Node $NODE_VERSION" install_node
+# npm and yarn start through `#!/usr/bin/env node`, so the pinned Node must come first on PATH.
+export PATH="$NODE_DIR/bin:$PATH"
 step "Install Yarn $YARN_VERSION" install_yarn
 step "Persist toolchain PATH" persist_path
-export PATH="$NODE_DIR/bin:$PATH"
 
 step "Install dependencies" yarn install --frozen-lockfile --non-interactive --prefer-offline
 step "Build packages" yarn build
