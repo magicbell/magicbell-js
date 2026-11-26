@@ -15,3 +15,5 @@ coverage
 
 .tshy
 .tshy-build
+
+.amp/portals/*

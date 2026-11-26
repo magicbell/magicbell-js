@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Prepares an Amp orb for this repository: the Node and Yarn versions CI uses,
+# workspace dependencies, and a built monorepo (tests depend on built packages).
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+step() {
+  local label=$1 start=$SECONDS
+  shift
+  echo "==> $label"
+  "$@"
+  echo "<== $label ($((SECONDS - start))s)"
+}
+
+# Keep in sync with node-version in .github/workflows/*.yml and packageManager in package.json.
+NODE_VERSION=24.18.0
+YARN_VERSION=$(sed -n 's/.*"packageManager": "yarn@\([^"]*\)".*/\1/p' package.json)
+NODE_DIR="$HOME/.local/opt/node-v$NODE_VERSION"
+
+install_node() {
+  if [ -x "$NODE_DIR/bin/node" ]; then
+    echo "node $NODE_VERSION already installed"
+    return
+  fi
+  local tmp
+  tmp=$(mktemp -d)
+  curl -fsSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" | tar -xJ -C "$tmp"
+  mkdir -p "$(dirname "$NODE_DIR")"
+  rm -rf "$NODE_DIR"
+  mv "$tmp/node-v$NODE_VERSION-linux-x64" "$NODE_DIR"
+  rmdir "$tmp"
+}
+
+install_yarn() {
+  if [ "$("$NODE_DIR/bin/yarn" --version 2>/dev/null || true)" = "$YARN_VERSION" ]; then
+    echo "yarn $YARN_VERSION already installed"
+    return
+  fi
+  "$NODE_DIR/bin/npm" install --global --prefix "$NODE_DIR" --no-fund --no-audit "yarn@$YARN_VERSION"
+}
+
+# Put the pinned Node first on PATH for Amp and supervised services, which start in login shells.
+persist_path() {
+  local marker="# magicbell-js: pinned Node toolchain"
+  if ! grep -Fqx "$marker" "$HOME/.bash_profile" 2>/dev/null; then
+    printf '\n%s\nexport PATH="%s/bin:$PATH"\n' "$marker" "$NODE_DIR" >> "$HOME/.bash_profile"
+  fi
+}
+
+step "Install Node $NODE_VERSION" install_node
+# npm and yarn start through `#!/usr/bin/env node`, so the pinned Node must come first on PATH.
+export PATH="$NODE_DIR/bin:$PATH"
+step "Install Yarn $YARN_VERSION" install_yarn
+step "Persist toolchain PATH" persist_path
+
+step "Install dependencies" yarn install --frozen-lockfile --non-interactive --prefer-offline
+step "Build packages" yarn build
