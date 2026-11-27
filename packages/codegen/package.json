@@ -50,7 +50,7 @@
     "json-schema-merge-allof": "^0.8.1",
     "json5": "^2.2.3",
     "mdast": "^3.0.0",
-    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-from-markdown": "^2.1.0",
     "mdast-util-frontmatter": "^2.0.1",
     "mdast-util-to-markdown": "^2.1.2",
     "micromark-extension-frontmatter": "^2.0.0",
